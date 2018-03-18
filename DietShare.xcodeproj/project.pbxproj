@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
+		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
+		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
+		F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6898205E8C8900DF9694 /* Assets.xcassets */; };
+		F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */; };
+		F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */; };
+		F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */; };
+		F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68C6205EB56100DF9694 /* SignUpController.swift */; };
+		F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68C8205EBD5800DF9694 /* Utilities.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2BE68A3205E8C8900DF9694 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2BE6886205E8C8800DF9694 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2BE688D205E8C8800DF9694;
+			remoteInfo = DietShare;
+		};
+		F2BE68AE205E8C8900DF9694 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2BE6886205E8C8800DF9694 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2BE688D205E8C8800DF9694;
+			remoteInfo = DietShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		F2BE6896205E8C8900DF9694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2BE6898205E8C8900DF9694 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2BE689B205E8C8900DF9694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F2BE689D205E8C8900DF9694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2BE68A2205E8C8900DF9694 /* DietShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DietShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietShareTests.swift; sourceTree = "<group>"; };
+		F2BE68A8205E8C8900DF9694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2BE68AD205E8C8900DF9694 /* DietShareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DietShareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietShareUITests.swift; sourceTree = "<group>"; };
+		F2BE68B3205E8C8900DF9694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2BE68C6205EB56100DF9694 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		F2BE68C8205EBD5800DF9694 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2BE688B205E8C8800DF9694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BE689F205E8C8900DF9694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BE68AA205E8C8900DF9694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2BE6885205E8C8800DF9694 = {
+			isa = PBXGroup;
+			children = (
+				F2BE6890205E8C8800DF9694 /* DietShare */,
+				F2BE68A5205E8C8900DF9694 /* DietShareTests */,
+				F2BE68B0205E8C8900DF9694 /* DietShareUITests */,
+				F2BE688F205E8C8800DF9694 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2BE688F205E8C8800DF9694 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE688E205E8C8800DF9694 /* DietShare.app */,
+				F2BE68A2205E8C8900DF9694 /* DietShareTests.xctest */,
+				F2BE68AD205E8C8900DF9694 /* DietShareUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2BE6890205E8C8800DF9694 /* DietShare */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE68C5205EB22C00DF9694 /* Controllers */,
+				F2BE68C8205EBD5800DF9694 /* Utilities.swift */,
+				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
+				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
+				F2BE6898205E8C8900DF9694 /* Assets.xcassets */,
+				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
+				F2BE689D205E8C8900DF9694 /* Info.plist */,
+			);
+			path = DietShare;
+			sourceTree = "<group>";
+		};
+		F2BE68A5205E8C8900DF9694 /* DietShareTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */,
+				F2BE68A8205E8C8900DF9694 /* Info.plist */,
+			);
+			path = DietShareTests;
+			sourceTree = "<group>";
+		};
+		F2BE68B0205E8C8900DF9694 /* DietShareUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */,
+				F2BE68B3205E8C8900DF9694 /* Info.plist */,
+			);
+			path = DietShareUITests;
+			sourceTree = "<group>";
+		};
+		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE6893205E8C8900DF9694 /* SignInController.swift */,
+				F2BE68C6205EB56100DF9694 /* SignUpController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2BE688D205E8C8800DF9694 /* DietShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2BE68B6205E8C8900DF9694 /* Build configuration list for PBXNativeTarget "DietShare" */;
+			buildPhases = (
+				F2BE688A205E8C8800DF9694 /* Sources */,
+				F2BE688B205E8C8800DF9694 /* Frameworks */,
+				F2BE688C205E8C8800DF9694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DietShare;
+			productName = DietShare;
+			productReference = F2BE688E205E8C8800DF9694 /* DietShare.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2BE68A1205E8C8900DF9694 /* DietShareTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2BE68B9205E8C8900DF9694 /* Build configuration list for PBXNativeTarget "DietShareTests" */;
+			buildPhases = (
+				F2BE689E205E8C8900DF9694 /* Sources */,
+				F2BE689F205E8C8900DF9694 /* Frameworks */,
+				F2BE68A0205E8C8900DF9694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2BE68A4205E8C8900DF9694 /* PBXTargetDependency */,
+			);
+			name = DietShareTests;
+			productName = DietShareTests;
+			productReference = F2BE68A2205E8C8900DF9694 /* DietShareTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F2BE68AC205E8C8900DF9694 /* DietShareUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2BE68BC205E8C8900DF9694 /* Build configuration list for PBXNativeTarget "DietShareUITests" */;
+			buildPhases = (
+				F2BE68A9205E8C8900DF9694 /* Sources */,
+				F2BE68AA205E8C8900DF9694 /* Frameworks */,
+				F2BE68AB205E8C8900DF9694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2BE68AF205E8C8900DF9694 /* PBXTargetDependency */,
+			);
+			name = DietShareUITests;
+			productName = DietShareUITests;
+			productReference = F2BE68AD205E8C8900DF9694 /* DietShareUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2BE6886205E8C8800DF9694 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = com.marvericks;
+				TargetAttributes = {
+					F2BE688D205E8C8800DF9694 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F2BE68A1205E8C8900DF9694 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F2BE688D205E8C8800DF9694;
+					};
+					F2BE68AC205E8C8900DF9694 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F2BE688D205E8C8800DF9694;
+					};
+				};
+			};
+			buildConfigurationList = F2BE6889205E8C8800DF9694 /* Build configuration list for PBXProject "DietShare" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2BE6885205E8C8800DF9694;
+			productRefGroup = F2BE688F205E8C8800DF9694 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2BE688D205E8C8800DF9694 /* DietShare */,
+				F2BE68A1205E8C8900DF9694 /* DietShareTests */,
+				F2BE68AC205E8C8900DF9694 /* DietShareUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2BE688C205E8C8800DF9694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
+				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
+				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BE68A0205E8C8900DF9694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BE68AB205E8C8900DF9694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2BE688A205E8C8800DF9694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
+				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
+				F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */,
+				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BE689E205E8C8900DF9694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BE68A9205E8C8900DF9694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2BE68A4205E8C8900DF9694 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2BE688D205E8C8800DF9694 /* DietShare */;
+			targetProxy = F2BE68A3205E8C8900DF9694 /* PBXContainerItemProxy */;
+		};
+		F2BE68AF205E8C8900DF9694 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2BE688D205E8C8800DF9694 /* DietShare */;
+			targetProxy = F2BE68AE205E8C8900DF9694 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F2BE6895205E8C8900DF9694 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2BE6896205E8C8900DF9694 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2BE689B205E8C8900DF9694 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F2BE68B4205E8C8900DF9694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2BE68B5205E8C8900DF9694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2BE68B7205E8C8900DF9694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				INFOPLIST_FILE = DietShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2BE68B8205E8C8900DF9694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				INFOPLIST_FILE = DietShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F2BE68BA205E8C8900DF9694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				INFOPLIST_FILE = DietShareTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marvericks.DietShareTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DietShare.app/DietShare";
+			};
+			name = Debug;
+		};
+		F2BE68BB205E8C8900DF9694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				INFOPLIST_FILE = DietShareTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marvericks.DietShareTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DietShare.app/DietShare";
+			};
+			name = Release;
+		};
+		F2BE68BD205E8C8900DF9694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				INFOPLIST_FILE = DietShareUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marvericks.DietShareUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DietShare;
+			};
+			name = Debug;
+		};
+		F2BE68BE205E8C8900DF9694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				INFOPLIST_FILE = DietShareUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marvericks.DietShareUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DietShare;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2BE6889205E8C8800DF9694 /* Build configuration list for PBXProject "DietShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BE68B4205E8C8900DF9694 /* Debug */,
+				F2BE68B5205E8C8900DF9694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2BE68B6205E8C8900DF9694 /* Build configuration list for PBXNativeTarget "DietShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BE68B7205E8C8900DF9694 /* Debug */,
+				F2BE68B8205E8C8900DF9694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2BE68B9205E8C8900DF9694 /* Build configuration list for PBXNativeTarget "DietShareTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BE68BA205E8C8900DF9694 /* Debug */,
+				F2BE68BB205E8C8900DF9694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2BE68BC205E8C8900DF9694 /* Build configuration list for PBXNativeTarget "DietShareUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BE68BD205E8C8900DF9694 /* Debug */,
+				F2BE68BE205E8C8900DF9694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2BE6886205E8C8800DF9694 /* Project object */;
+}
