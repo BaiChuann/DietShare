@@ -10,18 +10,18 @@ import UIKit
 
 class SignInController: UIViewController {
 
-    @IBOutlet var inputGroup: [UITextField]!
+    @IBOutlet private var inputGroup: [UITextField]!
+    @IBOutlet private var inputLabelGroup: [UILabel]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpInputDelegate()
-        setUpInputBorder(for: inputGroup)
+        addInputBorder(for: inputGroup)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func setUpInputDelegate() {
@@ -32,6 +32,18 @@ class SignInController: UIViewController {
 extension SignInController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        return true;
+        return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let label = inputLabelGroup.first(where: { $0.tag == textField.tag }) {
+            label.textColor = UIColor.black
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let label = inputLabelGroup.first(where: { $0.tag == textField.tag }) {
+            label.textColor = hexToUIColor(hex: "#A9A9A9")
+        }
     }
 }

@@ -8,16 +8,38 @@
 
 import UIKit
 
-func setUpInputBorder(for inputs: [UITextField]) {
+func addInputBorder(for inputs: [UITextField]) {
     inputs.forEach {
         let border = CALayer()
         let width = CGFloat(1)
         let inputHeight = inputs[0].frame.size.height
         let inputWidth = inputs[0].frame.size.width
-        border.borderColor = UIColor(red:1.00, green:0.84, blue:0.28, alpha:1.0).cgColor
+        border.borderColor = hexToUIColor(hex: "#FFD547").cgColor
         border.frame = CGRect(x: 0, y: inputHeight - width, width: inputWidth, height: inputHeight)
         border.borderWidth = width
         $0.layer.addSublayer(border)
         $0.layer.masksToBounds = true
     }
+}
+
+func hexToUIColor(hex: String) -> UIColor {
+    var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+    if cString.hasPrefix("#") {
+        cString.remove(at: cString.startIndex)
+    }
+
+    if cString.count != 6 {
+        return UIColor.gray
+    }
+
+    var rgbValue: UInt32 = 0
+    Scanner(string: cString).scanHexInt32(&rgbValue)
+
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
 }
