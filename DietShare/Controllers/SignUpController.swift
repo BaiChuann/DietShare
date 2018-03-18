@@ -7,6 +7,24 @@
 //
 
 import UIKit
+import Validator
+
+enum InputType: Int {
+    case username = 0, email, password
+}
+
+enum ValidationErrors: String, Error {
+    typealias RawValue = String
+
+    case usernameInvalid = "Should be between 4-30 characters"
+    case emailInvalid = "Invalid"
+    case passwordDigitInvalid = "Should contain at least one number"
+    case passwordLowerCaseInvalid = "Should contain at least one lowercase letter"
+    case passwordUpperCaseInvalid = "Should contain at least one uppercase letter"
+    case passwordLengthInvalid = "Should contain at least 8 characters"
+
+    var message: String { return self.rawValue }
+}
 
 class SignUpController: UIViewController {
 
@@ -70,10 +88,36 @@ extension SignUpController: UITextFieldDelegate {
             return
         }
 
-        if textField.tag == 2 {
-            validationMark.isHidden = text.count < 8
-        } else {
-            validationMark.isHidden = false
+        var result: ValidationResult?
+
+        if textField.tag == InputType.username.rawValue {
+            let numericRule = ValidationRuleLength(min: 4, max: 20, error: ValidationErrors.usernameInvalid)
+            result = text.validate(rule: numericRule)
+        } else if textField.tag == InputType.email.rawValue {
+            let emailRule = ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)
+            result = text.validate(rule: emailRule)
+        } else if textField.tag == InputType.password.rawValue {
+            var passwordRules = ValidationRuleSet<String>()
+
+            let minLengthRule = ValidationRuleLength(min: 8, error: ValidationErrors.passwordLengthInvalid)
+            let digitRule = ValidationRulePattern(pattern: ContainsNumberValidationPattern(), error: ValidationErrors.passwordDigitInvalid)
+            let lowerCaseAlphabetRule = ValidationRulePattern(pattern: CaseValidationPattern.lowercase, error: ValidationErrors.passwordLowerCaseInvalid)
+            let upperCaseAlphabetRule = ValidationRulePattern(pattern: CaseValidationPattern.uppercase, error: ValidationErrors.passwordUpperCaseInvalid)
+
+            passwordRules.add(rule: minLengthRule)
+            passwordRules.add(rule: digitRule)
+            passwordRules.add(rule: lowerCaseAlphabetRule)
+            passwordRules.add(rule: upperCaseAlphabetRule)
+
+            result = text.validate(rules: passwordRules)
+        }
+
+        if let result = result {
+            switch result {
+            case .valid: validationMark.isHidden = false
+            case .invalid(let failures):
+                validationMark.isHidden = true
+            }
         }
     }
 }
