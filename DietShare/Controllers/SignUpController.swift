@@ -115,8 +115,7 @@ extension SignUpController: UITextFieldDelegate {
         if let result = result {
             switch result {
             case .valid: validationMark.isHidden = false
-            case .invalid(let failures):
-                validationMark.isHidden = true
+            case .invalid: validationMark.isHidden = true
             }
         }
     }
