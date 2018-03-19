@@ -3,7 +3,7 @@
 //  DietShare
 //
 //  Created by Fan Weiguang on 18/3/18.
-//  Copyright © 2018 com.cs3217. All rights reserved.
+//  Copyright © 2018 nus.cs3217. All rights reserved.
 //
 
 import UIKit
@@ -62,7 +62,7 @@ extension SignInController {
             case .cancelled:
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
+                print("Logged in with facebook!")
             }
         }
     }

@@ -3,7 +3,7 @@
 //  DietShareTests
 //
 //  Created by Fan Weiguang on 18/3/18.
-//  Copyright © 2018 com.cs3217. All rights reserved.
+//  Copyright © 2018 nus.cs3217. All rights reserved.
 //
 
 import XCTest
