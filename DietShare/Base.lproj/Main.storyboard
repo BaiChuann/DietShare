@@ -163,6 +163,9 @@
                                             <constraint firstAttribute="width" constant="36" id="hkp-dZ-HEA"/>
                                         </constraints>
                                         <state key="normal" image="facebook"/>
+                                        <connections>
+                                            <action selector="facebookLoginClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jra-GB-BGj"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXJ-2D-fjH">
                                         <rect key="frame" x="56" y="0.0" width="36" height="36"/>
@@ -201,6 +204,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="facebookLoginButton" destination="ynA-hQ-cww" id="xMr-Sp-g2v"/>
+                        <outlet property="wechatLoginButton" destination="TXJ-2D-fjH" id="2Wv-9d-tUM"/>
                         <outletCollection property="inputGroup" destination="Oxb-ts-b52" collectionClass="NSMutableArray" id="Eog-jm-nau"/>
                         <outletCollection property="inputGroup" destination="Ioh-Ei-aWs" collectionClass="NSMutableArray" id="j7k-kq-JWY"/>
                         <outletCollection property="inputLabelGroup" destination="7wn-AN-IH0" collectionClass="NSMutableArray" id="wFP-fj-yu6"/>
