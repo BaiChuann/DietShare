@@ -100,6 +100,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F207CCA520625A0600EF2904 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE6893205E8C8900DF9694 /* SignInController.swift */,
+				F2BE68C6205EB56100DF9694 /* SignUpController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		F2BE6885205E8C8800DF9694 = {
 			isa = PBXGroup;
 			children = (
@@ -157,8 +166,7 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F2BE6893205E8C8900DF9694 /* SignInController.swift */,
-				F2BE68C6205EB56100DF9694 /* SignUpController.swift */,
+				F207CCA520625A0600EF2904 /* Login */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -556,6 +564,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HUP9SH4Z74;
 				INFOPLIST_FILE = DietShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -575,6 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HUP9SH4Z74;
 				INFOPLIST_FILE = DietShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
