@@ -19,7 +19,7 @@ class IngredientPopupController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setUpUnitButton()
+        setUpUnitButton()
         setUpInputDelegate()
         addInputBorder(for: inputGroup, withColor: hexToUIColor(hex: "#CACFD0"))
 
@@ -27,7 +27,6 @@ class IngredientPopupController: UIViewController {
     }
 
     @IBAction func onUnitSelected(_ sender: UIButton!) {
-        let highlightColor = hexToUIColor(hex: "FFD147")
         sender.tintColor = highlightColor
         sender.isSelected = true
 
@@ -40,7 +39,9 @@ class IngredientPopupController: UIViewController {
 
     func setUpUnitButton() {
         unitButtonGroup.forEach {
+            let tintedImage = $0.currentImage?.withRenderingMode(.alwaysTemplate)
 
+            $0.setImage(tintedImage, for: .normal)
             $0.setTitleColor(highlightColor, for: .selected)
             $0.setTitleColor(normalColor, for: .normal)
 
