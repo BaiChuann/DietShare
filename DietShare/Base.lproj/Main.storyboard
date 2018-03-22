@@ -482,9 +482,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="In3-Ro-pwn"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="add" id="7Ey-Mr-UuO">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Share" image="add" id="7Ey-Mr-UuO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuK-dZ-nYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,7 +508,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ahs-nl-aVl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discover" id="uxA-UF-8gJ"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="uxA-UF-8gJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7b-bt-64d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -535,7 +533,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="oBt-PW-r5p"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="XBE-e2-0tf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" id="XBE-e2-0tf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEa-71-mcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -561,7 +559,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="9vt-Ta-1uo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Posts" id="8m8-G4-dUk"/>
+                    <tabBarItem key="tabBarItem" title="Posts" image="like" id="8m8-G4-dUk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOU-tv-jA1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -575,6 +573,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.96078431372549022" green="0.80392156862745101" blue="0.019607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="iEp-Sc-tuJ" kind="relationship" relationship="viewControllers" id="MHi-7g-DYn"/>
@@ -590,10 +593,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="25" height="25"/>
+        <image name="add" width="21" height="21"/>
         <image name="checked" width="64" height="64"/>
+        <image name="discover" width="19" height="19"/>
         <image name="facebook" width="76" height="76"/>
+        <image name="like" width="21" height="20"/>
         <image name="login-button-background" width="256" height="45"/>
+        <image name="profile" width="17" height="19"/>
         <image name="wechat" width="76" height="77"/>
     </resources>
 </document>
