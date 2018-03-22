@@ -697,10 +697,10 @@
             </objects>
             <point key="canvasLocation" x="140" y="920"/>
         </scene>
-        <!--Food Select Controller-->
+        <!--Food Adder Controller-->
         <scene sceneID="8jz-9i-esV">
             <objects>
-                <viewController id="vFK-vy-R3F" customClass="FoodSelectController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vFK-vy-R3F" customClass="FoodAdderController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hxS-2g-oZQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -756,10 +756,154 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uTd-VA-NyA"/>
                     </view>
+                    <connections>
+                        <outlet property="addIngredientImage" destination="b5r-Zm-k1j" id="Ipx-EB-DPr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rBB-yx-74S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="941.60000000000002" y="2639.7301349325339"/>
+        </scene>
+        <!--Ingredient Popup Controller-->
+        <scene sceneID="fjM-js-wUN">
+            <objects>
+                <viewController storyboardIdentifier="IngredientPopup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vdj-yi-kHv" customClass="IngredientPopupController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w5t-gL-oG1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQs-g3-McN">
+                                <rect key="frame" x="0.0" y="20" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Eeu-mi-5aG"/>
+                                    <constraint firstAttribute="height" constant="30" id="n9y-u4-hxt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" image="back"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="eYf-eN-nRN">
+                                <rect key="frame" x="16" y="80" width="343" height="67"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yin-V9-6fA">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cco-1x-myq">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="18.5"/>
+                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                                                <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uW6-mB-VoQ">
+                                                <rect key="frame" x="49" y="0.0" width="294" height="18.5"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="65o-4s-hrv">
+                                        <rect key="frame" x="0.0" y="48.5" width="343" height="18.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeM-Hz-xbf">
+                                                <rect key="frame" x="0.0" y="0.0" width="65" height="18.5"/>
+                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                                                <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="owP-kv-cUV">
+                                                <rect key="frame" x="70" y="0.0" width="273" height="18.5"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="65o-4s-hrv" firstAttribute="leading" secondItem="eYf-eN-nRN" secondAttribute="leading" id="IIv-Vo-1oT"/>
+                                    <constraint firstItem="yin-V9-6fA" firstAttribute="leading" secondItem="eYf-eN-nRN" secondAttribute="leading" id="Ulu-CC-OjX"/>
+                                    <constraint firstAttribute="trailing" secondItem="yin-V9-6fA" secondAttribute="trailing" id="sGP-jp-t4n"/>
+                                    <constraint firstAttribute="trailing" secondItem="65o-4s-hrv" secondAttribute="trailing" id="uLx-I6-sDK"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbN-ku-T0F">
+                                <rect key="frame" x="136" y="25" width="102" height="21"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="17"/>
+                                <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-I4-pYz">
+                                <rect key="frame" x="16" y="177" width="30.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                                <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BkC-KU-r5b" userLabel="Units">
+                                <rect key="frame" x="16" y="205.5" width="343" height="77"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AD7-53-bhg">
+                                        <rect key="frame" x="0.0" y="18" width="62.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <inset key="titleEdgeInsets" minX="-50" minY="100" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="S bowl" image="s-bowl">
+                                            <color key="titleColor" red="0.61176470588235299" green="0.62745098039215685" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-AK-y32">
+                                        <rect key="frame" x="62.5" y="10.5" width="79" height="56"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
+                                        <inset key="titleEdgeInsets" minX="-66" minY="100" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="M-bowl" image="m-bowl">
+                                            <color key="titleColor" red="0.61176470588235299" green="0.62745098039215685" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-ct-MmM">
+                                        <rect key="frame" x="141.5" y="7" width="86" height="63"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
+                                        <inset key="titleEdgeInsets" minX="-70" minY="100" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="M-plate" image="m-plate">
+                                            <color key="titleColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1E-hM-NGr">
+                                        <rect key="frame" x="227.5" y="0.0" width="115.5" height="77"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
+                                        <inset key="titleEdgeInsets" minX="-110" minY="100" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="L-plate" image="l-plate">
+                                            <color key="titleColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-eD-R3r">
+                                <rect key="frame" x="166" y="382.5" width="42" height="33"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                <state key="normal" title="Save"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5rY-eD-R3r" firstAttribute="top" secondItem="BkC-KU-r5b" secondAttribute="bottom" constant="100" id="14p-y8-A15"/>
+                            <constraint firstItem="8tI-wG-c1t" firstAttribute="trailing" secondItem="eYf-eN-nRN" secondAttribute="trailing" constant="16" id="5RM-Pv-yBJ"/>
+                            <constraint firstItem="SbN-ku-T0F" firstAttribute="centerX" secondItem="8tI-wG-c1t" secondAttribute="centerX" id="8ra-qD-E6p"/>
+                            <constraint firstItem="SbN-ku-T0F" firstAttribute="top" secondItem="8tI-wG-c1t" secondAttribute="top" constant="5" id="AYG-Id-XOi"/>
+                            <constraint firstItem="MQs-g3-McN" firstAttribute="leading" secondItem="8tI-wG-c1t" secondAttribute="leading" id="GFV-QQ-cNV"/>
+                            <constraint firstItem="lQ0-I4-pYz" firstAttribute="top" secondItem="eYf-eN-nRN" secondAttribute="bottom" constant="30" id="H3w-UG-Al3"/>
+                            <constraint firstItem="lQ0-I4-pYz" firstAttribute="leading" secondItem="8tI-wG-c1t" secondAttribute="leading" constant="16" id="HdN-1z-Imp"/>
+                            <constraint firstAttribute="trailing" secondItem="BkC-KU-r5b" secondAttribute="trailing" constant="16" id="VRd-A4-fBT"/>
+                            <constraint firstItem="BkC-KU-r5b" firstAttribute="leading" secondItem="8tI-wG-c1t" secondAttribute="leading" constant="16" id="WJV-S5-pnI"/>
+                            <constraint firstItem="5rY-eD-R3r" firstAttribute="centerX" secondItem="8tI-wG-c1t" secondAttribute="centerX" id="Wqx-9E-bb9"/>
+                            <constraint firstItem="eYf-eN-nRN" firstAttribute="top" secondItem="MQs-g3-McN" secondAttribute="bottom" constant="30" id="XS8-Ad-ydL"/>
+                            <constraint firstItem="eYf-eN-nRN" firstAttribute="leading" secondItem="8tI-wG-c1t" secondAttribute="leading" constant="16" id="b7i-8I-pms"/>
+                            <constraint firstItem="MQs-g3-McN" firstAttribute="top" secondItem="8tI-wG-c1t" secondAttribute="top" id="hrf-b0-LQQ"/>
+                            <constraint firstItem="BkC-KU-r5b" firstAttribute="top" secondItem="lQ0-I4-pYz" secondAttribute="bottom" constant="10" id="tXr-Fs-mzw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8tI-wG-c1t"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qx1-zY-Ju1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="941.60000000000002" y="3389.9550224887557"/>
         </scene>
     </scenes>
     <resources>
@@ -770,13 +914,17 @@
         <image name="discover" width="19" height="19"/>
         <image name="facebook" width="76" height="76"/>
         <image name="food-example-1" width="125" height="165"/>
+        <image name="l-plate" width="104" height="77"/>
         <image name="like" width="21" height="20"/>
         <image name="login-button-background" width="256" height="45"/>
+        <image name="m-bowl" width="56" height="56"/>
+        <image name="m-plate" width="63" height="63"/>
         <image name="profile" width="17" height="19"/>
+        <image name="s-bowl" width="41" height="41"/>
         <image name="wechat" width="76" height="77"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="11n-9E-BUr"/>
-        <segue reference="Xec-YC-oQs"/>
+        <segue reference="0Rw-j7-RLe"/>
     </inferredMetricsTieBreakers>
 </document>
