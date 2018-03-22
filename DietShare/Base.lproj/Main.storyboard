@@ -130,7 +130,7 @@
                                     <color key="titleColor" red="1" green="0.7843137255" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Wee-18-DuM" kind="show" id="uE8-3U-gwZ"/>
+                                    <segue destination="Wee-18-DuM" kind="showDetail" action="showViewController:sender:" id="uE8-3U-gwZ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAx-5I-rJ1" userLabel="Left divider">
@@ -478,6 +478,12 @@
                                 <color key="textColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hda-rP-d7A">
+                                <rect key="frame" x="151" y="369" width="72" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Next"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="In3-Ro-pwn"/>
@@ -487,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuK-dZ-nYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="1764"/>
+            <point key="canvasLocation" x="140" y="1763.568215892054"/>
         </scene>
         <!--Discover-->
         <scene sceneID="al2-Hl-ziN">
