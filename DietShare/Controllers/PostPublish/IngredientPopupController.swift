@@ -19,12 +19,15 @@ class IngredientPopupController: UIViewController {
     @IBOutlet weak private var warningLabel: UILabel!
     @IBOutlet weak private var saveButton: UIButton!
 
+    weak var delegate: FoodAdderDelegate?
     private var currentSelectedUnit = 0
     private let normalColor = hexToUIColor(hex: "#9CA0A1")
     private let highlightColor = hexToUIColor(hex: "FFD147")
     private let ingredientDropDown = DropDown()
     private var name: String?
-    private var quantity: String?
+    private var quantity: Int?
+    private var unit = IngredientUnit.sBowl
+    private var image = UIImage(named: "ingredient-example")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,15 @@ class IngredientPopupController: UIViewController {
         addInputBorder(for: inputGroup, withColor: hexToUIColor(hex: "#CACFD0"))
 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        guard let name = name, let quantity = quantity, let image = image else {
+            return
+        }
+
+        let currentIngredient = Ingredient(name: name, image: image, quantity: quantity, unit: unit)
+        delegate?.addIngredient(currentIngredient)
     }
 
     @IBAction func onUnitSelected(_ sender: Any) {
@@ -51,23 +63,22 @@ class IngredientPopupController: UIViewController {
     }
 
     @IBAction func onSaveButtonPressed(_ sender: Any) {
-        inputGroup.forEach {
-            switch $0.tag {
+        for input in inputGroup {
+            guard let text = input.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+                continue
+            }
+
+            switch input.tag {
             case IngredientInfoType.name.rawValue:
-                name = $0.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+                name = text 
             case IngredientInfoType.quantity.rawValue:
-                quantity = $0.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+                quantity = Int(text)
             default:
-                break
+                continue
             }
         }
 
-        guard let name = name, let quantity = quantity else {
-            warningLabel.isHidden = false
-            return
-        }
-
-        guard !name.isEmpty, !quantity.isEmpty else {
+        guard let name = name, let quantity = quantity, !name.isEmpty, quantity > 0 else {
             warningLabel.isHidden = false
             return
         }
@@ -110,15 +121,15 @@ class IngredientPopupController: UIViewController {
         if let font = UIFont(name: "Verdana", size: 14) {
             ingredientDropDown.textFont = font
         }
-        ingredientDropDown.textColor = hexToUIColor(hex: "9CA0A1")
+        ingredientDropDown.textColor = normalColor
         ingredientDropDown.backgroundColor = UIColor.white
         ingredientDropDown.shadowOpacity = 0
-        ingredientDropDown.cellNib = UINib(nibName: "IngredientCell", bundle: nil)
+        ingredientDropDown.cellNib = UINib(nibName: "IngredientDropDownCell", bundle: nil)
         ingredientDropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? IngredientCell else {
+            guard let cell = cell as? IngredientDropDownCell else {
                 return
             }
-            cell.ingredientIcon.image = UIImage(named: "ingredient-example")
+            cell.ingredientIcon.image = self.image
             cell.optionLabel.text = "food \(index)"
         }
 

@@ -2,13 +2,21 @@
 //  IngredientCell.swift
 //  DietShare
 //
-//  Created by Fan Weiguang on 23/3/18.
+//  Created by Fan Weiguang on 24/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
 
 import UIKit
-import DropDown
 
-class IngredientCell: DropDownCell {
-    @IBOutlet weak var ingredientIcon: UIImageView!
+class IngredientCell: UICollectionViewCell {
+    @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var nameLabel: UILabel!
+
+    func setImage(_ image: UIImage?) {
+        imageView.image = image
+    }
+
+    func setName(_ name: String) {
+        nameLabel.text = name
+    }
 }

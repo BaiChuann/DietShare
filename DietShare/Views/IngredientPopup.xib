@@ -82,14 +82,14 @@
                                             <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fzP-qP-RR7">
+                                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fzP-qP-RR7">
                                             <rect key="frame" x="75" y="0.0" width="253" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="r1A-GU-i7o"/>
                                             </constraints>
                                             <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                         </textField>
                                     </subviews>
                                 </stackView>

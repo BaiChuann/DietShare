@@ -12,8 +12,10 @@
 		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
 		F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */; };
 		F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */; };
-		F26698D52064F39B00E3A1F2 /* IngredientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698D42064F39B00E3A1F2 /* IngredientCell.xib */; };
-		F26698D72064F47800E3A1F2 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D62064F47800E3A1F2 /* IngredientCell.swift */; };
+		F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */; };
+		F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */; };
+		F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D820656D6900E3A1F2 /* IngredientCell.swift */; };
+		F26698DC2065720E00E3A1F2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DB2065720E00E3A1F2 /* Ingredient.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -50,8 +52,10 @@
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
 		F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPopupController.swift; sourceTree = "<group>"; };
 		F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPopup.xib; sourceTree = "<group>"; };
-		F26698D42064F39B00E3A1F2 /* IngredientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientCell.xib; sourceTree = "<group>"; };
-		F26698D62064F47800E3A1F2 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientDropDownCell.xib; sourceTree = "<group>"; };
+		F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDropDownCell.swift; sourceTree = "<group>"; };
+		F26698D820656D6900E3A1F2 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		F26698DB2065720E00E3A1F2 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -135,10 +139,19 @@
 			isa = PBXGroup;
 			children = (
 				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
-				F26698D62064F47800E3A1F2 /* IngredientCell.swift */,
-				F26698D42064F39B00E3A1F2 /* IngredientCell.xib */,
+				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
+				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
+				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F26698DA206571E500E3A1F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F26698DB2065720E00E3A1F2 /* Ingredient.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F2BE6885205E8C8800DF9694 = {
@@ -166,8 +179,9 @@
 		F2BE6890205E8C8800DF9694 /* DietShare */ = {
 			isa = PBXGroup;
 			children = (
-				F2BE68C5205EB22C00DF9694 /* Controllers */,
+				F26698DA206571E500E3A1F2 /* Models */,
 				F26698D2206417B100E3A1F2 /* Views */,
+				F2BE68C5205EB22C00DF9694 /* Controllers */,
 				F2BE68C8205EBD5800DF9694 /* Utilities.swift */,
 				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
 				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
@@ -317,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
-				F26698D52064F39B00E3A1F2 /* IngredientCell.xib in Resources */,
+				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
 				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
 				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
@@ -434,11 +448,13 @@
 			files = (
 				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
+				F26698DC2065720E00E3A1F2 /* Ingredient.swift in Sources */,
+				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
-				F26698D72064F47800E3A1F2 /* IngredientCell.swift in Sources */,
+				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
