@@ -6,6 +6,7 @@ target 'DietShare' do
   use_frameworks!
   pod 'Validator'
   pod 'PopupDialog', '~> 0.7'
+  pod 'DropDown'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'

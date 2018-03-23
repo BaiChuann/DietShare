@@ -24,7 +24,7 @@ class FoodAdderController: UIViewController {
     @objc
     func onAddIngredientImageTapped() {
         let ingredientPopup = IngredientPopupController(nibName: "IngredientPopup", bundle: nil)
-        let popup = PopupDialog(viewController: ingredientPopup, gestureDismissal: true)
+        let popup = PopupDialog(viewController: ingredientPopup, gestureDismissal: false)
         present(popup, animated: true, completion: nil)
     }
 }
