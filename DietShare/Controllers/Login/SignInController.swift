@@ -3,12 +3,16 @@
 //  DietShare
 //
 //  Created by Fan Weiguang on 18/3/18.
-//  Copyright © 2018 com.cs3217. All rights reserved.
+//  Copyright © 2018 nus.cs3217. All rights reserved.
 //
 
 import UIKit
 import FacebookLogin
 import FacebookCore
+
+enum SignInInputType: Int {
+    case email = 0, password
+}
 
 class SignInController: UIViewController {
 
@@ -28,8 +32,40 @@ class SignInController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func onSignInButtonPressed(_ sender: Any) {
+        var emailInput: String?
+        var passwordInput: String?
+
+        inputGroup.forEach {
+            switch $0.tag {
+            case SignInInputType.email.rawValue:
+                emailInput = $0.text
+            case SignInInputType.password.rawValue:
+                passwordInput = $0.text
+            default:
+                return
+            }
+        }
+
+        guard let email = emailInput, let password = passwordInput else {
+            print("Invalid email or password")
+            return
+        }
+
+        //TODO: Check for match between email and password here, and get the user from DataSource
+
+        signIn()
+    }
+
     func setUpInputDelegate() {
         inputGroup.forEach { $0.delegate = self }
+    }
+
+    //TODO: should pass with a user object
+    func signIn() {
+        if let tabPageVC = storyboard?.instantiateViewController(withIdentifier: "TabPage") {
+            show(tabPageVC, sender: self)
+        }
     }
 }
 
@@ -62,7 +98,8 @@ extension SignInController {
             case .cancelled:
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
+                self.signIn()
+                print("Logged in with facebook!")
             }
         }
     }
