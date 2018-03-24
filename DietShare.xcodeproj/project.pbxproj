@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
-		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -103,27 +102,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F207CCA520625A0600EF2904 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				F2BE6893205E8C8900DF9694 /* SignInController.swift */,
-				F2BE68C6205EB56100DF9694 /* SignUpController.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		F26698C52063EBD800E3A1F2 /* PostPublish */ = {
-			isa = PBXGroup;
-			children = (
-				F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */,
-			);
-			path = PostPublish;
-			sourceTree = "<group>";
-		};
 		F2BE6885205E8C8800DF9694 = {
 			isa = PBXGroup;
 			children = (
-				B5CBA0ED206624C700BC8005 /* PreliminaryDesignDoc.md */,
 				F2BE6890205E8C8800DF9694 /* DietShare */,
 				F2BE68A5205E8C8900DF9694 /* DietShareTests */,
 				F2BE68B0205E8C8900DF9694 /* DietShareUITests */,
@@ -178,8 +159,8 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F207CCA520625A0600EF2904 /* Login */,
-				F26698C52063EBD800E3A1F2 /* PostPublish */,
+				F2BE6893205E8C8900DF9694 /* SignInController.swift */,
+				F2BE68C6205EB56100DF9694 /* SignUpController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -403,7 +384,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */,
@@ -574,18 +554,14 @@
 			baseConfigurationReference = 48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = RYEPC9248R;
 				INFOPLIST_FILE = DietShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -594,18 +570,14 @@
 			baseConfigurationReference = 5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = RYEPC9248R;
 				INFOPLIST_FILE = DietShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -3,13 +3,13 @@
 //  DietShare
 //
 //  Created by Fan Weiguang on 18/3/18.
-//  Copyright © 2018 nus.cs3217. All rights reserved.
+//  Copyright © 2018 com.cs3217. All rights reserved.
 //
 
 import UIKit
 import Validator
 
-enum SignUpInputType: Int {
+enum InputType: Int {
     case username = 0, email, password
 }
 
@@ -90,13 +90,13 @@ extension SignUpController: UITextFieldDelegate {
 
         var result: ValidationResult?
 
-        if textField.tag == SignUpInputType.username.rawValue {
+        if textField.tag == InputType.username.rawValue {
             let numericRule = ValidationRuleLength(min: 4, max: 20, error: ValidationErrors.usernameInvalid)
             result = text.validate(rule: numericRule)
-        } else if textField.tag == SignUpInputType.email.rawValue {
+        } else if textField.tag == InputType.email.rawValue {
             let emailRule = ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)
             result = text.validate(rule: emailRule)
-        } else if textField.tag == SignUpInputType.password.rawValue {
+        } else if textField.tag == InputType.password.rawValue {
             var passwordRules = ValidationRuleSet<String>()
 
             let minLengthRule = ValidationRuleLength(min: 8, error: ValidationErrors.passwordLengthInvalid)
