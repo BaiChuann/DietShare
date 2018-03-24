@@ -12,6 +12,7 @@ import TweeTextField
 
 protocol FoodAdderDelegate: class {
     func addIngredient(_: Ingredient)
+    func onPopUpDismissed()
 }
 
 class FoodAdderController: UIViewController {
@@ -33,9 +34,14 @@ class FoodAdderController: UIViewController {
         addIngredientImage.addGestureRecognizer(tapGestureRecognizer)
 
         setUpInput()
+
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        addKeyboardNotifications()
         UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {() -> Void in
             self.cursorView.alpha = 0 }, completion: nil)
     }
@@ -44,9 +50,8 @@ class FoodAdderController: UIViewController {
         removeKeyboardNotifications()
     }
 
-    func setUpInput() {
+    private func setUpInput() {
         nameInput.delegate = self
-        addKeyboardNotifications()
 
         nameInput.minimizationAnimationType = .smoothly
         if let font = UIFont(name: Constants.fontBold, size: 24) {
@@ -55,7 +60,7 @@ class FoodAdderController: UIViewController {
     }
 
     @objc
-    func onAddIngredientImageTapped() {
+    private func onAddIngredientImageTapped() {
         removeKeyboardNotifications()
 
         let ingredientPopup = IngredientPopupController(nibName: ingredientPopupNibName, bundle: nil)
@@ -64,7 +69,7 @@ class FoodAdderController: UIViewController {
         present(popup, animated: true, completion: nil)
     }
 
-    func addKeyboardNotifications() {
+    private func addKeyboardNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -76,13 +81,13 @@ class FoodAdderController: UIViewController {
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
 
-    func removeKeyboardNotifications() {
+    private func removeKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
 
-    func updateKeyboardFrame(notification: NSNotification, keyboardHeight: CGFloat) {
+    private func updateKeyboardFrame(notification: NSNotification, keyboardHeight: CGFloat) {
         guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else {
             return
         }
@@ -94,7 +99,7 @@ class FoodAdderController: UIViewController {
     }
 
     @objc
-    func keyboardWillShow(notification: NSNotification) {
+    private func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
@@ -103,12 +108,12 @@ class FoodAdderController: UIViewController {
     }
 
     @objc
-    func keyboardWillHide(notification: NSNotification) {
+    private func keyboardWillHide(notification: NSNotification) {
         updateKeyboardFrame(notification: notification, keyboardHeight: 0)
     }
 
     @objc
-    func keyboardWillChangeFrame(_ notification: NSNotification) {
+    private func keyboardWillChangeFrame(_ notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
@@ -165,5 +170,9 @@ extension FoodAdderController: FoodAdderDelegate {
         print("adding ingredient \(ingredient.name)")
         ingredients.append(ingredient)
         ingredientCollectionView.reloadData()
+    }
+
+    func onPopUpDismissed() {
+        addKeyboardNotifications()
     }
 }

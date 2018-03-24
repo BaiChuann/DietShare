@@ -21,7 +21,7 @@ class FoodSelectController: UIViewController {
         setUpUI()
     }
 
-    func setUpUI() {
+    private func setUpUI() {
         addFoodButton.layer.cornerRadius = Constants.cornerRadius
         addFoodButton.layer.borderWidth = Constants.buttonBorderWidth
         addFoodButton.layer.borderColor = Constants.lightTextColor.cgColor

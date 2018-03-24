@@ -81,14 +81,14 @@ class IngredientPopupController: UIViewController {
             return
         }
 
-        dismiss(animated: true, completion: nil)
+        dismissPopUp()
     }
 
     @IBAction func onCloseButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismissPopUp()
     }
 
-    func setUpUI() {
+    private func setUpUI() {
         inputGroup.forEach {
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: $0.frame.height))
             $0.leftView = paddingView
@@ -115,7 +115,7 @@ class IngredientPopupController: UIViewController {
         warningLabel.isHidden = true
     }
 
-    func setUpIngredientDropDown() {
+    private func setUpIngredientDropDown() {
         if let font = UIFont(name: Constants.fontRegular, size: 14) {
             ingredientDropDown.textFont = font
         }
@@ -143,15 +143,20 @@ class IngredientPopupController: UIViewController {
         }
     }
 
-    func setUpInputDelegate() {
+    private func setUpInputDelegate() {
         inputGroup.forEach {
             $0.delegate = self
             $0.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
     }
 
+    private func dismissPopUp() {
+        dismiss(animated: true, completion: nil)
+        delegate?.onPopUpDismissed()
+    }
+
     @objc
-    func endEditing() {
+    private func endEditing() {
         view.endEditing(true)
     }
 }

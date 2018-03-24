@@ -19,6 +19,7 @@
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DF206660C700E3A1F2 /* FoodCell.swift */; };
 		F26698E22066613800E3A1F2 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E12066613800E3A1F2 /* Food.swift */; };
+		F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E520669A2E00E3A1F2 /* StickerAdderController.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		B5CBA0ED206624C700BC8005 /* PreliminaryDesignDoc.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PreliminaryDesignDoc.md; sourceTree = "<group>"; };
 		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
 		F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPopupController.swift; sourceTree = "<group>"; };
@@ -62,8 +64,7 @@
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F26698DF206660C700E3A1F2 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		F26698E12066613800E3A1F2 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		B5CBA0ED206624C700BC8005 /* PreliminaryDesignDoc.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PreliminaryDesignDoc.md; sourceTree = "<group>"; };
-		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
+		F26698E520669A2E00E3A1F2 /* StickerAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAdderController.swift; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -137,8 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */,
-				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
 				F26698C82063F72800E3A1F2 /* FoodAdderController.swift */,
+				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
+				F26698E520669A2E00E3A1F2 /* StickerAdderController.swift */,
 			);
 			path = PostPublish;
 			sourceTree = "<group>";
@@ -466,6 +468,7 @@
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				F26698DC2065720E00E3A1F2 /* Ingredient.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
+				F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
