@@ -49,7 +49,7 @@ class FoodAdderController: UIViewController {
         addKeyboardNotifications()
 
         nameInput.minimizationAnimationType = .smoothly
-        if let font = UIFont(name: Constants.fontName, size: 20) {
+        if let font = UIFont(name: Constants.fontBold, size: 24) {
             nameInput.font = font
         }
     }

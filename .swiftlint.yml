@@ -1,4 +1,5 @@
 excluded:
+  - Carthage
   - Pods
 
 disabled_rules:

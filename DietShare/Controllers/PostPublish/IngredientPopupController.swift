@@ -108,7 +108,7 @@ class IngredientPopupController: UIViewController {
             }
         }
 
-        saveButton.layer.cornerRadius = Constants.buttonBorderRadius
+        saveButton.layer.cornerRadius = Constants.cornerRadius
         saveButton.backgroundColor = Constants.themeColor
         saveButton.setTitleColor(UIColor.white, for: .normal)
 
@@ -116,7 +116,7 @@ class IngredientPopupController: UIViewController {
     }
 
     func setUpIngredientDropDown() {
-        if let font = UIFont(name: Constants.fontName, size: 14) {
+        if let font = UIFont(name: Constants.fontRegular, size: 14) {
             ingredientDropDown.textFont = font
         }
         ingredientDropDown.textColor = Constants.normalTextColor

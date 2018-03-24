@@ -9,8 +9,16 @@
 import UIKit
 
 class FoodCell: UICollectionViewCell {
+    @IBOutlet weak private var background: UIView!
     @IBOutlet weak private var foodImage: UIImageView!
     @IBOutlet weak private var foodName: UILabel!
+
+    override func layoutSubviews() {
+        background.layer.cornerRadius = Constants.cornerRadius
+        background.layer.masksToBounds = true
+
+        super.layoutSubviews()
+    }
 
     func setFoodImage(_ image: UIImage) {
         foodImage.image = image
