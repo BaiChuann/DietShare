@@ -7,6 +7,7 @@ target 'DietShare' do
   pod 'Validator'
   pod 'PopupDialog', '~> 0.7'
   pod 'DropDown'
+  pod 'TweeTextField'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'

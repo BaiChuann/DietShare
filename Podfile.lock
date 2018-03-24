@@ -28,6 +28,7 @@ PODS:
     - FBSDKCoreKit (~> 4.31.1)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
+  - TweeTextField (1.1.1)
   - Validator (3.0.1)
 
 DEPENDENCIES:
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - PopupDialog (~> 0.7)
+  - TweeTextField
   - Validator
 
 SPEC CHECKSUMS:
@@ -49,8 +51,9 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
+  TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
   Validator: 309a430b6b5430a327d8c84a3246036badaa2dcb
 
-PODFILE CHECKSUM: 36842f770e55a4fa7aef3f0d33a9abbf659e96fe
+PODFILE CHECKSUM: 644a15be568efec65753b6e07ede05d857dd304e
 
 COCOAPODS: 1.4.0

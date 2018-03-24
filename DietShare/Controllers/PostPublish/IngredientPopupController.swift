@@ -21,8 +21,6 @@ class IngredientPopupController: UIViewController {
 
     weak var delegate: FoodAdderDelegate?
     private var currentSelectedUnit = 0
-    private let normalColor = hexToUIColor(hex: "#9CA0A1")
-    private let highlightColor = hexToUIColor(hex: "FFD147")
     private let ingredientDropDown = DropDown()
     private var name: String?
     private var quantity: Int?
@@ -35,7 +33,7 @@ class IngredientPopupController: UIViewController {
         setUpUI()
         setUpIngredientDropDown()
         setUpInputDelegate()
-        addInputBorder(for: inputGroup, withColor: hexToUIColor(hex: "#CACFD0"))
+        addInputBorder(for: inputGroup, withColor: Constants.lightTextColor)
 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
     }
@@ -51,12 +49,12 @@ class IngredientPopupController: UIViewController {
 
     @IBAction func onUnitSelected(_ sender: Any) {
         if let button = sender as? UIButton {
-            button.tintColor = highlightColor
+            button.tintColor = Constants.themeColor
             button.isSelected = true
 
             let previouslySelected = unitButtonGroup.first { $0.tag == currentSelectedUnit }
             previouslySelected?.isSelected = false
-            previouslySelected?.tintColor = normalColor
+            previouslySelected?.tintColor = Constants.normalTextColor
 
             currentSelectedUnit = button.tag
         }
@@ -70,7 +68,7 @@ class IngredientPopupController: UIViewController {
 
             switch input.tag {
             case IngredientInfoType.name.rawValue:
-                name = text 
+                name = text
             case IngredientInfoType.quantity.rawValue:
                 quantity = Int(text)
             default:
@@ -101,27 +99,27 @@ class IngredientPopupController: UIViewController {
             let tintedImage = $0.currentImage?.withRenderingMode(.alwaysTemplate)
 
             $0.setImage(tintedImage, for: .normal)
-            $0.setTitleColor(highlightColor, for: .selected)
-            $0.setTitleColor(normalColor, for: .normal)
+            $0.setTitleColor(Constants.themeColor, for: .selected)
+            $0.setTitleColor(Constants.normalTextColor, for: .normal)
 
             if $0.tag == currentSelectedUnit {
                 $0.isSelected = true
-                $0.tintColor = highlightColor
+                $0.tintColor = Constants.themeColor
             }
         }
 
         saveButton.layer.cornerRadius = 10
-        saveButton.backgroundColor = highlightColor
+        saveButton.backgroundColor = Constants.themeColor
         saveButton.setTitleColor(UIColor.white, for: .normal)
 
         warningLabel.isHidden = true
     }
 
     func setUpIngredientDropDown() {
-        if let font = UIFont(name: "Verdana", size: 14) {
+        if let font = UIFont(name: Constants.fontName, size: 14) {
             ingredientDropDown.textFont = font
         }
-        ingredientDropDown.textColor = normalColor
+        ingredientDropDown.textColor = Constants.normalTextColor
         ingredientDropDown.backgroundColor = UIColor.white
         ingredientDropDown.shadowOpacity = 0
         ingredientDropDown.cellNib = UINib(nibName: "IngredientDropDownCell", bundle: nil)

@@ -8,6 +8,7 @@
 
 import UIKit
 import PopupDialog
+import TweeTextField
 
 protocol FoodAdderDelegate: class {
     func addIngredient(_: Ingredient)
@@ -16,11 +17,14 @@ protocol FoodAdderDelegate: class {
 class FoodAdderController: UIViewController {
 
     @IBOutlet weak private var addIngredientImage: UIImageView!
+    @IBOutlet weak private var cursorView: UIView!
+    @IBOutlet weak private var nameInput: TweeActiveTextField!
     @IBOutlet weak private var ingredientCollectionView: UICollectionView!
 
     private let ingredientCellIdentifier = "IngredientCell"
     private let ingredientPopupNibName = "IngredientPopup"
     private var ingredients = [Ingredient]()
+    private var foodName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +32,89 @@ class FoodAdderController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientImageTapped))
         addIngredientImage.isUserInteractionEnabled = true
         addIngredientImage.addGestureRecognizer(tapGestureRecognizer)
+
+        setUpInput()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {() -> Void in
+            self.cursorView.alpha = 0 }, completion: nil)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        removeKeyboardNotifications()
+    }
+
+    func setUpInput() {
+        nameInput.delegate = self
+        addKeyboardNotifications()
+
+        nameInput.minimizationAnimationType = .smoothly
+        if let font = UIFont(name: Constants.fontName, size: 20) {
+            nameInput.font = font
+        }
     }
 
     @objc
     func onAddIngredientImageTapped() {
+        removeKeyboardNotifications()
+
         let ingredientPopup = IngredientPopupController(nibName: ingredientPopupNibName, bundle: nil)
         let popup = PopupDialog(viewController: ingredientPopup, gestureDismissal: false)
         ingredientPopup.delegate = self
         present(popup, animated: true, completion: nil)
+    }
+
+    func addKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+
+    func updateKeyboardFrame(notification: NSNotification, keyboardHeight: CGFloat) {
+        guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else {
+            return
+        }
+
+        self.view.frame.origin.y = -keyboardHeight
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc
+    func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+
+        updateKeyboardFrame(notification: notification, keyboardHeight: keyboardSize.height)
+    }
+
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
+        updateKeyboardFrame(notification: notification, keyboardHeight: 0)
+    }
+
+    @objc
+    func keyboardWillChangeFrame(_ notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+
+        updateKeyboardFrame(notification: notification, keyboardHeight: keyboardSize.height)
     }
 }
 
@@ -60,6 +139,25 @@ extension FoodAdderController: UICollectionViewDelegate, UICollectionViewDataSou
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ingredients.count
+    }
+}
+
+extension FoodAdderController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        foodName = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.view.endEditing(true)
+        return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        cursorView.isHidden = true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let foodName = foodName, !foodName.isEmpty else {
+            cursorView.isHidden = false
+            return
+        }
     }
 }
 
