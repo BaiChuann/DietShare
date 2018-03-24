@@ -62,6 +62,8 @@
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F26698DF206660C700E3A1F2 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		F26698E12066613800E3A1F2 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		B5CBA0ED206624C700BC8005 /* PreliminaryDesignDoc.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PreliminaryDesignDoc.md; sourceTree = "<group>"; };
+		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; }
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		F2BE6885205E8C8800DF9694 = {
 			isa = PBXGroup;
 			children = (
+				B5CBA0ED206624C700BC8005 /* PreliminaryDesignDoc.md */,
 				F2BE6890205E8C8800DF9694 /* DietShare */,
 				F2BE68A5205E8C8900DF9694 /* DietShareTests */,
 				F2BE68B0205E8C8900DF9694 /* DietShareUITests */,
