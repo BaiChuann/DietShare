@@ -27,4 +27,8 @@ class FoodCell: UICollectionViewCell {
     func setFoodName(_ name: String) {
         foodName.text = name
     }
+
+    func setSelected() {
+        background.backgroundColor = UIColor.black
+    }
 }
