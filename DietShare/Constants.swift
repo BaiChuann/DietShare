@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     public static let fontName = "Verdana"
@@ -14,4 +15,6 @@ struct Constants {
     public static let lightTextColor = hexToUIColor(hex: "#CACFD0")
     public static let normalTextColor = hexToUIColor(hex: "#9CA0A1")
     public static let darkTextColor = hexToUIColor(hex: "#565859")
+    public static let buttonBorderRadius: CGFloat = 5
+    public static let buttonBorderWidth: CGFloat = 1
 }

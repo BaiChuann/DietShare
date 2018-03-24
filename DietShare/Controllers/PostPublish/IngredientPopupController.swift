@@ -108,7 +108,7 @@ class IngredientPopupController: UIViewController {
             }
         }
 
-        saveButton.layer.cornerRadius = 10
+        saveButton.layer.cornerRadius = Constants.buttonBorderRadius
         saveButton.backgroundColor = Constants.themeColor
         saveButton.setTitleColor(UIColor.white, for: .normal)
 

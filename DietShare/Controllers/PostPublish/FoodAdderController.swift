@@ -15,7 +15,6 @@ protocol FoodAdderDelegate: class {
 }
 
 class FoodAdderController: UIViewController {
-
     @IBOutlet weak private var addIngredientImage: UIImageView!
     @IBOutlet weak private var cursorView: UIView!
     @IBOutlet weak private var nameInput: TweeActiveTextField!

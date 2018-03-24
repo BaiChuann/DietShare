@@ -534,28 +534,62 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H6l-nF-acr">
-                                <rect key="frame" x="16" y="135.5" width="343" height="408.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="16" y="135.5" width="343" height="393"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L0a-De-Voa">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="142" height="158"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FoodCell" id="ewR-Tu-Syf">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FoodCell" id="ewR-Tu-Syf" customClass="FoodCell" customModule="DietShare" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="158"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="142" height="158"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5NY-al-NBs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="142" height="158"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qw2-9R-Xel">
+                                                    <rect key="frame" x="10" y="68.5" width="122" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="qw2-9R-Xel" firstAttribute="centerX" secondItem="ewR-Tu-Syf" secondAttribute="centerX" id="AdB-Ic-dQh"/>
+                                            <constraint firstItem="5NY-al-NBs" firstAttribute="top" secondItem="ewR-Tu-Syf" secondAttribute="top" id="Crx-FA-dXy"/>
+                                            <constraint firstItem="5NY-al-NBs" firstAttribute="leading" secondItem="ewR-Tu-Syf" secondAttribute="leading" id="JaL-uj-hdB"/>
+                                            <constraint firstAttribute="trailing" secondItem="qw2-9R-Xel" secondAttribute="trailing" constant="10" id="L28-qj-zA0"/>
+                                            <constraint firstAttribute="trailing" secondItem="5NY-al-NBs" secondAttribute="trailing" id="W2r-a2-6dz"/>
+                                            <constraint firstItem="qw2-9R-Xel" firstAttribute="centerY" secondItem="ewR-Tu-Syf" secondAttribute="centerY" id="b5A-Cm-po2"/>
+                                            <constraint firstAttribute="bottom" secondItem="5NY-al-NBs" secondAttribute="bottom" id="bCj-Wf-Xu9"/>
+                                            <constraint firstItem="qw2-9R-Xel" firstAttribute="leading" secondItem="ewR-Tu-Syf" secondAttribute="leading" constant="10" id="bmh-Bu-Fjm"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="foodImage" destination="5NY-al-NBs" id="Vv8-y5-TLO"/>
+                                            <outlet property="foodName" destination="qw2-9R-Xel" id="Tai-gc-45R"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="fUg-H0-Ore" id="lWH-pN-q3W"/>
+                                    <outlet property="delegate" destination="fUg-H0-Ore" id="qnT-L1-Q2q"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSk-2C-MNp">
-                                <rect key="frame" x="145" y="604" width="85" height="27"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="12"/>
+                                <rect key="frame" x="112.5" y="591" width="150" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="NBM-Pm-PYI"/>
+                                    <constraint firstAttribute="height" constant="40" id="uGN-Yr-zhv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
                                 <state key="normal" title="Add my food">
                                     <color key="titleColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -564,8 +598,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't find your food?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gx-v1-1TF">
-                                <rect key="frame" x="122" y="569" width="131" height="15"/>
-                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
+                                <rect key="frame" x="111.5" y="553.5" width="152.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                                 <color key="textColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -591,10 +625,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NeJ-FW-Q2j"/>
                     </view>
+                    <connections>
+                        <outlet property="addFoodButton" destination="kSk-2C-MNp" id="Tdw-F9-Di5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8b-Bs-4Ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139.5" y="2639.5"/>
+            <point key="canvasLocation" x="138.40000000000001" y="2638.8305847076463"/>
         </scene>
         <!--Discover-->
         <scene sceneID="al2-Hl-ziN">
@@ -900,6 +937,7 @@
         <image name="wechat" width="76" height="77"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="oRf-kG-bYz"/>
         <segue reference="11n-9E-BUr"/>
         <segue reference="Xec-YC-oQs"/>
     </inferredMetricsTieBreakers>
