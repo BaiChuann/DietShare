@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Profile.swift
 //  DietShare
 //
 //  Created by BaiChuan on 24/3/18.
@@ -60,4 +60,3 @@ class Profile {
         followers.remove(at: removedIndex)
     }
 }
-
