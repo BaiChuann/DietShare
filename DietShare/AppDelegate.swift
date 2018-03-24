@@ -3,10 +3,11 @@
 //  DietShare
 //
 //  Created by Fan Weiguang on 18/3/18.
-//  Copyright © 2018 com.cs3217. All rights reserved.
+//  Copyright © 2018 nus.cs3217. All rights reserved.
 //
 
 import UIKit
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,8 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {}
 
-    func applicationDidBecomeActive(_ application: UIApplication) {}
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        AppEventsLogger.activate(application)
+    }
 
     func applicationWillTerminate(_ application: UIApplication) {}
-
 }
