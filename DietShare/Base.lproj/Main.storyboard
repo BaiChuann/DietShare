@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -469,7 +470,7 @@
         <!--Photo Uploader-->
         <scene sceneID="RFd-qI-BmX">
             <objects>
-                <viewController title="Photo Uploader" id="L9o-aS-T7h" sceneMemberID="viewController">
+                <viewController title="Photo Uploader" id="L9o-aS-T7h" customClass="PhotoUploadViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MN7-UX-ZFP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -482,7 +483,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hda-rP-d7A">
-                                <rect key="frame" x="151" y="369" width="72" height="58"/>
+                                <rect key="frame" x="151" y="569" width="72" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Next"/>
@@ -490,12 +491,42 @@
                                     <segue destination="fUg-H0-Ore" kind="showDetail" id="NJh-6n-GuD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-Fk-xKB">
+                                <rect key="frame" x="16" y="558" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="openCameraButtonWithSender:" destination="L9o-aS-T7h" eventType="touchUpInside" id="c1E-j3-Ful"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDa-pz-LyR">
+                                <rect key="frame" x="281" y="558" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="openPhotoLibraryButtonWithSender:" destination="L9o-aS-T7h" eventType="touchUpInside" id="Nn2-r1-EzD"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1N9-4R-5pv">
+                                <rect key="frame" x="0.0" y="52" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1N9-4R-5pv" secondAttribute="height" multiplier="1:1" id="CQG-Ew-TYZ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1N9-4R-5pv" firstAttribute="leading" secondItem="In3-Ro-pwn" secondAttribute="leading" id="C8m-Zn-ob2"/>
+                            <constraint firstItem="1N9-4R-5pv" firstAttribute="top" secondItem="In3-Ro-pwn" secondAttribute="top" constant="32" id="RvU-N6-J0g"/>
+                            <constraint firstItem="1N9-4R-5pv" firstAttribute="trailing" secondItem="In3-Ro-pwn" secondAttribute="trailing" id="yat-Cf-zXa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="In3-Ro-pwn"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Share" image="add" id="7Ey-Mr-UuO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="imagePicked" destination="1N9-4R-5pv" id="pBK-rj-7V9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuK-dZ-nYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -776,7 +807,7 @@
         <image name="wechat" width="76" height="77"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="11n-9E-BUr"/>
+        <segue reference="NJh-6n-GuD"/>
         <segue reference="0Rw-j7-RLe"/>
     </inferredMetricsTieBreakers>
 </document>
