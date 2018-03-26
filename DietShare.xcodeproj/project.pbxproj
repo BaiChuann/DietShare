@@ -13,6 +13,7 @@
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
 		B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */; };
 		B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA1122069411C00BC8005 /* Discovery.storyboard */; };
+		B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */; };
 		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
 		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
@@ -71,6 +72,7 @@
 		B5CBA10E2069226600BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRestaurant.swift; sourceTree = "<group>"; };
 		B5CBA1122069411C00BC8005 /* Discovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discovery.storyboard; sourceTree = "<group>"; };
+		B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 				B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */,
 				B5CBA10E2069226600BC8005 /* Restaurant.swift */,
 				B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		B5CBA11620694A0700BC8005 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA11620694A0700BC8005 /* Discovery */,
 				F207CCA520625A0600EF2904 /* Login */,
 				F26698C52063EBD800E3A1F2 /* PostPublish */,
 			);
@@ -558,6 +569,7 @@
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
+				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
 				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,
 				B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */,
 			);

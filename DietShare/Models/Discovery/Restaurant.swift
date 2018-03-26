@@ -21,16 +21,28 @@ class Restaurant: ReadOnlyRestaurant {
     private let type: RestaurantType
     private let description: String
     private let profilePhoto: UIImage
-    private var ratings: [Int]
+    private var ratings: [Double]
     private var posts: [String]
-    private var ratingScore: Int {
+    private var ratingScore: Double {
         get{
-            let sum = 0;
+            var sum = 0.0;
             for rating in ratings {
                 sum += rating
             }
-            return sum / ratings.count
+            return sum / Double(ratings.count)
         }
+    }
+    
+    init(_ id: String, _ name: String, _ address: String, _ phone: String, _ type: RestaurantType, _ description: String, profilePhoto: UIImage) {
+        self.id = id
+        self.name = name
+        self.address = address
+        self.phone = phone
+        self.type = type
+        self.description = description
+        self.profilePhoto = profilePhoto
+        self.ratings = [Double]()
+        self.posts = [String]()
     }
     
     func getID() -> String {
