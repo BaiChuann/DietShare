@@ -23,6 +23,8 @@
 		A26445C32066B32300AECF54 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445C22066B32200AECF54 /* Like.swift */; };
 		A26445C42066B32300AECF54 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445C22066B32200AECF54 /* Like.swift */; };
 		A26445C52066B32300AECF54 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445C22066B32200AECF54 /* Like.swift */; };
+		B5CBA0F82068C8AB00BC8005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA0F72068C8AB00BC8005 /* Constants.swift */; };
+		B5CBA0FA2068C91000BC8005 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA0F92068C91000BC8005 /* Notification+customName.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -60,6 +62,8 @@
 		A25CC10520669EBF00CD323D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A26445BE2066AFAD00AECF54 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A26445C22066B32200AECF54 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		B5CBA0F72068C8AB00BC8005 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B5CBA0F92068C91000BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B5CBA0F42068C86600BC8005 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE68C8205EBD5800DF9694 /* Utilities.swift */,
+				B5CBA0F72068C8AB00BC8005 /* Constants.swift */,
+				B5CBA0F92068C91000BC8005 /* Notification+customName.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		B7DF5A4C3BE7B17C33F67D46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,9 +187,9 @@
 		F2BE6890205E8C8800DF9694 /* DietShare */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA0F42068C86600BC8005 /* Commons */,
 				A25CC0FC20668E7D00CD323D /* Models */,
 				F2BE68C5205EB22C00DF9694 /* Controllers */,
-				F2BE68C8205EBD5800DF9694 /* Utilities.swift */,
 				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
 				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
 				F2BE6898205E8C8900DF9694 /* Assets.xcassets */,
@@ -436,10 +450,12 @@
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				A26445BF2066AFAD00AECF54 /* Comment.swift in Sources */,
 				F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */,
+				B5CBA0F82068C8AB00BC8005 /* Constants.swift in Sources */,
 				A25CC0FE20668ED900CD323D /* User.swift in Sources */,
 				A26445C32066B32300AECF54 /* Like.swift in Sources */,
 				A25CC10620669EBF00CD323D /* Post.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
+				B5CBA0FA2068C91000BC8005 /* Notification+customName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
