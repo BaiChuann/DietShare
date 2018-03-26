@@ -6,6 +6,8 @@
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
 
+import Foundation
+
 extension Notification.Name {
     
     static let didUpdateRestaurantRank = Notification.Name("didUpdateRestaurantRank")
