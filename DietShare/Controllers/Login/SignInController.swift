@@ -25,7 +25,7 @@ class SignInController: UIViewController {
         super.viewDidLoad()
 
         setUpInputDelegate()
-        addInputBorder(for: inputGroup, withColor: Constants.themeColor)
+        addInputBorder(for: inputGroup)
     }
 
     override func didReceiveMemoryWarning() {
