@@ -9,6 +9,7 @@
 import UIKit
 
 func addInputBorder(for inputs: [UITextField], withColor color: UIColor) {
+
     inputs.forEach {
         let border = CALayer()
         let width = CGFloat(1)

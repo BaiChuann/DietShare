@@ -29,6 +29,10 @@
 		F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699242068D47C00E3A1F2 /* Utilities.swift */; };
 		F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699252068D47C00E3A1F2 /* Notification+customName.swift */; };
 		F26699292068D73200E3A1F2 /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26699282068D73200E3A1F2 /* Share.storyboard */; };
+    B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
+		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
+		B5CBA1062068D98100BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1052068D98100BC8005 /* Restaurant.swift */; };
+		B5CBA1082068D99300BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1072068D99300BC8005 /* ReadOnlyRestaurant.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -82,6 +86,10 @@
 		F26699242068D47C00E3A1F2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		F26699252068D47C00E3A1F2 /* Notification+customName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		F26699282068D73200E3A1F2 /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
+    B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
+		B5CBA1052068D98100BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		B5CBA1072068D99300BC8005 /* ReadOnlyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRestaurant.swift; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -133,6 +141,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B5CBA0F42068C86600BC8005 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE68C8205EBD5800DF9694 /* Utilities.swift */,
+				B5CBA0F92068C91000BC8005 /* Notification+customName.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		B5CBA1002068D18A00BC8005 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				B5CBA1012068D1A700BC8005 /* Topic.swift */,
+				B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */,
+				B5CBA1052068D98100BC8005 /* Restaurant.swift */,
+				B5CBA1072068D99300BC8005 /* ReadOnlyRestaurant.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
 		B7DF5A4C3BE7B17C33F67D46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +205,7 @@
 		F26698DA206571E500E3A1F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA1002068D18A00BC8005 /* Discovery */,
 				F26699152066CD3800E3A1F2 /* Comment.swift */,
 				F26699182066CD3900E3A1F2 /* Food.swift */,
 				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
@@ -532,6 +561,10 @@
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
+				B5CBA1062068D98100BC8005 /* Restaurant.swift in Sources */,
+				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,
+				B5CBA1082068D99300BC8005 /* ReadOnlyRestaurant.swift in Sources */,
+				B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
