@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
+		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
 		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
 		F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */; };
@@ -27,6 +28,7 @@
 		F26699212066CD3900E3A1F2 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266991A2066CD3900E3A1F2 /* Profile.swift */; };
 		F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699242068D47C00E3A1F2 /* Utilities.swift */; };
 		F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699252068D47C00E3A1F2 /* Notification+customName.swift */; };
+		F26699292068D73200E3A1F2 /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26699282068D73200E3A1F2 /* Share.storyboard */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -59,6 +61,7 @@
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
 		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
+		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
 		F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPopupController.swift; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 		F266991A2066CD3900E3A1F2 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F26699242068D47C00E3A1F2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		F26699252068D47C00E3A1F2 /* Notification+customName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
+		F26699282068D73200E3A1F2 /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		F26698C52063EBD800E3A1F2 /* PostPublish */ = {
 			isa = PBXGroup;
 			children = (
+				F25D78542068D9850011008A /* ShareTabController.swift */,
 				F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */,
 				F26698C82063F72800E3A1F2 /* FoodAdderController.swift */,
 				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
@@ -201,6 +206,15 @@
 			path = Commons;
 			sourceTree = "<group>";
 		};
+		F266992A2068D75100E3A1F2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
+				F26699282068D73200E3A1F2 /* Share.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		F2BE6885205E8C8800DF9694 = {
 			isa = PBXGroup;
 			children = (
@@ -231,9 +245,9 @@
 				F26698D2206417B100E3A1F2 /* Views */,
 				F2BE68C5205EB22C00DF9694 /* Controllers */,
 				F26699232068D47C00E3A1F2 /* Commons */,
-				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
-				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
+				F266992A2068D75100E3A1F2 /* Storyboards */,
 				F2BE6898205E8C8900DF9694 /* Assets.xcassets */,
+				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
 				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 				F2BE689D205E8C8900DF9694 /* Info.plist */,
 			);
@@ -380,6 +394,7 @@
 			files = (
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
+				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
 				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
@@ -511,12 +526,12 @@
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
+				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
-				B5CBA0FF2068CAF900BC8005 /* Notification+customName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

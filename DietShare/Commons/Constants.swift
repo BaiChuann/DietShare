@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+enum AppStoryboard :String {
+    case main = "Main"
+    case share = "Share"
+
+    var instance :UIStoryboard {
+        return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
+    }
+}
+
 struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
