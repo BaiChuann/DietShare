@@ -8,28 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
-		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
-		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
-		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
-		F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */; };
-		F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */; };
-		F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */; };
-		F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */; };
-		F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D820656D6900E3A1F2 /* IngredientCell.swift */; };
-		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
-		F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DF206660C700E3A1F2 /* FoodCell.swift */; };
-		F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E520669A2E00E3A1F2 /* StickerAdderController.swift */; };
-		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
-		F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699152066CD3800E3A1F2 /* Comment.swift */; };
-		F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699162066CD3900E3A1F2 /* Ingredient.swift */; };
-		F266991E2066CD3900E3A1F2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699172066CD3900E3A1F2 /* User.swift */; };
-		F266991F2066CD3900E3A1F2 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699182066CD3900E3A1F2 /* Food.swift */; };
-		F26699202066CD3900E3A1F2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699192066CD3900E3A1F2 /* Post.swift */; };
-		F26699212066CD3900E3A1F2 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266991A2066CD3900E3A1F2 /* Profile.swift */; };
-		F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699242068D47C00E3A1F2 /* Utilities.swift */; };
-		F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699252068D47C00E3A1F2 /* Notification+customName.swift */; };
-		F26699292068D73200E3A1F2 /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26699282068D73200E3A1F2 /* Share.storyboard */; };
-    B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
+		A25CC0FE20668ED900CD323D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC0FD20668ED900CD323D /* User.swift */; };
+		A25CC0FF20668ED900CD323D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC0FD20668ED900CD323D /* User.swift */; };
+		A25CC10020668ED900CD323D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC0FD20668ED900CD323D /* User.swift */; };
+		A25CC1022066944D00CD323D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC1012066944C00CD323D /* Profile.swift */; };
+		A25CC1032066944D00CD323D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC1012066944C00CD323D /* Profile.swift */; };
+		A25CC1042066944D00CD323D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC1012066944C00CD323D /* Profile.swift */; };
+		A25CC10620669EBF00CD323D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC10520669EBF00CD323D /* Post.swift */; };
+		A25CC10720669EBF00CD323D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC10520669EBF00CD323D /* Post.swift */; };
+		A25CC10820669EBF00CD323D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25CC10520669EBF00CD323D /* Post.swift */; };
+		A26445BF2066AFAD00AECF54 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445BE2066AFAD00AECF54 /* Comment.swift */; };
+		A26445C02066AFAD00AECF54 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445BE2066AFAD00AECF54 /* Comment.swift */; };
+		A26445C12066AFAD00AECF54 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445BE2066AFAD00AECF54 /* Comment.swift */; };
+		A26445C32066B32300AECF54 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445C22066B32200AECF54 /* Like.swift */; };
+		A26445C42066B32300AECF54 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445C22066B32200AECF54 /* Like.swift */; };
+		A26445C52066B32300AECF54 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26445C22066B32200AECF54 /* Like.swift */; };
+		B5CBA0FA2068C91000BC8005 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA0F92068C91000BC8005 /* Notification+customName.swift */; };
+		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5CBA1062068D98100BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1052068D98100BC8005 /* Restaurant.swift */; };
 		B5CBA1082068D99300BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1072068D99300BC8005 /* ReadOnlyRestaurant.swift */; };
@@ -41,6 +36,7 @@
 		F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */; };
 		F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */; };
 		F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68C6205EB56100DF9694 /* SignUpController.swift */; };
+		F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68C8205EBD5800DF9694 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,29 +60,13 @@
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
-		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
-		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
-		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
-		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
-		F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPopupController.swift; sourceTree = "<group>"; };
-		F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPopup.xib; sourceTree = "<group>"; };
-		F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientDropDownCell.xib; sourceTree = "<group>"; };
-		F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDropDownCell.swift; sourceTree = "<group>"; };
-		F26698D820656D6900E3A1F2 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
-		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F26698DF206660C700E3A1F2 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
-		F26698E520669A2E00E3A1F2 /* StickerAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAdderController.swift; sourceTree = "<group>"; };
-		F26699142066CD3800E3A1F2 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
-		F26699152066CD3800E3A1F2 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		F26699162066CD3900E3A1F2 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		F26699172066CD3900E3A1F2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F26699182066CD3900E3A1F2 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		F26699192066CD3900E3A1F2 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		F266991A2066CD3900E3A1F2 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		F26699242068D47C00E3A1F2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		F26699252068D47C00E3A1F2 /* Notification+customName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
-		F26699282068D73200E3A1F2 /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
-    B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		A25CC0FD20668ED900CD323D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A25CC1012066944C00CD323D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A25CC10520669EBF00CD323D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		A26445BE2066AFAD00AECF54 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		A26445C22066B32200AECF54 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		B5CBA0F92068C91000BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
+		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
 		B5CBA1052068D98100BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		B5CBA1072068D99300BC8005 /* ReadOnlyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRestaurant.swift; sourceTree = "<group>"; };
@@ -104,6 +84,7 @@
 		F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietShareUITests.swift; sourceTree = "<group>"; };
 		F2BE68B3205E8C8900DF9694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2BE68C6205EB56100DF9694 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		F2BE68C8205EBD5800DF9694 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +113,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A25CC0FC20668E7D00CD323D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5CBA1002068D18A00BC8005 /* Discovery */,
+				A25CC0FD20668ED900CD323D /* User.swift */,
+				A25CC1012066944C00CD323D /* Profile.swift */,
+				A26445BE2066AFAD00AECF54 /* Comment.swift */,
+				A26445C22066B32200AECF54 /* Like.swift */,
+				A25CC10520669EBF00CD323D /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B4D17446E75367AEC9130823 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,67 +175,8 @@
 		F26698C52063EBD800E3A1F2 /* PostPublish */ = {
 			isa = PBXGroup;
 			children = (
-				F25D78542068D9850011008A /* ShareTabController.swift */,
-				F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */,
-				F26698C82063F72800E3A1F2 /* FoodAdderController.swift */,
-				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
-				F26698E520669A2E00E3A1F2 /* StickerAdderController.swift */,
 			);
 			path = PostPublish;
-			sourceTree = "<group>";
-		};
-		F26698D2206417B100E3A1F2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
-				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
-				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
-				F26698DF206660C700E3A1F2 /* FoodCell.swift */,
-				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F26698DA206571E500E3A1F2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B5CBA1002068D18A00BC8005 /* Discovery */,
-				F26699152066CD3800E3A1F2 /* Comment.swift */,
-				F26699182066CD3900E3A1F2 /* Food.swift */,
-				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
-				F26699142066CD3800E3A1F2 /* Like.swift */,
-				F26699192066CD3900E3A1F2 /* Post.swift */,
-				F266991A2066CD3900E3A1F2 /* Profile.swift */,
-				F26699172066CD3900E3A1F2 /* User.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F26699222068D44200E3A1F2 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		F26699232068D47C00E3A1F2 /* Commons */ = {
-			isa = PBXGroup;
-			children = (
-				F26699242068D47C00E3A1F2 /* Utilities.swift */,
-				F26698DD206649D400E3A1F2 /* Constants.swift */,
-				F26699252068D47C00E3A1F2 /* Notification+customName.swift */,
-			);
-			path = Commons;
-			sourceTree = "<group>";
-		};
-		F266992A2068D75100E3A1F2 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
-				F26699282068D73200E3A1F2 /* Share.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		F2BE6885205E8C8800DF9694 = {
@@ -253,7 +188,6 @@
 				F2BE688F205E8C8800DF9694 /* Products */,
 				B4D17446E75367AEC9130823 /* Pods */,
 				B7DF5A4C3BE7B17C33F67D46 /* Frameworks */,
-				F26699222068D44200E3A1F2 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,13 +204,12 @@
 		F2BE6890205E8C8800DF9694 /* DietShare */ = {
 			isa = PBXGroup;
 			children = (
-				F26698DA206571E500E3A1F2 /* Models */,
-				F26698D2206417B100E3A1F2 /* Views */,
+				B5CBA0F42068C86600BC8005 /* Commons */,
+				A25CC0FC20668E7D00CD323D /* Models */,
 				F2BE68C5205EB22C00DF9694 /* Controllers */,
-				F26699232068D47C00E3A1F2 /* Commons */,
-				F266992A2068D75100E3A1F2 /* Storyboards */,
-				F2BE6898205E8C8900DF9694 /* Assets.xcassets */,
 				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
+				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
+				F2BE6898205E8C8900DF9694 /* Assets.xcassets */,
 				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 				F2BE689D205E8C8900DF9694 /* Info.plist */,
 			);
@@ -422,9 +355,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
-				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
-				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
-				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
 				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
 			);
@@ -488,31 +418,23 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DietShare/Pods-DietShare-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
-				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
-				"${BUILT_PRODUCTS_DIR}/TweeTextField/TweeTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Validator/Validator.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TweeTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Validator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,30 +462,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
-				F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */,
-				F26698DE206649D400E3A1F2 /* Constants.swift in Sources */,
-				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
-				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
-				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
-				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
-				F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */,
-				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
-				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
-				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
-				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
-				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
-				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
-				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
-				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
-				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
-				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
-				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
-				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
-				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				B5CBA1062068D98100BC8005 /* Restaurant.swift in Sources */,
+				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
+				A25CC1022066944D00CD323D /* Profile.swift in Sources */,
 				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,
+				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
+				A26445BF2066AFAD00AECF54 /* Comment.swift in Sources */,
 				B5CBA1082068D99300BC8005 /* ReadOnlyRestaurant.swift in Sources */,
+				F2BE68C9205EBD5800DF9694 /* Utilities.swift in Sources */,
+				A25CC0FE20668ED900CD323D /* User.swift in Sources */,
+				A26445C32066B32300AECF54 /* Like.swift in Sources */,
+				A25CC10620669EBF00CD323D /* Post.swift in Sources */,
+				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
+				B5CBA0FA2068C91000BC8005 /* Notification+customName.swift in Sources */,
 				B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,7 +483,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A26445C42066B32300AECF54 /* Like.swift in Sources */,
+				A26445C02066AFAD00AECF54 /* Comment.swift in Sources */,
+				A25CC0FF20668ED900CD323D /* User.swift in Sources */,
+				A25CC1032066944D00CD323D /* Profile.swift in Sources */,
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+				A25CC10720669EBF00CD323D /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +496,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A26445C52066B32300AECF54 /* Like.swift in Sources */,
+				A26445C12066AFAD00AECF54 /* Comment.swift in Sources */,
+				A25CC10020668ED900CD323D /* User.swift in Sources */,
+				A25CC1042066944D00CD323D /* Profile.swift in Sources */,
 				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
+				A25CC10820669EBF00CD323D /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,11 +654,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = 8MS5SJLBVV;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0133948w.DietShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -753,11 +674,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = 8MS5SJLBVV;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0133948w.DietShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

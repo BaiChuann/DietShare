@@ -5,8 +5,6 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - DropDown (2.3.1)
-  - DynamicBlurView (2.0.2)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.27)
@@ -26,34 +24,24 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.31.1):
     - FBSDKCoreKit (~> 4.31.1)
-  - PopupDialog (0.7.1):
-    - DynamicBlurView (~> 2.0)
-  - TweeTextField (1.1.1)
   - Validator (3.0.1)
 
 DEPENDENCIES:
-  - DropDown
   - FacebookCore
   - FacebookLogin
   - FacebookShare
-  - PopupDialog (~> 0.7)
-  - TweeTextField
   - Validator
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
-  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
   FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
   FBSDKCoreKit: e08ccfcefa7bc1347a07c276dac9bf6c7fe57024
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
-  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
-  TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
   Validator: 309a430b6b5430a327d8c84a3246036badaa2dcb
 
-PODFILE CHECKSUM: 644a15be568efec65753b6e07ede05d857dd304e
+PODFILE CHECKSUM: fb0dac4ed0141db8cd72bd7646b33a0767f6cd78
 
 COCOAPODS: 1.4.0
