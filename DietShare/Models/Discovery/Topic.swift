@@ -7,6 +7,11 @@
 //
 
 import Foundation
+
+/**
+ * A Topic is a tag to user posts, much like a hashtag in Twitter, that connects all posts with the same tag so
+ * that they can be displayed within the same page. Active users who posted on this topic will also be referenced.
+ */
 class Topic: ReadOnlyTopic {
     private let id: String
     private let name: String
@@ -31,10 +36,10 @@ class Topic: ReadOnlyTopic {
     func getName() -> String {
         return self.name
     }
-    func getPosts() -> [String] {
+    func getPostsID() -> [String] {
         return self.posts
     }
-    func getActiveUsers() -> [String] {
+    func getActiveUsersID() -> [String] {
         return self.activeUsers
     }
     func getPopularity() -> Int {

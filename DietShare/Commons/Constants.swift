@@ -18,6 +18,14 @@ enum AppStoryboard :String {
     }
 }
 
+enum RestaurantType: String {
+    case Vegetarian = "Vegetarian"
+    case Asian = "Asian"
+    case European = "European"
+    case Indian = "Indian"
+    case Japanese = "Japanese"
+}
+
 struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
