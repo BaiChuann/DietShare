@@ -468,11 +468,7 @@
         <!--Share-->
         <scene sceneID="RFd-qI-BmX">
             <objects>
-<<<<<<< HEAD:DietShare/Base.lproj/Main.storyboard
-                <viewController title="Photo Uploader" id="L9o-aS-T7h" customClass="PhotoUploadViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
-=======
                 <viewController title="Share" id="L9o-aS-T7h" customClass="ShareTabController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
->>>>>>> master:DietShare/Storyboards/Base.lproj/Main.storyboard
                     <view key="view" contentMode="scaleToFill" id="MN7-UX-ZFP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -484,18 +480,6 @@
                                 <color key="textColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-<<<<<<< HEAD:DietShare/Base.lproj/Main.storyboard
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hda-rP-d7A">
-                                <rect key="frame" x="151" y="569" width="72" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="fUg-H0-Ore" kind="showDetail" id="NJh-6n-GuD"/>
-                                </connections>
-                            </button>
-=======
->>>>>>> master:DietShare/Storyboards/Base.lproj/Main.storyboard
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="In3-Ro-pwn"/>
@@ -620,11 +604,4 @@
         <image name="profile" width="17" height="19"/>
         <image name="wechat" width="76" height="77"/>
     </resources>
-<<<<<<< HEAD:DietShare/Base.lproj/Main.storyboard
-    <inferredMetricsTieBreakers>
-        <segue reference="NJh-6n-GuD"/>
-        <segue reference="0Rw-j7-RLe"/>
-    </inferredMetricsTieBreakers>
-=======
->>>>>>> master:DietShare/Storyboards/Base.lproj/Main.storyboard
 </document>

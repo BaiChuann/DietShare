@@ -14,13 +14,14 @@ import TGCameraViewController
 
 class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     var pickedPhoto: UIImage?
+    var recognizedFoods: [Food] = []
     private var isToCamera: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Use yellow tint
-        TGCameraColor.setTint(.yellow)
+        TGCameraColor.setTint(Constants.themeColor)
 
         // save image to album
         TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: true)
@@ -32,8 +33,8 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         TGCamera.setOption(kTGCameraOptionHiddenFilterButton, value: true)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         switch isToCamera {
         case true:
@@ -79,6 +80,6 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     private func goBackToDiscovery() {
         isToCamera = true
-        tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 1
     }
 }
