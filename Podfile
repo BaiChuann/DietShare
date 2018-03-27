@@ -11,4 +11,5 @@ target 'DietShare' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'BTree', '~> 4.0'
 end
