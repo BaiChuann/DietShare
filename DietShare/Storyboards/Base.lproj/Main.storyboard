@@ -494,7 +494,7 @@
         <!--Discover-->
         <scene sceneID="al2-Hl-ziN">
             <objects>
-                <viewController id="8Zf-hb-F2c" sceneMemberID="viewController">
+                <viewController id="8Zf-hb-F2c" customClass="DiscoveryTabController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lGT-Py-muV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
