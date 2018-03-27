@@ -15,27 +15,17 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         imagePicker.delegate = self
         CameraHandler.shared.showActionSheet(viewController: self)
         CameraHandler.shared.imagePickedBlock = { image in
-            self.imagePicked.image = image
+           self.imagePicked.image = image
         }
-    }
-    private func adjustSize(image: UIImage) {
-        let containerView = UIView(frame: CGRect(x:0,y:0,width:320,height:500))
-        let imageView = UIImageView()
-        
-        if let image = UIImage(named: "a_image") {
-            let ratio = image.size.width / image.size.height
-            if containerView.frame.width > containerView.frame.height {
-                let newHeight = containerView.frame.width / ratio
-                imageView.frame.size = CGSize(width: containerView.frame.width, height: newHeight)
-            }
-            else{
-                let newWidth = containerView.frame.height * ratio
-                imageView.frame.size = CGSize(width: newWidth, height: containerView.frame.height)
-            }
+        /*let cameraViewController = CameraViewController { [weak self] image, asset in
+            self?.imagePicked.image = image
+            self?.dismiss(animated: true, completion: nil)
         }
+        present(cameraViewController, animated: true, completion: nil)*/
     }
 }
 

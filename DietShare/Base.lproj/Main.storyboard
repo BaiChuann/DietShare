@@ -513,6 +513,10 @@
                                     <constraint firstAttribute="width" secondItem="1N9-4R-5pv" secondAttribute="height" multiplier="1:1" id="CQG-Ew-TYZ"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gG-yE-q2J">
+                                <rect key="frame" x="0.0" y="52" width="375" height="488"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -808,6 +812,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NJh-6n-GuD"/>
-        <segue reference="0Rw-j7-RLe"/>
+        <segue reference="Xec-YC-oQs"/>
     </inferredMetricsTieBreakers>
 </document>
