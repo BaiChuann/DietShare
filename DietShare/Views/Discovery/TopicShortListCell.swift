@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TopicListCell: UICollectionViewCell {
+class TopicShortListCell: UICollectionViewCell {
     
     @IBOutlet weak private var topicImage: UIImageView!
     @IBOutlet weak private var topicName: UILabel!

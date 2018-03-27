@@ -28,7 +28,7 @@ enum RestaurantType: String {
 }
 
 struct Identifiers {
-    public static let topicCell = "topicListCell"
+    public static let topicShortListCell = "topicShortListCell"
 }
 
 struct Constants {
@@ -40,8 +40,9 @@ struct Constants {
     public static let darkTextColor = hexToUIColor(hex: "#565859")
     public static let cornerRadius: CGFloat = 5
     public static let buttonBorderWidth: CGFloat = 1
+    public static let defaultListDisplayCount = 10
     
-    struct View {
+    struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
     }
 }

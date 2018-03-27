@@ -15,8 +15,10 @@
 		B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA1122069411C00BC8005 /* Discovery.storyboard */; };
 		B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */; };
 		B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */; };
-		B5CBA16F206A3F5600BC8005 /* TopicListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16E206A3F5600BC8005 /* TopicListCell.swift */; };
+		B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */; };
 		B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA170206A444300BC8005 /* TopicsModelManager.swift */; };
+		B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */; };
+		B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */; };
 		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
 		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
@@ -77,8 +79,10 @@
 		B5CBA1122069411C00BC8005 /* Discovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discovery.storyboard; sourceTree = "<group>"; };
 		B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryTabController.swift; sourceTree = "<group>"; };
-		B5CBA16E206A3F5600BC8005 /* TopicListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListCell.swift; sourceTree = "<group>"; };
+		B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicShortListCell.swift; sourceTree = "<group>"; };
 		B5CBA170206A444300BC8005 /* TopicsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsModelManager.swift; sourceTree = "<group>"; };
+		B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFullListCell.swift; sourceTree = "<group>"; };
+		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 			children = (
 				B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */,
 				B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */,
+				B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -175,7 +180,8 @@
 		B5CBA16D206A3F3800BC8005 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
-				B5CBA16E206A3F5600BC8005 /* TopicListCell.swift */,
+				B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */,
+				B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -574,11 +580,13 @@
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
 				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
+				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
 				F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */,
-				B5CBA16F206A3F5600BC8005 /* TopicListCell.swift in Sources */,
+				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
+				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,

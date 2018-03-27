@@ -1,14 +1,15 @@
 //
-//  DiscoveryViewController.swift
+//  TopicListController.swift
 //  DietShare
 //
-//  Created by Shuang Yang on 26/3/18.
+//  Created by Shuang Yang on 27/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class TopicListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topicModel = TopicsModelManager<Topic>()
     
@@ -16,7 +17,7 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
-            return Constants.DiscoveryPage.numOfDisplayedTopics
+            return Constants.defaultListDisplayCount
         }
         return 0
     }
@@ -24,24 +25,25 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicShortListCell, for: indexPath as IndexPath) as! TopicShortListCell
-        let displayedTopicsList = self.topicModel.getDisplayedList()
-        if !displayedTopicsList.isEmpty {
-            cell.setImage(displayedTopicsList[indexPath.item].getImage())
-            cell.setName(displayedTopicsList[indexPath.item].getName())
+        let topicList = self.topicModel.getFullTopicList()
+        if !topicList.isEmpty {
+            cell.setImage(topicList[indexPath.item].getImage())
+            cell.setName(topicList[indexPath.item].getName())
         }
         
         return cell
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
+

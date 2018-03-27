@@ -25,15 +25,17 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         self.init(topics)
     }
     
-    func getTopicsSet() -> SortedSet<T> {
-        return self.topics
+    func getFullTopicList() -> [T] {
+        var topicList = [T]()
+        topicList.append(contentsOf: self.topics)
+        return topicList
     }
     
     func getDisplayedList() -> [T] {
         var displayedList = [T]()
         var count = 0
         for topic in self.topics {
-            if (count >= Constants.View.numOfDisplayedTopics) {
+            if (count >= Constants.DiscoveryPage.numOfDisplayedTopics) {
                 break
             }
             displayedList.append(topic)
