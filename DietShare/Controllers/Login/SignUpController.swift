@@ -27,7 +27,6 @@ enum ValidationErrors: String, Error {
 }
 
 class SignUpController: UIViewController {
-
     @IBOutlet private var inputGroup: [UITextField]!
     @IBOutlet private var inputLabelGroup: [UILabel]!
     @IBOutlet private var inputValidationGroup: [UIImageView]!
@@ -36,7 +35,7 @@ class SignUpController: UIViewController {
         super.viewDidLoad()
 
         setUpInput()
-        addInputBorder(for: inputGroup)
+        addInputBorder(for: inputGroup, withColor: Constants.themeColor)
     }
 
     override func didReceiveMemoryWarning() {
