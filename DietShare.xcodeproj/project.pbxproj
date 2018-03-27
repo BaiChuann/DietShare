@@ -16,6 +16,7 @@
 		B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */; };
 		B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */; };
 		B5CBA16F206A3F5600BC8005 /* TopicListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16E206A3F5600BC8005 /* TopicListCell.swift */; };
+		B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA170206A444300BC8005 /* TopicsModelManager.swift */; };
 		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
 		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
@@ -77,6 +78,7 @@
 		B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryTabController.swift; sourceTree = "<group>"; };
 		B5CBA16E206A3F5600BC8005 /* TopicListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListCell.swift; sourceTree = "<group>"; };
+		B5CBA170206A444300BC8005 /* TopicsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsModelManager.swift; sourceTree = "<group>"; };
 		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */,
 				B5CBA10E2069226600BC8005 /* Restaurant.swift */,
 				B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */,
+				B5CBA170206A444300BC8005 /* TopicsModelManager.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
 				F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */,

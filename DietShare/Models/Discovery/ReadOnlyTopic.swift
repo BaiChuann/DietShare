@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  * A read-only immutable protocol for a Topic in the app.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-protocol ReadOnlyTopic {
+protocol ReadOnlyTopic: Comparable {
     func getID() -> String
     func getName() -> String
+    func getImage() -> UIImage
     func getPopularity() -> Int
     func getPostsID() -> [String]
     func getActiveUsersID() -> [String]

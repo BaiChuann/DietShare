@@ -27,6 +27,10 @@ enum RestaurantType: String {
     case Japanese = "Japanese"
 }
 
+struct Identifiers {
+    public static let topicCell = "topicListCell"
+}
+
 struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
@@ -36,4 +40,8 @@ struct Constants {
     public static let darkTextColor = hexToUIColor(hex: "#565859")
     public static let cornerRadius: CGFloat = 5
     public static let buttonBorderWidth: CGFloat = 1
+    
+    struct View {
+        public static let numOfDisplayedTopics = 6
+    }
 }

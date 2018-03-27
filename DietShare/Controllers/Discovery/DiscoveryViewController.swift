@@ -10,18 +10,26 @@ import UIKit
 
 class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    private var topicModel = TopicsModelManager<Topic>()
+    
     @IBOutlet weak var topicList: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
-            
+            return Constants.View.numOfDisplayedTopics + 1
         }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicCell, for: indexPath as IndexPath) as! TopicListCell
+        let displayedTopicsList = self.topicModel.getDisplayedList()
+        cell.setImage(displayedTopicsList[indexPath.item].getImage())
+        cell.setName(displayedTopicsList[indexPath.item].getName())
+        
+        return cell
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
