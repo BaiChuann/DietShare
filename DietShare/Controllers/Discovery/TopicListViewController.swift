@@ -24,7 +24,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicShortListCell, for: indexPath as IndexPath) as! TopicShortListCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicFullListCell, for: indexPath as IndexPath) as! TopicFullListCell
         let topicList = self.topicModel.getFullTopicList()
         if !topicList.isEmpty {
             cell.setImage(topicList[indexPath.item].getImage())

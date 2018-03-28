@@ -18,6 +18,7 @@ class Topic: ReadOnlyTopic {
     private let id: String
     private let name: String
     private let image: UIImage
+    private let description: String
     private var activeUsers: [String]
     private var posts: [String]
     private var popularity: Int {
@@ -26,12 +27,17 @@ class Topic: ReadOnlyTopic {
         }
     }
     
-    init(_ id: String, _ name: String, _ image: UIImage) {
+    init(_ id: String, _ name: String, _ image: UIImage, _ description: String) {
         self.id = id
         self.name = name
         self.image = image
+        self.description = description
         activeUsers = [String]()
         posts = [String]()
+    }
+    
+    convenience init() {
+        self.init("", "", UIImage(), "")
     }
     
     func getID() -> String {
@@ -39,6 +45,9 @@ class Topic: ReadOnlyTopic {
     }
     func getName() -> String {
         return self.name
+    }
+    func getDescription() -> String {
+        return self.description
     }
     func getImage() -> UIImage {
         return self.image
