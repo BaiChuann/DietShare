@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
+		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
+		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
 		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
@@ -74,6 +76,8 @@
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
+		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
 		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
@@ -157,6 +161,15 @@
 				5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B504C2A4206BBACD007F8956 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */,
+				B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		B5CBA1002068D18A00BC8005 /* Discovery */ = {
@@ -303,6 +316,7 @@
 		F2BE6890205E8C8800DF9694 /* DietShare */ = {
 			isa = PBXGroup;
 			children = (
+				B504C2A4206BBACD007F8956 /* DataSource */,
 				F26698DA206571E500E3A1F2 /* Models */,
 				F26698D2206417B100E3A1F2 /* Views */,
 				F2BE68C5205EB22C00DF9694 /* Controllers */,
@@ -577,6 +591,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
 				B5CBA179206A82FC00BC8005 /* ActiveUserListCell.swift in Sources */,
 				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
@@ -595,6 +610,7 @@
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
 				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
+				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
