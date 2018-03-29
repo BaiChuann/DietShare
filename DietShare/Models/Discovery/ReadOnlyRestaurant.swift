@@ -13,14 +13,15 @@ import UIKit
  * A read-only immutable protocol for a Restaurant in the app.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-protocol ReadOnlyRestaurant {
+protocol ReadOnlyRestaurant: Comparable {
     func getID() -> String
     func getName() -> String
     func getType() -> RestaurantType
     func getPhone() -> String
     func getDescription() -> String
-    func getProfilePhoto() -> UIImage
+    func getImage() -> UIImage
     func getAddress() -> String
-    func getPostsID() -> [String]
+    func getPostsID() -> IDList
+    func getRatingsID() -> IDList
     func getRatingScore() -> Double
 }

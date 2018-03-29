@@ -15,14 +15,14 @@ import BTree
  */
 class TopicsModelManager<T: ReadOnlyTopic> {
     private var topics:SortedSet<T>
+    private var topicsDataSource: TopicsDataSource
     
-    init(_ topics: SortedSet<T>) {
-        self.topics = topics
-    }
-    
-    convenience init() {
-        let topics = SortedSet<T>()
-        self.init(topics)
+    init() {
+        self.topicsDataSource = TopicsLocalDataSource.shared
+        self.topics = topicsDataSource.getTopics() as! SortedSet<T>
+        
+        // Prepopulate the datasource - only for testing
+        prepopulate()
     }
     
     func getFullTopicList() -> [T] {
@@ -31,6 +31,7 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         return topicList
     }
     
+    // Obtain a list of topics to be displayed in Discover Page
     func getDisplayedList() -> [T] {
         var displayedList = [T]()
         var count = 0
@@ -42,6 +43,13 @@ class TopicsModelManager<T: ReadOnlyTopic> {
             count += 1
         }
         return displayedList
+    }
+    
+    private func prepopulate() {
+        for i in 0..<20 {
+            let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", IDList(.User), IDList(.Post))
+            self.topicsDataSource.addTopic(topic)
+        }
     }
     
 }

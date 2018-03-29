@@ -13,36 +13,35 @@ import UIKit
  * A Restaurant object contains the information corresponding to a restaurant in real world.
  */
 
-class Restaurant: ReadOnlyRestaurant {
+class Restaurant: ReadOnlyRestaurant, Comparable {
+    
+    
     private let id: String
     private let name: String
     private let address: String
     private let phone: String
     private let type: RestaurantType
     private let description: String
-    private let profilePhoto: UIImage
-    private var ratings: [Double]
-    private var posts: [String]
-    private var ratingScore: Double {
-        get{
-            var sum = 0.0;
-            for rating in ratings {
-                sum += rating
-            }
-            return sum / Double(ratings.count)
-        }
-    }
+    private let image: UIImage
+    private var ratings: IDList
+    private var posts: IDList
+    private var ratingScore: Double
     
-    init(_ id: String, _ name: String, _ address: String, _ phone: String, _ type: RestaurantType, _ description: String, profilePhoto: UIImage) {
+    init(_ id: String, _ name: String, _ address: String, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage, _ ratings: IDList, _ posts: IDList, _ ratingScore: Double) {
         self.id = id
         self.name = name
         self.address = address
         self.phone = phone
         self.type = type
         self.description = description
-        self.profilePhoto = profilePhoto
-        self.ratings = [Double]()
-        self.posts = [String]()
+        self.image = image
+        self.ratings = ratings
+        self.posts = posts
+        self.ratingScore = ratingScore
+    }
+    
+    convenience init(_ id: String, _ name: String, _ address: String, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage) {
+        self.init(id, name, address, phone, type, description, image, IDList(.Rating), IDList(.Post), 0)
     }
     
     func getID() -> String {
@@ -63,13 +62,24 @@ class Restaurant: ReadOnlyRestaurant {
     func getType() -> RestaurantType {
         return self.type
     }
-    func getProfilePhoto() -> UIImage {
-        return self.profilePhoto
+    func getImage() -> UIImage {
+        return self.image
     }
-    func getPostsID() -> [String] {
+    func getPostsID() -> IDList {
         return self.posts
+    }
+    func getRatingsID() -> IDList {
+        return self.ratings
     }
     func getRatingScore() -> Double {
         return self.ratingScore
+    }
+    
+    static func <(lhs: Restaurant, rhs: Restaurant) -> Bool {
+        return lhs.ratingScore < rhs.ratingScore
+    }
+    
+    static func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
+        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.description == rhs.description && lhs.address == rhs.description
     }
 }

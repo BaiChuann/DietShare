@@ -15,6 +15,10 @@
 		B504C2C4206BD1B6007F8956 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; };
 		B504C2C5206BD1BA007F8956 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; };
 		B504C2C6206BD1BA007F8956 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */; };
+		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
+		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
+		B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D2206D1BB5007F8956 /* Rating.swift */; };
 		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
@@ -154,6 +158,10 @@
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
 		B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		B504C2C2206BCEBF007F8956 /* IDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDList.swift; sourceTree = "<group>"; };
+		B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsModelManager.swift; sourceTree = "<group>"; };
+		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
+		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
+		B504C2D2206D1BB5007F8956 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
@@ -245,7 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */,
+				B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */,
 				B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */,
+				B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -272,6 +282,8 @@
 				B5CBA10E2069226600BC8005 /* Restaurant.swift */,
 				B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */,
 				B5CBA170206A444300BC8005 /* TopicsModelManager.swift */,
+				B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */,
+				B504C2D2206D1BB5007F8956 /* Rating.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -751,11 +763,13 @@
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
 				F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */,
+				B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */,
 				F26698DE206649D400E3A1F2 /* Constants.swift in Sources */,
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
 				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
+				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
 				F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */,
 				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
@@ -768,7 +782,9 @@
 				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
+				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
+				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,

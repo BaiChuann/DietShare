@@ -11,7 +11,7 @@ import UIKit
 
 class TopicListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    private var topicModel = TopicsModelManager<Topic>()
+    private var topicModel: TopicsModelManager<Topic>?
     
     @IBOutlet weak var topicList: UICollectionView!
     
@@ -25,13 +25,17 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicFullListCell, for: indexPath as IndexPath) as! TopicFullListCell
-        let topicList = self.topicModel.getFullTopicList()
-        if !topicList.isEmpty {
+        if let model = self.topicModel {
+            let topicList = model.getFullTopicList()
             cell.setImage(topicList[indexPath.item].getImage())
             cell.setName(topicList[indexPath.item].getName())
         }
         
         return cell
+    }
+    
+    func setModelManager(_ topicModel: TopicsModelManager<Topic>) {
+        self.topicModel = topicModel
     }
     
     override func viewDidLoad() {

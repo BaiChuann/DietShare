@@ -31,6 +31,7 @@ enum IDType: String {
     case User = "user"
     case Post = "post"
     case Comment = "comment"
+    case Rating = "rating"
 }
 
 struct Identifiers {
@@ -52,9 +53,11 @@ struct Constants {
     
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
+        public static let numOfDisplayedRestaurants = 5
     }
     
     struct TopicPage {
         public static let numOfDisplayedUsers = 10
     }
+    
 }

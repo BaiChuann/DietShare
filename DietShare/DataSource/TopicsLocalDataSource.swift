@@ -15,8 +15,9 @@ import SQLite
  */
 class TopicsLocalDataSource: TopicsDataSource {
     
+    
     private var database: Connection!
-    private let topicsTable = Table("topics")
+    private let topicsTable = Table("topicsTable")
     
     // Columns of the topics table
     private let id = Expression<String>("id")
@@ -29,7 +30,10 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init() {
+        print("initializer called")
+        
         createDB()
+        createTable()
     }
     
     // A shared instance to be used in a global scope
@@ -37,7 +41,9 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     private func createDB() {
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
+        print(documentDirectory?.path)
+        if let fileUrl = documentDirectory?.appendingPathComponent("topicsTable").appendingPathExtension("sqlite3") {
+            
             self.database = try? Connection(fileUrl.path)
         }
     }
@@ -46,7 +52,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     private func createTable() {
         let createTable = self.topicsTable.create(block: { (table) in
             table.column(self.id, primaryKey: true)
-            table.column(self.name, unique: true)
+            table.column(self.name)
             table.column(self.description)
             table.column(self.image)
             table.column(self.popularity)
@@ -75,9 +81,10 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     func addTopic(_ newTopic: Topic) {
         do {
+            print("current id is: \(newTopic.getID())")
             try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImage(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), activeUsers <- newTopic.getActiveUsersID()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
-            print("constraint failed: \(message), in \(String(describing: statement))")
+            print("insert constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
             print("insertion failed: \(error)")
         }
@@ -112,7 +119,7 @@ class TopicsLocalDataSource: TopicsDataSource {
                 print("Old topic not found")
             }
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
-            print("constraint failed: \(message), in \(String(describing: statement))")
+            print("update constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
             print("update failed: \(error)")
         }
