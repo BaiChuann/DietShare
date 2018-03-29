@@ -19,25 +19,29 @@ class Topic: ReadOnlyTopic {
     private let name: String
     private let image: UIImage
     private let description: String
-    private var activeUsers: [String]
-    private var posts: [String]
+    private var activeUsers: IDList
+    private var posts: IDList
     private var popularity: Int {
         get{
-            return self.posts.count
+            return self.posts.getList().count
         }
     }
     
-    init(_ id: String, _ name: String, _ image: UIImage, _ description: String) {
+    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ activeUsers: IDList, _ posts: IDList) {
         self.id = id
         self.name = name
         self.image = image
         self.description = description
-        activeUsers = [String]()
-        posts = [String]()
+        self.activeUsers = activeUsers
+        self.posts = posts
     }
     
     convenience init() {
-        self.init("", "", UIImage(), "")
+        self.init("", "", UIImage(), "", IDList(IDType.User), IDList(IDType.Post))
+    }
+    
+    convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
+        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImage(), readOnlyTopic.getDescription(), readOnlyTopic.getActiveUsersID(), readOnlyTopic.getPostsID())
     }
     
     func getID() -> String {
@@ -52,10 +56,10 @@ class Topic: ReadOnlyTopic {
     func getImage() -> UIImage {
         return self.image
     }
-    func getPostsID() -> [String] {
+    func getPostsID() -> IDList {
         return self.posts
     }
-    func getActiveUsersID() -> [String] {
+    func getActiveUsersID() -> IDList {
         return self.activeUsers
     }
     func getPopularity() -> Int {

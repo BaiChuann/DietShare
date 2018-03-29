@@ -9,11 +9,15 @@
 import Foundation
 import BTree
 
+/**
+ * A protocol for a data source for topics only. 
+ * Implementations should guarantee: details are present and not null, field values are validated.
+ */
 protocol TopicsDataSource {
     associatedtype T: ReadOnlyTopic
     func getTopics() -> SortedSet<T>
     func addTopic(_ newTopic: Topic)
+    func addTopics(_ newTopics: SortedSet<Topic>)
     func deleteTopic(_ newTopic: Topic)
     func updateTopic(_ oldTopic: Topic, _ newTopic: Topic)
-    func syncTopics(_ newTopics: SortedSet<Topic>)
 }

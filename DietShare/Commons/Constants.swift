@@ -27,6 +27,12 @@ enum RestaurantType: String {
     case Japanese = "Japanese"
 }
 
+enum IDType: String {
+    case User = "user"
+    case Post = "post"
+    case Comment = "comment"
+}
+
 struct Identifiers {
     public static let topicShortListCell = "topicShortListCell"
     public static let topicFullListCell = "topicFullListCell"
