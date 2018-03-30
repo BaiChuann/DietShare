@@ -12,6 +12,7 @@
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7856206E7BE40011008A /* PhotoOptionCell.swift */; };
+		F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */; };
 		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
 		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
 		F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */; };
@@ -68,6 +69,7 @@
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
 		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F25D7856206E7BE40011008A /* PhotoOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionCell.swift; sourceTree = "<group>"; };
+		F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutPhotoSelectorController.swift; sourceTree = "<group>"; };
 		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
 		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
 		F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPopupController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				F26698C82063F72800E3A1F2 /* FoodAdderController.swift */,
 				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
 				F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */,
+				F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */,
 			);
 			path = PostPublish;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
+				F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,

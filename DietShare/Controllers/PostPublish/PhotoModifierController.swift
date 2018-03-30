@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DKImagePickerController
 
 enum PhotoOptionType: Int {
     case sticker = 0, layout
@@ -19,6 +18,7 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
 
     private let photoOptionCellIdentifier = "PhotoOptionCell"
+    private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private var stickers = [UIImage?]()
     private var layout = [UIImage?]()
 
@@ -67,8 +67,8 @@ class PhotoModifierController: UIViewController {
     private func onLayoutSelected(index: Int) {
         print("selected layout \(index)")
 
-        let pickerController = DKImagePickerController()
-        self.navigationController?.present(pickerController, animated: true, completion: nil)
+        let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier)
+        navigationController?.present(photoSelector, animated: true, completion: nil)
     }
 }
 
