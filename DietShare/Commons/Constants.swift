@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-enum AppStoryboard :String {
+enum AppStoryboard: String {
     case main = "Main"
     case share = "Share"
 
-    var instance :UIStoryboard {
+    var instance: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
     }
 }
@@ -22,6 +22,7 @@ struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
     public static let themeColor = hexToUIColor(hex: "FFD147")
+    public static let lightBackgroundColor = hexToUIColor(hex: "EAEAEA")
     public static let lightTextColor = hexToUIColor(hex: "#CACFD0")
     public static let normalTextColor = hexToUIColor(hex: "#9CA0A1")
     public static let darkTextColor = hexToUIColor(hex: "#565859")

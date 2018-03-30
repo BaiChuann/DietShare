@@ -68,5 +68,3 @@ class Post {
         likesCount -= 1
     }
 }
-
-
