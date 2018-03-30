@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DKImagePickerController
 
 enum PhotoOptionType: Int {
     case sticker = 0, layout
@@ -62,6 +63,13 @@ class PhotoModifierController: UIViewController {
 
         photoOptionCollectionView.reloadData()
     }
+
+    private func onLayoutSelected(index: Int) {
+        print("selected layout \(index)")
+
+        let pickerController = DKImagePickerController()
+        self.navigationController?.present(pickerController, animated: true, completion: nil)
+    }
 }
 
 extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -104,6 +112,18 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             return layout.count
         default:
             return 0
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected item \(indexPath.item)")
+        switch segmentControl.selectedSegmentIndex {
+        case PhotoOptionType.sticker.rawValue:
+            return
+        case PhotoOptionType.layout.rawValue:
+            onLayoutSelected(index: indexPath.item)
+        default:
+            return
         }
     }
 }

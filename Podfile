@@ -8,6 +8,7 @@ target 'DietShare' do
   pod 'PopupDialog', '~> 0.7'
   pod 'DropDown'
   pod 'TweeTextField'
+  pod 'DKImagePickerController'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
