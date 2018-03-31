@@ -47,12 +47,12 @@ class SignInController: UIViewController {
             }
         }
 
-        guard let email = emailInput, let password = passwordInput else {
+        guard emailInput != nil, passwordInput != nil else {
             print("Invalid email or password")
             return
         }
 
-        //TODO: Check for match between email and password here, and get the user from DataSource
+        // MARK: Check for match between email and password here, and get the user from DataSource
 
         signIn()
     }
@@ -61,7 +61,7 @@ class SignInController: UIViewController {
         inputGroup.forEach { $0.delegate = self }
     }
 
-    //TODO: should pass with a user object
+    // MARK: should pass with a user object
     func signIn() {
         if let tabPageVC = storyboard?.instantiateViewController(withIdentifier: "TabPage") {
             show(tabPageVC, sender: self)

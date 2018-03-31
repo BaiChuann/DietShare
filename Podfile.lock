@@ -31,10 +31,10 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.31.1):
     - FBSDKCoreKit (~> 4.31.1)
+  - FormValidatorSwift (3.0.0)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
   - TweeTextField (1.1.1)
-  - Validator (3.0.1)
 
 DEPENDENCIES:
   - DKImagePickerController
@@ -42,9 +42,9 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - FormValidatorSwift (~> 3.0)
   - PopupDialog (~> 0.7)
   - TweeTextField
-  - Validator
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -57,10 +57,10 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: e08ccfcefa7bc1347a07c276dac9bf6c7fe57024
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
+  FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
-  Validator: 309a430b6b5430a327d8c84a3246036badaa2dcb
 
-PODFILE CHECKSUM: a4dc8ed6f296c3365af1174ec0941a2ad83c2c39
+PODFILE CHECKSUM: 9703862c390ff3b0a521eb5eac798f1730280316
 
 COCOAPODS: 1.4.0
