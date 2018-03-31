@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VQJ-wA-Njw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VQJ-wA-Njw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
-        </array>
-        <array key="VerdanaBold.ttf">
-            <string>Verdana-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="E9r-zk-O36">
@@ -129,9 +121,7 @@
                                     <color key="titleColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="WHf-FY-PQJ" kind="show" id="hFU-Ck-rLw">
-                                        <nil key="action"/>
-                                    </segue>
+                                    <segue destination="WHf-FY-PQJ" kind="show" id="hFU-Ck-rLw"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't find your food?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StA-ZC-k5K">
@@ -346,9 +336,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Next" id="gpb-4f-FRy">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="2hc-3b-fm0" kind="show" id="CPn-sS-u1G">
-                                    <nil key="action"/>
-                                </segue>
+                                <segue destination="2hc-3b-fm0" kind="show" id="CPn-sS-u1G"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -515,13 +503,13 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LayoutPhotoPreviewCell" id="ocU-Wj-ODv" customClass="LayoutPhotoPreviewCell" customModule="DietShare" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="14.5" width="50" height="50"/>
+                                                <rect key="frame" x="0.0" y="13.5" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7jM-yD-sc4">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7jM-yD-sc4">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         </imageView>
                                                     </subviews>
@@ -560,7 +548,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.98056602329999998" green="0.98056602329999998" blue="0.98056602329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="27p-SO-KpL"/>
                                     <constraint firstAttribute="trailing" secondItem="xka-4y-oWf" secondAttribute="trailing" constant="16" id="3SJ-11-9TK"/>
                                     <constraint firstAttribute="bottom" secondItem="xka-4y-oWf" secondAttribute="bottom" constant="18" id="Azq-wk-NyJ"/>
                                     <constraint firstItem="eAZ-bn-Q6X" firstAttribute="top" secondItem="cMf-5T-wM1" secondAttribute="top" constant="12" id="CSU-MJ-8FI"/>
@@ -578,7 +565,7 @@
                             <constraint firstItem="KJ5-wu-eed" firstAttribute="top" secondItem="71t-1W-6oQ" secondAttribute="top" id="H6A-iU-IpI"/>
                             <constraint firstItem="cMf-5T-wM1" firstAttribute="trailing" secondItem="71t-1W-6oQ" secondAttribute="trailing" id="RVQ-6f-y0U"/>
                             <constraint firstItem="KJ5-wu-eed" firstAttribute="leading" secondItem="71t-1W-6oQ" secondAttribute="leading" id="VTb-Gc-Flf"/>
-                            <constraint firstItem="71t-1W-6oQ" firstAttribute="bottom" secondItem="cMf-5T-wM1" secondAttribute="bottom" id="aPj-5J-Dig"/>
+                            <constraint firstAttribute="bottom" secondItem="cMf-5T-wM1" secondAttribute="bottom" id="aPj-5J-Dig"/>
                             <constraint firstItem="cMf-5T-wM1" firstAttribute="leading" secondItem="71t-1W-6oQ" secondAttribute="leading" id="mRF-HT-1vF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="71t-1W-6oQ"/>
