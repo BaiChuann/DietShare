@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DKImagePickerController
 
 enum PhotoOptionType: Int {
     case sticker = 0, layout

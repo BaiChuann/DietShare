@@ -22,6 +22,7 @@ struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
     public static let themeColor = hexToUIColor(hex: "FFD147")
+    public static let photoLibraryBackgroundColor = hexToUIColor(hex: "D8D8D8")
     public static let lightBackgroundColor = hexToUIColor(hex: "EAEAEA")
     public static let lightTextColor = hexToUIColor(hex: "#CACFD0")
     public static let normalTextColor = hexToUIColor(hex: "#9CA0A1")
