@@ -16,6 +16,7 @@ class ShareTabController: UIViewController {
             addChildViewController(controller)
             view.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
+            self.tabBarController?.tabBar.isHidden = true
         }
     }
 }

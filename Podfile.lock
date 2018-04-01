@@ -5,6 +5,11 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - DKImagePickerController (3.8.1):
+    - DKImagePickerController/Camera (= 3.8.1)
+    - DKImagePickerController/ImageManager (= 3.8.1)
+  - DKImagePickerController/Camera (3.8.1)
+  - DKImagePickerController/ImageManager (3.8.1)
   - DropDown (2.3.1)
   - DynamicBlurView (2.0.2)
   - FacebookCore (0.3.0):
@@ -26,24 +31,26 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.31.1):
     - FBSDKCoreKit (~> 4.31.1)
+  - FormValidatorSwift (3.0.0)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
   - TGCameraViewController (2.2.8)
   - TweeTextField (1.1.1)
-  - Validator (3.0.1)
 
 DEPENDENCIES:
+  - DKImagePickerController
   - DropDown
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - FormValidatorSwift (~> 3.0)
   - PopupDialog (~> 0.7)
   - TGCameraViewController
   - TweeTextField
-  - Validator
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  DKImagePickerController: 51ad6ee2ba05414bb741db54a72cd7f4fb178e34
   DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
@@ -52,11 +59,11 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: e08ccfcefa7bc1347a07c276dac9bf6c7fe57024
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
+  FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
-  Validator: 309a430b6b5430a327d8c84a3246036badaa2dcb
 
-PODFILE CHECKSUM: 81d828f725397436673936e4a6d9407e63a2a589
+PODFILE CHECKSUM: 8a418db838f491c72648d7e1583d49408cb72000
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.4.0

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Validator
+import FormValidatorSwift
 
 enum SignUpInputType: Int {
     case username = 0, email, password
@@ -54,7 +54,6 @@ class SignUpController: UIViewController {
             $0.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
     }
-
 }
 
 extension SignUpController: UITextFieldDelegate {
@@ -87,35 +86,25 @@ extension SignUpController: UITextFieldDelegate {
             return
         }
 
-        var result: ValidationResult?
+        var result: [Condition]?
 
         if textField.tag == SignUpInputType.username.rawValue {
-            let numericRule = ValidationRuleLength(min: 4, max: 20, error: ValidationErrors.usernameInvalid)
-            result = text.validate(rule: numericRule)
+            let validator = RangeValidator(configuration: RangeConfiguration(range: 4..<21))
+            result = validator.checkConditions(text)
         } else if textField.tag == SignUpInputType.email.rawValue {
-            let emailRule = ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)
-            result = text.validate(rule: emailRule)
+            let validator = EmailValidator()
+            result = validator.checkConditions(text)
         } else if textField.tag == SignUpInputType.password.rawValue {
-            var passwordRules = ValidationRuleSet<String>()
-
-            let minLengthRule = ValidationRuleLength(min: 8, error: ValidationErrors.passwordLengthInvalid)
-            let digitRule = ValidationRulePattern(pattern: ContainsNumberValidationPattern(), error: ValidationErrors.passwordDigitInvalid)
-            let lowerCaseAlphabetRule = ValidationRulePattern(pattern: CaseValidationPattern.lowercase, error: ValidationErrors.passwordLowerCaseInvalid)
-            let upperCaseAlphabetRule = ValidationRulePattern(pattern: CaseValidationPattern.uppercase, error: ValidationErrors.passwordUpperCaseInvalid)
-
-            passwordRules.add(rule: minLengthRule)
-            passwordRules.add(rule: digitRule)
-            passwordRules.add(rule: lowerCaseAlphabetRule)
-            passwordRules.add(rule: upperCaseAlphabetRule)
-
-            result = text.validate(rules: passwordRules)
+            let range = RangeValidator(configuration: RangeConfiguration(range: 8..<21))
+            let alphaNumeric = AlphanumericValidator()
+            let validator = CompositeValidator(validators: [range, alphaNumeric])
+            result = validator.checkConditions(text)
         }
 
-        if let result = result {
-            switch result {
-            case .valid: validationMark.isHidden = false
-            case .invalid: validationMark.isHidden = true
-            }
+        if let result = result, !result.isEmpty {
+            validationMark.isHidden = true
+        } else {
+            validationMark.isHidden = false
         }
     }
 }

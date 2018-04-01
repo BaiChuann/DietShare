@@ -50,12 +50,17 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         pickedPhoto = image
-        dismiss(animated: true, completion: nil)
+        goToFoodSelectController()
     }
 
     func cameraDidTakePhoto(_ image: UIImage!) {
         pickedPhoto = image
-        dismiss(animated: true, completion: nil)
+        goToFoodSelectController()
+    }
+
+    func goToFoodSelectController() {
+        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
+        navigationController?.pushViewController(foodSelectVC, animated: true)
     }
 
     // Optional
