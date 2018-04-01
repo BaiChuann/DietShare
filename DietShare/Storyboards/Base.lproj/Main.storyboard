@@ -545,7 +545,7 @@
         <!--Posts-->
         <scene sceneID="PaW-Gk-mUA">
             <objects>
-                <viewController id="iEp-Sc-tuJ" sceneMemberID="viewController">
+                <viewController id="iEp-Sc-tuJ" customClass="HomeTabController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rsW-Al-EAN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

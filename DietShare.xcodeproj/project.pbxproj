@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
+		A2BC9D75206E6B2300DA366B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BC9D72206E6B2300DA366B /* PostCell.xib */; };
+		A2BC9D77206E794100DA366B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BC9D76206E794100DA366B /* PostCell.swift */; };
+		A2BC9D7C206E7ED900DA366B /* PostsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BC9D7B206E7ED900DA366B /* PostsTableController.swift */; };
+		A2BC9D80206FC31D00DA366B /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BC9D7F206FC31C00DA366B /* PostManager.swift */; };
+		A2BC9D83206FC41100DA366B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699192066CD3900E3A1F2 /* Post.swift */; };
+		A2BC9D86206FE5C700DA366B /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BC9D85206FE5C700DA366B /* TopicCell.xib */; };
+		A2BC9D8A206FE68100DA366B /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BC9D89206FE68100DA366B /* TopicCell.swift */; };
+		A2C1DB18206E584E009C54D3 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C1DB17206E584E009C54D3 /* Home.storyboard */; };
+		A2C1DB21206E5DCF009C54D3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1DB20206E5DCF009C54D3 /* HomeController.swift */; };
+		A2C1DB25206E5E78009C54D3 /* HomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1DB24206E5E78009C54D3 /* HomeTabController.swift */; }; };
 		A42779BE206697F900780D19 /* PhotoUploaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42779BD206697F900780D19 /* PhotoUploaderViewController.swift */; };
 		A42BAF6F20672C42000C7D54 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42BAF6E20672C42000C7D54 /* CameraHandler.swift */; };
 		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
@@ -64,6 +74,15 @@
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		A2BC9D72206E6B2300DA366B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		A2BC9D76206E794100DA366B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		A2BC9D7B206E7ED900DA366B /* PostsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableController.swift; sourceTree = "<group>"; };
+		A2BC9D7F206FC31C00DA366B /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
+		A2BC9D85206FE5C700DA366B /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
+		A2BC9D89206FE68100DA366B /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		A2C1DB17206E584E009C54D3 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		A2C1DB20206E5DCF009C54D3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A2C1DB24206E5E78009C54D3 /* HomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabController.swift; sourceTree = "<group>"; };
 		A42779BD206697F900780D19 /* PhotoUploaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploaderViewController.swift; sourceTree = "<group>"; };
 		A42BAF6E20672C42000C7D54 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
 		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
@@ -132,6 +151,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2BC9D7A206E7EA800DA366B /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				A2BC9D7B206E7ED900DA366B /* PostsTableController.swift */,
+				A2BC9D7F206FC31C00DA366B /* PostManager.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		A2C1DB1B206E58AE009C54D3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A2C1DB20206E5DCF009C54D3 /* HomeController.swift */,
+				A2C1DB24206E5E78009C54D3 /* HomeTabController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		B4D17446E75367AEC9130823 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +226,10 @@
 				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
 				F26698DF206660C700E3A1F2 /* FoodCell.swift */,
 				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
+				A2BC9D72206E6B2300DA366B /* PostCell.xib */,
+				A2BC9D76206E794100DA366B /* PostCell.swift */,
+				A2BC9D85206FE5C700DA366B /* TopicCell.xib */,
+				A2BC9D89206FE68100DA366B /* TopicCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +272,7 @@
 			children = (
 				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
+				A2C1DB17206E584E009C54D3 /* Home.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -295,6 +337,8 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A2BC9D7A206E7EA800DA366B /* Posts */,
+				A2C1DB1B206E58AE009C54D3 /* Home */,
 				F207CCA520625A0600EF2904 /* Login */,
 				F26698C52063EBD800E3A1F2 /* PostPublish */,
 			);
@@ -412,9 +456,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2C1DB18206E584E009C54D3 /* Home.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
+				A2BC9D73206E6B2300DA366B /* PostCell.xib in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
+				A2BC9D86206FE5C700DA366B /* TopicCell.xib in Resources */,
 				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
 				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
@@ -425,6 +472,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2C1DB19206E584E009C54D3 /* Home.storyboard in Resources */,
+				A2BC9D74206E6B2300DA366B /* PostCell.xib in Resources */,
+				A2BC9D87206FE5C700DA366B /* TopicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +482,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2C1DB1A206E584E009C54D3 /* Home.storyboard in Resources */,
+				A2BC9D75206E6B2300DA366B /* PostCell.xib in Resources */,
+				A2BC9D88206FE5C700DA366B /* TopicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +506,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -535,6 +588,8 @@
 			files = (
 				A42BAF6F20672C42000C7D54 /* CameraHandler.swift in Sources */,
 				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
+				A2BC9D8A206FE68100DA366B /* TopicCell.swift in Sources */,
+				A2BC9D7C206E7ED900DA366B /* PostsTableController.swift in Sources */,
 				F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */,
 				F26698DE206649D400E3A1F2 /* Constants.swift in Sources */,
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
@@ -549,13 +604,17 @@
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
+				A2BC9D77206E794100DA366B /* PostCell.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
+				A2C1DB25206E5E78009C54D3 /* HomeTabController.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
-				A42779BE206697F900780D19 /* PhotoUploaderViewController.swift in Sources */,
+				A2C1DB21206E5DCF009C54D3 /* HomeController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
+				A2BC9D80206FC31D00DA366B /* PostManager.swift in Sources */,
+				A42779BE206697F900780D19 /* PhotoUploaderViewController.swift in Sources */,
 				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,
 				B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */,
 			);
@@ -565,7 +624,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2C1DB22206E5DCF009C54D3 /* HomeController.swift in Sources */,
+				A2BC9D8B206FE68100DA366B /* TopicCell.swift in Sources */,
+				A2C1DB26206E5E78009C54D3 /* HomeTabController.swift in Sources */,
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+				A2BC9D7D206E7ED900DA366B /* PostsTableController.swift in Sources */,
+				A2BC9D78206E794100DA366B /* PostCell.swift in Sources */,
+				A2BC9D84206FC41200DA366B /* Post.swift in Sources */,
+				A2BC9D81206FC31D00DA366B /* PostManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,7 +639,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2C1DB23206E5DCF009C54D3 /* HomeController.swift in Sources */,
+				A2BC9D8C206FE68100DA366B /* TopicCell.swift in Sources */,
+				A2C1DB27206E5E78009C54D3 /* HomeTabController.swift in Sources */,
 				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
+				A2BC9D7E206E7ED900DA366B /* PostsTableController.swift in Sources */,
+				A2BC9D79206E794100DA366B /* PostCell.swift in Sources */,
+				A2BC9D83206FC41100DA366B /* Post.swift in Sources */,
+				A2BC9D82206FC31D00DA366B /* PostManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
