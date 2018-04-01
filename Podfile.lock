@@ -28,6 +28,7 @@ PODS:
     - FBSDKCoreKit (~> 4.31.1)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
+  - TGCameraViewController (2.2.8)
   - TweeTextField (1.1.1)
   - Validator (3.0.1)
 
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - PopupDialog (~> 0.7)
+  - TGCameraViewController
   - TweeTextField
   - Validator
 
@@ -51,9 +53,10 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
+  TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
   Validator: 309a430b6b5430a327d8c84a3246036badaa2dcb
 
-PODFILE CHECKSUM: 644a15be568efec65753b6e07ede05d857dd304e
+PODFILE CHECKSUM: 81d828f725397436673936e4a6d9407e63a2a589
 
 COCOAPODS: 1.4.0
