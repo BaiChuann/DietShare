@@ -43,6 +43,9 @@ class Post {
     func getTime() -> Date {
         return time
     }
+    func getPhoto() -> UIImage {
+        return photo
+    }
     func getRestaurant() -> (String, String) {
         return restaurant
     }

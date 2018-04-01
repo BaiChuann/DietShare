@@ -12,6 +12,7 @@ import UIKit
 enum AppStoryboard :String {
     case main = "Main"
     case share = "Share"
+    case home = "Home"
 
     var instance :UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
