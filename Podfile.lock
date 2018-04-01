@@ -34,6 +34,7 @@ PODS:
   - FormValidatorSwift (3.0.0)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
+  - TGCameraViewController (2.2.8)
   - TweeTextField (1.1.1)
 
 DEPENDENCIES:
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - FacebookShare
   - FormValidatorSwift (~> 3.0)
   - PopupDialog (~> 0.7)
+  - TGCameraViewController
   - TweeTextField
 
 SPEC CHECKSUMS:
@@ -59,8 +61,9 @@ SPEC CHECKSUMS:
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
   FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
+  TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
 
-PODFILE CHECKSUM: 9703862c390ff3b0a521eb5eac798f1730280316
+PODFILE CHECKSUM: 8a418db838f491c72648d7e1583d49408cb72000
 
 COCOAPODS: 1.4.0

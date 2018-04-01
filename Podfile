@@ -12,4 +12,5 @@ target 'DietShare' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'TGCameraViewController'
 end
