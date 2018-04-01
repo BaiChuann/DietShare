@@ -10,8 +10,5 @@ import UIKit
 
 class TopicCell: UICollectionViewCell {
 
-    @IBOutlet weak private var topicLabel: UILabel!
-    func setLabel(_ text: String) {
-        topicLabel.text = text
-    }
+    @IBOutlet weak var topicLabel: UILabel!
 }

@@ -19,6 +19,5 @@ class HomeController: UIViewController {
         let postsTable = postsTableController.getTable()
         postsTable.frame = postsArea.frame
         postsArea.addSubview(postsTable)
-        
     }
 }

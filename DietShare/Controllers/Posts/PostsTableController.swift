@@ -34,7 +34,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
             fatalError("The dequeued cell is not an instance of PostCell.")
         }
         let post = dataSource[0]
-        cell.setUserPhoto(UIImage(named: "food-result-1")!)
+        cell.setUserPhoto(UIImage(named: "profile-example")!)
         cell.setUserName("Bai Chuan")
         cell.setPostImage(post.getPhoto())
         cell.setCaption(post.getCaption())
@@ -43,7 +43,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
         cell.setTime(dateFormatter.string(from:post.getTime()))
-        cell.setTopic(post.getTopic()[0].1)
+        cell.setTopics(post.getTopics())
         cell.setRestaurant(post.getRestaurant().1)
         return cell
     }
