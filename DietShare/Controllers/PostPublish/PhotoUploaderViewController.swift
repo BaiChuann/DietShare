@@ -16,6 +16,8 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     var pickedPhoto: UIImage?
     var recognizedFoods: [Food] = []
     private var isToCamera: Bool = true
+    private var nextStoryboard: NextStoryboard = .camera
+    private var recognizer = RecognitionRequester.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         TGCameraColor.setTint(Constants.themeColor)
 
         // save image to album
-        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: true)
+        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
 
         // use the original image aspect instead of square
         //TGCamera.setOption(kTGCameraOptionUseOriginalAspect, value: true)
@@ -35,12 +37,21 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        recognizer.post()
+        
+        //goToFoodSelectController()
 
-        switch isToCamera {
-        case true:
+        switch nextStoryboard {
+        case .camera:
+            nextStoryboard = .discover
             openCamera()
-        case false:
+        case .discover:
+            nextStoryboard = .camera
             goBackToDiscovery()
+        case .foodSelector:
+            nextStoryboard = .camera
+            goToFoodSelectController()
         }
     }
 
@@ -50,17 +61,14 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         pickedPhoto = image
-        goToFoodSelectController()
+        nextStoryboard = .foodSelector
+        dismiss(animated: true, completion: nil)
     }
 
     func cameraDidTakePhoto(_ image: UIImage!) {
         pickedPhoto = image
-        goToFoodSelectController()
-    }
-
-    func goToFoodSelectController() {
-        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
-        navigationController?.pushViewController(foodSelectVC, animated: true)
+        nextStoryboard = .foodSelector
+        dismiss(animated: true, completion: nil)
     }
 
     // Optional
@@ -79,12 +87,23 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     private func openCamera() {
         let navigationController = TGCameraNavigationController.new(with: self)
-        isToCamera = false
         present(navigationController!, animated: true, completion: nil)
     }
 
     private func goBackToDiscovery() {
-        isToCamera = true
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 0
     }
+
+    
+    func goToFoodSelectController() {
+        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
+        navigationController?.pushViewController(foodSelectVC, animated: true)
+    }
+
+}
+
+fileprivate enum NextStoryboard {
+    case discover
+    case camera
+    case foodSelector
 }

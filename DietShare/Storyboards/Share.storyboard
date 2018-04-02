@@ -67,7 +67,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rZ-Od-2JD">
                                                     <rect key="frame" x="0.0" y="0.0" width="142" height="158"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food-result-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yme-lv-Pz2">
+                                                        <imageView userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yme-lv-Pz2">
                                                             <rect key="frame" x="0.0" y="-0.5" width="142" height="158"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0I-Y3-U07">
@@ -738,6 +738,5 @@ Hd0d5R3oHe0d9R34HgoeDR4SAAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAHhQ
 </mutableData>
         </image>
         <image name="food-example-1" width="125" height="165"/>
-        <image name="food-result-1" width="152" height="168"/>
     </resources>
 </document>
