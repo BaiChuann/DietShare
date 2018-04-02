@@ -195,8 +195,8 @@
 		F26698C52063EBD800E3A1F2 /* PostPublish */ = {
 			isa = PBXGroup;
 			children = (
-				F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */,
 				F25D78542068D9850011008A /* ShareTabController.swift */,
+				F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */,
 				F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */,
 				F26698C82063F72800E3A1F2 /* FoodAdderController.swift */,
 				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,

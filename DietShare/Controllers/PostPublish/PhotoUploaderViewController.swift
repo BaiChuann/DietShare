@@ -15,7 +15,8 @@ import TGCameraViewController
 class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     var pickedPhoto: UIImage?
     var recognizedFoods: [Food] = []
-    private var isToCamera: Bool = true
+
+    private var isToCamera = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,31 +37,29 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        switch isToCamera {
-        case true:
+        if isToCamera {
             openCamera()
-        case false:
-            goBackToDiscovery()
         }
     }
 
     func cameraDidCancel() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.goBack()
+        }
     }
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         pickedPhoto = image
-        goToFoodSelectController()
+        dismiss(animated: true) {
+            self.goToNext()
+        }
     }
 
     func cameraDidTakePhoto(_ image: UIImage!) {
         pickedPhoto = image
-        goToFoodSelectController()
-    }
-
-    func goToFoodSelectController() {
-        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
-        navigationController?.pushViewController(foodSelectVC, animated: true)
+        dismiss(animated: true) {
+            self.goToNext()
+        }
     }
 
     // Optional
@@ -79,12 +78,21 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     private func openCamera() {
         let navigationController = TGCameraNavigationController.new(with: self)
-        isToCamera = false
-        present(navigationController!, animated: true, completion: nil)
+        present(navigationController!, animated: true) {
+            self.isToCamera = false
+        }
     }
 
-    private func goBackToDiscovery() {
+    private func goToNext() {
+        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
+        navigationController?.pushViewController(viewController: foodSelectVC, animated: false) {
+            self.isToCamera = true
+        }
+    }
+
+    private func goBack() {
+        tabBarController?.selectedIndex = 1
+        tabBarController?.tabBar.isHidden = false
         isToCamera = true
-        self.tabBarController?.selectedIndex = 1
     }
 }
