@@ -34,9 +34,10 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init() {
         print("initializer called")
-        
+        let startTime = CFAbsoluteTimeGetCurrent()
         createDB()
-        createTable()
+        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+        print("Time elapsed for connection: \(timeElapsed) s.")
     }
     
     // A shared instance to be used in a global scope
@@ -44,10 +45,12 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     private func createDB() {
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        print(documentDirectory?.path)
         if let fileUrl = documentDirectory?.appendingPathComponent("RestaurantsTable").appendingPathExtension("sqlite3") {
             
             self.database = try? Connection(fileUrl.path)
+            if !FileManager.default.fileExists(atPath: fileUrl.path) {
+                createTable()
+            }
         }
     }
     

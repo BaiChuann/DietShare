@@ -19,10 +19,12 @@ class TopicsModelManager<T: ReadOnlyTopic> {
     
     init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
-        self.topics = topicsDataSource.getTopics() as! SortedSet<T>
         
-        // Prepopulate the datasource - only for testing
-        prepopulate()
+        let startTime = CFAbsoluteTimeGetCurrent()
+        self.topics = topicsDataSource.getTopics() as! SortedSet<T>
+        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+        print("Time elapsed for getting topics: \(timeElapsed) s.")
+        
     }
     
     func getFullTopicList() -> [T] {
@@ -45,11 +47,6 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         return displayedList
     }
     
-    private func prepopulate() {
-        for i in 0..<20 {
-            let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", IDList(.User), IDList(.Post))
-            self.topicsDataSource.addTopic(topic)
-        }
-    }
+    
     
 }

@@ -46,7 +46,7 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicListViewController {
-            dest.
+            dest.setModelManager(self.topicModel)
         }
     }
 }

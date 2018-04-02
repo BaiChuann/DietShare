@@ -12,6 +12,7 @@ import UIKit
 class TopicListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topicModel: TopicsModelManager<Topic>?
+    private var selectedTopic: Topic?
     
     @IBOutlet weak var topicList: UICollectionView!
     
@@ -34,6 +35,14 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let model = self.topicModel {
+            let topicsList = model.getFullTopicList()
+            self.selectedTopic = topicsList[indexPath.item]
+            performSegue(withIdentifier: Identifiers.topicListToDetailPage, sender: self)
+        }
+    }
+    
     func setModelManager(_ topicModel: TopicsModelManager<Topic>) {
         self.topicModel = topicModel
     }
@@ -47,6 +56,13 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? TopicViewController {
+            dest.setTopic(self.selectedTopic)
+            print("setTopic is \(selectedTopic?.getID())")
+        }
     }
     
 }

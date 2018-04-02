@@ -16,6 +16,6 @@ class Rating {
     init(_ id: String, _ userID: String, _ score: Double) {
         self.id = id
         self.userID = userID
-        score = score
+        self.score = score
     }
 }

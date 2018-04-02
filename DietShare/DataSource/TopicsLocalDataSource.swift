@@ -17,7 +17,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     
     private var database: Connection!
-    private let topicsTable = Table("topicsTable")
+    private let topicsTable = Table("topics")
     
     // Columns of the topics table
     private let id = Expression<String>("id")
@@ -34,23 +34,23 @@ class TopicsLocalDataSource: TopicsDataSource {
         
         createDB()
         createTable()
+//        prepopulate()
     }
     
     // A shared instance to be used in a global scope
     static let shared = TopicsLocalDataSource()
     
     private func createDB() {
+        
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        print(documentDirectory?.path)
-        if let fileUrl = documentDirectory?.appendingPathComponent("topicsTable").appendingPathExtension("sqlite3") {
-            
+        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
             self.database = try? Connection(fileUrl.path)
         }
     }
     
     
     private func createTable() {
-        let createTable = self.topicsTable.create(block: { (table) in
+        let createTable = self.topicsTable.create(ifNotExists: true) { (table) in
             table.column(self.id, primaryKey: true)
             table.column(self.name)
             table.column(self.description)
@@ -58,11 +58,11 @@ class TopicsLocalDataSource: TopicsDataSource {
             table.column(self.popularity)
             table.column(self.posts)
             table.column(self.activeUsers)
-        })
+        }
         do {
             try self.database.run(createTable)
         } catch {
-            fatalError("Database not created")
+            fatalError("Table not created")
         }
     }
     
@@ -70,12 +70,18 @@ class TopicsLocalDataSource: TopicsDataSource {
         var topics = SortedSet<Topic>()
         do {
             for topic in try database.prepare(topicsTable) {
+//                let start = CFAbsoluteTimeGetCurrent()
                 let topicEntry = Topic(topic[id], topic[name], topic[image], topic[description], topic[activeUsers], topic[posts])
+//                let intm = CFAbsoluteTimeGetCurrent()
+//                print("Getting entry \(topic[id]) takes time: \(intm - start)")
                 topics.insert(topicEntry)
+                let end = CFAbsoluteTimeGetCurrent()
+                print("End time for \(topic[id]): \(end)")
             }
         } catch let error {
             print("failed to get row: \(error)")
         }
+        
         return topics
     }
     
@@ -122,6 +128,14 @@ class TopicsLocalDataSource: TopicsDataSource {
             print("update constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
             print("update failed: \(error)")
+        }
+    }
+    
+    // Only for testing
+    private func prepopulate() {
+        for i in 0..<20 {
+            let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", IDList(.User), IDList(.Post))
+            self.addTopic(topic)
         }
     }
     

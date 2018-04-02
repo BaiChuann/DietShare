@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
         <array key="Verdana.ttf">
             <string>Verdana</string>
         </array>
@@ -86,11 +89,11 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a4F-Bz-SPR">
                                                     <rect key="frame" x="0.0" y="0.0" width="117" height="110"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muK-84-BSe">
-                                                    <rect key="frame" x="37" y="45" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muK-84-BSe">
+                                                    <rect key="frame" x="14" y="32" width="83" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -182,7 +185,6 @@
                                         <connections>
                                             <outlet property="topicImage" destination="rqj-sS-VHi" id="8i0-eA-fIf"/>
                                             <outlet property="topicName" destination="rr1-VS-bm0" id="Mq5-JI-DmV"/>
-                                            <segue destination="2aZ-ZN-SkA" kind="show" id="MLP-fW-eUg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -197,6 +199,7 @@
                     </view>
                     <connections>
                         <outlet property="topicList" destination="ii9-re-lWH" id="3ne-dU-1Yv"/>
+                        <segue destination="2aZ-ZN-SkA" kind="show" identifier="topicListToDetailPage" id="SE3-Jc-wXc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQW-Yb-Pfq" userLabel="First Responder" sceneMemberID="firstResponder"/>

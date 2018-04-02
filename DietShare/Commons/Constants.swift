@@ -38,6 +38,7 @@ struct Identifiers {
     public static let topicShortListCell = "topicShortListCell"
     public static let topicFullListCell = "topicFullListCell"
     public static let activeUserListCell = "activeUserListCell"
+    public static let topicListToDetailPage = "topicListToDetailPage"
 }
 
 struct Constants {
@@ -54,6 +55,7 @@ struct Constants {
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
         public static let numOfDisplayedRestaurants = 5
+        public static let shortListCellAlpha = 0.5
     }
     
     struct TopicPage {

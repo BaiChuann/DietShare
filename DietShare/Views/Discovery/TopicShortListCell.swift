@@ -14,12 +14,16 @@ class TopicShortListCell: UICollectionViewCell {
     @IBOutlet weak private var topicImage: UIImageView!
     @IBOutlet weak private var topicName: UILabel!
     
+    
     func setImage(_ image: UIImage) {
-        topicImage.image = image
+        let croppedImage = cropToBounds(image, Double(topicImage.frame.width), Double(topicImage.frame.height))
+        topicImage.image = croppedImage
+        topicImage.alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)
     }
     
     func setName(_ name: String) {
-        topicName.text = name
+        topicName.text = "#" + name
+//        topicName.backgroundColor = .white
     }
     
 }
