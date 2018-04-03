@@ -37,7 +37,7 @@ enum IDType: String {
 struct Identifiers {
     public static let topicShortListCell = "topicShortListCell"
     public static let topicFullListCell = "topicFullListCell"
-    public static let activeUserListCell = "activeUserListCell"
+    public static let followerListCell = "followerListCell"
     public static let topicListToDetailPage = "topicListToDetailPage"
     public static let discoveryToTopicPage = "discoveryToTopicPage"
 }

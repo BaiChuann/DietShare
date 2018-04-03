@@ -28,7 +28,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private let phone = Expression<String>("phone")
     private let type = Expression<String>("type")
     private let posts = Expression<IDList>("posts")
-    private let ratings = Expression<IDList>("activeUsers")
+    private let ratings = Expression<IDList>("followers")
     private let ratingScore = Expression<Double>("ratingScore")
     
     // Initializer is private to prevent instantiation - Singleton Pattern

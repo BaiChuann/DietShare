@@ -1,5 +1,5 @@
 //
-//  ActiveUserListCell.swift
+//  FollowerListCell.swift
 //  DietShare
 //
 //  Created by Shuang Yang on 27/3/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ActiveUserListCell: UICollectionViewCell {
+class FollowerListCell: UICollectionViewCell {
     
     @IBOutlet weak private var userImage: UIImageView!
     @IBOutlet weak private var userName: UILabel!

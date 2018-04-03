@@ -47,6 +47,11 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         return displayedList
     }
     
+    func addNewPost(_ newPost: Post, _ topic: Topic) {
+        topic.addPost(newPost)
+    }
     
-    
+    func addNewFollower(_ newFollower: User, _ topic: Topic) {
+        topic.addFollower(newFollower)
+    }
 }

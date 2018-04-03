@@ -18,7 +18,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var topicDescription: UITextView!
     @IBOutlet weak var followButton: UIButton!
     
-    @IBOutlet weak var activeUsers: UICollectionView!
+    @IBOutlet weak var followers: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.activeUserListCell, for: indexPath as! IndexPath) as! ActiveUserListCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as! IndexPath) as! FollowerListCell
         return cell
     }
     

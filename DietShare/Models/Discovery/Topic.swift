@@ -19,7 +19,7 @@ class Topic: ReadOnlyTopic {
     private let name: String
     private let image: UIImage
     private let description: String
-    private var activeUsers: IDList
+    private var followers: IDList
     private var posts: IDList
     private var popularity: Int {
         get{
@@ -27,12 +27,12 @@ class Topic: ReadOnlyTopic {
         }
     }
     
-    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ activeUsers: IDList, _ posts: IDList) {
+    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: IDList, _ posts: IDList) {
         self.id = id
         self.name = name
         self.image = image
         self.description = description
-        self.activeUsers = activeUsers
+        self.followers = followers
         self.posts = posts
     }
     
@@ -41,7 +41,7 @@ class Topic: ReadOnlyTopic {
     }
     
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
-        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImage(), readOnlyTopic.getDescription(), readOnlyTopic.getActiveUsersID(), readOnlyTopic.getPostsID())
+        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImage(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
     }
     
     func getID() -> String {
@@ -59,8 +59,8 @@ class Topic: ReadOnlyTopic {
     func getPostsID() -> IDList {
         return self.posts
     }
-    func getActiveUsersID() -> IDList {
-        return self.activeUsers
+    func getFollowersID() -> IDList {
+        return self.followers
     }
     func getPopularity() -> Int {
         return self.popularity
@@ -68,6 +68,10 @@ class Topic: ReadOnlyTopic {
     
     func addPost(_ newPost: Post) {
         self.posts.addEntry(newPost.getPostId())
+    }
+    
+    func addFollower(_ newFollower: User) {
+        self.followers.addEntry(newFollower.getUserId())
     }
     
     // A topic is "<" than another one if it is lower in terms of popularity
@@ -80,7 +84,7 @@ class Topic: ReadOnlyTopic {
                 && lhs.name == rhs.name
                 && lhs.popularity == rhs.popularity
                 && lhs.posts == rhs.posts
-                && lhs.activeUsers == rhs.activeUsers
+                && lhs.followers == rhs.followers
     }
     
 }
