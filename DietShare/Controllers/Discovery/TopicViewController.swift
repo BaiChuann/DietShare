@@ -22,8 +22,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        initUser()
         initView()
     }
 
@@ -33,11 +38,18 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let currentTopic = self.topic {
+            return currentTopic.getFollowersID().getListAsArray().count
+        }
         return Constants.TopicPage.numOfDisplayedUsers
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as! IndexPath) as! FollowerListCell
+        if let currentTopic = self.topic {
+            cell.setName(currentTopic.getFollowersID().getListAsArray()[indexPath.item])
+            // TODO - obtain image of the user (after UserManager is implemented)
+        }
         return cell
     }
     
@@ -56,17 +68,42 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         addRoundedRectBackground(self.followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.white.cgColor, UIColor.clear)
+        
+        initFollowButton()
     }
     
-    @IBAction func followButtonPressed(_ sender: UIButton) {
-        // TODO - add handling of follow button (after adding user manager)
-        if let user = self.currentUser {
-            if !followButton.isHighlighted {
-                followButton.setTitle(Text.unfollow, for: .normal)
-                followButton.isHighlighted = true
-                
+    private func initFollowButton() {
+        assert(topic != nil)
+        assert(currentUser != nil)
+        if let user = self.currentUser, let currentTopic = self.topic {
+            let followers = currentTopic.getFollowersID().getListAsSet()
+            if followers.contains(user.getUserId()) {
+                self.followButton.tag = FollowStatus.followed.rawValue
+                self.followButton.setTitle(Text.unfollow, for: .normal)
+            } else {
+                self.followButton.tag = FollowStatus.notFollowed.rawValue
+                self.followButton.setTitle(Text.follow, for: .normal)
             }
-            followButton.setTitle(Text.follow, for: .highlighted)
+        }
+    }
+    
+    // Handle tapping of follow button
+    @IBAction func followButtonPressed(_ sender: UIButton) {
+        assert(currentUser != nil)
+        // TODO - change button selected background color
+        if let user = self.currentUser {
+            if followButton.tag == FollowStatus.followed.rawValue {
+                
+                followButton.tag = FollowStatus.notFollowed.rawValue
+                followButton.setTitle(Text.unfollow, for: .normal)
+                followButton.layer.borderColor = UIColor.gray.cgColor
+                self.topic?.addFollower(user)
+            } else {
+                followButton.tag = FollowStatus.followed.rawValue
+                followButton.setTitle(Text.follow, for: .normal)
+                followButton.layer.borderColor = UIColor.white.cgColor
+                self.topic?.removeFollower(user)
+            }
         }
     }
     
@@ -77,4 +114,12 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     func setTopic(_ topic: Topic?) {
         self.topic = topic
     }
+    
+    /**
+     * Test functions
+     */
+    private func initUser() {
+        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
+    }
+    
 }

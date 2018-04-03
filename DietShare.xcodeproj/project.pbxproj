@@ -19,6 +19,7 @@
 		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
 		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
 		B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D2206D1BB5007F8956 /* Rating.swift */; };
+		B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AEB207325EF00F0E3E8 /* TopicTest.swift */; };
 		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
@@ -162,6 +163,7 @@
 		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
 		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
 		B504C2D2206D1BB5007F8956 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		B5488AEB207325EF00F0E3E8 /* TopicTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTest.swift; sourceTree = "<group>"; };
 		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 			children = (
 				F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */,
 				F2BE68A8205E8C8900DF9694 /* Info.plist */,
+				B5488AEB207325EF00F0E3E8 /* TopicTest.swift */,
 			);
 			path = DietShareTests;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

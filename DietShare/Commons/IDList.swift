@@ -12,20 +12,22 @@ import SQLite
 class IDList: Equatable, Codable {
     
     private var type: IDType
-    private var list: [String]
+    
+    // TODO - change this to Set
+    private var list: Set<String>
     
     enum CodingKeys: String, CodingKey {
         case type
         case list
     }
     
-    init(_ type: IDType, _ list: [String]) {
+    init(_ type: IDType, _ list: Set<String>) {
         self.type = type
         self.list = list
     }
     
     convenience init(_ type: IDType) {
-        let list = [String]()
+        let list = Set<String>()
         self.init(type,list)
     }
     
@@ -33,12 +35,22 @@ class IDList: Equatable, Codable {
         return self.type
     }
     
-    public func getList() -> [String] {
+    public func getListAsArray() -> [String] {
+        var returnList = [String]()
+        returnList.append(contentsOf: self.list)
+        return returnList
+    }
+    
+    public func getListAsSet() -> Set<String> {
         return self.list
     }
     
+    public func setList(_ newList: Set<String>) {
+        self.list = newList
+    }
+    
     public func addEntry(_ newEntry: String) {
-        self.list.append(newEntry)
+        self.list.insert(newEntry)
     }
     
     static func ==(lhs: IDList, rhs: IDList) -> Bool {
@@ -52,7 +64,7 @@ class IDList: Equatable, Codable {
             fatalError("Error decoding type")
         }
         self.type = idType
-        self.list = try value.decode([String].self, forKey: .list)
+        self.list = try value.decode(Set<String>.self, forKey: .list)
     }
     
     func encode(to encoder: Encoder) throws {

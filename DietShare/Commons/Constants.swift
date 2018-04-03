@@ -43,8 +43,13 @@ struct Identifiers {
 }
 
 struct Text {
-    public static let follow = "Follow"
+    public static let follow = "+Follow"
     public static let unfollow = "Unfollow"
+}
+
+enum FollowStatus: Int {
+    case followed = 1
+    case notFollowed = 0
 }
 
 struct Constants {

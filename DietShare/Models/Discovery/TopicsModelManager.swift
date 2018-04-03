@@ -47,11 +47,15 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         return displayedList
     }
     
+    // Add a new post under a topic, and update the database
     func addNewPost(_ newPost: Post, _ topic: Topic) {
         topic.addPost(newPost)
+        self.topicsDataSource.updateTopic(topic.getID(), topic)
     }
     
+    // Add a new follower to a topic, and update the database
     func addNewFollower(_ newFollower: User, _ topic: Topic) {
         topic.addFollower(newFollower)
+        self.topicsDataSource.updateTopic(topic.getID(), topic)
     }
 }

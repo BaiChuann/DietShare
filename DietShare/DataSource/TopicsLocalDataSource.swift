@@ -35,7 +35,7 @@ class TopicsLocalDataSource: TopicsDataSource {
 //        removeDB()
         createDB()
         createTable()
-        prepopulate()
+//        prepopulate()
     }
     
     
@@ -106,8 +106,8 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
     }
     
-    func deleteTopic(_ topic: Topic) {
-        let row = topicsTable.filter(id == topic.getID())
+    func deleteTopic(_ topicID: String) {
+        let row = topicsTable.filter(id == topicID)
         do {
             if try database.run(row.delete()) > 0 {
                 print("deleted the topic")
@@ -119,8 +119,8 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
     }
     
-    func updateTopic(_ oldTopic: Topic, _ newTopic: Topic) {
-        let row = topicsTable.filter(id == oldTopic.getID())
+    func updateTopic(_ oldTopicID: String, _ newTopic: Topic) {
+        let row = topicsTable.filter(id == oldTopicID)
         do {
             if try database.run(row.update(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImage(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID())) > 0 {
                 print("Old topic is updated")

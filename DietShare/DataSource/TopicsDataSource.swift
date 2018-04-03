@@ -18,6 +18,6 @@ protocol TopicsDataSource {
     func getTopics() -> SortedSet<Topic>
     func addTopic(_ newTopic: Topic)
     func addTopics(_ newTopics: SortedSet<Topic>)
-    func deleteTopic(_ newTopic: Topic)
-    func updateTopic(_ oldTopic: Topic, _ newTopic: Topic)
+    func deleteTopic(_ newTopicID: String)
+    func updateTopic(_ oldTopicID: String, _ newTopic: Topic)
 }
