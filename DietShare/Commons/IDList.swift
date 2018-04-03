@@ -37,6 +37,10 @@ class IDList: Equatable, Codable {
         return self.list
     }
     
+    public func addEntry(_ newEntry: String) {
+        self.list.append(newEntry)
+    }
+    
     static func ==(lhs: IDList, rhs: IDList) -> Bool {
         return lhs.type == rhs.type && lhs.list == rhs.list
     }

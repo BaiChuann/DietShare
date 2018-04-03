@@ -11,6 +11,8 @@ import UIKit
 class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topicModel = TopicsModelManager<Topic>()
+    private var currentTopic: Topic?
+    var currentUser: User?
     
     @IBOutlet weak var topicList: UICollectionView!
     
@@ -32,6 +34,12 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let topicsList = self.topicModel.getFullTopicList()
+        self.currentTopic = topicsList[indexPath.item]
+        performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +51,18 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // TODO - Add User Manager here and for all related view controllers
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicListViewController {
             dest.setModelManager(self.topicModel)
+            dest.currentUser = self.currentUser
+            
+        }
+        if let dest = segue.destination as? TopicViewController {
+            dest.setTopic(self.currentTopic)
+            dest.currentUser = self.currentUser
         }
     }
 }

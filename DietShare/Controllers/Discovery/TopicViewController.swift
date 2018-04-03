@@ -11,6 +11,7 @@ import UIKit
 class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topic: Topic?
+    var currentUser: User?
     
     @IBOutlet weak var topicName: UILabel!
     @IBOutlet weak var topicImage: UIImageView!
@@ -57,6 +58,17 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         addRoundedRectBackground(self.followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.white.cgColor, UIColor.clear)
     }
     
+    @IBAction func followButtonPressed(_ sender: UIButton) {
+        // TODO - add handling of follow button (after adding user manager)
+        if let user = self.currentUser {
+            if !followButton.isHighlighted {
+                followButton.setTitle(Text.unfollow, for: .normal)
+                followButton.isHighlighted = true
+                
+            }
+            followButton.setTitle(Text.follow, for: .highlighted)
+        }
+    }
     
     /**
      * Utility functions

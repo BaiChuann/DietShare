@@ -21,9 +21,8 @@ class TopicFullListCell: UICollectionViewCell {
     }
     
     func setName(_ name: String) {
+        // TODO - decide on what to put here for topicName
         topicName.text = "  #" + name + "  "
-        topicName.textColor = UIColor.white
-        addRoundedRectBackground(topicName, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.white.cgColor, UIColor.gray)
         
         topicNameLabel.text = name
         addRoundedRectBackground(topicNameLabel, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)

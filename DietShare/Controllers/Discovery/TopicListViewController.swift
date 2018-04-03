@@ -13,6 +13,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     private var topicModel: TopicsModelManager<Topic>?
     private var selectedTopic: Topic?
+    var currentUser: User?
     
     @IBOutlet weak var topicList: UICollectionView!
     
@@ -62,6 +63,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
+            dest.currentUser = self.currentUser
         }
     }
     

@@ -19,6 +19,7 @@ class TopicShortListCell: UICollectionViewCell {
         let croppedImage = cropToBounds(image, Double(topicImage.frame.width), Double(topicImage.frame.height))
         topicImage.image = croppedImage
         topicImage.alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)
+        addRoundedRectBackground(topicImage, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, UIColor.clear)
     }
     
     func setName(_ name: String) {

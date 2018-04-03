@@ -39,6 +39,12 @@ struct Identifiers {
     public static let topicFullListCell = "topicFullListCell"
     public static let activeUserListCell = "activeUserListCell"
     public static let topicListToDetailPage = "topicListToDetailPage"
+    public static let discoveryToTopicPage = "discoveryToTopicPage"
+}
+
+struct Text {
+    public static let follow = "Follow"
+    public static let unfollow = "Unfollow"
 }
 
 struct Constants {

@@ -66,6 +66,10 @@ class Topic: ReadOnlyTopic {
         return self.popularity
     }
     
+    func addPost(_ newPost: Post) {
+        self.posts.addEntry(newPost.getPostId())
+    }
+    
     // A topic is "<" than another one if it is lower in terms of popularity
     static func <(lhs: Topic, rhs: Topic) -> Bool {
         return lhs.popularity < rhs.popularity
