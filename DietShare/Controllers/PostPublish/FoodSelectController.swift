@@ -53,7 +53,6 @@ class FoodSelectController: UIViewController {
         addFoodButton.layer.borderWidth = Constants.buttonBorderWidth
         addFoodButton.layer.borderColor = Constants.lightTextColor.cgColor
 
-
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
