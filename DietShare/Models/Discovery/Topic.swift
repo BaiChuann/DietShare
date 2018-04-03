@@ -13,18 +13,18 @@ class Topic: ReadOnlyTopic {
     private var activeUsers: [String]
     private var posts: [String]
     private var popularity: Int {
-        get{
+        get {
             return self.posts.count
         }
     }
-    
+
     init(_ id: String, _ name: String) {
         self.id = id
         self.name = name
         activeUsers = [String]()
         posts = [String]()
     }
-    
+
     func getID() -> String {
         return self.id
     }
@@ -40,5 +40,5 @@ class Topic: ReadOnlyTopic {
     func getPopularity() -> Int {
         return self.popularity
     }
-    
+
 }

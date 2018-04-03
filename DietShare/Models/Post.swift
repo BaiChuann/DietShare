@@ -20,7 +20,7 @@ class Post {
     init(userId: String, caption: String, time: Date, photo: UIImage, restaurant: (String, String), topics: [(String, String)]) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from:time)
+        let dateString = dateFormatter.string(from: time)
         self.postId = userId + dateString
         self.userId = userId
         self.caption = caption

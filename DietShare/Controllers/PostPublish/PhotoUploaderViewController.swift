@@ -39,27 +39,26 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
         if isToCamera {
             openCamera()
+        } else {
+            goBack()
         }
     }
 
     func cameraDidCancel() {
-        dismiss(animated: true) {
-            self.goBack()
-        }
+        goBack()
+        dismiss(animated: true)
     }
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         pickedPhoto = image
-        dismiss(animated: true) {
-            self.goToNext()
-        }
+        goToNext()
+        dismiss(animated: true)
     }
 
     func cameraDidTakePhoto(_ image: UIImage!) {
         pickedPhoto = image
-        dismiss(animated: true) {
-            self.goToNext()
-        }
+        goToNext()
+        dismiss(animated: true)
     }
 
     // Optional
@@ -91,8 +90,8 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     }
 
     private func goBack() {
+        isToCamera = true
         tabBarController?.selectedIndex = 1
         tabBarController?.tabBar.isHidden = false
-        isToCamera = true
     }
 }
