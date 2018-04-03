@@ -25,7 +25,7 @@ class CameraHandler: NSObject {
             currentViewController.present(pickController, animated: true, completion: nil)
         }
     }
-    
+
     func photoLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             pickController.delegate = self

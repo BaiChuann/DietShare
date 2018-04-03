@@ -23,7 +23,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     private var topicsData: [String] = []
     override func awakeFromNib() {
         super.awakeFromNib()
-        let nibName = UINib(nibName: "TopicCell", bundle:nil)
+        let nibName = UINib(nibName: "TopicCell", bundle: nil)
         topics.register(nibName, forCellWithReuseIdentifier: "topicCell")
         topicsLayout.estimatedItemSize = CGSize(width: 100, height: 12)
     }
@@ -48,7 +48,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         commentCount.text = count
     }
     func setTime(_ time: String) {
-        self.time.text = time 
+        self.time.text = time
     }
     func setTopics(_ topics: [(String, String)]) {
         if topics.isEmpty {
@@ -74,7 +74,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicCell", for: indexPath) as? TopicCell  else {
             fatalError("The dequeued cell is not an instance of TopicCell.")
         }
-       
+
         cell.topicLabel.text = " " + topicsData[indexPath.item] + " "
         cell.topicLabel.sizeToFit()
         cell.topicLabel.layer.cornerRadius = 4

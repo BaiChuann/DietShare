@@ -46,25 +46,19 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     func cameraDidCancel() {
         goBack()
-        dismiss(animated: true) {
-//            self.goBack()
-        }
+        dismiss(animated: true)
     }
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         pickedPhoto = image
         goToNext()
-        dismiss(animated: true) {
-//            self.goToNext()
-        }
+        dismiss(animated: true)
     }
 
     func cameraDidTakePhoto(_ image: UIImage!) {
         pickedPhoto = image
         goToNext()
-        dismiss(animated: true) {
-//            self.goToNext()
-        }
+        dismiss(animated: true)
     }
 
     // Optional
