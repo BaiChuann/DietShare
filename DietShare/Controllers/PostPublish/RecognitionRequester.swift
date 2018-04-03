@@ -19,9 +19,9 @@ class RecognitionRequester {
     func post() {
         let url = URL(string: "https://api.dietlens.com/foodRec")!
         var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("access_key:secret_key", forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
-        let postString = "id=13&name=Jack"
+        let postString = "id-bd64b378-e144-11e7-9ea1-1a0051397901&image=@0.jpg"
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error

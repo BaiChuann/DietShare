@@ -41,8 +41,11 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         recognizer.post()
         
         //goToFoodSelectController()
+        
+        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "StickerAdderViewController")
+        navigationController?.pushViewController(foodSelectVC, animated: true)
 
-        switch nextStoryboard {
+        /*switch nextStoryboard {
         case .camera:
             nextStoryboard = .discover
             openCamera()
@@ -52,7 +55,7 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         case .foodSelector:
             nextStoryboard = .camera
             goToFoodSelectController()
-        }
+        }*/
     }
 
     func cameraDidCancel() {

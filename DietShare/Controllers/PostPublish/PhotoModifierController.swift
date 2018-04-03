@@ -17,11 +17,19 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
+    @IBOutlet weak private var canvas: UIView!
 
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private var stickers = [UIImage?]()
     private var layout = [UIImage?]()
+
+    var foodImage: UIImage?
+    var selectedImages: [UIImage]?
+    var selectedLayoutType: Int?
+    var selectedLayout: CollageLayout?
+    
+    var movingImageView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +41,14 @@ class PhotoModifierController: UIViewController {
             stickers.append(UIImage(named: "sticker-\(i)"))
             layout.append(UIImage(named: "layout-\(i)"))
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(canvas)
+        print(canvas.superview)
+        print(canvas.superview?.superview)
+        applyLayout()
     }
 
     private func setUpUI() {
@@ -66,10 +82,23 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onLayoutSelected(index: Int) {
+        selectedLayoutType = index
+        
         print("selected layout \(index)")
 
-        let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier)
-        navigationController?.present(photoSelector, animated: true, completion: nil)
+        /*let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier)
+        navigationController?.present(photoSelector, animated: true, completion: nil)*/
+        
+        self.performSegue(withIdentifier: "toLayoutSelection", sender: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toLayoutSelection" {
+            if let toViewController = segue.destination as? LayoutPhotoSelectorController {
+                toViewController.layoutType = selectedLayoutType
+            }
+        }
     }
 }
 
@@ -125,6 +154,104 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             onLayoutSelected(index: indexPath.item)
         default:
             return
+        }
+    }
+}
+
+extension PhotoModifierController {
+    private func applyLayout() {
+        guard let selectedImages = selectedImages, let layoutType = selectedLayoutType else {
+            return
+        }
+        guard let layout = getLayout(type: layoutType) else {
+            return
+        }
+        canvas.alpha = 0
+        let imageViews = layout.getLayoutViews(frame: canvas.frame)
+        zip(imageViews, selectedImages).forEach { imageView, selectedImage in
+            imageView.clipsToBounds = true
+            let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
+            imageView.addSubview(subImageView)
+            canvas.superview?.addSubview(imageView)
+        }
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(drag(sender:)))
+        canvas.superview?.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    @objc func drag(sender: UIPanGestureRecognizer) {
+        let superView = canvas.superview
+        if sender.state == .began {
+            let location = sender.location(in: superView)
+            let first = superView?.subviews
+                .filter { $0.frame.contains(location) }
+                .filter { $0 !== canvas }
+                .first?.subviews.first
+            movingImageView = first
+            print(movingImageView?.frame)
+        } else if sender.state == .changed {
+            guard let movingImageView = movingImageView,
+                let displayView = movingImageView.superview else {
+                return
+            }
+            let translation = sender.translation(in: superView)
+            //print(translation)
+            sender.setTranslation(CGPoint.zero, in: superView)
+            var changeInX: CGFloat = 0
+            var changeInY: CGFloat = 0
+            if translation.x > 0 {
+                changeInX = translation.x + movingImageView.frame.minX > 0 ?
+                    -movingImageView.frame.minX :
+                    translation.x
+            } else {
+                changeInX = translation.x + movingImageView.frame.maxX < displayView.frame.width ?
+                    displayView.frame.width - movingImageView.frame.maxX :
+                    translation.x
+            }
+            if translation.y > 0 {
+                changeInY = translation.y + movingImageView.frame.minY > 0 ?
+                    -movingImageView.frame.minY :
+                    translation.y
+            } else {
+                changeInY = translation.y + movingImageView.frame.maxY < displayView.frame.height ?
+                    displayView.frame.height - movingImageView.frame.maxY :
+                    translation.y
+            }
+            //movingImageView.alpha = 0.1
+            var newFrame = movingImageView.frame.offsetBy(dx: changeInX, dy: changeInY)
+            movingImageView.frame = newFrame
+        } else if sender.state == .ended {
+            print("ended")
+            //print(movingImageView?.frame)
+            movingImageView = nil
+        }
+    }
+
+    private func getFittedImageView(image: UIImage, frame: CGRect) -> UIImageView {
+        let originalSize = image.size
+        let frameAspect = frame.width / frame.height
+        let imageAspect = originalSize.width / originalSize.height
+        var newSize: CGSize
+        if frameAspect > imageAspect {
+            newSize = CGSize(width: frame.width, height: frame.width / imageAspect)
+        } else {
+            newSize = CGSize(width: frame.height * imageAspect, height: frame.height)
+        }
+        let newX = (frame.width - newSize.width) / 2
+        let newY = (frame.height - newSize.height) / 2
+        let origin = CGPoint(x: newX, y: newY)
+        let fittedFrame = CGRect(origin: origin, size: newSize)
+        let imageView = UIImageView(frame: fittedFrame)
+        imageView.image = image
+        return imageView
+    }
+
+    private func getLayout(type: Int) -> CollageLayout? {
+        switch type {
+        case 3:
+            return CollageLayoutThree()
+        default:
+            print("error: layout not implemented")
+            return nil
         }
     }
 }
