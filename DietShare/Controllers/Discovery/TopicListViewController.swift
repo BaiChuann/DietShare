@@ -15,10 +15,10 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private var selectedTopic: Topic?
     var currentUser: User?
     
-    @IBOutlet weak var topicList: UICollectionView!
+    @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == topicList {
+        if collectionView == topicListView {
             return Constants.defaultListDisplayCount
         }
         return 0
@@ -31,10 +31,65 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
             let topicList = model.getFullTopicList()
             cell.setImage(topicList[indexPath.item].getImage())
             cell.setName(topicList[indexPath.item].getName())
-            cell.initFollowButton()
+            cell.initFollowButtonView()
+            addTapHandler(cell, topicList, indexPath)
         }
         
         return cell
+    }
+    
+    // Add handling of tapping on follow button
+    
+    private func addTapHandler(_ cell: TopicFullListCell, _ topicList: [Topic], _ indexPath: IndexPath) {
+        cell.addSubview(cell.followButton)
+        if let user = self.currentUser {
+            let currentTopic = topicList[indexPath.item]
+            let followers = currentTopic.getFollowersID().getListAsSet()
+            if followers.contains(user.getUserId()) {
+                toggleToFollowed(cell.followButton)
+            } else {
+                toggleToUnfollowed(cell.followButton)
+            }
+        }
+        cell.followButton.addTarget(self, action: #selector(followButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    // Toggle the followButton to "followed" state
+    private func toggleToFollowed(_ button: UIButton) {
+        button.tag = FollowStatus.followed.rawValue
+        button.setTitle(Text.unfollow, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .normal)
+        button.layer.borderColor = UIColor.gray.cgColor
+    }
+    
+    // Toggle the followButton to "unfollowed" state
+    private func toggleToUnfollowed(_ button: UIButton) {
+        button.tag = FollowStatus.notFollowed.rawValue
+        button.setTitle(Text.follow, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    // Changes display text of button upon tapping, and handle follow/unfollow logic
+    @objc func followButtonTapped(_ sender: UIButton) {
+        assert(currentUser != nil)
+        
+        // Locate the exact cell where the follow button is tapped
+        let cell = sender.superview as! TopicFullListCell
+        guard let index = self.topicListView.indexPath(for: cell)?.item else {
+            fatalError("Cannot find corresponding cell for follow button")
+        }
+        
+        // Handle follow/unfollow logic
+        if let user = self.currentUser, let model = self.topicModel {
+            if sender.tag == FollowStatus.notFollowed.rawValue {
+                toggleToFollowed(sender)
+                model.getFullTopicList()[index].addFollower(user)
+            } else {
+                toggleToUnfollowed(sender)
+                model.getFullTopicList()[index].removeFollower(user)
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -55,6 +110,12 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        initUser()
+        self.topicListView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,6 +126,14 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
             dest.setTopic(self.selectedTopic)
             dest.currentUser = self.currentUser
         }
+    }
+    
+    /**
+     * Test functions
+     */
+    // TODO - change to actual user manager when user manager is available
+    private func initUser() {
+        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
     }
     
 }

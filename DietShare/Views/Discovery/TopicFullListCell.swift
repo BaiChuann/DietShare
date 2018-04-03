@@ -28,7 +28,7 @@ class TopicFullListCell: UICollectionViewCell {
         addRoundedRectBackground(topicNameLabel, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
     }
     
-    func initFollowButton() {
+    func initFollowButtonView() {
         addRoundedRectBackground(followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.black.cgColor, UIColor.clear)
     }
     

@@ -216,7 +216,7 @@
                         <viewLayoutGuide key="safeArea" id="VXO-2N-RLS"/>
                     </view>
                     <connections>
-                        <outlet property="topicList" destination="ii9-re-lWH" id="3ne-dU-1Yv"/>
+                        <outlet property="topicListView" destination="ii9-re-lWH" id="3ne-dU-1Yv"/>
                         <segue destination="2aZ-ZN-SkA" kind="show" identifier="topicListToDetailPage" id="SE3-Jc-wXc"/>
                     </connections>
                 </viewController>

@@ -90,20 +90,24 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     // Handle tapping of follow button
     @IBAction func followButtonPressed(_ sender: UIButton) {
         assert(currentUser != nil)
-        // TODO - change button selected background color
         if let user = self.currentUser {
-            if followButton.tag == FollowStatus.followed.rawValue {
-                
-                followButton.tag = FollowStatus.notFollowed.rawValue
+            if followButton.tag == FollowStatus.notFollowed.rawValue {
+                followButton.tag = FollowStatus.followed.rawValue
                 followButton.setTitle(Text.unfollow, for: .normal)
                 followButton.layer.borderColor = UIColor.gray.cgColor
                 self.topic?.addFollower(user)
             } else {
-                followButton.tag = FollowStatus.followed.rawValue
+                followButton.tag = FollowStatus.notFollowed.rawValue
                 followButton.setTitle(Text.follow, for: .normal)
                 followButton.layer.borderColor = UIColor.white.cgColor
                 self.topic?.removeFollower(user)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? TopicListViewController {
+            dest.currentUser = self.currentUser
         }
     }
     
