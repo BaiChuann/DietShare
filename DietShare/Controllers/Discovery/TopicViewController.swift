@@ -12,6 +12,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     private var topic: Topic?
     
+    @IBOutlet weak var topicName: UILabel!
     @IBOutlet weak var topicImage: UIImageView!
     @IBOutlet weak var topicDescription: UITextView!
     @IBOutlet weak var followButton: UIButton!
@@ -46,10 +47,14 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     private func initView() {
         print("InitView called")
         if let currentTopic = self.topic {
+            self.topicName.text = currentTopic.getName()
+            addRoundedRectBackground(self.topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
             self.topicImage.image = currentTopic.getImage()
+            self.topicImage.alpha = CGFloat(Constants.TopicPage.topicImageAlpha)
             self.topicDescription.text = currentTopic.getDescription()
-            self.title = currentTopic.getName()
         }
+        
+        addRoundedRectBackground(self.followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.white.cgColor, UIColor.clear)
     }
     
     

@@ -30,6 +30,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
             let topicList = model.getFullTopicList()
             cell.setImage(topicList[indexPath.item].getImage())
             cell.setName(topicList[indexPath.item].getName())
+            cell.initFollowButton()
         }
         
         return cell
@@ -61,7 +62,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
-            print("setTopic is \(selectedTopic?.getID())")
         }
     }
     

@@ -45,6 +45,7 @@ func hexToUIColor(hex: String) -> UIColor {
     )
 }
 
+// Crops an image to the given bounds
 func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImage {
     
     let contextSize: CGSize = image.size
@@ -76,4 +77,29 @@ func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImag
     let image: UIImage = UIImage(cgImage: imageRef!, scale: image.scale, orientation: image.imageOrientation)
     
     return image
+}
+
+// Crops an image to circular
+func makeRoundImg(img: UIImageView) -> UIImageView {
+    let imgLayer = CALayer()
+    imgLayer.frame = img.bounds
+    imgLayer.contents = img.image?.cgImage;
+    imgLayer.masksToBounds = true;
+    
+    imgLayer.cornerRadius = img.frame.width / 2
+    
+    UIGraphicsBeginImageContext(img.bounds.size)
+    imgLayer.render(in: UIGraphicsGetCurrentContext()!)
+    let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return UIImageView(image: roundedImage);
+}
+
+// Adds a rounded rectangular background to a UIView
+func addRoundedRectBackground(_ view: UIView, _ radius: CGFloat, _ borderWidth: CGFloat, _ borderColor: CGColor, _ backgroundColor: UIColor) {
+    view.backgroundColor = backgroundColor
+    view.layer.cornerRadius = radius
+    view.layer.borderWidth = borderWidth
+    view.layer.borderColor = borderColor
+    view.clipsToBounds = true
 }

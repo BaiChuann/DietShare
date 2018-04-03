@@ -22,7 +22,8 @@ class TopicShortListCell: UICollectionViewCell {
     }
     
     func setName(_ name: String) {
-        topicName.text = "#" + name
+        topicName.text = name
+        addRoundedRectBackground(topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
 //        topicName.backgroundColor = .white
     }
     

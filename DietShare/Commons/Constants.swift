@@ -51,15 +51,20 @@ struct Constants {
     public static let cornerRadius: CGFloat = 5
     public static let buttonBorderWidth: CGFloat = 1
     public static let defaultListDisplayCount = 10
+    public static let defaultBottonBorderWidth: CGFloat = 1.0
+    public static let defaultLabelBorderWidth: CGFloat = 3.0
+    public static let defaultCornerRadius: CGFloat = 5.0
+    public static let defaultTagCornerRadius: CGFloat = 8.0
     
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
         public static let numOfDisplayedRestaurants = 5
-        public static let shortListCellAlpha = 0.5
+        public static let shortListCellAlpha: CGFloat = 0.8
     }
     
     struct TopicPage {
         public static let numOfDisplayedUsers = 10
+        public static let topicImageAlpha: CGFloat = 0.8
     }
     
 }
