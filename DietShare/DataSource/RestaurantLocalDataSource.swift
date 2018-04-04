@@ -28,7 +28,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private let address = Expression<String>("address")
     private let location = Expression<CLLocation>("location")
     private let phone = Expression<String>("phone")
-    private let type = Expression<String>("type")
+    private let types = Expression<StringList>("types")
     private let posts = Expression<StringList>("posts")
     private let ratings = Expression<StringList>("ratings")
     private let ratingScore = Expression<Double>("ratingScore")
@@ -60,7 +60,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             table.column(self.address)
             table.column(self.location)
             table.column(self.phone)
-            table.column(self.type)
+            table.column(self.types)
             table.column(self.description)
             table.column(self.image)
             table.column(self.ratings)
@@ -78,10 +78,9 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         var restaurants = SortedSet<Restaurant>()
         do {
             for restaurant in try database.prepare(restaurantsTable) {
-                if let restaurantType = RestaurantType(rawValue: restaurant[type]) {
-                    let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurantType, restaurant[description], restaurant[image], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
-                    restaurants.insert(restaurantEntry)
-                }
+                
+                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[image], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                restaurants.insert(restaurantEntry)
             }
         } catch let error {
             print("failed to get row: \(error)")
@@ -92,7 +91,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func addRestaurant(_ newRestaurant: Restaurant) {
         do {
             print("current id is: \(newRestaurant.getID())")
-            try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), type <- newRestaurant.getType().rawValue, description <- newRestaurant.getDescription(), image <- newRestaurant.getImage(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
+            try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), image <- newRestaurant.getImage(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
@@ -138,7 +137,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant) {
         let row = restaurantsTable.filter(id == oldRestaurant.getID())
         do {
-            if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), type <- newRestaurant.getType().rawValue, description <- newRestaurant.getDescription(), image <- newRestaurant.getImage(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
+            if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), image <- newRestaurant.getImage(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
                 print("Old Restaurant is updated")
             } else {
                 print("Old Restaurant not found")
@@ -169,7 +168,10 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         if !containsRestaurant("1") {
             for i in 0..<20 {
                 let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
-                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", RestaurantType.Vegetarian, "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.5)
+                let types = [RestaurantType.Asian.rawValue, RestaurantType.Vegetarian.rawValue, RestaurantType.Japanese.rawValue]
+                let typesSet = Set<String>(types)
+                let typesStringList = StringList(.RestaurantType, typesSet)
+                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", typesStringList, "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.5)
                 self.addRestaurant(restaurant)
             }
         }

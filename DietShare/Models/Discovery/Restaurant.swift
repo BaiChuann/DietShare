@@ -16,27 +16,26 @@ import CoreLocation
 
 class Restaurant: ReadOnlyRestaurant {
     
-    
     private let id: String
     private let name: String
     private let address: String
     private let location: CLLocation
     private let phone: String
     // TODO - change type to List (of type)
-    private let type: RestaurantType
+    private let types: StringList
     private let description: String
     private let image: UIImage
     private var ratings: StringList
     private var posts: StringList
     private var ratingScore: Double
     
-    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage, _ ratings: StringList, _ posts: StringList, _ ratingScore: Double) {
+    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ image: UIImage, _ ratings: StringList, _ posts: StringList, _ ratingScore: Double) {
         self.id = id
         self.name = name
         self.address = address
         self.location = location
         self.phone = phone
-        self.type = type
+        self.types = types
         self.description = description
         self.image = image
         self.ratings = ratings
@@ -44,8 +43,8 @@ class Restaurant: ReadOnlyRestaurant {
         self.ratingScore = ratingScore
     }
     
-    convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage) {
-        self.init(id, name, address, location, phone, type, description, image, StringList(.Rating), StringList(.Post), 0)
+    convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ image: UIImage) {
+        self.init(id, name, address, location, phone, types, description, image, StringList(.Rating), StringList(.Post), 0)
     }
     
     func getID() -> String {
@@ -66,8 +65,8 @@ class Restaurant: ReadOnlyRestaurant {
     func getDescription() -> String {
         return self.description
     }
-    func getType() -> RestaurantType {
-        return self.type
+    func getTypes() -> StringList {
+        return self.types
     }
     func getImage() -> UIImage {
         return self.image
