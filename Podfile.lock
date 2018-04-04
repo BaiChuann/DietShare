@@ -34,6 +34,9 @@ PODS:
   - FBSDKShareKit (4.31.1):
     - FBSDKCoreKit (~> 4.31.1)
   - FormValidatorSwift (3.0.0)
+  - NVActivityIndicatorView (4.1.1):
+    - NVActivityIndicatorView/Presenter (= 4.1.1)
+  - NVActivityIndicatorView/Presenter (4.1.1)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
   - SQLite.swift (0.11.4):
@@ -52,6 +55,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - FormValidatorSwift (~> 3.0)
+  - NVActivityIndicatorView
   - PopupDialog (~> 0.7)
   - SQLite.swift (~> 0.11.4)
   - SwiftyJSON
@@ -72,12 +76,13 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
   FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
+  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
 
-PODFILE CHECKSUM: 5dab2f3367d26b93cfcb4bfc8b9b8d534ebb0234
+PODFILE CHECKSUM: 3a05e3555ded1ce8797dd82caf3ad82dc79ae37d
 
 COCOAPODS: 1.4.0

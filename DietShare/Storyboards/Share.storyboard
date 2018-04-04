@@ -47,6 +47,20 @@
                                 <color key="textColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSO-wi-cdz" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="147.5" y="303.5" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="VJ0-xh-SRU"/>
+                                    <constraint firstAttribute="width" constant="80" id="bzv-qK-8PO"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="orbit"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.7843137255" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SuS-Qu-agm">
                                 <rect key="frame" x="16" y="101.5" width="343" height="427"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -137,8 +151,10 @@
                             <constraint firstItem="SuS-Qu-agm" firstAttribute="top" secondItem="EwK-Yv-bFU" secondAttribute="bottom" constant="25" id="J2m-aa-U5h"/>
                             <constraint firstItem="0Hi-qP-iHp" firstAttribute="bottom" secondItem="u7D-w6-WrW" secondAttribute="bottom" constant="36" id="JRO-fD-9DD"/>
                             <constraint firstItem="u7D-w6-WrW" firstAttribute="top" secondItem="StA-ZC-k5K" secondAttribute="bottom" constant="20" id="Jju-3P-G6N"/>
+                            <constraint firstItem="LSO-wi-cdz" firstAttribute="centerX" secondItem="0Hi-qP-iHp" secondAttribute="centerX" id="Lzn-3p-h2l"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gdu-KE-h3k" secondAttribute="trailing" constant="20" symbolic="YES" id="NNx-gM-zPs"/>
                             <constraint firstItem="0Hi-qP-iHp" firstAttribute="trailing" secondItem="SuS-Qu-agm" secondAttribute="trailing" constant="16" id="Ou5-BH-qqm"/>
+                            <constraint firstItem="LSO-wi-cdz" firstAttribute="centerY" secondItem="0Hi-qP-iHp" secondAttribute="centerY" id="SFp-sA-kRq"/>
                             <constraint firstItem="StA-ZC-k5K" firstAttribute="centerX" secondItem="0Hi-qP-iHp" secondAttribute="centerX" id="YrA-tH-60n"/>
                             <constraint firstItem="gdu-KE-h3k" firstAttribute="leading" secondItem="0Hi-qP-iHp" secondAttribute="leading" constant="16" id="bLB-Ch-Oy6"/>
                             <constraint firstItem="EwK-Yv-bFU" firstAttribute="top" secondItem="gdu-KE-h3k" secondAttribute="bottom" constant="2" id="cmj-YA-C9C"/>
@@ -154,6 +170,7 @@
                     <connections>
                         <outlet property="addFoodButton" destination="u7D-w6-WrW" id="hWf-Ph-r8E"/>
                         <outlet property="foodCollectionView" destination="SuS-Qu-agm" id="a8w-ME-nAf"/>
+                        <outlet property="loader" destination="LSO-wi-cdz" id="n1I-Sb-t98"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSw-Uj-cPt" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,8 +9,10 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class FoodSelectController: UIViewController {
+    @IBOutlet weak private var loader: NVActivityIndicatorView!
     @IBOutlet weak private var addFoodButton: UIButton!
     @IBOutlet weak private var foodCollectionView: UICollectionView!
     private let foodCellIdentifier = "FoodCell"
@@ -18,19 +20,21 @@ class FoodSelectController: UIViewController {
     private let numberOfRows = 2
     private let spacingBetweenCells: CGFloat = 20
     private var foods = [Food]()
+    private var isFetchingData = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpUI()
 
 //        foodCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFoodCellTapped)))
 
-        // prepare for dummy data here
+        setUpUI()
         fetchFoodImage()
     }
 
     private func fetchFoodImage() {
+        updateFetchingStatus(status: true)
+
         let names = ["Dou Hua", "Fish Ball Noodle", "Kopi", "Char siew bao"]
         let queryUrl = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
         let headers: HTTPHeaders = [
@@ -58,8 +62,18 @@ class FoodSelectController: UIViewController {
                     self.foods.append(Food(name: name, image: image))
                 }
 
-                self.foodCollectionView.reloadData()
+                self.updateFetchingStatus(status: name != names.last)
             }
+        }
+    }
+
+    private func updateFetchingStatus(status: Bool) {
+        isFetchingData = status
+        loader.isHidden = !status
+
+        if !isFetchingData {
+            loader.stopAnimating()
+            foodCollectionView.reloadData()
         }
     }
 
@@ -76,6 +90,8 @@ class FoodSelectController: UIViewController {
 //    }
 
     private func setUpUI() {
+        loader.startAnimating()
+
         addFoodButton.layer.cornerRadius = Constants.cornerRadius
         addFoodButton.layer.borderWidth = Constants.buttonBorderWidth
         addFoodButton.layer.borderColor = Constants.lightTextColor.cgColor
