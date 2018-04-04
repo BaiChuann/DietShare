@@ -17,7 +17,7 @@ import CoreLocation
 protocol ReadOnlyRestaurant: Comparable {
     func getID() -> String
     func getName() -> String
-    func getTypes() -> StringList
+    func getType() -> RestaurantType
     func getPhone() -> String
     func getDescription() -> String
     func getImage() -> UIImage
