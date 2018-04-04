@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - BTree (4.1.0)
   - DKImagePickerController (3.8.1):
     - DKImagePickerController/Camera (= 3.8.1)
     - DKImagePickerController/ImageManager (= 3.8.1)
@@ -38,6 +39,7 @@ PODS:
   - TweeTextField (1.1.1)
 
 DEPENDENCIES:
+  - BTree (~> 4.0)
   - DKImagePickerController
   - DropDown
   - FacebookCore
@@ -50,6 +52,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  BTree: 99b99930790b88dc5e8bafbf666a5dfb8d7808b4
   DKImagePickerController: 51ad6ee2ba05414bb741db54a72cd7f4fb178e34
   DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
@@ -64,6 +67,6 @@ SPEC CHECKSUMS:
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
 
-PODFILE CHECKSUM: 8a418db838f491c72648d7e1583d49408cb72000
+PODFILE CHECKSUM: 84b40dc30531ae3ba910f7218fc71c150d81698f
 
 COCOAPODS: 1.4.0

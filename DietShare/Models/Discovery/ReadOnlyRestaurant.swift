@@ -1,5 +1,5 @@
 //
-//  ReadOnlyTopic.swift
+//  ReadOnlyRestaurant.swift
 //  DietShare
 //
 //  Created by Shuang Yang on 26/3/18.
@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 
 /**
- * A read-only immutable protocol for a Topic in the app.
+ * A read-only immutable protocol for a Restaurant in the app.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-protocol ReadOnlyTopic: Comparable {
+protocol ReadOnlyRestaurant: Comparable {
     func getID() -> String
     func getName() -> String
-    func getImage() -> UIImage
+    func getType() -> RestaurantType
+    func getPhone() -> String
     func getDescription() -> String
-    func getPopularity() -> Int
+    func getImage() -> UIImage
+    func getAddress() -> String
     func getPostsID() -> IDList
-    func getFollowersID() -> IDList
+    func getRatingsID() -> IDList
+    func getRatingScore() -> Double
 }

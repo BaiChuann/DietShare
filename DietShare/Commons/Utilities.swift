@@ -44,3 +44,62 @@ func hexToUIColor(hex: String) -> UIColor {
         alpha: CGFloat(1.0)
     )
 }
+
+// Crops an image to the given bounds
+func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImage {
+    
+    let contextSize: CGSize = image.size
+    
+    var posX: CGFloat = 0.0
+    var posY: CGFloat = 0.0
+    var cgwidth: CGFloat = CGFloat(width)
+    var cgheight: CGFloat = CGFloat(height)
+    
+    // See what size is longer and create the center off of that
+    if contextSize.width > contextSize.height {
+        posX = ((contextSize.width - contextSize.height) / 2)
+        posY = 0
+        cgwidth = contextSize.height
+        cgheight = contextSize.height
+    } else {
+        posX = 0
+        posY = ((contextSize.height - contextSize.width) / 2)
+        cgwidth = contextSize.width
+        cgheight = contextSize.width
+    }
+    
+    let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+    
+    // Create bitmap image from context using the rect
+    let imageRef = image.cgImage?.cropping(to: rect)
+    
+    // Create a new image based on the imageRef and rotate back to the original orientation
+    let image: UIImage = UIImage(cgImage: imageRef!, scale: image.scale, orientation: image.imageOrientation)
+    
+    return image
+}
+
+// Crops an image to circular
+func makeRoundImg(img: UIImageView) -> UIImageView {
+    let imgLayer = CALayer()
+    imgLayer.frame = img.bounds
+    imgLayer.contents = img.image?.cgImage;
+    imgLayer.masksToBounds = true;
+    
+    imgLayer.cornerRadius = img.frame.width / 2
+    
+    UIGraphicsBeginImageContext(img.bounds.size)
+    imgLayer.render(in: UIGraphicsGetCurrentContext()!)
+    let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return UIImageView(image: roundedImage);
+}
+
+// Adds a rounded rectangular background to a UIView
+func addRoundedRectBackground(_ view: UIView, _ radius: CGFloat, _ borderWidth: CGFloat, _ borderColor: CGColor, _ backgroundColor: UIColor) {
+    view.backgroundColor = backgroundColor
+    view.layer.cornerRadius = radius
+    view.layer.borderWidth = borderWidth
+    view.layer.borderColor = borderColor
+    view.clipsToBounds = true
+}
