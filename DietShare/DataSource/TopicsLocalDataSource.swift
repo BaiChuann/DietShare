@@ -30,7 +30,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init() {
-        print("initializer called")
+        print("TopicLocalDataSource initializer called")
         
 //        removeDB()
         createDB()
@@ -85,7 +85,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     func addTopic(_ newTopic: Topic) {
         do {
-            print("current id is: \(newTopic.getID())")
+            print("current topic id is: \(newTopic.getID())")
             try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImage(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
