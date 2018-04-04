@@ -7,7 +7,6 @@
 //
 // swiftlint:disable implicitly_unwrapped_optional
 // swiftlint:disable force_unwrapping
-
 import Foundation
 import UIKit
 import TGCameraViewController
@@ -15,9 +14,8 @@ import TGCameraViewController
 class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     var pickedPhoto: UIImage?
     var recognizedFoods: [Food] = []
-    private var isToCamera: Bool = true
-    private var nextStoryboard: NextStoryboard = .camera
-    private var recognizer = RecognitionRequester.shared
+
+    private var isToCamera = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,45 +35,37 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        recognizer.post()
-        
-        //goToFoodSelectController()
-        
+
+        // enable this to sticker/collage directly
         let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "StickerAdderViewController")
         navigationController?.pushViewController(foodSelectVC, animated: true)
 
-        /*switch nextStoryboard {
-        case .camera:
-            nextStoryboard = .discover
+        // enable this to open camera
+        /*if isToCamera {
             openCamera()
-        case .discover:
-            nextStoryboard = .camera
-            goBackToDiscovery()
-        case .foodSelector:
-            nextStoryboard = .camera
-            goToFoodSelectController()
+        } else {
+            goBack()
         }*/
     }
 
     func cameraDidCancel() {
-        dismiss(animated: true, completion: nil)
+        goBack()
+        dismiss(animated: true)
     }
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
         pickedPhoto = image
-        nextStoryboard = .foodSelector
-        dismiss(animated: true, completion: nil)
+        goToNext()
+        dismiss(animated: true)
     }
 
     func cameraDidTakePhoto(_ image: UIImage!) {
         pickedPhoto = image
-        nextStoryboard = .foodSelector
-        dismiss(animated: true, completion: nil)
+        goToNext()
+        dismiss(animated: true)
     }
 
     // Optional
-
     func cameraWillTakePhoto() {
         print("cameraWillTakePhoto")
     }
@@ -90,23 +80,21 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     private func openCamera() {
         let navigationController = TGCameraNavigationController.new(with: self)
-        present(navigationController!, animated: true, completion: nil)
+        present(navigationController!, animated: true) {
+            self.isToCamera = false
+        }
     }
 
-    private func goBackToDiscovery() {
-        self.tabBarController?.selectedIndex = 0
-    }
-
-    
-    func goToFoodSelectController() {
+    private func goToNext() {
         let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
-        navigationController?.pushViewController(foodSelectVC, animated: true)
+        navigationController?.pushViewController(viewController: foodSelectVC, animated: false) {
+            self.isToCamera = true
+        }
     }
 
-}
-
-fileprivate enum NextStoryboard {
-    case discover
-    case camera
-    case foodSelector
+    private func goBack() {
+        isToCamera = true
+        tabBarController?.selectedIndex = 1
+        tabBarController?.tabBar.isHidden = false
+    }
 }

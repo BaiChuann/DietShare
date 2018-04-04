@@ -28,7 +28,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-        
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell  else {
             fatalError("The dequeued cell is not an instance of PostCell.")
@@ -42,7 +42,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         cell.setCommentCount(String(post.getCommentsCount()))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
-        cell.setTime(dateFormatter.string(from:post.getTime()))
+        cell.setTime(dateFormatter.string(from: post.getTime()))
         cell.setTopics(post.getTopics())
         cell.setRestaurant(post.getRestaurant().1)
         return cell

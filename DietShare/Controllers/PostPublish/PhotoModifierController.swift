@@ -4,7 +4,7 @@
 //
 //  Created by Fan Weiguang on 24/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
-//
+// swiftlint:disable implicitly_unwrapped_optional
 
 import UIKit
 import DKImagePickerController
@@ -28,7 +28,7 @@ class PhotoModifierController: UIViewController {
     var selectedImages: [UIImage]?
     var selectedLayoutType: Int?
     var selectedLayout: CollageLayout?
-    
+
     var movingImageView: UIView?
 
     override func viewDidLoad() {
@@ -42,12 +42,9 @@ class PhotoModifierController: UIViewController {
             layout.append(UIImage(named: "layout-\(i)"))
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(canvas)
-        print(canvas.superview)
-        print(canvas.superview?.superview)
         applyLayout()
     }
 
@@ -83,17 +80,16 @@ class PhotoModifierController: UIViewController {
 
     private func onLayoutSelected(index: Int) {
         selectedLayoutType = index
-        
+
         print("selected layout \(index)")
 
         /*let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier)
         navigationController?.present(photoSelector, animated: true, completion: nil)*/
-        
+
         self.performSegue(withIdentifier: "toLayoutSelection", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "toLayoutSelection" {
             if let toViewController = segue.destination as? LayoutPhotoSelectorController {
                 toViewController.layoutType = selectedLayoutType
@@ -166,7 +162,6 @@ extension PhotoModifierController {
         guard let layout = getLayout(type: layoutType) else {
             return
         }
-        canvas.alpha = 0
         let imageViews = layout.getLayoutViews(frame: canvas.frame)
         zip(imageViews, selectedImages).forEach { imageView, selectedImage in
             imageView.clipsToBounds = true
@@ -174,11 +169,13 @@ extension PhotoModifierController {
             imageView.addSubview(subImageView)
             canvas.superview?.addSubview(imageView)
         }
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(drag(sender:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
         canvas.superview?.addGestureRecognizer(panGestureRecognizer)
     }
-    
-    @objc func drag(sender: UIPanGestureRecognizer) {
+
+    // need to refactor
+    // TODO: add swapping image
+    @objc private func handlePan(sender: UIPanGestureRecognizer) {
         let superView = canvas.superview
         if sender.state == .began {
             let location = sender.location(in: superView)
