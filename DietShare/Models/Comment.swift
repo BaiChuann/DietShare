@@ -16,7 +16,7 @@ class Comment {
     init(userId: String, parentId: String, content: String, time: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from:time)
+        let dateString = dateFormatter.string(from: time)
         self.parentId = parentId
         self.userId = userId
         self.commentId = userId + parentId + dateString

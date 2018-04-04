@@ -43,7 +43,7 @@ class Topic: ReadOnlyTopic {
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
         self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImage(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
     }
-    
+
     func getID() -> String {
         return self.id
     }
@@ -93,5 +93,5 @@ class Topic: ReadOnlyTopic {
                 && lhs.posts == rhs.posts
                 && lhs.followers == rhs.followers
     }
-    
+
 }
