@@ -8,6 +8,7 @@ disabled_rules:
   - shorthand_operator
   - line_length
   - identifier_name
+  - force_cast
 
 opt_in_rules:
   - array_init
