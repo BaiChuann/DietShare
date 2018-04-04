@@ -19,15 +19,15 @@ class Topic: ReadOnlyTopic {
     private let name: String
     private let image: UIImage
     private let description: String
-    private var followers: IDList
-    private var posts: IDList
+    private var followers: StringList
+    private var posts: StringList
     private var popularity: Int {
         get{
             return self.posts.getListAsArray().count
         }
     }
     
-    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: IDList, _ posts: IDList) {
+    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: StringList, _ posts: StringList) {
         self.id = id
         self.name = name
         self.image = image
@@ -37,7 +37,7 @@ class Topic: ReadOnlyTopic {
     }
     
     convenience init() {
-        self.init("", "", UIImage(), "", IDList(IDType.User), IDList(IDType.Post))
+        self.init("", "", UIImage(), "", StringList(ListType.User), StringList(ListType.Post))
     }
     
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
@@ -56,10 +56,10 @@ class Topic: ReadOnlyTopic {
     func getImage() -> UIImage {
         return self.image
     }
-    func getPostsID() -> IDList {
+    func getPostsID() -> StringList {
         return self.posts
     }
-    func getFollowersID() -> IDList {
+    func getFollowersID() -> StringList {
         return self.followers
     }
     func getPopularity() -> Int {

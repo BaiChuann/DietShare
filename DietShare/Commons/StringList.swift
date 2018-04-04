@@ -9,9 +9,9 @@
 import Foundation
 import SQLite
 
-class IDList: Equatable, Codable {
+class StringList: Equatable, Codable {
     
-    private var type: IDType
+    private var type: ListType
     
     private var list: Set<String>
     
@@ -20,17 +20,17 @@ class IDList: Equatable, Codable {
         case list
     }
     
-    init(_ type: IDType, _ list: Set<String>) {
+    init(_ type: ListType, _ list: Set<String>) {
         self.type = type
         self.list = list
     }
     
-    convenience init(_ type: IDType) {
+    convenience init(_ type: ListType) {
         let list = Set<String>()
         self.init(type,list)
     }
     
-    public func getType() -> IDType {
+    public func getType() -> ListType {
         return self.type
     }
     
@@ -52,14 +52,14 @@ class IDList: Equatable, Codable {
         self.list.insert(newEntry)
     }
     
-    static func ==(lhs: IDList, rhs: IDList) -> Bool {
+    static func ==(lhs: StringList, rhs: StringList) -> Bool {
         return lhs.type == rhs.type && lhs.list == rhs.list
     }
     
     required init(from decoder: Decoder) throws {
         let value = try decoder.container(keyedBy: CodingKeys.self)
         let typeRawValue = try value.decode(String.self, forKey: .type)
-        guard let idType = IDType(rawValue: typeRawValue) else {
+        guard let idType = ListType(rawValue: typeRawValue) else {
             fatalError("Error decoding type")
         }
         self.type = idType
@@ -73,12 +73,12 @@ class IDList: Equatable, Codable {
     }
 }
 
-extension IDList: Value {
+extension StringList: Value {
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    public class func fromDatatypeValue(_ blobValue: Blob) -> IDList {
-        guard let list = try? JSONDecoder().decode(IDList.self, from: Data.fromDatatypeValue(blobValue)) else {
+    public class func fromDatatypeValue(_ blobValue: Blob) -> StringList {
+        guard let list = try? JSONDecoder().decode(StringList.self, from: Data.fromDatatypeValue(blobValue)) else {
             fatalError("IDList not correctly decoded")
         }
         return list

@@ -11,7 +11,7 @@
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
-		B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2C2206BCEBF007F8956 /* IDList.swift */; };
+		B504C2C3206BCEBF007F8956 /* StringList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2C2206BCEBF007F8956 /* StringList.swift */; };
 		B504C2C4206BD1B6007F8956 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; };
 		B504C2C5206BD1BA007F8956 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; };
 		B504C2C6206BD1BA007F8956 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -177,7 +177,7 @@
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
 		B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
-		B504C2C2206BCEBF007F8956 /* IDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDList.swift; sourceTree = "<group>"; };
+		B504C2C2206BCEBF007F8956 /* StringList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringList.swift; sourceTree = "<group>"; };
 		B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsModelManager.swift; sourceTree = "<group>"; };
 		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
 		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 				F26699242068D47C00E3A1F2 /* Utilities.swift */,
 				F26698DD206649D400E3A1F2 /* Constants.swift */,
 				F26699252068D47C00E3A1F2 /* Notification+customName.swift */,
-				B504C2C2206BCEBF007F8956 /* IDList.swift */,
+				B504C2C2206BCEBF007F8956 /* StringList.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -862,7 +862,7 @@
 				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
-				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
+				B504C2C3206BCEBF007F8956 /* StringList.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,

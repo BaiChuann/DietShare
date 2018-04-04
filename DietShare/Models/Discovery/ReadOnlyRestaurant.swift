@@ -23,7 +23,7 @@ protocol ReadOnlyRestaurant: Comparable {
     func getImage() -> UIImage
     func getAddress() -> String
     func getLocation() -> CLLocation
-    func getPostsID() -> IDList
-    func getRatingsID() -> IDList
+    func getPostsID() -> StringList
+    func getRatingsID() -> StringList
     func getRatingScore() -> Double
 }

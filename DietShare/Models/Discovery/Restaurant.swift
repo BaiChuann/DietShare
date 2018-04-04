@@ -26,11 +26,11 @@ class Restaurant: ReadOnlyRestaurant {
     private let type: RestaurantType
     private let description: String
     private let image: UIImage
-    private var ratings: IDList
-    private var posts: IDList
+    private var ratings: StringList
+    private var posts: StringList
     private var ratingScore: Double
     
-    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage, _ ratings: IDList, _ posts: IDList, _ ratingScore: Double) {
+    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage, _ ratings: StringList, _ posts: StringList, _ ratingScore: Double) {
         self.id = id
         self.name = name
         self.address = address
@@ -45,7 +45,7 @@ class Restaurant: ReadOnlyRestaurant {
     }
     
     convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ type: RestaurantType, _ description: String, _ image: UIImage) {
-        self.init(id, name, address, location, phone, type, description, image, IDList(.Rating), IDList(.Post), 0)
+        self.init(id, name, address, location, phone, type, description, image, StringList(.Rating), StringList(.Post), 0)
     }
     
     func getID() -> String {
@@ -72,10 +72,10 @@ class Restaurant: ReadOnlyRestaurant {
     func getImage() -> UIImage {
         return self.image
     }
-    func getPostsID() -> IDList {
+    func getPostsID() -> StringList {
         return self.posts
     }
-    func getRatingsID() -> IDList {
+    func getRatingsID() -> StringList {
         return self.ratings
     }
     func getRatingScore() -> Double {

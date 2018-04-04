@@ -28,11 +28,12 @@ enum RestaurantType: String {
     case Japanese = "Japanese"
 }
 
-enum IDType: String {
+enum ListType: String {
     case User = "user"
     case Post = "post"
     case Comment = "comment"
     case Rating = "rating"
+    case RestaurantType = "restaurantType"
 }
 
 enum RatingScore: Double {
