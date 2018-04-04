@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class FoodSelectController: UIViewController {
     @IBOutlet weak private var addFoodButton: UIButton!
@@ -25,14 +27,39 @@ class FoodSelectController: UIViewController {
 //        foodCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFoodCellTapped)))
 
         // prepare for dummy data here
-        for i in 1...4 {
-            guard let image = UIImage(named: "food-result-\(i)") else {
-                print("image for food-result-\(i) not found")
-                continue
-            }
+        fetchFoodImage()
+    }
 
-            let name = "food \(i)"
-            foods.append(Food(name: name, image: image))
+    private func fetchFoodImage() {
+        let names = ["Dou Hua", "Fish Ball Noodle", "Kopi", "Char siew bao"]
+        let queryUrl = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
+        let headers: HTTPHeaders = [
+            "Ocp-Apim-Subscription-Key": "f8726113e2df45b8a64d8d3c0155b2a6"
+        ]
+
+        for name in names {
+            let request_params: Parameters = [
+                "q": name,
+                "count": 1,
+                "size": "Small",
+                "safeSearch": "Strict"
+            ]
+
+            Alamofire.request(queryUrl, parameters: request_params, headers: headers).responseData { response in
+                guard let data = response.data,
+                    let json = try? JSON(data: data),
+                    let url = json["value"][0]["contentUrl"].string else {
+                    return
+                }
+
+                if let imageUrl = URL(string: url),
+                    let imageData = try? Data(contentsOf: imageUrl),
+                    let image = UIImage(data: imageData) {
+                    self.foods.append(Food(name: name, image: image))
+                }
+
+                self.foodCollectionView.reloadData()
+            }
         }
     }
 
@@ -81,7 +108,7 @@ extension FoodSelectController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfRows
+        return foods.count / numberOfSections
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

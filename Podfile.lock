@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -38,10 +39,12 @@ PODS:
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
+  - SwiftyJSON (4.0.0)
   - TGCameraViewController (2.2.8)
   - TweeTextField (1.1.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - BTree (~> 4.0)
   - DKImagePickerController
   - DropDown
@@ -51,10 +54,12 @@ DEPENDENCIES:
   - FormValidatorSwift (~> 3.0)
   - PopupDialog (~> 0.7)
   - SQLite.swift (~> 0.11.4)
+  - SwiftyJSON
   - TGCameraViewController
   - TweeTextField
 
 SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BTree: 99b99930790b88dc5e8bafbf666a5dfb8d7808b4
   DKImagePickerController: 51ad6ee2ba05414bb741db54a72cd7f4fb178e34
@@ -69,9 +74,10 @@ SPEC CHECKSUMS:
   FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
   TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
 
-PODFILE CHECKSUM: 82eae442a7fb1b4f490b9da9f31ed123ddf0a11f
+PODFILE CHECKSUM: 5dab2f3367d26b93cfcb4bfc8b9b8d534ebb0234
 
 COCOAPODS: 1.4.0

@@ -9,6 +9,8 @@ target 'DietShare' do
   pod 'DropDown'
   pod 'TweeTextField'
   pod 'DKImagePickerController'
+  pod 'Alamofire', '~> 4.7'
+  pod 'SwiftyJSON'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
