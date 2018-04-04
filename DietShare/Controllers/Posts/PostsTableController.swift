@@ -37,25 +37,17 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
             fatalError("The dequeued cell is not an instance of PostCell.")
         }
         let post = dataSource[0]
-        cell.setUserPhoto(UIImage(named: "profile-example")!)
-        cell.setUserName("Bai Chuan")
-        cell.setPostImage(post.getPhoto())
-        cell.setCaption(post.getCaption())
-        cell.setLikeCount(String(post.getLikesCount()))
-        cell.setCommentCount(String(post.getCommentsCount()))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd HH:mm:ss"
-        cell.setTime(dateFormatter.string(from: post.getTime()))
-        cell.setTopics(post.getTopics())
-        cell.setRestaurant(post.getRestaurant().1)
-        cell.cellDelegate = self 
+        cell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chuan", post)
+        cell.setDelegate(self)
+        print(cell.frame.height)
         return cell
     }
     
-    func goToDetail(_ postCell: PostCell) {
+    func goToDetail(_ post: Post) {
         let storyboard = UIStoryboard(name: "PostDetail", bundle: Bundle.main)
         if let controller = storyboard.instantiateInitialViewController() as? PostDetailController {
-            controller.view.addSubview(postCell)
+            controller.setPost(post)
+            //controller.view.addSubview(postCell)
             print("clicked")
             parentController.view.addSubview(controller.view)
             parentController.tabBarController?.tabBar.isHidden = true

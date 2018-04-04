@@ -12,11 +12,7 @@
 		3B18BEDD2074C52900809D3A /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B18BEDB2074C52900809D3A /* PostDetail.storyboard */; };
 		3B18BEDE2074C52900809D3A /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B18BEDB2074C52900809D3A /* PostDetail.storyboard */; };
 		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
-		3B18BEE12074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
-		3B18BEE22074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
 		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
-		3B18BEE72074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
-		3B18BEE82074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -780,8 +776,6 @@
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
 				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
-				3B18BEE72074D97C00809D3A /* PostCellDelegate.swift in Sources */,
-				3B18BEE12074C5A200809D3A /* PostDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,9 +783,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B18BEE22074C5A200809D3A /* PostDetailController.swift in Sources */,
 				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
-				3B18BEE82074D97C00809D3A /* PostCellDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
