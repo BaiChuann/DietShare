@@ -20,9 +20,6 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
     init() {
         self.restaurantsDataSource = RestaurantsLocalDataSource.shared
         self.restaurants = restaurantsDataSource.getRestaurants() as! SortedSet<T>
-        
-        // Prepopulate the datasource - only for testing
-        prepopulate()
     }
     
     func getFullRestaurantList() -> [T] {
@@ -43,13 +40,6 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
             count += 1
         }
         return displayedList
-    }
-    
-    private func prepopulate() {
-        for i in 0..<20 {
-            let restaurant = Restaurant(String(i), "Vege Heaven", "27 Prince George's Park", "99991111", .Vegetarian, "Best vegetarian place ever!", #imageLiteral(resourceName: "vegi-life"))
-            self.restaurantsDataSource.addRestaurant(restaurant)
-        }
     }
     
 }

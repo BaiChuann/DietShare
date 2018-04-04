@@ -11,27 +11,52 @@ import UIKit
 class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topicModel = TopicsModelManager<Topic>()
+    private var restaurantModel = RestaurantsModelManager<Restaurant>()
     private var currentTopic: Topic?
+    private var currentRestaurant: Restaurant?
     var currentUser: User?
     
     @IBOutlet weak var topicList: UICollectionView!
+    @IBOutlet weak var restaurantList: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
             return Constants.DiscoveryPage.numOfDisplayedTopics
         }
+        if collectionView == restaurantList {
+            return Constants.DiscoveryPage.numOfDisplayedRestaurants
+        }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == topicList {
+            return getCellForTopic(collectionView, indexPath)
+        }
+        if collectionView == restaurantList {
+            return getCellForRestaurant(collectionView, indexPath)
+        }
         
+        return UICollectionViewCell()
+    }
+    
+    private func getCellForTopic(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicShortListCell, for: indexPath as IndexPath) as! TopicShortListCell
         let displayedTopicsList = self.topicModel.getDisplayedList()
         if !displayedTopicsList.isEmpty {
             cell.setImage(displayedTopicsList[indexPath.item].getImage())
             cell.setName(displayedTopicsList[indexPath.item].getName())
         }
-        
+        return cell
+    }
+    
+    private func getCellForRestaurant(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantShortListCell, for: indexPath as IndexPath) as! RestaurantShortListCell
+        let displayedRestaurantsList = self.restaurantModel.getDisplayedList()
+        if !displayedRestaurantsList.isEmpty {
+            cell.setImage(displayedRestaurantsList[indexPath.item].getImage())
+            cell.setName(displayedRestaurantsList[indexPath.item].getName())
+        }
         return cell
     }
     

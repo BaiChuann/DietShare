@@ -20,10 +20,7 @@ class TopicsModelManager<T: ReadOnlyTopic> {
     init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
         
-        let startTime = CFAbsoluteTimeGetCurrent()
         self.topics = topicsDataSource.getTopics() as! SortedSet<T>
-        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-        print("Time elapsed for getting topics: \(timeElapsed) s.")
         
     }
     

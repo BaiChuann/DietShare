@@ -13,7 +13,6 @@ class IDList: Equatable, Codable {
     
     private var type: IDType
     
-    // TODO - change this to Set
     private var list: Set<String>
     
     enum CodingKeys: String, CodingKey {

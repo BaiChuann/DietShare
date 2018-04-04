@@ -35,6 +35,14 @@ enum IDType: String {
     case Rating = "rating"
 }
 
+enum RatingScore: Double {
+    case oneStar = 1.0
+    case twoStar = 2.0
+    case threeStar = 3.0
+    case fourStar = 4.0
+    case fiveStar = 5.0
+}
+
 struct Identifiers {
     public static let topicShortListCell = "topicShortListCell"
     public static let topicFullListCell = "topicFullListCell"
