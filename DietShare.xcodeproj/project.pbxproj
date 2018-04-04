@@ -12,6 +12,35 @@
 		A48B91382073ADBF009FF8D0 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48B91372073ADBF009FF8D0 /* CollageLayout.swift */; };
 		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
+		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
+		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
+		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
+		B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2C2206BCEBF007F8956 /* IDList.swift */; };
+		B504C2C4206BD1B6007F8956 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; };
+		B504C2C5206BD1BA007F8956 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; };
+		B504C2C6206BD1BA007F8956 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B504C2B5206BBEA7007F8956 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */; };
+		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
+		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
+		B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D2206D1BB5007F8956 /* Rating.swift */; };
+		B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */; };
+		B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */; };
+		B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */; };
+		B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AEB207325EF00F0E3E8 /* TopicTest.swift */; };
+		B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */; };
+		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
+		B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */; };
+		B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA1122069411C00BC8005 /* Discovery.storyboard */; };
+		B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */; };
+		B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */; };
+		B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */; };
+		B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA170206A444300BC8005 /* TopicsModelManager.swift */; };
+		B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */; };
+		B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */; };
+		B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */; };
+		B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
+		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
+		B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */; };
 		F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */; };
 		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7856206E7BE40011008A /* PhotoOptionCell.swift */; };
@@ -25,7 +54,6 @@
 		F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D820656D6900E3A1F2 /* IngredientCell.swift */; };
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DF206660C700E3A1F2 /* FoodCell.swift */; };
-		F26698E620669A2E00E3A1F2 /* PhotoModifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */; };
 		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
 		F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699152066CD3800E3A1F2 /* Comment.swift */; };
 		F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699162066CD3900E3A1F2 /* Ingredient.swift */; };
@@ -59,6 +87,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B504C2B4206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
+			remoteInfo = "SQLite iOS";
+		};
+		B504C2B6206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
+			remoteInfo = "SQLiteTests iOS";
+		};
+		B504C2B8206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
+			remoteInfo = "SQLite Mac";
+		};
+		B504C2BA206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
+			remoteInfo = "SQLiteTests Mac";
+		};
+		B504C2BC206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
+			remoteInfo = "SQLite tvOS";
+		};
+		B504C2BE206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
+			remoteInfo = "SQLiteTests tvOS";
+		};
+		B504C2C0206BBEA7007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A121AC451CA35C79005A31D1;
+			remoteInfo = "SQLite watchOS";
+		};
+		B504C2C7206BD1BA007F8956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE247AD21C3F04ED00AE3E12;
+			remoteInfo = "SQLite iOS";
+		};
 		F2BE68A3205E8C8900DF9694 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F2BE6886205E8C8800DF9694 /* Project object */;
@@ -75,14 +159,52 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B504C2C9206BD1BA007F8956 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B504C2C6206BD1BA007F8956 /* SQLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
 		A47910DA20724EAB009A7EAB /* RecognitionRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionRequester.swift; sourceTree = "<group>"; };
 		A48B91372073ADBF009FF8D0 /* CollageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
+		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
+		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
+		B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		B504C2C2206BCEBF007F8956 /* IDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDList.swift; sourceTree = "<group>"; };
+		B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsModelManager.swift; sourceTree = "<group>"; };
+		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
+		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
+		B504C2D2206D1BB5007F8956 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
+		B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFullListCell.swift; sourceTree = "<group>"; };
+		B5488AEB207325EF00F0E3E8 /* TopicTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTest.swift; sourceTree = "<group>"; };
+		B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantShortListCell.swift; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
+		B5CBA10E2069226600BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRestaurant.swift; sourceTree = "<group>"; };
+		B5CBA1122069411C00BC8005 /* Discovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discovery.storyboard; sourceTree = "<group>"; };
+		B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
+		B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryTabController.swift; sourceTree = "<group>"; };
+		B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicShortListCell.swift; sourceTree = "<group>"; };
+		B5CBA170206A444300BC8005 /* TopicsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsModelManager.swift; sourceTree = "<group>"; };
+		B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFullListCell.swift; sourceTree = "<group>"; };
+		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
+		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
 		F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploaderViewController.swift; sourceTree = "<group>"; };
 		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F25D7856206E7BE40011008A /* PhotoOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionCell.swift; sourceTree = "<group>"; };
@@ -140,7 +262,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B504C2C4206BD1B6007F8956 /* SQLite.framework in Frameworks */,
 				1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */,
+				B504C2C5206BD1BA007F8956 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,11 +294,66 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B504C2A4206BBACD007F8956 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */,
+				B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */,
+				B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */,
+				B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		B504C2AB206BBEA7007F8956 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B504C2B5206BBEA7007F8956 /* SQLite.framework */,
+				B504C2B7206BBEA7007F8956 /* SQLiteTests iOS.xctest */,
+				B504C2B9206BBEA7007F8956 /* SQLite.framework */,
+				B504C2BB206BBEA7007F8956 /* SQLiteTests Mac.xctest */,
+				B504C2BD206BBEA7007F8956 /* SQLite.framework */,
+				B504C2BF206BBEA7007F8956 /* SQLiteTests tvOS.xctest */,
+				B504C2C1206BBEA7007F8956 /* SQLite.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B5CBA1002068D18A00BC8005 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
 				B5CBA1012068D1A700BC8005 /* Topic.swift */,
 				B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */,
+				B5CBA10E2069226600BC8005 /* Restaurant.swift */,
+				B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */,
+				B5CBA170206A444300BC8005 /* TopicsModelManager.swift */,
+				B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */,
+				B504C2D2206D1BB5007F8956 /* Rating.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		B5CBA11620694A0700BC8005 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				B5CBA114206949FA00BC8005 /* DiscoveryViewController.swift */,
+				B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */,
+				B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */,
+				B504C2A2206BB6B9007F8956 /* TopicViewController.swift */,
+				B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */,
+				B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		B5CBA16D206A3F3800BC8005 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */,
+				B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */,
+				B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */,
+				B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */,
+				B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -215,6 +394,7 @@
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA16D206A3F3800BC8005 /* Discovery */,
 				F2E373C920716BF20000F707 /* PostCell.swift */,
 				F2E373BE20716BF10000F707 /* PostCell.xib */,
 				F2E373C820716BF20000F707 /* TopicCell.swift */,
@@ -253,6 +433,7 @@
 				F26699242068D47C00E3A1F2 /* Utilities.swift */,
 				F26698DD206649D400E3A1F2 /* Constants.swift */,
 				F26699252068D47C00E3A1F2 /* Notification+customName.swift */,
+				B504C2C2206BCEBF007F8956 /* IDList.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -263,6 +444,7 @@
 				F2BE6895205E8C8900DF9694 /* Main.storyboard */,
 				F2E373BC20716BE50000F707 /* Home.storyboard */,
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
+				B5CBA1122069411C00BC8005 /* Discovery.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -276,6 +458,7 @@
 				F2BE688F205E8C8800DF9694 /* Products */,
 				B4D17446E75367AEC9130823 /* Pods */,
 				B7DF5A4C3BE7B17C33F67D46 /* Frameworks */,
+				B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -292,6 +475,7 @@
 		F2BE6890205E8C8800DF9694 /* DietShare */ = {
 			isa = PBXGroup;
 			children = (
+				B504C2A4206BBACD007F8956 /* DataSource */,
 				F26698DA206571E500E3A1F2 /* Models */,
 				F26698D2206417B100E3A1F2 /* Views */,
 				F2BE68C5205EB22C00DF9694 /* Controllers */,
@@ -310,6 +494,7 @@
 			children = (
 				F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */,
 				F2BE68A8205E8C8900DF9694 /* Info.plist */,
+				B5488AEB207325EF00F0E3E8 /* TopicTest.swift */,
 			);
 			path = DietShareTests;
 			sourceTree = "<group>";
@@ -326,6 +511,7 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA11620694A0700BC8005 /* Discovery */,
 				F2E373B220716BBE0000F707 /* Home */,
 				F2E373B720716BC90000F707 /* Posts */,
 				F207CCA520625A0600EF2904 /* Login */,
@@ -366,10 +552,12 @@
 				F272BF58205EC43A00EBF4A8 /* ShellScript */,
 				9E2DCDFC5617F3908C4472DC /* [CP] Embed Pods Frameworks */,
 				97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */,
+				B504C2C9206BD1BA007F8956 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B504C2C8206BD1BA007F8956 /* PBXTargetDependency */,
 			);
 			name = DietShare;
 			productName = DietShare;
@@ -449,6 +637,12 @@
 			mainGroup = F2BE6885205E8C8800DF9694;
 			productRefGroup = F2BE688F205E8C8800DF9694 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B504C2AB206BBEA7007F8956 /* Products */;
+					ProjectRef = B504C2AA206BBEA7007F8956 /* SQLite.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F2BE688D205E8C8800DF9694 /* DietShare */,
@@ -458,11 +652,64 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		B504C2B5206BBEA7007F8956 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = B504C2B4206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B504C2B7206BBEA7007F8956 /* SQLiteTests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests iOS.xctest";
+			remoteRef = B504C2B6206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B504C2B9206BBEA7007F8956 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = B504C2B8206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B504C2BB206BBEA7007F8956 /* SQLiteTests Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests Mac.xctest";
+			remoteRef = B504C2BA206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B504C2BD206BBEA7007F8956 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = B504C2BC206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B504C2BF206BBEA7007F8956 /* SQLiteTests tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests tvOS.xctest";
+			remoteRef = B504C2BE206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B504C2C1206BBEA7007F8956 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = B504C2C0206BBEA7007F8956 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		F2BE688C205E8C8800DF9694 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */,
 				F2E373BD20716BE50000F707 /* Home.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
@@ -532,6 +779,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DietShare/Pods-DietShare-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BTree/BTree.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/DKImagePickerController/DKImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
@@ -549,6 +797,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BTree.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
@@ -589,8 +838,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */,
+				B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */,
+				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
+				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
+				B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */,
+				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
+				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
 				F26698E0206660C700E3A1F2 /* FoodCell.swift in Sources */,
+				B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */,
 				F26698DE206649D400E3A1F2 /* Constants.swift in Sources */,
 				F2E373B520716BBE0000F707 /* HomeController.swift in Sources */,
 				F2E373D520716BF20000F707 /* TopicCell.swift in Sources */,
@@ -600,19 +857,30 @@
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
 				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
+				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
+				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
+				B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */,
+				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
-				F26698E620669A2E00E3A1F2 /* PhotoModifierController.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
+				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
+				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
+				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
+				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
+				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
+				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
 				A48B91382073ADBF009FF8D0 /* CollageLayout.swift in Sources */,
 				F27985E0206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
+				B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */,
+				B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
@@ -621,9 +889,11 @@
 				F27985DD206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				A47910DB20724EAB009A7EAB /* RecognitionRequester.swift in Sources */,
+				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
+				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
-				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,
-				B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */,
+				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
+				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
 				F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */,
 				F2E373D620716BF20000F707 /* PostCell.swift in Sources */,
 			);
@@ -634,6 +904,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +919,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B504C2C8206BD1BA007F8956 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SQLite iOS";
+			targetProxy = B504C2C7206BD1BA007F8956 /* PBXContainerItemProxy */;
+		};
 		F2BE68A4205E8C8900DF9694 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F2BE688D205E8C8800DF9694 /* DietShare */;
@@ -795,6 +1071,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -803,6 +1080,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
+				INFOPLIST_FILE = DietShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -815,6 +1097,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -823,6 +1106,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
+				INFOPLIST_FILE = DietShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
