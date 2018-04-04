@@ -19,7 +19,11 @@
 		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
 		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
 		B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D2206D1BB5007F8956 /* Rating.swift */; };
+		B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */; };
+		B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */; };
+		B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */; };
 		B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AEB207325EF00F0E3E8 /* TopicTest.swift */; };
+		B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */; };
 		B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5CBA1042068D41000BC8005 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
@@ -163,7 +167,11 @@
 		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
 		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
 		B504C2D2206D1BB5007F8956 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
+		B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFullListCell.swift; sourceTree = "<group>"; };
 		B5488AEB207325EF00F0E3E8 /* TopicTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTest.swift; sourceTree = "<group>"; };
+		B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantShortListCell.swift; sourceTree = "<group>"; };
 		B5CBA0FE2068CAF900BC8005 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
@@ -297,6 +305,8 @@
 				B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */,
 				B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */,
 				B504C2A2206BB6B9007F8956 /* TopicViewController.swift */,
+				B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */,
+				B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -307,6 +317,8 @@
 				B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */,
 				B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */,
 				B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */,
+				B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */,
+				B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -775,6 +787,7 @@
 				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
 				F26698E620669A2E00E3A1F2 /* StickerAdderController.swift in Sources */,
+				B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */,
 				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
@@ -790,11 +803,14 @@
 				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
+				B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */,
+				B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
+				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
 				B5CBA1022068D1A700BC8005 /* Topic.swift in Sources */,

@@ -45,7 +45,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as! IndexPath) as! FollowerListCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as IndexPath) as! FollowerListCell
         if let currentTopic = self.topic {
             cell.setName(currentTopic.getFollowersID().getListAsArray()[indexPath.item])
             // TODO - obtain image of the user (after UserManager is implemented)

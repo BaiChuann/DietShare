@@ -40,6 +40,10 @@ struct Identifiers {
     public static let followerListCell = "followerListCell"
     public static let topicListToDetailPage = "topicListToDetailPage"
     public static let discoveryToTopicPage = "discoveryToTopicPage"
+    public static let restaurantShortListCell = "restaurantShortListCell"
+    public static let restaurantFullListCell = "restaurantFullListCell"
+    public static let restaurantListToDetailPage = "restaurantListToDetailPage"
+    public static let discoveryToRestaurantPage = "discoveryToRestaurantPage"
 }
 
 struct Text {
@@ -78,4 +82,8 @@ struct Constants {
         public static let topicImageAlpha: CGFloat = 0.8
     }
     
+    struct RestaurantPage {
+        public static let numOfDisplayedUsers = 10
+        public static let restaurantImageAlpha: CGFloat = 0.8
+    }
 }
