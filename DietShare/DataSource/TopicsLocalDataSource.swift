@@ -35,7 +35,7 @@ class TopicsLocalDataSource: TopicsDataSource {
 //        removeDB()
         createDB()
         createTable()
-//        prepopulate()
+        prepopulate()
     }
     
     
@@ -73,13 +73,8 @@ class TopicsLocalDataSource: TopicsDataSource {
         var topics = SortedSet<Topic>()
         do {
             for topic in try database.prepare(topicsTable) {
-//                let start = CFAbsoluteTimeGetCurrent()
                 let topicEntry = Topic(topic[id], topic[name], topic[image], topic[description], topic[followers], topic[posts])
-//                let intm = CFAbsoluteTimeGetCurrent()
-//                print("Getting entry \(topic[id]) takes time: \(intm - start)")
                 topics.insert(topicEntry)
-                let end = CFAbsoluteTimeGetCurrent()
-                print("End time for \(topic[id]): \(end)")
             }
         } catch let error {
             print("failed to get row: \(error)")
@@ -104,6 +99,21 @@ class TopicsLocalDataSource: TopicsDataSource {
         for newTopic in newTopics {
             addTopic(newTopic)
         }
+    }
+    
+    func containsTopic(_ topicID: String) -> Bool {
+        let row = topicsTable.filter(id == topicID)
+        do {
+            if try database.run(row.update(id <- topicID)) > 0 {
+                return true
+            }
+        } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
+            print("update constraint failed: \(message), in \(String(describing: statement))")
+        } catch let error {
+            print("update failed: \(error)")
+        }
+        
+        return false;
     }
     
     func deleteTopic(_ topicID: String) {
@@ -151,9 +161,11 @@ class TopicsLocalDataSource: TopicsDataSource {
     // Only for testing
     private func prepopulate() {
         print("Prepopulated")
-        for i in 0..<20 {
-            let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", IDList(.User), IDList(.Post))
-            self.addTopic(topic)
+        if !containsTopic("1") {
+            for i in 0..<20 {
+                let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", IDList(.User), IDList(.Post))
+                self.addTopic(topic)
+            }
         }
     }
     
