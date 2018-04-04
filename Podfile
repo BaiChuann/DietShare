@@ -14,4 +14,5 @@ target 'DietShare' do
   pod 'FacebookShare'
   pod 'BTree', '~> 4.0'
   pod 'TGCameraViewController'
+  pod 'SQLite.swift', '~> 0.11.4'
 end
