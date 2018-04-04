@@ -29,8 +29,8 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private let location = Expression<CLLocation>("location")
     private let phone = Expression<String>("phone")
     private let type = Expression<String>("type")
-    private let posts = Expression<IDList>("posts")
-    private let ratings = Expression<IDList>("ratings")
+    private let posts = Expression<StringList>("posts")
+    private let ratings = Expression<StringList>("ratings")
     private let ratingScore = Expression<Double>("ratingScore")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
@@ -52,9 +52,9 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         }
     }
     
-    
+    // Creates restaurant table if it is not already existing
     private func createTable() {
-        let createTable = self.restaurantsTable.create(block: { (table) in
+        let createTable = self.restaurantsTable.create(ifNotExists: true) { (table) in
             table.column(self.id, primaryKey: true)
             table.column(self.name)
             table.column(self.address)
@@ -66,7 +66,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             table.column(self.ratings)
             table.column(self.posts)
             table.column(self.ratingScore)
-        })
+        }
         do {
             try self.database.run(createTable)
         } catch {
@@ -169,7 +169,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         if !containsRestaurant("1") {
             for i in 0..<20 {
                 let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
-                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", RestaurantType.Vegetarian, "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), IDList(.Rating), IDList(.Post), 4.5)
+                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", RestaurantType.Vegetarian, "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.5)
                 self.addRestaurant(restaurant)
             }
         }

@@ -25,8 +25,8 @@ class TopicsLocalDataSource: TopicsDataSource {
     private let image = Expression<UIImage>("image")
     private let description = Expression<String>("description")
     private let popularity = Expression<Int>("popularity")
-    private let posts = Expression<IDList>("posts")
-    private let followers = Expression<IDList>("followers")
+    private let posts = Expression<StringList>("posts")
+    private let followers = Expression<StringList>("followers")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init() {
@@ -51,7 +51,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
     }
     
-    
+    // Creates topic table if it is not already existing
     private func createTable() {
         let createTable = self.topicsTable.create(ifNotExists: true) { (table) in
             table.column(self.id, primaryKey: true)
@@ -163,7 +163,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         print("Prepopulated")
         if !containsTopic("1") {
             for i in 0..<20 {
-                let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", IDList(.User), IDList(.Post))
+                let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", StringList(.User), StringList(.Post))
                 self.addTopic(topic)
             }
         }
