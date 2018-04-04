@@ -33,11 +33,8 @@ class FoodAdderController: UIViewController {
         addIngredientImage.isUserInteractionEnabled = true
         addIngredientImage.addGestureRecognizer(tapGestureRecognizer)
 
+        setUpUI()
         setUpInput()
-
-        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
-        backButton.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = backButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,6 +45,12 @@ class FoodAdderController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         removeKeyboardNotifications()
+    }
+
+    private func setUpUI() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
     }
 
     private func setUpInput() {
