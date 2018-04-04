@@ -15,6 +15,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         PostManager.loadData()
         postsTableController = PostsTableController()
+        postsTableController.setParentController(self)
         postsTableController.retrieveFollowingPosts()
         let postsTable = postsTableController.getTable()
         postsTable.frame = postsArea.frame

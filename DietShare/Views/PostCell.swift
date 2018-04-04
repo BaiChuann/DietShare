@@ -15,12 +15,13 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak private var postImage: UIImageView!
     @IBOutlet weak private var caption: UILabel!
     @IBOutlet weak private var likeCount: UILabel!
-    @IBOutlet weak private var commentCount: UILabel!
+    @IBOutlet weak private var commentCount: UIButton!
     @IBOutlet weak private var time: UILabel!
     @IBOutlet weak private var restaurant: UILabel!
     @IBOutlet weak private var topics: UICollectionView!
     @IBOutlet weak var topicsLayout: UICollectionViewFlowLayout!
     private var topicsData: [String] = []
+    var cellDelegate: PostCellDelegate!
     override func awakeFromNib() {
         super.awakeFromNib()
         let nibName = UINib(nibName: "TopicCell", bundle: nil)
@@ -45,7 +46,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         likeCount.text = count
     }
     func setCommentCount(_ count: String) {
-        commentCount.text = count
+        commentCount.setTitle(count, for: .normal)
     }
     func setTime(_ time: String) {
         self.time.text = time
@@ -80,5 +81,8 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         cell.topicLabel.layer.cornerRadius = 4
         cell.topicLabel.clipsToBounds = true
         return cell
+    }
+    @IBAction func onCommentCountClicked(_ sender: Any) {
+        self.cellDelegate.goToDetail(self)
     }
 }

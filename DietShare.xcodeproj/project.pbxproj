@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
+		3B18BEDC2074C52900809D3A /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B18BEDB2074C52900809D3A /* PostDetail.storyboard */; };
+		3B18BEDD2074C52900809D3A /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B18BEDB2074C52900809D3A /* PostDetail.storyboard */; };
+		3B18BEDE2074C52900809D3A /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B18BEDB2074C52900809D3A /* PostDetail.storyboard */; };
+		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
+		3B18BEE12074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
+		3B18BEE22074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
+		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
+		3B18BEE72074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
+		3B18BEE82074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -111,6 +120,9 @@
 
 /* Begin PBXFileReference section */
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B18BEDB2074C52900809D3A /* PostDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
+		3B18BEDF2074C5A200809D3A /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
+		3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +372,7 @@
 				F2E373BC20716BE50000F707 /* Home.storyboard */,
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
 				B5CBA1122069411C00BC8005 /* Discovery.storyboard */,
+				3B18BEDB2074C52900809D3A /* PostDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -448,6 +461,8 @@
 			children = (
 				F2E373B820716BC90000F707 /* PostManager.swift */,
 				F2E373B920716BC90000F707 /* PostsTableController.swift */,
+				3B18BEDF2074C5A200809D3A /* PostDetailController.swift */,
+				3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -564,6 +579,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B18BEDC2074C52900809D3A /* PostDetail.storyboard in Resources */,
 				B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */,
 				F2E373BD20716BE50000F707 /* Home.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
@@ -581,6 +597,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B18BEDD2074C52900809D3A /* PostDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +605,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B18BEDE2074C52900809D3A /* PostDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -719,6 +737,7 @@
 				B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */,
 				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
+				3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
@@ -748,6 +767,7 @@
 				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
+				3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */,
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
 				F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */,
 				F2E373D620716BF20000F707 /* PostCell.swift in Sources */,
@@ -760,6 +780,8 @@
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
 				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
+				3B18BEE72074D97C00809D3A /* PostCellDelegate.swift in Sources */,
+				3B18BEE12074C5A200809D3A /* PostDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,7 +789,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B18BEE22074C5A200809D3A /* PostDetailController.swift in Sources */,
 				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
+				3B18BEE82074D97C00809D3A /* PostCellDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

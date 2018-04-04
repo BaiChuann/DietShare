@@ -8,13 +8,16 @@
 
 import UIKit
 
-class PostsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PostsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostCellDelegate {
     private var dataSource: [Post] = []
     private var postsTable = UITableView()
+    private var parentController: UIViewController!
     func retrieveFollowingPosts() {
         dataSource = PostManager.getFollowingPosts()
     }
-
+    func setParentController(_ controller: UIViewController) {
+        parentController = controller
+    }
     func getTable() -> UITableView {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
@@ -45,6 +48,17 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         cell.setTime(dateFormatter.string(from: post.getTime()))
         cell.setTopics(post.getTopics())
         cell.setRestaurant(post.getRestaurant().1)
+        cell.cellDelegate = self 
         return cell
+    }
+    
+    func goToDetail(_ postCell: PostCell) {
+        let storyboard = UIStoryboard(name: "PostDetail", bundle: Bundle.main)
+        if let controller = storyboard.instantiateInitialViewController() as? PostDetailController {
+            controller.view.addSubview(postCell)
+            print("clicked")
+            parentController.view.addSubview(controller.view)
+            parentController.tabBarController?.tabBar.isHidden = true
+        }
     }
 }
