@@ -182,11 +182,10 @@ extension PhotoModifierController {
         let superView = canvas.superview
         if sender.state == .began {
             let location = sender.location(in: superView)
-            let first = superView?.subviews
-                .filter { $0.frame.contains(location) }
-                .filter { $0 !== canvas }
-                .first?.subviews.first
-            movingImageView = first
+            let movingView = superView?.subviews.first {
+                $0.frame.contains(location) && $0 !== canvas
+            }?.subviews.first
+            movingImageView = movingView
             print(movingImageView?.frame)
         } else if sender.state == .changed {
             guard let movingImageView = movingImageView,
@@ -194,7 +193,6 @@ extension PhotoModifierController {
                 return
             }
             let translation = sender.translation(in: superView)
-            //print(translation)
             sender.setTranslation(CGPoint.zero, in: superView)
             var changeInX: CGFloat = 0
             var changeInY: CGFloat = 0
@@ -216,12 +214,10 @@ extension PhotoModifierController {
                     displayView.frame.height - movingImageView.frame.maxY :
                     translation.y
             }
-            //movingImageView.alpha = 0.1
-            var newFrame = movingImageView.frame.offsetBy(dx: changeInX, dy: changeInY)
+            let newFrame = movingImageView.frame.offsetBy(dx: changeInX, dy: changeInY)
             movingImageView.frame = newFrame
         } else if sender.state == .ended {
             print("ended")
-            //print(movingImageView?.frame)
             movingImageView = nil
         }
     }
@@ -247,6 +243,12 @@ extension PhotoModifierController {
 
     private func getLayout(type: Int) -> CollageLayout? {
         switch type {
+        case 0:
+            return CollageLayoutZero()
+        case 1:
+            return CollageLayoutOne()
+        case 2:
+            return CollageLayoutTwo()
         case 3:
             return CollageLayoutThree()
         default:
