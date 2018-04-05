@@ -16,8 +16,13 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     private var currentRestaurant: Restaurant?
     var currentUser: User?
     
+    private var postsTableController: PostsTableController?
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicList: UICollectionView!
     @IBOutlet weak var restaurantList: UICollectionView!
+//    @IBOutlet weak var postsArea: UIView!
+    @IBOutlet weak var postList: UITableView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
@@ -68,8 +73,19 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+        
+        PostManager.loadData()
+        postsTableController = PostsTableController()
+        postsTableController?.retrieveTrendingPosts()
+        if let postsTable = postsTableController?.getTable() {
+//            postsTable.frame = postsArea.frame
+//            postsArea.removeFromSuperview()
+//            scrollView.addSubview(postsTable)
+            self.postList = postsTable
+            print("posts table added")
+        }
     }
 
     override func didReceiveMemoryWarning() {

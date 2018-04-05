@@ -14,6 +14,10 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func retrieveFollowingPosts() {
         dataSource = PostManager.getFollowingPosts()
     }
+    
+    func retrieveTrendingPosts() {
+        dataSource = PostManager.getTrendingPosts()
+    }
 
     func getTable() -> UITableView {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)

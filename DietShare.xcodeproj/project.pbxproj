@@ -785,6 +785,7 @@
 				"${BUILT_PRODUCTS_DIR}/FormValidatorSwift/FormValidatorSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollingStackContainer/ScrollingStackContainer.framework",
 				"${BUILT_PRODUCTS_DIR}/TGCameraViewController/TGCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TweeTextField/TweeTextField.framework",
 			);
@@ -804,6 +805,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FormValidatorSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollingStackContainer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TGCameraViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TweeTextField.framework",
 			);
