@@ -9,15 +9,28 @@
 import UIKit
 
 class PostDetailController: UIViewController {
-    private var post: Post!
+    private weak var post: PostCell!
+    @IBOutlet weak private var postArea: UIView!
+    @IBOutlet weak var postCell: PostCell!
     override func viewDidLoad() {
-        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
-        postCell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chu", post)
-        postCell.translatesAutoresizingMaskIntoConstraints = false
-        print(postCell.frame.height)
-        view.addSubview(postCell)
+//        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
+        postCell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chu", post.getPost())
+        //postCell.translatesAutoresizingMaskIntoConstraints = false
+        //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
+        //postArea.addSubview(postCell)
+
+       
+        
+        
     }
-    func setPost(_ post: Post) {
+    @IBAction func onBackClicked(_ sender: Any) {
+        print("back")
+        self.willMove(toParentViewController: nil)
+        self.view.removeFromSuperview()
+        self.removeFromParentViewController()
+        
+    }
+    func setPost(_ post: PostCell) {
         self.post = post
     }
 }

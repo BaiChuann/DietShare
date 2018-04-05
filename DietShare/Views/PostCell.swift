@@ -82,7 +82,6 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         setTime(dateFormatter.string(from: post.getTime()))
         setTopics(post.getTopics())
         setRestaurant(post.getRestaurant().1)
-        print(self.frame.height)
     }
     func setDelegate(_ cellDelegate: PostCellDelegate) {
         self.cellDelegate = cellDelegate
@@ -102,6 +101,9 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     @IBAction func onCommentCountClicked(_ sender: Any) {
-        self.cellDelegate?.goToDetail(post)
+        self.cellDelegate?.goToDetail(self)
+    }
+    func getPost() -> Post{
+        return post
     }
 }

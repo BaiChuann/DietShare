@@ -39,18 +39,19 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         let post = dataSource[0]
         cell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chuan", post)
         cell.setDelegate(self)
-        print(cell.frame.height)
         return cell
     }
     
-    func goToDetail(_ post: Post) {
+    func goToDetail(_ post: PostCell) {
         let storyboard = UIStoryboard(name: "PostDetail", bundle: Bundle.main)
         if let controller = storyboard.instantiateInitialViewController() as? PostDetailController {
             controller.setPost(post)
-            //controller.view.addSubview(postCell)
-            print("clicked")
+           
+            parentController.addChildViewController(controller)
             parentController.view.addSubview(controller.view)
-            parentController.tabBarController?.tabBar.isHidden = true
+            controller.didMove(toParentViewController: self)
+            print("clicked")
+            //parentController.tabBarController?.tabBar.isHidden = true
         }
     }
 }

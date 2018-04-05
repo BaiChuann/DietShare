@@ -9,5 +9,5 @@
 import UIKit
 
 protocol PostCellDelegate {
-    func goToDetail(_ post: Post)
+    func goToDetail(_ post: PostCell)
 }

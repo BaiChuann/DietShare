@@ -18,8 +18,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostCell" customModule="DietShare" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostCell" customModule="DietShare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="545"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S3D-XN-jS5">
@@ -57,7 +57,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-Kl-I91">
-                    <rect key="frame" x="16" y="642" width="148" height="13"/>
+                    <rect key="frame" x="16" y="520" width="148" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="148" id="GB0-T7-Xri"/>
                         <constraint firstAttribute="height" constant="13" id="Ynk-YZ-TEp"/>
@@ -68,7 +68,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="127" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeS-b1-B3q">
-                    <rect key="frame" x="319" y="642" width="35" height="12"/>
+                    <rect key="frame" x="319" y="520" width="35" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="qEK-av-P3U"/>
                         <constraint firstAttribute="width" constant="35" id="wgz-7q-dn6"/>
@@ -78,14 +78,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="qhB-Id-8nc">
-                    <rect key="frame" x="236" y="643" width="12" height="12"/>
+                    <rect key="frame" x="236" y="521" width="12" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="FZt-ym-jBQ"/>
                         <constraint firstAttribute="height" constant="12" id="Kcy-Zh-BVZ"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="P1S-Ca-LfZ">
-                    <rect key="frame" x="299" y="643" width="12" height="12"/>
+                    <rect key="frame" x="299" y="521" width="12" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="AxX-EO-yTB"/>
                         <constraint firstAttribute="height" constant="12" id="GHK-oq-KBz"/>
@@ -94,7 +94,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFj-eV-afp">
-                    <rect key="frame" x="16" y="499" width="27" height="141"/>
+                    <rect key="frame" x="16" y="499" width="27" height="19"/>
                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
                     <color key="textColor" red="0.22262509136786326" green="0.44011887802957472" blue="0.72340381145477295" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bb-cb-m5N">
-                    <rect key="frame" x="248" y="642" width="35" height="12"/>
+                    <rect key="frame" x="248" y="520" width="35" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="jlh-9J-DmN"/>
                         <constraint firstAttribute="width" constant="35" id="nVQ-qE-kUm"/>
@@ -165,6 +165,7 @@
                 <constraint firstItem="uJu-5d-fbK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tUu-bz-JAp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PeS-b1-B3q" secondAttribute="trailing" constant="21" id="yti-ZW-k7t"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="caption" destination="7AP-2r-GGi" id="U0u-ba-n3h"/>
@@ -178,7 +179,7 @@
                 <outlet property="userName" destination="NMW-0v-JA7" id="hNc-fY-OrZ"/>
                 <outlet property="userPhoto" destination="S3D-XN-jS5" id="vQA-eI-qp8"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="-50.5"/>
+            <point key="canvasLocation" x="33.5" y="-111.5"/>
         </view>
     </objects>
     <resources>
