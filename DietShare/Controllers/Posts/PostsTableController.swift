@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ScrollingStackContainer
+
 
 class PostsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private var dataSource: [Post] = []
@@ -51,4 +53,16 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         cell.setRestaurant(post.getRestaurant().1)
         return cell
     }
+}
+
+extension PostsTableController: StackContainable {
+    public static func create() -> PostsTableController {
+        return UIStoryboard(name: "Discovery", bundle: Bundle.main).instantiateViewController(withIdentifier: "PostsTable") as! PostsTableController
+    }
+    
+    public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
+        let _ = self.view
+        return .scroll(self.postsTable, insets: UIEdgeInsetsMake(50, 0, 50, 0))
+    }
+    
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ScrollingStackContainer
 
-class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topicModel = TopicsModelManager<Topic>()
     private var restaurantModel = RestaurantsModelManager<Restaurant>()
@@ -22,7 +23,7 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var topicList: UICollectionView!
     @IBOutlet weak var restaurantList: UICollectionView!
 //    @IBOutlet weak var postsArea: UIView!
-    @IBOutlet weak var postList: UITableView!
+//    @IBOutlet weak var postList: UITableView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
@@ -47,7 +48,7 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     private func getCellForTopic(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicShortListCell, for: indexPath as IndexPath) as! TopicShortListCell
-        let displayedTopicsList = self.topicModel.getDisplayedList()
+        let displayedTopicsList = self.topicModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedTopics)
         if !displayedTopicsList.isEmpty {
             cell.setImage(displayedTopicsList[indexPath.item].getImage())
             cell.setName(displayedTopicsList[indexPath.item].getName())
@@ -57,7 +58,7 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     private func getCellForRestaurant(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantShortListCell, for: indexPath as IndexPath) as! RestaurantShortListCell
-        let displayedRestaurantsList = self.restaurantModel.getDisplayedList()
+        let displayedRestaurantsList = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         if !displayedRestaurantsList.isEmpty {
             cell.setImage(displayedRestaurantsList[indexPath.item].getImage())
             cell.setName(displayedRestaurantsList[indexPath.item].getName())
@@ -74,18 +75,18 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
         
-        PostManager.loadData()
-        postsTableController = PostsTableController()
-        postsTableController?.retrieveTrendingPosts()
-        if let postsTable = postsTableController?.getTable() {
-//            postsTable.frame = postsArea.frame
-//            postsArea.removeFromSuperview()
-//            scrollView.addSubview(postsTable)
-            self.postList = postsTable
-            print("posts table added")
-        }
+//        PostManager.loadData()
+//        postsTableController = PostsTableController()
+//        postsTableController?.retrieveTrendingPosts()
+//        if let postsTable = postsTableController?.getTable() {
+////            postsTable.frame = postsArea.frame
+////            postsArea.removeFromSuperview()
+////            scrollView.addSubview(postsTable)
+////            self.postList = postsTable
+//            print("posts table added")
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,5 +106,25 @@ class DiscoveryViewController: UIViewController, UICollectionViewDelegate, UICol
             dest.setTopic(self.currentTopic)
             dest.currentUser = self.currentUser
         }
+        if let dest = segue.destination as? RestaurantListViewController {
+            dest.setModelManager(self.restaurantModel)
+            dest.currentUser = self.currentUser
+            
+        }
+        if let dest = segue.destination as? RestaurantViewController {
+            dest.setRestaurant(self.currentRestaurant)
+            dest.currentUser = self.currentUser
+        }
+    }
+}
+
+extension ShortListsViewController: StackContainable {
+    public static func create() -> ShortListsViewController {
+        return UIStoryboard(name: "Discovery", bundle: Bundle.main).instantiateViewController(withIdentifier: "ShortListsView") as! ShortListsViewController
+    }
+    
+    public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
+        let _ = self.view
+        return .scroll(self.scrollView, insets: UIEdgeInsetsMake(50, 0, 50, 0))
     }
 }

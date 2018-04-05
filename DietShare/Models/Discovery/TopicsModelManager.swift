@@ -31,17 +31,21 @@ class TopicsModelManager<T: ReadOnlyTopic> {
     }
     
     // Obtain a list of topics to be displayed in Discover Page
-    func getDisplayedList() -> [T] {
+    func getDisplayedList(_ numOfItem: Int) -> [T] {
         var displayedList = [T]()
         var count = 0
         for topic in self.topics {
-            if (count >= Constants.DiscoveryPage.numOfDisplayedTopics) {
+            if (count >= numOfItem) {
                 break
             }
             displayedList.append(topic)
             count += 1
         }
         return displayedList
+    }
+    
+    func getNumOfTopics() -> Int {
+        return self.topicsDataSource.getNumOfTopics()
     }
     
     // Add a new post under a topic, and update the database

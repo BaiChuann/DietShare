@@ -90,6 +90,16 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         return restaurants
     }
     
+    func getNumOfRestaurants() -> Int {
+        var count = 0
+        do {
+            count = try database.scalar(restaurantsTable.count)
+        } catch let error {
+            print("failed to count number of rows: \(error)")
+        }
+        return count
+    }
+    
     func addRestaurant(_ newRestaurant: Restaurant) {
         do {
             print("current restaurant id is: \(newRestaurant.getID())")
@@ -174,18 +184,24 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
                 self.addRestaurant(restaurant)
             }
         }
+        
+        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
+        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 5.0)
+        self.addRestaurant(restaurantFar)
+        
+        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
+        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.0)
+        self.addRestaurant(restaurantClose)
     }
     
     // TODO - Check representation of the datasource
     private func checkRep() {
-        checkNumOfColumn()
+        checkIDUniqueness()
     }
     
-    private func checkNumOfColumn() {
-        
+    private func checkIDUniqueness() {
         
     }
-    
     
 }
 

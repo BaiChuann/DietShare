@@ -66,6 +66,11 @@ enum FollowStatus: Int {
     case notFollowed = 0
 }
 
+enum Sorting: Int {
+    case byRating = 0
+    case byDistance = 1
+}
+
 struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
@@ -87,6 +92,7 @@ struct Constants {
         public static let numOfDisplayedTopics = 6
         public static let numOfDisplayedRestaurants = 5
         public static let shortListCellAlpha: CGFloat = 0.8
+        public static let shortListsViewProportion: CGFloat = 0.6
     }
     
     struct TopicPage {

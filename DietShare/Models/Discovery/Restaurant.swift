@@ -96,11 +96,18 @@ class Restaurant: ReadOnlyRestaurant {
         return newAvg
     }
     
+    func getDistanceToCurrent() -> Double {
+        // TODO - implement core location here
+        let currentLocation = CLLocation(latitude: 0.0, longitude: 103.0)
+        let distance = currentLocation.distance(from: self.location)
+        return Double(round(distance * 10) / 10)
+    }
+    
 }
 
 extension Restaurant {
     static func <(lhs: Restaurant, rhs: Restaurant) -> Bool {
-        return lhs.ratingScore < rhs.ratingScore
+        return lhs.ratingScore > rhs.ratingScore
     }
     
     static func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {

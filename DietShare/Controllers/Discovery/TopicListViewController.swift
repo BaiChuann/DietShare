@@ -18,8 +18,9 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == topicListView {
-            return Constants.defaultListDisplayCount
+        if collectionView == topicListView, let model = self.topicModel {
+            // TODO - only show 10 entries at a time
+            return model.getNumOfTopics()
         }
         return 0
     }

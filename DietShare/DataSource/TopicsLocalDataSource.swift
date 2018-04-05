@@ -94,6 +94,15 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
     }
     
+    func getNumOfTopics() -> Int {
+        var count = 0
+        do {
+            count = try database.scalar(topicsTable.count)
+        } catch let error {
+            print("failed to count number of rows: \(error)")
+        }
+        return count
+    }
     
     func addTopics(_ newTopics: SortedSet<Topic>) {
         for newTopic in newTopics {
@@ -162,8 +171,11 @@ class TopicsLocalDataSource: TopicsDataSource {
     private func prepopulate() {
         print("Prepopulated")
         if !containsTopic("1") {
+            let followers = ["1", "2", "3", "4", "5"]
+            let followersSet = Set<String>(followers)
+            let followerList = StringList(.User, followersSet)
             for i in 0..<20 {
-                let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", StringList(.User), StringList(.Post))
+                let topic = Topic(String(i), "VegiLife", #imageLiteral(resourceName: "vegi-life"), "A little bit of Vegi goes a long way", followerList, StringList(.Post))
                 self.addTopic(topic)
             }
         }

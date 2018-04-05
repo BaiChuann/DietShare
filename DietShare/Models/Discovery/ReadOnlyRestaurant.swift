@@ -26,4 +26,5 @@ protocol ReadOnlyRestaurant: Comparable {
     func getPostsID() -> StringList
     func getRatingsID() -> StringList
     func getRatingScore() -> Double
+    func getDistanceToCurrent() -> Double
 }

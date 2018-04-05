@@ -11,6 +11,7 @@ import UIKit
 class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var topic: Topic?
+    private var userModel = UserModelManager.shared
     var currentUser: User?
     
     @IBOutlet weak var topicName: UILabel!
@@ -47,8 +48,11 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as IndexPath) as! FollowerListCell
         if let currentTopic = self.topic {
-            cell.setName(currentTopic.getFollowersID().getListAsArray()[indexPath.item])
-            // TODO - obtain image of the user (after UserManager is implemented)
+            let id = currentTopic.getFollowersID().getListAsArray()[indexPath.item]
+            if let user = userModel.getUserFromID(id) {
+                cell.setName(user.getName())
+                cell.setImage(user.getPhoto())
+            }
         }
         return cell
     }

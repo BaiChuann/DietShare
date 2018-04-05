@@ -16,6 +16,7 @@ import BTree
 protocol RestaurantsDataSource {
     
     func getRestaurants() -> SortedSet<Restaurant>
+    func getNumOfRestaurants() -> Int
     func addRestaurant(_ newRestaurant: Restaurant)
     func addRestaurants(_ newRestaurants: SortedSet<Restaurant>)
     func deleteRestaurant(_ newRestaurant: Restaurant)

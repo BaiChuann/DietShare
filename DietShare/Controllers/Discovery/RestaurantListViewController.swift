@@ -15,11 +15,17 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     private var selectedRestaurant: Restaurant?
     var currentUser: User?
     
+    private var currentSort = Sorting.byRating
+    
     @IBOutlet weak var restaurantListView: UICollectionView!
     
+    @IBOutlet var buttonBar: [UIButton]!
+    @IBOutlet weak var ratingLogo: UIImageView!
+    @IBOutlet weak var distanceLogo: UIImageView!
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == restaurantListView {
-            return Constants.defaultListDisplayCount
+        if collectionView == restaurantListView, let model = self.restaurantModel {
+            return model.getNumOfRestaurants()
         }
         return 0
     }
@@ -28,16 +34,20 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantFullListCell, for: indexPath as IndexPath) as! RestaurantFullListCell
         if let model = self.restaurantModel {
-            let restaurantList = model.getFullRestaurantList()
+            let restaurantList = model.getFullRestaurantList(currentSort)
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
+            cell.setRating(restaurantList[indexPath.item].getRatingScore())
+            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsArray().count)
+            // TODO - get current location
+            cell.setDistance(0)
         }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.restaurantModel {
-            let restaurantsList = model.getFullRestaurantList()
+            let restaurantsList = model.getFullRestaurantList(currentSort)
             self.selectedRestaurant = restaurantsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.restaurantListToDetailPage, sender: self)
         }
@@ -69,6 +79,23 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             dest.setRestaurant(self.selectedRestaurant)
             dest.currentUser = self.currentUser
         }
+    }
+    
+    /**
+     * Handle user action (sorting and filtering)
+     */
+    @IBAction func sortByRatingButtonClicked(_ sender: UIButton) {
+        self.currentSort = .byRating
+        self.ratingLogo.image = #imageLiteral(resourceName: "sort-highlighted")
+        self.distanceLogo.image = #imageLiteral(resourceName: "sort-normal")
+        restaurantListView.reloadData()
+    }
+    
+    @IBAction func sortByDistanceButtonClicked(_ sender: UIButton) {
+        self.currentSort = .byDistance
+        self.ratingLogo.image = #imageLiteral(resourceName: "sort-normal")
+        self.distanceLogo.image = #imageLiteral(resourceName: "sort-highlighted")
+        restaurantListView.reloadData()
     }
     
     /**
