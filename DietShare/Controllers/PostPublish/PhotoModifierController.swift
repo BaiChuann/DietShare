@@ -186,6 +186,12 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             return
         }
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize: CGFloat = 100
+        let size = min(maxSize, photoOptionCollectionView.frame.height)
+        return CGSize(width: size, height: size)
+    }
 }
 
 extension PhotoModifierController {

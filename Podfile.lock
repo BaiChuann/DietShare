@@ -44,7 +44,6 @@ PODS:
   - SQLite.swift/standard (0.11.4)
   - SwiftyJSON (4.0.0)
   - TGCameraViewController (2.2.8)
-  - TweeTextField (1.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -60,7 +59,6 @@ DEPENDENCIES:
   - SQLite.swift (~> 0.11.4)
   - SwiftyJSON
   - TGCameraViewController
-  - TweeTextField
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
@@ -81,8 +79,7 @@ SPEC CHECKSUMS:
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
-  TweeTextField: e3741c11abd85662165d26d25eb6d31e7b2c4123
 
-PODFILE CHECKSUM: 3a05e3555ded1ce8797dd82caf3ad82dc79ae37d
+PODFILE CHECKSUM: 2df4a3ef95176ef240e5f81f74c6a5cc436f0529
 
 COCOAPODS: 1.4.0

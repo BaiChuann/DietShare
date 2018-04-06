@@ -13,7 +13,7 @@ class RecognitionRequester {
     private let image: UIImage? = nil
     static let shared = RecognitionRequester()
     static let one: Int = 1
-    
+
     private init() {}
     
     func post() {
@@ -36,7 +36,7 @@ class RecognitionRequester {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
             }
-            
+
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
         }

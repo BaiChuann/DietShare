@@ -446,11 +446,8 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-7c-xWq">
-                                <rect key="frame" x="16" y="547" width="343" height="60"/>
+                                <rect key="frame" x="16" y="547" width="343" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="RTZ-wo-eRH"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zzQ-td-AHK">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -459,7 +456,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoOptionCell" id="u5E-Q2-kpx" customClass="PhotoOptionCell" customModule="DietShare" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="5" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="25" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -498,6 +495,7 @@
                             <constraint firstItem="Zwl-Ji-V0M" firstAttribute="top" secondItem="YGl-Rv-CJf" secondAttribute="bottom" constant="20" id="g2K-U4-8bo"/>
                             <constraint firstItem="v62-yw-2L3" firstAttribute="top" secondItem="Zwl-Ji-V0M" secondAttribute="bottom" id="oQx-uQ-lA2"/>
                             <constraint firstItem="YGl-Rv-CJf" firstAttribute="trailing" secondItem="uBu-Gj-gKO" secondAttribute="trailing" id="oWh-RH-xaw"/>
+                            <constraint firstItem="uBu-Gj-gKO" firstAttribute="bottom" secondItem="1Sz-7c-xWq" secondAttribute="bottom" constant="20" id="rzG-kG-h2L"/>
                             <constraint firstItem="YGl-Rv-CJf" firstAttribute="leading" secondItem="uBu-Gj-gKO" secondAttribute="leading" id="ucB-1I-QLQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uBu-Gj-gKO"/>
