@@ -7,7 +7,6 @@
 //
 // swiftlint:disable implicitly_unwrapped_optional
 // swiftlint:disable force_unwrapping
-
 import Foundation
 import UIKit
 import TGCameraViewController
@@ -25,7 +24,7 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         TGCameraColor.setTint(Constants.themeColor)
 
         // save image to album
-        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: true)
+        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
 
         // use the original image aspect instead of square
         //TGCamera.setOption(kTGCameraOptionUseOriginalAspect, value: true)
@@ -37,11 +36,16 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if isToCamera {
+        // enable this to sticker/collage directly
+        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "StickerAdderViewController")
+        navigationController?.pushViewController(foodSelectVC, animated: true)
+
+        // enable this to open camera
+        /*if isToCamera {
             openCamera()
         } else {
             goBack()
-        }
+        }*/
     }
 
     func cameraDidCancel() {
@@ -62,7 +66,6 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     }
 
     // Optional
-
     func cameraWillTakePhoto() {
         print("cameraWillTakePhoto")
     }

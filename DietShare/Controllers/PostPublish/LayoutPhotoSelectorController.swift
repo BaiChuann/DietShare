@@ -20,6 +20,8 @@ class LayoutPhotoSelectorController: UIViewController {
     private let maxNumberOfImages = 4
     private let previewCellIdentifier = "LayoutPhotoPreviewCell"
     private var selectedImages = [UIImage]()
+    
+    var layoutType: Int? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +85,8 @@ class LayoutPhotoSelectorController: UIViewController {
     }
 
     @IBAction func onNextButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        
     }
 }
 
@@ -112,5 +115,17 @@ extension LayoutPhotoSelectorController: UICollectionViewDelegate, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedImages.count
+    }
+}
+
+extension LayoutPhotoSelectorController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "nextLayoutSelection" {
+            if let toViewController = segue.destination as? PhotoModifierController {
+                toViewController.selectedImages = selectedImages
+                toViewController.selectedLayoutType = layoutType
+            }
+        }
     }
 }
