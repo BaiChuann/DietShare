@@ -13,6 +13,7 @@ class HomeController: UIViewController {
     @IBOutlet weak private var postsArea: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = false
         PostManager.loadData()
         postsTableController = PostsTableController()
         postsTableController.setParentController(self)

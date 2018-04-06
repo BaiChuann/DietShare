@@ -25,9 +25,11 @@ class PostDetailController: UIViewController {
     }
     @IBAction func onBackClicked(_ sender: Any) {
         print("back")
+        tabBarController?.tabBar.isHidden = false
         self.willMove(toParentViewController: nil)
         self.view.removeFromSuperview()
         self.removeFromParentViewController()
+        
         
     }
     func setPost(_ post: PostCell) {

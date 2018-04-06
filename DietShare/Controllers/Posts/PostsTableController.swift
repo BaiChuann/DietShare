@@ -51,7 +51,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
             parentController.view.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
             print("clicked")
-            //parentController.tabBarController?.tabBar.isHidden = true
+            parentController.tabBarController?.tabBar.isHidden = true
         }
     }
 }
