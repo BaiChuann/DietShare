@@ -7,7 +7,6 @@
 //
 // swiftlint:disable implicitly_unwrapped_optional
 // swiftlint:disable force_unwrapping
-
 import Foundation
 import UIKit
 import TGCameraViewController
@@ -25,7 +24,7 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         TGCameraColor.setTint(Constants.themeColor)
 
         // save image to album
-        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: true)
+        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
 
         // use the original image aspect instead of square
         //TGCamera.setOption(kTGCameraOptionUseOriginalAspect, value: true)
@@ -62,7 +61,6 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     }
 
     // Optional
-
     func cameraWillTakePhoto() {
         print("cameraWillTakePhoto")
     }

@@ -4,10 +4,14 @@
 //
 //  Created by Fan Weiguang on 24/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
-//
 
 import UIKit
 import DKImagePickerController
+
+protocol PhotoModifierDelegate: class {
+    func importImagesForLayout(images: [UIImage])
+    func getLayoutImageCount() -> Int
+}
 
 enum PhotoOptionType: Int {
     case sticker = 0, layout, filter
@@ -17,14 +21,22 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
+    @IBOutlet weak private var canvas: UIView!
 
     var currentPhoto: UIImage?
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
-    private var stickers = [UIImage?]()
-    private var layout = [UIImage?]()
+    private var stickerIcons = [UIImage?]()
+    private var layoutIcons = [UIImage?]()
     private var filters = [String]()
-    
+    private let storedLayout = StoredLayout.shared
+
+    var foodImage: UIImage?
+    var selectedImages: [UIImage]?
+    var selectedLayout: CollageLayout?
+
+    var movingImageView: UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,8 +44,7 @@ class PhotoModifierController: UIViewController {
 
         // prepare for data for stickers and layout
         for i in 1...5 {
-            stickers.append(UIImage(named: "sticker-\(i)"))
-            layout.append(UIImage(named: "layout-\(i)"))
+            stickerIcons.append(UIImage(named: "sticker-\(i)"))
         }
         filters = [
             "No Filter",
@@ -48,6 +59,8 @@ class PhotoModifierController: UIViewController {
             "CILinearToSRGBToneCurve",
             "CISRGBToneCurveToLinear"
         ]
+
+        layoutIcons = storedLayout.storedLayoutList.map { $0.iconImage }
     }
 
     private func setUpUI() {
@@ -81,9 +94,16 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onLayoutSelected(index: Int) {
-        print("selected layout \(index)")
+        print("select layout \(index)")
 
-        let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier)
+        selectedLayout = storedLayout.get(index)
+        guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController,
+            selectedLayout != nil else {
+                print("error when showing layout photo selector")
+                return
+        }
+
+        photoSelector.delegate = self
         navigationController?.present(photoSelector, animated: true, completion: nil)
     }
 
@@ -100,7 +120,7 @@ class PhotoModifierController: UIViewController {
 
         guard let filteredImage = filter.outputImage,
             let outputCGImage = context.createCGImage(filteredImage, from: filteredImage.extent) else {
-            print("error when applying filter to image")
+                print("error when applying filter to image")
                 return UIImage()
         }
 
@@ -120,9 +140,9 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
 
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
-            optionImage = stickers[indexPath.item]
+            optionImage = stickerIcons[indexPath.item]
         case PhotoOptionType.layout.rawValue:
-            optionImage = layout[indexPath.item]
+            optionImage = layoutIcons[indexPath.item]
         case PhotoOptionType.filter.rawValue:
             optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item]) : currentPhoto
         default:
@@ -145,9 +165,9 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
-            return stickers.count
+            return stickerIcons.count
         case PhotoOptionType.layout.rawValue:
-            return layout.count
+            return layoutIcons.count
         case PhotoOptionType.filter.rawValue:
             return filters.count
         default:
@@ -164,6 +184,106 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             onLayoutSelected(index: indexPath.item)
         default:
             return
+        }
+    }
+}
+
+extension PhotoModifierController {
+    private func applyLayout() {
+        guard let selectedImages = selectedImages, let layout = selectedLayout else {
+            return
+        }
+
+        let imageViews = layout.getLayoutViews(frame: canvas.frame)
+        zip(imageViews, selectedImages).forEach { imageView, selectedImage in
+            imageView.clipsToBounds = true
+            let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
+            imageView.addSubview(subImageView)
+            canvas.superview?.addSubview(imageView)
+        }
+
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
+        canvas.superview?.addGestureRecognizer(panGestureRecognizer)
+    }
+
+    // need to refactor
+    // TODO: add swapping image
+    @objc
+    private func handlePan(sender: UIPanGestureRecognizer) {
+        let superView = canvas.superview
+        if sender.state == .began {
+            let location = sender.location(in: superView)
+            let movingView = superView?.subviews.first {
+                $0.frame.contains(location) && $0 !== canvas
+                }?.subviews.first
+            movingImageView = movingView
+            print(movingImageView?.frame ?? "Empty moving image view")
+        } else if sender.state == .changed {
+            guard let movingImageView = movingImageView,
+                let displayView = movingImageView.superview else {
+                    return
+            }
+            let translation = sender.translation(in: superView)
+            sender.setTranslation(CGPoint.zero, in: superView)
+            var changeInX: CGFloat = 0
+            var changeInY: CGFloat = 0
+            if translation.x > 0 {
+                changeInX = translation.x + movingImageView.frame.minX > 0 ?
+                    -movingImageView.frame.minX :
+                    translation.x
+            } else {
+                changeInX = translation.x + movingImageView.frame.maxX < displayView.frame.width ?
+                    displayView.frame.width - movingImageView.frame.maxX :
+                    translation.x
+            }
+            if translation.y > 0 {
+                changeInY = translation.y + movingImageView.frame.minY > 0 ?
+                    -movingImageView.frame.minY :
+                    translation.y
+            } else {
+                changeInY = translation.y + movingImageView.frame.maxY < displayView.frame.height ?
+                    displayView.frame.height - movingImageView.frame.maxY :
+                    translation.y
+            }
+            let newFrame = movingImageView.frame.offsetBy(dx: changeInX, dy: changeInY)
+            movingImageView.frame = newFrame
+        } else if sender.state == .ended {
+            print("ended")
+            movingImageView = nil
+        }
+    }
+
+    private func getFittedImageView(image: UIImage, frame: CGRect) -> UIImageView {
+        let originalSize = image.size
+        let frameAspect = frame.width / frame.height
+        let imageAspect = originalSize.width / originalSize.height
+        var newSize: CGSize
+        if frameAspect > imageAspect {
+            newSize = CGSize(width: frame.width, height: frame.width / imageAspect)
+        } else {
+            newSize = CGSize(width: frame.height * imageAspect, height: frame.height)
+        }
+        let newX = (frame.width - newSize.width) / 2
+        let newY = (frame.height - newSize.height) / 2
+        let origin = CGPoint(x: newX, y: newY)
+        let fittedFrame = CGRect(origin: origin, size: newSize)
+        let imageView = UIImageView(frame: fittedFrame)
+        imageView.image = image
+        return imageView
+    }
+}
+
+extension PhotoModifierController: PhotoModifierDelegate {
+    func importImagesForLayout(images: [UIImage]) {
+        selectedImages = images
+        applyLayout()
+    }
+
+    func getLayoutImageCount() -> Int {
+        if let layout = selectedLayout {
+            return layout.count
+        } else {
+            return 0
         }
     }
 }
