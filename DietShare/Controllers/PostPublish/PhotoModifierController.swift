@@ -21,7 +21,7 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
-    @IBOutlet weak private var canvas: UIView!
+    @IBOutlet weak private var canvas: UIImageView!
 
     var currentPhoto: UIImage?
     private let photoOptionCellIdentifier = "PhotoOptionCell"
@@ -34,12 +34,12 @@ class PhotoModifierController: UIViewController {
     var foodImage: UIImage?
     var selectedImages: [UIImage]?
     var selectedLayout: CollageLayout?
-
     var movingImageView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        canvas.image = currentPhoto
         setUpUI()
 
         // prepare for data for stickers and layout

@@ -27,10 +27,16 @@ class FoodSelectController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        foodCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFoodCellTapped)))
-
         setUpUI()
         fetchFoodImage()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowFoodAdder" {
+            if let foodAdderVC = segue.destination as? FoodAdderController {
+                foodAdderVC.currentPhoto = currentPhoto
+            }
+        }
     }
 
     private func fetchFoodImage() {
@@ -54,7 +60,7 @@ class FoodSelectController: UIViewController {
                 guard let data = response.data,
                     let json = try? JSON(data: data),
                     let url = json["value"][0]["contentUrl"].string else {
-                    return
+                        return
                 }
 
                 if let imageUrl = URL(string: url),
@@ -77,18 +83,6 @@ class FoodSelectController: UIViewController {
             foodCollectionView.reloadData()
         }
     }
-
-//    @objc
-//    private func onFoodCellTapped(sender: UITapGestureRecognizer) {
-//        guard let indexPath = foodCollectionView.indexPathForItem(at: sender.location(in: foodCollectionView)),
-//            let foodCell = foodCollectionView.dequeueReusableCell(withReuseIdentifier: foodCellIdentifier, for: indexPath) as? FoodCell else {
-//            return
-//        }
-//
-//        print("tap at \(indexPath)")
-//
-//        foodCell.setSelected()
-//    }
 
     private func setUpUI() {
         loader.startAnimating()
