@@ -83,7 +83,12 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     }
 
     private func goToNext() {
-        let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController")
+        guard let foodSelectVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController") as? FoodSelectController else {
+            print("Error when pushing food select controller")
+            return
+        }
+
+        foodSelectVC.currentPhoto = pickedPhoto
         navigationController?.pushViewController(viewController: foodSelectVC, animated: false) {
             self.isToCamera = true
         }

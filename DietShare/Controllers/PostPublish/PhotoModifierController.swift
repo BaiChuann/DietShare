@@ -10,7 +10,7 @@ import UIKit
 import DKImagePickerController
 
 enum PhotoOptionType: Int {
-    case sticker = 0, layout
+    case sticker = 0, layout, filter
 }
 
 class PhotoModifierController: UIViewController {
@@ -18,11 +18,13 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
 
+    var currentPhoto: UIImage?
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private var stickers = [UIImage?]()
     private var layout = [UIImage?]()
-
+    private var filters = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +35,19 @@ class PhotoModifierController: UIViewController {
             stickers.append(UIImage(named: "sticker-\(i)"))
             layout.append(UIImage(named: "layout-\(i)"))
         }
+        filters = [
+            "No Filter",
+            "CIPhotoEffectChrome",
+            "CIPhotoEffectFade",
+            "CIPhotoEffectInstant",
+            "CIPhotoEffectMono",
+            "CIPhotoEffectNoir",
+            "CIPhotoEffectProcess",
+            "CIPhotoEffectTonal",
+            "CIPhotoEffectTransfer",
+            "CILinearToSRGBToneCurve",
+            "CISRGBToneCurveToLinear"
+        ]
     }
 
     private func setUpUI() {
@@ -71,6 +86,26 @@ class PhotoModifierController: UIViewController {
         let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier)
         navigationController?.present(photoSelector, animated: true, completion: nil)
     }
+
+    private func getFilteredImage(filter: String) -> UIImage {
+        guard let image = currentPhoto, let filter = CIFilter(name: filter) else {
+            print("current photo or filter is nil")
+            return UIImage()
+        }
+
+        let context = CIContext()
+        let sourceImage = CIImage(image: image)
+        filter.setDefaults()
+        filter.setValue(sourceImage, forKey: kCIInputImageKey)
+
+        guard let filteredImage = filter.outputImage,
+            let outputCGImage = context.createCGImage(filteredImage, from: filteredImage.extent) else {
+            print("error when applying filter to image")
+                return UIImage()
+        }
+
+        return UIImage(cgImage: outputCGImage)
+    }
 }
 
 extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -88,6 +123,8 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             optionImage = stickers[indexPath.item]
         case PhotoOptionType.layout.rawValue:
             optionImage = layout[indexPath.item]
+        case PhotoOptionType.filter.rawValue:
+            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item]) : currentPhoto
         default:
             return cell
         }
@@ -111,6 +148,8 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             return stickers.count
         case PhotoOptionType.layout.rawValue:
             return layout.count
+        case PhotoOptionType.filter.rawValue:
+            return filters.count
         default:
             return 0
         }

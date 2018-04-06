@@ -15,6 +15,8 @@ class FoodSelectController: UIViewController {
     @IBOutlet weak private var loader: NVActivityIndicatorView!
     @IBOutlet weak private var addFoodButton: UIButton!
     @IBOutlet weak private var foodCollectionView: UICollectionView!
+
+    var currentPhoto: UIImage?
     private let foodCellIdentifier = "FoodCell"
     private let numberOfSections = 2
     private let numberOfRows = 2
@@ -24,7 +26,6 @@ class FoodSelectController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
 //        foodCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFoodCellTapped)))
 
@@ -148,11 +149,11 @@ extension FoodSelectController: UICollectionViewDelegate, UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let foodCell = foodCollectionView.dequeueReusableCell(withReuseIdentifier: foodCellIdentifier, for: indexPath) as? FoodCell,
-            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "StickerAdderViewController") else {
+            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "StickerAdderViewController") as? PhotoModifierController else {
                 return
         }
 
-        print("selected cell at \(indexPath)")
+        destinationVC.currentPhoto = currentPhoto
         foodCell.setSelected()
 
         self.navigationController?.pushViewController(destinationVC, animated: true)

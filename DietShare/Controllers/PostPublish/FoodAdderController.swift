@@ -21,6 +21,7 @@ class FoodAdderController: UIViewController {
     @IBOutlet weak private var nameInput: TweeActiveTextField!
     @IBOutlet weak private var ingredientCollectionView: UICollectionView!
 
+    var currentPhoto: UIImage?
     private let ingredientCellIdentifier = "IngredientCell"
     private let ingredientPopupNibName = "IngredientPopup"
     private var ingredients = [Ingredient]()

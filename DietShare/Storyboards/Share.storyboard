@@ -388,13 +388,14 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-Ji-V0M">
-                                <rect key="frame" x="16" y="552" width="161" height="26"/>
+                                <rect key="frame" x="16" y="552" width="242" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="4eN-Ec-IPf"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Sticker" width="80"/>
                                     <segment title="Layout" width="80"/>
+                                    <segment title="Filter" width="80"/>
                                 </segments>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v62-yw-2L3" userLabel="Segment indicator">
