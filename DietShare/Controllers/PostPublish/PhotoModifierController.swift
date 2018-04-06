@@ -23,6 +23,7 @@ class PhotoModifierController: UIViewController {
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private var stickers = [UIImage?]()
     private var layout = [UIImage?]()
+    private let storedLayout = StoredLayout.shared
 
     var foodImage: UIImage?
     var selectedImages: [UIImage]?
@@ -39,8 +40,10 @@ class PhotoModifierController: UIViewController {
         // prepare for data for stickers and layout
         for i in 1...5 {
             stickers.append(UIImage(named: "sticker-\(i)"))
-            layout.append(UIImage(named: "layout-\(i)"))
+            //layout.append(UIImage(named: "layout-\(i)"))
         }
+        
+        layout = storedLayout.storedLayoutList.map { $0.iconImage }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -159,7 +162,7 @@ extension PhotoModifierController {
         guard let selectedImages = selectedImages, let layoutType = selectedLayoutType else {
             return
         }
-        guard let layout = getLayout(type: layoutType) else {
+        guard let layout = storedLayout.get(layoutType) else {
             return
         }
         let imageViews = layout.getLayoutViews(frame: canvas.frame)
@@ -236,21 +239,5 @@ extension PhotoModifierController {
         let imageView = UIImageView(frame: fittedFrame)
         imageView.image = image
         return imageView
-    }
-
-    private func getLayout(type: Int) -> CollageLayout? {
-        switch type {
-        case 0:
-            return CollageLayoutZero()
-        case 1:
-            return CollageLayoutOne()
-        case 2:
-            return CollageLayoutTwo()
-        case 3:
-            return CollageLayoutThree()
-        default:
-            print("error: layout not implemented")
-            return nil
-        }
     }
 }
