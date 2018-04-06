@@ -86,7 +86,7 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
             return
         }
 
-        foodSelectVC.currentPhoto = pickedPhoto
+        foodSelectVC.originalPhoto = pickedPhoto
         navigationController?.pushViewController(viewController: foodSelectVC, animated: false) {
             self.isToCamera = true
         }

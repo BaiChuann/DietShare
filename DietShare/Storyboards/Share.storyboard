@@ -346,7 +346,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Next" id="gpb-4f-FRy">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="2hc-3b-fm0" kind="show" id="CPn-sS-u1G"/>
+                                <segue destination="2hc-3b-fm0" kind="show" identifier="ShowPhotoModifier" id="CPn-sS-u1G"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -23,23 +23,24 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
     @IBOutlet weak private var canvas: UIImageView!
 
-    var currentPhoto: UIImage?
+    var originalPhoto: UIImage?
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
+    private let context = CIContext()
     private var stickerIcons = [UIImage?]()
     private var layoutIcons = [UIImage?]()
     private var filters = [String]()
     private let storedLayout = StoredLayout.shared
-
-    var foodImage: UIImage?
-    var selectedImages: [UIImage]?
-    var selectedLayout: CollageLayout?
-    var movingImageView: UIView?
+    private var selectedImages: [UIImage]?
+    private var selectedLayoutIndex: Int = 0
+    private var selectedFilterIndex: Int = 0
+    private var movingImageView: UIView?
+    private var previousSelectedIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        canvas.image = currentPhoto
+        canvas.image = originalPhoto
         setUpUI()
 
         // prepare for data for stickers and layout
@@ -96,24 +97,31 @@ class PhotoModifierController: UIViewController {
     private func onLayoutSelected(index: Int) {
         print("select layout \(index)")
 
-        selectedLayout = storedLayout.get(index)
-        guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController,
-            selectedLayout != nil else {
-                print("error when showing layout photo selector")
-                return
+        selectedLayoutIndex = index
+        guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
+            print("error when showing layout photo selector")
+            return
         }
 
         photoSelector.delegate = self
         navigationController?.present(photoSelector, animated: true, completion: nil)
     }
 
+    private func onFilterSelected(index: Int) {
+        selectedFilterIndex = index
+
+        if index > 0 {
+            let filterName = filters[selectedFilterIndex]
+            canvas.image = getFilteredImage(filter: filterName)
+        }
+    }
+
     private func getFilteredImage(filter: String) -> UIImage {
-        guard let image = currentPhoto, let filter = CIFilter(name: filter) else {
+        guard let image = originalPhoto, let filter = CIFilter(name: filter) else {
             print("current photo or filter is nil")
             return UIImage()
         }
 
-        let context = CIContext()
         let sourceImage = CIImage(image: image)
         filter.setDefaults()
         filter.setValue(sourceImage, forKey: kCIInputImageKey)
@@ -144,7 +152,7 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
         case PhotoOptionType.layout.rawValue:
             optionImage = layoutIcons[indexPath.item]
         case PhotoOptionType.filter.rawValue:
-            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item]) : currentPhoto
+            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item]) : originalPhoto
         default:
             return cell
         }
@@ -182,8 +190,20 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             return
         case PhotoOptionType.layout.rawValue:
             onLayoutSelected(index: indexPath.item)
+        case PhotoOptionType.filter.rawValue:
+            onFilterSelected(index: indexPath.item)
         default:
             return
+        }
+
+        guard let cell = photoOptionCollectionView.dequeueReusableCell(withReuseIdentifier: photoOptionCellIdentifier, for: indexPath) as? PhotoOptionCell else {
+            return
+        }
+
+        cell.setSelected()
+        if let prev = previousSelectedIndexPath,
+            let prevCell = photoOptionCollectionView.dequeueReusableCell(withReuseIdentifier: photoOptionCellIdentifier, for: prev) as? PhotoOptionCell {
+            prevCell.setUnselected()
         }
     }
 
@@ -196,7 +216,7 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
 
 extension PhotoModifierController {
     private func applyLayout() {
-        guard let selectedImages = selectedImages, let layout = selectedLayout else {
+        guard let selectedImages = selectedImages, let layout = storedLayout.get(selectedLayoutIndex) else {
             return
         }
 
@@ -286,7 +306,7 @@ extension PhotoModifierController: PhotoModifierDelegate {
     }
 
     func getLayoutImageCount() -> Int {
-        if let layout = selectedLayout {
+        if let layout = storedLayout.get(selectedLayoutIndex) {
             return layout.count
         } else {
             return 0

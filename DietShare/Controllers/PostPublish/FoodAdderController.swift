@@ -21,7 +21,7 @@ class FoodAdderController: UIViewController {
     @IBOutlet weak private var ingredientCollectionView: UICollectionView!
     @IBOutlet weak private var canvas: UIImageView!
 
-    var currentPhoto: UIImage?
+    var originalPhoto: UIImage?
     private let ingredientCellIdentifier = "IngredientCell"
     private let ingredientPopupNibName = "IngredientPopup"
     private var ingredients = [Ingredient]()
@@ -34,7 +34,7 @@ class FoodAdderController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientImageTapped))
         addIngredientImage.isUserInteractionEnabled = true
         addIngredientImage.addGestureRecognizer(tapGestureRecognizer)
-        canvas.image = currentPhoto
+        canvas.image = originalPhoto
 
         setUpUI()
         setUpInput()
@@ -49,6 +49,14 @@ class FoodAdderController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         removeKeyboardNotifications()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPhotoModifier" {
+            if let photoModifierVC = segue.destination as? PhotoModifierController {
+                photoModifierVC.originalPhoto = originalPhoto
+            }
+        }
     }
 
     private func setUpUI() {

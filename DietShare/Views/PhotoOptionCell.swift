@@ -20,6 +20,12 @@ class PhotoOptionCell: UICollectionViewCell {
     }
 
     func setSelected() {
-        self.backgroundColor = Constants.lightBackgroundColor
+        print("set cell selected")
+        optionImage.alpha = 0.5
+    }
+
+    func setUnselected() {
+        print("set cell unselected")
+        optionImage.alpha = 1
     }
 }
