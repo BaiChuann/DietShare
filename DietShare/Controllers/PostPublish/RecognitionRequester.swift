@@ -13,11 +13,14 @@ class RecognitionRequester {
     private let image: UIImage? = nil
     static let shared = RecognitionRequester()
     static let one: Int = 1
-    
+
     private init() {}
-    
+
     func post() {
-        let url = URL(string: "https://api.dietlens.com/foodRec")!
+        guard let url = URL(string: "https://api.dietlens.com/foodRec") else {
+            return
+        }
+
         var request = URLRequest(url: url)
         request.setValue("access_key:secret_key", forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
@@ -28,12 +31,12 @@ class RecognitionRequester {
                 print("error=\(error)")
                 return
             }
-            
+
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
             }
-            
+
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
         }

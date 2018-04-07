@@ -79,7 +79,7 @@ struct Constants {
         public static let numOfDisplayedRestaurants = 5
         public static let shortListCellAlpha: CGFloat = 0.8
     }
-    
+
     struct TopicPage {
         public static let numOfDisplayedUsers = 10
         public static let topicImageAlpha: CGFloat = 0.8
