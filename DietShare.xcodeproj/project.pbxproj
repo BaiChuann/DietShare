@@ -13,6 +13,10 @@
 		3B18BEDE2074C52900809D3A /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B18BEDB2074C52900809D3A /* PostDetail.storyboard */; };
 		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
 		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
+		3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
+		3B1F3CDE2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
+		3B1F3CDF2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
+		3B1F3CE1207908340012D87C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CE0207908340012D87C /* CommentCell.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -119,6 +123,8 @@
 		3B18BEDB2074C52900809D3A /* PostDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		3B18BEDF2074C5A200809D3A /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
+		3B1F3CDC2078FE950012D87C /* LikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
+		3B1F3CE0207908340012D87C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +325,8 @@
 			children = (
 				B5CBA16D206A3F3800BC8005 /* Discovery */,
 				F2E373C920716BF20000F707 /* PostCell.swift */,
+				3B1F3CDC2078FE950012D87C /* LikeCell.swift */,
+				3B1F3CE0207908340012D87C /* CommentCell.swift */,
 				F2E373BE20716BF10000F707 /* PostCell.xib */,
 				F2E373C820716BF20000F707 /* TopicCell.swift */,
 				F2E373C220716BF20000F707 /* TopicCell.xib */,
@@ -724,6 +732,7 @@
 				F2E373D520716BF20000F707 /* TopicCell.swift in Sources */,
 				F2E373B620716BBE0000F707 /* HomeTabController.swift in Sources */,
 				F27985DE206F9DE300977F5D /* LayoutPhotoSelectorCell.swift in Sources */,
+				3B1F3CE1207908340012D87C /* CommentCell.swift in Sources */,
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
@@ -741,6 +750,7 @@
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
 				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
+				3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
@@ -775,6 +785,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+				3B1F3CDE2078FE950012D87C /* LikeCell.swift in Sources */,
 				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,6 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B1F3CDF2078FE950012D87C /* LikeCell.swift in Sources */,
 				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
