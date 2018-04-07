@@ -15,7 +15,7 @@ class RecognitionRequester {
     static let one: Int = 1
 
     private init() {}
-    
+
     func post() {
         guard let url = URL(string: "https://api.dietlens.com/foodRec") else {
             return
@@ -31,7 +31,7 @@ class RecognitionRequester {
                 print("error=\(error)")
                 return
             }
-            
+
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")

@@ -23,7 +23,7 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
     @IBOutlet weak private var canvas: UIImageView!
 
-    var originalPhoto: UIImage?
+    var originalPhoto = UIImage(named: "food-example-1")
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private let context = CIContext()
@@ -32,10 +32,9 @@ class PhotoModifierController: UIViewController {
     private var filters = [String]()
     private let storedLayout = StoredLayout.shared
     private var selectedImages: [UIImage]?
-    private var selectedLayoutIndex: Int = 0
-    private var selectedFilterIndex: Int = 0
+    private var selectedLayoutIndex: Int = -1
+    private var selectedFilterIndex: Int = -1
     private var movingImageView: UIView?
-    private var previousSelectedIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +94,9 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onLayoutSelected(index: Int) {
-        print("select layout \(index)")
+        let curIndexPath = IndexPath(item: index, section: 0)
+        let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)
+        updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
 
         selectedLayoutIndex = index
         guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
@@ -108,12 +109,25 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onFilterSelected(index: Int) {
-        selectedFilterIndex = index
+        let curIndexPath = IndexPath(item: index, section: 0)
+        let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)
+        updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
 
+        selectedFilterIndex = index
         if index > 0 {
             let filterName = filters[selectedFilterIndex]
             canvas.image = getFilteredImage(filter: filterName)
         }
+    }
+
+    private func updateCellSelectionStatus(curAt indexPath: IndexPath, prevAt: IndexPath) {
+        guard let curCell = photoOptionCollectionView.cellForItem(at: indexPath) as? PhotoOptionCell,
+            let prevCell = photoOptionCollectionView.cellForItem(at: prevAt) as? PhotoOptionCell else {
+                return
+        }
+
+        curCell.isSelected = true
+        prevCell.isSelected = false
     }
 
     private func getFilteredImage(filter: String) -> UIImage {
@@ -151,8 +165,10 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             optionImage = stickerIcons[indexPath.item]
         case PhotoOptionType.layout.rawValue:
             optionImage = layoutIcons[indexPath.item]
+            photoOptionCell.isSelected = indexPath.item == selectedLayoutIndex
         case PhotoOptionType.filter.rawValue:
             optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item]) : originalPhoto
+            photoOptionCell.isSelected = indexPath.item == selectedFilterIndex
         default:
             return cell
         }
@@ -194,16 +210,6 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             onFilterSelected(index: indexPath.item)
         default:
             return
-        }
-
-        guard let cell = photoOptionCollectionView.dequeueReusableCell(withReuseIdentifier: photoOptionCellIdentifier, for: indexPath) as? PhotoOptionCell else {
-            return
-        }
-
-        cell.setSelected()
-        if let prev = previousSelectedIndexPath,
-            let prevCell = photoOptionCollectionView.dequeueReusableCell(withReuseIdentifier: photoOptionCellIdentifier, for: prev) as? PhotoOptionCell {
-            prevCell.setUnselected()
         }
     }
 
