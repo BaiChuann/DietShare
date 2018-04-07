@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2hc-3b-fm0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VQJ-wA-Njw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -464,16 +464,28 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6dS-BD-rOA">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="6dS-BD-rOA" secondAttribute="height" multiplier="1:1" id="NT7-XC-MQi"/>
+                                                    </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqv-fP-t1X">
+                                                    <rect key="frame" x="0.0" y="50" width="50" height="0.0"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="11"/>
+                                                    <color key="textColor" red="0.61176470588235299" green="0.62745098039215685" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="hqv-fP-t1X" secondAttribute="trailing" id="4AF-SI-QNt"/>
                                             <constraint firstItem="6dS-BD-rOA" firstAttribute="top" secondItem="u5E-Q2-kpx" secondAttribute="top" id="7qG-rf-j5U"/>
                                             <constraint firstItem="6dS-BD-rOA" firstAttribute="leading" secondItem="u5E-Q2-kpx" secondAttribute="leading" id="Jpt-Fc-3H4"/>
+                                            <constraint firstItem="hqv-fP-t1X" firstAttribute="leading" secondItem="u5E-Q2-kpx" secondAttribute="leading" id="ORo-aN-6Qu"/>
                                             <constraint firstAttribute="trailing" secondItem="6dS-BD-rOA" secondAttribute="trailing" id="PQI-0c-yh2"/>
-                                            <constraint firstAttribute="bottom" secondItem="6dS-BD-rOA" secondAttribute="bottom" id="fCA-7r-n4R"/>
+                                            <constraint firstAttribute="bottom" secondItem="hqv-fP-t1X" secondAttribute="bottom" id="vVX-db-SJK"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="label" destination="hqv-fP-t1X" id="S8y-aq-Ze8"/>
                                             <outlet property="optionImage" destination="6dS-BD-rOA" id="z1G-3C-SBT"/>
                                         </connections>
                                     </collectionViewCell>
@@ -506,6 +518,7 @@
                         <outlet property="photoOptionCollectionView" destination="1Sz-7c-xWq" id="uNo-UV-8md"/>
                         <outlet property="segmentControl" destination="Zwl-Ji-V0M" id="LaM-pb-Wcl"/>
                         <outlet property="segmentIndicator" destination="v62-yw-2L3" id="C2Y-tG-zdA"/>
+                        <outlet property="spacingConstraint" destination="g2K-U4-8bo" id="obA-x4-R07"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGs-yp-OXU" userLabel="First Responder" sceneMemberID="firstResponder"/>

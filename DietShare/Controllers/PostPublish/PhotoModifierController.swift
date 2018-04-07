@@ -9,8 +9,8 @@ import UIKit
 import DKImagePickerController
 
 protocol PhotoModifierDelegate: class {
-    func importImagesForLayout(images: [UIImage])
-    func getLayoutImageCount() -> Int
+    func importImagesForLayout(images: [UIImage], layoutIndex: Int)
+    func getLayoutImageCount(index: Int) -> Int
 }
 
 enum PhotoOptionType: Int {
@@ -22,6 +22,7 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
     @IBOutlet weak private var canvas: UIImageView!
+    @IBOutlet weak private var spacingConstraint: NSLayoutConstraint!
 
     var originalPhoto = UIImage(named: "food-example-1")
     private let photoOptionCellIdentifier = "PhotoOptionCell"
@@ -29,12 +30,13 @@ class PhotoModifierController: UIViewController {
     private let context = CIContext()
     private var stickerIcons = [UIImage?]()
     private var layoutIcons = [UIImage?]()
-    private var filters = [String]()
+    private var filters = [(String, String)]()
     private let storedLayout = StoredLayout.shared
     private var selectedImages: [UIImage]?
     private var selectedLayoutIndex: Int = -1
     private var selectedFilterIndex: Int = -1
     private var movingImageView: UIView?
+    private let optionCellMaxHeight: CGFloat = 100
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,20 +49,27 @@ class PhotoModifierController: UIViewController {
             stickerIcons.append(UIImage(named: "sticker-\(i)"))
         }
         filters = [
-            "No Filter",
-            "CIPhotoEffectChrome",
-            "CIPhotoEffectFade",
-            "CIPhotoEffectInstant",
-            "CIPhotoEffectMono",
-            "CIPhotoEffectNoir",
-            "CIPhotoEffectProcess",
-            "CIPhotoEffectTonal",
-            "CIPhotoEffectTransfer",
-            "CILinearToSRGBToneCurve",
-            "CISRGBToneCurveToLinear"
+            ("Normal", "No Filter"),
+            ("Chrome", "CIPhotoEffectChrome"),
+            ("Fade", "CIPhotoEffectFade"),
+            ("Instant", "CIPhotoEffectInstant"),
+            ("Mono", "CIPhotoEffectMono"),
+            ("Noir", "CIPhotoEffectNoir"),
+            ("Process", "CIPhotoEffectProcess"),
+            ("Tonal", "CIPhotoEffectTonal"),
+            ("Transfer", "CIPhotoEffectTransfer"),
+            ("Tone", "CILinearToSRGBToneCurve"),
+            ("Linear", "CISRGBToneCurveToLinear")
         ]
 
         layoutIcons = storedLayout.storedLayoutList.map { $0.iconImage }
+    }
+
+    override func viewWillLayoutSubviews() {
+        if photoOptionCollectionView.bounds.height < optionCellMaxHeight {
+            spacingConstraint.constant = 0
+            photoOptionCollectionView.reloadData()
+        }
     }
 
     private func setUpUI() {
@@ -94,17 +103,13 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onLayoutSelected(index: Int) {
-        let curIndexPath = IndexPath(item: index, section: 0)
-        let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)
-        updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
-
-        selectedLayoutIndex = index
         guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
             print("error when showing layout photo selector")
             return
         }
 
         photoSelector.delegate = self
+        photoSelector.layoutIndex = index
         navigationController?.present(photoSelector, animated: true, completion: nil)
     }
 
@@ -115,7 +120,7 @@ class PhotoModifierController: UIViewController {
 
         selectedFilterIndex = index
         if index > 0 {
-            let filterName = filters[selectedFilterIndex]
+            let filterName = filters[selectedFilterIndex].1
             canvas.image = getFilteredImage(filter: filterName)
         }
     }
@@ -159,6 +164,7 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
         }
 
         var optionImage: UIImage?
+        var labelText: String?
 
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
@@ -167,12 +173,14 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             optionImage = layoutIcons[indexPath.item]
             photoOptionCell.isSelected = indexPath.item == selectedLayoutIndex
         case PhotoOptionType.filter.rawValue:
-            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item]) : originalPhoto
+            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item].1) : originalPhoto
             photoOptionCell.isSelected = indexPath.item == selectedFilterIndex
+            labelText = filters[indexPath.item].0
         default:
             return cell
         }
 
+        photoOptionCell.setLabelText(labelText)
         if let optionImage = optionImage {
             photoOptionCell.setOptionImage(optionImage)
         } else {
@@ -214,9 +222,9 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize: CGFloat = 100
-        let size = min(maxSize, photoOptionCollectionView.frame.height)
-        return CGSize(width: size, height: size)
+        let inset: CGFloat = 20
+        let size = min(optionCellMaxHeight, photoOptionCollectionView.frame.height - inset)
+        return CGSize(width: size, height: size + inset)
     }
 }
 
@@ -306,16 +314,22 @@ extension PhotoModifierController {
 }
 
 extension PhotoModifierController: PhotoModifierDelegate {
-    func importImagesForLayout(images: [UIImage]) {
-        selectedImages = images
-        applyLayout()
-    }
-
-    func getLayoutImageCount() -> Int {
-        if let layout = storedLayout.get(selectedLayoutIndex) {
-            return layout.count
+    func getLayoutImageCount(index: Int) -> Int {
+        if let count = storedLayout.get(index)?.count {
+            return count
         } else {
             return 0
         }
+    }
+
+    func importImagesForLayout(images: [UIImage], layoutIndex: Int) {
+        selectedImages = images
+        selectedLayoutIndex = layoutIndex
+        let curIndexPath = IndexPath(item: layoutIndex, section: 0)
+        let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)
+        selectedLayoutIndex = layoutIndex
+
+        updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
+        applyLayout()
     }
 }

@@ -10,15 +10,16 @@ import UIKit
 
 class PhotoOptionCell: UICollectionViewCell {
     @IBOutlet weak private var optionImage: UIImageView!
+    @IBOutlet weak private var label: UILabel!
     private var checkView = UIImageView(image: UIImage(named: "checked"))
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        let inset: CGFloat = 5
-        let size = optionImage.bounds.width - inset
-        checkView.frame = CGRect(x: 0, y: 0, width: size, height: size)
-        checkView.contentMode = .bottomRight
+
+        let inset: CGFloat = 20
+        let size = optionImage.bounds.width
+        checkView.frame = CGRect(x: 0, y: 0, width: size, height: size - inset)
+        checkView.contentMode = .center
         checkView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         checkView.backgroundColor = UIColor.clear
         checkView.isHidden = true
@@ -35,6 +36,10 @@ class PhotoOptionCell: UICollectionViewCell {
                 checkView.isHidden = true
             }
         }
+    }
+
+    func setLabelText(_ text: String?) {
+        label.text = text
     }
 
     func setOptionImage(_ image: UIImage) {

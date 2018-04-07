@@ -17,6 +17,7 @@ class LayoutPhotoSelectorController: UIViewController {
     @IBOutlet weak private var previewCollectionView: UICollectionView!
 
     weak var delegate: PhotoModifierDelegate?
+    var layoutIndex: Int?
     private let pickerController = DKImagePickerController()
     private let previewCellIdentifier = "LayoutPhotoPreviewCell"
     private var selectedImages = [UIImage]()
@@ -46,7 +47,8 @@ class LayoutPhotoSelectorController: UIViewController {
     }
 
     private func setUpUI() {
-        if let count = delegate?.getLayoutImageCount() {
+        if let index = layoutIndex,
+            let count = delegate?.getLayoutImageCount(index: index) {
             numeberOfImagesAllowed = count
         } else {
             numeberOfImagesAllowed = 0
@@ -91,7 +93,7 @@ class LayoutPhotoSelectorController: UIViewController {
     }
 
     @IBAction func onNextButtonPressed(_ sender: Any) {
-        delegate?.importImagesForLayout(images: selectedImages)
+        delegate?.importImagesForLayout(images: selectedImages, layoutIndex: layoutIndex ?? -1)
         dismiss(animated: true, completion: nil)
     }
 }
