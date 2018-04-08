@@ -191,21 +191,33 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3uq-pi-dK4">
                                         <rect key="frame" x="0.0" y="519" width="375" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHH-cX-XAM">
-                                                <rect key="frame" x="8" y="0.0" width="174" height="30"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PkF-nN-0rU">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="rWc-0o-HqG"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Comments"/>
+                                                    <segment title="Likes"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="onSegmentSelected:" destination="nn5-YY-fWS" eventType="valueChanged" id="zY4-um-3O7"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vai-Y3-WDi">
+                                                <rect key="frame" x="0.0" y="25" width="94" height="3"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Comment"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhD-xG-qgr">
-                                                <rect key="frame" x="193" y="0.0" width="174" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Like"/>
-                                            </button>
+                                                <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PkF-nN-0rU" secondAttribute="trailing" id="0UU-kF-q6J"/>
                                             <constraint firstAttribute="height" constant="30" id="8jR-5D-1W7"/>
+                                            <constraint firstAttribute="bottom" secondItem="PkF-nN-0rU" secondAttribute="bottom" constant="2" id="AjC-Iu-CYc"/>
                                             <constraint firstAttribute="width" constant="375" id="Gyx-uM-Afa"/>
+                                            <constraint firstItem="PkF-nN-0rU" firstAttribute="leading" secondItem="3uq-pi-dK4" secondAttribute="leading" id="JSg-Qi-lzl"/>
+                                            <constraint firstItem="PkF-nN-0rU" firstAttribute="top" secondItem="3uq-pi-dK4" secondAttribute="top" id="Mko-r9-77k"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1O-Kp-T37">
@@ -252,7 +264,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EF1-eF-bQ5">
-                                                                    <rect key="frame" x="59" y="46" width="302" height="76.5"/>
+                                                                    <rect key="frame" x="59" y="46" width="302" height="77"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="302" id="7zv-f2-lTA"/>
                                                                     </constraints>
@@ -338,8 +350,10 @@
                     </view>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
-                        <outlet property="commentsTable" destination="UVZ-R0-S3y" id="uxL-lt-clU"/>
-                        <outlet property="postCell" destination="IvN-de-nks" id="bHM-Om-bYA"/>
+                        <outlet property="commentsTable" destination="UVZ-R0-S3y" id="dtx-e3-Evs"/>
+                        <outlet property="postCell" destination="IvN-de-nks" id="cSl-R5-9Nw"/>
+                        <outlet property="segmentBar" destination="Vai-Y3-WDi" id="Ufq-eG-ZwJ"/>
+                        <outlet property="segmentedControl" destination="PkF-nN-0rU" id="CDu-1r-q1p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFb-Jk-EjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
