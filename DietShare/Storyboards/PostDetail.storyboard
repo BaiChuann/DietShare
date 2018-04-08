@@ -279,9 +279,7 @@
                                                                 <constraint firstItem="jdC-0Q-4EY" firstAttribute="top" secondItem="egc-SK-gXx" secondAttribute="top" constant="8" id="CAR-IT-fkm"/>
                                                                 <constraint firstAttribute="trailing" secondItem="EF1-eF-bQ5" secondAttribute="trailing" constant="14" id="I9R-2j-aqH"/>
                                                                 <constraint firstItem="EF1-eF-bQ5" firstAttribute="top" secondItem="lOW-Ob-2MP" secondAttribute="bottom" constant="3" id="IOv-S3-VLJ"/>
-                                                                <constraint firstItem="EF1-eF-bQ5" firstAttribute="top" secondItem="lOW-Ob-2MP" secondAttribute="bottom" constant="3" id="IWF-Yd-9Sr"/>
                                                                 <constraint firstAttribute="bottom" secondItem="EF1-eF-bQ5" secondAttribute="bottom" constant="16" id="JrV-1h-p8p"/>
-                                                                <constraint firstItem="eBv-Uf-LO7" firstAttribute="leading" secondItem="jdC-0Q-4EY" secondAttribute="trailing" constant="8" id="KUf-0l-gzd"/>
                                                                 <constraint firstItem="jdC-0Q-4EY" firstAttribute="leading" secondItem="egc-SK-gXx" secondAttribute="leading" constant="16" id="SaC-Bi-w0p"/>
                                                                 <constraint firstItem="lOW-Ob-2MP" firstAttribute="top" secondItem="eBv-Uf-LO7" secondAttribute="bottom" constant="3" id="WHA-ew-eQi"/>
                                                                 <constraint firstItem="lOW-Ob-2MP" firstAttribute="top" secondItem="eBv-Uf-LO7" secondAttribute="bottom" constant="3" id="joe-6b-cxh"/>
@@ -294,6 +292,44 @@
                                                             <outlet property="time" destination="lOW-Ob-2MP" id="UmU-Ka-BhT"/>
                                                             <outlet property="userName" destination="eBv-Uf-LO7" id="oEt-6Q-uGp"/>
                                                             <outlet property="userPhoto" destination="jdC-0Q-4EY" id="bY1-Hh-ICT"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="likeCell" id="dgW-Mn-T39" customClass="LikeCell" customModule="DietShare" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="167" width="375" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dgW-Mn-T39" id="eb3-y4-9EQ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iar-Hf-awf">
+                                                                    <rect key="frame" x="15" y="8" width="35" height="35"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="35" id="D9H-hQ-8OG"/>
+                                                                        <constraint firstAttribute="height" constant="35" id="KJo-0c-dPf"/>
+                                                                        <constraint firstAttribute="width" secondItem="Iar-Hf-awf" secondAttribute="height" multiplier="1:1" id="bOu-0e-3pn"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nza-qj-8um">
+                                                                    <rect key="frame" x="58" y="11" width="302" height="19"/>
+                                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="Iar-Hf-awf" secondAttribute="bottom" constant="8" id="3LY-x7-PVA"/>
+                                                                <constraint firstItem="nza-qj-8um" firstAttribute="top" secondItem="eb3-y4-9EQ" secondAttribute="top" constant="11" id="OEy-oR-gi8"/>
+                                                                <constraint firstItem="nza-qj-8um" firstAttribute="leading" secondItem="Iar-Hf-awf" secondAttribute="trailing" constant="8" id="Sdf-Dv-VjX"/>
+                                                                <constraint firstItem="Iar-Hf-awf" firstAttribute="top" secondItem="eb3-y4-9EQ" secondAttribute="top" constant="8" id="TVo-8R-RnW"/>
+                                                                <constraint firstItem="Iar-Hf-awf" firstAttribute="leading" secondItem="eb3-y4-9EQ" secondAttribute="leading" constant="15" id="UFb-6o-uhT"/>
+                                                                <constraint firstAttribute="bottom" secondItem="nza-qj-8um" secondAttribute="bottom" constant="13.5" id="VFG-gN-A5M"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Iar-Hf-awf" secondAttribute="trailing" constant="325" id="gdx-h0-eUe"/>
+                                                                <constraint firstAttribute="trailing" secondItem="nza-qj-8um" secondAttribute="trailing" constant="15" id="vkd-og-la8"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="userName" destination="nza-qj-8um" id="3rN-Ri-DyP"/>
+                                                            <outlet property="userPhoto" destination="Iar-Hf-awf" id="6Mx-sI-HFN"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

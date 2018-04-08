@@ -52,10 +52,14 @@ class PostDetailController: UIViewController {
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
             }
+            commentsTable.reloadData()
+            commentsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
         case 1:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * 5
             }
+            commentsTable.reloadData()
+            commentsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
             
         default:
             break
@@ -69,13 +73,24 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentCell  else {
-            fatalError("The dequeued cell is not an instance of PostCell.")
+        if segmentedControl.selectedSegmentIndex == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentCell  else {
+                fatalError("The dequeued cell is not an instance of PostCell.")
+            }
+            let comment = Comment(userId: "1", parentId: "1", content: "this is an example of comment", time: Date())
+            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
+            cell.setComment(user: user, comment: comment)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as? LikeCell  else {
+                fatalError("The dequeued cell is not an instance of PostCell.")
+            }
+            
+            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
+            cell.setUser(user)
+            return cell
         }
-        let comment = Comment(userId: "1", parentId: "1", content: "this is an example of comment", time: Date())
-        let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
-        cell.setComment(user: user, comment: comment)
-        return cell
+        
     }
 }
 

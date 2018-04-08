@@ -8,9 +8,13 @@
 
 import UIKit
 
-class LikeCell: UICollectionViewCell {
+class LikeCell: UITableViewCell {
+   
     @IBOutlet weak private var userPhoto: UIImageView!
-    func setPhoto(_ photo: UIImage) {
-        userPhoto.image = photo
+
+    @IBOutlet weak private var userName: UILabel!
+    func setUser(_ user: User) {
+        userPhoto.image = user.getPhoto()
+        userName.text = user.getName()
     }
 }

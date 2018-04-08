@@ -14,8 +14,6 @@
 		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
 		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
 		3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
-		3B1F3CDE2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
-		3B1F3CDF2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
 		3B1F3CE1207908340012D87C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CE0207908340012D87C /* CommentCell.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
@@ -230,6 +228,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B177CBC207A7C8800E000DA /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				F2E373C920716BF20000F707 /* PostCell.swift */,
+				3B1F3CDC2078FE950012D87C /* LikeCell.swift */,
+				3B1F3CE0207908340012D87C /* CommentCell.swift */,
+				F2E373BE20716BF10000F707 /* PostCell.xib */,
+				F2E373C820716BF20000F707 /* TopicCell.swift */,
+				F2E373C220716BF20000F707 /* TopicCell.xib */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		B4D17446E75367AEC9130823 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,13 +334,8 @@
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B177CBC207A7C8800E000DA /* Post */,
 				B5CBA16D206A3F3800BC8005 /* Discovery */,
-				F2E373C920716BF20000F707 /* PostCell.swift */,
-				3B1F3CDC2078FE950012D87C /* LikeCell.swift */,
-				3B1F3CE0207908340012D87C /* CommentCell.swift */,
-				F2E373BE20716BF10000F707 /* PostCell.xib */,
-				F2E373C820716BF20000F707 /* TopicCell.swift */,
-				F2E373C220716BF20000F707 /* TopicCell.xib */,
 				F27985DC206F9DE300977F5D /* LayoutPhotoSelectorCell.swift */,
 				F27985DB206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift */,
 				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
@@ -785,7 +791,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
-				3B1F3CDE2078FE950012D87C /* LikeCell.swift in Sources */,
 				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,7 +799,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B1F3CDF2078FE950012D87C /* LikeCell.swift in Sources */,
 				F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

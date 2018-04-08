@@ -13,6 +13,7 @@ class HomeController: UIViewController {
     @IBOutlet weak private var postsArea: UIView!
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var segmentBar: UIView!
+    private var postsTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = false
@@ -20,7 +21,7 @@ class HomeController: UIViewController {
         postsTableController = PostsTableController()
         postsTableController.setParentController(self)
         postsTableController.retrieveFollowingPosts()
-        let postsTable = postsTableController.getTable()
+        postsTable = postsTableController.getTable()
         postsTable.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTable)
         segmentedControl.backgroundColor = .clear
@@ -38,10 +39,12 @@ class HomeController: UIViewController {
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
             }
+            postsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
         case 1:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * 5
             }
+            postsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
             
         default:
             break
