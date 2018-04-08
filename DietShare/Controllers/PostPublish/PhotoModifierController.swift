@@ -24,12 +24,12 @@ class PhotoModifierController: UIViewController {
     private var stickers = [UIImage?]()
     private var layout = [UIImage?]()
     private let storedLayout = StoredLayout.shared
+    private let storedSticker = StoredSticker.shared
 
     var foodImage: UIImage?
     var selectedImages: [UIImage]?
     var selectedLayoutType: Int?
-    var selectedLayout: CollageLayout?
-
+    
     var movingImageView: UIView?
 
     override func viewDidLoad() {
@@ -39,11 +39,12 @@ class PhotoModifierController: UIViewController {
 
         // prepare for data for stickers and layout
         for i in 1...5 {
-            stickers.append(UIImage(named: "sticker-\(i)"))
+            //stickers.append(UIImage(named: "sticker-\(i)"))
             //layout.append(UIImage(named: "layout-\(i)"))
         }
-        
+
         layout = storedLayout.storedLayoutList.map { $0.iconImage }
+        stickers = storedSticker.storedLayoutList.map { $0.iconImage }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -90,6 +91,13 @@ class PhotoModifierController: UIViewController {
         navigationController?.present(photoSelector, animated: true, completion: nil)*/
 
         self.performSegue(withIdentifier: "toLayoutSelection", sender: nil)
+    }
+    
+    private func onStickerSelected(index: Int) {
+        
+        print("selected sticker \(index)")
+        reset()
+        applySticker(index: index)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,6 +156,7 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
         print("selected item \(indexPath.item)")
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
+            onStickerSelected(index: indexPath.item)
             return
         case PhotoOptionType.layout.rawValue:
             onLayoutSelected(index: indexPath.item)
@@ -239,5 +248,89 @@ extension PhotoModifierController {
         let imageView = UIImageView(frame: fittedFrame)
         imageView.image = image
         return imageView
+    }
+}
+
+extension PhotoModifierController {
+    private func applySticker(index: Int) {
+        /*guard let selectedImages = selectedImages else {
+            return
+        }*/
+        guard let sticker = storedSticker.get(index) else {
+            return
+        }
+        let imageFrame = sticker.getImageFrame(frame: canvas.frame)
+        let stickerImageLayer = UIImageView(frame: imageFrame)
+        stickerImageLayer.clipsToBounds = true
+        
+        foodImage = UIImage(named: "food-example-1") /* this line is for testing purpose*/
+        let imageView = getFittedImageView(image: foodImage!, frame: imageFrame)
+
+        stickerImageLayer.addSubview(imageView)
+        canvas.superview?.addSubview(stickerImageLayer)
+        
+        let stickerLayer = UIImageView(frame: canvas.frame)
+        stickerLayer.image = sticker.stickerImage
+        canvas.superview?.addSubview(stickerLayer)
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleStickerPan(sender:)))
+        canvas.superview?.addGestureRecognizer(panGestureRecognizer)
+        /*let imageViews = layout.getLayoutViews(frame: canvas.frame)
+        zip(imageViews, selectedImages).forEach { imageView, selectedImage in
+            imageView.clipsToBounds = true
+            let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
+            imageView.addSubview(subImageView)
+            canvas.superview?.addSubview(imageView)
+        }
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
+        canvas.superview?.addGestureRecognizer(panGestureRecognizer)*/
+    }
+    
+    @objc private func handleStickerPan(sender: UIPanGestureRecognizer) {
+        let superView = canvas.superview
+        if sender.state == .began {
+            let location = sender.location(in: superView)
+            movingImageView = superView?.subviews.first {
+                $0.frame.contains(location) && $0 !== canvas && !$0.subviews.isEmpty
+                }?.subviews.first
+        } else if sender.state == .changed {
+            guard let movingImageView = movingImageView,
+                let displayView = movingImageView.superview else {
+                    return
+            }
+            let translation = sender.translation(in: superView)
+            sender.setTranslation(CGPoint.zero, in: superView)
+            var changeInX: CGFloat = 0
+            var changeInY: CGFloat = 0
+            if translation.x > 0 {
+                changeInX = translation.x + movingImageView.frame.minX > 0 ?
+                    -movingImageView.frame.minX :
+                    translation.x
+            } else {
+                changeInX = translation.x + movingImageView.frame.maxX < displayView.frame.width ?
+                    displayView.frame.width - movingImageView.frame.maxX :
+                    translation.x
+            }
+            if translation.y > 0 {
+                changeInY = translation.y + movingImageView.frame.minY > 0 ?
+                    -movingImageView.frame.minY :
+                    translation.y
+            } else {
+                changeInY = translation.y + movingImageView.frame.maxY < displayView.frame.height ?
+                    displayView.frame.height - movingImageView.frame.maxY :
+                    translation.y
+            }
+            let newFrame = movingImageView.frame.offsetBy(dx: changeInX, dy: changeInY)
+            movingImageView.frame = newFrame
+        } else if sender.state == .ended {
+            print("ended")
+            movingImageView = nil
+        }
+    }
+
+    private func reset() {
+        let superView = canvas.superview
+        superView?.subviews.filter { $0 !== canvas }.forEach { $0.removeFromSuperview() }
+        superView?.gestureRecognizers?.forEach { superView?.removeGestureRecognizer($0) }
     }
 }

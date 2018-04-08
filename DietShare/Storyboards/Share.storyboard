@@ -68,10 +68,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="142" height="158"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yme-lv-Pz2">
-                                                            <rect key="frame" x="0.0" y="-0.6666666666666714" width="142" height="158.33333333333337"/>
+                                                            <rect key="frame" x="0.0" y="-0.5" width="142" height="158"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0I-Y3-U07">
-                                                            <rect key="frame" x="10" y="67" width="122" height="24.333333333333329"/>
+                                                            <rect key="frame" x="10" y="67" width="122" height="24.5"/>
                                                             <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't find your food?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StA-ZC-k5K">
-                                <rect key="frame" x="131" y="622.66666666666663" width="152.33333333333337" height="17.333333333333371"/>
+                                <rect key="frame" x="131" y="622.66666666666663" width="152" height="17.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                                 <color key="textColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -457,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGs-yp-OXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2404" y="2640"/>
+            <point key="canvasLocation" x="2402.898550724638" y="2639.6739130434785"/>
         </scene>
         <!--Layout Photo Selector Controller-->
         <scene sceneID="0ef-3u-jgE">
