@@ -20,9 +20,9 @@ class StoredLayout {
         let storedLayoutZero = CollageLayout(icon: iconZero, format: formatZero)
         storedLayout.append(storedLayoutZero)
         
-        let formatOne = [CGRect(x: 0.0, y: 0.0, width: 1.0, height: 0.35),
-                                 CGRect(x: 0.0, y: 0.35, width: 0.5, height: 0.65),
-                                 CGRect(x: 0.5, y: 0.35, width: 0.5, height: 0.65)]
+        let formatOne = [CGRect(x: 0.0, y: 0.0, width: 1.0, height: 0.3333),
+                                 CGRect(x: 0.0, y: 0.3333, width: 1, height: 0.3334),
+                                 CGRect(x: 0.0, y: 0.6667, width: 1, height: 0.3333)]
         let iconOne: UIImage? = UIImage(named: "layout-2")
         let storedLayoutOne = CollageLayout(icon: iconOne, format: formatOne)
         storedLayout.append(storedLayoutOne)
