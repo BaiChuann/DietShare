@@ -11,9 +11,9 @@ import UIKit
 
 struct CollageLayout {
 
-    private var icon: UIImage?
-    private var numberOfImages: Int
-    private var format: [CGRect]
+    private let icon: UIImage?
+    private let numberOfImages: Int
+    private let format: [CGRect]
 
     init(icon: UIImage?, format: [CGRect]) {
         self.icon = icon

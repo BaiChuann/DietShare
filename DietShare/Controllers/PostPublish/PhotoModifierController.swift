@@ -4,6 +4,8 @@
 //
 //  Created by Fan Weiguang on 24/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
+// swiftlint:disable implicitly_unwrapped_optional force_unwrapping
+
 
 import UIKit
 import DKImagePickerController
@@ -31,11 +33,27 @@ class PhotoModifierController: UIViewController {
     private var stickerIcons = [UIImage?]()
     private var layoutIcons = [UIImage?]()
     private var filters = [(String, String)]()
+
     private let storedLayout = StoredLayout.shared
+    private let storedSticker = StoredSticker.shared
+
+    private let tolerance: CGFloat = CGFloat(0.000_1)
+    private let swappingAlpha: CGFloat = 0.6
+    private let stickerTag = 99
+    private let collageTag = 100
+
     private var selectedImages: [UIImage]?
+
+    private var layoutPanGestureRecognizer: UIPanGestureRecognizer!
+    private var stickerPanGestureRecognizer: UIPanGestureRecognizer!
+    private var layoutLongPressGestureRecognizer: UILongPressGestureRecognizer!
+
+    private var movingImageView: UIView?
+    private var swappedImageView: UIView?
+
     private var selectedLayoutIndex: Int = -1
     private var selectedFilterIndex: Int = -1
-    private var movingImageView: UIView?
+
     private let optionCellMaxHeight: CGFloat = 100
 
     override func viewDidLoad() {
@@ -43,26 +61,27 @@ class PhotoModifierController: UIViewController {
 
         canvas.image = originalPhoto
         setUpUI()
+        setUpGestureRecogizer()
+        setUpData()
 
-        // prepare for data for stickers and layout
-        for i in 1...5 {
-            stickerIcons.append(UIImage(named: "sticker-\(i)"))
-        }
         filters = [
-            ("Normal", "No Filter"),
-            ("Chrome", "CIPhotoEffectChrome"),
-            ("Fade", "CIPhotoEffectFade"),
-            ("Instant", "CIPhotoEffectInstant"),
-            ("Mono", "CIPhotoEffectMono"),
-            ("Noir", "CIPhotoEffectNoir"),
-            ("Process", "CIPhotoEffectProcess"),
-            ("Tonal", "CIPhotoEffectTonal"),
-            ("Transfer", "CIPhotoEffectTransfer"),
-            ("Tone", "CILinearToSRGBToneCurve"),
-            ("Linear", "CISRGBToneCurveToLinear")
+        ("Normal", "No Filter"),
+        ("Chrome", "CIPhotoEffectChrome"),
+        ("Fade", "CIPhotoEffectFade"),
+        ("Instant", "CIPhotoEffectInstant"),
+        ("Mono", "CIPhotoEffectMono"),
+        ("Noir", "CIPhotoEffectNoir"),
+        ("Process", "CIPhotoEffectProcess"),
+        ("Tonal", "CIPhotoEffectTonal"),
+        ("Transfer", "CIPhotoEffectTransfer"),
+        ("Tone", "CILinearToSRGBToneCurve"),
+        ("Linear", "CISRGBToneCurveToLinear")
         ]
+    }
 
-        layoutIcons = storedLayout.storedLayoutList.map { $0.iconImage }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        applyLayout()
     }
 
     override func viewWillLayoutSubviews() {
@@ -93,6 +112,28 @@ class PhotoModifierController: UIViewController {
         }
     }
 
+    private func setUpGestureRecogizer() {
+        layoutPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleLayoutPan(sender:)))
+        layoutPanGestureRecognizer.maximumNumberOfTouches = 1
+        layoutPanGestureRecognizer.isEnabled = false
+        canvas.superview?.addGestureRecognizer(layoutPanGestureRecognizer)
+
+        stickerPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleStickerPan(sender:)))
+        stickerPanGestureRecognizer.maximumNumberOfTouches = 1
+        stickerPanGestureRecognizer.isEnabled = false
+        canvas.superview?.addGestureRecognizer(stickerPanGestureRecognizer)
+
+        layoutLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        layoutLongPressGestureRecognizer.isEnabled = false
+        layoutLongPressGestureRecognizer.minimumPressDuration = 0.5
+        canvas.superview?.addGestureRecognizer(layoutLongPressGestureRecognizer)
+    }
+
+    private func setUpData() {
+        layoutIcons = storedLayout.storedLayoutList.map { $0.iconImage }
+        stickerIcons = storedSticker.storedLayoutList.map { $0.iconImage }
+    }
+
     @objc
     func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         UIView.animate(withDuration: 0.3) {
@@ -103,6 +144,7 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onLayoutSelected(index: Int) {
+
         guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
             print("error when showing layout photo selector")
             return
@@ -111,6 +153,12 @@ class PhotoModifierController: UIViewController {
         photoSelector.delegate = self
         photoSelector.layoutIndex = index
         navigationController?.present(photoSelector, animated: true, completion: nil)
+    }
+
+    private func onStickerSelected(index: Int) {
+        print("selected sticker \(index)")
+        reset()
+        applySticker(index: index)
     }
 
     private func onFilterSelected(index: Int) {
@@ -152,6 +200,13 @@ class PhotoModifierController: UIViewController {
         }
 
         return UIImage(cgImage: outputCGImage)
+    }
+
+    private func reset() {
+        let superView = canvas.superview
+        superView?.subviews.filter { $0.tag == collageTag || $0.tag == stickerTag }
+            .forEach { $0.removeFromSuperview() }
+        superView?.gestureRecognizers?.forEach { $0.isEnabled = false }
     }
 }
 
@@ -211,6 +266,7 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
         print("selected item \(indexPath.item)")
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
+            onStickerSelected(index: indexPath.item)
             return
         case PhotoOptionType.layout.rawValue:
             onLayoutSelected(index: indexPath.item)
@@ -228,71 +284,59 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
+/// Extension for layout and stickre
 extension PhotoModifierController {
+
+    // Apply layout selected
     private func applyLayout() {
+        reset()
         guard let selectedImages = selectedImages, let layout = storedLayout.get(selectedLayoutIndex) else {
             return
         }
 
         let imageViews = layout.getLayoutViews(frame: canvas.frame)
         zip(imageViews, selectedImages).forEach { imageView, selectedImage in
-            imageView.clipsToBounds = true
-            let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
-            imageView.addSubview(subImageView)
-            canvas.superview?.addSubview(imageView)
+            addImageAsSubview(image: selectedImage, container: imageView)
         }
 
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
-        canvas.superview?.addGestureRecognizer(panGestureRecognizer)
+        layoutPanGestureRecognizer.isEnabled = true
+        layoutLongPressGestureRecognizer.isEnabled = false
     }
 
-    // need to refactor
-    // TODO: add swapping image
-    @objc
-    private func handlePan(sender: UIPanGestureRecognizer) {
-        let superView = canvas.superview
-        if sender.state == .began {
-            let location = sender.location(in: superView)
-            let movingView = superView?.subviews.first {
-                $0.frame.contains(location) && $0 !== canvas
-                }?.subviews.first
-            movingImageView = movingView
-            print(movingImageView?.frame ?? "Empty moving image view")
-        } else if sender.state == .changed {
-            guard let movingImageView = movingImageView,
-                let displayView = movingImageView.superview else {
-                    return
-            }
-            let translation = sender.translation(in: superView)
-            sender.setTranslation(CGPoint.zero, in: superView)
-            var changeInX: CGFloat = 0
-            var changeInY: CGFloat = 0
-            if translation.x > 0 {
-                changeInX = translation.x + movingImageView.frame.minX > 0 ?
-                    -movingImageView.frame.minX :
-                    translation.x
-            } else {
-                changeInX = translation.x + movingImageView.frame.maxX < displayView.frame.width ?
-                    displayView.frame.width - movingImageView.frame.maxX :
-                    translation.x
-            }
-            if translation.y > 0 {
-                changeInY = translation.y + movingImageView.frame.minY > 0 ?
-                    -movingImageView.frame.minY :
-                    translation.y
-            } else {
-                changeInY = translation.y + movingImageView.frame.maxY < displayView.frame.height ?
-                    displayView.frame.height - movingImageView.frame.maxY :
-                    translation.y
-            }
-            let newFrame = movingImageView.frame.offsetBy(dx: changeInX, dy: changeInY)
-            movingImageView.frame = newFrame
-        } else if sender.state == .ended {
-            print("ended")
-            movingImageView = nil
+    // Apply sticker selected
+    private func applySticker(index: Int) {
+        guard let sticker = storedSticker.get(index) else {
+            return
+
         }
+        let imageFrame = sticker.getImageFrame(frame: canvas.frame)
+        let stickerImageLayer = UIImageView(frame: imageFrame)
+
+        addImageAsSubview(image: originalPhoto!, container: stickerImageLayer)
+        addStickerAsSubview(sticker: sticker)
+
+        stickerPanGestureRecognizer.isEnabled = true
     }
 
+    // Add sticker image as image subview
+    private func addStickerAsSubview(sticker: StickerLayout) {
+        let stickerLayer = UIImageView(frame: canvas.frame)
+        stickerLayer.image = sticker.stickerImage
+        stickerLayer.tag = stickerTag
+        canvas.superview?.addSubview(stickerLayer)
+    }
+
+    // Add image to the container as subview, as add container as subview
+    private func addImageAsSubview(image selectedImage: UIImage, container imageView: UIImageView) {
+        imageView.clipsToBounds = true
+        let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
+        imageView.addSubview(subImageView)
+        imageView.tag = collageTag
+        canvas.superview?.addSubview(imageView)
+    }
+
+    // Get a UIImageView with give image
+    // Its frame will be fitted and centralized to the given frame
     private func getFittedImageView(image: UIImage, frame: CGRect) -> UIImageView {
         let originalSize = image.size
         let frameAspect = frame.width / frame.height
@@ -310,6 +354,181 @@ extension PhotoModifierController {
         let imageView = UIImageView(frame: fittedFrame)
         imageView.image = image
         return imageView
+    }
+
+    // Set border for a view
+    private func setBorder(view: inout UIView?, width: CGFloat, color: UIColor) {
+        guard let view = view else {
+            return
+        }
+        view.layer.borderWidth = width
+        view.layer.borderColor = color.cgColor
+    }
+
+    // Unset border for a view
+    private func unsetBorder(view: inout UIView?) {
+        guard let view = view else {
+            return
+        }
+        view.layer.borderWidth = 0
+        view.layer.borderColor = nil
+    }
+}
+
+// Extension for handler of gestures
+extension PhotoModifierController {
+
+    @objc private func handleLayoutPan(sender: UIPanGestureRecognizer) {
+        let superView = canvas.superview
+        let location = sender.location(in: superView)
+
+        switch sender.state {
+        case .began:
+            movingImageView = getViewWithLocation(superView: superView, location: location)
+
+        case .changed:
+            guard let movingImageView = movingImageView,
+                let displayView = movingImageView.superview else {
+                    return
+            }
+
+            let translation = sender.translation(in: superView)
+            sender.setTranslation(CGPoint.zero, in: superView)
+
+            let currentView = getViewWithLocation(superView: superView, location: location)
+            var currentSuperview = currentView?.superview
+
+            guard swappedImageView == nil else {
+                var swappedSuperview = swappedImageView?.superview
+
+                if currentView === movingImageView {
+                    swappedImageView = nil
+                    unsetBorder(view: &swappedSuperview)
+                    movingImageView.alpha = 1
+                } else if currentView !== swappedImageView {
+                    unsetBorder(view: &swappedSuperview)
+                    swappedImageView = currentView
+                    setBorder(view: &currentSuperview, width: 3, color: .blue)
+                }
+                return
+            }
+
+            let change = getCalculatedChange(view: movingImageView, displayView: displayView, translation: translation)
+
+            if abs(change.x) < tolerance && abs(change.y) < tolerance,
+                currentView !== movingImageView {
+                swappedImageView = currentView
+                setBorder(view: &currentSuperview, width: 3, color: .blue)
+                movingImageView.alpha = swappingAlpha
+            }
+
+            let newFrame = movingImageView.frame.offsetBy(dx: change.x, dy: change.y)
+            movingImageView.frame = newFrame
+
+        case .ended:
+            if swappedImageView != nil {
+                var swappedSuperview = swappedImageView?.superview
+
+                movingImageView?.alpha = 1
+                swapImage(view1: movingImageView as! UIImageView,
+                          view2: swappedImageView as! UIImageView)
+                unsetBorder(view: &swappedSuperview)
+                print("swap")
+            }
+
+            swappedImageView = nil
+            movingImageView = nil
+
+        default:
+            return
+        }
+    }
+
+    @objc private func handleStickerPan(sender: UIPanGestureRecognizer) {
+        let superView = canvas.superview
+        let location = sender.location(in: superView)
+
+        switch sender.state {
+        case .began:
+            movingImageView = getViewWithLocation(superView: superView, location: location)
+
+        case .changed:
+            guard let movingImageView = movingImageView,
+                let displayView = movingImageView.superview else {
+                    return
+            }
+
+            let translation = sender.translation(in: superView)
+            sender.setTranslation(CGPoint.zero, in: superView)
+
+            let change = getCalculatedChange(view: movingImageView, displayView: displayView, translation: translation)
+            let newFrame = movingImageView.frame.offsetBy(dx: change.x, dy: change.y)
+            movingImageView.frame = newFrame
+
+        case .ended:
+            movingImageView = nil
+            swappedImageView = nil
+
+        default:
+            return
+        }
+    }
+
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+        // TODO: maybe add long press gesture to flip image
+    }
+}
+
+// Extension of helper function of gesture handlers
+extension PhotoModifierController {
+
+    // Get a view with a location
+    private func getViewWithLocation(superView: UIView?, location: CGPoint) -> UIView? {
+        return superView?.subviews.first { $0.tag == collageTag && $0.frame.contains(location) }?
+            .subviews.first
+    }
+
+    // Swap two images from two ImageViews, then scale them to fit
+    private func swapImage(view1: UIImageView, view2: UIImageView) {
+        guard let superView1 = view1.superview, let superView2 = view2.superview else {
+            return
+        }
+        guard let image1 = view1.image, let image2 = view2.image else {
+            return
+        }
+        view1.removeFromSuperview()
+        view2.removeFromSuperview()
+        let newView1 = getFittedImageView(image: image2, frame: superView1.frame)
+        let newView2 = getFittedImageView(image: image1, frame: superView2.frame)
+        superView1.addSubview(newView1)
+        superView2.addSubview(newView2)
+    }
+
+    // Calculate actual change should be applied on the view based on displayView
+    private func getCalculatedChange(view movingImageView: UIView,
+                                     displayView: UIView,
+                                     translation: CGPoint) -> (x: CGFloat, y: CGFloat) {
+        var changeInX: CGFloat = 0
+        var changeInY: CGFloat = 0
+        if translation.x > 0 {
+            changeInX = translation.x + movingImageView.frame.minX > 0 ?
+                -movingImageView.frame.minX :
+                translation.x
+        } else {
+            changeInX = translation.x + movingImageView.frame.maxX < displayView.frame.width ?
+                displayView.frame.width - movingImageView.frame.maxX :
+                translation.x
+        }
+        if translation.y > 0 {
+            changeInY = translation.y + movingImageView.frame.minY > 0 ?
+                -movingImageView.frame.minY :
+                translation.y
+        } else {
+            changeInY = translation.y + movingImageView.frame.maxY < displayView.frame.height ?
+                displayView.frame.height - movingImageView.frame.maxY :
+                translation.y
+        }
+        return (changeInX, changeInY)
     }
 }
 

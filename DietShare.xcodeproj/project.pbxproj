@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
 		A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BD2CC207795C40010E154 /* CollageLayout.swift */; };
-		A47910DB20724EAB009A7EAB /* RecognitionRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47910DA20724EAB009A7EAB /* RecognitionRequester.swift */; };
+		A40BD2D220786DE40010E154 /* StickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BD2D120786DE40010E154 /* StickerLayout.swift */; };
+		A45839C920789FC6002B91D0 /* StoredSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45839C820789FC6002B91D0 /* StoredSticker.swift */; };
 		A48B91382073ADBF009FF8D0 /* StoredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48B91372073ADBF009FF8D0 /* StoredLayout.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
@@ -118,7 +119,8 @@
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
 		A40BD2CC207795C40010E154 /* CollageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
-		A47910DA20724EAB009A7EAB /* RecognitionRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionRequester.swift; sourceTree = "<group>"; };
+		A40BD2D120786DE40010E154 /* StickerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerLayout.swift; sourceTree = "<group>"; };
+		A45839C820789FC6002B91D0 /* StoredSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
 		A48B91372073ADBF009FF8D0 /* StoredLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				A40BD2CC207795C40010E154 /* CollageLayout.swift */,
+				A40BD2D120786DE40010E154 /* StickerLayout.swift */,
 			);
 			path = Publish;
 			sourceTree = "<group>";
@@ -318,8 +321,8 @@
 				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
 				F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */,
 				F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */,
-				A47910DA20724EAB009A7EAB /* RecognitionRequester.swift */,
 				A48B91372073ADBF009FF8D0 /* StoredLayout.swift */,
+				A45839C820789FC6002B91D0 /* StoredSticker.swift */,
 			);
 			path = PostPublish;
 			sourceTree = "<group>";
@@ -767,16 +770,17 @@
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
+				A45839C920789FC6002B91D0 /* StoredSticker.swift in Sources */,
 				F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				F27985DD206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
-				A47910DB20724EAB009A7EAB /* RecognitionRequester.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
 				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
+				A40BD2D220786DE40010E154 /* StickerLayout.swift in Sources */,
 				F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */,
 				F2E373D620716BF20000F707 /* PostCell.swift in Sources */,
 			);
