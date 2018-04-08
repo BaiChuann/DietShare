@@ -11,17 +11,17 @@ import DKImagePickerController
 
 class LayoutPhotoSelectorController: UIViewController {
     @IBOutlet weak private var preview: UIView!
+    @IBOutlet weak private var imageCountLabel: UILabel!
     @IBOutlet weak private var backButton: UIButton!
     @IBOutlet weak private var nextButton: UIButton!
     @IBOutlet weak private var previewCollectionView: UICollectionView!
 
+    weak var delegate: PhotoModifierDelegate?
+    var layoutIndex: Int?
     private let pickerController = DKImagePickerController()
-    private let minNumberOfImages = 2
-    private let maxNumberOfImages = 4
     private let previewCellIdentifier = "LayoutPhotoPreviewCell"
     private var selectedImages = [UIImage]()
-    
-    var layoutType: Int? = nil
+    private var numeberOfImagesAllowed = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +47,20 @@ class LayoutPhotoSelectorController: UIViewController {
     }
 
     private func setUpUI() {
+        if let index = layoutIndex,
+            let count = delegate?.getLayoutImageCount(index: index) {
+            numeberOfImagesAllowed = count
+        } else {
+            numeberOfImagesAllowed = 0
+        }
+
         nextButton.layer.cornerRadius = Constants.cornerRadius
         pickerController.inline = true
         pickerController.sourceType = .photo
         pickerController.assetType = .allPhotos
         pickerController.UIDelegate = LayoutPhotoSelectorUIDelegate()
-        pickerController.maxSelectableCount = maxNumberOfImages
+        pickerController.maxSelectableCount = numeberOfImagesAllowed
+        imageCountLabel.text = "Choose \(numeberOfImagesAllowed) photos"
     }
 
     private func updateSelection() {
@@ -66,7 +74,7 @@ class LayoutPhotoSelectorController: UIViewController {
         }
         selectedImages = images
 
-        enableNextButton(shouldEnable: selectedImages.count > minNumberOfImages)
+        enableNextButton(shouldEnable: selectedImages.count == numeberOfImagesAllowed)
         previewCollectionView.reloadData()
     }
 
@@ -85,8 +93,8 @@ class LayoutPhotoSelectorController: UIViewController {
     }
 
     @IBAction func onNextButtonPressed(_ sender: Any) {
-        //dismiss(animated: true, completion: nil)
-        
+        delegate?.importImagesForLayout(images: selectedImages, layoutIndex: layoutIndex ?? -1)
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -115,17 +123,5 @@ extension LayoutPhotoSelectorController: UICollectionViewDelegate, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedImages.count
-    }
-}
-
-extension LayoutPhotoSelectorController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "nextLayoutSelection" {
-            if let toViewController = segue.destination as? PhotoModifierController {
-                toViewController.selectedImages = selectedImages
-                toViewController.selectedLayoutType = layoutType
-            }
-        }
     }
 }
