@@ -8,8 +8,9 @@
 
 import UIKit
 import ScrollingStackContainer
+import CoreLocation
 
-class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
     private var topicModel = TopicsModelManager<Topic>()
     private var restaurantModel = RestaurantsModelManager<Restaurant>()
@@ -67,15 +68,22 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let topicsList = self.topicModel.getFullTopicList()
-        self.currentTopic = topicsList[indexPath.item]
-        performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
+        if collectionView == topicList {
+            let topicsList = self.topicModel.getFullTopicList()
+            self.currentTopic = topicsList[indexPath.item]
+            performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
+        } else if collectionView == restaurantList {
+            let restuarantsList = self.restaurantModel.getFullRestaurantList(Sorting.byRating)
+            self.currentRestaurant = restuarantsList[indexPath.item]
+            performSegue(withIdentifier: Identifiers.discoveryToRestaurantPage, sender: self)
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+        scrollView.delegate = self
         
 //        PostManager.loadData()
 //        postsTableController = PostsTableController()
@@ -116,6 +124,26 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
             dest.currentUser = self.currentUser
         }
     }
+    
+    
+    /**
+     * View-related functions
+     */
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
+        }
+    }
+    
 }
 
 extension ShortListsViewController: StackContainable {

@@ -103,5 +103,6 @@ struct Constants {
     struct RestaurantPage {
         public static let numOfDisplayedUsers = 10
         public static let restaurantImageAlpha: CGFloat = 0.8
+        public static let longScrollViewHeight: CGFloat = 1400
     }
 }

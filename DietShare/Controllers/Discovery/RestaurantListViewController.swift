@@ -8,13 +8,18 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+import MapKit
 
-class RestaurantListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class RestaurantListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
     
     private var restaurantModel: RestaurantsModelManager<Restaurant>?
     private var selectedRestaurant: Restaurant?
     var currentUser: User?
     
+    private var locationManager = CLLocationManager()
+    private var currentLocation: CLLocation?
+
     private var currentSort = Sorting.byRating
     
     @IBOutlet weak var restaurantListView: UICollectionView!
@@ -38,9 +43,14 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
-            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsArray().count)
+            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsSet().count)
             // TODO - get current location
-            cell.setDistance(0)
+            if let location = self.currentLocation {
+                let distance = Int(location.distance(from: restaurantList[indexPath.item].getLocation()) / 1000)
+                cell.setDistance("\(distance) km")
+            } else {
+                cell.setDistance("unknown distance")
+            }
         }
         
         return cell
@@ -67,6 +77,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidAppear(animated)
         initUser()
         self.restaurantListView.reloadData()
+        requestCoreLocationPermission()
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,6 +107,49 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         self.ratingLogo.image = #imageLiteral(resourceName: "sort-normal")
         self.distanceLogo.image = #imageLiteral(resourceName: "sort-highlighted")
         restaurantListView.reloadData()
+    }
+    
+    
+    /**
+     * View-related functions
+     */
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
+        }
+    }
+    
+    
+    /**
+     * Utility functions
+     */
+    private func requestCoreLocationPermission() {
+        print("asking for location permission")
+        
+        self.locationManager.requestAlwaysAuthorization()
+        
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = manager.location
+//        self.restaurantListView.reloadData()
     }
     
     /**

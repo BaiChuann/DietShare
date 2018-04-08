@@ -22,7 +22,7 @@ class Restaurant: ReadOnlyRestaurant {
     private let address: String
     private let location: CLLocation
     private let phone: String
-    // TODO - change type to List (of type)
+    // TODO - Add Opening hours
     private let types: StringList
     private let description: String
     private let image: UIImage

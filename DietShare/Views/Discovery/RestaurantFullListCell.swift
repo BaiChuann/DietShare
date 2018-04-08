@@ -53,8 +53,8 @@ class RestaurantFullListCell: UICollectionViewCell {
         self.ratingNumber.text = "\(numOfRating) ratings"
     }
     
-    func setDistance(_ distance: Double) {
-        self.distance.text = "\(distance) km"
+    func setDistance(_ distance: String) {
+        self.distance.text = distance
     }
 }
 

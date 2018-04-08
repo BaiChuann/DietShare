@@ -18,6 +18,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     private var database: Connection!
     private let topicsTable = Table("topics")
+    private var IDList = [String]()
     
     // Columns of the topics table
     private let id = Expression<String>("id")
@@ -71,6 +72,29 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     func getTopics() -> SortedSet<Topic> {
         var topics = SortedSet<Topic>()
+//        let startTime = CFAbsoluteTime()
+//        let queue = DispatchQueue(label: "topicDbQueue", attributes: .concurrent)
+////        let dispatchGroup = DispatchGroup()
+//        for ID in IDList {
+////            dispatchGroup.enter()
+//            queue.sync { () -> Void in
+//                let row = self.topicsTable.filter(self.id == ID)
+//                do {
+//                    for topic in try self.database.prepare(row) {
+//                        let topicEntry = Topic(topic[self.id], topic[self.name], topic[self.image], topic[self.description], topic[self.followers], topic[self.posts])
+//                        topics.insert(topicEntry)
+//                        print("Topic inserted: \(ID) and topics set has \(topics.count) entries")
+//                    }
+//                } catch {
+//                    print("delete failed: \(error)")
+//                }
+//
+////                dispatchGroup.leave()
+//            }
+//        }
+//
+////        dispatchGroup.wait()
+//        print("time used to get topics: \(CFAbsoluteTime() - startTime)")
         do {
             for topic in try database.prepare(topicsTable) {
                 let topicEntry = Topic(topic[id], topic[name], topic[image], topic[description], topic[followers], topic[posts])
@@ -87,6 +111,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         do {
             print("current topic id is: \(newTopic.getID())")
             try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImage(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
+            self.IDList.append(newTopic.getID())
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
@@ -121,8 +146,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         } catch let error {
             print("update failed: \(error)")
         }
-        
-        return false;
+        return false
     }
     
     func deleteTopic(_ topicID: String) {
@@ -130,6 +154,9 @@ class TopicsLocalDataSource: TopicsDataSource {
         do {
             if try database.run(row.delete()) > 0 {
                 print("deleted the topic")
+                if let index = IDList.index(of: topicID) {
+                    IDList.remove(at: index)
+                }
             } else {
                 print("topic not found")
             }
@@ -141,8 +168,9 @@ class TopicsLocalDataSource: TopicsDataSource {
     func updateTopic(_ oldTopicID: String, _ newTopic: Topic) {
         let row = topicsTable.filter(id == oldTopicID)
         do {
-            if try database.run(row.update(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImage(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID())) > 0 {
+            if try database.run(row.update(name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImage(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID())) > 0 {
                 print("Old topic is updated")
+                
             } else {
                 print("Old topic not found")
             }

@@ -8,12 +8,13 @@
 
 import UIKit
 
-class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
     private var topic: Topic?
     private var userModel = UserModelManager.shared
     var currentUser: User?
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicName: UILabel!
     @IBOutlet weak var topicImage: UIImageView!
     @IBOutlet weak var topicDescription: UITextView!
@@ -24,6 +25,8 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 100)
+        scrollView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +91,21 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.followButton.tag = FollowStatus.notFollowed.rawValue
                 self.followButton.setTitle(Text.follow, for: .normal)
             }
+        }
+    }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
         }
     }
     
