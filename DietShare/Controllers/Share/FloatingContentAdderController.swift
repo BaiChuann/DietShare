@@ -9,6 +9,11 @@
 import UIKit
 import Presentr
 
+protocol FloatingContentAdderDelegate: class {
+    func getSelectedFont() -> String
+    func setTextValues(text: String?, color: UIColor?, size: CGFloat?)
+}
+
 class FloatingContentAdderController: UIViewController {
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var textPreviewCollectionView: UICollectionView!
@@ -18,8 +23,14 @@ class FloatingContentAdderController: UIViewController {
     private var fonts = [String]()
     private let textCellIdentifier = "TextPreviewCell"
     private let optionCellMaxHeight: CGFloat = 100
+    private var selectedFontIndex: Int?
+    private var text: String?
+    private var textColor: UIColor?
+    private var textSize: CGFloat?
     private lazy var floatingTextInputController: FloatingTextInputController = {
-        return FloatingTextInputController(nibName: "FloatingTextInputPopup", bundle: nil)
+        let controller = FloatingTextInputController(nibName: "FloatingTextInputPopup", bundle: nil)
+        controller.delegate = self
+        return controller
     }()
 
     override func viewDidLoad() {
@@ -37,6 +48,14 @@ class FloatingContentAdderController: UIViewController {
         ]
     }
 
+    override func viewWillLayoutSubviews() {
+        if textPreviewCollectionView.frame.height > optionCellMaxHeight,
+            let layout = textPreviewCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .vertical
+            textPreviewCollectionView.reloadData()
+        }
+    }
+
     private func setUpUI() {
         imageView.image = shareState?.originalPhoto
 
@@ -47,6 +66,7 @@ class FloatingContentAdderController: UIViewController {
 
     private func onFontSelected(index: Int) {
         print("font \(index) selected")
+        selectedFontIndex = index
         let popUp = Presentr(presentationType: .bottomHalf)
         popUp.shouldIgnoreTapOutsideContext = true
         customPresentViewController(popUp, viewController: floatingTextInputController, animated: true, completion: nil)
@@ -77,9 +97,17 @@ extension FloatingContentAdderController: UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onFontSelected(index: indexPath.item)
     }
+}
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let size = textPreviewCollectionView.frame.height
-//        return CGSize(width: size, height: size)
-//    }
+extension FloatingContentAdderController: FloatingContentAdderDelegate {
+    func getSelectedFont() -> String {
+        return fonts[selectedFontIndex ?? 0]
+    }
+
+    func setTextValues(text: String?, color: UIColor?, size: CGFloat?) {
+        print("Setting text: \(text ?? ""), color: \(color ?? UIColor.white), size: \(size ?? 20)")
+        self.text = text
+        self.textColor = color
+        self.textSize = size
+    }
 }

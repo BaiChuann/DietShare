@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="colorCollectionView" destination="UeZ-cJ-ZkA" id="PW0-EL-j0k"/>
                 <outlet property="cursor" destination="Z2j-vk-ikf" id="2OK-9O-mih"/>
+                <outlet property="okButton" destination="jx7-lo-GgY" id="AFy-Dq-FT0"/>
                 <outlet property="sizeSlider" destination="b7D-zA-uK1" id="Cru-PB-xdI"/>
                 <outlet property="textInput" destination="H4G-1t-Cxq" id="mSf-hf-RbS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -44,6 +45,9 @@
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                    <connections>
+                        <action selector="onTextValueChanged:" destination="-1" eventType="editingChanged" id="xPq-7d-mgv"/>
+                    </connections>
                 </textField>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="UeZ-cJ-ZkA">
                     <rect key="frame" x="16" y="164" width="343" height="51.5"/>
@@ -65,9 +69,12 @@
                     <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="10" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-zA-uK1">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-zA-uK1">
                     <rect key="frame" x="14" y="280" width="347" height="31"/>
                     <color key="minimumTrackTintColor" red="1" green="0.7843137255" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="onSizeValueChanged:" destination="-1" eventType="valueChanged" id="2sW-yc-uTQ"/>
+                    </connections>
                 </slider>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2j-vk-ikf">
                     <rect key="frame" x="18" y="64.5" width="2" height="30"/>
@@ -77,6 +84,20 @@
                         <constraint firstAttribute="width" constant="2" id="uN2-sC-f67"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jx7-lo-GgY">
+                    <rect key="frame" x="309" y="14" width="50" height="32"/>
+                    <color key="backgroundColor" red="1" green="0.7843137255" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="51T-Qp-du8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
+                    <state key="normal" title="OK">
+                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="onOKButtonPressed:" destination="-1" eventType="touchUpInside" id="KWr-dj-ipg"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -89,9 +110,11 @@
                 <constraint firstItem="b7D-zA-uK1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KsT-TU-Txp"/>
                 <constraint firstItem="YVa-uK-xYd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="LQC-dU-vN2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b7D-zA-uK1" secondAttribute="trailing" constant="16" id="MiC-nL-fBQ"/>
+                <constraint firstItem="jx7-lo-GgY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="14" id="Tkp-ds-KFh"/>
                 <constraint firstItem="aeM-m5-Ako" firstAttribute="top" secondItem="UeZ-cJ-ZkA" secondAttribute="bottom" constant="30" id="YAX-Ft-cYe"/>
                 <constraint firstItem="b7D-zA-uK1" firstAttribute="top" secondItem="aeM-m5-Ako" secondAttribute="bottom" constant="15" id="dsL-v7-vwd"/>
                 <constraint firstItem="UeZ-cJ-ZkA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ecw-Jy-uBT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jx7-lo-GgY" secondAttribute="trailing" constant="16" id="fki-zf-GJe"/>
                 <constraint firstItem="Z2j-vk-ikf" firstAttribute="top" secondItem="VLS-s2-Tvn" secondAttribute="bottom" constant="25" id="hCL-1Y-fOL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H4G-1t-Cxq" secondAttribute="trailing" constant="16" id="pAI-49-EiM"/>
                 <constraint firstItem="H4G-1t-Cxq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qhQ-0X-l27"/>

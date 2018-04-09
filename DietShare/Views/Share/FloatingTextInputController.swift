@@ -14,11 +14,13 @@ class FloatingTextInputController: UIViewController {
     @IBOutlet weak private var colorCollectionView: UICollectionView!
     @IBOutlet weak private var cursor: UIView!
     @IBOutlet weak private var sizeSlider: UISlider!
+    @IBOutlet weak private var okButton: UIButton!
 
+    weak var delegate: FloatingContentAdderDelegate?
     private let textColorCellId = "TextColorCell"
     private let colors = [
-        "#000000",
         "#ffffff",
+        "#000000",
         "#0984e3",
         "#55efc4",
         "#00b894",
@@ -30,23 +32,37 @@ class FloatingTextInputController: UIViewController {
     ]
     private var originalViewY: CGFloat = 0
     private var text: String?
-    private var colorIndex: Int?
-    private var size: Int?
+    private var colorIndex = 0
+    private var size: CGFloat = 20
+    private let textPreview = UILabel()
+    private let textPreviewHeight: CGFloat = 100
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textInput.delegate = self
         let nib = UINib(nibName: textColorCellId, bundle: nil)
         colorCollectionView.register(nib, forCellWithReuseIdentifier: textColorCellId)
         colorCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapHandler(sender:))))
+        textInput.delegate = self
+        setUpUI()
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        view.addSubview(textPreview)
+        view.bringSubview(toFront: textPreview)
+        view.clipsToBounds = false
+        textPreview.frame = CGRect(x: 0, y: -(view.bounds.height + textPreviewHeight) / 2, width: view.bounds.width, height: textPreviewHeight)
         originalViewY = view.frame.origin.y
         UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {() -> Void in
             self.cursor.alpha = 0 }, completion: nil)
+        colorCollectionView.reloadItems(at: [IndexPath(item: colorIndex, section: 0)])
+
+        updateTextPreview()
         addKeyboardNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        textPreview.removeFromSuperview()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -55,8 +71,7 @@ class FloatingTextInputController: UIViewController {
 
     @objc
     func tapHandler(sender: UIPanGestureRecognizer) {
-        if let index = colorIndex,
-            let cell = colorCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? TextColorCell {
+        if let cell = colorCollectionView.cellForItem(at: IndexPath(item: colorIndex, section: 0)) as? TextColorCell {
             cell.isSelected = false
         }
 
@@ -64,6 +79,41 @@ class FloatingTextInputController: UIViewController {
             let cell = colorCollectionView.cellForItem(at: indexPath) {
             cell.isSelected = true
             colorIndex = indexPath.item
+        }
+
+        updateTextPreview()
+    }
+
+    @IBAction func onTextValueChanged(_ sender: Any) {
+        if let textField = sender as? UITextField {
+            text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            updateTextPreview()
+        }
+    }
+
+    @IBAction func onSizeValueChanged(_ sender: Any) {
+        if let slider = sender as? UISlider {
+            size = CGFloat(slider.value)
+            updateTextPreview()
+        }
+    }
+    @IBAction func onOKButtonPressed(_ sender: Any) {
+        delegate?.setTextValues(text: text, color: hexToUIColor(hex: colors[colorIndex]), size: size)
+        dismiss(animated: true, completion: nil)
+    }
+
+    private func setUpUI() {
+        okButton.layer.cornerRadius = Constants.cornerRadius
+        textPreview.textAlignment = .center
+    }
+
+    private func updateTextPreview() {
+        textPreview.text = text
+        textPreview.textColor = hexToUIColor(hex: colors[colorIndex])
+
+        let fontName = delegate?.getSelectedFont()
+        if let font = UIFont(name: fontName ?? Constants.fontRegular, size: size) {
+            textPreview.font = font
         }
     }
 
@@ -135,6 +185,12 @@ extension FloatingTextInputController: UICollectionViewDelegate, UICollectionVie
         let color = hexToUIColor(hex: colors[indexPath.item])
         textColorCell.setColor(color)
 
+        if indexPath.item == colorIndex {
+            textColorCell.isSelected = true
+        } else {
+            textColorCell.isSelected = false
+        }
+
         return textColorCell
     }
 
@@ -149,7 +205,6 @@ extension FloatingTextInputController: UICollectionViewDelegate, UICollectionVie
 
 extension FloatingTextInputController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         textField.resignFirstResponder()
         return true
     }
@@ -159,6 +214,10 @@ extension FloatingTextInputController: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        cursor.isHidden = text != nil
+        if let text = text, !text.isEmpty {
+            cursor.isHidden = true
+        } else {
+            cursor.isHidden = false
+        }
     }
 }

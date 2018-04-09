@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zrT-D6-l3Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VQJ-wA-Njw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -489,7 +489,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Next" id="SbB-hm-JJG">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="zrT-D6-l3Q" kind="show" identifier="ShowFloatingContentAdder" id="iNg-ZH-0u3"/>
+                                <segue destination="zrT-D6-l3Q" kind="show" identifier="ShowFloatingContentAdder" id="7cy-El-0LI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -561,7 +561,7 @@
                                     <constraint firstAttribute="width" constant="40" id="mn6-ho-Oa0"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1jr-th-WdM">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1jr-th-WdM">
                                 <rect key="frame" x="16" y="579" width="343" height="68"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WgA-ih-Mev">
@@ -619,6 +619,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RE3-oV-9o9"/>
                     </view>
+                    <navigationItem key="navigationItem" id="7FJ-RJ-m0N">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="vZC-pN-QHN">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="IPa-ai-MaN" id="oYQ-wK-nLB"/>
                         <outlet property="textPreviewCollectionView" destination="1jr-th-WdM" id="ZMv-AL-7uf"/>
@@ -818,6 +823,7 @@
                             <constraint firstItem="e7Z-Fu-BfK" firstAttribute="leading" secondItem="hgy-1u-c6o" secondAttribute="leadingMargin" id="uvD-u8-R4g"/>
                             <constraint firstItem="CYe-6q-AGS" firstAttribute="top" secondItem="q4V-3m-WJh" secondAttribute="bottom" id="ziF-8o-12k"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="vzx-So-dLC"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRA-zv-cK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -831,6 +837,6 @@
         <image name="qr-code" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F4S-Ot-DRi"/>
+        <segue reference="j6f-lD-bWZ"/>
     </inferredMetricsTieBreakers>
 </document>
