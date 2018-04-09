@@ -16,7 +16,7 @@ class FoodSelectController: UIViewController {
     @IBOutlet weak private var addFoodButton: UIButton!
     @IBOutlet weak private var foodCollectionView: UICollectionView!
 
-    var originalPhoto: UIImage?
+    var shareState: ShareState?
     private let foodCellIdentifier = "FoodCell"
     private let numberOfSections = 2
     private let numberOfRows = 2
@@ -34,7 +34,7 @@ class FoodSelectController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFoodAdder" {
             if let foodAdderVC = segue.destination as? FoodAdderController {
-                foodAdderVC.originalPhoto = originalPhoto
+                foodAdderVC.shareState = shareState
             }
         }
     }
@@ -147,7 +147,7 @@ extension FoodSelectController: UICollectionViewDelegate, UICollectionViewDataSo
                 return
         }
 
-        destinationVC.originalPhoto = originalPhoto
+        destinationVC.shareState = shareState
         foodCell.setSelected()
 
         self.navigationController?.pushViewController(destinationVC, animated: true)

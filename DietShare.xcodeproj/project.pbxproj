@@ -82,6 +82,7 @@
 		F2E373CF20716BF20000F707 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E373C220716BF20000F707 /* TopicCell.xib */; };
 		F2E373D520716BF20000F707 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C820716BF20000F707 /* TopicCell.swift */; };
 		F2E373D620716BF20000F707 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C920716BF20000F707 /* PostCell.swift */; };
+		F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24193207B2B7000BB74B1 /* ShareState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +199,7 @@
 		F2E373C220716BF20000F707 /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		F2E373C820716BF20000F707 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		F2E373C920716BF20000F707 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		F2F24193207B2B7000BB74B1 /* ShareState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,13 +228,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A40BD2CE2077987A0010E154 /* Publish */ = {
+		A40BD2CE2077987A0010E154 /* Share */ = {
 			isa = PBXGroup;
 			children = (
 				A40BD2CC207795C40010E154 /* CollageLayout.swift */,
 				A40BD2D120786DE40010E154 /* StickerLayout.swift */,
+				F26699182066CD3900E3A1F2 /* Food.swift */,
+				F2F24193207B2B7000BB74B1 /* ShareState.swift */,
+				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
 			);
-			path = Publish;
+			path = Share;
 			sourceTree = "<group>";
 		};
 		B4D17446E75367AEC9130823 /* Pods */ = {
@@ -352,11 +357,9 @@
 		F26698DA206571E500E3A1F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A40BD2CE2077987A0010E154 /* Publish */,
+				A40BD2CE2077987A0010E154 /* Share */,
 				B5CBA1002068D18A00BC8005 /* Discovery */,
 				F26699152066CD3800E3A1F2 /* Comment.swift */,
-				F26699182066CD3900E3A1F2 /* Food.swift */,
-				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
 				F26699142066CD3800E3A1F2 /* Like.swift */,
 				F26699192066CD3900E3A1F2 /* Post.swift */,
 				F266991A2066CD3900E3A1F2 /* Profile.swift */,
@@ -741,6 +744,7 @@
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
+				F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */,
 				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
 				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
