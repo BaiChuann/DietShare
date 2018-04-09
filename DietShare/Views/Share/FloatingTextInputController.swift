@@ -97,6 +97,7 @@ class FloatingTextInputController: UIViewController {
             updateTextPreview()
         }
     }
+    
     @IBAction func onOKButtonPressed(_ sender: Any) {
         delegate?.setTextValues(text: text, color: hexToUIColor(hex: colors[colorIndex]), size: size)
         dismiss(animated: true, completion: nil)

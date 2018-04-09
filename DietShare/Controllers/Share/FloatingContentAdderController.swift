@@ -69,6 +69,7 @@ class FloatingContentAdderController: UIViewController {
         selectedFontIndex = index
         let popUp = Presentr(presentationType: .bottomHalf)
         popUp.shouldIgnoreTapOutsideContext = true
+        popUp.roundCorners = true
         customPresentViewController(popUp, viewController: floatingTextInputController, animated: true, completion: nil)
     }
 }
