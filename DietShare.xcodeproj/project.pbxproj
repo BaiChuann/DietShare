@@ -77,6 +77,7 @@
 		F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */; };
 		F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */; };
 		F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68C6205EB56100DF9694 /* SignUpController.swift */; };
+		F2DB00AC2074C44000CAB764 /* NutritionSticker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */; };
 		F2E373B520716BBE0000F707 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B320716BBE0000F707 /* HomeController.swift */; };
 		F2E373B620716BBE0000F707 /* HomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B420716BBE0000F707 /* HomeTabController.swift */; };
 		F2E373BA20716BC90000F707 /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B820716BC90000F707 /* PostManager.swift */; };
@@ -132,6 +133,10 @@
 		3B398A51207B99D000C20526 /* StoredSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		A40BD2CC207795C40010E154 /* CollageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
+		A40BD2D120786DE40010E154 /* StickerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerLayout.swift; sourceTree = "<group>"; };
+		A45839C820789FC6002B91D0 /* StoredSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
+		A48B91372073ADBF009FF8D0 /* StoredLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
@@ -198,6 +203,7 @@
 		F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietShareUITests.swift; sourceTree = "<group>"; };
 		F2BE68B3205E8C8900DF9694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2BE68C6205EB56100DF9694 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NutritionSticker.xib; sourceTree = "<group>"; };
 		F2E373B320716BBE0000F707 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		F2E373B420716BBE0000F707 /* HomeTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabController.swift; sourceTree = "<group>"; };
 		F2E373B820716BC90000F707 /* PostManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 		F26698DA206571E500E3A1F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A40BD2CE2077987A0010E154 /* Publish */,
 				B5CBA1002068D18A00BC8005 /* Discovery */,
 				3B398A42207B995300C20526 /* Publish */,
 				F26699152066CD3800E3A1F2 /* Comment.swift */,
@@ -789,6 +796,8 @@
 				3B398A48207B995300C20526 /* StickerLayout.swift in Sources */,
 				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
+				A48B91382073ADBF009FF8D0 /* StoredLayout.swift in Sources */,
+				A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */,
 				F27985E0206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
 				B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */,
@@ -796,6 +805,7 @@
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
+				A45839C920789FC6002B91D0 /* StoredSticker.swift in Sources */,
 				F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				F27985DD206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
@@ -807,6 +817,7 @@
 				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
 				3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */,
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
+				A40BD2D220786DE40010E154 /* StickerLayout.swift in Sources */,
 				F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */,
 				F2E373D620716BF20000F707 /* PostCell.swift in Sources */,
 			);
