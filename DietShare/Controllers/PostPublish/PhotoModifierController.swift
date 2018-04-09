@@ -21,9 +21,9 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
-    @IBOutlet weak private var canvas: UIImageView!
+    @IBOutlet weak private var canvas: UIView!
+    @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var spacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var showNutritionButton: UIButton!
 
     var shareState: ShareState?
     private let photoOptionCellIdentifier = "PhotoOptionCell"
@@ -59,7 +59,6 @@ class PhotoModifierController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        canvas.image = shareState?.originalPhoto
         setUpUI()
         setUpGestureRecogizer()
         setUpData()
@@ -91,12 +90,21 @@ class PhotoModifierController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowFloatingContentAdder" {
+            if let destinationVC = segue.destination as? FloatingContentAdderController {
+                destinationVC.shareState = shareState
+            }
+        }
+    }
+
     private func setUpUI() {
+        imageView.image = shareState?.originalPhoto
+
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
 
-        showNutritionButton.layer.cornerRadius = Constants.cornerRadius
         segmentControl.backgroundColor = .clear
         segmentControl.tintColor = .clear
         segmentControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: UIControlEvents.valueChanged)
@@ -125,15 +133,15 @@ class PhotoModifierController: UIViewController {
 
         layoutPanGR.maximumNumberOfTouches = 1
         layoutPanGR.isEnabled = false
-        canvas.superview?.addGestureRecognizer(layoutPanGR)
+        canvas.addGestureRecognizer(layoutPanGR)
 
         stickerPanGR.maximumNumberOfTouches = 1
         stickerPanGR.isEnabled = false
-        canvas.superview?.addGestureRecognizer(stickerPanGR)
+        canvas.addGestureRecognizer(stickerPanGR)
 
         layoutLongPressGR.isEnabled = false
         layoutLongPressGR.minimumPressDuration = 0.5
-        canvas.superview?.addGestureRecognizer(layoutLongPressGR)
+        canvas.addGestureRecognizer(layoutLongPressGR)
     }
 
     private func setUpData() {
@@ -148,13 +156,6 @@ class PhotoModifierController: UIViewController {
         }
 
         photoOptionCollectionView.reloadData()
-    }
-
-    @IBAction func onShowNutritionButtonPressed(_ sender: Any) {
-        isShowingNutrition = !isShowingNutrition
-        UIView.animate(withDuration: 0.2) {
-            self.showNutritionButton.backgroundColor = self.isShowingNutrition ? Constants.lightBackgroundColor : Constants.themeColor
-        }
     }
 
     private func onLayoutSelected(index: Int) {
@@ -183,7 +184,7 @@ class PhotoModifierController: UIViewController {
         selectedFilterIndex = index
         if index > 0 {
             let filterName = filters[selectedFilterIndex].1
-            canvas.image = getFilteredImage(filter: filterName)
+            imageView.image = getFilteredImage(filter: filterName)
         }
     }
 
@@ -217,7 +218,7 @@ class PhotoModifierController: UIViewController {
     }
 
     private func reset() {
-        let superView = canvas.superview
+        let superView = imageView.superview
         superView?.subviews.filter { $0.tag == collageTag || $0.tag == stickerTag }
             .forEach { $0.removeFromSuperview() }
         superView?.gestureRecognizers?.forEach { $0.isEnabled = false }
@@ -308,7 +309,7 @@ extension PhotoModifierController {
             return
         }
 
-        let imageViews = layout.getLayoutViews(frame: canvas.frame)
+        let imageViews = layout.getLayoutViews(frame: imageView.frame)
         zip(imageViews, selectedImages).forEach { imageView, selectedImage in
             addImageAsSubview(image: selectedImage, container: imageView)
         }
@@ -323,7 +324,7 @@ extension PhotoModifierController {
             let originalPhoto = shareState?.originalPhoto else {
             return
         }
-        let imageFrame = sticker.getImageFrame(frame: canvas.frame)
+        let imageFrame = sticker.getImageFrame(frame: imageView.frame)
         let stickerImageLayer = UIImageView(frame: imageFrame)
 
         addImageAsSubview(image: originalPhoto, container: stickerImageLayer)
@@ -334,10 +335,10 @@ extension PhotoModifierController {
 
     // Add sticker image as image subview
     private func addStickerAsSubview(sticker: StickerLayout) {
-        let stickerLayer = UIImageView(frame: canvas.frame)
+        let stickerLayer = UIImageView(frame: imageView.frame)
         stickerLayer.image = sticker.stickerImage
         stickerLayer.tag = stickerTag
-        canvas.superview?.addSubview(stickerLayer)
+        canvas.addSubview(stickerLayer)
     }
 
     // Add image to the container as subview, as add container as subview
@@ -346,7 +347,7 @@ extension PhotoModifierController {
         let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
         imageView.addSubview(subImageView)
         imageView.tag = collageTag
-        canvas.superview?.addSubview(imageView)
+        canvas.addSubview(imageView)
     }
 
     // Get a UIImageView with give image
@@ -394,7 +395,7 @@ extension PhotoModifierController {
 
     @objc
     private func handleLayoutPan(sender: UIPanGestureRecognizer) {
-        let superView = canvas.superview
+        let superView = imageView.superview
         let location = sender.location(in: superView)
 
         switch sender.state {
@@ -461,7 +462,7 @@ extension PhotoModifierController {
 
     @objc
     private func handleStickerPan(sender: UIPanGestureRecognizer) {
-        let superView = canvas.superview
+        let superView = imageView.superview
         let location = sender.location(in: superView)
 
         switch sender.state {

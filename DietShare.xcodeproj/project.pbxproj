@@ -83,6 +83,7 @@
 		F2E373D520716BF20000F707 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C820716BF20000F707 /* TopicCell.swift */; };
 		F2E373D620716BF20000F707 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C920716BF20000F707 /* PostCell.swift */; };
 		F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24193207B2B7000BB74B1 /* ShareState.swift */; };
+		F2F24196207B30E900BB74B1 /* FloatingContentAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,7 @@
 		F2E373C820716BF20000F707 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		F2E373C920716BF20000F707 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		F2F24193207B2B7000BB74B1 /* ShareState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareState.swift; sourceTree = "<group>"; };
+		F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingContentAdderController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
 				F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */,
 				F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */,
+				F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */,
 				A48B91372073ADBF009FF8D0 /* StoredLayout.swift */,
 				A45839C820789FC6002B91D0 /* StoredSticker.swift */,
 			);
@@ -769,6 +772,7 @@
 				A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */,
 				F27985E0206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
+				F2F24196207B30E900BB74B1 /* FloatingContentAdderController.swift in Sources */,
 				B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */,
 				B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,

@@ -53,8 +53,8 @@ class FoodAdderController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPhotoModifier" {
-            if let photoModifierVC = segue.destination as? PhotoModifierController {
-                photoModifierVC.shareState = shareState
+            if let destinationVC = segue.destination as? PhotoModifierController {
+                destinationVC.shareState = shareState
             }
         }
     }

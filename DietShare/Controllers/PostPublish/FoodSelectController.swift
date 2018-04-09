@@ -33,8 +33,8 @@ class FoodSelectController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFoodAdder" {
-            if let foodAdderVC = segue.destination as? FoodAdderController {
-                foodAdderVC.shareState = shareState
+            if let destinationVC = segue.destination as? FoodAdderController {
+                destinationVC.shareState = shareState
             }
         }
     }
