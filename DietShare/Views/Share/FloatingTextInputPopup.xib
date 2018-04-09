@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FloatingTextInputController" customModule="DietShare" customModuleProvider="target">
+            <connections>
+                <outlet property="colorCollectionView" destination="UeZ-cJ-ZkA" id="PW0-EL-j0k"/>
+                <outlet property="cursor" destination="Z2j-vk-ikf" id="2OK-9O-mih"/>
+                <outlet property="sizeSlider" destination="b7D-zA-uK1" id="Cru-PB-xdI"/>
+                <outlet property="textInput" destination="H4G-1t-Cxq" id="mSf-hf-RbS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLS-s2-Tvn">
+                    <rect key="frame" x="16" y="20" width="80.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
+                    <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose text color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-uK-xYd">
+                    <rect key="frame" x="16" y="124.5" width="140.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
+                    <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H4G-1t-Cxq">
+                    <rect key="frame" x="16" y="54.5" width="343" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="lfG-Gb-WCi"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                </textField>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="UeZ-cJ-ZkA">
+                    <rect key="frame" x="16" y="164" width="343" height="51.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YnK-a3-BIJ">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="7zq-i5-n1P"/>
+                        <outlet property="delegate" destination="-1" id="Q8J-09-zKX"/>
+                    </connections>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose text size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeM-m5-Ako">
+                    <rect key="frame" x="16" y="245.5" width="132.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
+                    <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="10" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-zA-uK1">
+                    <rect key="frame" x="14" y="280" width="347" height="31"/>
+                    <color key="minimumTrackTintColor" red="1" green="0.7843137255" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </slider>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2j-vk-ikf">
+                    <rect key="frame" x="18" y="64.5" width="2" height="30"/>
+                    <color key="backgroundColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="bjl-Vm-vny"/>
+                        <constraint firstAttribute="width" constant="2" id="uN2-sC-f67"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Z2j-vk-ikf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="18" id="2gt-hI-pnx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UeZ-cJ-ZkA" secondAttribute="trailing" constant="16" id="34h-Xx-Kdq"/>
+                <constraint firstItem="YVa-uK-xYd" firstAttribute="top" secondItem="H4G-1t-Cxq" secondAttribute="bottom" constant="30" id="3FD-63-PNT"/>
+                <constraint firstItem="UeZ-cJ-ZkA" firstAttribute="top" secondItem="YVa-uK-xYd" secondAttribute="bottom" constant="20" id="6fW-Yx-NQo"/>
+                <constraint firstItem="VLS-s2-Tvn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="9KM-Rs-1oL"/>
+                <constraint firstItem="aeM-m5-Ako" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="JEb-ul-o37"/>
+                <constraint firstItem="b7D-zA-uK1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KsT-TU-Txp"/>
+                <constraint firstItem="YVa-uK-xYd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="LQC-dU-vN2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b7D-zA-uK1" secondAttribute="trailing" constant="16" id="MiC-nL-fBQ"/>
+                <constraint firstItem="aeM-m5-Ako" firstAttribute="top" secondItem="UeZ-cJ-ZkA" secondAttribute="bottom" constant="30" id="YAX-Ft-cYe"/>
+                <constraint firstItem="b7D-zA-uK1" firstAttribute="top" secondItem="aeM-m5-Ako" secondAttribute="bottom" constant="15" id="dsL-v7-vwd"/>
+                <constraint firstItem="UeZ-cJ-ZkA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ecw-Jy-uBT"/>
+                <constraint firstItem="Z2j-vk-ikf" firstAttribute="top" secondItem="VLS-s2-Tvn" secondAttribute="bottom" constant="25" id="hCL-1Y-fOL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H4G-1t-Cxq" secondAttribute="trailing" constant="16" id="pAI-49-EiM"/>
+                <constraint firstItem="H4G-1t-Cxq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qhQ-0X-l27"/>
+                <constraint firstItem="VLS-s2-Tvn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="u9B-Ri-RnG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="b7D-zA-uK1" secondAttribute="bottom" constant="20" id="vru-cG-TRo"/>
+                <constraint firstItem="H4G-1t-Cxq" firstAttribute="top" secondItem="VLS-s2-Tvn" secondAttribute="bottom" constant="15" id="yEN-KO-Z94"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="57"/>
+        </view>
+    </objects>
+</document>

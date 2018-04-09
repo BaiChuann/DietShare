@@ -84,6 +84,11 @@
 		F2E373D620716BF20000F707 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C920716BF20000F707 /* PostCell.swift */; };
 		F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24193207B2B7000BB74B1 /* ShareState.swift */; };
 		F2F24196207B30E900BB74B1 /* FloatingContentAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */; };
+		F2F24199207B3EFE00BB74B1 /* TextPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */; };
+		F2F2419C207B537600BB74B1 /* FloatingTextInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */; };
+		F2F2419D207B537600BB74B1 /* FloatingTextInputPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */; };
+		F2F241A0207B568C00BB74B1 /* TextColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2419E207B568C00BB74B1 /* TextColorCell.swift */; };
+		F2F241A1207B568C00BB74B1 /* TextColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F2419F207B568C00BB74B1 /* TextColorCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +207,11 @@
 		F2E373C920716BF20000F707 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		F2F24193207B2B7000BB74B1 /* ShareState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareState.swift; sourceTree = "<group>"; };
 		F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingContentAdderController.swift; sourceTree = "<group>"; };
+		F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPreviewCell.swift; sourceTree = "<group>"; };
+		F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextInputController.swift; sourceTree = "<group>"; };
+		F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloatingTextInputPopup.xib; sourceTree = "<group>"; };
+		F2F2419E207B568C00BB74B1 /* TextColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColorCell.swift; sourceTree = "<group>"; };
+		F2F2419F207B568C00BB74B1 /* TextColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextColorCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,7 +328,7 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		F26698C52063EBD800E3A1F2 /* PostPublish */ = {
+		F26698C52063EBD800E3A1F2 /* Share */ = {
 			isa = PBXGroup;
 			children = (
 				F25D78542068D9850011008A /* ShareTabController.swift */,
@@ -332,27 +342,18 @@
 				A48B91372073ADBF009FF8D0 /* StoredLayout.swift */,
 				A45839C820789FC6002B91D0 /* StoredSticker.swift */,
 			);
-			path = PostPublish;
+			path = Share;
 			sourceTree = "<group>";
 		};
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2F24197207B3EA600BB74B1 /* Share */,
 				B5CBA16D206A3F3800BC8005 /* Discovery */,
 				F2E373C920716BF20000F707 /* PostCell.swift */,
 				F2E373BE20716BF10000F707 /* PostCell.xib */,
 				F2E373C820716BF20000F707 /* TopicCell.swift */,
 				F2E373C220716BF20000F707 /* TopicCell.xib */,
-				F27985DC206F9DE300977F5D /* LayoutPhotoSelectorCell.swift */,
-				F27985DB206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift */,
-				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
-				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
-				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
-				F27985DF206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift */,
-				F25D7856206E7BE40011008A /* PhotoOptionCell.swift */,
-				F26698DF206660C700E3A1F2 /* FoodCell.swift */,
-				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
-				F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -458,7 +459,7 @@
 				F2E373B220716BBE0000F707 /* Home */,
 				F2E373B720716BC90000F707 /* Posts */,
 				F207CCA520625A0600EF2904 /* Login */,
-				F26698C52063EBD800E3A1F2 /* PostPublish */,
+				F26698C52063EBD800E3A1F2 /* Share */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -479,6 +480,28 @@
 				F2E373B920716BC90000F707 /* PostsTableController.swift */,
 			);
 			path = Posts;
+			sourceTree = "<group>";
+		};
+		F2F24197207B3EA600BB74B1 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				F27985DC206F9DE300977F5D /* LayoutPhotoSelectorCell.swift */,
+				F27985DB206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift */,
+				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
+				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
+				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
+				F27985DF206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift */,
+				F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */,
+				F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */,
+				F2F2419E207B568C00BB74B1 /* TextColorCell.swift */,
+				F2F2419F207B568C00BB74B1 /* TextColorCell.xib */,
+				F25D7856206E7BE40011008A /* PhotoOptionCell.swift */,
+				F26698DF206660C700E3A1F2 /* FoodCell.swift */,
+				F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */,
+				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
+				F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,11 +621,13 @@
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
 				F2E373CB20716BF20000F707 /* PostCell.xib in Resources */,
+				F2F2419D207B537600BB74B1 /* FloatingTextInputPopup.xib in Resources */,
 				F2DB00AC2074C44000CAB764 /* NutritionSticker.xib in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
 				F2E373CF20716BF20000F707 /* TopicCell.xib in Resources */,
 				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
+				F2F241A1207B568C00BB74B1 /* TextColorCell.xib in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,6 +704,7 @@
 				"${BUILT_PRODUCTS_DIR}/FormValidatorSwift/FormValidatorSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TGCameraViewController/TGCameraViewController.framework",
@@ -700,6 +726,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FormValidatorSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TGCameraViewController.framework",
@@ -756,10 +783,12 @@
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
+				F2F2419C207B537600BB74B1 /* FloatingTextInputController.swift in Sources */,
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
 				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
+				F2F241A0207B568C00BB74B1 /* TextColorCell.swift in Sources */,
 				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
@@ -772,6 +801,7 @@
 				A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */,
 				F27985E0206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
+				F2F24199207B3EFE00BB74B1 /* TextPreviewCell.swift in Sources */,
 				F2F24196207B30E900BB74B1 /* FloatingContentAdderController.swift in Sources */,
 				B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */,
 				B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */,

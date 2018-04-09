@@ -119,10 +119,6 @@ class FoodAdderController: UIViewController {
 
     @objc
     private func keyboardWillHide(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
-        }
-
         updateKeyboardFrame(notification: notification, keyboardHeight: 0)
     }
 
