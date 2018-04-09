@@ -19,10 +19,10 @@ class TopicsModelManager<T: ReadOnlyTopic> {
     
     init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
-        
         self.topics = topicsDataSource.getTopics() as! SortedSet<T>
-        
     }
+    
+    //TODO - try use singleton here
     
     func getFullTopicList() -> [T] {
         var topicList = [T]()

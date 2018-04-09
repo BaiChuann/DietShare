@@ -70,7 +70,7 @@
             <objects>
                 <viewController storyboardIdentifier="ShortListsView" title="ShortListsView" id="fHZ-WF-mnv" customClass="ShortListsViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RbU-ed-vNf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eqr-5j-mhl">
@@ -234,6 +234,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI1-bX-wf1">
+                                        <rect key="frame" x="20" y="404" width="375" height="735"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -247,7 +252,9 @@
                         <viewLayoutGuide key="safeArea" id="W6q-cA-2Fn"/>
                     </view>
                     <navigationItem key="navigationItem" id="cjm-BH-wi8"/>
+                    <size key="freeformSize" width="375" height="1200"/>
                     <connections>
+                        <outlet property="postsArea" destination="lI1-bX-wf1" id="y4o-Lj-gKX"/>
                         <outlet property="restaurantList" destination="2xK-n3-gO8" id="Thy-IZ-dUb"/>
                         <outlet property="scrollView" destination="Eqr-5j-mhl" id="cEq-Xc-TZQ"/>
                         <outlet property="topicList" destination="ru9-W2-V06" id="j30-Ty-A1n"/>
@@ -256,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfT-VQ-Yas" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1703.2" y="174.96251874062969"/>
+            <point key="canvasLocation" x="-1703.2" y="174.51274362818592"/>
         </scene>
         <!--Topic List View Controller-->
         <scene sceneID="PlJ-MY-pLN">
@@ -509,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFa-fw-UFR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1703" y="890"/>
+            <point key="canvasLocation" x="-1703" y="1382"/>
         </scene>
         <!--Restaurant List View Controller-->
         <scene sceneID="s0v-g2-dgF">
@@ -699,7 +706,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tls-2v-VUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-887.20000000000005" y="878.41079460269873"/>
+            <point key="canvasLocation" x="-887" y="1252"/>
         </scene>
         <!--Restaurant View Controller-->
         <scene sceneID="nTG-bA-7hD">
@@ -878,7 +885,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rjK-wb-YSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-183" y="1138"/>
+            <point key="canvasLocation" x="-164" y="1432"/>
         </scene>
     </scenes>
     <resources>

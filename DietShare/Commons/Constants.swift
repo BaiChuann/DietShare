@@ -93,16 +93,18 @@ struct Constants {
         public static let numOfDisplayedRestaurants = 5
         public static let shortListCellAlpha: CGFloat = 0.8
         public static let shortListsViewProportion: CGFloat = 0.6
+        public static let longScrollViewHeight: CGFloat = 1200
     }
     
     struct TopicPage {
         public static let numOfDisplayedUsers = 10
         public static let topicImageAlpha: CGFloat = 0.8
+        public static let longScrollViewHeight: CGFloat = 1400
     }
     
     struct RestaurantPage {
         public static let numOfDisplayedUsers = 10
         public static let restaurantImageAlpha: CGFloat = 0.8
-        public static let longScrollViewHeight: CGFloat = 1400
+        public static let longScrollViewHeight: CGFloat = 1200
     }
 }

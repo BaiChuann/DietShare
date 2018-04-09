@@ -23,7 +23,7 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicList: UICollectionView!
     @IBOutlet weak var restaurantList: UICollectionView!
-//    @IBOutlet weak var postsArea: UIView!
+    @IBOutlet weak var postsArea: UIView!
 //    @IBOutlet weak var postList: UITableView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -82,19 +82,19 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
         
-//        PostManager.loadData()
-//        postsTableController = PostsTableController()
-//        postsTableController?.retrieveTrendingPosts()
-//        if let postsTable = postsTableController?.getTable() {
-////            postsTable.frame = postsArea.frame
-////            postsArea.removeFromSuperview()
-////            scrollView.addSubview(postsTable)
-////            self.postList = postsTable
-//            print("posts table added")
-//        }
+        PostManager.loadData()
+        postsTableController = PostsTableController()
+        postsTableController?.retrieveTrendingPosts()
+        if let postsTable = postsTableController?.getTable() {
+            postsTable.frame = postsArea.frame
+            postsArea.removeFromSuperview()
+            scrollView.addSubview(postsTable)
+//            self.postList = postsTable
+            print("posts table added")
+        }
     }
 
     override func didReceiveMemoryWarning() {

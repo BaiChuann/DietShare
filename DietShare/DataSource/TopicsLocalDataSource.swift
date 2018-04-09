@@ -39,8 +39,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         prepopulate()
     }
     
-    
-    
     // A shared instance to be used in a global scope
     static let shared = TopicsLocalDataSource()
     
