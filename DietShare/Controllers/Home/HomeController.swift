@@ -17,10 +17,9 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = false
-        PostManager.loadData()
         postsTableController = PostsTableController()
         postsTableController.setParentController(self)
-        postsTableController.retrieveFollowingPosts()
+        postsTableController.getFollowingPosts()
         postsTable = postsTableController.getTable()
         postsTable.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTable)
@@ -40,11 +39,15 @@ class HomeController: UIViewController {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
             }
             postsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+            postsTableController.getFollowingPosts()
+            postsTable.reloadData()
         case 1:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * 5
             }
             postsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+            postsTableController.getLikePosts()
+            postsTable.reloadData()
             
         default:
             break

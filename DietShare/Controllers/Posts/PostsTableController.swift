@@ -12,8 +12,24 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     private var dataSource: [Post] = []
     private var postsTable = UITableView()
     private var parentController: UIViewController!
-    func retrieveFollowingPosts() {
-        dataSource = PostManager.getFollowingPosts()
+    private var postManager = PostManager.shared
+    func getFollowingPosts() {
+        dataSource = postManager.getFollowingPosts()
+    }
+    func getLikePosts() {
+        dataSource = postManager.getLikePosts()
+    }
+    func getDiscoverPosts() {
+        dataSource = postManager.getDiscoverPost()
+        postsTable.reloadData()
+    }
+    func getTopicPosts(_ id: String) {
+        dataSource = postManager.getTopicPost(id)
+        postsTable.reloadData()
+    }
+    func getRestaurantPosts(_ id: String) {
+        dataSource = postManager.getRestaurantPost(id)
+        postsTable.reloadData()
     }
     func setParentController(_ controller: UIViewController) {
         parentController = controller
@@ -25,7 +41,6 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         postsTable.delegate = self
         postsTable.rowHeight = UITableViewAutomaticDimension
         postsTable.estimatedRowHeight = 600
-        postsTable.reloadData()
         return postsTable
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

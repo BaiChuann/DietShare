@@ -52,22 +52,22 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     func setTime(_ time: String) {
         self.time.text = time
     }
-    func setTopics(_ topics: [(String, String)]) {
-        if topics.isEmpty {
+    func setTopics(_ topics: [(String, String)]?) {
+        guard let tps = topics else {
             self.topics.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
         topicsData = []
-        for topic in topics {
+        for topic in tps {
             topicsData.append(topic.1)
         }
     }
-    func setRestaurant(_ restaurant: String) {
-        if restaurant == "" {
+    func setRestaurant(_ restaurant: (String, String)?) {
+        guard let res = restaurant else {
             self.restaurant.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
-        self.restaurant.text = restaurant
+        self.restaurant.text = res.1
     }
     func setContent(userPhoto: UIImage, userName: String, _ post: Post) {
         self.post = post
@@ -81,7 +81,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
         setTime(dateFormatter.string(from: post.getTime()))
         setTopics(post.getTopics())
-        setRestaurant(post.getRestaurant().1)
+        setRestaurant(post.getRestaurant())
     }
     func setDelegate(_ cellDelegate: PostCellDelegate) {
         self.cellDelegate = cellDelegate
