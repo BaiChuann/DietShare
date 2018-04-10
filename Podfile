@@ -6,6 +6,7 @@ target 'DietShare' do
   use_frameworks!
   pod 'FormValidatorSwift', '~> 3.0'
   pod 'PopupDialog', '~> 0.7'
+  pod 'Presentr'
   pod 'DropDown'
   pod 'DKImagePickerController'
   pod 'NVActivityIndicatorView'

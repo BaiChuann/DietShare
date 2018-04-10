@@ -12,9 +12,9 @@ import UIKit
 import TGCameraViewController
 
 class PhotoUploadViewController: UIViewController, TGCameraDelegate {
-    var pickedPhoto: UIImage?
-    var recognizedFoods: [Food] = []
-
+    private var shareState = ShareState()
+    private var pickedPhoto: UIImage?
+    private var recognizedFoods: [Food] = []
     private var isToCamera = true
 
     override func viewDidLoad() {
@@ -86,7 +86,8 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
             return
         }
 
-        foodSelectVC.originalPhoto = pickedPhoto
+        shareState.originalPhoto = pickedPhoto
+        foodSelectVC.shareState = shareState
         navigationController?.pushViewController(viewController: foodSelectVC, animated: false) {
             self.isToCamera = true
         }

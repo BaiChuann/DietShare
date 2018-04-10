@@ -24,7 +24,7 @@ class StickerLayout {
     var stickerImage: UIImage? {
         return image
     }
-    
+
     var iconImage: UIImage? {
         return image
     }

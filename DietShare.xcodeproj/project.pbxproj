@@ -8,16 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
-		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
-		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
-		3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
-		3B1F3CE1207908340012D87C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CE0207908340012D87C /* CommentCell.swift */; };
-		3B398A45207B995300C20526 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B398A43207B995300C20526 /* CollageLayout.swift */; };
-		3B398A48207B995300C20526 /* StickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B398A44207B995300C20526 /* StickerLayout.swift */; };
-		3B398A4C207B999C00C20526 /* NutritionSticker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B398A4B207B999C00C20526 /* NutritionSticker.xib */; };
-		3B398A50207B99CC00C20526 /* StoredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B398A4F207B99CC00C20526 /* StoredLayout.swift */; };
-		3B398A52207B99D100C20526 /* StoredSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B398A51207B99D000C20526 /* StoredSticker.swift */; };
-		3BA9CAC0207BB0DF0072058D /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA9CABF207BB0DF0072058D /* PostDetail.storyboard */; };
+		A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BD2CC207795C40010E154 /* CollageLayout.swift */; };
+		A40BD2D220786DE40010E154 /* StickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BD2D120786DE40010E154 /* StickerLayout.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -45,6 +37,17 @@
 		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */; };
 		F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */; };
+		F24BEC1B207BC25F0047C034 /* StoredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC19207BC25E0047C034 /* StoredLayout.swift */; };
+		F24BEC1C207BC25F0047C034 /* StoredSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1A207BC25F0047C034 /* StoredSticker.swift */; };
+		F24BEC24207BC2770047C034 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1E207BC2770047C034 /* LikeCell.swift */; };
+		F24BEC25207BC2770047C034 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1F207BC2770047C034 /* TopicCell.swift */; };
+		F24BEC26207BC2770047C034 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24BEC20207BC2770047C034 /* TopicCell.xib */; };
+		F24BEC27207BC2770047C034 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24BEC21207BC2770047C034 /* PostCell.xib */; };
+		F24BEC28207BC2770047C034 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC22207BC2770047C034 /* CommentCell.swift */; };
+		F24BEC29207BC2770047C034 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC23207BC2770047C034 /* PostCell.swift */; };
+		F24BEC2C207BC2FE0047C034 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC2A207BC2FE0047C034 /* PostDetailController.swift */; };
+		F24BEC2D207BC2FE0047C034 /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC2B207BC2FE0047C034 /* PostCellDelegate.swift */; };
+		F24BEC2F207BC3910047C034 /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24BEC2E207BC3910047C034 /* PostDetail.storyboard */; };
 		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
 		F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7856206E7BE40011008A /* PhotoOptionCell.swift */; };
 		F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */; };
@@ -78,15 +81,19 @@
 		F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68A6205E8C8900DF9694 /* DietShareTests.swift */; };
 		F2BE68B2205E8C8900DF9694 /* DietShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */; };
 		F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE68C6205EB56100DF9694 /* SignUpController.swift */; };
+		F2DB00AC2074C44000CAB764 /* NutritionSticker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */; };
 		F2E373B520716BBE0000F707 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B320716BBE0000F707 /* HomeController.swift */; };
 		F2E373B620716BBE0000F707 /* HomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B420716BBE0000F707 /* HomeTabController.swift */; };
 		F2E373BA20716BC90000F707 /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B820716BC90000F707 /* PostManager.swift */; };
 		F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373B920716BC90000F707 /* PostsTableController.swift */; };
 		F2E373BD20716BE50000F707 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2E373BC20716BE50000F707 /* Home.storyboard */; };
-		F2E373CB20716BF20000F707 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E373BE20716BF10000F707 /* PostCell.xib */; };
-		F2E373CF20716BF20000F707 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E373C220716BF20000F707 /* TopicCell.xib */; };
-		F2E373D520716BF20000F707 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C820716BF20000F707 /* TopicCell.swift */; };
-		F2E373D620716BF20000F707 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E373C920716BF20000F707 /* PostCell.swift */; };
+		F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24193207B2B7000BB74B1 /* ShareState.swift */; };
+		F2F24196207B30E900BB74B1 /* FloatingContentAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */; };
+		F2F24199207B3EFE00BB74B1 /* TextPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */; };
+		F2F2419C207B537600BB74B1 /* FloatingTextInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */; };
+		F2F2419D207B537600BB74B1 /* FloatingTextInputPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */; };
+		F2F241A0207B568C00BB74B1 /* TextColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2419E207B568C00BB74B1 /* TextColorCell.swift */; };
+		F2F241A1207B568C00BB74B1 /* TextColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F2419F207B568C00BB74B1 /* TextColorCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,18 +128,10 @@
 
 /* Begin PBXFileReference section */
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B18BEDF2074C5A200809D3A /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
-		3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
-		3B1F3CDC2078FE950012D87C /* LikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
-		3B1F3CE0207908340012D87C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
-		3B398A43207B995300C20526 /* CollageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
-		3B398A44207B995300C20526 /* StickerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerLayout.swift; sourceTree = "<group>"; };
-		3B398A4B207B999C00C20526 /* NutritionSticker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NutritionSticker.xib; sourceTree = "<group>"; };
-		3B398A4F207B99CC00C20526 /* StoredLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
-		3B398A51207B99D000C20526 /* StoredSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
-		3BA9CABF207BB0DF0072058D /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		A40BD2CC207795C40010E154 /* CollageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
+		A40BD2D120786DE40010E154 /* StickerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerLayout.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
@@ -159,6 +158,17 @@
 		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
 		F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploaderViewController.swift; sourceTree = "<group>"; };
+		F24BEC19207BC25E0047C034 /* StoredLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
+		F24BEC1A207BC25F0047C034 /* StoredSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
+		F24BEC1E207BC2770047C034 /* LikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
+		F24BEC1F207BC2770047C034 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		F24BEC20207BC2770047C034 /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
+		F24BEC21207BC2770047C034 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		F24BEC22207BC2770047C034 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		F24BEC23207BC2770047C034 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		F24BEC2A207BC2FE0047C034 /* PostDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDetailController.swift; path = DietShare/Controllers/Posts/PostDetailController.swift; sourceTree = SOURCE_ROOT; };
+		F24BEC2B207BC2FE0047C034 /* PostCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCellDelegate.swift; path = DietShare/Controllers/Posts/PostCellDelegate.swift; sourceTree = SOURCE_ROOT; };
+		F24BEC2E207BC3910047C034 /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
 		F25D7856206E7BE40011008A /* PhotoOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionCell.swift; sourceTree = "<group>"; };
 		F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutPhotoSelectorController.swift; sourceTree = "<group>"; };
@@ -199,15 +209,19 @@
 		F2BE68B1205E8C8900DF9694 /* DietShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietShareUITests.swift; sourceTree = "<group>"; };
 		F2BE68B3205E8C8900DF9694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2BE68C6205EB56100DF9694 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NutritionSticker.xib; sourceTree = "<group>"; };
 		F2E373B320716BBE0000F707 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		F2E373B420716BBE0000F707 /* HomeTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabController.swift; sourceTree = "<group>"; };
 		F2E373B820716BC90000F707 /* PostManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
 		F2E373B920716BC90000F707 /* PostsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableController.swift; sourceTree = "<group>"; };
 		F2E373BC20716BE50000F707 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		F2E373BE20716BF10000F707 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
-		F2E373C220716BF20000F707 /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
-		F2E373C820716BF20000F707 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
-		F2E373C920716BF20000F707 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		F2F24193207B2B7000BB74B1 /* ShareState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareState.swift; sourceTree = "<group>"; };
+		F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingContentAdderController.swift; sourceTree = "<group>"; };
+		F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPreviewCell.swift; sourceTree = "<group>"; };
+		F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextInputController.swift; sourceTree = "<group>"; };
+		F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloatingTextInputPopup.xib; sourceTree = "<group>"; };
+		F2F2419E207B568C00BB74B1 /* TextColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColorCell.swift; sourceTree = "<group>"; };
+		F2F2419F207B568C00BB74B1 /* TextColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextColorCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,26 +250,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B177CBC207A7C8800E000DA /* Post */ = {
+		A40BD2CE2077987A0010E154 /* Share */ = {
 			isa = PBXGroup;
 			children = (
-				F2E373C920716BF20000F707 /* PostCell.swift */,
-				3B1F3CDC2078FE950012D87C /* LikeCell.swift */,
-				3B1F3CE0207908340012D87C /* CommentCell.swift */,
-				F2E373BE20716BF10000F707 /* PostCell.xib */,
-				F2E373C820716BF20000F707 /* TopicCell.swift */,
-				F2E373C220716BF20000F707 /* TopicCell.xib */,
+				A40BD2CC207795C40010E154 /* CollageLayout.swift */,
+				A40BD2D120786DE40010E154 /* StickerLayout.swift */,
+				F26699182066CD3900E3A1F2 /* Food.swift */,
+				F2F24193207B2B7000BB74B1 /* ShareState.swift */,
+				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
+				F24BEC19207BC25E0047C034 /* StoredLayout.swift */,
+				F24BEC1A207BC25F0047C034 /* StoredSticker.swift */,
 			);
-			path = Post;
-			sourceTree = "<group>";
-		};
-		3B398A42207B995300C20526 /* Publish */ = {
-			isa = PBXGroup;
-			children = (
-				3B398A43207B995300C20526 /* CollageLayout.swift */,
-				3B398A44207B995300C20526 /* StickerLayout.swift */,
-			);
-			path = Publish;
+			path = Share;
 			sourceTree = "<group>";
 		};
 		B4D17446E75367AEC9130823 /* Pods */ = {
@@ -334,7 +340,20 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		F26698C52063EBD800E3A1F2 /* PostPublish */ = {
+		F24BEC1D207BC2770047C034 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				F24BEC1E207BC2770047C034 /* LikeCell.swift */,
+				F24BEC1F207BC2770047C034 /* TopicCell.swift */,
+				F24BEC20207BC2770047C034 /* TopicCell.xib */,
+				F24BEC21207BC2770047C034 /* PostCell.xib */,
+				F24BEC22207BC2770047C034 /* CommentCell.swift */,
+				F24BEC23207BC2770047C034 /* PostCell.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		F26698C52063EBD800E3A1F2 /* Share */ = {
 			isa = PBXGroup;
 			children = (
 				F25D78542068D9850011008A /* ShareTabController.swift */,
@@ -344,27 +363,17 @@
 				F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */,
 				F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */,
 				F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */,
-				3B398A4F207B99CC00C20526 /* StoredLayout.swift */,
-				3B398A51207B99D000C20526 /* StoredSticker.swift */,
+				F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */,
 			);
-			path = PostPublish;
+			path = Share;
 			sourceTree = "<group>";
 		};
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3B177CBC207A7C8800E000DA /* Post */,
+				F2F24197207B3EA600BB74B1 /* Share */,
 				B5CBA16D206A3F3800BC8005 /* Discovery */,
-				F27985DC206F9DE300977F5D /* LayoutPhotoSelectorCell.swift */,
-				F27985DB206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift */,
-				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
-				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
-				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
-				F27985DF206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift */,
-				F25D7856206E7BE40011008A /* PhotoOptionCell.swift */,
-				F26698DF206660C700E3A1F2 /* FoodCell.swift */,
-				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
-				3B398A4B207B999C00C20526 /* NutritionSticker.xib */,
+				F24BEC1D207BC2770047C034 /* Post */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,11 +381,9 @@
 		F26698DA206571E500E3A1F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A40BD2CE2077987A0010E154 /* Share */,
 				B5CBA1002068D18A00BC8005 /* Discovery */,
-				3B398A42207B995300C20526 /* Publish */,
 				F26699152066CD3800E3A1F2 /* Comment.swift */,
-				F26699182066CD3900E3A1F2 /* Food.swift */,
-				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
 				F26699142066CD3800E3A1F2 /* Like.swift */,
 				F26699192066CD3900E3A1F2 /* Post.swift */,
 				F266991A2066CD3900E3A1F2 /* Profile.swift */,
@@ -403,7 +410,7 @@
 				F2E373BC20716BE50000F707 /* Home.storyboard */,
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
 				B5CBA1122069411C00BC8005 /* Discovery.storyboard */,
-				3BA9CABF207BB0DF0072058D /* PostDetail.storyboard */,
+				F24BEC2E207BC3910047C034 /* PostDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -473,7 +480,7 @@
 				F2E373B220716BBE0000F707 /* Home */,
 				F2E373B720716BC90000F707 /* Posts */,
 				F207CCA520625A0600EF2904 /* Login */,
-				F26698C52063EBD800E3A1F2 /* PostPublish */,
+				F26698C52063EBD800E3A1F2 /* Share */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -483,6 +490,8 @@
 			children = (
 				F2E373B320716BBE0000F707 /* HomeController.swift */,
 				F2E373B420716BBE0000F707 /* HomeTabController.swift */,
+				F24BEC2B207BC2FE0047C034 /* PostCellDelegate.swift */,
+				F24BEC2A207BC2FE0047C034 /* PostDetailController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -492,10 +501,30 @@
 			children = (
 				F2E373B820716BC90000F707 /* PostManager.swift */,
 				F2E373B920716BC90000F707 /* PostsTableController.swift */,
-				3B18BEDF2074C5A200809D3A /* PostDetailController.swift */,
-				3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */,
 			);
 			path = Posts;
+			sourceTree = "<group>";
+		};
+		F2F24197207B3EA600BB74B1 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				F27985DC206F9DE300977F5D /* LayoutPhotoSelectorCell.swift */,
+				F27985DB206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift */,
+				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
+				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
+				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
+				F27985DF206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift */,
+				F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */,
+				F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */,
+				F2F2419E207B568C00BB74B1 /* TextColorCell.swift */,
+				F2F2419F207B568C00BB74B1 /* TextColorCell.xib */,
+				F25D7856206E7BE40011008A /* PhotoOptionCell.swift */,
+				F26698DF206660C700E3A1F2 /* FoodCell.swift */,
+				F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */,
+				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
+				F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -611,16 +640,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */,
-				3BA9CAC0207BB0DF0072058D /* PostDetail.storyboard in Resources */,
 				F2E373BD20716BE50000F707 /* Home.storyboard in Resources */,
+				F24BEC27207BC2770047C034 /* PostCell.xib in Resources */,
+				F24BEC2F207BC3910047C034 /* PostDetail.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
-				F2E373CB20716BF20000F707 /* PostCell.xib in Resources */,
-				3B398A4C207B999C00C20526 /* NutritionSticker.xib in Resources */,
+				F2F2419D207B537600BB74B1 /* FloatingTextInputPopup.xib in Resources */,
+				F24BEC26207BC2770047C034 /* TopicCell.xib in Resources */,
+				F2DB00AC2074C44000CAB764 /* NutritionSticker.xib in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
-				F2E373CF20716BF20000F707 /* TopicCell.xib in Resources */,
 				F2BE6899205E8C8900DF9694 /* Assets.xcassets in Resources */,
+				F2F241A1207B568C00BB74B1 /* TextColorCell.xib in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,7 +688,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -697,6 +728,7 @@
 				"${BUILT_PRODUCTS_DIR}/FormValidatorSwift/FormValidatorSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TGCameraViewController/TGCameraViewController.framework",
@@ -718,6 +750,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FormValidatorSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TGCameraViewController.framework",
@@ -752,7 +785,7 @@
 				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
 				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
 				B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */,
-				3B398A52207B99D100C20526 /* StoredSticker.swift in Sources */,
+				F24BEC1C207BC25F0047C034 /* StoredSticker.swift in Sources */,
 				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */,
@@ -760,39 +793,45 @@
 				B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */,
 				F26698DE206649D400E3A1F2 /* Constants.swift in Sources */,
 				F2E373B520716BBE0000F707 /* HomeController.swift in Sources */,
-				F2E373D520716BF20000F707 /* TopicCell.swift in Sources */,
 				F2E373B620716BBE0000F707 /* HomeTabController.swift in Sources */,
 				F27985DE206F9DE300977F5D /* LayoutPhotoSelectorCell.swift in Sources */,
-				3B1F3CE1207908340012D87C /* CommentCell.swift in Sources */,
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
+				F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */,
 				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
 				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
 				B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */,
 				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
-				3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
+				F24BEC25207BC2770047C034 /* TopicCell.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
-				3B398A50207B99CC00C20526 /* StoredLayout.swift in Sources */,
+				F2F2419C207B537600BB74B1 /* FloatingTextInputController.swift in Sources */,
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,
+				F24BEC2C207BC2FE0047C034 /* PostDetailController.swift in Sources */,
+				F24BEC1B207BC25F0047C034 /* StoredLayout.swift in Sources */,
 				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
+				F2F241A0207B568C00BB74B1 /* TextColorCell.swift in Sources */,
 				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
-				3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
-				3B398A48207B995300C20526 /* StickerLayout.swift in Sources */,
+				F24BEC24207BC2770047C034 /* LikeCell.swift in Sources */,
 				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
+				F24BEC28207BC2770047C034 /* CommentCell.swift in Sources */,
+				F24BEC29207BC2770047C034 /* PostCell.swift in Sources */,
 				F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */,
+				A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */,
 				F27985E0206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift in Sources */,
 				F25D78552068D9850011008A /* ShareTabController.swift in Sources */,
+				F2F24199207B3EFE00BB74B1 /* TextPreviewCell.swift in Sources */,
+				F2F24196207B30E900BB74B1 /* FloatingContentAdderController.swift in Sources */,
 				B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */,
 				B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */,
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
@@ -803,14 +842,13 @@
 				F27985DD206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
-				3B398A45207B995300C20526 /* CollageLayout.swift in Sources */,
 				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				B5CBA115206949FA00BC8005 /* DiscoveryViewController.swift in Sources */,
-				3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */,
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
+				A40BD2D220786DE40010E154 /* StickerLayout.swift in Sources */,
 				F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */,
-				F2E373D620716BF20000F707 /* PostCell.swift in Sources */,
+				F24BEC2D207BC2FE0047C034 /* PostCellDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

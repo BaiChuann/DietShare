@@ -4,8 +4,6 @@
 //
 //  Created by Fan Weiguang on 24/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
-// swiftlint:disable implicitly_unwrapped_optional force_unwrapping
-
 
 import UIKit
 import DKImagePickerController
@@ -23,16 +21,18 @@ class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
     @IBOutlet weak private var photoOptionCollectionView: UICollectionView!
-    @IBOutlet weak private var canvas: UIImageView!
+    @IBOutlet weak private var canvas: UIView!
+    @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var spacingConstraint: NSLayoutConstraint!
 
-    var originalPhoto = UIImage(named: "food-example-1")
+    var shareState: ShareState?
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private let context = CIContext()
     private var stickerIcons = [UIImage?]()
     private var layoutIcons = [UIImage?]()
     private var filters = [(String, String)]()
+    private var isShowingNutrition = true
 
     private let storedLayout = StoredLayout.shared
     private let storedSticker = StoredSticker.shared
@@ -44,9 +44,9 @@ class PhotoModifierController: UIViewController {
 
     private var selectedImages: [UIImage]?
 
-    private var layoutPanGestureRecognizer: UIPanGestureRecognizer!
-    private var stickerPanGestureRecognizer: UIPanGestureRecognizer!
-    private var layoutLongPressGestureRecognizer: UILongPressGestureRecognizer!
+    private var layoutPanGestureRecognizer: UIPanGestureRecognizer?
+    private var stickerPanGestureRecognizer: UIPanGestureRecognizer?
+    private var layoutLongPressGestureRecognizer: UILongPressGestureRecognizer?
 
     private var movingImageView: UIView?
     private var swappedImageView: UIView?
@@ -59,23 +59,22 @@ class PhotoModifierController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        canvas.image = originalPhoto
         setUpUI()
         setUpGestureRecogizer()
         setUpData()
 
         filters = [
-        ("Normal", "No Filter"),
-        ("Chrome", "CIPhotoEffectChrome"),
-        ("Fade", "CIPhotoEffectFade"),
-        ("Instant", "CIPhotoEffectInstant"),
-        ("Mono", "CIPhotoEffectMono"),
-        ("Noir", "CIPhotoEffectNoir"),
-        ("Process", "CIPhotoEffectProcess"),
-        ("Tonal", "CIPhotoEffectTonal"),
-        ("Transfer", "CIPhotoEffectTransfer"),
-        ("Tone", "CILinearToSRGBToneCurve"),
-        ("Linear", "CISRGBToneCurveToLinear")
+            ("Normal", "No Filter"),
+            ("Chrome", "CIPhotoEffectChrome"),
+            ("Fade", "CIPhotoEffectFade"),
+            ("Instant", "CIPhotoEffectInstant"),
+            ("Mono", "CIPhotoEffectMono"),
+            ("Noir", "CIPhotoEffectNoir"),
+            ("Process", "CIPhotoEffectProcess"),
+            ("Tonal", "CIPhotoEffectTonal"),
+            ("Transfer", "CIPhotoEffectTransfer"),
+            ("Tone", "CILinearToSRGBToneCurve"),
+            ("Linear", "CISRGBToneCurveToLinear")
         ]
     }
 
@@ -91,7 +90,17 @@ class PhotoModifierController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowFloatingContentAdder" {
+            if let destinationVC = segue.destination as? FloatingContentAdderController {
+                destinationVC.shareState = shareState
+            }
+        }
+    }
+
     private func setUpUI() {
+        imageView.image = shareState?.originalPhoto
+
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -99,7 +108,6 @@ class PhotoModifierController: UIViewController {
         segmentControl.backgroundColor = .clear
         segmentControl.tintColor = .clear
         segmentControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: UIControlEvents.valueChanged)
-
         if let font = UIFont(name: Constants.fontRegular, size: 14) {
             segmentControl.setTitleTextAttributes([
                 NSAttributedStringKey.font: font,
@@ -114,19 +122,26 @@ class PhotoModifierController: UIViewController {
 
     private func setUpGestureRecogizer() {
         layoutPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleLayoutPan(sender:)))
-        layoutPanGestureRecognizer.maximumNumberOfTouches = 1
-        layoutPanGestureRecognizer.isEnabled = false
-        canvas.superview?.addGestureRecognizer(layoutPanGestureRecognizer)
-
         stickerPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleStickerPan(sender:)))
-        stickerPanGestureRecognizer.maximumNumberOfTouches = 1
-        stickerPanGestureRecognizer.isEnabled = false
-        canvas.superview?.addGestureRecognizer(stickerPanGestureRecognizer)
-
         layoutLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
-        layoutLongPressGestureRecognizer.isEnabled = false
-        layoutLongPressGestureRecognizer.minimumPressDuration = 0.5
-        canvas.superview?.addGestureRecognizer(layoutLongPressGestureRecognizer)
+
+        guard let layoutPanGR = layoutPanGestureRecognizer,
+            let stickerPanGR = stickerPanGestureRecognizer,
+            let layoutLongPressGR = layoutLongPressGestureRecognizer else {
+                return
+        }
+
+        layoutPanGR.maximumNumberOfTouches = 1
+        layoutPanGR.isEnabled = false
+        canvas.addGestureRecognizer(layoutPanGR)
+
+        stickerPanGR.maximumNumberOfTouches = 1
+        stickerPanGR.isEnabled = false
+        canvas.addGestureRecognizer(stickerPanGR)
+
+        layoutLongPressGR.isEnabled = false
+        layoutLongPressGR.minimumPressDuration = 0.5
+        canvas.addGestureRecognizer(layoutLongPressGR)
     }
 
     private func setUpData() {
@@ -169,7 +184,7 @@ class PhotoModifierController: UIViewController {
         selectedFilterIndex = index
         if index > 0 {
             let filterName = filters[selectedFilterIndex].1
-            canvas.image = getFilteredImage(filter: filterName)
+            imageView.image = getFilteredImage(filter: filterName)
         }
     }
 
@@ -184,7 +199,7 @@ class PhotoModifierController: UIViewController {
     }
 
     private func getFilteredImage(filter: String) -> UIImage {
-        guard let image = originalPhoto, let filter = CIFilter(name: filter) else {
+        guard let image = shareState?.originalPhoto, let filter = CIFilter(name: filter) else {
             print("current photo or filter is nil")
             return UIImage()
         }
@@ -203,7 +218,7 @@ class PhotoModifierController: UIViewController {
     }
 
     private func reset() {
-        let superView = canvas.superview
+        let superView = imageView.superview
         superView?.subviews.filter { $0.tag == collageTag || $0.tag == stickerTag }
             .forEach { $0.removeFromSuperview() }
         superView?.gestureRecognizers?.forEach { $0.isEnabled = false }
@@ -228,7 +243,7 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
             optionImage = layoutIcons[indexPath.item]
             photoOptionCell.isSelected = indexPath.item == selectedLayoutIndex
         case PhotoOptionType.filter.rawValue:
-            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item].1) : originalPhoto
+            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item].1) : shareState?.originalPhoto
             photoOptionCell.isSelected = indexPath.item == selectedFilterIndex
             labelText = filters[indexPath.item].0
         default:
@@ -294,36 +309,36 @@ extension PhotoModifierController {
             return
         }
 
-        let imageViews = layout.getLayoutViews(frame: canvas.frame)
+        let imageViews = layout.getLayoutViews(frame: imageView.frame)
         zip(imageViews, selectedImages).forEach { imageView, selectedImage in
             addImageAsSubview(image: selectedImage, container: imageView)
         }
 
-        layoutPanGestureRecognizer.isEnabled = true
-        layoutLongPressGestureRecognizer.isEnabled = false
+        layoutPanGestureRecognizer?.isEnabled = true
+        layoutLongPressGestureRecognizer?.isEnabled = false
     }
 
     // Apply sticker selected
     private func applySticker(index: Int) {
-        guard let sticker = storedSticker.get(index) else {
+        guard let sticker = storedSticker.get(index),
+            let originalPhoto = shareState?.originalPhoto else {
             return
-
         }
-        let imageFrame = sticker.getImageFrame(frame: canvas.frame)
+        let imageFrame = sticker.getImageFrame(frame: imageView.frame)
         let stickerImageLayer = UIImageView(frame: imageFrame)
 
-        addImageAsSubview(image: originalPhoto!, container: stickerImageLayer)
+        addImageAsSubview(image: originalPhoto, container: stickerImageLayer)
         addStickerAsSubview(sticker: sticker)
 
-        stickerPanGestureRecognizer.isEnabled = true
+        stickerPanGestureRecognizer?.isEnabled = true
     }
 
     // Add sticker image as image subview
     private func addStickerAsSubview(sticker: StickerLayout) {
-        let stickerLayer = UIImageView(frame: canvas.frame)
+        let stickerLayer = UIImageView(frame: imageView.frame)
         stickerLayer.image = sticker.stickerImage
         stickerLayer.tag = stickerTag
-        canvas.superview?.addSubview(stickerLayer)
+        canvas.addSubview(stickerLayer)
     }
 
     // Add image to the container as subview, as add container as subview
@@ -332,7 +347,7 @@ extension PhotoModifierController {
         let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
         imageView.addSubview(subImageView)
         imageView.tag = collageTag
-        canvas.superview?.addSubview(imageView)
+        canvas.addSubview(imageView)
     }
 
     // Get a UIImageView with give image
@@ -378,8 +393,9 @@ extension PhotoModifierController {
 // Extension for handler of gestures
 extension PhotoModifierController {
 
-    @objc private func handleLayoutPan(sender: UIPanGestureRecognizer) {
-        let superView = canvas.superview
+    @objc
+    private func handleLayoutPan(sender: UIPanGestureRecognizer) {
+        let superView = imageView.superview
         let location = sender.location(in: superView)
 
         switch sender.state {
@@ -444,8 +460,9 @@ extension PhotoModifierController {
         }
     }
 
-    @objc private func handleStickerPan(sender: UIPanGestureRecognizer) {
-        let superView = canvas.superview
+    @objc
+    private func handleStickerPan(sender: UIPanGestureRecognizer) {
+        let superView = imageView.superview
         let location = sender.location(in: superView)
 
         switch sender.state {
@@ -474,7 +491,8 @@ extension PhotoModifierController {
         }
     }
 
-    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+    @objc
+    private func handleLongPress(sender: UILongPressGestureRecognizer) {
         // TODO: maybe add long press gesture to flip image
     }
 }
