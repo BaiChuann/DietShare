@@ -110,6 +110,12 @@ struct Constants {
         public static let longScrollViewHeight: CGFloat = 1200
     }
     
+    struct Tables {
+        public static let users = "users"
+        public static let topics = "topics"
+        public static let restaurants = "restaurants"
+    }
+    
     struct Test {
         public static let keyword = "Vegi"
         public static let withKeyword = "\(keyword)Life"

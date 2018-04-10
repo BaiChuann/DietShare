@@ -18,7 +18,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     
     private var database: Connection!
-    private let restaurantsTable = Table("restaurants")
+    private let restaurantsTable = Table(Constants.Tables.restaurants)
     
     // Columns of the Restaurants table
     private let id = Expression<String>("id")
@@ -43,7 +43,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     }
     
     private convenience init() {
-        self.init([Restaurant](), "restaurant")
+        self.init([Restaurant](), Constants.Tables.restaurants)
         prepopulate()
     }
     // A shared instance to be used in a global scope
@@ -51,7 +51,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     // Get instance for unit test
     static func getTestInstance(_ restaurants: [Restaurant]) -> RestaurantsLocalDataSource {
-        return RestaurantsLocalDataSource(restaurants, "restaurantTest")
+        return RestaurantsLocalDataSource(restaurants, Constants.Tables.restaurants + "Test")
     }
     
     // Create a database connection with given title, if such database does not already exist
@@ -115,6 +115,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     }
     
     func addRestaurant(_ newRestaurant: Restaurant) {
+        _checkRep()
         do {
             print("current restaurant id is: \(newRestaurant.getID())")
             try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
@@ -123,13 +124,16 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         } catch let error {
             print("insertion failed: \(error)")
         }
+        _checkRep()
     }
     
     
     func addRestaurants(_ newRestaurants: SortedSet<Restaurant>) {
+        _checkRep()
         for newRestaurant in newRestaurants {
             addRestaurant(newRestaurant)
         }
+        _checkRep()
     }
     
     func containsRestaurant(_ restaurantID: String) -> Bool {
@@ -148,6 +152,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     }
     
     func deleteRestaurant(_ restaurant: Restaurant) {
+        _checkRep()
         let row = restaurantsTable.filter(id == restaurant.getID())
         do {
             if try database.run(row.delete()) > 0 {
@@ -158,9 +163,11 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         } catch {
             print("delete failed: \(error)")
         }
+        _checkRep()
     }
     
     func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant) {
+        _checkRep()
         let row = restaurantsTable.filter(id == oldRestaurant.getID())
         do {
             if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
@@ -173,6 +180,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         } catch let error {
             print("update failed: \(error)")
         }
+        _checkRep()
     }
     
     /**
@@ -201,7 +209,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private func removeDB() {
         print("Remove DB called")
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("restaurants").appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(Constants.Tables.restaurants).appendingPathExtension("sqlite3") {
             try? FileManager.default.removeItem(at: fileUrl)
         }
     }
@@ -209,6 +217,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     // Only for testing
     
     private func prepopulate(_ restaurants: [Restaurant]) {
+        _checkRep()
         if !restaurants.isEmpty  {
             for restaurant in restaurants {
                 if !containsRestaurant(restaurant.getID()) {
@@ -216,10 +225,11 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
                 }
             }
         }
+        _checkRep()
     }
     
     private func prepopulate() {
-        print("Prepopulated")
+        _checkRep()
         for i in 0..<20 {
             if !containsRestaurant("i") {
                 let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
@@ -236,15 +246,50 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
         let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.0)
         self.addRestaurant(restaurantClose)
+        _checkRep()
     }
     
-    // TODO - Check representation of the datasource
-    private func checkRep() {
-        checkIDUniqueness()
+    // Check representation of the datasource
+    private func _checkRep() {
+        assert(checkIDUniqueness(), "IDs should be unique")
+        assert(checkColumnUniqueness(), "Column titles should be unique")
     }
     
-    private func checkIDUniqueness() {
+    private func checkIDUniqueness() -> Bool {
+        var IdSet = Set<String>()
+        var IdArray = [String]()
+        do {
+            for Id in try database.prepare(restaurantsTable.select(id)) {
+                IdArray.append(Id[id])
+                IdSet.insert(Id[id])
+                if IdSet.count != IdSet.count {
+                    return false
+                }
+            }
+        } catch let error {
+            print("failed to get row: \(error)")
+        }
         
+        return true
+    }
+    
+    private func checkColumnUniqueness() -> Bool {
+        var columnNameSet = Set<String>()
+        var columnNameArray = [String]()
+        do {
+            let tableInfo = try database.prepare("PRAGMA table_info(table_name)")
+            for line in tableInfo {
+                columnNameSet.insert(line[1] as! String)
+                columnNameArray.append(line[1] as! String)
+                if columnNameArray.count != columnNameSet.count {
+                    return false
+                }
+            }
+        } catch let error {
+            print("failed to get row: \(error)")
+        }
+        
+        return true
     }
     
 }

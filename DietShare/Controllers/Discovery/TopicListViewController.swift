@@ -129,7 +129,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
-            dest.currentUser = self.currentUser
         }
     }
     

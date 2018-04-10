@@ -76,7 +76,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        initUser()
         self.restaurantListView.reloadData()
         requestCoreLocationPermission()
     }

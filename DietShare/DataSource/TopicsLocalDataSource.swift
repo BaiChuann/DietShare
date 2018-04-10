@@ -16,7 +16,7 @@ import SQLite
 class TopicsLocalDataSource: TopicsDataSource {
     
     private var database: Connection!
-    private var topicsTable = Table("topics")
+    private var topicsTable = Table(Constants.Tables.topics)
     private var IDList = [String]()
     
     // Columns of the topics table
@@ -31,7 +31,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
         print("TopicLocalDataSource initializer called")
-//        removeDB()
+        removeDB()
         createDB(title)
         createTable()
         prepopulate(topics)
@@ -39,7 +39,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     
     private convenience init() {
-        self.init([Topic](), "topics")
+        self.init([Topic](), Constants.Tables.topics)
         prepopulate()
     }
     
@@ -50,7 +50,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Get instance for unit test
     static func getTestInstance(_ topics: [Topic]) -> TopicsLocalDataSource {
-        return TopicsLocalDataSource(topics, "topicsTest")
+        return TopicsLocalDataSource(topics, Constants.Tables.topics + "Test")
     }
     
     private func createDB(_ title: String) {
@@ -95,6 +95,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     
     func addTopic(_ newTopic: Topic) {
+        _checkRep()
         do {
             print("current topic id added: \(newTopic.getID())")
             try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), imagePath <- newTopic.getImagePath(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
@@ -103,6 +104,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         } catch let error {
             print("insertion failed: \(error)")
         }
+        _checkRep()
     }
     
     func getNumOfTopics() -> Int {
@@ -116,9 +118,11 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     func addTopics(_ newTopics: SortedSet<Topic>) {
+        _checkRep()
         for newTopic in newTopics {
             self.addTopic(newTopic)
         }
+        _checkRep()
     }
     
     func containsTopic(_ topicID: String) -> Bool {
@@ -136,6 +140,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     func deleteTopic(_ topicID: String) {
+        _checkRep()
         let row = topicsTable.filter(id == topicID)
         do {
             if try database.run(row.delete()) > 0 {
@@ -146,9 +151,11 @@ class TopicsLocalDataSource: TopicsDataSource {
         } catch {
             print("delete failed: \(error)")
         }
+        _checkRep()
     }
     
     func updateTopic(_ oldTopicID: String, _ newTopic: Topic) {
+        _checkRep()
         let row = topicsTable.filter(id == oldTopicID)
         do {
             if try database.run(row.update(name <- newTopic.getName(), description <- newTopic.getDescription(), imagePath <- newTopic.getImagePath(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID())) > 0 {
@@ -161,6 +168,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         } catch let error {
             print("update failed: \(error)")
         }
+        _checkRep()
     }
     
     
@@ -191,14 +199,14 @@ class TopicsLocalDataSource: TopicsDataSource {
     private func removeDB() {
         print("Remove DB called")
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(Constants.Tables.topics).appendingPathExtension("sqlite3") {
             try? FileManager.default.removeItem(at: fileUrl)
         }
     }
     
     // Only for testing
     private func prepopulate() {
-        print("Prepopulated")
+        _checkRep()
         let followers = ["1", "2", "3", "4", "5"]
         let followersSet = Set<String>(followers)
         let followerList = StringList(.User, followersSet)
@@ -215,9 +223,11 @@ class TopicsLocalDataSource: TopicsDataSource {
             let topic = Topic("100000", "High_Popularity2", "vegi-life.png", "Slightly lower popularity", StringList(.User), postsList)
             self.addTopic(topic)
         }
+        _checkRep()
     }
     
     private func prepopulate(_ topics: [Topic]) {
+        _checkRep()
         if !topics.isEmpty {
             for topic in topics {
                 if !containsTopic(topic.getID()) {
@@ -225,112 +235,54 @@ class TopicsLocalDataSource: TopicsDataSource {
                 }
             }
         }
+        _checkRep()
     }
     
     
-    func startQuery(_ query: Table) {
-        
-        print("entered query: \(query)")
-        
-        let start = CFAbsoluteTimeGetCurrent()
+    // Check representation of the datasource
+    private func _checkRep() {
+        assert(checkIDUniqueness(), "IDs should be unique")
+        assert(checkColumnUniqueness(), "Column titles should be unique")
+    }
+    
+    private func checkIDUniqueness() -> Bool {
+        var IdSet = Set<String>()
+        var IdArray = [String]()
         do {
-            
-            let startTime = CFAbsoluteTimeGetCurrent()
-            var initTime = CFAbsoluteTimeGetCurrent()
-            
-            for topic in try database.prepare(query) {
-                
-                print("Getting topic" + topic[id] + " iteration takes: \(CFAbsoluteTimeGetCurrent() - initTime)")
-                initTime = CFAbsoluteTimeGetCurrent()
+            for Id in try database.prepare(topicsTable.select(id)) {
+                IdArray.append(Id[id])
+                IdSet.insert(Id[id])
+                if IdSet.count != IdSet.count {
+                    return false
+                }
             }
-            print("Time lapsed for getting topics: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
-        print("Total time taken: \(CFAbsoluteTimeGetCurrent() - start)")
+        
+        return true
     }
     
-    
-    func printQueries() {
-        startQuery(topicsTable.select(id))
-        startQuery(topicsTable.select(id, name))
-        startQuery(topicsTable.select(id, name, description))
-        startQuery(topicsTable.select(id, name, description, imagePath))
-        startQuery(topicsTable.select(id, name, description, posts))
-        startQuery(topicsTable)
-    }
-    
-    
-    // A C-API style function for testing
-    private var db: OpaquePointer?
-    
-    func queryAllTopics() -> SortedSet<Topic> {
-        
-        let startTime = CFAbsoluteTimeGetCurrent()
-        
-        var topics = SortedSet<Topic>()
-        let queryStatementString = "SELECT * FROM topics;"
-        var queryStatement: OpaquePointer? = nil
-        db = self.database.handle
-        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-            
-            let columnCount = sqlite3_column_count(queryStatement)
-            while (sqlite3_step(queryStatement) == SQLITE_ROW) {
-                var row = [Any?]()
-                for idx in 0..<columnCount {
-                    switch sqlite3_column_type(queryStatement, Int32(idx)) {
-                    case SQLITE_BLOB:
-                        let bytes = sqlite3_column_blob(queryStatement, Int32(idx))
-                        let length = sqlite3_column_bytes(queryStatement, Int32(idx))
-                        row.append(Blob(bytes: bytes!, length: Int(length)))
-                    case SQLITE_FLOAT:
-                        row.append(Double(sqlite3_column_double(queryStatement, Int32(idx))))
-                    case SQLITE_INTEGER:
-                        let int = Int(sqlite3_column_int64(queryStatement, Int32(idx)))
-                        var bool = false
-                        let type = String(cString: sqlite3_column_decltype(queryStatement, Int32(idx)))
-                        bool = type.hasPrefix("BOOL")
-                        row.append(bool ? int != 0 : int)
-                    case SQLITE_NULL:
-                        row.append(nil)
-                    case SQLITE_TEXT:
-                        row.append(String(cString: sqlite3_column_text(queryStatement, Int32(idx))))
-                    case let type:
-                        assertionFailure("unsupported column type: \(type)")
-                    }
+    private func checkColumnUniqueness() -> Bool {
+        var columnNameSet = Set<String>()
+        var columnNameArray = [String]()
+        do {
+            let tableInfo = try database.prepare("PRAGMA table_info(table_name)")
+            for line in tableInfo {
+                columnNameSet.insert(line[1] as! String)
+                columnNameArray.append(line[1] as! String)
+                if columnNameArray.count != columnNameSet.count {
+                    return false
                 }
-                
-                let topicEntry = Topic(row[0] as! String, row[1] as! String,  row[3] as! String, row[2] as! String, StringList.fromDatatypeValue(row[5] as! Blob), StringList.fromDatatypeValue(row[6] as! Blob))
-                topics.insert(topicEntry)
             }
-        } else {
-            print("SELECT statement could not be prepared")
+        } catch let error {
+            print("failed to get row: \(error)")
         }
-        sqlite3_finalize(queryStatement)
-        print("query all takes time: \(CFAbsoluteTimeGetCurrent() - startTime)")
-        return topics
-    }
-    
-    func openDatabase() -> OpaquePointer? {
-        var db: OpaquePointer? = nil
-        let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
-            if sqlite3_open(fileUrl.path, &db) == SQLITE_OK {
-                print("Successfully opened connection to database at \(fileUrl)")
-                return db
-            }
-        }
-        return nil
-    }
-    
-    
-    // TODO - Check representation of the datasource
-    private func checkRep() {
         
+        return true
     }
     
 }
-
 
 
 extension UIImage: Value {

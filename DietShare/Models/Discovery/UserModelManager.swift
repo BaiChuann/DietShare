@@ -10,15 +10,14 @@ import Foundation
 
 class UserModelManager {
     
-    private var users: [User]
+    private var usersDataSource: UsersDataSource
+    private var users: [User] {
+        return usersDataSource.getAllUsers()
+    }
     private var currentUser: User?
     
     private init() {
-        users = [User]()
-        for i in 0..<20 {
-            let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: #imageLiteral(resourceName: "profile-example"))
-            users.append(newUser)
-        }
+        self.usersDataSource = UsersLocalDataSource.shared
     }
     
     // Singleton Instance
@@ -43,6 +42,14 @@ class UserModelManager {
     
     func getCurrentUser() -> User? {
         return self.currentUser
+    }
+    
+    func addUser(_ user: User) {
+        self.usersDataSource.addUser(user)
+    }
+    
+    func deleteUser(_ user: User) {
+        self.usersDataSource.deleteUser(user.getUserId())
     }
     
 }

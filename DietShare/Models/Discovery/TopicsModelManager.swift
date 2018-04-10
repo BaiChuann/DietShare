@@ -15,11 +15,12 @@ import BTree
  */
 class TopicsModelManager<T: ReadOnlyTopic> {
     private var topicsDataSource: TopicsDataSource
-    private var topics: SortedSet<T>
+    private var topics: SortedSet<T> {
+        return topicsDataSource.getAllTopics() as! SortedSet<T>
+    }
     
     init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
-        self.topics = topicsDataSource.getAllTopics() as! SortedSet<T>
     }
     
     //TODO - try use singleton here
@@ -59,6 +60,14 @@ class TopicsModelManager<T: ReadOnlyTopic> {
     
     func getNumOfTopics() -> Int {
         return self.topicsDataSource.getNumOfTopics()
+    }
+    
+    func addTopic(_ newTopic: Topic) {
+        self.topicsDataSource.addTopic(newTopic)
+    }
+    
+    func deleteTopic(_ topic: Topic) {
+        self.topicsDataSource.deleteTopic(topic.getID())
     }
     
     // Add a new post under a topic, and update the database

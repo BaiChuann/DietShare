@@ -21,27 +21,35 @@ class Topic: ReadOnlyTopic {
     private let description: String
     private var followers: StringList
     private var posts: StringList
+    
+    // TODO - active user logic -> to be added when PostModelManager is available
+    private var activeUsers: StringList
     private var popularity: Int {
         get{
             return self.posts.getListAsArray().count
         }
     }
     
-    init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList) {
+    init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList, _ activeUsers: StringList) {
         self.id = id
         self.name = name
         self.imagePath = imagePath
         self.description = description
         self.followers = followers
         self.posts = posts
+        self.activeUsers = activeUsers
+    }
+    
+    convenience init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList) {
+        self.init(id, name, imagePath, description, followers, posts, StringList(.User))
     }
     
     convenience init() {
-        self.init("", "", "void-bg", "", StringList(ListType.User), StringList(ListType.Post))
+        self.init("", "", "void-bg", "", StringList(ListType.User), StringList(ListType.Post), StringList(.User))
     }
     
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
-        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImagePath(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
+        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImagePath(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID(), readOnlyTopic.getActiveUserID())
     }
 
     func getID() -> String {
@@ -69,6 +77,9 @@ class Topic: ReadOnlyTopic {
     }
     func getFollowersID() -> StringList {
         return self.followers
+    }
+    func getActiveUserID() -> StringList {
+        return self.activeUsers
     }
     func getPopularity() -> Int {
         return self.popularity
