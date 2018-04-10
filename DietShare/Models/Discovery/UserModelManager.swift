@@ -11,17 +11,18 @@ import Foundation
 class UserModelManager {
     
     private var users: [User]
+    private var currentUser: User?
     
     private init() {
         users = [User]()
         for i in 0..<20 {
-            let newUser = User(userId: "\(i)", name: "Tyrion", password: "12345678", photo: #imageLiteral(resourceName: "profile-example"))
+            let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: #imageLiteral(resourceName: "profile-example"))
             users.append(newUser)
         }
     }
     
+    // Singleton Instance
     static let shared = UserModelManager()
-    static var currentUser = User(userId: "1", name: "Anonymous", password: "0000", photo: #imageLiteral(resourceName: "profile"))
     
     public func getUsers() -> [User] {
         return self.users
@@ -36,11 +37,11 @@ class UserModelManager {
         return nil
     }
     
-    static func setCurrentUser(_ user: User) {
+    func setCurrentUser(_ user: User) {
         self.currentUser = user
     }
     
-    static func getCurrentUser() -> User {
+    func getCurrentUser() -> User? {
         return self.currentUser
     }
     

@@ -11,7 +11,6 @@ import UIKit
 class RestaurantViewController: UIViewController {
     
     private var restaurant: Restaurant?
-    var currentUser: User?
     
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var restaurantImage: UIImageView!
@@ -36,7 +35,6 @@ class RestaurantViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        initUser()
         initView()
     }
     
@@ -71,7 +69,6 @@ class RestaurantViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantListViewController {
-            dest.currentUser = self.currentUser
         }
     }
     
@@ -106,9 +103,5 @@ class RestaurantViewController: UIViewController {
     /**
      * Test functions
      */
-    private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
-    }
-    
 }
 

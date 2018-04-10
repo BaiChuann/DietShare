@@ -19,7 +19,7 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
     
     init() {
         self.restaurantsDataSource = RestaurantsLocalDataSource.shared
-        self.restaurants = restaurantsDataSource.getRestaurants() as! SortedSet<T>
+        self.restaurants = restaurantsDataSource.getAllRestaurants() as! SortedSet<T>
     }
     
     func getFullRestaurantList(_ sorting: Sorting) -> [T] {

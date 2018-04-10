@@ -61,18 +61,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
     }
     
-    func openDatabase() -> OpaquePointer? {
-        var db: OpaquePointer? = nil
-        let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
-            if sqlite3_open(fileUrl.path, &db) == SQLITE_OK {
-                print("Successfully opened connection to database at \(fileUrl)")
-                return db
-            }
-        }
-        return nil
-    }
-    
     // Creates topic table if it is not already existing
     private func createTable() {
         let createTable = self.topicsTable.create(ifNotExists: true) { (table) in
@@ -94,71 +82,22 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     func getAllTopics() -> SortedSet<Topic> {
         var topics = SortedSet<Topic>()
-        let startTime = CFAbsoluteTimeGetCurrent()
-//        let queue = DispatchQueue(label: "topicDbQueue", attributes: .concurrent)
-//        let group = DispatchGroup()
-//        IDList = getAllIDs()
-//        print("time used to get IDs: \(CFAbsoluteTimeGetCurrent() - startTime)")
-//        let midTime = CFAbsoluteTimeGetCurrent()
-//        for ID in IDList {
-//            group.enter()
-//            queue.async { () -> Void in
-//                let row = self.topicsTable.filter(self.id == ID)
-//                do {
-//                    var initTime = CFAbsoluteTimeGetCurrent()
-//                    for topic in try self.database.prepare(row) {
-//                        let topicEntry = Topic(topic[self.id], topic[self.name], topic[self.imagePath] , topic[self.description], topic[self.followers], topic[self.posts])
-//                        topics.insert(topicEntry)
-//                        print("Topic inserted: \(ID) takes time: \(CFAbsoluteTimeGetCurrent() - initTime)")
-//                        initTime = CFAbsoluteTimeGetCurrent()
-//                    }
-//                } catch {
-//                    print("get topic failed: \(error)")
-//                }
-//                group.leave()
-//            }
-//        }
-//        group.wait()
-//        print("time used to get topics: \(CFAbsoluteTimeGetCurrent() - midTime)")
-       
         do {
-
-            let startTime = CFAbsoluteTimeGetCurrent()
-            var initTime = CFAbsoluteTimeGetCurrent()
-
             for topic in try database.prepare(topicsTable) {
                 let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
                 topics.insert(topicEntry)
-
-                print("Getting topic" + topic[id] + " iteration takes: \(CFAbsoluteTimeGetCurrent() - initTime)")
-                initTime = CFAbsoluteTimeGetCurrent()
             }
-            print("Time lapsed for getting topics: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
         return topics
     }
     
-    private func getAllIDs() -> [String] {
-        let IDcolumn = topicsTable.select(id)
-        var IDs = [String]()
-        do {
-            for ID in try database.prepare(IDcolumn) {
-                IDs.append(ID[id])
-            }
-        } catch let error {
-            print("delete failed: \(error)")
-        }
-        
-        return IDs
-    }
     
     func addTopic(_ newTopic: Topic) {
         do {
             print("current topic id added: \(newTopic.getID())")
             try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), imagePath <- newTopic.getImagePath(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
-            
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
@@ -322,7 +261,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     
-    
+    // A C-API style function for testing
     private var db: OpaquePointer?
     
     func queryAllTopics() -> SortedSet<Topic> {
@@ -372,6 +311,17 @@ class TopicsLocalDataSource: TopicsDataSource {
         return topics
     }
     
+    func openDatabase() -> OpaquePointer? {
+        var db: OpaquePointer? = nil
+        let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
+            if sqlite3_open(fileUrl.path, &db) == SQLITE_OK {
+                print("Successfully opened connection to database at \(fileUrl)")
+                return db
+            }
+        }
+        return nil
+    }
     
     
     // TODO - Check representation of the datasource

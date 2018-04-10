@@ -259,6 +259,7 @@
                         <outlet property="scrollView" destination="Eqr-5j-mhl" id="cEq-Xc-TZQ"/>
                         <outlet property="topicList" destination="ru9-W2-V06" id="j30-Ty-A1n"/>
                         <segue destination="2aZ-ZN-SkA" kind="show" identifier="discoveryToTopicPage" id="CkT-I1-2Rg"/>
+                        <segue destination="GSZ-DZ-kR4" kind="show" identifier="discoveryToRestaurantPage" id="XL7-k9-PPc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfT-VQ-Yas" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -899,8 +900,9 @@
         <image name="star-half" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l2f-CA-c91"/>
+        <segue reference="XL7-k9-PPc"/>
+        <segue reference="ptX-g6-KnN"/>
         <segue reference="CkT-I1-2Rg"/>
-        <segue reference="dzP-BU-JSp"/>
+        <segue reference="wzO-NE-Mcr"/>
     </inferredMetricsTieBreakers>
 </document>

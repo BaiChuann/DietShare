@@ -54,6 +54,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         return RestaurantsLocalDataSource(restaurants, "restaurantTest")
     }
     
+    // Create a database connection with given title, if such database does not already exist
     private func createDB(_ title: String) {
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         if let fileUrl = documentDirectory?.appendingPathComponent(title).appendingPathExtension("sqlite3") {
@@ -84,7 +85,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         }
     }
     
-    func getRestaurants() -> SortedSet<Restaurant> {
+    func getAllRestaurants() -> SortedSet<Restaurant> {
         var restaurants = SortedSet<Restaurant>()
         do {
             

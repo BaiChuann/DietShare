@@ -16,7 +16,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     private var restaurantModel: RestaurantsModelManager<Restaurant>?
     private var selectedRestaurant: Restaurant?
-    var currentUser: User?
     
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
@@ -56,6 +55,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.restaurantModel {
             let restaurantsList = model.getFullRestaurantList(currentSort)
@@ -89,7 +89,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
-            dest.currentUser = self.currentUser
         }
     }
     
@@ -156,10 +155,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     /**
      * Test functions
      */
-    // TODO - change to actual user manager when user manager is available
-    private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
-    }
+    
     
 }
 

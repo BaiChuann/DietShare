@@ -92,6 +92,9 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
         
+        // TODO - integrate with Login when login is ready
+        initUser()
+        
         displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
@@ -106,32 +109,31 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
             print("posts table added")
         }
     }
+    
+    // TODO - remove this when current user is set at Login page
+    func initUser() {
+        let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: #imageLiteral(resourceName: "profile"))
+        UserModelManager.shared.setCurrentUser(user)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // TODO - Add User Manager here and for all related view controllers
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicListViewController {
             dest.setModelManager(self.topicModel)
-            dest.currentUser = self.currentUser
             
         }
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
-            dest.currentUser = self.currentUser
         }
         if let dest = segue.destination as? RestaurantListViewController {
             dest.setModelManager(self.restaurantModel)
-            dest.currentUser = self.currentUser
-            
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)
-            dest.currentUser = self.currentUser
         }
     }
     

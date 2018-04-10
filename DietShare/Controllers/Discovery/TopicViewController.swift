@@ -12,7 +12,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     private var topic: Topic?
     private var userModel = UserModelManager.shared
-    var currentUser: User?
+    private var currentUser = UserModelManager.shared.getCurrentUser()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicName: UILabel!
@@ -31,8 +31,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        initUser()
+    
         initView()
     }
 
@@ -129,7 +128,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicListViewController {
-            dest.currentUser = self.currentUser
         }
     }
     
@@ -144,8 +142,5 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     /**
      * Test functions
      */
-    private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
-    }
     
 }
