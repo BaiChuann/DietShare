@@ -54,7 +54,7 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         
         if let displayedTopicsList = self.displayedTopics {
             if !displayedTopicsList.isEmpty {
-                cell.setImage(displayedTopicsList[indexPath.item].getImage())
+                cell.setImage(displayedTopicsList[indexPath.item].getImageAsUIImage())
                 cell.setName(displayedTopicsList[indexPath.item].getName())
             }
         }
@@ -92,7 +92,7 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
         
-        displayedTopics = self.topicModel.getTopics(0, Constants.DiscoveryPage.numOfDisplayedTopics)
+        displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
         PostManager.loadData()

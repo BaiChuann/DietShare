@@ -39,13 +39,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
 //        removeDB()
         createDB()
         createTable()
-        do {
-            try self.database.execute("PRAGMA locking_mode = EXCLUSIVE")
-            try self.database.execute("PRAGMA journal_mode = OFF")
-            print("topics: data base mode set")
-        } catch let error {
-            print("restaurant: fail to set mode: \(error)")
-        }
         prepopulate()
     }
     

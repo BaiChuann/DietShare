@@ -17,7 +17,7 @@ class Topic: ReadOnlyTopic {
     
     private let id: String
     private let name: String
-    private let image: UIImage
+    private let image: String
     private let description: String
     private var followers: StringList
     private var posts: StringList
@@ -27,7 +27,7 @@ class Topic: ReadOnlyTopic {
         }
     }
     
-    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: StringList, _ posts: StringList) {
+    init(_ id: String, _ name: String, _ image: String, _ description: String, _ followers: StringList, _ posts: StringList) {
         self.id = id
         self.name = name
         self.image = image
@@ -36,12 +36,16 @@ class Topic: ReadOnlyTopic {
         self.posts = posts
     }
     
+    convenience init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: StringList, _ posts: StringList) {
+        self.init(id, name, image.datatypeValue, description, followers, posts)
+    }
+    
     convenience init() {
         self.init("", "", UIImage(), "", StringList(ListType.User), StringList(ListType.Post))
     }
     
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
-        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImage(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
+        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImageAsUIImage(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
     }
 
     func getID() -> String {
@@ -53,7 +57,13 @@ class Topic: ReadOnlyTopic {
     func getDescription() -> String {
         return self.description
     }
-    func getImage() -> UIImage {
+    func getImageAsUIImage() -> UIImage {
+        if let uiImage = UIImage(named: self.image) {
+            return uiImage
+        }
+        return UIImage()
+    }
+    func getImageAsString() -> String {
         return self.image
     }
     func getPostsID() -> StringList {
@@ -81,9 +91,9 @@ class Topic: ReadOnlyTopic {
         print("Follower removed: \(follower.getUserId())")
     }
     
-    // A topic is "<" than another one if it is lower in terms of popularity
+    // A topic is "<" than another one if it is higher in terms of popularity
     static func <(lhs: Topic, rhs: Topic) -> Bool {
-        return lhs.popularity < rhs.popularity
+        return lhs.popularity > rhs.popularity
     }
     
     static func ==(lhs: Topic, rhs: Topic) -> Bool {
@@ -93,5 +103,5 @@ class Topic: ReadOnlyTopic {
                 && lhs.posts == rhs.posts
                 && lhs.followers == rhs.followers
     }
-
 }
+

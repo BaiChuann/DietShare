@@ -69,7 +69,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         if let currentTopic = self.topic {
             self.topicName.text = currentTopic.getName()
             addRoundedRectBackground(self.topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
-            self.topicImage.image = currentTopic.getImage()
+            self.topicImage.image = currentTopic.getImageAsUIImage()
             self.topicImage.alpha = CGFloat(Constants.TopicPage.topicImageAlpha)
             self.topicDescription.text = currentTopic.getDescription()
         }

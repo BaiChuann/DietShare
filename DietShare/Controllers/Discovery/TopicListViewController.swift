@@ -33,7 +33,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicFullListCell, for: indexPath as IndexPath) as! TopicFullListCell
         
         let topicList = self.topics
-        cell.setImage(topicList[indexPath.item].getImage())
+        cell.setImage(topicList[indexPath.item].getImageAsUIImage())
         cell.setName(topicList[indexPath.item].getName())
         cell.initFollowButtonView()
         addTapHandler(cell, topicList, indexPath)
@@ -51,7 +51,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
                     self.topics.append(contentsOf: moreTopics)
                     self.topicListView.reloadData()
                 }
-                
             }
         }
 

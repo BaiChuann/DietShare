@@ -15,7 +15,7 @@ import BTree
  */
 protocol TopicsDataSource {
     
-    func getTopics(_ index: Int, _ number: Int) -> [Topic]
+    func getAllTopics() -> SortedSet<Topic>
     func queryAllTopics() -> SortedSet<Topic>
     func getNumOfTopics() -> Int
     func addTopic(_ newTopic: Topic)

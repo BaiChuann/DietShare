@@ -15,23 +15,46 @@ import BTree
  */
 class TopicsModelManager<T: ReadOnlyTopic> {
     private var topicsDataSource: TopicsDataSource
+    private var topics: SortedSet<T>
     
     init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
+        self.topics = topicsDataSource.getAllTopics() as! SortedSet<T>
     }
     
     //TODO - try use singleton here
     
-//    // Obtain a list of topics to be displayed in Discover Page
-//    func getShortListForDisplay(_ numOfItem: Int) -> [T] {
-//        var displayedList = [T]()
-//        var count = 0
-//        // TODO - Change to SQLite implementation
-//        return displayedList
-//    }
+    // Obtain a list of topics to be displayed in Discover Page
+    func getShortListForDisplay(_ numOfItem: Int) -> [T] {
+        var displayedList = [T]()
+        var count = 0
+        for topic in self.topics {
+            if (count >= numOfItem) {
+                break
+            }
+            displayedList.append(topic)
+            count += 1
+        }
+        return displayedList
+    }
     
-    func getTopics(_ index: Int, _ number: Int) -> [T] {
-        return self.topicsDataSource.getTopics(index, number) as! [T]
+    func getAllTopics() -> [T] {
+        var topicsList = [T]()
+        topicsList.append(contentsOf: self.topics)
+        return topicsList
+    }
+    
+    func getTopics(_ index: Int, _ length: Int) -> [T] {
+        var topicsList = [T]()
+        if index > self.getNumOfTopics() || index + length > self.getNumOfTopics() {
+            return topicsList
+        }
+        topicsList.append(contentsOf: self.topics)
+        var returnList = [T]()
+        for i in 0..<length {
+            returnList.append(topicsList[index + i])
+        }
+        return returnList
     }
     
     func getNumOfTopics() -> Int {
