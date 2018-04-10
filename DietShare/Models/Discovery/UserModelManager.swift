@@ -21,6 +21,7 @@ class UserModelManager {
     }
     
     static let shared = UserModelManager()
+    static var currentUser = User(userId: "1", name: "Anonymous", password: "0000", photo: #imageLiteral(resourceName: "profile"))
     
     public func getUsers() -> [User] {
         return self.users
@@ -33,6 +34,14 @@ class UserModelManager {
             }
         }
         return nil
+    }
+    
+    static func setCurrentUser(_ user: User) {
+        self.currentUser = user
+    }
+    
+    static func getCurrentUser() -> User {
+        return self.currentUser
     }
     
 }

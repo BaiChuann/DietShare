@@ -39,6 +39,13 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
 //        removeDB()
         createDB()
         createTable()
+        do {
+            try self.database.execute("PRAGMA locking_mode = EXCLUSIVE")
+            try self.database.execute("PRAGMA journal_mode = OFF")
+            print("topics: data base mode set")
+        } catch let error {
+            print("restaurant: fail to set mode: \(error)")
+        }
         prepopulate()
     }
     
@@ -78,12 +85,16 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func getRestaurants() -> SortedSet<Restaurant> {
         var restaurants = SortedSet<Restaurant>()
         do {
+            
+            let startTime = CFAbsoluteTimeGetCurrent()
             for restaurant in try database.prepare(restaurantsTable) {
                 
                 let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[image], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 restaurants.insert(restaurantEntry)
                 
             }
+            
+            print("Time lapsed for getting restaurants: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
@@ -185,13 +196,13 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             }
         }
         
-        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
-        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 5.0)
-        self.addRestaurant(restaurantFar)
-        
-        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
-        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.0)
-        self.addRestaurant(restaurantClose)
+//        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
+//        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 5.0)
+//        self.addRestaurant(restaurantFar)
+//
+//        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
+//        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.0)
+//        self.addRestaurant(restaurantClose)
     }
     
     // TODO - Check representation of the datasource

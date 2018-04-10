@@ -87,6 +87,7 @@ struct Constants {
     public static let defaultLabelBorderWidth: CGFloat = 3.0
     public static let defaultCornerRadius: CGFloat = 5.0
     public static let defaultTagCornerRadius: CGFloat = 8.0
+    public static let numOfItemPerLoad = 10
     
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
@@ -106,5 +107,11 @@ struct Constants {
         public static let numOfDisplayedUsers = 10
         public static let restaurantImageAlpha: CGFloat = 0.8
         public static let longScrollViewHeight: CGFloat = 1200
+    }
+    
+    struct Test {
+        public static let keyword = "Vegi"
+        public static let withKeyword = "\(keyword)Life"
+        public static let withoutKeyword = "Life"
     }
 }

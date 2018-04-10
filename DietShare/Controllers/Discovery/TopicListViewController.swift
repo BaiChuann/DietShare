@@ -13,14 +13,17 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     private var topicModel: TopicsModelManager<Topic>?
     private var selectedTopic: Topic?
+    private var topics = [Topic]()
+    
     var currentUser: User?
+    
     
     @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == topicListView, let model = self.topicModel {
+        if collectionView == topicListView {
             // TODO - only show 10 entries at a time
-            return model.getNumOfTopics()
+            return self.topics.count
         }
         return 0
     }
@@ -28,15 +31,30 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicFullListCell, for: indexPath as IndexPath) as! TopicFullListCell
-        if let model = self.topicModel {
-            let topicList = model.getFullTopicList()
-            cell.setImage(topicList[indexPath.item].getImage())
-            cell.setName(topicList[indexPath.item].getName())
-            cell.initFollowButtonView()
-            addTapHandler(cell, topicList, indexPath)
-        }
+        
+        let topicList = self.topics
+        cell.setImage(topicList[indexPath.item].getImage())
+        cell.setName(topicList[indexPath.item].getName())
+        cell.initFollowButtonView()
+        addTapHandler(cell, topicList, indexPath)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let model = self.topicModel {
+            let lastElement = self.topics.count - 1
+            if indexPath.row == lastElement {
+                if lastElement + Constants.numOfItemPerLoad < model.getNumOfTopics() {
+    //                startAnimating()
+                    let moreTopics = model.getTopics(self.topics.count, Constants.numOfItemPerLoad)
+                    self.topics.append(contentsOf: moreTopics)
+                    self.topicListView.reloadData()
+                }
+                
+            }
+        }
+
     }
     
     // Add handling of tapping on follow button
@@ -85,17 +103,17 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         if let user = self.currentUser, let model = self.topicModel {
             if sender.tag == FollowStatus.notFollowed.rawValue {
                 toggleToFollowed(sender)
-                model.getFullTopicList()[index].addFollower(user)
+                self.topics[index].addFollower(user)
             } else {
                 toggleToUnfollowed(sender)
-                model.getFullTopicList()[index].removeFollower(user)
+                self.topics[index].removeFollower(user)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.topicModel {
-            let topicsList = model.getFullTopicList()
+            let topicsList = self.topics
             self.selectedTopic = topicsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.topicListToDetailPage, sender: self)
         }
@@ -109,6 +127,9 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        if let model = self.topicModel {
+            self.topics = model.getTopics(0, 10)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

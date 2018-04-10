@@ -14,6 +14,8 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     
     private var topicModel = TopicsModelManager<Topic>()
     private var restaurantModel = RestaurantsModelManager<Restaurant>()
+    private var displayedTopics: [Topic]?
+    private var displayedRestaurants: [Restaurant]?
     private var currentTopic: Topic?
     private var currentRestaurant: Restaurant?
     var currentUser: User?
@@ -49,33 +51,38 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     
     private func getCellForTopic(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicShortListCell, for: indexPath as IndexPath) as! TopicShortListCell
-        let displayedTopicsList = self.topicModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedTopics)
-        if !displayedTopicsList.isEmpty {
-            cell.setImage(displayedTopicsList[indexPath.item].getImage())
-            cell.setName(displayedTopicsList[indexPath.item].getName())
+        
+        if let displayedTopicsList = self.displayedTopics {
+            if !displayedTopicsList.isEmpty {
+                cell.setImage(displayedTopicsList[indexPath.item].getImage())
+                cell.setName(displayedTopicsList[indexPath.item].getName())
+            }
         }
         return cell
     }
     
     private func getCellForRestaurant(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantShortListCell, for: indexPath as IndexPath) as! RestaurantShortListCell
-        let displayedRestaurantsList = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
-        if !displayedRestaurantsList.isEmpty {
-            cell.setImage(displayedRestaurantsList[indexPath.item].getImage())
-            cell.setName(displayedRestaurantsList[indexPath.item].getName())
+        if let displayedRestaurantsList = self.displayedRestaurants {
+            if !displayedRestaurantsList.isEmpty {
+                cell.setImage(displayedRestaurantsList[indexPath.item].getImage())
+                cell.setName(displayedRestaurantsList[indexPath.item].getName())
+            }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == topicList {
-            let topicsList = self.topicModel.getFullTopicList()
-            self.currentTopic = topicsList[indexPath.item]
-            performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
+            if let topicsList = self.displayedTopics {
+                self.currentTopic = topicsList[indexPath.item] as! Topic
+                performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
+            }
         } else if collectionView == restaurantList {
-            let restuarantsList = self.restaurantModel.getFullRestaurantList(Sorting.byRating)
-            self.currentRestaurant = restuarantsList[indexPath.item]
-            performSegue(withIdentifier: Identifiers.discoveryToRestaurantPage, sender: self)
+            if let restuarantsList = self.displayedRestaurants {
+                self.currentRestaurant = restuarantsList[indexPath.item] as! Restaurant
+                performSegue(withIdentifier: Identifiers.discoveryToRestaurantPage, sender: self)
+            }
         }
     }
 
@@ -84,6 +91,9 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
+        
+        displayedTopics = self.topicModel.getTopics(0, Constants.DiscoveryPage.numOfDisplayedTopics)
+        displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
         PostManager.loadData()
         postsTableController = PostsTableController()
