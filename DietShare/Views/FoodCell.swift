@@ -17,12 +17,6 @@ class FoodCell: UICollectionViewCell {
         background.layer.cornerRadius = Constants.cornerRadius
         background.layer.masksToBounds = true
 
-        foodName.layer.shadowColor = Constants.darkTextColor.cgColor
-        foodName.layer.shadowRadius = 2.0
-        foodName.layer.shadowOpacity = 0.4
-        foodName.layer.shadowOffset = CGSize(width: 2, height: 2)
-        foodName.layer.masksToBounds = false
-
         super.layoutSubviews()
     }
 

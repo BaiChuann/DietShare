@@ -14,14 +14,9 @@ import BTree
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 protocol TopicsDataSource {
-<<<<<<< HEAD
     
     func getAllTopics() -> SortedSet<Topic>
     func getNumOfTopics() -> Int
-=======
-
-    func getTopics() -> SortedSet<Topic>
->>>>>>> master
     func addTopic(_ newTopic: Topic)
     func addTopics(_ newTopics: SortedSet<Topic>)
     func deleteTopic(_ newTopicID: String)

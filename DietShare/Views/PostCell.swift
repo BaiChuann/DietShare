@@ -15,14 +15,12 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak private var postImage: UIImageView!
     @IBOutlet weak private var caption: UILabel!
     @IBOutlet weak private var likeCount: UILabel!
-    @IBOutlet weak private var commentCount: UIButton!
+    @IBOutlet weak private var commentCount: UILabel!
     @IBOutlet weak private var time: UILabel!
     @IBOutlet weak private var restaurant: UILabel!
     @IBOutlet weak private var topics: UICollectionView!
     @IBOutlet weak var topicsLayout: UICollectionViewFlowLayout!
-    private var post: Post!
     private var topicsData: [String] = []
-    var cellDelegate: PostCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         let nibName = UINib(nibName: "TopicCell", bundle: nil)
@@ -47,7 +45,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         likeCount.text = count
     }
     func setCommentCount(_ count: String) {
-        commentCount.setTitle(count, for: .normal)
+        commentCount.text = count
     }
     func setTime(_ time: String) {
         self.time.text = time
@@ -69,23 +67,6 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         }
         self.restaurant.text = restaurant
     }
-    func setContent(userPhoto: UIImage, userName: String, _ post: Post) {
-        self.post = post
-        setUserPhoto(userPhoto)
-        setUserName(userName)
-        setPostImage(post.getPhoto())
-        setCaption(post.getCaption())
-        setLikeCount(String(post.getLikesCount()))
-        setCommentCount(String(post.getCommentsCount()))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd HH:mm:ss"
-        setTime(dateFormatter.string(from: post.getTime()))
-        setTopics(post.getTopics())
-        setRestaurant(post.getRestaurant().1)
-    }
-    func setDelegate(_ cellDelegate: PostCellDelegate) {
-        self.cellDelegate = cellDelegate
-    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return topicsData.count
     }
@@ -95,15 +76,9 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         }
 
         cell.topicLabel.text = " " + topicsData[indexPath.item] + " "
-        //cell.topicLabel.sizeToFit()
+        cell.topicLabel.sizeToFit()
         cell.topicLabel.layer.cornerRadius = 4
         cell.topicLabel.clipsToBounds = true
         return cell
-    }
-    @IBAction func onCommentCountClicked(_ sender: Any) {
-        self.cellDelegate?.goToDetail(self)
-    }
-    func getPost() -> Post{
-        return post
     }
 }

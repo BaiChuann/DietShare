@@ -8,6 +8,7 @@
 
 import UIKit
 import PopupDialog
+import TweeTextField
 
 protocol FoodAdderDelegate: class {
     func addIngredient(_: Ingredient)
@@ -17,16 +18,13 @@ protocol FoodAdderDelegate: class {
 class FoodAdderController: UIViewController {
     @IBOutlet weak private var addIngredientImage: UIImageView!
     @IBOutlet weak private var cursorView: UIView!
-    @IBOutlet weak private var nameInput: UITextField!
+    @IBOutlet weak private var nameInput: TweeActiveTextField!
     @IBOutlet weak private var ingredientCollectionView: UICollectionView!
-    @IBOutlet weak private var canvas: UIImageView!
 
-    var shareState: ShareState?
     private let ingredientCellIdentifier = "IngredientCell"
     private let ingredientPopupNibName = "IngredientPopup"
     private var ingredients = [Ingredient]()
     private var foodName: String?
-    private var originalViewY: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +32,15 @@ class FoodAdderController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAddIngredientImageTapped))
         addIngredientImage.isUserInteractionEnabled = true
         addIngredientImage.addGestureRecognizer(tapGestureRecognizer)
-        canvas.image = shareState?.originalPhoto
 
-        setUpUI()
         setUpInput()
+
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        originalViewY = view.frame.origin.y
         addKeyboardNotifications()
         UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {() -> Void in
             self.cursorView.alpha = 0 }, completion: nil)
@@ -51,22 +50,13 @@ class FoodAdderController: UIViewController {
         removeKeyboardNotifications()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowPhotoModifier" {
-            if let destinationVC = segue.destination as? PhotoModifierController {
-                destinationVC.shareState = shareState
-            }
-        }
-    }
-
-    private func setUpUI() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
-        backButton.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-
     private func setUpInput() {
         nameInput.delegate = self
+
+        nameInput.minimizationAnimationType = .smoothly
+        if let font = UIFont(name: Constants.fontBold, size: 24) {
+            nameInput.font = font
+        }
     }
 
     @objc
@@ -102,7 +92,7 @@ class FoodAdderController: UIViewController {
             return
         }
 
-        self.view.frame.origin.y = originalViewY - keyboardHeight
+        self.view.frame.origin.y = -keyboardHeight
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
