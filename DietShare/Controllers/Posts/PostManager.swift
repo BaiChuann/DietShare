@@ -17,4 +17,8 @@ class PostManager {
     static func getFollowingPosts() -> [Post] {
         return posts
     }
+    static func getTrendingPosts() -> [Post] {
+        let sortedPosts = posts.sorted(by: {$0.getLikesCount() > $1.getLikesCount()})
+        return sortedPosts
+    }
 }

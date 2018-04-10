@@ -15,37 +15,60 @@ import BTree
  * these models.
  */
 class TopicsModelManager<T: ReadOnlyTopic> {
-    private var topics:SortedSet<T>
     private var topicsDataSource: TopicsDataSource
+    private var topics: SortedSet<T> {
+        return topicsDataSource.getAllTopics() as! SortedSet<T>
+    }
     
     init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
-        
-        let startTime = CFAbsoluteTimeGetCurrent()
-        self.topics = topicsDataSource.getTopics() as! SortedSet<T>
-        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-        print("Time elapsed for getting topics: \(timeElapsed) s.")
-        
     }
     
-    func getFullTopicList() -> [T] {
-        var topicList = [T]()
-        topicList.append(contentsOf: self.topics)
-        return topicList
-    }
+    //TODO - try use singleton here
     
     // Obtain a list of topics to be displayed in Discover Page
-    func getDisplayedList() -> [T] {
+    func getShortListForDisplay(_ numOfItem: Int) -> [T] {
         var displayedList = [T]()
         var count = 0
         for topic in self.topics {
-            if (count >= Constants.DiscoveryPage.numOfDisplayedTopics) {
+            if (count >= numOfItem) {
                 break
             }
             displayedList.append(topic)
             count += 1
         }
         return displayedList
+    }
+    
+    func getAllTopics() -> [T] {
+        var topicsList = [T]()
+        topicsList.append(contentsOf: self.topics)
+        return topicsList
+    }
+    
+    func getTopics(_ index: Int, _ length: Int) -> [T] {
+        var topicsList = [T]()
+        if index > self.getNumOfTopics() || index + length > self.getNumOfTopics() {
+            return topicsList
+        }
+        topicsList.append(contentsOf: self.topics)
+        var returnList = [T]()
+        for i in 0..<length {
+            returnList.append(topicsList[index + i])
+        }
+        return returnList
+    }
+    
+    func getNumOfTopics() -> Int {
+        return self.topicsDataSource.getNumOfTopics()
+    }
+    
+    func addTopic(_ newTopic: Topic) {
+        self.topicsDataSource.addTopic(newTopic)
+    }
+    
+    func deleteTopic(_ topic: Topic) {
+        self.topicsDataSource.deleteTopic(topic.getID())
     }
     
     // Add a new post under a topic, and update the database
