@@ -30,24 +30,24 @@ class TopicsLocalDataSourceTest: XCTestCase {
         var topics = [topicWithKeyword, topicWithoutKeyword]
         testDataSource = TopicsLocalDataSource.getTestInstance(topics)
         if let searchResult = testDataSource?.searchWithKeyword(Constants.Test.keyword) {
-            XCTAssert(searchResult.count == 1)
-            XCTAssert(searchResult[0] == topicWithKeyword)
+            XCTAssert(searchResult.count == 1, "Incorrect number of search result")
+            XCTAssert(searchResult[0] == topicWithKeyword, "Incorrect search result")
         }
-    
+
         let topicWithEmpty = Topic(" ", " ")
         topics.append(topicWithEmpty)
         testDataSource = TopicsLocalDataSource.getTestInstance(topics)
         if let searchResult = testDataSource?.searchWithKeyword(Constants.Test.keyword) {
-            XCTAssert(searchResult.count == 1)
-            XCTAssert(searchResult[0] == topicWithKeyword)
+            XCTAssert(searchResult.count == 1, "Incorrect number of search result")
+            XCTAssert(searchResult[0] == topicWithKeyword, "Incorrect search result")
         }
-        
+
         let posts = StringList(.Post, ["Post"])
         let topicWithKeyword2 = Topic("withKeyword2", Constants.Test.withKeyword + "2", posts)
         topics.append(topicWithKeyword2)
         testDataSource = TopicsLocalDataSource.getTestInstance(topics)
         if let searchResult = testDataSource?.searchWithKeyword(Constants.Test.keyword) {
-            XCTAssert(searchResult.count == 2)
+            XCTAssert(searchResult.count == 2, "Incorrect number of search result")
             XCTAssert(searchResult[0] == topicWithKeyword2, "Topics are not ranked in the correct descending order of popularity")
             XCTAssert(searchResult[1] == topicWithKeyword, "Topics are not ranked in the correct descending order of popularity")
         }
@@ -57,11 +57,11 @@ class TopicsLocalDataSourceTest: XCTestCase {
 
 extension Topic {
     convenience init(_ id: String, _ name: String) {
-        self.init(id, name, #imageLiteral(resourceName: "vegi-life"), " ", StringList(.User), StringList(.Post))
+        self.init(id, name, "vegi-life", " ", StringList(.User), StringList(.Post))
     }
     
     convenience init(_ id: String, _ name: String, _ posts: StringList) {
-        self.init(id, name, #imageLiteral(resourceName: "vegi-life"), " ", StringList(.User), posts)
+        self.init(id, name, "vegi-life", " ", StringList(.User), posts)
     }
 }
 

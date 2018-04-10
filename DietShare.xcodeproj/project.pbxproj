@@ -26,6 +26,7 @@
 		B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AEB207325EF00F0E3E8 /* TopicTest.swift */; };
 		B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */; };
 		B56CE1A3207CAB94006ACEE9 /* TopicLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CE1A2207CAB93006ACEE9 /* TopicLocalDataSource.swift */; };
+		B5A01CE3207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
 		B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */; };
 		B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA1122069411C00BC8005 /* Discovery.storyboard */; };
@@ -194,6 +195,7 @@
 		B5488AEB207325EF00F0E3E8 /* TopicTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTest.swift; sourceTree = "<group>"; };
 		B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantShortListCell.swift; sourceTree = "<group>"; };
 		B56CE1A2207CAB93006ACEE9 /* TopicLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicLocalDataSource.swift; sourceTree = "<group>"; };
+		B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsLocalDataSourceTest.swift; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
 		B5CBA10E2069226600BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				F2BE68A8205E8C8900DF9694 /* Info.plist */,
 				B5488AEB207325EF00F0E3E8 /* TopicTest.swift */,
 				B5281104207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift */,
+				B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */,
 			);
 			path = DietShareTests;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BE68A7205E8C8900DF9694 /* DietShareTests.swift in Sources */,
+				B5A01CE3207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift in Sources */,
 				B5281105207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift in Sources */,
 				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
 			);
@@ -1137,7 +1141,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShareTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marvericks.DietShareTests;
@@ -1154,7 +1158,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShareTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marvericks.DietShareTests;

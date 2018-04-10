@@ -17,7 +17,7 @@ class Topic: ReadOnlyTopic {
     
     private let id: String
     private let name: String
-    private let image: String
+    private let imagePath: String
     private let description: String
     private var followers: StringList
     private var posts: StringList
@@ -27,25 +27,21 @@ class Topic: ReadOnlyTopic {
         }
     }
     
-    init(_ id: String, _ name: String, _ image: String, _ description: String, _ followers: StringList, _ posts: StringList) {
+    init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList) {
         self.id = id
         self.name = name
-        self.image = image
+        self.imagePath = imagePath
         self.description = description
         self.followers = followers
         self.posts = posts
     }
     
-    convenience init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: StringList, _ posts: StringList) {
-        self.init(id, name, image.datatypeValue, description, followers, posts)
-    }
-    
     convenience init() {
-        self.init("", "", UIImage(), "", StringList(ListType.User), StringList(ListType.Post))
+        self.init("", "", "void-bg", "", StringList(ListType.User), StringList(ListType.Post))
     }
     
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
-        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImageAsUIImage(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
+        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImagePath(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
     }
 
     func getID() -> String {
@@ -58,13 +54,15 @@ class Topic: ReadOnlyTopic {
         return self.description
     }
     func getImageAsUIImage() -> UIImage {
-        if let uiImage = UIImage(named: self.image) {
+        assert(UIImage(named: self.imagePath) != nil)
+        
+        if let uiImage = UIImage(named: self.imagePath) {
             return uiImage
         }
-        return UIImage()
+        return UIImage(named: Constants.voidBackgroundImagePath)!
     }
-    func getImageAsString() -> String {
-        return self.image
+    func getImagePath() -> String {
+        return self.imagePath
     }
     func getPostsID() -> StringList {
         return self.posts

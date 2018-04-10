@@ -23,7 +23,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     // Columns of the Restaurants table
     private let id = Expression<String>("id")
     private let name = Expression<String>("name")
-    private let image = Expression<UIImage>("image")
+    private let imagePath = Expression<String>("imagePath")
     private let description = Expression<String>("description")
     private let address = Expression<String>("address")
     private let location = Expression<CLLocation>("location")
@@ -34,20 +34,29 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private let ratingScore = Expression<Double>("ratingScore")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
-    private init() {
+    private init(_ restaurants: [Restaurant], _ title: String) {
         print("RestaurantLocalDataSource initializer called")
-//        removeDB()
-        createDB()
+        removeDB()
+        createDB(title)
         createTable()
-        prepopulate()
+        prepopulate(restaurants)
     }
     
+    private convenience init() {
+        self.init([Restaurant](), "restaurant")
+        prepopulate()
+    }
     // A shared instance to be used in a global scope
     static let shared = RestaurantsLocalDataSource()
     
-    private func createDB() {
+    // Get instance for unit test
+    static func getTestInstance(_ restaurants: [Restaurant]) -> RestaurantsLocalDataSource {
+        return RestaurantsLocalDataSource(restaurants, "restaurantTest")
+    }
+    
+    private func createDB(_ title: String) {
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("restaurants").appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(title).appendingPathExtension("sqlite3") {
             
             self.database = try? Connection(fileUrl.path)
         }
@@ -63,7 +72,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             table.column(self.phone)
             table.column(self.types)
             table.column(self.description)
-            table.column(self.image)
+            table.column(self.imagePath)
             table.column(self.ratings)
             table.column(self.posts)
             table.column(self.ratingScore)
@@ -82,7 +91,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             let startTime = CFAbsoluteTimeGetCurrent()
             for restaurant in try database.prepare(restaurantsTable) {
                 
-                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[image], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 restaurants.insert(restaurantEntry)
                 
             }
@@ -107,7 +116,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func addRestaurant(_ newRestaurant: Restaurant) {
         do {
             print("current restaurant id is: \(newRestaurant.getID())")
-            try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), image <- newRestaurant.getImage(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
+            try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
@@ -153,7 +162,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant) {
         let row = restaurantsTable.filter(id == oldRestaurant.getID())
         do {
-            if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), image <- newRestaurant.getImage(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
+            if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
                 print("Old Restaurant is updated")
             } else {
                 print("Old Restaurant not found")
@@ -163,6 +172,24 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         } catch let error {
             print("update failed: \(error)")
         }
+    }
+    
+    /**
+     * For post publish component
+     */
+    func searchWithKeyword(_ keyword: String) -> [Restaurant] {
+        var restaurants = [Restaurant]()
+        let query = restaurantsTable.filter(name.like("%\(keyword)%")).order(ratingScore.desc)
+        do {
+            for restaurant in try database.prepare(query) {
+                let restaurant = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                restaurants.append(restaurant)
+            }
+        } catch let error {
+            print("failed to get row: \(error)")
+        }
+        
+        return restaurants
     }
     
     /**
@@ -179,23 +206,35 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     }
     
     // Only for testing
-    private func prepopulate() {
-        print("Prepopulated")
-        if !containsRestaurant("1") {
-            for i in 0..<20 {
-                let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
-                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.5)
-                self.addRestaurant(restaurant)
+    
+    private func prepopulate(_ restaurants: [Restaurant]) {
+        if !restaurants.isEmpty  {
+            for restaurant in restaurants {
+                if !containsRestaurant(restaurant.getID()) {
+                    self.addRestaurant(restaurant)
+                }
             }
         }
+    }
+    
+    private func prepopulate() {
+        print("Prepopulated")
+        for i in 0..<20 {
+            if !containsRestaurant("i") {
+                let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
+                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.5)
+                self.addRestaurant(restaurant)
+                }
+            
+        }
         
-//        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
-//        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 5.0)
-//        self.addRestaurant(restaurantFar)
+        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
+        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 5.0)
+        self.addRestaurant(restaurantFar)
 //
-//        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
-//        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", #imageLiteral(resourceName: "vegie-bar"), StringList(.Rating), StringList(.Post), 4.0)
-//        self.addRestaurant(restaurantClose)
+        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
+        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.0)
+        self.addRestaurant(restaurantClose)
     }
     
     // TODO - Check representation of the datasource

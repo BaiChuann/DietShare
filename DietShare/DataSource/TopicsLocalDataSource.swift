@@ -22,25 +22,24 @@ class TopicsLocalDataSource: TopicsDataSource {
     // Columns of the topics table
     private let id = Expression<String>("id")
     private let name = Expression<String>("name")
-    private let image = Expression<String>("image")
+    private let imagePath = Expression<String>("imagePath")
     private let description = Expression<String>("description")
     private let popularity = Expression<Int>("popularity")
     private let posts = Expression<StringList>("posts")
     private let followers = Expression<StringList>("followers")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
-    private init(_ topics: [Topic]) {
+    private init(_ topics: [Topic], _ title: String) {
         print("TopicLocalDataSource initializer called")
-        removeDB()
-        createDB()
+//        removeDB()
+        createDB(title)
         createTable()
-        printQueries()
         prepopulate(topics)
     }
     
     
     private convenience init() {
-        self.init([Topic]())
+        self.init([Topic](), "topics")
         prepopulate()
     }
     
@@ -51,13 +50,13 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Get instance for unit test
     static func getTestInstance(_ topics: [Topic]) -> TopicsLocalDataSource {
-        return TopicsLocalDataSource(topics)
+        return TopicsLocalDataSource(topics, "topicsTest")
     }
     
-    private func createDB() {
+    private func createDB(_ title: String) {
         
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent("topics").appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(title).appendingPathExtension("sqlite3") {
             self.database = try? Connection(fileUrl.path)
         }
     }
@@ -80,7 +79,7 @@ class TopicsLocalDataSource: TopicsDataSource {
             table.column(self.id, primaryKey: true)
             table.column(self.name)
             table.column(self.description)
-            table.column(self.image)
+            table.column(self.imagePath)
             table.column(self.popularity)
             table.column(self.posts)
             table.column(self.followers)
@@ -108,7 +107,7 @@ class TopicsLocalDataSource: TopicsDataSource {
 //                do {
 //                    var initTime = CFAbsoluteTimeGetCurrent()
 //                    for topic in try self.database.prepare(row) {
-//                        let topicEntry = Topic(topic[self.id], topic[self.name], topic[self.image] , topic[self.description], topic[self.followers], topic[self.posts])
+//                        let topicEntry = Topic(topic[self.id], topic[self.name], topic[self.imagePath] , topic[self.description], topic[self.followers], topic[self.posts])
 //                        topics.insert(topicEntry)
 //                        print("Topic inserted: \(ID) takes time: \(CFAbsoluteTimeGetCurrent() - initTime)")
 //                        initTime = CFAbsoluteTimeGetCurrent()
@@ -128,7 +127,7 @@ class TopicsLocalDataSource: TopicsDataSource {
             var initTime = CFAbsoluteTimeGetCurrent()
 
             for topic in try database.prepare(topicsTable) {
-                let topicEntry = Topic(topic[id], topic[name], topic[image], topic[description], topic[followers], topic[posts])
+                let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
                 topics.insert(topicEntry)
 
                 print("Getting topic" + topic[id] + " iteration takes: \(CFAbsoluteTimeGetCurrent() - initTime)")
@@ -158,7 +157,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     func addTopic(_ newTopic: Topic) {
         do {
             print("current topic id added: \(newTopic.getID())")
-            try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImageAsString(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
+            try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), imagePath <- newTopic.getImagePath(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
             
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
@@ -213,7 +212,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     func updateTopic(_ oldTopicID: String, _ newTopic: Topic) {
         let row = topicsTable.filter(id == oldTopicID)
         do {
-            if try database.run(row.update(name <- newTopic.getName(), description <- newTopic.getDescription(), image <- newTopic.getImageAsString(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID())) > 0 {
+            if try database.run(row.update(name <- newTopic.getName(), description <- newTopic.getDescription(), imagePath <- newTopic.getImagePath(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID())) > 0 {
                 print("Old topic is updated")
             } else {
                 print("Old topic not found")
@@ -231,10 +230,10 @@ class TopicsLocalDataSource: TopicsDataSource {
      */
     func searchWithKeyword(_ keyword: String) -> [Topic] {
         var topics = [Topic]()
-        let query = topicsTable.filter(name.match(keyword + "*")).order(popularity.desc)
+        let query = topicsTable.filter(name.like("%\(keyword)%")).order(popularity.desc)
         do {
             for topic in try database.prepare(query) {
-                let topicEntry = Topic(topic[id], topic[name], topic[image] , topic[description], topic[followers], topic[posts])
+                let topicEntry = Topic(topic[id], topic[name], topic[imagePath] , topic[description], topic[followers], topic[posts])
                 topics.append(topicEntry)
             }
         } catch let error {
@@ -261,11 +260,11 @@ class TopicsLocalDataSource: TopicsDataSource {
     // Only for testing
     private func prepopulate() {
         print("Prepopulated")
-        if !containsTopic("1") {
-            let followers = ["1", "2", "3", "4", "5"]
-            let followersSet = Set<String>(followers)
-            let followerList = StringList(.User, followersSet)
-            for i in 0..<50 {
+        let followers = ["1", "2", "3", "4", "5"]
+        let followersSet = Set<String>(followers)
+        let followerList = StringList(.User, followersSet)
+        for i in 0..<50 {
+            if !containsTopic("i") {
                 let topic = Topic(String(i), "VegiLife", "vegi-life.png", "A little bit of Vegi goes a long way", followerList, StringList(.Post))
                 self.addTopic(topic)
             }
@@ -280,9 +279,11 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     private func prepopulate(_ topics: [Topic]) {
-        if !topics.isEmpty && !containsTopic(topics[0].getID()) {
+        if !topics.isEmpty {
             for topic in topics {
-                self.addTopic(topic)
+                if !containsTopic(topic.getID()) {
+                    self.addTopic(topic)    
+                }
             }
         }
     }
@@ -315,7 +316,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         startQuery(topicsTable.select(id))
         startQuery(topicsTable.select(id, name))
         startQuery(topicsTable.select(id, name, description))
-        startQuery(topicsTable.select(id, name, description, image))
+        startQuery(topicsTable.select(id, name, description, imagePath))
         startQuery(topicsTable.select(id, name, description, posts))
         startQuery(topicsTable)
     }

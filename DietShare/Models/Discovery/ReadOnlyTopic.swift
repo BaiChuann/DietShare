@@ -17,6 +17,7 @@ protocol ReadOnlyTopic: Comparable {
     func getID() -> String
     func getName() -> String
     func getImageAsUIImage() -> UIImage
+    func getImagePath() -> String
     func getDescription() -> String
     func getPopularity() -> Int
     func getPostsID() -> StringList

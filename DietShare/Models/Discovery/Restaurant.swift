@@ -25,12 +25,12 @@ class Restaurant: ReadOnlyRestaurant {
     // TODO - Add Opening hours
     private let types: StringList
     private let description: String
-    private let image: UIImage
+    private let imagePath: String
     private var ratings: StringList
     private var posts: StringList
     private var ratingScore: Double
     
-    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ image: UIImage, _ ratings: StringList, _ posts: StringList, _ ratingScore: Double) {
+    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String, _ ratings: StringList, _ posts: StringList, _ ratingScore: Double) {
         self.id = id
         self.name = name
         self.address = address
@@ -38,14 +38,14 @@ class Restaurant: ReadOnlyRestaurant {
         self.phone = phone
         self.types = types
         self.description = description
-        self.image = image
+        self.imagePath = imagePath
         self.ratings = ratings
         self.posts = posts
         self.ratingScore = ratingScore
     }
     
-    convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ image: UIImage) {
-        self.init(id, name, address, location, phone, types, description, image, StringList(.Rating), StringList(.Post), 0)
+    convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String) {
+        self.init(id, name, address, location, phone, types, description, imagePath, StringList(.Rating), StringList(.Post), 0)
     }
     
     func getID() -> String {
@@ -70,7 +70,16 @@ class Restaurant: ReadOnlyRestaurant {
         return self.types
     }
     func getImage() -> UIImage {
-        return self.image
+        
+        assert(UIImage(named: self.imagePath) != nil)
+        
+        if let image = UIImage(named: self.imagePath) {
+            return image
+        }
+        return UIImage()
+    }
+    func getImagePath() -> String {
+        return self.imagePath
     }
     func getPostsID() -> StringList {
         return self.posts

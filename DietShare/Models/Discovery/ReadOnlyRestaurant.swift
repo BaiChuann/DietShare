@@ -21,6 +21,7 @@ protocol ReadOnlyRestaurant: Comparable {
     func getPhone() -> String
     func getDescription() -> String
     func getImage() -> UIImage
+    func getImagePath() -> String
     func getAddress() -> String
     func getLocation() -> CLLocation
     func getPostsID() -> StringList
