@@ -97,7 +97,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     func addTopic(_ newTopic: Topic) {
         _checkRep()
         do {
-            print("current topic id added: \(newTopic.getID())")
+//            print("current topic id added: \(newTopic.getID())")
             try database.run(topicsTable.insert(id <- newTopic.getID(), name <- newTopic.getName(), description <- newTopic.getDescription(), imagePath <- newTopic.getImagePath(), popularity <- newTopic.getPopularity(), posts <- newTopic.getPostsID(), followers <- newTopic.getFollowersID()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
@@ -210,7 +210,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         let followers = ["1", "2", "3", "4", "5"]
         let followersSet = Set<String>(followers)
         let followerList = StringList(.User, followersSet)
-        for i in 0..<50 {
+        for i in 0..<20 {
             if !containsTopic("i") {
                 let topic = Topic(String(i), "VegiLife", "vegi-life.png", "A little bit of Vegi goes a long way", followerList, StringList(.Post))
                 self.addTopic(topic)

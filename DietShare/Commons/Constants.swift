@@ -87,13 +87,9 @@ struct Constants {
     public static let defaultLabelBorderWidth: CGFloat = 3.0
     public static let defaultCornerRadius: CGFloat = 5.0
     public static let defaultTagCornerRadius: CGFloat = 8.0
-<<<<<<< HEAD
     public static let numOfItemPerLoad = 10
     public static let voidBackgroundImagePath = "void-bg"
-    
-=======
 
->>>>>>> master
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
         public static let numOfDisplayedRestaurants = 5

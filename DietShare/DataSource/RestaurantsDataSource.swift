@@ -14,16 +14,12 @@ import BTree
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 protocol RestaurantsDataSource {
-<<<<<<< HEAD
     
     func getAllRestaurants() -> SortedSet<Restaurant>
     func getNumOfRestaurants() -> Int
-=======
-
-    func getRestaurants() -> SortedSet<Restaurant>
->>>>>>> master
     func addRestaurant(_ newRestaurant: Restaurant)
     func addRestaurants(_ newRestaurants: SortedSet<Restaurant>)
     func deleteRestaurant(_ newRestaurant: Restaurant)
     func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant)
+    func searchWithKeyword(_ keyword: String) -> [Restaurant]
 }

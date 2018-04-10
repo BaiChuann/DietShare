@@ -17,17 +17,15 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func retrieveFollowingPosts() {
         dataSource = PostManager.getFollowingPosts()
     }
-<<<<<<< HEAD
     
     func retrieveTrendingPosts() {
         dataSource = PostManager.getTrendingPosts()
     }
 
-=======
     func setParentController(_ controller: UIViewController) {
         parentController = controller
     }
->>>>>>> master
+    
     func getTable() -> UITableView {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")

@@ -13,7 +13,6 @@
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
-		B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2C2206BCEBF007F8956 /* IDList.swift */; };
 		B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */; };
 		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
 		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
@@ -27,6 +26,7 @@
 		B5A01CE3207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */; };
 		B5A01CE5207D24A200B26CC2 /* UsersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE4207D24A200B26CC2 /* UsersDataSource.swift */; };
 		B5A01CE7207D254100B26CC2 /* UsersLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE6207D254100B26CC2 /* UsersLocalDataSource.swift */; };
+		B5A01CEC207D3C3400B26CC2 /* StringList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CEB207D3C3400B26CC2 /* StringList.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
 		B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */; };
 		B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA1122069411C00BC8005 /* Discovery.storyboard */; };
@@ -142,7 +142,6 @@
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
-		B504C2C2206BCEBF007F8956 /* IDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDList.swift; sourceTree = "<group>"; };
 		B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsModelManager.swift; sourceTree = "<group>"; };
 		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
 		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsLocalDataSourceTest.swift; sourceTree = "<group>"; };
 		B5A01CE4207D24A200B26CC2 /* UsersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDataSource.swift; sourceTree = "<group>"; };
 		B5A01CE6207D254100B26CC2 /* UsersLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLocalDataSource.swift; sourceTree = "<group>"; };
+		B5A01CEB207D3C3400B26CC2 /* StringList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringList.swift; sourceTree = "<group>"; };
 		B5CBA1012068D1A700BC8005 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTopic.swift; sourceTree = "<group>"; };
 		B5CBA10E2069226600BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -421,11 +421,11 @@
 		F26699232068D47C00E3A1F2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				B5A01CEB207D3C3400B26CC2 /* StringList.swift */,
 				B5E7ABC72075FD06003FAB99 /* Library */,
 				F26699242068D47C00E3A1F2 /* Utilities.swift */,
 				F26698DD206649D400E3A1F2 /* Constants.swift */,
 				F26699252068D47C00E3A1F2 /* Notification+customName.swift */,
-				B504C2C2206BCEBF007F8956 /* IDList.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -835,6 +835,7 @@
 				F266991F2066CD3900E3A1F2 /* Food.swift in Sources */,
 				F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */,
 				F2F24194207B2B7000BB74B1 /* ShareState.swift in Sources */,
+				B5A01CEC207D3C3400B26CC2 /* StringList.swift in Sources */,
 				F266991D2066CD3900E3A1F2 /* Ingredient.swift in Sources */,
 				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
@@ -852,9 +853,7 @@
 				B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */,
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
-				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
 				F2F241A0207B568C00BB74B1 /* TextColorCell.swift in Sources */,
-				B504C2C3206BCEBF007F8956 /* IDList.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,

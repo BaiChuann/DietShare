@@ -117,7 +117,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func addRestaurant(_ newRestaurant: Restaurant) {
         _checkRep()
         do {
-            print("current restaurant id is: \(newRestaurant.getID())")
+//            print("current restaurant id is: \(newRestaurant.getID())")
             try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")

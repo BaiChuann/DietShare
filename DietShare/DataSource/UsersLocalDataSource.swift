@@ -101,7 +101,7 @@ class UsersLocalDataSource: UsersDataSource {
     func addUser(_ newUser: User) {
         _checkRep()
         do {
-            print("current user id is: \(newUser.getUserId())")
+//            print("current user id is: \(newUser.getUserId())")
             try database.run(usersTable.insert(id <- newUser.getUserId(), name <- newUser.getName(), password <- newUser.getPassword(), image <- newUser.getPhoto()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
@@ -167,9 +167,6 @@ class UsersLocalDataSource: UsersDataSource {
         _checkRep()
     }
     
-    /**
-     * For post publish component
-     */
     func searchWithKeyword(_ keyword: String) -> [User] {
         var users = [User]()
         let query = usersTable.filter(name.like("%\(keyword)%"))
