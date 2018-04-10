@@ -6,9 +6,12 @@ target 'DietShare' do
   use_frameworks!
   pod 'FormValidatorSwift', '~> 3.0'
   pod 'PopupDialog', '~> 0.7'
+  pod 'Presentr'
   pod 'DropDown'
-  pod 'TweeTextField'
   pod 'DKImagePickerController'
+  pod 'NVActivityIndicatorView'
+  pod 'Alamofire', '~> 4.7'
+  pod 'SwiftyJSON'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
