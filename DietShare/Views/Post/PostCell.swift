@@ -14,10 +14,11 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak private var userName: UILabel!
     @IBOutlet weak private var postImage: UIImageView!
     @IBOutlet weak private var caption: UILabel!
-    @IBOutlet weak private var likeCount: UILabel!
+    @IBOutlet weak private var likeCount: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak private var commentCount: UIButton!
     @IBOutlet weak private var time: UILabel!
-    @IBOutlet weak private var restaurant: UILabel!
+    @IBOutlet weak private var restaurant: UIButton!
     @IBOutlet weak private var topics: UICollectionView!
     @IBOutlet weak var topicsLayout: UICollectionViewFlowLayout!
     private var post: Post!
@@ -44,7 +45,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         self.caption.text = caption
     }
     func setLikeCount(_ count: String) {
-        likeCount.text = count
+        likeCount.setTitle(count, for: .normal)
     }
     func setCommentCount(_ count: String) {
         commentCount.setTitle(count, for: .normal)
@@ -67,7 +68,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             self.restaurant.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
-        self.restaurant.text = res.1
+        self.restaurant.setTitle(res.1, for: .normal)
     }
     func setContent(userPhoto: UIImage, userName: String, _ post: Post) {
         self.post = post
@@ -102,6 +103,22 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     @IBAction func onCommentCountClicked(_ sender: Any) {
         self.cellDelegate?.goToDetail(self)
+    }
+    
+    @IBAction func onCommentClicked(_ sender: Any) {
+        self.cellDelegate?.onCommentClicked()
+    }
+    @IBAction func onLikeCountClicked(_ sender: Any) {
+        self.cellDelegate?.goToDetail(self)
+    }
+    @IBAction func onLikeClicked(_ sender: Any) {
+        if likeButton.currentTitle == "unlike" {
+            likeButton.setImage(UIImage(named: "heart")!, for: .normal)
+            likeButton.setTitle("liked", for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like")!, for: .normal)
+            likeButton.setTitle("unlike", for: .normal)
+        }
     }
     func getPost() -> Post{
         return post

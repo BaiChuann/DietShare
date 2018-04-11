@@ -10,4 +10,5 @@ import UIKit
 
 protocol PostCellDelegate {
     func goToDetail(_ post: PostCell)
+    func onCommentClicked()
 }
