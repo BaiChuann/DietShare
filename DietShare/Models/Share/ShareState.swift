@@ -13,4 +13,5 @@ class ShareState {
     // use food-example-1 for test purpose, should be nil instead
     var originalPhoto = UIImage(named: "food-example-1")
     var food: Food?
+    var modifiedPhoto: UIImage?
 }

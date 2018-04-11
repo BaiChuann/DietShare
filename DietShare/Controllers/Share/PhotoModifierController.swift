@@ -93,6 +93,7 @@ class PhotoModifierController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFloatingContentAdder" {
             if let destinationVC = segue.destination as? FloatingContentAdderController {
+                shareState?.modifiedPhoto = getImageFromView(canvas, cropToSquare: true)
                 destinationVC.shareState = shareState
             }
         }
@@ -553,14 +554,19 @@ extension PhotoModifierController {
 extension PhotoModifierController: PhotoModifierDelegate {
     func getLayoutImageCount(index: Int) -> Int {
         if let count = storedLayout.get(index)?.count {
-            return count
+            return count - 1
         } else {
             return 0
         }
     }
 
     func importImagesForLayout(images: [UIImage], layoutIndex: Int) {
+        guard let originalPhoto = shareState?.originalPhoto else {
+            return
+        }
+
         selectedImages = images
+        selectedImages?.append(originalPhoto)
         selectedLayoutIndex = layoutIndex
         let curIndexPath = IndexPath(item: layoutIndex, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)

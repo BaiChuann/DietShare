@@ -9,7 +9,6 @@
 import UIKit
 
 func addInputBorder(for inputs: [UITextField], withColor color: UIColor) {
-
     inputs.forEach {
         let border = CALayer()
         let width = CGFloat(1)
@@ -45,16 +44,47 @@ func hexToUIColor(hex: String) -> UIColor {
     )
 }
 
+// Convert an UIView into UIImage
+func getImageFromView(_ view: UIView, cropToSquare: Bool = false) -> UIImage? {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+    defer { UIGraphicsEndImageContext() }
+    var resultImage: UIImage? = nil
+
+    if let context = UIGraphicsGetCurrentContext() {
+        view.layer.render(in: context)
+        resultImage = UIGraphicsGetImageFromCurrentImageContext()
+    }
+
+    if let image = resultImage, cropToSquare {
+        return cropsToSquareImage(image)
+    }
+
+    return nil
+}
+
+func cropsToSquareImage(_ image: UIImage) -> UIImage? {
+    let size = image.size.width
+    let rect = CGRect(x: 0, y: 0, width: size, height: size)
+
+    UIGraphicsBeginImageContextWithOptions(rect.size, false, image.scale)
+    let origin = CGPoint(x: rect.origin.x * CGFloat(-1), y: rect.origin.y * CGFloat(-1))
+    image.draw(at: origin)
+    let result = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+
+    return result
+}
+
 // Crops an image to the given bounds
 func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImage {
-    
+
     let contextSize: CGSize = image.size
-    
+
     var posX: CGFloat = 0.0
     var posY: CGFloat = 0.0
-    var cgwidth: CGFloat = CGFloat(width)
-    var cgheight: CGFloat = CGFloat(height)
-    
+    var cgwidth = CGFloat(width)
+    var cgheight = CGFloat(height)
+
     // See what size is longer and create the center off of that
     if contextSize.width > contextSize.height {
         posX = ((contextSize.width - contextSize.height) / 2)
@@ -67,15 +97,15 @@ func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImag
         cgwidth = contextSize.width
         cgheight = contextSize.width
     }
-    
-    let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
-    
+
+    let rect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+
     // Create bitmap image from context using the rect
     let imageRef = image.cgImage?.cropping(to: rect)
-    
+
     // Create a new image based on the imageRef and rotate back to the original orientation
     let image: UIImage = UIImage(cgImage: imageRef!, scale: image.scale, orientation: image.imageOrientation)
-    
+
     return image
 }
 
@@ -83,11 +113,10 @@ func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImag
 func makeRoundImg(img: UIImageView) -> UIImageView {
     let imgLayer = CALayer()
     imgLayer.frame = img.bounds
-    imgLayer.contents = img.image?.cgImage;
-    imgLayer.masksToBounds = true;
-    
+    imgLayer.contents = img.image?.cgImage
+    imgLayer.masksToBounds = true
     imgLayer.cornerRadius = img.frame.width / 2
-    
+
     UIGraphicsBeginImageContext(img.bounds.size)
     imgLayer.render(in: UIGraphicsGetCurrentContext()!)
     let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
