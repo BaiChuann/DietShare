@@ -20,16 +20,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bi-2t-AI9" customClass="TextColorCell" customModule="DietShare" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="34" height="34"/>
+                        <rect key="frame" x="5" y="5" width="40" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="7Bi-2t-AI9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="IoQ-9s-zpr"/>
-                <constraint firstAttribute="bottom" secondItem="7Bi-2t-AI9" secondAttribute="bottom" constant="8" id="JJa-ov-XnR"/>
-                <constraint firstItem="7Bi-2t-AI9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="WTw-fz-4MW"/>
-                <constraint firstAttribute="trailing" secondItem="7Bi-2t-AI9" secondAttribute="trailing" constant="8" id="wLE-Jr-SGB"/>
+                <constraint firstItem="7Bi-2t-AI9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="IoQ-9s-zpr"/>
+                <constraint firstAttribute="bottom" secondItem="7Bi-2t-AI9" secondAttribute="bottom" constant="5" id="JJa-ov-XnR"/>
+                <constraint firstItem="7Bi-2t-AI9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="WTw-fz-4MW"/>
+                <constraint firstAttribute="trailing" secondItem="7Bi-2t-AI9" secondAttribute="trailing" constant="5" id="wLE-Jr-SGB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
