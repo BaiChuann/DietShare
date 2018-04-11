@@ -21,6 +21,10 @@ class PostDetailController: UIViewController {
         //postCell.translatesAutoresizingMaskIntoConstraints = false
         //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
         //postArea.addSubview(postCell)
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = false
         let cellNibName = UINib(nibName: "CommentCell", bundle: nil)
         commentsTable.register(cellNibName, forCellReuseIdentifier: "commentCell")
         let cellNibName2 = UINib(nibName: "LikeCell", bundle: nil)
@@ -29,15 +33,6 @@ class PostDetailController: UIViewController {
         commentsTable.estimatedRowHeight = 100
         setSegmentControl()
         setTextField()
-        
-    }
-    @IBAction func onBackClicked(_ sender: Any) {
-        print("back")
-        tabBarController?.tabBar.isHidden = false
-        self.willMove(toParentViewController: nil)
-        self.view.removeFromSuperview()
-        self.removeFromParentViewController()
-        
         
     }
     func setSegmentControl() {

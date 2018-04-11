@@ -84,9 +84,10 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func goToDetail(_ post: PostCell) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
         controller.setPost(post)
-        parentController.addChildViewController(controller)
-        parentController.view.addSubview(controller.view)
-        controller.didMove(toParentViewController: self)
+//        parentController.addChildViewController(controller)
+//        parentController.view.addSubview(controller.view)
+//        controller.didMove(toParentViewController: self)
+        parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
         parentController.tabBarController?.tabBar.isHidden = true
     }
