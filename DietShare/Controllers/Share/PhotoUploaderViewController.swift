@@ -35,12 +35,20 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard let testVC = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "PublisherController") as? PublisherController else {
+            print("Error when pushing food select controller")
+            return
+        }
+        navigationController?.pushViewController(testVC, animated: false)
+        
+        
 
-        if isToCamera {
+        /*if isToCamera {
             openCamera()
         } else {
             goBack()
-        }
+        }*/
     }
 
     func cameraDidCancel() {
