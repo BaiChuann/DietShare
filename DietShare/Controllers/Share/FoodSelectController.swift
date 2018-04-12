@@ -161,6 +161,20 @@ class FoodSelectController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+
+    private func onFoodSelected(index: Int) {
+        if !foods[index].isFood {
+            performSegue(withIdentifier: "ShowFoodAdder", sender: nil)
+            return
+        }
+
+        guard let destinationVC = storyboard?.instantiateViewController(withIdentifier: "StickerAdderViewController") as? PhotoModifierController else {
+            return
+        }
+
+        destinationVC.shareState = shareState
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
 }
 
 extension FoodSelectController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -207,15 +221,8 @@ extension FoodSelectController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let foodCell = foodCollectionView.dequeueReusableCell(withReuseIdentifier: foodCellIdentifier, for: indexPath) as? FoodCell,
-            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "StickerAdderViewController") as? PhotoModifierController else {
-                return
-        }
-
-        destinationVC.shareState = shareState
-        foodCell.setSelected()
-
-        self.navigationController?.pushViewController(destinationVC, animated: true)
+        let index = indexPath.section * 2 + indexPath.item
+        onFoodSelected(index: index)
     }
 }
 

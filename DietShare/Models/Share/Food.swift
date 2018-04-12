@@ -19,6 +19,9 @@ struct Food {
     private(set) var image: UIImage
     private(set) var nutrition: [NutritionType: Double]
     private(set) var ingredients: [Ingredient]?
+    var isFood: Bool {
+        return name != "Not Food"
+    }
 
     // Init food from recognition
     init(id: Int, name: String, nutrition: [NutritionType: Double], image: UIImage) {
