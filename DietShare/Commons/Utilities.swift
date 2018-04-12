@@ -121,7 +121,7 @@ func makeRoundImg(img: UIImageView) -> UIImageView {
     imgLayer.render(in: UIGraphicsGetCurrentContext()!)
     let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
-    return UIImageView(image: roundedImage);
+    return UIImageView(image: roundedImage)
 }
 
 // Adds a rounded rectangular background to a UIView
@@ -131,4 +131,12 @@ func addRoundedRectBackground(_ view: UIView, _ radius: CGFloat, _ borderWidth: 
     view.layer.borderWidth = borderWidth
     view.layer.borderColor = borderColor
     view.clipsToBounds = true
+}
+
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
 }
