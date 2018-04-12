@@ -48,7 +48,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         
     }
     func getTrendingPosts() {
-        dataSource = PostManager.getTrendingPosts()
+        dataSource = postManager.getTrendingPosts()
         postsTable.reloadData()
     }
     func getTopicPosts(_ id: String) {

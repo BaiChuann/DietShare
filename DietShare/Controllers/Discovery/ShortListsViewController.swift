@@ -98,9 +98,8 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
-        PostManager.loadData()
         postsTableController = PostsTableController()
-        postsTableController?.retrieveTrendingPosts()
+        postsTableController?.getTrendingPosts()
         if let postsTable = postsTableController?.getTable() {
             postsTable.frame = postsArea.frame
             postsArea.removeFromSuperview()

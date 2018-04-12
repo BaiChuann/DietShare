@@ -48,6 +48,19 @@
 		3BDA2A03207FC2CD00E99DE3 /* TextColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29F4207FC2CD00E99DE3 /* TextColorCell.swift */; };
 		3BDA2A04207FC2CD00E99DE3 /* TextColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA29F5207FC2CD00E99DE3 /* TextColorCell.xib */; };
 		3BDA2A05207FC2CD00E99DE3 /* TextPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29F6207FC2CD00E99DE3 /* TextPreviewCell.swift */; };
+		3BDA2A20207FCB2700E99DE3 /* UserModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */; };
+		3BDA2A2E207FCBD500E99DE3 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A22207FCBD500E99DE3 /* CommentCell.swift */; };
+		3BDA2A2F207FCBD500E99DE3 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A23207FCBD500E99DE3 /* CommentCell.xib */; };
+		3BDA2A30207FCBD500E99DE3 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A24207FCBD500E99DE3 /* LikeCell.swift */; };
+		3BDA2A31207FCBD500E99DE3 /* LikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A25207FCBD500E99DE3 /* LikeCell.xib */; };
+		3BDA2A32207FCBD500E99DE3 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A26207FCBD500E99DE3 /* PostCell.swift */; };
+		3BDA2A33207FCBD500E99DE3 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A27207FCBD500E99DE3 /* PostCell.xib */; };
+		3BDA2A34207FCBD500E99DE3 /* PostDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A28207FCBD500E99DE3 /* PostDetail.xib */; };
+		3BDA2A35207FCBD500E99DE3 /* PostsTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A29207FCBD500E99DE3 /* PostsTable.xib */; };
+		3BDA2A36207FCBD500E99DE3 /* TextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2A207FCBD500E99DE3 /* TextField.xib */; };
+		3BDA2A37207FCBD500E99DE3 /* TextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2B207FCBD500E99DE3 /* TextFieldController.swift */; };
+		3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */; };
+		3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */; };
 		3BFE06A6207E386D003F67F7 /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFE06A5207E386D003F67F7 /* PostDetail.storyboard */; };
 		3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
@@ -171,6 +184,19 @@
 		3BDA29F4207FC2CD00E99DE3 /* TextColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextColorCell.swift; sourceTree = "<group>"; };
 		3BDA29F5207FC2CD00E99DE3 /* TextColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextColorCell.xib; sourceTree = "<group>"; };
 		3BDA29F6207FC2CD00E99DE3 /* TextPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextPreviewCell.swift; sourceTree = "<group>"; };
+		3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
+		3BDA2A22207FCBD500E99DE3 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		3BDA2A23207FCBD500E99DE3 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		3BDA2A24207FCBD500E99DE3 /* LikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
+		3BDA2A25207FCBD500E99DE3 /* LikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeCell.xib; sourceTree = "<group>"; };
+		3BDA2A26207FCBD500E99DE3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		3BDA2A27207FCBD500E99DE3 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		3BDA2A28207FCBD500E99DE3 /* PostDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetail.xib; sourceTree = "<group>"; };
+		3BDA2A29207FCBD500E99DE3 /* PostsTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTable.xib; sourceTree = "<group>"; };
+		3BDA2A2A207FCBD500E99DE3 /* TextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
+		3BDA2A2B207FCBD500E99DE3 /* TextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldController.swift; sourceTree = "<group>"; };
+		3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		3BFE06A5207E386D003F67F7 /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDelegate.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -325,6 +351,26 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		3BDA2A21207FCBD500E99DE3 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				3BDA2A22207FCBD500E99DE3 /* CommentCell.swift */,
+				3BDA2A23207FCBD500E99DE3 /* CommentCell.xib */,
+				3BDA2A24207FCBD500E99DE3 /* LikeCell.swift */,
+				3BDA2A25207FCBD500E99DE3 /* LikeCell.xib */,
+				3BDA2A26207FCBD500E99DE3 /* PostCell.swift */,
+				3BDA2A27207FCBD500E99DE3 /* PostCell.xib */,
+				3BDA2A28207FCBD500E99DE3 /* PostDetail.xib */,
+				3BDA2A29207FCBD500E99DE3 /* PostsTable.xib */,
+				3BDA2A2A207FCBD500E99DE3 /* TextField.xib */,
+				3BDA2A2B207FCBD500E99DE3 /* TextFieldController.swift */,
+				3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */,
+				3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */,
+			);
+			name = Post;
+			path = DietShare/Views/Post;
+			sourceTree = SOURCE_ROOT;
+		};
 		B4D17446E75367AEC9130823 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +403,7 @@
 				B5CBA170206A444300BC8005 /* TopicsModelManager.swift */,
 				B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */,
 				B504C2D2206D1BB5007F8956 /* Rating.swift */,
+				3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -409,6 +456,7 @@
 				3B37A715207F77A5009ED0D3 /* Profile */,
 				B5CBA16D206A3F3800BC8005 /* Discovery */,
 				3BDA29E7207FC2CD00E99DE3 /* Share */,
+				3BDA2A21207FCBD500E99DE3 /* Post */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -662,11 +710,18 @@
 				3BDA29FC207FC2CD00E99DE3 /* IngredientDropDownCell.xib in Resources */,
 				3BFE06A6207E386D003F67F7 /* PostDetail.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
+				3BDA2A31207FCBD500E99DE3 /* LikeCell.xib in Resources */,
+				3BDA2A33207FCBD500E99DE3 /* PostCell.xib in Resources */,
+				3BDA2A34207FCBD500E99DE3 /* PostDetail.xib in Resources */,
+				3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */,
+				3BDA2A36207FCBD500E99DE3 /* TextField.xib in Resources */,
 				3B37A717207F782E009ED0D3 /* Profile.xib in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				3BDA2A01207FC2CD00E99DE3 /* NutritionSticker.xib in Resources */,
 				3BDA2A04207FC2CD00E99DE3 /* TextColorCell.xib in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
+				3BDA2A35207FCBD500E99DE3 /* PostsTable.xib in Resources */,
+				3BDA2A2F207FCBD500E99DE3 /* CommentCell.xib in Resources */,
 				3BDA29F8207FC2CD00E99DE3 /* FloatingTextInputPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,7 +758,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -798,6 +853,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */,
+				3BDA2A20207FCB2700E99DE3 /* UserModelManager.swift in Sources */,
 				3BDA29C9207FC20A00E99DE3 /* Ingredient.swift in Sources */,
 				B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */,
 				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
@@ -827,6 +883,7 @@
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
 				B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */,
 				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
+				3BDA2A32207FCBD500E99DE3 /* PostCell.swift in Sources */,
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
 				3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */,
 				3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */,
@@ -838,9 +895,12 @@
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
 				3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
+				3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
+				3BDA2A37207FCBD500E99DE3 /* TextFieldController.swift in Sources */,
 				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
 				3BDA29DD207FC24A00E99DE3 /* LayoutPhotoSelectorController.swift in Sources */,
+				3BDA2A2E207FCBD500E99DE3 /* CommentCell.swift in Sources */,
 				3BDA29FB207FC2CD00E99DE3 /* IngredientDropDownCell.swift in Sources */,
 				3BDA29DC207FC24A00E99DE3 /* IngredientPopupController.swift in Sources */,
 				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
@@ -853,6 +913,7 @@
 				3BDA29FE207FC2CD00E99DE3 /* LayoutPhotoPreviewCell.swift in Sources */,
 				3BDA29CB207FC20A00E99DE3 /* StickerLayout.swift in Sources */,
 				3BDA29D9207FC24A00E99DE3 /* FloatingContentAdderController.swift in Sources */,
+				3BDA2A30207FCBD500E99DE3 /* LikeCell.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				3BDA2A00207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
