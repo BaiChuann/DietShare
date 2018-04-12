@@ -16,9 +16,11 @@ import UIKit
 protocol ReadOnlyTopic: Comparable {
     func getID() -> String
     func getName() -> String
-    func getImage() -> UIImage
+    func getImageAsUIImage() -> UIImage
+    func getImagePath() -> String
     func getDescription() -> String
     func getPopularity() -> Int
-    func getPostsID() -> IDList
-    func getFollowersID() -> IDList
+    func getPostsID() -> StringList
+    func getFollowersID() -> StringList
+    func getActiveUserID() -> StringList
 }

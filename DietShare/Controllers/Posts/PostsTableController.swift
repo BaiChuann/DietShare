@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ScrollingStackContainer
+
 
 class PostsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostCellDelegate {
     private var dataSource: [Post] = []
@@ -15,9 +17,15 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func retrieveFollowingPosts() {
         dataSource = PostManager.getFollowingPosts()
     }
+    
+    func retrieveTrendingPosts() {
+        dataSource = PostManager.getTrendingPosts()
+    }
+
     func setParentController(_ controller: UIViewController) {
         parentController = controller
     }
+    
     func getTable() -> UITableView {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
@@ -54,4 +62,16 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
             parentController.tabBarController?.tabBar.isHidden = true
         }
     }
+}
+
+extension PostsTableController: StackContainable {
+    public static func create() -> PostsTableController {
+        return UIStoryboard(name: "Discovery", bundle: Bundle.main).instantiateViewController(withIdentifier: "PostsTable") as! PostsTableController
+    }
+    
+    public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
+        let _ = self.view
+        return .scroll(self.postsTable, insets: UIEdgeInsetsMake(50, 0, 50, 0))
+    }
+    
 }

@@ -28,11 +28,20 @@ enum RestaurantType: String {
     case Japanese = "Japanese"
 }
 
-enum IDType: String {
+enum ListType: String {
     case User = "user"
     case Post = "post"
     case Comment = "comment"
     case Rating = "rating"
+    case RestaurantType = "restaurantType"
+}
+
+enum RatingScore: Double {
+    case oneStar = 1.0
+    case twoStar = 2.0
+    case threeStar = 3.0
+    case fourStar = 4.0
+    case fiveStar = 5.0
 }
 
 struct Identifiers {
@@ -57,6 +66,11 @@ enum FollowStatus: Int {
     case notFollowed = 0
 }
 
+enum Sorting: Int {
+    case byRating = 0
+    case byDistance = 1
+}
+
 struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
@@ -73,20 +87,38 @@ struct Constants {
     public static let defaultLabelBorderWidth: CGFloat = 3.0
     public static let defaultCornerRadius: CGFloat = 5.0
     public static let defaultTagCornerRadius: CGFloat = 8.0
+    public static let numOfItemPerLoad = 10
+    public static let voidBackgroundImagePath = "void-bg"
 
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
         public static let numOfDisplayedRestaurants = 5
         public static let shortListCellAlpha: CGFloat = 0.8
+        public static let shortListsViewProportion: CGFloat = 0.6
+        public static let longScrollViewHeight: CGFloat = 1200
     }
 
     struct TopicPage {
         public static let numOfDisplayedUsers = 10
         public static let topicImageAlpha: CGFloat = 0.8
+        public static let longScrollViewHeight: CGFloat = 1400
     }
 
     struct RestaurantPage {
         public static let numOfDisplayedUsers = 10
         public static let restaurantImageAlpha: CGFloat = 0.8
+        public static let longScrollViewHeight: CGFloat = 1200
+    }
+    
+    struct Tables {
+        public static let users = "users"
+        public static let topics = "topics"
+        public static let restaurants = "restaurants"
+    }
+    
+    struct Test {
+        public static let keyword = "Vegi"
+        public static let withKeyword = "\(keyword)Life"
+        public static let withoutKeyword = "Life"
     }
 }

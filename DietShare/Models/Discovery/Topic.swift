@@ -17,31 +17,39 @@ class Topic: ReadOnlyTopic {
     
     private let id: String
     private let name: String
-    private let image: UIImage
+    private let imagePath: String
     private let description: String
-    private var followers: IDList
-    private var posts: IDList
+    private var followers: StringList
+    private var posts: StringList
+    
+    // TODO - active user logic -> to be added when PostModelManager is available
+    private var activeUsers: StringList
     private var popularity: Int {
         get{
             return self.posts.getListAsArray().count
         }
     }
     
-    init(_ id: String, _ name: String, _ image: UIImage, _ description: String, _ followers: IDList, _ posts: IDList) {
+    init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList, _ activeUsers: StringList) {
         self.id = id
         self.name = name
-        self.image = image
+        self.imagePath = imagePath
         self.description = description
         self.followers = followers
         self.posts = posts
+        self.activeUsers = activeUsers
+    }
+    
+    convenience init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList) {
+        self.init(id, name, imagePath, description, followers, posts, StringList(.User))
     }
     
     convenience init() {
-        self.init("", "", UIImage(), "", IDList(IDType.User), IDList(IDType.Post))
+        self.init("", "", "void-bg", "", StringList(ListType.User), StringList(ListType.Post), StringList(.User))
     }
     
     convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
-        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImage(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID())
+        self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImagePath(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID(), readOnlyTopic.getActiveUserID())
     }
 
     func getID() -> String {
@@ -53,14 +61,25 @@ class Topic: ReadOnlyTopic {
     func getDescription() -> String {
         return self.description
     }
-    func getImage() -> UIImage {
-        return self.image
+    func getImageAsUIImage() -> UIImage {
+        assert(UIImage(named: self.imagePath) != nil)
+        
+        if let uiImage = UIImage(named: self.imagePath) {
+            return uiImage
+        }
+        return UIImage(named: Constants.voidBackgroundImagePath)!
     }
-    func getPostsID() -> IDList {
+    func getImagePath() -> String {
+        return self.imagePath
+    }
+    func getPostsID() -> StringList {
         return self.posts
     }
-    func getFollowersID() -> IDList {
+    func getFollowersID() -> StringList {
         return self.followers
+    }
+    func getActiveUserID() -> StringList {
+        return self.activeUsers
     }
     func getPopularity() -> Int {
         return self.popularity
@@ -81,9 +100,9 @@ class Topic: ReadOnlyTopic {
         print("Follower removed: \(follower.getUserId())")
     }
     
-    // A topic is "<" than another one if it is lower in terms of popularity
+    // A topic is "<" than another one if it is higher in terms of popularity
     static func <(lhs: Topic, rhs: Topic) -> Bool {
-        return lhs.popularity < rhs.popularity
+        return lhs.popularity > rhs.popularity
     }
     
     static func ==(lhs: Topic, rhs: Topic) -> Bool {
@@ -93,5 +112,5 @@ class Topic: ReadOnlyTopic {
                 && lhs.posts == rhs.posts
                 && lhs.followers == rhs.followers
     }
-
 }
+
