@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import PromiseKit
 import SwiftyJSON
 import NVActivityIndicatorView
 
