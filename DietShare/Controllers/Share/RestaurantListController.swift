@@ -12,9 +12,11 @@ import UIKit
 class RestaurantListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    private var restaurants: [String] = []
-    private var filteredRestaurants: [String] = []
+
+    private var restaurantModel: RestaurantsModelManager<Restaurant>?
+
+    private var restaurants: [PublishRestaurant] = []
+    private var filteredRestaurants: [PublishRestaurant] = []
     private var isSearching = false
 
     private let publishRestaurantIdentifier = "PublishRestaurantCell"
@@ -41,7 +43,18 @@ class RestaurantListController: UIViewController {
     }
 
     private func loadRestaurantData() {
-        restaurants = ["A", "B", "C", "D"]
+        restaurants = [PublishRestaurant(id: "1", name: "r1", address: "221B Baker Street"),
+                       PublishRestaurant(id: "2", name: "c1", address: "221B Baker Street"),
+                       PublishRestaurant(id: "3", name: "g4", address: "221B Baker Street"),
+                       PublishRestaurant(id: "4", name: "hello", address: "221B Baker Street"),
+                       PublishRestaurant(id: "5", name: "science", address: "221B Baker Street"),
+                       PublishRestaurant(id: "6", name: "computing", address: "221B Baker Street"),
+                       PublishRestaurant(id: "7", name: "home", address: "221B Baker Street"),
+                       PublishRestaurant(id: "8", name: "3217", address: "221B Baker Street"),
+                       PublishRestaurant(id: "9", name: "lol", address: "221B Baker Street"),
+                       PublishRestaurant(id: "10", name: "pwn", address: "221B Baker Street"),
+                       PublishRestaurant(id: "11", name: "cd", address: "221B Baker Street"),
+        ]
     }
 }
 
@@ -55,22 +68,21 @@ extension RestaurantListController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: publishRestaurantIdentifier, for: indexPath)
-        print(cell)
         guard let restaurantCell = cell as? PublishRestaurantCell else {
             return cell
         }
-        let labelText = isSearching ?
+        let restaurant = isSearching ?
             filteredRestaurants[indexPath.item] :
             restaurants[indexPath.item]
-        restaurantCell.setLabelText(text: labelText)
+        restaurantCell.setLabelText(name: restaurant.name, address: restaurant.address)
         return restaurantCell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let restaurantName = isSearching ?
+        let restaurant = isSearching ?
             filteredRestaurants[indexPath.item] :
             restaurants[indexPath.item]
-        delegate?.sendRestaurant(name: restaurantName)
+        delegate?.sendRestaurant(restaurant: (restaurant.id, restaurant.name))
         navigationController?.popViewController(animated: false)
     }
 }
@@ -83,19 +95,32 @@ extension RestaurantListController: UISearchBarDelegate {
             view.endEditing(true)
         } else {
             isSearching = true
-            filteredRestaurants = restaurants.filter { name in
-                filterText(pattern: searchText, original: name)
+            filteredRestaurants = restaurants.filter { restaurant in
+                filterText(pattern: searchText, original: restaurant.name)
             }
         }
         tableView.reloadData()
     }
 
-    func filterText(pattern: String, original: String) -> Bool {
+    private func filterText(pattern: String, original: String) -> Bool {
         guard pattern.count <= original.count else {
             return false
         }
         let lowerPattern = pattern.lowercased()
         let lowerOriginal = original.lowercased()
         return lowerOriginal.range(of: lowerPattern) != nil
+    }
+}
+
+private class PublishRestaurant {
+    
+    private(set) var id: String
+    private(set) var name: String
+    private(set) var address: String
+    
+    init(id: String, name: String, address: String) {
+        self.id = id
+        self.name = name
+        self.address = address
     }
 }

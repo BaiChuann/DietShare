@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 protocol RestaurantSenderDelegate: class {
-    func sendRestaurant(name: String)
+    func sendRestaurant(restaurant: (id: String, name: String))
 }
 
 protocol TopicSenderDelegate: class {
-    func sendTopics(topics: [String])
+    func sendTopics(topics: [(id: String, name: String)])
 }
 
 class PublisherController: UIViewController {
@@ -22,14 +22,17 @@ class PublisherController: UIViewController {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var restaurantLabel: UILabel!
     @IBOutlet private weak var topicLabel: UILabel!
+    @IBOutlet private weak var locationIcon: UIImageView!
     
     private var restaurantName: String?
+    private var restaurantID: String?
     private var topics: [String] = []
+    private var topicsId: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addGestureRecognizer()
+        //addGestureRecognizer()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,15 +63,19 @@ class PublisherController: UIViewController {
 }
 
 extension PublisherController: RestaurantSenderDelegate {
-    func sendRestaurant(name: String) {
-        restaurantName = name
-        restaurantLabel.text = name
+    func sendRestaurant(restaurant: (id: String, name: String)) {
+        restaurantName = restaurant.name
+        restaurantID = restaurant.id
+        restaurantLabel.text = restaurant.name
+        restaurantLabel.textColor = UIColor.orange
+        locationIcon.image = UIImage(named: "location-mark-orange")
     }
 }
 
 extension PublisherController: TopicSenderDelegate {
-    func sendTopics(topics: [String]) {
-        self.topics = topics
+    func sendTopics(topics: [(id: String, name: String)]) {
+        self.topics = topics.map { $0.name }
+        self.topicsId = topics.map { $0.id }
         print(self.topics)
     }
 }
