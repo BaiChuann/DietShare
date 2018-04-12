@@ -14,9 +14,14 @@ class HomeController: UIViewController {
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var segmentBar: UIView!
     private var postsTable: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+        //tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = false
+        
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
         postsTableController.getFollowingPosts()

@@ -40,14 +40,17 @@ class PostManager {
     func getLikePosts() -> [Post] {
         return posts
     }
-    func getDiscoverPost() -> [Post] {
+    func getDiscoverPosts() -> [Post] {
         return posts
     }
-    func getRestaurantPost(_ id: String) -> [Post] {
+    func getRestaurantPosts(_ id: String) -> [Post] {
         return posts
     }
-    func getTopicPost(_ id: String) -> [Post] {
+    func getTopicPosts(_ id: String) -> [Post] {
         return posts
+    }
+    func getUserPosts(_ id: String) -> [Post] {
+        return posts 
     }
     func postPost(caption: String, time: Date, photo: UIImage, restaurant: (String, String)?, topics: [(String, String)]?) -> Post {
         let post = Post(userId: "1", caption: caption, time: time, photo: photo, restaurant: restaurant, topics: topics)

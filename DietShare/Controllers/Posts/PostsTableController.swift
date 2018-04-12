@@ -15,6 +15,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     private var parentController: UIViewController!
     private var postManager = PostManager.shared
     private var textFieldController: TextFieldController!
+    private var scrollDelegate: ScrollDelegate?
     override func viewDidLoad() {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
@@ -28,6 +29,9 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     @objc func dismissKeyboard() {
         textFieldController.view.removeFromSuperview()
         textFieldController.removeFromParentViewController()
+    }
+    func setScrollDelegate(_ delegate: ScrollDelegate) {
+        scrollDelegate = delegate
     }
     func getFollowingPosts() {
         dataSource = postManager.getFollowingPosts()
@@ -44,27 +48,25 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         
     }
     func getDiscoverPosts() {
-        dataSource = postManager.getDiscoverPost()
+        dataSource = postManager.getDiscoverPosts()
         postsTable.reloadData()
     }
     func getTopicPosts(_ id: String) {
-        dataSource = postManager.getTopicPost(id)
+        dataSource = postManager.getTopicPosts(id)
         postsTable.reloadData()
     }
     func getRestaurantPosts(_ id: String) {
-        dataSource = postManager.getRestaurantPost(id)
+        dataSource = postManager.getRestaurantPosts(id)
+        postsTable.reloadData()
+    }
+    func getUserPosts(_ id: String) {
+        dataSource = postManager.getUserPosts(id)
         postsTable.reloadData()
     }
     func setParentController(_ controller: UIViewController) {
         parentController = controller
     }
     func getTable() -> UITableView {
-        let cellNibName = UINib(nibName: "PostCell", bundle: nil)
-        postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
-        postsTable.dataSource = self
-        postsTable.delegate = self
-        postsTable.rowHeight = UITableViewAutomaticDimension
-        postsTable.estimatedRowHeight = 600
         return postsTable
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,9 +89,12 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
 //        parentController.addChildViewController(controller)
 //        parentController.view.addSubview(controller.view)
 //        controller.didMove(toParentViewController: self)
+        parentController.tabBarController?.tabBar.isHidden = true
+        parentController.navigationController?.navigationBar.isHidden = false
+        print(parentController.view.frame.height)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
-        parentController.tabBarController?.tabBar.isHidden = true
+        
     }
     func onCommentClicked() {
         print("clicked")
@@ -124,5 +129,13 @@ extension PostsTableController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         textFieldController.view.removeFromSuperview()
         textFieldController.removeFromParentViewController()
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollDelegate != nil {
+            let yOffset = scrollView.contentOffset.y
+            if yOffset <= 0 {
+                scrollDelegate?.reachTop()
+            }
+        }
     }
 }

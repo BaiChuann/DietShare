@@ -21,6 +21,7 @@ class PostDetailController: UIViewController {
         //postCell.translatesAutoresizingMaskIntoConstraints = false
         //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
         //postArea.addSubview(postCell)
+        
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -32,6 +33,7 @@ class PostDetailController: UIViewController {
         commentsTable.rowHeight = UITableViewAutomaticDimension
         commentsTable.estimatedRowHeight = 100
         setSegmentControl()
+        view.frame.size = CGSize(width: 375, height: 667)
         setTextField()
         
     }
@@ -60,7 +62,9 @@ class PostDetailController: UIViewController {
         textFieldController.setTabHeight(tabHeight)
         textFieldController.setDelegate(self)
         textFieldController.view.frame = CGRect(x: 0, y: height - tabHeight - textHeight, width: width, height: textHeight)
+        //textFieldController.view.frame.origin = CGPoint(x:0 ,y:height - tabHeight - textHeight)
         view.addSubview(textFieldController.view)
+        textFieldController.didMove(toParentViewController: self)
     }
     func setPost(_ post: PostCell) {
         self.post = post

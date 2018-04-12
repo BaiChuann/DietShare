@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpZ-Hw-otG">
-                        <rect key="frame" x="0.0" y="72" width="375" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eHC-as-cL9">
                                 <rect key="frame" x="0.0" y="25" width="94" height="3"/>
@@ -51,10 +51,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY5-vz-soF">
-                        <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                        <rect key="frame" x="0.0" y="38" width="375" height="629"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XwB-t2-5Tk">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="629"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="Xqu-pk-iLa"/>
@@ -71,7 +71,6 @@
                             <constraint firstAttribute="trailing" secondItem="XwB-t2-5Tk" secondAttribute="trailing" id="EHm-Ps-fNq"/>
                             <constraint firstItem="XwB-t2-5Tk" firstAttribute="top" secondItem="KY5-vz-soF" secondAttribute="top" id="K64-Ea-gnI"/>
                             <constraint firstAttribute="bottom" secondItem="XwB-t2-5Tk" secondAttribute="bottom" id="KNM-JD-7yx"/>
-                            <constraint firstAttribute="height" constant="557" id="ZM5-VI-SK1"/>
                             <constraint firstItem="XwB-t2-5Tk" firstAttribute="leading" secondItem="KY5-vz-soF" secondAttribute="leading" id="pyB-Pe-QqM"/>
                             <constraint firstAttribute="width" constant="375" id="xnt-yq-vo4"/>
                         </constraints>
@@ -82,6 +81,7 @@
                     <constraint firstItem="KY5-vz-soF" firstAttribute="trailing" secondItem="b7x-6W-qdr" secondAttribute="trailing" id="MfT-Gz-FRb"/>
                     <constraint firstItem="gpZ-Hw-otG" firstAttribute="leading" secondItem="b7x-6W-qdr" secondAttribute="leading" id="Nbi-OF-bVD"/>
                     <constraint firstItem="KY5-vz-soF" firstAttribute="top" secondItem="gpZ-Hw-otG" secondAttribute="bottom" constant="8" id="dLV-D0-Egx"/>
+                    <constraint firstItem="gpZ-Hw-otG" firstAttribute="top" secondItem="QNM-3w-ulo" secondAttribute="top" id="gc5-cH-1h5"/>
                     <constraint firstItem="KY5-vz-soF" firstAttribute="bottom" secondItem="b7x-6W-qdr" secondAttribute="bottom" id="jbC-u6-shz"/>
                     <constraint firstItem="gpZ-Hw-otG" firstAttribute="trailing" secondItem="b7x-6W-qdr" secondAttribute="trailing" id="kXN-Xj-8o1"/>
                     <constraint firstItem="KY5-vz-soF" firstAttribute="leading" secondItem="b7x-6W-qdr" secondAttribute="leading" id="kym-i2-JPb"/>
@@ -95,7 +95,7 @@
                 <outlet property="segmentBar" destination="eHC-as-cL9" id="3Vq-G9-jX1"/>
                 <outlet property="segmentedControl" destination="yif-TA-7je" id="ofd-8S-s1j"/>
             </connections>
-            <point key="canvasLocation" x="-292.5" y="129.5"/>
+            <point key="canvasLocation" x="-231.5" y="129.5"/>
         </viewController>
     </objects>
 </document>

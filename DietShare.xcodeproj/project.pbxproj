@@ -12,6 +12,10 @@
 		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
 		3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CDC2078FE950012D87C /* LikeCell.swift */; };
 		3B1F3CE1207908340012D87C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F3CE0207908340012D87C /* CommentCell.swift */; };
+		3B37A717207F782E009ED0D3 /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B37A716207F782E009ED0D3 /* Profile.xib */; };
+		3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */; };
+		3B37A724207F8083009ED0D3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A723207F8083009ED0D3 /* ProfileController.swift */; };
+		3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */; };
 		3B398A45207B995300C20526 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B398A43207B995300C20526 /* CollageLayout.swift */; };
 		3B398A48207B995300C20526 /* StickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B398A44207B995300C20526 /* StickerLayout.swift */; };
 		3B398A4C207B999C00C20526 /* NutritionSticker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B398A4B207B999C00C20526 /* NutritionSticker.xib */; };
@@ -134,6 +138,10 @@
 		3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
 		3B1F3CDC2078FE950012D87C /* LikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
 		3B1F3CE0207908340012D87C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		3B37A716207F782E009ED0D3 /* Profile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
+		3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabController.swift; sourceTree = "<group>"; };
+		3B37A723207F8083009ED0D3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
 		3B398A43207B995300C20526 /* CollageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
 		3B398A44207B995300C20526 /* StickerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerLayout.swift; sourceTree = "<group>"; };
 		3B398A4B207B999C00C20526 /* NutritionSticker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NutritionSticker.xib; sourceTree = "<group>"; };
@@ -271,6 +279,23 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		3B37A715207F77A5009ED0D3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3B37A716207F782E009ED0D3 /* Profile.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		3B37A71A207F7F0B009ED0D3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */,
+				3B37A723207F8083009ED0D3 /* ProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		3B398A42207B995300C20526 /* Publish */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +400,7 @@
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B37A715207F77A5009ED0D3 /* Profile */,
 				3B177CBC207A7C8800E000DA /* Post */,
 				B5CBA16D206A3F3800BC8005 /* Discovery */,
 				F27985DC206F9DE300977F5D /* LayoutPhotoSelectorCell.swift */,
@@ -491,6 +517,7 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B37A71A207F7F0B009ED0D3 /* Profile */,
 				B5CBA11620694A0700BC8005 /* Discovery */,
 				F2E373B220716BBE0000F707 /* Home */,
 				F2E373B720716BC90000F707 /* Posts */,
@@ -517,6 +544,7 @@
 				3B18BEDF2074C5A200809D3A /* PostDetailController.swift */,
 				3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */,
 				3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */,
+				3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -640,6 +668,7 @@
 				3BFE0699207E1E7B003F67F7 /* TextField.xib in Resources */,
 				3BFE06A6207E386D003F67F7 /* PostDetail.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
+				3B37A717207F782E009ED0D3 /* Profile.xib in Resources */,
 				F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */,
 				F2E373CB20716BF20000F707 /* PostCell.xib in Resources */,
 				3B398A4C207B999C00C20526 /* NutritionSticker.xib in Resources */,
@@ -777,6 +806,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */,
 				B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */,
 				B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */,
 				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
@@ -816,6 +846,7 @@
 				3B1F3CDD2078FE950012D87C /* LikeCell.swift in Sources */,
 				3BFE069D207E1F33003F67F7 /* TextFieldController.swift in Sources */,
 				F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */,
+				3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
@@ -843,6 +874,7 @@
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
 				F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */,
 				F2E373D620716BF20000F707 /* PostCell.swift in Sources */,
+				3B37A724207F8083009ED0D3 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
