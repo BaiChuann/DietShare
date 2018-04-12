@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 /**
  * A read-only immutable protocol for a Restaurant in the app.
@@ -16,12 +17,15 @@ import UIKit
 protocol ReadOnlyRestaurant: Comparable {
     func getID() -> String
     func getName() -> String
-    func getType() -> RestaurantType
+    func getTypes() -> StringList
     func getPhone() -> String
     func getDescription() -> String
     func getImage() -> UIImage
+    func getImagePath() -> String
     func getAddress() -> String
-    func getPostsID() -> IDList
-    func getRatingsID() -> IDList
+    func getLocation() -> CLLocation
+    func getPostsID() -> StringList
+    func getRatingsID() -> StringList
     func getRatingScore() -> Double
+    func getDistanceToCurrent() -> Double
 }

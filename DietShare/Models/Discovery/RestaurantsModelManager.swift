@@ -20,37 +20,37 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
     
     init() {
         self.restaurantsDataSource = RestaurantsLocalDataSource.shared
-        self.restaurants = restaurantsDataSource.getRestaurants() as! SortedSet<T>
-        
-        // Prepopulate the datasource - only for testing
-        prepopulate()
+        self.restaurants = restaurantsDataSource.getAllRestaurants() as! SortedSet<T>
     }
     
-    func getFullRestaurantList() -> [T] {
+    func getFullRestaurantList(_ sorting: Sorting) -> [T] {
         var restaurantList = [T]()
         restaurantList.append(contentsOf: self.restaurants)
+        switch sorting {
+        case .byRating:
+            break
+        case .byDistance:
+            restaurantList.sort(by: {$0.getDistanceToCurrent() < $1.getDistanceToCurrent()})
+        }
         return restaurantList
     }
     
+    func getNumOfRestaurants() -> Int {
+        return self.restaurantsDataSource.getNumOfRestaurants()
+    }
+    
     // Obtain a list of restaurants to be displayed in Discover Page
-    func getDisplayedList() -> [T] {
+    func getDisplayedList(_ numOfItem: Int) -> [T] {
         var displayedList = [T]()
         var count = 0
         for restaurant in self.restaurants {
-            if (count >= Constants.DiscoveryPage.numOfDisplayedRestaurants) {
+            if (count >= numOfItem) {
                 break
             }
             displayedList.append(restaurant)
             count += 1
         }
         return displayedList
-    }
-    
-    private func prepopulate() {
-        for i in 0..<20 {
-            let restaurant = Restaurant(String(i), "Vege Heaven", "27 Prince George's Park", "99991111", .Vegetarian, "Best vegetarian place ever!", #imageLiteral(resourceName: "vegi-life"))
-            self.restaurantsDataSource.addRestaurant(restaurant)
-        }
     }
     
 }

@@ -16,6 +16,7 @@ class FollowerListCell: UICollectionViewCell {
     
     func setImage(_ image: UIImage) {
         userImage.image = image
+        addRoundedRectBackground(userImage, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, UIColor.clear)
     }
     
     func setName(_ name: String) {

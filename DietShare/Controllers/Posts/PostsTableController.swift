@@ -47,8 +47,8 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
         
     }
-    func getDiscoverPosts() {
-        dataSource = postManager.getDiscoverPosts()
+    func getTrendingPosts() {
+        dataSource = PostManager.getTrendingPosts()
         postsTable.reloadData()
     }
     func getTopicPosts(_ id: String) {

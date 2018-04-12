@@ -40,8 +40,9 @@ class PostManager {
     func getLikePosts() -> [Post] {
         return posts
     }
-    func getDiscoverPosts() -> [Post] {
-        return posts
+    func getTrendingPosts() -> [Post] {
+        let sortedPosts = posts.sorted(by: {$0.getLikesCount() > $1.getLikesCount()})
+        return sortedPosts
     }
     func getRestaurantPosts(_ id: String) -> [Post] {
         return posts

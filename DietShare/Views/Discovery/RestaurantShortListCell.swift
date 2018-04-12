@@ -24,7 +24,6 @@ class RestaurantShortListCell: UICollectionViewCell {
     
     func setName(_ name: String) {
         restaurantName.text = name
-        addRoundedRectBackground(restaurantName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
     }
     
 }
