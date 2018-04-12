@@ -9,11 +9,13 @@
 
 import UIKit
 
-class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
     private var topic: Topic?
-    var currentUser: User?
+    private var userModel = UserModelManager.shared
+    private var currentUser = UserModelManager.shared.getCurrentUser()
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicName: UILabel!
     @IBOutlet weak var topicImage: UIImageView!
     @IBOutlet weak var topicDescription: UITextView!
@@ -24,12 +26,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
+        scrollView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        initUser()
+    
         initView()
     }
 
@@ -48,8 +51,11 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as IndexPath) as! FollowerListCell
         if let currentTopic = self.topic {
-            cell.setName(currentTopic.getFollowersID().getListAsArray()[indexPath.item])
-            // TODO - obtain image of the user (after UserManager is implemented)
+            let id = currentTopic.getFollowersID().getListAsArray()[indexPath.item]
+            if let user = userModel.getUserFromID(id) {
+                cell.setName(user.getName())
+                cell.setImage(user.getPhoto())
+            }
         }
         return cell
     }
@@ -63,7 +69,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         if let currentTopic = self.topic {
             self.topicName.text = currentTopic.getName()
             addRoundedRectBackground(self.topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
-            self.topicImage.image = currentTopic.getImage()
+            self.topicImage.image = currentTopic.getImageAsUIImage()
             self.topicImage.alpha = CGFloat(Constants.TopicPage.topicImageAlpha)
             self.topicDescription.text = currentTopic.getDescription()
         }
@@ -88,6 +94,21 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
+        }
+    }
+    
     // Handle tapping of follow button
     @IBAction func followButtonPressed(_ sender: UIButton) {
         assert(currentUser != nil)
@@ -108,7 +129,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicListViewController {
-            dest.currentUser = self.currentUser
         }
     }
     
@@ -123,8 +143,5 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     /**
      * Test functions
      */
-    private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
-    }
     
 }

@@ -24,6 +24,7 @@ class HomeController: UIViewController {
         postsTable = postsTableController.getTable()
         postsTable.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTable)
+
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
         let attr = NSDictionary(object: UIFont(name: "Verdana", size: 13.0)!, forKey: NSAttributedStringKey.font as NSCopying)
@@ -50,4 +51,5 @@ class HomeController: UIViewController {
             break
         }
     }
+    
 }

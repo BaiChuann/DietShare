@@ -14,13 +14,16 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     private var topicModel: TopicsModelManager<Topic>?
     private var selectedTopic: Topic?
+    
     var currentUser: User?
+    
     
     @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == topicListView {
-            return Constants.defaultListDisplayCount
+        if collectionView == topicListView, let model = self.topicModel {
+            // TODO - only show 10 entries at a time
+            return model.getNumOfTopics()
         }
         return 0
     }
@@ -29,8 +32,8 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicFullListCell, for: indexPath as IndexPath) as! TopicFullListCell
         if let model = self.topicModel {
-            let topicList = model.getFullTopicList()
-            cell.setImage(topicList[indexPath.item].getImage())
+            let topicList = model.getAllTopics()
+            cell.setImage(topicList[indexPath.item].getImageAsUIImage())
             cell.setName(topicList[indexPath.item].getName())
             cell.initFollowButtonView()
             addTapHandler(cell, topicList, indexPath)
@@ -38,6 +41,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         
         return cell
     }
+    
     
     // Add handling of tapping on follow button
     
@@ -85,17 +89,17 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         if let user = self.currentUser, let model = self.topicModel {
             if sender.tag == FollowStatus.notFollowed.rawValue {
                 toggleToFollowed(sender)
-                model.getFullTopicList()[index].addFollower(user)
+                model.getAllTopics()[index].addFollower(user)
             } else {
                 toggleToUnfollowed(sender)
-                model.getFullTopicList()[index].removeFollower(user)
+                model.getAllTopics()[index].removeFollower(user)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.topicModel {
-            let topicsList = model.getFullTopicList()
+            let topicsList = model.getAllTopics()
             self.selectedTopic = topicsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.topicListToDetailPage, sender: self)
         }
@@ -109,6 +113,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,7 +130,21 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
-            dest.currentUser = self.currentUser
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
         }
     }
     
