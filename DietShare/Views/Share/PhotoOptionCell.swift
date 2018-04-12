@@ -26,18 +26,6 @@ class PhotoOptionCell: UICollectionViewCell {
         contentView.addSubview(checkView)
     }
 
-    override var isSelected: Bool {
-        didSet {
-            if super.isSelected {
-                optionImage.alpha = 0.5
-                checkView.isHidden = false
-            } else {
-                optionImage.alpha = 1
-                checkView.isHidden = true
-            }
-        }
-    }
-
     func setLabelText(_ text: String?) {
         label.text = text
     }
@@ -48,5 +36,15 @@ class PhotoOptionCell: UICollectionViewCell {
 
     func clearImage() {
         optionImage.image = nil
+    }
+
+    func setSelected(_ selected: Bool) {
+        if selected {
+            optionImage.alpha = 0.5
+            checkView.isHidden = false
+        } else {
+            optionImage.alpha = 1
+            checkView.isHidden = true
+        }
     }
 }
