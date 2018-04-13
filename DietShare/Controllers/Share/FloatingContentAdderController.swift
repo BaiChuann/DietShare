@@ -86,7 +86,7 @@ class FloatingContentAdderController: UIViewController {
     
     private func calculateLabelSize(for label: UILabel) -> CGSize {
         var size = label.sizeThatFits(imageView.frame.size)
-        if size.height > size.width {
+        if size.height > size.width && label.numberOfLines >= 2 {
             size.width = label.preferredMaxLayoutWidth
         }
         
@@ -129,7 +129,6 @@ class FloatingContentAdderController: UIViewController {
         var size = calculateLabelSize(for: textInfo.label)
         textInfo.label.frame = CGRect(origin: textInfo.label.frame.origin, size: size)
 
-        textInfo.label.sizeToFit()
         if textInfo.label.frame.minX < 0
             || textInfo.label.frame.minY < 0
             || textInfo.label.frame.maxX > imageView.frame.width
@@ -139,6 +138,8 @@ class FloatingContentAdderController: UIViewController {
             textInfo.label.frame = CGRect(origin: textInfo.label.frame.origin, size: size)
             textInfo.label.center = imageView.center
         }
+        
+        textInfo.label.sizeToFit()
     }
 
     private func removeTextLabel(at index: Int) {
