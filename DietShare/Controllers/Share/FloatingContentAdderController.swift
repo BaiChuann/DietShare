@@ -20,11 +20,13 @@ class FloatingContentAdderController: UIViewController {
     @IBOutlet weak private var canvas: UIView!
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var textPreviewCollectionView: UICollectionView!
-
+    
     var shareState: ShareState?
     private var fonts = [String]()
     private let textCellIdentifier = "TextPreviewCell"
     private let optionCellMaxHeight: CGFloat = 100
+    private let deleteBannerHeight: CGFloat = 100
+    private let textDeleteBanner = UIImageView()
     private var selectedFontIndex: Int?
     private var selectedLabelIndex: Int?
     private var text: String?
@@ -148,6 +150,10 @@ class FloatingContentAdderController: UIViewController {
         textLabels.remove(at: index)
         selectedLabelIndex = nil
     }
+    
+    private func getLabelIndex(for label: UILabel) -> Int? {
+        return textLabels.index { $0.label == label }
+    }
 
     @objc
     private func textLabelTapHandler(sender: UITapGestureRecognizer) {
@@ -155,7 +161,7 @@ class FloatingContentAdderController: UIViewController {
             return
         }
 
-        selectedLabelIndex = textLabels.index { $0.label == label }
+        selectedLabelIndex = getLabelIndex(for: label)
         showInputPopup()
     }
 
@@ -164,14 +170,72 @@ class FloatingContentAdderController: UIViewController {
         guard let label = sender.view as? UILabel else {
             return
         }
-
+        
         let location = sender.location(in: canvas)
         let labelHalfWidth = label.frame.width / 2
         let labelHalfHeight = label.frame.height / 2
         let xPos = min(imageView.frame.maxX - labelHalfWidth, max(location.x, labelHalfWidth))
         let yPos = min(imageView.frame.maxY - labelHalfHeight, max(location.y, labelHalfHeight))
-
         label.center = CGPoint(x: xPos, y: yPos)
+        
+        let boundary = deleteBannerHeight - canvas.frame.origin.y
+        switch sender.state {
+        case .began:
+            selectedLabelIndex = getLabelIndex(for: label)
+            updateDeleteBannerStatus(shouldHide: false, shouldHighlight: false, isInit: true)
+        case .changed:
+            updateDeleteBannerStatus(shouldHide: false, shouldHighlight: location.y < boundary)
+        case .ended:
+            if location.y < boundary, let index = selectedLabelIndex {
+                removeTextLabel(at: index)
+            }
+            updateDeleteBannerStatus(shouldHide: true, shouldHighlight: false)
+            selectedLabelIndex = nil
+        default:
+            return
+        }
+    }
+    
+    private func updateDeleteBannerStatus(shouldHide: Bool, shouldHighlight: Bool, isInit: Bool = false) {
+        if isInit {
+            let currentWindow = UIApplication.shared.keyWindow
+            currentWindow?.addSubview(textDeleteBanner)
+            textDeleteBanner.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0)
+            textDeleteBanner.backgroundColor = Constants.themeColor
+            textDeleteBanner.image = UIImage(named: "trash")
+            textDeleteBanner.contentMode = .center
+            textDeleteBanner.layer.cornerRadius = Constants.cornerRadius
+            
+            UIView.animate(withDuration: 0.3) {
+                self.textDeleteBanner.frame = CGRect(
+                    x: 0,
+                    y: -Constants.cornerRadius,
+                    width: self.view.frame.width,
+                    height: self.deleteBannerHeight + Constants.cornerRadius
+                )
+            }
+        }
+        
+        if shouldHide {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.textDeleteBanner.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0)
+            }, completion: { _ in
+                self.textDeleteBanner.removeFromSuperview()
+                return
+            })
+        }
+        
+        if shouldHighlight && !textDeleteBanner.isHighlighted {
+            textDeleteBanner.isHighlighted = true
+            UIView.animate(withDuration: 0.3) {
+                self.textDeleteBanner.backgroundColor = hexToUIColor(hex: "FF4848")
+            }
+        } else if !shouldHighlight && textDeleteBanner.isHighlighted {
+            textDeleteBanner.isHighlighted = false
+            UIView.animate(withDuration: 0.3) {
+                self.textDeleteBanner.backgroundColor = Constants.themeColor
+            }
+        }
     }
 }
 

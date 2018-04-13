@@ -640,7 +640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcf-dL-0An" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3196" y="2640"/>
+            <point key="canvasLocation" x="3196" y="2639.7301349325339"/>
         </scene>
         <!--Layout Photo Selector Controller-->
         <scene sceneID="0ef-3u-jgE">
