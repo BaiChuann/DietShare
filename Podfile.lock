@@ -34,6 +34,7 @@ PODS:
   - FBSDKShareKit (4.31.1):
     - FBSDKCoreKit (~> 4.31.1)
   - FormValidatorSwift (3.0.0)
+  - LinearProgressView (2.0.0)
   - NVActivityIndicatorView (4.1.1):
     - NVActivityIndicatorView/Presenter (= 4.1.1)
   - NVActivityIndicatorView/Presenter (4.1.1)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - FormValidatorSwift (~> 3.0)
+  - LinearProgressView
   - NVActivityIndicatorView
   - PopupDialog (~> 0.7)
   - Presentr
@@ -80,6 +82,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
   FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
+  LinearProgressView: 2e71a3a937b93488f381088f0ba27f2ff52bb26c
   NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
@@ -89,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
 
-PODFILE CHECKSUM: 443b23bab2a7c268fe12bce6e9924c6a8ec1e7e7
+PODFILE CHECKSUM: f83a5b44cd1fdfb1b0a62460839cefa37af0bf5c
 
 COCOAPODS: 1.2.0

@@ -266,7 +266,7 @@ extension FloatingTextInputController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = colorCollectionView.frame.width / CGFloat(colors.count)
+        let size = (colorCollectionView.frame.width - 10) / CGFloat(colors.count)
         return CGSize(width: size, height: size)
     }
 }

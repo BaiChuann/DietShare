@@ -178,7 +178,8 @@ class FloatingContentAdderController: UIViewController {
         let yPos = min(imageView.frame.maxY - labelHalfHeight, max(location.y, labelHalfHeight))
         label.center = CGPoint(x: xPos, y: yPos)
         
-        let boundary = deleteBannerHeight - canvas.frame.origin.y
+        let navigationBarHeight = (navigationController?.navigationBar.frame.height) ?? CGFloat(0)
+        let boundary = deleteBannerHeight - canvas.frame.origin.y - navigationBarHeight
         switch sender.state {
         case .began:
             selectedLabelIndex = getLabelIndex(for: label)

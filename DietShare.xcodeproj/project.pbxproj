@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
+		6AE0D7D820811E7600699190 /* NutritionSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0D7D720811E7600699190 /* NutritionSticker.swift */; };
 		A40BD2CD207795C40010E154 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BD2CC207795C40010E154 /* CollageLayout.swift */; };
 		A40BD2D220786DE40010E154 /* StickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BD2D120786DE40010E154 /* StickerLayout.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
@@ -138,6 +139,7 @@
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		6AE0D7D720811E7600699190 /* NutritionSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionSticker.swift; sourceTree = "<group>"; };
 		A40BD2CC207795C40010E154 /* CollageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
 		A40BD2D120786DE40010E154 /* StickerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerLayout.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				F2F24198207B3EFE00BB74B1 /* TextPreviewCell.swift */,
 				F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */,
 				F2DB00AB2074C44000CAB764 /* NutritionSticker.xib */,
+				6AE0D7D720811E7600699190 /* NutritionSticker.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				TargetAttributes = {
 					F2BE688D205E8C8800DF9694 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					F2BE68A1205E8C8900DF9694 = {
@@ -862,6 +866,7 @@
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
 				F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */,
+				6AE0D7D820811E7600699190 /* NutritionSticker.swift in Sources */,
 				B5A01CE5207D24A200B26CC2 /* UsersDataSource.swift in Sources */,
 				F24BEC24207BC2770047C034 /* LikeCell.swift in Sources */,
 				B504C2CD206D0EF6007F8956 /* RestaurantsModelManager.swift in Sources */,
@@ -1065,6 +1070,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HUP9SH4Z74;
@@ -1075,6 +1081,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1086,6 +1093,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HUP9SH4Z74;

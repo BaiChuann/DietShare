@@ -20,4 +20,5 @@ target 'DietShare' do
   pod 'SQLite.swift', '~> 0.11.4'
   pod 'ScrollingStackContainer', '~> 0.5'
   pod 'SwiftLint'
+  pod 'LinearProgressView'
 end

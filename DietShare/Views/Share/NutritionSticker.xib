@@ -1,23 +1,206 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+        <array key="VerdanaBold.ttf">
+            <string>Verdana-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NutritionSticker" customModule="DietShare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uga-ux-gJa" userLabel="Name">
+                    <rect key="frame" x="5" y="10" width="98" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Pqd-88-mtW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTC-Ha-Y4m">
+                    <rect key="frame" x="145" y="10" width="50" height="19.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="ggu-hp-p11"/>
+                        <constraint firstAttribute="height" constant="20" id="myX-DR-Htc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mak-jJ-XaH">
+                    <rect key="frame" x="123" y="10" width="2" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="L3y-MZ-qpw"/>
+                        <constraint firstAttribute="height" constant="24" id="XDu-3B-EGX"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Tz-qK-Rj6">
+                    <rect key="frame" x="5" y="60" width="190" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YbO-Kp-Rmk">
+                            <rect key="frame" x="0.0" y="0.0" width="190" height="26.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O3-Jg-96g">
+                                    <rect key="frame" x="0.0" y="10" width="27" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sch-Dy-q1e" customClass="LinearProgressView" customModule="LinearProgressView">
+                                    <rect key="frame" x="0.0" y="0.0" width="190" height="10"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="v15-BY-ZtQ"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCornersRounded" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaI-mj-CxR">
+                                    <rect key="frame" x="163" y="10" width="27" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Sch-Dy-q1e" firstAttribute="leading" secondItem="YbO-Kp-Rmk" secondAttribute="leading" id="Jvu-F3-aJL"/>
+                                <constraint firstAttribute="trailing" secondItem="LaI-mj-CxR" secondAttribute="trailing" id="fjG-Tk-Hef"/>
+                                <constraint firstItem="LaI-mj-CxR" firstAttribute="top" secondItem="Sch-Dy-q1e" secondAttribute="bottom" id="jCC-Pc-0hF"/>
+                                <constraint firstItem="7O3-Jg-96g" firstAttribute="top" secondItem="Sch-Dy-q1e" secondAttribute="bottom" id="jjC-qb-gGL"/>
+                                <constraint firstItem="7O3-Jg-96g" firstAttribute="leading" secondItem="YbO-Kp-Rmk" secondAttribute="leading" id="lCP-Ac-7Oa"/>
+                                <constraint firstItem="Sch-Dy-q1e" firstAttribute="top" secondItem="YbO-Kp-Rmk" secondAttribute="top" id="qo6-WY-8FT"/>
+                                <constraint firstAttribute="trailing" secondItem="Sch-Dy-q1e" secondAttribute="trailing" id="qtH-eG-Oms"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fwy-vb-4oQ">
+                            <rect key="frame" x="0.0" y="26.5" width="190" height="27"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3I-Bf-gR6">
+                                    <rect key="frame" x="0.0" y="10" width="27" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDZ-EI-6mN" customClass="LinearProgressView" customModule="LinearProgressView">
+                                    <rect key="frame" x="0.0" y="0.0" width="190" height="10"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="dcq-V8-xXb"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCornersRounded" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u22-Ai-TWw">
+                                    <rect key="frame" x="163" y="10" width="27" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="u22-Ai-TWw" firstAttribute="top" secondItem="wDZ-EI-6mN" secondAttribute="bottom" id="CeH-zc-fGx"/>
+                                <constraint firstItem="e3I-Bf-gR6" firstAttribute="leading" secondItem="fwy-vb-4oQ" secondAttribute="leading" id="KVD-Ij-LHj"/>
+                                <constraint firstAttribute="trailing" secondItem="wDZ-EI-6mN" secondAttribute="trailing" id="OFb-AB-fXB"/>
+                                <constraint firstItem="wDZ-EI-6mN" firstAttribute="leading" secondItem="fwy-vb-4oQ" secondAttribute="leading" id="QK5-MU-Tlq"/>
+                                <constraint firstAttribute="trailing" secondItem="u22-Ai-TWw" secondAttribute="trailing" id="Svj-TZ-SUX"/>
+                                <constraint firstItem="e3I-Bf-gR6" firstAttribute="top" secondItem="wDZ-EI-6mN" secondAttribute="bottom" id="dQx-wM-S1A"/>
+                                <constraint firstItem="wDZ-EI-6mN" firstAttribute="top" secondItem="fwy-vb-4oQ" secondAttribute="top" id="hMF-z0-4UY"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2er-Ck-iE8">
+                            <rect key="frame" x="0.0" y="53.5" width="190" height="26.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTh-zj-hFv">
+                                    <rect key="frame" x="0.0" y="10" width="27" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjE-s5-5u8" customClass="LinearProgressView" customModule="LinearProgressView">
+                                    <rect key="frame" x="0.0" y="0.0" width="190" height="10"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="2HY-95-Ls3"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCornersRounded" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-7z-8hE">
+                                    <rect key="frame" x="163" y="10" width="27" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="aTh-zj-hFv" firstAttribute="leading" secondItem="2er-Ck-iE8" secondAttribute="leading" id="GOb-Bw-j1i"/>
+                                <constraint firstItem="aTh-zj-hFv" firstAttribute="top" secondItem="HjE-s5-5u8" secondAttribute="bottom" id="LmL-f1-Y4k"/>
+                                <constraint firstAttribute="trailing" secondItem="8lv-7z-8hE" secondAttribute="trailing" id="N9V-w3-K1e"/>
+                                <constraint firstItem="HjE-s5-5u8" firstAttribute="top" secondItem="2er-Ck-iE8" secondAttribute="top" id="RZ8-6j-uAU"/>
+                                <constraint firstAttribute="trailing" secondItem="HjE-s5-5u8" secondAttribute="trailing" id="Xi4-CC-fic"/>
+                                <constraint firstItem="HjE-s5-5u8" firstAttribute="leading" secondItem="2er-Ck-iE8" secondAttribute="leading" id="ZpE-zq-yQg"/>
+                                <constraint firstItem="8lv-7z-8hE" firstAttribute="top" secondItem="HjE-s5-5u8" secondAttribute="bottom" id="oyJ-Aa-MAO"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kTC-Ha-Y4m" secondAttribute="trailing" constant="5" id="0BQ-JB-vLl"/>
+                <constraint firstItem="mak-jJ-XaH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="3gM-VH-HTq"/>
+                <constraint firstItem="5Tz-qK-Rj6" firstAttribute="top" secondItem="Uga-ux-gJa" secondAttribute="bottom" constant="10" id="7uy-sj-6mh"/>
+                <constraint firstItem="Uga-ux-gJa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="J8W-XT-nix"/>
+                <constraint firstItem="Uga-ux-gJa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="LVQ-Xv-6QS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5Tz-qK-Rj6" secondAttribute="trailing" constant="5" id="Okv-El-8L4"/>
+                <constraint firstItem="kTC-Ha-Y4m" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Xj6-37-nYV"/>
+                <constraint firstItem="kTC-Ha-Y4m" firstAttribute="leading" secondItem="mak-jJ-XaH" secondAttribute="trailing" constant="20" id="YVU-J1-Muh"/>
+                <constraint firstItem="5Tz-qK-Rj6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="lZX-Uz-Uzf"/>
+                <constraint firstItem="mak-jJ-XaH" firstAttribute="leading" secondItem="Uga-ux-gJa" secondAttribute="trailing" constant="20" id="qoU-QT-ak4"/>
+                <constraint firstAttribute="bottom" secondItem="5Tz-qK-Rj6" secondAttribute="bottom" constant="10" id="sxB-0l-1cv"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="calories" destination="kTC-Ha-Y4m" id="eIl-Tx-jZj"/>
+                <outlet property="foodName" destination="Uga-ux-gJa" id="MPH-iO-H1p"/>
+                <outletCollection property="nutritionType" destination="7O3-Jg-96g" collectionClass="NSMutableArray" id="XUh-gt-ru9"/>
+                <outletCollection property="nutritionType" destination="e3I-Bf-gR6" collectionClass="NSMutableArray" id="I8O-Vn-AVX"/>
+                <outletCollection property="nutritionType" destination="aTh-zj-hFv" collectionClass="NSMutableArray" id="6Qo-0M-lWg"/>
+                <outletCollection property="nutritionAmount" destination="LaI-mj-CxR" collectionClass="NSMutableArray" id="HTU-YM-R6K"/>
+                <outletCollection property="nutritionAmount" destination="u22-Ai-TWw" collectionClass="NSMutableArray" id="Jcm-28-1ww"/>
+                <outletCollection property="nutritionAmount" destination="8lv-7z-8hE" collectionClass="NSMutableArray" id="RDJ-Ug-if9"/>
+            </connections>
+            <point key="canvasLocation" x="-20" y="47"/>
         </view>
     </objects>
 </document>
