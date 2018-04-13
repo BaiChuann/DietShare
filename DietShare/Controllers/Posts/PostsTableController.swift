@@ -96,6 +96,18 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         print("clicked")
         
     }
+    func goToUser(_ id: String) {
+        let controller = Bundle.main.loadNibNamed("Profile", owner: nil, options: nil)?.first as! ProfileController
+        controller.setUser(id)
+        //        parentController.addChildViewController(controller)
+        //        parentController.view.addSubview(controller.view)
+        //        controller.didMove(toParentViewController: self)
+        parentController.tabBarController?.tabBar.isHidden = true
+        parentController.navigationController?.navigationBar.isHidden = false
+        print(parentController.view.frame.height)
+        parentController.navigationController?.pushViewController(controller, animated: true)
+        print("clicked")
+    }
     func onCommentClicked() {
         print("clicked")
         let textHeight = CGFloat(40)

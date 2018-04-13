@@ -14,6 +14,7 @@
 		3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */; };
 		3B37A724207F8083009ED0D3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A723207F8083009ED0D3 /* ProfileController.swift */; };
 		3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */; };
+		3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3920809F0900AB90BE /* Assets.xcassets */; };
 		3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */; };
 		3BDA29C8207FC20A00E99DE3 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C1207FC20A00E99DE3 /* Food.swift */; };
 		3BDA29C9207FC20A00E99DE3 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */; };
@@ -150,6 +151,7 @@
 		3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabController.swift; sourceTree = "<group>"; };
 		3B37A723207F8083009ED0D3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
+		3B424B3920809F0900AB90BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
 		3BDA29C1207FC20A00E99DE3 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
 				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 				F2BE689D205E8C8900DF9694 /* Info.plist */,
+				3B424B3920809F0900AB90BE /* Assets.xcassets */,
 			);
 			path = DietShare;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				3B37A717207F782E009ED0D3 /* Profile.xib in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				3BDA2A01207FC2CD00E99DE3 /* NutritionSticker.xib in Resources */,
+				3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */,
 				3BDA2A04207FC2CD00E99DE3 /* TextColorCell.xib in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
 				3BDA2A35207FCBD500E99DE3 /* PostsTable.xib in Resources */,

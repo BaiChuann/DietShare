@@ -10,7 +10,8 @@ import UIKit
 
 class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    @IBOutlet weak private var userPhoto: UIImageView!
+    
+    @IBOutlet weak private var userPhoto: UIButton!
     @IBOutlet weak private var userName: UILabel!
     @IBOutlet weak private var postImage: UIImageView!
     @IBOutlet weak private var caption: UILabel!
@@ -31,7 +32,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         topicsLayout.estimatedItemSize = CGSize(width: 100, height: 12)
     }
     func setUserPhoto(_ photo: UIImage) {
-        userPhoto.image = photo
+        userPhoto.setImage(photo, for: .normal)
         userPhoto.layer.cornerRadius = userPhoto.frame.height / 8
         userPhoto.clipsToBounds = true
     }
@@ -100,6 +101,9 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         cell.topicLabel.layer.cornerRadius = 4
         cell.topicLabel.clipsToBounds = true
         return cell
+    }
+    @IBAction func onUserClicked(_ sender: Any) {
+        self.cellDelegate?.goToUser("1")
     }
     @IBAction func onCommentCountClicked(_ sender: Any) {
         self.cellDelegate?.goToDetail(self)
