@@ -14,7 +14,7 @@ enum AppStoryboard: String {
     case share = "Share"
     case discovery = "Discovery"
     case home = "Home"
-    case profile = "Profile"
+    case postdetail = "PostDetail"
 
     var instance: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)

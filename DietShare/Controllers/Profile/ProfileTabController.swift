@@ -14,9 +14,13 @@ class ProfileTabController: UIViewController {
         let controller = Bundle.main.loadNibNamed("Profile", owner: nil, options: nil)?.first as! ProfileController
         controller.setUser("1")
         addChildViewController(controller)
+        controller.setTabShow(true)
         view.addSubview(controller.view)
         controller.didMove(toParentViewController: self)
-        
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
 }
 

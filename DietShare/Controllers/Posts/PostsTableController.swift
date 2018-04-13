@@ -85,7 +85,8 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     
     func goToDetail(_ post: PostCell) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
-        controller.setPost(post)
+//        let controller = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController") as! FoodSelectController
+        //controller.setPost(post)
 //        parentController.addChildViewController(controller)
 //        parentController.view.addSubview(controller.view)
 //        controller.didMove(toParentViewController: self)
@@ -99,6 +100,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func goToUser(_ id: String) {
         let controller = Bundle.main.loadNibNamed("Profile", owner: nil, options: nil)?.first as! ProfileController
         controller.setUser(id)
+        controller.setTabShow(false)
         //        parentController.addChildViewController(controller)
         //        parentController.view.addSubview(controller.view)
         //        controller.didMove(toParentViewController: self)

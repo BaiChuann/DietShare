@@ -14,14 +14,18 @@ class PostDetailController: UIViewController {
     @IBOutlet weak private var segmentBar: UIView!
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var commentsTable: UITableView!
+    @IBOutlet weak var textFieldContainer: UIView!
     private var textFieldController: TextFieldController!
+    override func viewWillAppear(_ animated: Bool) {
+        print(textFieldContainer.frame.origin.y)
+        setTextField()
+    }
     override func viewDidLoad() {
 //        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
         
         //postCell.translatesAutoresizingMaskIntoConstraints = false
         //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
         //postArea.addSubview(postCell)
-        
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -32,11 +36,15 @@ class PostDetailController: UIViewController {
         commentsTable.register(cellNibName2, forCellReuseIdentifier: "likeCell")
         commentsTable.rowHeight = UITableViewAutomaticDimension
         commentsTable.estimatedRowHeight = 100
+        //setTextField()
         setSegmentControl()
-        view.frame.size = CGSize(width: 375, height: 667)
-        setTextField()
+//        view.frame.size = CGSize(width: 375, height: 667)
+        //setTextField()
         
     }
+    
+  
+    
     func setSegmentControl() {
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
@@ -48,22 +56,14 @@ class PostDetailController: UIViewController {
     }
     func setTextField() {
         textFieldController = Bundle.main.loadNibNamed("TextField", owner: nil, options: nil)?.first as! TextFieldController
-        let textHeight = CGFloat(40)
         let width = view.frame.width
-        let height = view.frame.height
-        var tabHeight = CGFloat(0)
-        if let tabBar = tabBarController?.tabBar {
-            if !tabBar.isHidden {
-                tabHeight = tabBar.frame.height
-                print(tabBar.frame.origin)
-            }
-        }
+        let textHeight = textFieldContainer.frame.height
         self.addChildViewController(textFieldController)
-        textFieldController.setTabHeight(tabHeight)
         textFieldController.setDelegate(self)
-        textFieldController.view.frame = CGRect(x: 0, y: height - tabHeight - textHeight, width: width, height: textHeight)
-        //textFieldController.view.frame.origin = CGPoint(x:0 ,y:height - tabHeight - textHeight)
+        print(textFieldContainer.frame.origin.y)
+        //textFieldController.view.frame.size = CGSize(width: width, height: textHeight)
         view.addSubview(textFieldController.view)
+        textFieldController.view.frame = CGRect(x: 0, y: textFieldContainer.frame.origin.y, width: width, height: textHeight)
         textFieldController.didMove(toParentViewController: self)
     }
     func setPost(_ post: PostCell) {

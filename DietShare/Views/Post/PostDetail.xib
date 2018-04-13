@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,9 +14,16 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <viewController automaticallyAdjustsScrollViewInsets="NO" id="mRz-FH-AFU" customClass="PostDetailController" customModule="DietShare" customModuleProvider="target">
             <view key="view" contentMode="scaleToFill" id="QNM-3w-ulo">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ2-Fy-7uZ">
+                        <rect key="frame" x="0.0" y="563" width="375" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Ndb-N6-DPe"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpZ-Hw-otG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                         <subviews>
@@ -51,10 +59,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY5-vz-soF">
-                        <rect key="frame" x="0.0" y="38" width="375" height="629"/>
+                        <rect key="frame" x="0.0" y="38" width="375" height="525"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XwB-t2-5Tk">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="629"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="525"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="Xqu-pk-iLa"/>
@@ -78,22 +86,26 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="bJ2-Fy-7uZ" firstAttribute="top" secondItem="KY5-vz-soF" secondAttribute="bottom" id="CzU-ku-Gpz"/>
+                    <constraint firstItem="bJ2-Fy-7uZ" firstAttribute="bottom" secondItem="b7x-6W-qdr" secondAttribute="bottom" id="E9U-AU-jYL"/>
                     <constraint firstItem="KY5-vz-soF" firstAttribute="trailing" secondItem="b7x-6W-qdr" secondAttribute="trailing" id="MfT-Gz-FRb"/>
                     <constraint firstItem="gpZ-Hw-otG" firstAttribute="leading" secondItem="b7x-6W-qdr" secondAttribute="leading" id="Nbi-OF-bVD"/>
+                    <constraint firstItem="bJ2-Fy-7uZ" firstAttribute="trailing" secondItem="b7x-6W-qdr" secondAttribute="trailing" id="Z8X-LV-lsd"/>
                     <constraint firstItem="KY5-vz-soF" firstAttribute="top" secondItem="gpZ-Hw-otG" secondAttribute="bottom" constant="8" id="dLV-D0-Egx"/>
                     <constraint firstItem="gpZ-Hw-otG" firstAttribute="top" secondItem="QNM-3w-ulo" secondAttribute="top" id="gc5-cH-1h5"/>
-                    <constraint firstItem="KY5-vz-soF" firstAttribute="bottom" secondItem="b7x-6W-qdr" secondAttribute="bottom" id="jbC-u6-shz"/>
                     <constraint firstItem="gpZ-Hw-otG" firstAttribute="trailing" secondItem="b7x-6W-qdr" secondAttribute="trailing" id="kXN-Xj-8o1"/>
                     <constraint firstItem="KY5-vz-soF" firstAttribute="leading" secondItem="b7x-6W-qdr" secondAttribute="leading" id="kym-i2-JPb"/>
+                    <constraint firstItem="bJ2-Fy-7uZ" firstAttribute="leading" secondItem="b7x-6W-qdr" secondAttribute="leading" id="poB-hB-QKo"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="b7x-6W-qdr"/>
             </view>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <size key="freeformSize" width="375" height="667"/>
+            <size key="freeformSize" width="375" height="603"/>
             <connections>
                 <outlet property="commentsTable" destination="XwB-t2-5Tk" id="3bg-AB-o5X"/>
                 <outlet property="segmentBar" destination="eHC-as-cL9" id="3Vq-G9-jX1"/>
                 <outlet property="segmentedControl" destination="yif-TA-7je" id="ofd-8S-s1j"/>
+                <outlet property="textFieldContainer" destination="bJ2-Fy-7uZ" id="pWj-hw-fGE"/>
             </connections>
             <point key="canvasLocation" x="-231.5" y="129.5"/>
         </viewController>

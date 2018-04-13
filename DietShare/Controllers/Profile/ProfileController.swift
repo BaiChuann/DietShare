@@ -24,6 +24,17 @@ class ProfileController: UIViewController {
     private var userId = ""
     private var postsTableController: PostsTableController!
     private var tableView: UITableView!
+    private var tab = false
+    override func viewDidAppear(_ animated: Bool) {
+        //tabBarController?.tabBar.isHidden = false
+        if tab {
+            self.tabBarController?.tabBar.isHidden = false
+        } else {
+            self.tabBarController?.tabBar.isHidden = true
+        }
+        scrollView.frame.size = view.frame.size
+        //view.frame.size = CGSize(width: 375, height: 667)
+    }
     override func viewDidLoad() {
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
@@ -34,6 +45,13 @@ class ProfileController: UIViewController {
         self.addChildViewController(postsTableController)
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = false
+    }
+    func setTabShow(_ tab: Bool) {
+        self.tab = tab
     }
     func setUser(_ id: String) {
         userId = id
