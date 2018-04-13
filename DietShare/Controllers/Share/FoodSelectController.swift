@@ -172,6 +172,7 @@ class FoodSelectController: UIViewController {
             return
         }
 
+        shareState?.food = foods[index]
         destinationVC.shareState = shareState
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }

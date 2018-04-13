@@ -44,7 +44,7 @@ class FloatingContentAdderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        shareState = ShareState()
+//        shareState = ShareState()
 
         setUpUI()
         fonts = [
