@@ -26,6 +26,9 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var topicList: UICollectionView!
     @IBOutlet weak var restaurantList: UICollectionView!
     @IBOutlet weak var postsArea: UIView!
+    //SCROLL IMPLEMENTATION
+    private var postsTable: UITableView!
+    //==========================
 //    @IBOutlet weak var postList: UITableView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -98,19 +101,25 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         //change of poststable controller
-        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
         postsTableController?.setParentController(self)
         postsTableController?.getTrendingPosts()
         self.addChildViewController(postsTableController!)
         
         //        postsTable = postsTableController.getTable()
-        if let postsTable = postsTableController?.view {
-            postsTable.frame = postsArea.frame
+        if let postsTableView = postsTableController?.view {
+            postsTableView.frame = postsArea.frame
             postsArea.removeFromSuperview()
-            scrollView.addSubview(postsTable)
+            scrollView.addSubview(postsTableView)
 //            self.postList = postsTable
             print("posts table added")
         }
+        //SCROLL IMPLEMENTATION
+        postsTable = postsTableController?.getTable()
+        postsTableController?.setScrollDelegate(self)
+        postsTable = postsTableController?.getTable()
+        postsTable.bounces = false
+        postsTable.isScrollEnabled = false
         //change of poststable controller 
     }
     
@@ -173,3 +182,22 @@ extension ShortListsViewController: StackContainable {
     }
 }
 
+//SCROLL IMPLEMENTATION
+extension ShortListsViewController: ScrollDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
+        {
+            //change the following line accordingly.
+            if yOffset >= scrollView.contentSize.height - (postsTableController?.view.frame.height)! {
+                scrollView.isScrollEnabled = false
+                postsTable.isScrollEnabled = true
+            }
+            
+        }
+    }
+    func reachTop() {
+        scrollView.isScrollEnabled = true
+        postsTable.isScrollEnabled = false
+    }
+}
