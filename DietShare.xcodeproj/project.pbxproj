@@ -393,6 +393,7 @@
 				F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */,
 				F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */,
 				F2F24195207B30E900BB74B1 /* FloatingContentAdderController.swift */,
+				F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -546,7 +547,6 @@
 				F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */,
 				F26698D820656D6900E3A1F2 /* IngredientCell.swift */,
 				F27985DF206FAAEB00977F5D /* LayoutPhotoPreviewCell.swift */,
-				F2F2419A207B537600BB74B1 /* FloatingTextInputController.swift */,
 				F2F2419B207B537600BB74B1 /* FloatingTextInputPopup.xib */,
 				F2F2419E207B568C00BB74B1 /* TextColorCell.swift */,
 				F2F2419F207B568C00BB74B1 /* TextColorCell.xib */,
@@ -722,7 +722,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {

@@ -19,4 +19,5 @@ target 'DietShare' do
   pod 'TGCameraViewController'
   pod 'SQLite.swift', '~> 0.11.4'
   pod 'ScrollingStackContainer', '~> 0.5'
+  pod 'SwiftLint'
 end

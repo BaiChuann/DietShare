@@ -73,6 +73,7 @@ class FloatingContentAdderController: UIViewController {
     private func onFontSelected(index: Int) {
         print("font \(index) selected")
         selectedFontIndex = index
+        selectedLabelIndex = nil
         showInputPopup()
     }
 
@@ -81,6 +82,15 @@ class FloatingContentAdderController: UIViewController {
         popUp.shouldIgnoreTapOutsideContext = true
         popUp.roundCorners = true
         customPresentViewController(popUp, viewController: floatingTextInputController, animated: true, completion: nil)
+    }
+    
+    private func calculateLabelSize(for label: UILabel) -> CGSize {
+        var size = label.sizeThatFits(imageView.frame.size)
+        if size.height > size.width {
+            size.width = label.preferredMaxLayoutWidth
+        }
+        
+        return size
     }
 
     private func addTextLabelView(_ textInfo: FloatingTextInfo) {
@@ -93,7 +103,14 @@ class FloatingContentAdderController: UIViewController {
         textInfo.label.textAlignment = .center
         textInfo.label.lineBreakMode = .byWordWrapping
         textInfo.label.numberOfLines = 0
+        textInfo.label.preferredMaxLayoutWidth = 0.75 * imageView.frame.width
+        
+        var size = calculateLabelSize(for: textInfo.label)
         textInfo.label.sizeToFit()
+        
+        size.width = min(imageView.frame.width, size.width)
+        size.height = min(imageView.frame.height, size.height)
+        textInfo.label.frame = CGRect(origin: imageView.center, size: size)
         textInfo.label.center = imageView.center
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(textLabelTapHandler(sender:)))
@@ -109,13 +126,26 @@ class FloatingContentAdderController: UIViewController {
         textInfo.label.text = textInfo.text
         textInfo.label.font = textInfo.font.withSize(textInfo.size)
         textInfo.label.textColor = textInfo.color
+        var size = calculateLabelSize(for: textInfo.label)
+        textInfo.label.frame = CGRect(origin: textInfo.label.frame.origin, size: size)
+
         textInfo.label.sizeToFit()
+        if textInfo.label.frame.minX < 0
+            || textInfo.label.frame.minY < 0
+            || textInfo.label.frame.maxX > imageView.frame.width
+            || textInfo.label.frame.maxY > imageView.frame.height {
+            size.width = min(textInfo.label.center.x * 2, (imageView.frame.width - textInfo.label.center.x) * 2)
+            size.height = min(textInfo.label.center.y * 2, (imageView.frame.height - textInfo.label.center.y) * 2)
+            textInfo.label.frame = CGRect(origin: textInfo.label.frame.origin, size: size)
+            textInfo.label.center = imageView.center
+        }
     }
 
     private func removeTextLabel(at index: Int) {
         let label = textLabels[index].label
         label.removeFromSuperview()
         textLabels.remove(at: index)
+        selectedLabelIndex = nil
     }
 
     @objc
@@ -125,7 +155,6 @@ class FloatingContentAdderController: UIViewController {
         }
 
         selectedLabelIndex = textLabels.index { $0.label == label }
-        print("selected index is \(selectedLabelIndex)")
         showInputPopup()
     }
 

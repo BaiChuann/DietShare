@@ -146,9 +146,8 @@ class FloatingTextInputController: UIViewController {
                     return
             }
             font = selectedFont
+            isNewLabel = true
         }
-
-        print("new color index is \(colorIndex)")
     }
 
     private func setUpUI() {

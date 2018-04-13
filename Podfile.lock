@@ -44,6 +44,7 @@ PODS:
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
+  - SwiftLint (0.25.0)
   - SwiftyJSON (4.0.0)
   - TGCameraViewController (2.2.8)
 
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - Presentr
   - ScrollingStackContainer (~> 0.5)
   - SQLite.swift (~> 0.11.4)
+  - SwiftLint
   - SwiftyJSON
   - TGCameraViewController
 
@@ -83,9 +85,10 @@ SPEC CHECKSUMS:
   Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
   ScrollingStackContainer: 89ff12217eaa8215c0d1bb2f29b807d0ebaa3918
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
 
-PODFILE CHECKSUM: d339ba03d554c181333472ac78be7ffaa3780bf3
+PODFILE CHECKSUM: 443b23bab2a7c268fe12bce6e9924c6a8ec1e7e7
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.2.0
