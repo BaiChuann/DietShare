@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum NutritionType {
+enum NutritionType: String {
     case fats = "Fats"
     case proteins = "Proteins"
     case carbohydrate = "Carbohydrate"

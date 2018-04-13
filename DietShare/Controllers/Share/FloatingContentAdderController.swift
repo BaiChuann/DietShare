@@ -19,6 +19,7 @@ protocol FloatingContentAdderDelegate: class {
 class FloatingContentAdderController: UIViewController {
     @IBOutlet weak private var canvas: UIView!
     @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var nutritionStickerView: NutritionSticker!
     @IBOutlet weak private var textPreviewCollectionView: UICollectionView!
     
     var shareState: ShareState?
@@ -33,6 +34,7 @@ class FloatingContentAdderController: UIViewController {
     private var textColor: UIColor?
     private var textSize: CGFloat?
     private var textLabels = [FloatingTextInfo]()
+    private var nutritionViewOriginalPos = CGPoint(x: 0, y: 0)
     private lazy var floatingTextInputController: FloatingTextInputController = {
         let controller = FloatingTextInputController(nibName: "FloatingTextInputPopup", bundle: nil)
         controller.delegate = self
@@ -42,7 +44,7 @@ class FloatingContentAdderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        shareState = ShareState()
+        shareState = ShareState()
 
         setUpUI()
         fonts = [
@@ -66,6 +68,14 @@ class FloatingContentAdderController: UIViewController {
 
     private func setUpUI() {
         imageView.image = shareState?.modifiedPhoto ?? shareState?.originalPhoto
+        if let foodData = shareState?.food {
+            nutritionStickerView.setData(food: foodData)
+        }
+        nutritionStickerView.layer.cornerRadius = Constants.cornerRadius
+
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(nutritionPanHandler(sender:)))
+        pan.maximumNumberOfTouches = 1
+        nutritionStickerView.addGestureRecognizer(pan)
 
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
@@ -140,7 +150,7 @@ class FloatingContentAdderController: UIViewController {
             textInfo.label.frame = CGRect(origin: textInfo.label.frame.origin, size: size)
             textInfo.label.center = imageView.center
         }
-        
+
         textInfo.label.sizeToFit()
     }
 
@@ -170,14 +180,14 @@ class FloatingContentAdderController: UIViewController {
         guard let label = sender.view as? UILabel else {
             return
         }
-        
+
         let location = sender.location(in: canvas)
         let labelHalfWidth = label.frame.width / 2
         let labelHalfHeight = label.frame.height / 2
         let xPos = min(imageView.frame.maxX - labelHalfWidth, max(location.x, labelHalfWidth))
         let yPos = min(imageView.frame.maxY - labelHalfHeight, max(location.y, labelHalfHeight))
         label.center = CGPoint(x: xPos, y: yPos)
-        
+
         let navigationBarHeight = (navigationController?.navigationBar.frame.height) ?? CGFloat(0)
         let boundary = deleteBannerHeight - canvas.frame.origin.y - navigationBarHeight
         switch sender.state {
@@ -196,7 +206,27 @@ class FloatingContentAdderController: UIViewController {
             return
         }
     }
-    
+
+    @objc
+    private func nutritionPanHandler(sender: UIPanGestureRecognizer) {
+        guard let nutritionView = sender.view else {
+            return
+        }
+
+        switch sender.state {
+        case .began:
+            nutritionViewOriginalPos = nutritionView.frame.origin
+        case .changed:
+            let translation = sender.translation(in: canvas)
+            nutritionView.frame.origin = CGPoint(
+                x: max(0, min(nutritionViewOriginalPos.x + translation.x, imageView.frame.maxX - nutritionView.frame.width)),
+                y: max(0, min(nutritionViewOriginalPos.y + translation.y, imageView.frame.maxY - nutritionView.frame.height))
+            )
+        default:
+            return
+        }
+    }
+
     private func updateDeleteBannerStatus(shouldHide: Bool, shouldHighlight: Bool, isInit: Bool = false) {
         if isInit {
             let currentWindow = UIApplication.shared.keyWindow

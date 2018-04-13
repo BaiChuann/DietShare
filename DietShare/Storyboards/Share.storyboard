@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VQJ-wA-Njw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zrT-D6-l3Q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -13,14 +13,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
-        </array>
-        <array key="VerdanaBold.ttf">
-            <string>Verdana-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="E9r-zk-O36">
@@ -541,11 +533,11 @@
                                             <segue destination="SrE-CV-oRD" kind="embed" id="F4S-Ot-DRi"/>
                                         </connections>
                                     </containerView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HsF-rd-Sw2">
-                                        <rect key="frame" x="93.5" y="255" width="187.5" height="100"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HsF-rd-Sw2" customClass="NutritionSticker" customModule="DietShare" customModuleProvider="target">
+                                        <rect key="frame" x="84" y="215" width="206.5" height="140"/>
+                                        <color key="backgroundColor" red="0.89111979166666666" green="0.89111979166666666" blue="0.89111979166666666" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="Enh-ax-cW1"/>
+                                            <constraint firstAttribute="height" constant="140" id="Enh-ax-cW1"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -555,7 +547,7 @@
                                     <constraint firstItem="IPa-ai-MaN" firstAttribute="bottom" secondItem="HsF-rd-Sw2" secondAttribute="bottom" constant="20" id="5LW-UL-dJL"/>
                                     <constraint firstItem="IPa-ai-MaN" firstAttribute="leading" secondItem="HY0-YF-8Ni" secondAttribute="leading" id="R8A-G0-y4v"/>
                                     <constraint firstAttribute="bottom" secondItem="s02-sv-lY1" secondAttribute="bottom" id="cWT-OB-gUE"/>
-                                    <constraint firstItem="HsF-rd-Sw2" firstAttribute="width" secondItem="HY0-YF-8Ni" secondAttribute="width" multiplier="0.5" id="emR-Ge-8er"/>
+                                    <constraint firstItem="HsF-rd-Sw2" firstAttribute="width" secondItem="HY0-YF-8Ni" secondAttribute="width" multiplier="0.55" id="emR-Ge-8er"/>
                                     <constraint firstAttribute="trailing" secondItem="s02-sv-lY1" secondAttribute="trailing" constant="16" id="ick-F8-yeC"/>
                                     <constraint firstItem="IPa-ai-MaN" firstAttribute="top" secondItem="HY0-YF-8Ni" secondAttribute="top" id="lMm-OF-DKV"/>
                                     <constraint firstItem="s02-sv-lY1" firstAttribute="top" secondItem="IPa-ai-MaN" secondAttribute="bottom" constant="5" id="qjK-Q3-uub"/>
@@ -646,6 +638,7 @@
                     <connections>
                         <outlet property="canvas" destination="HY0-YF-8Ni" id="OP6-S5-hEx"/>
                         <outlet property="imageView" destination="IPa-ai-MaN" id="oYQ-wK-nLB"/>
+                        <outlet property="nutritionStickerView" destination="HsF-rd-Sw2" id="7He-uh-hEa"/>
                         <outlet property="textPreviewCollectionView" destination="1jr-th-WdM" id="ZMv-AL-7uf"/>
                     </connections>
                 </viewController>
