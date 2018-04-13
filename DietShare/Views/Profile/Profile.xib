@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8O6-Wt-Ly0">
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8O6-Wt-Ly0">
                         <rect key="frame" x="0.0" y="20" width="375" height="980"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNO-rj-wiu">
@@ -67,7 +68,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="onFollowerClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="kAo-e7-gyf"/>
+                                            <action selector="onFollowerClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="xae-YV-fXt"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Follower" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-xc-4Js">
@@ -85,7 +86,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="onFollowingClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="Zy2-KT-hfP"/>
+                                            <action selector="onFollowingClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="q0D-Wl-mB7"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqr-V4-m4Q">
@@ -103,7 +104,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="onTopicClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="1BN-jh-L5N"/>
+                                            <action selector="onTopicClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="0CY-TU-BFL"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Topic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrg-vw-pfg">
@@ -131,7 +132,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onFollowClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="JIf-x0-7v8"/>
+                                    <action selector="onFollowClicked:" destination="MKP-f4-7He" eventType="touchUpInside" id="9oF-dM-wkx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnE-hk-mL2">
@@ -145,7 +146,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onEditClick:" destination="MKP-f4-7He" eventType="touchUpInside" id="rVK-21-pnf"/>
+                                    <action selector="onEditClick:" destination="MKP-f4-7He" eventType="touchUpInside" id="dBI-pw-Ay6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -194,16 +195,16 @@
             </view>
             <size key="freeformSize" width="375" height="1000"/>
             <connections>
-                <outlet property="descrip" destination="G8C-Gs-Feq" id="cfJ-mN-KVi"/>
-                <outlet property="editButton" destination="NnE-hk-mL2" id="MjO-RN-2zt"/>
-                <outlet property="followButton" destination="9VP-lL-5wX" id="NNM-0C-hFg"/>
-                <outlet property="followerCount" destination="GiK-ml-ci8" id="5iI-pg-KLZ"/>
-                <outlet property="followingCount" destination="Ooh-UR-dHe" id="T8n-hb-Mf3"/>
-                <outlet property="postsArea" destination="MNO-rj-wiu" id="w89-pE-2Fh"/>
+                <outlet property="descrip" destination="G8C-Gs-Feq" id="OwY-uf-WMP"/>
+                <outlet property="editButton" destination="NnE-hk-mL2" id="mix-oG-gyo"/>
+                <outlet property="followButton" destination="9VP-lL-5wX" id="oyJ-vn-8e9"/>
+                <outlet property="followerCount" destination="GiK-ml-ci8" id="8zB-Up-gg8"/>
+                <outlet property="followingCount" destination="Ooh-UR-dHe" id="oSW-Uy-2jh"/>
+                <outlet property="postsArea" destination="MNO-rj-wiu" id="dSq-kG-X9A"/>
                 <outlet property="scrollView" destination="8O6-Wt-Ly0" id="TzI-fV-Fb1"/>
-                <outlet property="topicCount" destination="bUw-lT-oDL" id="3yU-ti-IKZ"/>
+                <outlet property="topicCount" destination="bUw-lT-oDL" id="PeL-ua-Y7e"/>
                 <outlet property="userName" destination="j85-iy-sUi" id="c2E-1C-Laf"/>
-                <outlet property="userPhoto" destination="cqf-jY-2iy" id="QuY-IN-Vm0"/>
+                <outlet property="userPhoto" destination="cqf-jY-2iy" id="aVy-Ne-tZB"/>
             </connections>
             <point key="canvasLocation" x="-14.5" y="-79"/>
         </viewController>

@@ -15,6 +15,7 @@
 		3B37A724207F8083009ED0D3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A723207F8083009ED0D3 /* ProfileController.swift */; };
 		3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */; };
 		3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3920809F0900AB90BE /* Assets.xcassets */; };
+		3B424B3C2080EF5E00AB90BE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3B2080EF5E00AB90BE /* Profile.storyboard */; };
 		3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */; };
 		3BDA29C8207FC20A00E99DE3 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C1207FC20A00E99DE3 /* Food.swift */; };
 		3BDA29C9207FC20A00E99DE3 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */; };
@@ -62,7 +63,6 @@
 		3BDA2A37207FCBD500E99DE3 /* TextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2B207FCBD500E99DE3 /* TextFieldController.swift */; };
 		3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */; };
 		3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */; };
-		3BFE06A6207E386D003F67F7 /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFE06A5207E386D003F67F7 /* PostDetail.storyboard */; };
 		3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
@@ -152,6 +152,7 @@
 		3B37A723207F8083009ED0D3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
 		3B424B3920809F0900AB90BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B424B3B2080EF5E00AB90BE /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
 		3BDA29C1207FC20A00E99DE3 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -199,7 +200,6 @@
 		3BDA2A2B207FCBD500E99DE3 /* TextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldController.swift; sourceTree = "<group>"; };
 		3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
-		3BFE06A5207E386D003F67F7 /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDelegate.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -495,7 +495,7 @@
 				F2E373BC20716BE50000F707 /* Home.storyboard */,
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
 				B5CBA1122069411C00BC8005 /* Discovery.storyboard */,
-				3BFE06A5207E386D003F67F7 /* PostDetail.storyboard */,
+				3B424B3B2080EF5E00AB90BE /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -711,7 +711,6 @@
 				B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */,
 				F2E373BD20716BE50000F707 /* Home.storyboard in Resources */,
 				3BDA29FC207FC2CD00E99DE3 /* IngredientDropDownCell.xib in Resources */,
-				3BFE06A6207E386D003F67F7 /* PostDetail.storyboard in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				3BDA2A31207FCBD500E99DE3 /* LikeCell.xib in Resources */,
 				3BDA2A33207FCBD500E99DE3 /* PostCell.xib in Resources */,
@@ -719,6 +718,7 @@
 				3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */,
 				3BDA2A36207FCBD500E99DE3 /* TextField.xib in Resources */,
 				3B37A717207F782E009ED0D3 /* Profile.xib in Resources */,
+				3B424B3C2080EF5E00AB90BE /* Profile.storyboard in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				3BDA2A01207FC2CD00E99DE3 /* NutritionSticker.xib in Resources */,
 				3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */,

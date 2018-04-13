@@ -24,21 +24,22 @@ class ProfileController: UIViewController {
     private var userId = ""
     private var postsTableController: PostsTableController!
     private var tableView: UITableView!
-    private var tab = false
-    override func viewDidAppear(_ animated: Bool) {
+    private var tab = true
+    override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
         if tab {
+            print("yes")
             self.tabBarController?.tabBar.isHidden = false
-        } else {
-            self.tabBarController?.tabBar.isHidden = true
+            self.navigationController?.navigationBar.isHidden = true
         }
-        scrollView.frame.size = view.frame.size
+        //scrollView.frame.size = view.frame.size
         //view.frame.size = CGSize(width: 375, height: 667)
     }
     override func viewDidLoad() {
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
         postsTableController.setScrollDelegate(self)
+        postsTableController.getFollowingPosts()
         tableView = postsTableController.getTable()
         tableView.bounces = false
         tableView.isScrollEnabled = false
@@ -49,6 +50,7 @@ class ProfileController: UIViewController {
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
+        setUser("1")
     }
     func setTabShow(_ tab: Bool) {
         self.tab = tab
@@ -79,7 +81,6 @@ class ProfileController: UIViewController {
 extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
-        
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
         {
             if yOffset >= scrollView.contentSize.height - postsArea.frame.height {
