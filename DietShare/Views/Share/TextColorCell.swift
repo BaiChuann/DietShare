@@ -15,7 +15,7 @@ class TextColorCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         if colorView != nil {
             colorView.layer.cornerRadius = Constants.cornerRadius
         }

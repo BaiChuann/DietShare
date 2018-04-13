@@ -44,6 +44,7 @@
 		B5E7ABC62075F8FB003FAB99 /* DiscoverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABC52075F8FB003FAB99 /* DiscoverPageViewController.swift */; };
 		B5E7ABC92075FD36003FAB99 /* ScrollingStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABC82075FD36003FAB99 /* ScrollingStackController.swift */; };
 		B5E7ABCB2076A635003FAB99 /* UserModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */; };
+		F20276DB2080A25200B636CA /* FloatingTextInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20276DA2080A25200B636CA /* FloatingTextInfo.swift */; };
 		F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */; };
 		F24BEC1B207BC25F0047C034 /* StoredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC19207BC25E0047C034 /* StoredLayout.swift */; };
 		F24BEC1C207BC25F0047C034 /* StoredSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1A207BC25F0047C034 /* StoredSticker.swift */; };
@@ -172,6 +173,7 @@
 		B5E7ABC52075F8FB003FAB99 /* DiscoverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPageViewController.swift; sourceTree = "<group>"; };
 		B5E7ABC82075FD36003FAB99 /* ScrollingStackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingStackController.swift; sourceTree = "<group>"; };
 		B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
+		F20276DA2080A25200B636CA /* FloatingTextInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextInfo.swift; sourceTree = "<group>"; };
 		F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploaderViewController.swift; sourceTree = "<group>"; };
 		F24BEC19207BC25E0047C034 /* StoredLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
 		F24BEC1A207BC25F0047C034 /* StoredSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				F26699162066CD3900E3A1F2 /* Ingredient.swift */,
 				F24BEC19207BC25E0047C034 /* StoredLayout.swift */,
 				F24BEC1A207BC25F0047C034 /* StoredSticker.swift */,
+				F20276DA2080A25200B636CA /* FloatingTextInfo.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				F266991E2066CD3900E3A1F2 /* User.swift in Sources */,
 				F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */,
 				F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */,
+				F20276DB2080A25200B636CA /* FloatingTextInfo.swift in Sources */,
 				F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				F27985DD206F9DE300977F5D /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
