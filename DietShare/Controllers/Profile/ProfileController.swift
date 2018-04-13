@@ -38,11 +38,13 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
-        postsTableController.setScrollDelegate(self)
         postsTableController.getFollowingPosts()
+        //SCROLL VIEW IMPLEMENTATION
+        postsTableController.setScrollDelegate(self)
         tableView = postsTableController.getTable()
         tableView.bounces = false
         tableView.isScrollEnabled = false
+        //===============================
         self.addChildViewController(postsTableController)
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
@@ -51,6 +53,14 @@ class ProfileController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
         setUser("1")
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEditor" {
+            if let destinationVC = segue.destination as? ProfileEditor {
+                destinationVC.photo = UIImage(named: "profile-example")!
+                destinationVC.data = ["Bai Chuan", "eat less eat healthy", "1234"]
+            }
+        }
     }
     func setTabShow(_ tab: Bool) {
         self.tab = tab
@@ -77,12 +87,13 @@ class ProfileController: UIViewController {
     @IBAction func onTopicClicked(_ sender: Any) {
     }
 }
-
+// SCROLL VIEW IMPLEMENTATION
 extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
         {
+            //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
             if yOffset >= scrollView.contentSize.height - postsArea.frame.height {
                 scrollView.isScrollEnabled = false
                 tableView.isScrollEnabled = true
@@ -95,3 +106,4 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
         tableView.isScrollEnabled = false
     }
 }
+//================

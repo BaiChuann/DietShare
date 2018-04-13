@@ -97,16 +97,21 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         
         displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
-        
-        postsTableController = PostsTableController()
+        //change of poststable controller
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
+        postsTableController?.setParentController(self)
         postsTableController?.getTrendingPosts()
-        if let postsTable = postsTableController?.getTable() {
+        self.addChildViewController(postsTableController!)
+        
+        //        postsTable = postsTableController.getTable()
+        if let postsTable = postsTableController?.view {
             postsTable.frame = postsArea.frame
             postsArea.removeFromSuperview()
             scrollView.addSubview(postsTable)
 //            self.postList = postsTable
             print("posts table added")
         }
+        //change of poststable controller 
     }
     
     // TODO - remove this when current user is set at Login page
@@ -167,3 +172,4 @@ extension ShortListsViewController: StackContainable {
         return .scroll(self.scrollView, insets: UIEdgeInsetsMake(50, 0, 50, 0))
     }
 }
+

@@ -16,6 +16,9 @@
 		3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */; };
 		3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3920809F0900AB90BE /* Assets.xcassets */; };
 		3B424B3C2080EF5E00AB90BE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3B2080EF5E00AB90BE /* Profile.storyboard */; };
+		3B424B3E2080FBAE00AB90BE /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */; };
+		3B424B402081038300AB90BE /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B3F2081038300AB90BE /* EditCell.swift */; };
+		3B424B4220810B0F00AB90BE /* EditFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B4120810B0F00AB90BE /* EditFieldController.swift */; };
 		3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */; };
 		3BDA29C8207FC20A00E99DE3 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C1207FC20A00E99DE3 /* Food.swift */; };
 		3BDA29C9207FC20A00E99DE3 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */; };
@@ -153,6 +156,9 @@
 		3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
 		3B424B3920809F0900AB90BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B424B3B2080EF5E00AB90BE /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditor.swift; sourceTree = "<group>"; };
+		3B424B3F2081038300AB90BE /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
+		3B424B4120810B0F00AB90BE /* EditFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFieldController.swift; sourceTree = "<group>"; };
 		3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
 		3BDA29C1207FC20A00E99DE3 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -288,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				3B37A716207F782E009ED0D3 /* Profile.xib */,
+				3B424B3F2081038300AB90BE /* EditCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -297,6 +304,8 @@
 			children = (
 				3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */,
 				3B37A723207F8083009ED0D3 /* ProfileController.swift */,
+				3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */,
+				3B424B4120810B0F00AB90BE /* EditFieldController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -866,6 +875,7 @@
 				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
 				B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */,
 				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
+				3B424B4220810B0F00AB90BE /* EditFieldController.swift in Sources */,
 				3BDA29E0207FC24A00E99DE3 /* ShareTabController.swift in Sources */,
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				3BDA29CA207FC20A00E99DE3 /* ShareState.swift in Sources */,
@@ -898,10 +908,12 @@
 				F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */,
 				B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */,
 				3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */,
+				3B424B3E2080FBAE00AB90BE /* ProfileEditor.swift in Sources */,
 				F26699212066CD3900E3A1F2 /* Profile.swift in Sources */,
 				3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */,
 				F266991B2066CD3900E3A1F2 /* Like.swift in Sources */,
 				3BDA2A37207FCBD500E99DE3 /* TextFieldController.swift in Sources */,
+				3B424B402081038300AB90BE /* EditCell.swift in Sources */,
 				B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */,
 				3BDA29DD207FC24A00E99DE3 /* LayoutPhotoSelectorController.swift in Sources */,
 				3BDA2A2E207FCBD500E99DE3 /* CommentCell.swift in Sources */,
