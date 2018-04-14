@@ -4,7 +4,7 @@
 //
 //  Created by ZiyangMou on 11/4/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
-// swiftlint:disable implicity_unwrapped_optional weak_delegate
+// swiftlint:disable implicitly_unwrapped_optional weak_delegate force_unwrapping
 
 import Foundation
 import UIKit
@@ -13,12 +13,18 @@ class TopicListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+
+    var selectedTopicID: [String] = []
 
     private var topicModel: TopicsModelManager<Topic> = TopicsModelManager<Topic>()
 
     private var topicList: [PublishTopic] = []
     private var filteredTopicList: [PublishTopic] = []
     private var isSearching = false
+
+    private var selectedNumber: Int = 0
+    private let maximumSelection: Int = 5
 
     private let publishTopicCellIdentifier = "PublishTopicCell"
     private let searchBarPlaceHolder = "Search your topics here ..."
@@ -45,17 +51,38 @@ class TopicListController: UIViewController {
     }
 
     private func setUpUI() {
-        let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(goBackToPublisher(_:)))
+        nextButton.title = "Next(\(selectedNumber)/\(maximumSelection))"
+        nextButton.style = .plain
+        nextButton.target = self
+        nextButton.action = #selector(goBackToPublisher(_:))
         nextButton.tintColor = UIColor.black
-        self.navigationItem.rightBarButtonItem = nextButton
     }
 
     private func loadTopicList() {
         //topicList = topicModel.getAllTopics().map { toPublishTopic(topic: $0) }
-        topicList = [PublishTopic(id: "1", name: "11", image: UIImage(named: "vegi-life")!, popularity: "1111"),
-        PublishTopic(id: "2", name: "11111", image: UIImage(named: "vegi-life")!, popularity: "1111"),
-        PublishTopic(id: "3", name: "121", image: UIImage(named: "vegi-life")!, popularity: "1111"),
-        PublishTopic(id: "4", name: "112222", image: UIImage(named: "vegi-life")!, popularity: "1111")]
+        topicList = [PublishTopic(id: "1", name: "1", popularity: "1111"),
+        PublishTopic(id: "2", name: "2", popularity: "1111"),
+        PublishTopic(id: "3", name: "3", popularity: "1111"),
+        PublishTopic(id: "4", name: "4", popularity: "1111"),
+        PublishTopic(id: "5", name: "5", popularity: "1111"),
+        PublishTopic(id: "6", name: "6", popularity: "1111"),
+        PublishTopic(id: "7", name: "7", popularity: "1111"),
+        PublishTopic(id: "8", name: "8", popularity: "1111"),
+        PublishTopic(id: "9", name: "9", popularity: "1111"),
+        PublishTopic(id: "10", name: "10", popularity: "1111"),
+        PublishTopic(id: "11", name: "11", popularity: "1111"),
+        PublishTopic(id: "12", name: "12", popularity: "1111"),
+        PublishTopic(id: "13", name: "13", popularity: "1111"),
+        PublishTopic(id: "14", name: "14", popularity: "1111"),
+        PublishTopic(id: "15", name: "15", popularity: "1111"),
+        PublishTopic(id: "16", name: "16", popularity: "1111")]
+        let selectedTopics = topicList.filter { selectedTopicID.contains($0.id) }
+        selectedNumber = selectedTopics.count
+        selectedTopics.reversed().forEach { topic in
+            _ = topic.select()
+            topicList.remove(at: topicList.index(of: topic)!)
+            topicList.insert(topic, at: 0)
+        }
     }
 
     @objc private func goBackToPublisher(_ sender: UIBarButtonItem) {
@@ -67,9 +94,12 @@ class TopicListController: UIViewController {
     private func toPublishTopic(topic: Topic) -> PublishTopic {
         let id = topic.getID()
         let name = topic.getName()
-        let image = topic.getImageAsUIImage()
         let popularity = String(topic.getPopularity())
-        return PublishTopic(id: id, name: name, image: image, popularity: popularity)
+        return PublishTopic(id: id, name: name, popularity: popularity)
+    }
+
+    private func updateNextButton() {
+        nextButton.title = "Next(\(selectedNumber)/\(maximumSelection))"
     }
 }
 
@@ -98,9 +128,8 @@ extension TopicListController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let name = topic.name
-        let image = topic.image
         let popularity = topic.popularity
-        topicCell.setLabelText(name: name, image: image, popularity: popularity)
+        topicCell.setLabelText(name: name, popularity: popularity)
 
         return topicCell
     }
@@ -111,7 +140,12 @@ extension TopicListController: UITableViewDelegate, UITableViewDataSource {
             filteredTopicList[indexPath.item] :
             topicList[indexPath.item]
 
-        selected.select()
+        guard selectedNumber < maximumSelection || selected.isHighlighted else {
+            self.tableView.reloadData()
+            return
+        }
+        selectedNumber += selected.select()
+        updateNextButton()
         self.tableView.reloadData()
     }
 }
@@ -142,23 +176,25 @@ extension TopicListController: UISearchBarDelegate {
     }
 }
 
-private class PublishTopic {
-
+private class PublishTopic: Equatable {
     private(set) var id: String
     private(set) var name: String
-    private(set) var image: UIImage
     private(set) var popularity: String
     private(set) var isHighlighted: Bool
 
-    init(id: String, name: String, image: UIImage, popularity: String) {
+    static func == (lhs: PublishTopic, rhs: PublishTopic) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    init(id: String, name: String, popularity: String) {
         self.id = id
         self.name = name
-        self.image = image
         self.popularity = popularity
         self.isHighlighted = false
     }
 
-    func select() {
+    func select() -> Int {
         isHighlighted = !isHighlighted
+        return isHighlighted ? 1 : -1
     }
 }

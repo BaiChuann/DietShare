@@ -18,10 +18,11 @@ class RestaurantListController: UIViewController {
     private var restaurants: [PublishRestaurant] = []
     private var filteredRestaurants: [PublishRestaurant] = []
     private var isSearching = false
+    private var defaultRestaurant = PublishRestaurant(id: "-1", name: "Hide location", address: "")
 
     private let publishRestaurantIdentifier = "PublishRestaurantCell"
     private let searchBarPlaceHolder = "Search your restaurant here ..."
-    
+
     weak var delegate: RestaurantSenderDelegate?
 
     override func viewDidLoad() {
@@ -53,8 +54,9 @@ class RestaurantListController: UIViewController {
                        PublishRestaurant(id: "8", name: "3217", address: "221B Baker Street"),
                        PublishRestaurant(id: "9", name: "lol", address: "221B Baker Street"),
                        PublishRestaurant(id: "10", name: "pwn", address: "221B Baker Street"),
-                       PublishRestaurant(id: "11", name: "cd", address: "221B Baker Street"),
+                       PublishRestaurant(id: "11", name: "cd", address: "221B Baker Street")
         ]
+        restaurants.insert(defaultRestaurant, at: 0)
     }
 }
 
@@ -65,7 +67,7 @@ extension RestaurantListController: UITableViewDelegate, UITableViewDataSource {
         }
         return restaurants.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: publishRestaurantIdentifier, for: indexPath)
         guard let restaurantCell = cell as? PublishRestaurantCell else {
@@ -113,11 +115,11 @@ extension RestaurantListController: UISearchBarDelegate {
 }
 
 private class PublishRestaurant {
-    
+
     private(set) var id: String
     private(set) var name: String
     private(set) var address: String
-    
+
     init(id: String, name: String, address: String) {
         self.id = id
         self.name = name
