@@ -10,14 +10,16 @@ import UIKit
 
 class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    @IBOutlet weak private var userPhoto: UIImageView!
+    
+    @IBOutlet weak private var userPhoto: UIButton!
     @IBOutlet weak private var userName: UILabel!
     @IBOutlet weak private var postImage: UIImageView!
     @IBOutlet weak private var caption: UILabel!
-    @IBOutlet weak private var likeCount: UILabel!
+    @IBOutlet weak private var likeCount: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak private var commentCount: UIButton!
     @IBOutlet weak private var time: UILabel!
-    @IBOutlet weak private var restaurant: UILabel!
+    @IBOutlet weak private var restaurant: UIButton!
     @IBOutlet weak private var topics: UICollectionView!
     @IBOutlet weak var topicsLayout: UICollectionViewFlowLayout!
     private var post: Post!
@@ -30,7 +32,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         topicsLayout.estimatedItemSize = CGSize(width: 100, height: 12)
     }
     func setUserPhoto(_ photo: UIImage) {
-        userPhoto.image = photo
+        userPhoto.setImage(photo, for: .normal)
         userPhoto.layer.cornerRadius = userPhoto.frame.height / 8
         userPhoto.clipsToBounds = true
     }
@@ -44,7 +46,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         self.caption.text = caption
     }
     func setLikeCount(_ count: String) {
-        likeCount.text = count
+        likeCount.setTitle(count, for: .normal)
     }
     func setCommentCount(_ count: String) {
         commentCount.setTitle(count, for: .normal)
@@ -52,22 +54,22 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     func setTime(_ time: String) {
         self.time.text = time
     }
-    func setTopics(_ topics: [(String, String)]) {
-        if topics.isEmpty {
+    func setTopics(_ topics: [(String, String)]?) {
+        guard let tps = topics else {
             self.topics.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
         topicsData = []
-        for topic in topics {
+        for topic in tps {
             topicsData.append(topic.1)
         }
     }
-    func setRestaurant(_ restaurant: String) {
-        if restaurant == "" {
+    func setRestaurant(_ restaurant: (String, String)?) {
+        guard let res = restaurant else {
             self.restaurant.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
-        self.restaurant.text = restaurant
+        self.restaurant.setTitle(res.1, for: .normal)
     }
     func setContent(userPhoto: UIImage, userName: String, _ post: Post) {
         self.post = post
@@ -81,7 +83,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
         setTime(dateFormatter.string(from: post.getTime()))
         setTopics(post.getTopics())
-        setRestaurant(post.getRestaurant().1)
+        setRestaurant(post.getRestaurant())
     }
     func setDelegate(_ cellDelegate: PostCellDelegate) {
         self.cellDelegate = cellDelegate
@@ -100,8 +102,27 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         cell.topicLabel.clipsToBounds = true
         return cell
     }
+    @IBAction func onUserClicked(_ sender: Any) {
+        self.cellDelegate?.goToUser("2")
+    }
     @IBAction func onCommentCountClicked(_ sender: Any) {
         self.cellDelegate?.goToDetail(self)
+    }
+    
+    @IBAction func onCommentClicked(_ sender: Any) {
+        self.cellDelegate?.onCommentClicked()
+    }
+    @IBAction func onLikeCountClicked(_ sender: Any) {
+        self.cellDelegate?.goToDetail(self)
+    }
+    @IBAction func onLikeClicked(_ sender: Any) {
+        if likeButton.currentTitle == "unlike" {
+            likeButton.setImage(UIImage(named: "heart")!, for: .normal)
+            likeButton.setTitle("liked", for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like")!, for: .normal)
+            likeButton.setTitle("unlike", for: .normal)
+        }
     }
     func getPost() -> Post{
         return post

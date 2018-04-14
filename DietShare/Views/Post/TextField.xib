@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="FdI-FW-deR" customClass="TextFieldController" customModule="DietShare" customModuleProvider="target">
+            <view key="view" contentMode="scaleToFill" id="Vrr-Su-pRn">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Comment" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hmb-iV-j5z">
+                        <rect key="frame" x="16" y="5" width="279" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="279" id="EeY-Jp-XoV"/>
+                            <constraint firstAttribute="height" constant="30" id="GT4-KV-DLq"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="FdI-FW-deR" id="bpV-ie-Gbs"/>
+                        </connections>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-OJ-9B0">
+                        <rect key="frame" x="296" y="5" width="73" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="jhR-Ar-OXf"/>
+                            <constraint firstAttribute="width" constant="73" id="s8M-IS-OG7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                        <state key="normal" title="Send">
+                            <color key="titleColor" red="1" green="0.81960784310000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="onSend:" destination="FdI-FW-deR" eventType="touchUpInside" id="aMG-bb-O7p"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="hmb-iV-j5z" firstAttribute="top" secondItem="hJP-7k-Uay" secondAttribute="top" constant="5" id="1nk-XA-bUO"/>
+                    <constraint firstItem="LBA-OJ-9B0" firstAttribute="top" secondItem="hJP-7k-Uay" secondAttribute="top" constant="5" id="Ebi-kb-dPg"/>
+                    <constraint firstItem="hJP-7k-Uay" firstAttribute="trailing" secondItem="LBA-OJ-9B0" secondAttribute="trailing" constant="6" id="Hc2-ZA-F6K"/>
+                    <constraint firstItem="hJP-7k-Uay" firstAttribute="bottom" secondItem="LBA-OJ-9B0" secondAttribute="bottom" constant="5" id="J3H-c2-bIF"/>
+                    <constraint firstItem="hmb-iV-j5z" firstAttribute="leading" secondItem="hJP-7k-Uay" secondAttribute="leading" constant="16" id="fJs-np-iK1"/>
+                    <constraint firstItem="LBA-OJ-9B0" firstAttribute="leading" secondItem="hmb-iV-j5z" secondAttribute="trailing" constant="1" id="sa3-Xz-Gh9"/>
+                    <constraint firstItem="hJP-7k-Uay" firstAttribute="bottom" secondItem="hmb-iV-j5z" secondAttribute="bottom" constant="5" id="w1k-8T-iO1"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="hJP-7k-Uay"/>
+            </view>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <size key="freeformSize" width="375" height="40"/>
+            <connections>
+                <outlet property="sendButton" destination="LBA-OJ-9B0" id="zBR-wo-yAP"/>
+                <outlet property="textField" destination="hmb-iV-j5z" id="lm0-Q8-dPi"/>
+            </connections>
+            <point key="canvasLocation" x="90.5" y="-442"/>
+        </viewController>
+    </objects>
+</document>

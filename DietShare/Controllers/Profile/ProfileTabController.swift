@@ -8,19 +8,19 @@
 
 import UIKit
 
-class HomeTabController: UIViewController {
+class ProfileTabController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let controller = AppStoryboard.home.instance.instantiateInitialViewController() {
+        if let controller = AppStoryboard.profile.instance.instantiateInitialViewController() {
             addChildViewController(controller)
             view.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
         }
         
+       
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        print("homehome")
         tabBarController?.tabBar.isHidden = true
     }
 }
+

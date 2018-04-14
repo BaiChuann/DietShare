@@ -7,33 +7,66 @@
 //
 
 import UIKit
-import ScrollingStackContainer
-
 
 class PostsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostCellDelegate {
     private var dataSource: [Post] = []
-    private var postsTable = UITableView()
-    private var parentController: UIViewController!
-    func retrieveFollowingPosts() {
-        dataSource = PostManager.getFollowingPosts()
-    }
     
-    func retrieveTrendingPosts() {
-        dataSource = PostManager.getTrendingPosts()
+    @IBOutlet weak private var postsTable: UITableView!
+    private var parentController: UIViewController!
+    private var postManager = PostManager.shared
+    private var textFieldController: TextFieldController!
+    private var scrollDelegate: ScrollDelegate?
+    override func viewDidLoad() {
+        let cellNibName = UINib(nibName: "PostCell", bundle: nil)
+        postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
+        postsTable.rowHeight = UITableViewAutomaticDimension
+        postsTable.estimatedRowHeight = 600
+        textFieldController = Bundle.main.loadNibNamed("TextField", owner: nil, options: nil)?.first as! TextFieldController
+        postsTable.allowsSelection = false;
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
     }
-
+    @objc func dismissKeyboard() {
+        textFieldController.view.removeFromSuperview()
+        textFieldController.removeFromParentViewController()
+    }
+    func setScrollDelegate(_ delegate: ScrollDelegate) {
+        scrollDelegate = delegate
+    }
+    func getFollowingPosts() {
+        dataSource = postManager.getFollowingPosts()
+        postsTable.reloadData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        
+    }
+    func getLikePosts() {
+        dataSource = postManager.getLikePosts()
+        postsTable.reloadData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        
+    }
+    func getTrendingPosts() {
+        dataSource = postManager.getTrendingPosts()
+        postsTable.reloadData()
+    }
+    func getTopicPosts(_ id: String) {
+        dataSource = postManager.getTopicPosts(id)
+        postsTable.reloadData()
+    }
+    func getRestaurantPosts(_ id: String) {
+        dataSource = postManager.getRestaurantPosts(id)
+        postsTable.reloadData()
+    }
+    func getUserPosts(_ id: String) {
+        dataSource = postManager.getUserPosts(id)
+        postsTable.reloadData()
+    }
     func setParentController(_ controller: UIViewController) {
         parentController = controller
     }
-    
     func getTable() -> UITableView {
-        let cellNibName = UINib(nibName: "PostCell", bundle: nil)
-        postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
-        postsTable.dataSource = self
-        postsTable.delegate = self
-        postsTable.rowHeight = UITableViewAutomaticDimension
-        postsTable.estimatedRowHeight = 600
-        postsTable.reloadData()
         return postsTable
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,27 +84,71 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func goToDetail(_ post: PostCell) {
-        let storyboard = UIStoryboard(name: "PostDetail", bundle: Bundle.main)
-        if let controller = storyboard.instantiateInitialViewController() as? PostDetailController {
-            controller.setPost(post)
-           
-            parentController.addChildViewController(controller)
-            parentController.view.addSubview(controller.view)
-            controller.didMove(toParentViewController: self)
-            print("clicked")
-            parentController.tabBarController?.tabBar.isHidden = true
+        let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
+//        let controller = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController") as! FoodSelectController
+          //controller.setPost(post)
+//        parentController.addChildViewController(controller)
+//        parentController.view.addSubview(controller.view)
+//        controller.didMove(toParentViewController: self)
+        //parentController.tabBarController?.tabBar.isHidden = true
+        //parentController.navigationController?.navigationBar.isHidden = false
+        print(parentController.view.frame.height)
+        parentController.navigationController?.pushViewController(controller, animated: true)
+        print("clicked")
+        
+    }
+    func goToUser(_ id: String) {
+        let controller = AppStoryboard.profile.instance.instantiateViewController(withIdentifier: "profile") as! ProfileController
+        controller.setUserId(id)
+        //        parentController.addChildViewController(controller)
+        //        parentController.view.addSubview(controller.view)
+        //        controller.didMove(toParentViewController: self)
+        //parentController.tabBarController?.tabBar.isHidden = true
+        //parentController.navigationController?.navigationBar.isHidden = false
+        print(parentController.view.frame.height)
+        parentController.navigationController?.pushViewController(controller, animated: true)
+        print("clicked")
+    }
+    func onCommentClicked() {
+        print("clicked")
+        let textHeight = CGFloat(40)
+        let width = parentController.view.frame.width
+        let height = parentController.view.frame.height
+        var tabHeight = CGFloat(0)
+        if let tabBar = parentController.tabBarController?.tabBar {
+            if !tabBar.isHidden {
+                tabHeight = tabBar.frame.height
+                print(tabBar.frame.origin)
+            }
         }
+        parentController.addChildViewController(textFieldController)
+        textFieldController.setTabHeight(tabHeight)
+        textFieldController.setDelegate(self)
+        textFieldController.view.frame = CGRect(x: 0, y: height - tabHeight - textHeight, width: width, height: textHeight)
+        parentController.view.addSubview(textFieldController.view)
+        textFieldController.startEditing()
     }
 }
 
-extension PostsTableController: StackContainable {
-    public static func create() -> PostsTableController {
-        return UIStoryboard(name: "Discovery", bundle: Bundle.main).instantiateViewController(withIdentifier: "PostsTable") as! PostsTableController
+extension PostsTableController: CommentDelegate {
+    func onComment(_ text: String) {
+        print(text)
+        textFieldController.view.removeFromSuperview()
+        textFieldController.removeFromParentViewController()
     }
-    
-    public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
-        let _ = self.view
-        return .scroll(self.postsTable, insets: UIEdgeInsetsMake(50, 0, 50, 0))
+}
+
+extension PostsTableController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        textFieldController.view.removeFromSuperview()
+        textFieldController.removeFromParentViewController()
     }
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollDelegate != nil {
+            let yOffset = scrollView.contentOffset.y
+            if yOffset <= 0 {
+                scrollDelegate?.reachTop()
+            }
+        }
+    }
 }

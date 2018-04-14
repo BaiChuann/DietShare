@@ -14,17 +14,29 @@ class HomeController: UIViewController {
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var segmentBar: UIView!
     private var postsTable: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+        //tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool){
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = false
-        PostManager.loadData()
-        postsTableController = PostsTableController()
+        
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
-        postsTableController.retrieveFollowingPosts()
-        postsTable = postsTableController.getTable()
-        postsTable.frame.size = postsArea.frame.size
-        postsArea.addSubview(postsTable)
-
+        postsTableController.getFollowingPosts()
+        self.addChildViewController(postsTableController)
+        
+//        postsTable = postsTableController.getTable()
+        postsTableController.view.frame.size = postsArea.frame.size
+        postsArea.addSubview(postsTableController.view)
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
         let attr = NSDictionary(object: UIFont(name: "Verdana", size: 13.0)!, forKey: NSAttributedStringKey.font as NSCopying)
@@ -40,12 +52,19 @@ class HomeController: UIViewController {
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
             }
-            postsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+            
+            postsTableController.getFollowingPosts()
+            //let indexPath = IndexPath(row: 0, section: 0)
+            //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+            
         case 1:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * 5
             }
-            postsTable.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+            
+            postsTableController.getLikePosts()
+            //let indexPath = IndexPath(row: 0, section: 0)
+            //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
             
         default:
             break

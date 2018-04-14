@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserCell" customModule="DietShare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fKv-IY-hg7">
+                    <rect key="frame" x="16" y="10" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="aAh-5r-bOm"/>
+                        <constraint firstAttribute="width" secondItem="fKv-IY-hg7" secondAttribute="height" multiplier="1:1" id="b1Z-hb-oPC"/>
+                        <constraint firstAttribute="width" constant="35" id="nyO-S0-O17"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwu-fP-zHD">
+                    <rect key="frame" x="59" y="18" width="40" height="19"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fKv-IY-hg7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="1Ip-St-Llt"/>
+                <constraint firstItem="Cwu-fP-zHD" firstAttribute="leading" secondItem="fKv-IY-hg7" secondAttribute="trailing" constant="8" id="2sp-CZ-qwL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Cwu-fP-zHD" secondAttribute="bottom" constant="18" id="9KP-zI-Xfv"/>
+                <constraint firstItem="fKv-IY-hg7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Apm-cM-cIR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fKv-IY-hg7" secondAttribute="bottom" constant="10" id="D6x-Pu-Hge"/>
+                <constraint firstItem="fKv-IY-hg7" firstAttribute="width" secondItem="fKv-IY-hg7" secondAttribute="height" multiplier="1:1" id="ba0-P4-uLS"/>
+                <constraint firstItem="Cwu-fP-zHD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="dH9-da-qEA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="userName" destination="Cwu-fP-zHD" id="yhD-TV-SaL"/>
+                <outlet property="userPhoto" destination="fKv-IY-hg7" id="nzU-mJ-1SC"/>
+            </connections>
+            <point key="canvasLocation" x="82.5" y="-246.5"/>
+        </view>
+    </objects>
+</document>
