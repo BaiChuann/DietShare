@@ -56,5 +56,11 @@ class RestaurantFullListCell: UICollectionViewCell {
     func setDistance(_ distance: String) {
         self.distance.text = distance
     }
+    
+    func setTypes(_ types: Set<String>) {
+        var typeString = ""
+        types.forEach { typeString += "\($0)  " }
+        self.restaurantType.text = typeString
+    }
 }
 

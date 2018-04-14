@@ -22,16 +22,18 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     private var currentLocation: CLLocation?
 
     private var currentSort = Sorting.byRating
+    private var currentTypeFilters = Set<RestaurantType>()
     
     @IBOutlet weak var restaurantListView: UICollectionView!
     
     @IBOutlet var buttonBar: [UIButton]!
     @IBOutlet weak var ratingLogo: UIImageView!
     @IBOutlet weak var distanceLogo: UIImageView!
+    private var cuisineDropDown = DropDown()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantListView, let model = self.restaurantModel {
-            return model.getNumOfRestaurants()
+            return model.getFullRestaurantList(currentSort, currentTypeFilters).count
         }
         return 0
     }
@@ -40,17 +42,18 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantFullListCell, for: indexPath as IndexPath) as! RestaurantFullListCell
         if let model = self.restaurantModel {
-            let restaurantList = model.getFullRestaurantList(currentSort)
+            let restaurantList = model.getFullRestaurantList(currentSort, currentTypeFilters)
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
             cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsSet().count)
-            // TODO - get current location
+            cell.setTypes(restaurantList[indexPath.item].getTypesAsStringSet())
+            // Get current location
             if let location = self.currentLocation {
                 let distance = Int(location.distance(from: restaurantList[indexPath.item].getLocation()) / 1000)
                 cell.setDistance("\(distance) km")
             } else {
-                cell.setDistance("unknown distance")
+                cell.setDistance(Text.unknownDistance)
             }
         }
         
@@ -59,7 +62,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.restaurantModel {
-            let restaurantsList = model.getFullRestaurantList(currentSort)
+            let restaurantsList = model.getFullRestaurantList(currentSort, currentTypeFilters)
             self.selectedRestaurant = restaurantsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.restaurantListToDetailPage, sender: self)
         }
@@ -73,6 +76,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        initDropDown()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,9 +90,30 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+    private func initDropDown() {
+        
+        cuisineDropDown.anchorView = buttonBar[0]
+        var allCuisineTypes = [String]()
+        RestaurantType.cases().forEach {allCuisineTypes.append($0.rawValue)}
+        assert(allCuisineTypes.count > 0)
+        cuisineDropDown.dataSource = allCuisineTypes
+        cuisineDropDown.width = self.view.frame.width
+        
+        cuisineDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            guard let typeSelected = RestaurantType(rawValue: item) else {
+                fatalError("Illegal value of restaurant inputed")
+            }
+            self.currentTypeFilters.insert(typeSelected)
+            self.restaurantListView.reloadData()
+        }
+        cuisineDropDown.dismissMode = .onTap
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
+            dest.setLocationManager(self.locationManager)
         }
     }
     
@@ -109,6 +134,9 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         restaurantListView.reloadData()
     }
     
+    @IBAction func showDropDown(_ sender: UIButton) {
+        self.cuisineDropDown.show()
+    }
     
     /**
      * View-related functions
@@ -149,7 +177,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = manager.location
-//        self.restaurantListView.reloadData()
+        self.restaurantListView.reloadData()
     }
     
     /**

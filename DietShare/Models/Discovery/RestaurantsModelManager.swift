@@ -23,9 +23,15 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
         self.restaurants = restaurantsDataSource.getAllRestaurants() as! SortedSet<T>
     }
     
-    func getFullRestaurantList(_ sorting: Sorting) -> [T] {
+    func getFullRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>) -> [T] {
         var restaurantList = [T]()
+        print("restaurants: \(restaurants.count)")
         restaurantList.append(contentsOf: self.restaurants)
+        if !typeFilters.isEmpty {
+            restaurantList = restaurantList.filter { $0.getTypesAsEnum().overLapsWith(typeFilters)}
+            assert(restaurantList.count < restaurants.count)
+            assert(restaurantList[0].getTypesAsEnum().overLapsWith(typeFilters))
+        }
         switch sorting {
         case .byRating:
             break
@@ -53,4 +59,15 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
         return displayedList
     }
     
+}
+
+extension Set where Element == RestaurantType {
+    func overLapsWith(_ anotherArray: Set<RestaurantType>) -> Bool {
+        for element in self {
+            if anotherArray.contains(element) {
+                return true
+            }
+        }
+        return false
+    }
 }

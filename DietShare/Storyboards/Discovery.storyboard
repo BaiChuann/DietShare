@@ -640,6 +640,9 @@
                                         <state key="normal" title="Cuisine">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="showDropDown:" destination="e5Y-vY-6Ou" eventType="touchUpInside" id="5Xi-ch-vYV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pID-gI-pMs">
                                         <rect key="frame" x="270" y="20" width="125" height="31"/>
@@ -736,12 +739,6 @@
                                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rate this restaurant" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqO-xn-ElW">
-                                        <rect key="frame" x="36" y="554" width="351" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2W-VZ-E4p">
                                         <rect key="frame" x="36" y="333" width="351" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -757,7 +754,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="km" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAd-Lc-TV2">
-                                        <rect key="frame" x="317" y="309" width="62" height="29"/>
+                                        <rect key="frame" x="280" y="309" width="93" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="13"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -777,8 +774,8 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihJ-ZB-0Uo">
-                                        <rect key="frame" x="71" y="502" width="180" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihJ-ZB-0Uo">
+                                        <rect key="frame" x="71" y="502" width="316" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="13"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -804,28 +801,8 @@
                                         <rect key="frame" x="83" y="293" width="13" height="12"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="IOg-qE-Cq4">
-                                        <rect key="frame" x="51" y="602" width="33" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="W9B-yB-oJe">
-                                        <rect key="frame" x="110" y="602" width="33" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ4-Ah-GVY">
-                                        <rect key="frame" x="173" y="602" width="33" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="wav-mg-Pky">
-                                        <rect key="frame" x="237" y="602" width="33" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="dPm-mn-DDX">
-                                        <rect key="frame" x="309" y="602" width="33" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="hCt-rd-X6q">
-                                        <rect key="frame" x="294" y="315" width="20" height="17"/>
+                                        <rect key="frame" x="259" y="315" width="20" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P9m-fI-MfG">
@@ -833,22 +810,83 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCT-Pb-32b">
-                                        <rect key="frame" x="20" y="540" width="375" height="3"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="SMt-Yg-tOU">
+                                        <rect key="frame" x="36" y="474" width="19" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dj9-bF-Hv6">
-                                        <rect key="frame" x="20" y="659" width="375" height="3"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Address" translatesAutoresizingMaskIntoConstraints="NO" id="geJ-e3-YrM">
+                                        <rect key="frame" x="36" y="502" width="19" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What other people say" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcN-86-ROe">
-                                        <rect key="frame" x="36" y="670" width="351" height="32"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rate this restaurant" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqO-xn-ElW">
+                                        <rect key="frame" x="36" y="603" width="351" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCT-Pb-32b">
+                                        <rect key="frame" x="20" y="589" width="375" height="3"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dj9-bF-Hv6">
+                                        <rect key="frame" x="20" y="708" width="375" height="3"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What other people say" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcN-86-ROe">
+                                        <rect key="frame" x="36" y="719" width="351" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICc-q4-s8C">
+                                        <rect key="frame" x="20" y="634" width="375" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hg2-eG-ciP">
+                                                <rect key="frame" x="30" y="17" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="star-empty"/>
+                                                <connections>
+                                                    <action selector="ratingTapped:" destination="GSZ-DZ-kR4" eventType="touchUpInside" id="Gkm-Ee-jmR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSv-Aw-sUK">
+                                                <rect key="frame" x="97" y="17" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="star-empty"/>
+                                                <connections>
+                                                    <action selector="ratingTapped:" destination="GSZ-DZ-kR4" eventType="touchUpInside" id="T3U-EK-rne"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99q-5h-cCz">
+                                                <rect key="frame" x="164" y="17" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="star-empty"/>
+                                                <connections>
+                                                    <action selector="ratingTapped:" destination="GSZ-DZ-kR4" eventType="touchUpInside" id="zdB-Iw-oic"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMR-86-mEf">
+                                                <rect key="frame" x="234" y="17" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="star-empty"/>
+                                                <connections>
+                                                    <action selector="ratingTapped:" destination="GSZ-DZ-kR4" eventType="touchUpInside" id="wef-fs-O7H"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39F-Yd-XU1">
+                                                <rect key="frame" x="304" y="17" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="star-empty"/>
+                                                <connections>
+                                                    <action selector="ratingTapped:" destination="GSZ-DZ-kR4" eventType="touchUpInside" id="yqE-zt-1e7"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -865,6 +903,7 @@
                     <connections>
                         <outlet property="distance" destination="rAd-Lc-TV2" id="Vu3-xu-mMM"/>
                         <outlet property="numOfRatings" destination="aj6-Pd-oAr" id="Xu4-eK-lx9"/>
+                        <outlet property="ratingArea" destination="ICc-q4-s8C" id="13g-T5-7ah"/>
                         <outlet property="restaurantAddress" destination="ihJ-ZB-0Uo" id="Due-Nw-jsK"/>
                         <outlet property="restaurantDescription" destination="PXa-Tf-2dP" id="iyv-vG-Seb"/>
                         <outlet property="restaurantImage" destination="9Ah-wJ-qBI" id="ukO-b5-SuW"/>
@@ -877,19 +916,21 @@
                         <outletCollection property="currentRatingStars" destination="IBc-FB-ncH" collectionClass="NSMutableArray" id="z7I-c2-7fu"/>
                         <outletCollection property="currentRatingStars" destination="3bQ-WE-Kfy" collectionClass="NSMutableArray" id="oHZ-Jl-xu7"/>
                         <outletCollection property="currentRatingStars" destination="xzd-OT-BbF" collectionClass="NSMutableArray" id="l8D-xf-yAl"/>
-                        <outletCollection property="newRatingStars" destination="IOg-qE-Cq4" collectionClass="NSMutableArray" id="nD8-9G-BA5"/>
-                        <outletCollection property="newRatingStars" destination="W9B-yB-oJe" collectionClass="NSMutableArray" id="Veu-h3-dNI"/>
-                        <outletCollection property="newRatingStars" destination="ZJ4-Ah-GVY" collectionClass="NSMutableArray" id="eeo-tX-goU"/>
-                        <outletCollection property="newRatingStars" destination="wav-mg-Pky" collectionClass="NSMutableArray" id="KS6-Jj-hmr"/>
-                        <outletCollection property="newRatingStars" destination="dPm-mn-DDX" collectionClass="NSMutableArray" id="A3C-fl-dtn"/>
+                        <outletCollection property="newRatings" destination="Hg2-eG-ciP" collectionClass="NSMutableArray" id="M7n-62-KHE"/>
+                        <outletCollection property="newRatings" destination="gSv-Aw-sUK" collectionClass="NSMutableArray" id="NSt-LE-3nJ"/>
+                        <outletCollection property="newRatings" destination="99q-5h-cCz" collectionClass="NSMutableArray" id="Zyc-DD-iOe"/>
+                        <outletCollection property="newRatings" destination="qMR-86-mEf" collectionClass="NSMutableArray" id="bbN-mC-HGa"/>
+                        <outletCollection property="newRatings" destination="39F-Yd-XU1" collectionClass="NSMutableArray" id="QVe-u3-8VG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rjK-wb-YSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164" y="1432"/>
+            <point key="canvasLocation" x="-164" y="1431.6341829085459"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Address" width="24" height="24"/>
+        <image name="Phone" width="24" height="24"/>
         <image name="SeeMore" width="24" height="24"/>
         <image name="filter" width="128" height="128"/>
         <image name="location" width="128" height="128"/>
@@ -900,7 +941,7 @@
         <image name="star-half" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XL7-k9-PPc"/>
+        <segue reference="ahv-zj-TA9"/>
         <segue reference="ptX-g6-KnN"/>
         <segue reference="CkT-I1-2Rg"/>
         <segue reference="wzO-NE-Mcr"/>

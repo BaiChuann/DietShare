@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class RestaurantViewController: UIViewController {
     
     private var restaurant: Restaurant?
+    private var locationManager: CLLocationManager?
+    private var currentLocation: CLLocation?
     
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var restaurantImage: UIImageView!
@@ -22,14 +26,17 @@ class RestaurantViewController: UIViewController {
     @IBOutlet weak var restaurantPhone: UILabel!
     @IBOutlet weak var restaurantAddress: UILabel!
     
+    @IBOutlet weak var ratingArea: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet var newRatingStars: [UIImageView]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.RestaurantPage.longScrollViewHeight)
+        
+//        initRatingStars()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,9 +62,14 @@ class RestaurantViewController: UIViewController {
             self.restaurantName.text = currentRestaurant.getName()
             self.restaurantImage.image = currentRestaurant.getImage()
             self.restaurantDescription.text = currentRestaurant.getDescription()
+            self.types.text = currentRestaurant.getTypesAsString()
             self.numOfRatings.text = "\(currentRestaurant.getRatingsID().getListAsSet().count) ratings"
-            //TODO - get current location
-            self.distance.text = "\(0) km"
+            if let location = self.currentLocation {
+                let distance = Int(location.distance(from: currentRestaurant.getLocation()) / 1000)
+                self.distance.text = "\(distance) km"
+            } else {
+                self.distance.text = Text.unknownDistance
+            }
             self.restaurantPhone.text = currentRestaurant.getPhone()
             self.restaurantAddress.text = currentRestaurant.getAddress()
             self.setRating(currentRestaurant.getRatingScore())
@@ -65,7 +77,21 @@ class RestaurantViewController: UIViewController {
         
     }
     
+    @IBOutlet var newRatings: [UIButton]!
     
+    @IBAction func ratingTapped(_ sender: UIButton) {
+        let ratingScore = sender.tag
+        UIView.animate(withDuration: Constants.defaultAnimationDuration, animations: {
+            for i in 0..<5 {
+                if i < ratingScore {
+                    self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-filled"), for: .normal)
+                } else {
+                    self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-empty"), for: .normal)
+                }
+            }
+            })
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantListViewController {
@@ -100,8 +126,23 @@ class RestaurantViewController: UIViewController {
         }
     }
     
+    func setLocationManager(_ locationManager: CLLocationManager) {
+        self.locationManager = locationManager
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     /**
      * Test functions
      */
+}
+
+extension RestaurantViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = manager.location
+    }
 }
 

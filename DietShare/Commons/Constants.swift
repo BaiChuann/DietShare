@@ -20,12 +20,33 @@ enum AppStoryboard: String {
     }
 }
 
-enum RestaurantType: String {
+
+protocol EnumCollection : Hashable {}
+
+extension EnumCollection {
+    static func cases() -> AnySequence<Self> {
+        typealias S = Self
+        return AnySequence { () -> AnyIterator<S> in
+            var raw = 0
+            return AnyIterator {
+                let current : Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: S.self, capacity: 1) { $0.pointee } }
+                guard current.hashValue == raw else { return nil }
+                raw += 1
+                return current
+            }
+        }
+    }
+}
+
+enum RestaurantType: String, EnumCollection {
     case Vegetarian = "Vegetarian"
-    case Asian = "Asian"
     case European = "European"
     case Indian = "Indian"
     case Japanese = "Japanese"
+    case American = "American"
+    case Korean = "Korean"
+    case Chinese = "Chinese"
+    case Thai = "Thai"
 }
 
 enum ListType: String {
@@ -59,6 +80,7 @@ struct Identifiers {
 struct Text {
     public static let follow = "+Follow"
     public static let unfollow = "Unfollow"
+    public static let unknownDistance = "Unknow Distance"
 }
 
 enum FollowStatus: Int {
@@ -89,6 +111,7 @@ struct Constants {
     public static let defaultTagCornerRadius: CGFloat = 8.0
     public static let numOfItemPerLoad = 10
     public static let voidBackgroundImagePath = "void-bg"
+    public static let defaultAnimationDuration = 0.5
 
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6

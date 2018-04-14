@@ -23,7 +23,7 @@ class Restaurant: ReadOnlyRestaurant {
     private let location: CLLocation
     private let phone: String
     // TODO - Add Opening hours
-    private let types: StringList
+    private var types: StringList
     private let description: String
     private let imagePath: String
     private var ratings: StringList
@@ -69,6 +69,29 @@ class Restaurant: ReadOnlyRestaurant {
     func getTypes() -> StringList {
         return self.types
     }
+    func getTypesAsEnum() -> Set<RestaurantType> {
+        var typeSet = Set<RestaurantType>()
+        for type in self.types.getListAsArray() {
+            guard let typeEnum = RestaurantType(rawValue: type) else {
+                fatalError("Illegal cuisine type input detected")
+            }
+            typeSet.insert(typeEnum)
+        }
+        return typeSet
+    }
+    func getTypesAsStringSet() -> Set<String> {
+        return self.types.getListAsSet()
+    }
+    func getTypesAsString() -> String {
+        var typeString = ""
+        self.types.getListAsSet().forEach { typeString += "\($0)  " }
+        return typeString
+    }
+    func setTypes(_ types: [RestaurantType]) {
+        var typeStringSet = Set<String>()
+        types.forEach { typeStringSet.insert($0.rawValue) }
+        self.types = StringList(.RestaurantType, typeStringSet)
+    }
     func getImage() -> UIImage {
         
         assert(UIImage(named: self.imagePath) != nil)
@@ -97,6 +120,9 @@ class Restaurant: ReadOnlyRestaurant {
     }
     func addPost(_ post: Post) {
         self.posts.addEntry(post.getPostId())
+    }
+    func addPosts(_ posts: [Post]) {
+        
     }
     
     private func calcNewRatingScore(_ newScore: Double) -> Double {

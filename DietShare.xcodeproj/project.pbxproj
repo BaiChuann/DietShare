@@ -17,6 +17,7 @@
 		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
 		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
 		B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D2206D1BB5007F8956 /* Rating.swift */; };
+		B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B525A139208261D7003AF5D0 /* RatingList.swift */; };
 		B5281105207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5281104207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift */; };
 		B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */; };
 		B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */; };
@@ -44,6 +45,7 @@
 		B5E7ABC62075F8FB003FAB99 /* DiscoverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABC52075F8FB003FAB99 /* DiscoverPageViewController.swift */; };
 		B5E7ABC92075FD36003FAB99 /* ScrollingStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABC82075FD36003FAB99 /* ScrollingStackController.swift */; };
 		B5E7ABCB2076A635003FAB99 /* UserModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */; };
+		B5FF15A42080A3CA004F3954 /* RestaurantModelManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */; };
 		F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */; };
 		F24BEC1B207BC25F0047C034 /* StoredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC19207BC25E0047C034 /* StoredLayout.swift */; };
 		F24BEC1C207BC25F0047C034 /* StoredSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1A207BC25F0047C034 /* StoredSticker.swift */; };
@@ -146,6 +148,7 @@
 		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
 		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
 		B504C2D2206D1BB5007F8956 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		B525A139208261D7003AF5D0 /* RatingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingList.swift; sourceTree = "<group>"; };
 		B5281104207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSourceTest.swift; sourceTree = "<group>"; };
 		B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
 		B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 		B5E7ABC52075F8FB003FAB99 /* DiscoverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPageViewController.swift; sourceTree = "<group>"; };
 		B5E7ABC82075FD36003FAB99 /* ScrollingStackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingStackController.swift; sourceTree = "<group>"; };
 		B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
+		B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModelManagerTest.swift; sourceTree = "<group>"; };
 		F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploaderViewController.swift; sourceTree = "<group>"; };
 		F24BEC19207BC25E0047C034 /* StoredLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
 		F24BEC1A207BC25F0047C034 /* StoredSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */,
 				B504C2D2206D1BB5007F8956 /* Rating.swift */,
 				B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */,
+				B525A139208261D7003AF5D0 /* RatingList.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				B5488AEB207325EF00F0E3E8 /* TopicTest.swift */,
 				B5281104207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift */,
 				B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */,
+				B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */,
 			);
 			path = DietShareTests;
 			sourceTree = "<group>";
@@ -814,6 +820,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */,
+				B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */,
 				B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */,
 				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
 				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
@@ -898,6 +905,7 @@
 				B5A01CE3207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift in Sources */,
 				B5281105207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift in Sources */,
 				B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */,
+				B5FF15A42080A3CA004F3954 /* RestaurantModelManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,11 +1071,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1084,11 +1092,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
