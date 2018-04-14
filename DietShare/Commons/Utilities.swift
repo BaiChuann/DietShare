@@ -140,3 +140,79 @@ extension Data {
         }
     }
 }
+
+extension UIImage {
+    func averageColor() -> UIColor {
+        var bitmap = [UInt8](repeating: 0, count: 4)
+        let smallImage = resizeImage(image: self, targetSize: CGSize(width: 40, height: 40))
+        if #available(iOS 9.0, *) {
+            let context = CIContext()
+            let inputImage = smallImage.ciImage ?? CIImage(cgImage: smallImage.cgImage!)
+            let extent = inputImage.extent
+            let inputExtent = CIVector(x: extent.origin.x, y: extent.origin.y, z: extent.size.width, w: extent.size.height)
+            let filter = CIFilter(name: "CIAreaAverage", withInputParameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: inputExtent])!
+            let outputImage = filter.outputImage!
+            let outputExtent = outputImage.extent
+            assert(outputExtent.size.width == 1 && outputExtent.size.height == 1)
+            context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
+        } else {
+            let context = CGContext(data: &bitmap, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo.byteOrderMask.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue)!
+            let inputImage = smallImage.cgImage ?? CIContext().createCGImage(smallImage.ciImage!, from: smallImage.ciImage!.extent)
+            context.draw(inputImage!, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+        }
+        
+        // Compute result.
+        let result = UIColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: CGFloat(bitmap[3]) / 255.0)
+        return result
+    }
+    
+    func edgeColor() -> UIColor {
+        return getMostColors(forEdge: true)
+    }
+    
+    func mostColor() -> UIColor {
+        return getMostColors(forEdge: false)
+    }
+    
+    func getMostColors(forEdge:Bool) -> UIColor {
+        let smallImage = resizeImage(image: self, targetSize: CGSize(width: 40, height: 40))
+        let edgeWidth = 5
+        let pixelData = smallImage.cgImage!.dataProvider?.data
+        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+        let colors = NSCountedSet(capacity:Int(smallImage.size.width * smallImage.size.height))
+        for x in 0...Int(smallImage.size.width) {
+            for y in 0...Int(smallImage.size.height) {
+                let pixelInfo: Int = ((Int(smallImage.size.width) * y) + x) * 4
+                let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
+                let g = CGFloat(data[pixelInfo+1]) / CGFloat(255.0)
+                let b = CGFloat(data[pixelInfo+2]) / CGFloat(255.0)
+                let a = CGFloat(data[pixelInfo+3]) / CGFloat(255.0)
+                if (x > edgeWidth && (x + edgeWidth) < Int(smallImage.size.width)) && (y > edgeWidth && (y + edgeWidth) < Int(smallImage.size.height)) && forEdge{
+                    continue
+                }
+                colors.add(UIColor(red: b, green: g, blue: r, alpha: a))
+            }
+        }
+        let enumerator =  colors.objectEnumerator()
+        var mostColor = UIColor()
+        var MaxCount = 0
+        while let currrentColor = enumerator.nextObject() {
+            let tmpCount =  colors.count(for: currrentColor)
+            if tmpCount > MaxCount {
+                MaxCount = tmpCount
+                mostColor = currrentColor as! UIColor
+            }
+        }
+        return mostColor
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let hasAlpha = false
+        let scale: CGFloat = 0.0
+        UIGraphicsBeginImageContextWithOptions(targetSize, hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: targetSize))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return scaledImage!
+    }
+}

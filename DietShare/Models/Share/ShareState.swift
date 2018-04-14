@@ -14,7 +14,7 @@ class ShareState {
     var originalPhoto = UIImage(named: "food-example-1")
     var food = Food(
         id: 0,
-        name: "Fruit water",
+        name: "Watermelon",
         nutrition: [
             NutritionType.fats: 2,
             NutritionType.calories: 245,

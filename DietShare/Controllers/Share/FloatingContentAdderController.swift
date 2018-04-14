@@ -19,15 +19,15 @@ protocol FloatingContentAdderDelegate: class {
 class FloatingContentAdderController: UIViewController {
     @IBOutlet weak private var canvas: UIView!
     @IBOutlet weak private var imageView: UIImageView!
-    @IBOutlet weak private var nutritionStickerView: NutritionSticker!
     @IBOutlet weak private var textPreviewCollectionView: UICollectionView!
     
     var shareState: ShareState?
     private var fonts = [String]()
     private let textCellIdentifier = "TextPreviewCell"
     private let optionCellMaxHeight: CGFloat = 100
-    private let deleteBannerHeight: CGFloat = 100
+    private let deleteBannerHeight: CGFloat = 120
     private let textDeleteBanner = UIImageView()
+    private let nutritionStickerView = NutritionSticker()
     private var selectedFontIndex: Int?
     private var selectedLabelIndex: Int?
     private var text: String?
@@ -65,17 +65,41 @@ class FloatingContentAdderController: UIViewController {
             textPreviewCollectionView.reloadData()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("view did appear, isDataInited: \(nutritionStickerView.isDataInitialised())")
+        super.viewDidAppear(animated)
+        
+        guard let foodData = shareState?.food, !nutritionStickerView.isDataInitialised() else {
+            return
+        }
+        
+        nutritionStickerView.setData(food: foodData)
+        
+        let originalSize = CGSize(width: 200, height: 125)
+        let sizeDelta = nutritionStickerView.getSizeDelta()
+        nutritionStickerView.frame = CGRect(
+            x: nutritionStickerView.frame.origin.x - sizeDelta.width / 2,
+            y: nutritionStickerView.frame.origin.y - sizeDelta.height / 2,
+            width: originalSize.width + sizeDelta.width,
+            height: originalSize.height + sizeDelta.height
+        )
+        nutritionStickerView.updateLabelSize(with: sizeDelta)
+        nutritionStickerView.center = CGPoint(x: imageView.center.x, y: imageView.center.y + nutritionStickerView.frame.height / 2)
+        canvas.addSubview(nutritionStickerView)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.nutritionStickerView.alpha = 1
+        }
+    }
 
     private func setUpUI() {
         imageView.image = shareState?.modifiedPhoto ?? shareState?.originalPhoto
-        if let foodData = shareState?.food {
-            nutritionStickerView.setData(food: foodData)
-        }
-        nutritionStickerView.layer.cornerRadius = Constants.cornerRadius
 
         let pan = UIPanGestureRecognizer(target: self, action: #selector(nutritionPanHandler(sender:)))
         pan.maximumNumberOfTouches = 1
         nutritionStickerView.addGestureRecognizer(pan)
+        nutritionStickerView.alpha = 0
 
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
@@ -107,8 +131,11 @@ class FloatingContentAdderController: UIViewController {
 
     private func addTextLabelView(_ textInfo: FloatingTextInfo) {
         textInfo.label.isUserInteractionEnabled = true
-        textInfo.label.layer.borderColor = UIColor.red.cgColor
-        textInfo.label.layer.borderWidth = 2
+        
+        // Enable to show the border of label, for dubugging purpose
+//        textInfo.label.layer.borderColor = UIColor.red.cgColor
+//        textInfo.label.layer.borderWidth = 2
+        
         textInfo.label.text = textInfo.text
         textInfo.label.textColor = textInfo.color
         textInfo.label.font = textInfo.font.withSize(textInfo.size)
@@ -189,7 +216,8 @@ class FloatingContentAdderController: UIViewController {
         label.center = CGPoint(x: xPos, y: yPos)
 
         let navigationBarHeight = (navigationController?.navigationBar.frame.height) ?? CGFloat(0)
-        let boundary = deleteBannerHeight - canvas.frame.origin.y - navigationBarHeight
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let boundary = deleteBannerHeight - canvas.frame.origin.y - navigationBarHeight - statusBarHeight
         switch sender.state {
         case .began:
             selectedLabelIndex = getLabelIndex(for: label)
