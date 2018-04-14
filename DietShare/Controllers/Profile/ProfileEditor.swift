@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TGCameraViewController
 
 class ProfileEditor: UIViewController {
     
@@ -14,7 +15,7 @@ class ProfileEditor: UIViewController {
     @IBOutlet weak private var table: UITableView!
     private var attributes: [String] = []
     var photo: UIImage!
-    var data: [String]!
+    var data: [String] = []
     override func viewDidLoad() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
@@ -22,9 +23,11 @@ class ProfileEditor: UIViewController {
         self.navigationItem.hidesBackButton = false
         self.navigationController?.navigationBar.isHidden = false
         userPhoto.setImage(photo, for: .normal)
-        userPhoto.layer.cornerRadius = userPhoto.frame.height / 8
-        userPhoto.clipsToBounds = true
-        attributes = ["User Name", "Description", "Password"]
+        attributes = ["User Name", "Description"]
+        data = ["Bai Chuan", "eat less eat healthy"]
+        TGCameraColor.setTint(Constants.themeColor)
+        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
+        TGCamera.setOption(kTGCameraOptionHiddenFilterButton, value: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditField" {
@@ -37,6 +40,10 @@ class ProfileEditor: UIViewController {
             }
         }
     }
+    @IBAction func onPhotoClicked(_ sender: Any) {
+        openCamera()
+    }
+    
 }
 
 extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
@@ -52,6 +59,41 @@ extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
         cell.setAttribute(name)
         return cell
     }
+}
+
+extension ProfileEditor: TGCameraDelegate {
+    func cameraDidCancel() {
+        dismiss(animated: true)
+    }
+    func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
+        dismiss(animated: true)
+        setPhoto(image)
+    }
     
+    func cameraDidTakePhoto(_ image: UIImage!) {
+        dismiss(animated: true)
+        setPhoto(image)
+    }
     
+    // Optional
+    func cameraWillTakePhoto() {
+        print("cameraWillTakePhoto")
+    }
+    
+    func cameraDidSavePhoto(atPath assetURL: URL!) {
+        print("cameraDidSavePhotoAtPath: \(assetURL)")
+    }
+    
+    func cameraDidSavePhotoWithError(_ error: Error!) {
+        print("cameraDidSavePhotoWithError \(error)")
+    }
+    
+    private func openCamera() {
+        let navigationController = TGCameraNavigationController.new(with: self)
+        present(navigationController!, animated: true)
+    }
+    
+    private func setPhoto(_ pickedPhoto: UIImage) {
+        userPhoto.setImage(pickedPhoto, for: .normal)
+    }
 }

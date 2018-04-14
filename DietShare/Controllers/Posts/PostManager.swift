@@ -13,7 +13,7 @@ class PostManager {
     private var comments: [String: [Comment]] = [:]
     private var likes: [String: [Like]] = [:]
     private init() {
-        let newPost = Post(userId: "1", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: ("1", "Koufu"), topics: [("1", "healthy lifestyle"), ("2", "lose weight"), ("3", "don't eat this"), ("4", "salad")])
+        let newPost = Post(userId: "1", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: nil, topics: [("1", "healthy lifestyle"), ("2", "lose weight"), ("3", "don't eat this"), ("4", "salad")])
         for _ in 1...10 {
             posts.append(newPost)
         }

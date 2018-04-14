@@ -103,7 +103,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     @IBAction func onUserClicked(_ sender: Any) {
-        self.cellDelegate?.goToUser("1")
+        self.cellDelegate?.goToUser("2")
     }
     @IBAction func onCommentCountClicked(_ sender: Any) {
         self.cellDelegate?.goToDetail(self)

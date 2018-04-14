@@ -19,6 +19,7 @@ class HomeController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

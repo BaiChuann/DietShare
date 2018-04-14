@@ -86,26 +86,25 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func goToDetail(_ post: PostCell) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
 //        let controller = AppStoryboard.share.instance.instantiateViewController(withIdentifier: "FoodSelectController") as! FoodSelectController
-        //controller.setPost(post)
+          //controller.setPost(post)
 //        parentController.addChildViewController(controller)
 //        parentController.view.addSubview(controller.view)
 //        controller.didMove(toParentViewController: self)
-        parentController.tabBarController?.tabBar.isHidden = true
-        parentController.navigationController?.navigationBar.isHidden = false
+        //parentController.tabBarController?.tabBar.isHidden = true
+        //parentController.navigationController?.navigationBar.isHidden = false
         print(parentController.view.frame.height)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
         
     }
     func goToUser(_ id: String) {
-        let controller = Bundle.main.loadNibNamed("Profile", owner: nil, options: nil)?.first as! ProfileController
-        controller.setUser(id)
-        controller.setTabShow(false)
+        let controller = AppStoryboard.profile.instance.instantiateViewController(withIdentifier: "profile") as! ProfileController
+        controller.setUserId(id)
         //        parentController.addChildViewController(controller)
         //        parentController.view.addSubview(controller.view)
         //        controller.didMove(toParentViewController: self)
-        parentController.tabBarController?.tabBar.isHidden = true
-        parentController.navigationController?.navigationBar.isHidden = false
+        //parentController.tabBarController?.tabBar.isHidden = true
+        //parentController.navigationController?.navigationBar.isHidden = false
         print(parentController.view.frame.height)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")

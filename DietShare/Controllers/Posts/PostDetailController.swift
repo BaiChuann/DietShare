@@ -18,10 +18,13 @@ class PostDetailController: UIViewController {
     private var textFieldController: TextFieldController!
     override func viewWillAppear(_ animated: Bool) {
         print(textFieldContainer.frame.origin.y)
+        self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true 
         setTextField()
     }
     override func viewDidLoad() {
 //        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
+        
         
         //postCell.translatesAutoresizingMaskIntoConstraints = false
         //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)

@@ -24,13 +24,17 @@ class ProfileController: UIViewController {
     private var userId = ""
     private var postsTableController: PostsTableController!
     private var tableView: UITableView!
-    private var tab = true
+    private var currentUser = "1"
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
-        if tab {
+        if userId == currentUser {
             print("yes")
+            
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.navigationBar.isHidden = true
+        } else {
+            self.tabBarController?.tabBar.isHidden = true
+            self.navigationController?.navigationBar.isHidden = false 
         }
         //scrollView.frame.size = view.frame.size
         //view.frame.size = CGSize(width: 375, height: 667)
@@ -52,21 +56,22 @@ class ProfileController: UIViewController {
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
-        setUser("1")
+        if userId == "" {
+            setUserId(currentUser)
+        }
+        setUser("userId")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditor" {
             if let destinationVC = segue.destination as? ProfileEditor {
                 destinationVC.photo = UIImage(named: "profile-example")!
-                destinationVC.data = ["Bai Chuan", "eat less eat healthy", "1234"]
             }
         }
     }
-    func setTabShow(_ tab: Bool) {
-        self.tab = tab
+    func setUserId(_ id: String) {
+        self.userId = id
     }
     func setUser(_ id: String) {
-        userId = id
         userName.text = "Bai Chuan"
         descrip.text = "eat less eat healthy"
         userPhoto.image = UIImage(named: "profile-example")!
@@ -74,7 +79,12 @@ class ProfileController: UIViewController {
         followingCount.setTitle("201", for: .normal)
         topicCount.setTitle("5", for: .normal)
         postsTableController.getUserPosts("1")
-        
+        if userId == currentUser {
+            //followButton.frame.size = CGSize(width: 0, height: 0)
+            self.followButton.isHidden = true
+        } else {
+            self.editButton.isHidden = true
+        }
     }
     @IBAction func onFollowClicked(_ sender: Any) {
     }
