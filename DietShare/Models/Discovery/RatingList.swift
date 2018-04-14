@@ -42,12 +42,25 @@ class RatingList: Equatable, Codable {
     }
     
     public func addEntry(_ newEntry: Rating) {
-        self.list.insert(newEntry)
+        if let rating = findRating(newEntry.getUserID(), newEntry.getRestaurantID()) {
+            rating.setScore(newEntry.getScoreAsEnum())
+        } else {
+            self.list.insert(newEntry)
+        }
     }
     public func addEntries(_ newEntries: [Rating]) {
         for entry in newEntries {
             self.list.insert(entry)
         }
+    }
+    
+    public func findRating(_ userID: String, _ restaurantID: String) -> Rating? {
+        for rating in self.list {
+            if userID == rating.getUserID() && restaurantID == rating.getRestaurantID() {
+                return rating
+            }
+        }
+        return nil
     }
     
     static func ==(lhs: RatingList, rhs: RatingList) -> Bool {

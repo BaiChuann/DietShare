@@ -57,12 +57,12 @@ enum ListType: String {
     case RestaurantType = "restaurantType"
 }
 
-enum RatingScore: Double {
-    case oneStar = 1.0
-    case twoStar = 2.0
-    case threeStar = 3.0
-    case fourStar = 4.0
-    case fiveStar = 5.0
+enum RatingScore: Int {
+    case oneStar = 1
+    case twoStar = 2
+    case threeStar = 3
+    case fourStar = 4
+    case fiveStar = 5
 }
 
 struct Identifiers {
@@ -81,6 +81,8 @@ struct Text {
     public static let follow = "+Follow"
     public static let unfollow = "Unfollow"
     public static let unknownDistance = "Unknow Distance"
+    public static let rateTheRestaurant = "Rate this restaurant"
+    public static let yourRating = "Your Rating"
 }
 
 enum FollowStatus: Int {
@@ -111,7 +113,7 @@ struct Constants {
     public static let defaultTagCornerRadius: CGFloat = 8.0
     public static let numOfItemPerLoad = 10
     public static let voidBackgroundImagePath = "void-bg"
-    public static let defaultAnimationDuration = 0.5
+    public static let ratingAnimationDuration = 1.0
 
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6

@@ -9,6 +9,7 @@
 
 import Foundation
 import BTree
+import CoreLocation
 
 /**
  * A RestaurantsModelManager contains all the restaurant-related model objects and act as a facade to other objects using
@@ -23,7 +24,7 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
         self.restaurants = restaurantsDataSource.getAllRestaurants() as! SortedSet<T>
     }
     
-    func getFullRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>) -> [T] {
+    func getFullRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [T] {
         var restaurantList = [T]()
         print("restaurants: \(restaurants.count)")
         restaurantList.append(contentsOf: self.restaurants)
@@ -34,9 +35,10 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
         }
         switch sorting {
         case .byRating:
+            restaurantList.sort(by: {$0.getRatingScore() > $1.getRatingScore()})
             break
         case .byDistance:
-            restaurantList.sort(by: {$0.getDistanceToCurrent() < $1.getDistanceToCurrent()})
+            restaurantList.sort(by: {$0.getDistanceToLocation(currentLocation) < $1.getDistanceToLocation(currentLocation)})
         }
         return restaurantList
     }

@@ -903,6 +903,7 @@
                     <connections>
                         <outlet property="distance" destination="rAd-Lc-TV2" id="Vu3-xu-mMM"/>
                         <outlet property="numOfRatings" destination="aj6-Pd-oAr" id="Xu4-eK-lx9"/>
+                        <outlet property="rateRestaurantLabel" destination="gqO-xn-ElW" id="BqC-8J-VZK"/>
                         <outlet property="ratingArea" destination="ICc-q4-s8C" id="13g-T5-7ah"/>
                         <outlet property="restaurantAddress" destination="ihJ-ZB-0Uo" id="Due-Nw-jsK"/>
                         <outlet property="restaurantDescription" destination="PXa-Tf-2dP" id="iyv-vG-Seb"/>

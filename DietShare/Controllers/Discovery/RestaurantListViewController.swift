@@ -32,8 +32,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     private var cuisineDropDown = DropDown()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == restaurantListView, let model = self.restaurantModel {
-            return model.getFullRestaurantList(currentSort, currentTypeFilters).count
+        if collectionView == restaurantListView, let model = self.restaurantModel, let location = self.currentLocation {
+            return model.getFullRestaurantList(currentSort, currentTypeFilters, location).count
         }
         return 0
     }
@@ -41,8 +41,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantFullListCell, for: indexPath as IndexPath) as! RestaurantFullListCell
-        if let model = self.restaurantModel {
-            let restaurantList = model.getFullRestaurantList(currentSort, currentTypeFilters)
+        if let model = self.restaurantModel, let location = self.currentLocation {
+            let restaurantList = model.getFullRestaurantList(currentSort, currentTypeFilters, location)
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
@@ -61,8 +61,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.restaurantModel {
-            let restaurantsList = model.getFullRestaurantList(currentSort, currentTypeFilters)
+        if let model = self.restaurantModel, let location = self.currentLocation {
+            let restaurantsList = model.getFullRestaurantList(currentSort, currentTypeFilters, location)
             self.selectedRestaurant = restaurantsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.restaurantListToDetailPage, sender: self)
         }
@@ -104,6 +104,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
                 fatalError("Illegal value of restaurant inputed")
             }
             self.currentTypeFilters.insert(typeSelected)
+            print("current filters are: \(self.currentTypeFilters)")
             self.restaurantListView.reloadData()
         }
         cuisineDropDown.dismissMode = .onTap
@@ -113,7 +114,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
-            dest.setLocationManager(self.locationManager)
         }
     }
     

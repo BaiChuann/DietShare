@@ -16,7 +16,7 @@ class Rating: Codable, Hashable {
     private let id: String
     private let userID: String
     private let restaurantID: String
-    private let score: RatingScore
+    private var score: RatingScore
     
     
     var hashValue: Int {
@@ -37,11 +37,23 @@ class Rating: Codable, Hashable {
         Rating.currentID += 1
     }
     
-    func getScore() -> Double {
+    func getScore() -> Int {
         return self.score.rawValue
+    }
+    func getScoreAsEnum() -> RatingScore {
+        return self.score
+    }
+    func setScore(_ newScore: RatingScore) {
+        self.score = newScore
     }
     func getID() -> String {
         return self.id
+    }
+    func getUserID() -> String {
+        return self.userID
+    }
+    func getRestaurantID() -> String {
+        return self.restaurantID
     }
     
     enum CodingKeys: String, CodingKey {
@@ -56,7 +68,7 @@ class Rating: Codable, Hashable {
         self.id = try value.decode(String.self, forKey: .id)
         self.userID = try value.decode(String.self, forKey: .userID)
         self.restaurantID = try value.decode(String.self, forKey: .restaurantID)
-        let scoreValue = try value.decode(Double.self, forKey: .score)
+        let scoreValue = try value.decode(Int.self, forKey: .score)
         guard let score = RatingScore(rawValue: scoreValue) else {
             fatalError("Cannot recover rating score from decoder")
         }
@@ -71,6 +83,13 @@ class Rating: Codable, Hashable {
         try container.encode(self.score.rawValue, forKey: .score)
     }
     
+    // For test only
+    static func getTestInstance() -> Rating {
+        guard let score = RatingScore(rawValue: 3) else {
+            fatalError()
+        }
+        return Rating("1", "1", score)
+    }
     
     static func ==(lhs: Rating, rhs: Rating) -> Bool {
         return lhs.score == rhs.score

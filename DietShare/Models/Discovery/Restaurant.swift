@@ -26,11 +26,11 @@ class Restaurant: ReadOnlyRestaurant {
     private var types: StringList
     private let description: String
     private let imagePath: String
-    private var ratings: StringList
+    private var ratings: RatingList
     private var posts: StringList
     private var ratingScore: Double
     
-    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String, _ ratings: StringList, _ posts: StringList, _ ratingScore: Double) {
+    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String, _ ratings: RatingList, _ posts: StringList, _ ratingScore: Double) {
         self.id = id
         self.name = name
         self.address = address
@@ -45,7 +45,7 @@ class Restaurant: ReadOnlyRestaurant {
     }
     
     convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String) {
-        self.init(id, name, address, location, phone, types, description, imagePath, StringList(.Rating), StringList(.Post), 0)
+        self.init(id, name, address, location, phone, types, description, imagePath, RatingList(), StringList(.Post), 0)
     }
     
     func getID() -> String {
@@ -107,7 +107,7 @@ class Restaurant: ReadOnlyRestaurant {
     func getPostsID() -> StringList {
         return self.posts
     }
-    func getRatingsID() -> StringList {
+    func getRatingsID() -> RatingList {
         return self.ratings
     }
     func getRatingScore() -> Double {
@@ -115,14 +115,14 @@ class Restaurant: ReadOnlyRestaurant {
     }
     func addRating(_ rating: Rating) {
         let score = rating.getScore()
-        self.ratingScore = calcNewRatingScore(score)
-        self.ratings.addEntry(rating.getID())
+        self.ratingScore = calcNewRatingScore(Double(score))
+        self.ratings.addEntry(rating)
     }
     func addPost(_ post: Post) {
         self.posts.addEntry(post.getPostId())
     }
     func addPosts(_ posts: [Post]) {
-        
+        posts.forEach { self.addPost($0)}
     }
     
     private func calcNewRatingScore(_ newScore: Double) -> Double {
@@ -131,12 +131,18 @@ class Restaurant: ReadOnlyRestaurant {
         return newAvg
     }
     
-    func getDistanceToCurrent() -> Double {
-        // TODO - implement core location here
-        let currentLocation = CLLocation(latitude: 0.0, longitude: 103.0)
-        let distance = currentLocation.distance(from: self.location)
-        return Double(round(distance * 10) / 10)
+    func getDistanceToLocation(_ location: CLLocation?) -> Double {
+        if let currentLocation = location {
+            let distance = currentLocation.distance(from: self.location)
+            return Double(round(distance * 10) / 10)
+        }
+        return 0;
     }
+    
+    func getUserRating(_ user: User) -> Rating? {
+        return self.ratings.findRating(user.getUserId(), self.id)
+    }
+    
     
 }
 

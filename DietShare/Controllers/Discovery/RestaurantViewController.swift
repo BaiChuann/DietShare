@@ -13,7 +13,7 @@ import CoreLocation
 class RestaurantViewController: UIViewController {
     
     private var restaurant: Restaurant?
-    private var locationManager: CLLocationManager?
+    private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
     
     @IBOutlet weak var restaurantName: UILabel!
@@ -29,14 +29,11 @@ class RestaurantViewController: UIViewController {
     @IBOutlet weak var ratingArea: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.RestaurantPage.longScrollViewHeight)
-        
-//        initRatingStars()
+        requestCoreLocationPermission()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,7 +54,7 @@ class RestaurantViewController: UIViewController {
     private func initView() {
         print("InitView called")
         assert(self.restaurant != nil)
-        if let currentRestaurant = self.restaurant {
+        if let currentRestaurant = self.restaurant, let currentUser = UserModelManager.shared.getCurrentUser() {
             //TODO - combine the common parts between this page and restaurantFullListPage
             self.restaurantName.text = currentRestaurant.getName()
             self.restaurantImage.image = currentRestaurant.getImage()
@@ -73,24 +70,40 @@ class RestaurantViewController: UIViewController {
             self.restaurantPhone.text = currentRestaurant.getPhone()
             self.restaurantAddress.text = currentRestaurant.getAddress()
             self.setRating(currentRestaurant.getRatingScore())
+            if let rating = currentRestaurant.getUserRating(currentUser) {
+                self.rateRestaurantLabel.text = Text.yourRating
+                setNewRating(rating.getScore())
+            }
         }
         
     }
     
+    @IBOutlet weak var rateRestaurantLabel: UILabel!
     @IBOutlet var newRatings: [UIButton]!
     
     @IBAction func ratingTapped(_ sender: UIButton) {
         let ratingScore = sender.tag
-        UIView.animate(withDuration: Constants.defaultAnimationDuration, animations: {
-            for i in 0..<5 {
-                if i < ratingScore {
-                    self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-filled"), for: .normal)
-                } else {
-                    self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-empty"), for: .normal)
-                }
-            }
+        assert(ratingScore <= 5)
+        UIView.animate(withDuration: Constants.ratingAnimationDuration, animations: {
+                self.setNewRating(ratingScore)
             })
+        if let user = UserModelManager.shared.getCurrentUser(), let restaurant = self.restaurant,
+            let score = RatingScore(rawValue: ratingScore) {
+            let rating = Rating(user.getUserId(), restaurant.getID(), score)
+            restaurant.addRating(rating)
+        }
         
+    }
+    
+    private func setNewRating(_ score: Int) {
+        assert(score <= 5)
+        for i in 0..<5 {
+            if i < score {
+                self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-filled"), for: .normal)
+            } else {
+                self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-empty"), for: .normal)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,8 +139,20 @@ class RestaurantViewController: UIViewController {
         }
     }
     
-    func setLocationManager(_ locationManager: CLLocationManager) {
-        self.locationManager = locationManager
+    /**
+     * Test functions
+     */
+}
+
+extension RestaurantViewController: CLLocationManagerDelegate {
+    
+    private func requestCoreLocationPermission() {
+        print("asking for location permission")
+        
+        self.locationManager.requestAlwaysAuthorization()
+        
+        self.locationManager.requestWhenInUseAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -135,12 +160,6 @@ class RestaurantViewController: UIViewController {
         }
     }
     
-    /**
-     * Test functions
-     */
-}
-
-extension RestaurantViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = manager.location
     }

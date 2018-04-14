@@ -30,7 +30,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private let phone = Expression<String>("phone")
     private let types = Expression<StringList>("types")
     private let posts = Expression<StringList>("posts")
-    private let ratings = Expression<StringList>("ratings")
+    private let ratings = Expression<RatingList>("ratings")
     private let ratingScore = Expression<Double>("ratingScore")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
@@ -230,10 +230,13 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     private func prepopulate() {
         _checkRep()
+        let testRating = Rating.getTestInstance()
+        let testRatingList = RatingList()
+        testRatingList.addEntry(testRating)
         for i in 0..<10 {
             if !containsRestaurant("i") {
                 let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
-                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.5)
+                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5)
                 
                 let types: [RestaurantType] = [.Vegetarian, .European]
                 restaurant.setTypes(types)
@@ -244,7 +247,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         for i in 10..<20 {
             if !containsRestaurant("i") {
                 let location = CLLocation(latitude: 1.31212, longitude: 103.71985)
-                let restaurant = Restaurant(String(i), "Burger Shack", "1 Boon Lay Road, #03-02", location, "98700432", StringList(.RestaurantType), "The first Burger Shack in Singapore. We provide awesomeness.", "burger-shack.jpg", StringList(.Rating), StringList(.Post), 3.0)
+                let restaurant = Restaurant(String(i), "Burger Shack", "1 Boon Lay Road, #03-02", location, "98700432", StringList(.RestaurantType), "The first Burger Shack in Singapore. We provide awesomeness.", "burger-shack.jpg", testRatingList, StringList(.Post), 3.0)
                 
                 let types: [RestaurantType] = [.American, .European]
                 restaurant.setTypes(types)
@@ -254,11 +257,11 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         }
         
         let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
-        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 5.0)
+        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 5.0)
         self.addRestaurant(restaurantFar)
 //
         let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
-        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.0)
+        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.0)
         self.addRestaurant(restaurantClose)
         _checkRep()
     }
