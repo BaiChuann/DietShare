@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikeCell: UITableViewCell {
+class UserCell: UITableViewCell {
    
     @IBOutlet weak private var userPhoto: UIImageView!
 

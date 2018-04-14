@@ -39,6 +39,17 @@ class ProfileController: UIViewController {
         //scrollView.frame.size = view.frame.size
         //view.frame.size = CGSize(width: 375, height: 667)
     }
+    override func viewDidAppear(_ animated: Bool) {
+        if userId == currentUser {
+            self.tabBarController?.tabBar.isHidden = false
+        } else {
+            self.tabBarController?.tabBar.isHidden = true
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool){
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
@@ -65,6 +76,11 @@ class ProfileController: UIViewController {
         if segue.identifier == "toEditor" {
             if let destinationVC = segue.destination as? ProfileEditor {
                 destinationVC.photo = UIImage(named: "profile-example")!
+            }
+        }
+        if segue.identifier == "topic" {
+            if let destinationVC = segue.destination as? UserListController {
+                destinationVC.session = 1
             }
         }
     }

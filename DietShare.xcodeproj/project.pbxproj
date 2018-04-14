@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
+		3B0834DE208255ED009A45E3 /* TopicTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834DD208255ED009A45E3 /* TopicTableCell.swift */; };
+		3B0834E020826F5F009A45E3 /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834DF20826F5E009A45E3 /* UserListController.swift */; };
 		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
 		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
 		3B37A717207F782E009ED0D3 /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B37A716207F782E009ED0D3 /* Profile.xib */; };
@@ -56,8 +58,8 @@
 		3BDA2A20207FCB2700E99DE3 /* UserModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */; };
 		3BDA2A2E207FCBD500E99DE3 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A22207FCBD500E99DE3 /* CommentCell.swift */; };
 		3BDA2A2F207FCBD500E99DE3 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A23207FCBD500E99DE3 /* CommentCell.xib */; };
-		3BDA2A30207FCBD500E99DE3 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A24207FCBD500E99DE3 /* LikeCell.swift */; };
-		3BDA2A31207FCBD500E99DE3 /* LikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A25207FCBD500E99DE3 /* LikeCell.xib */; };
+		3BDA2A30207FCBD500E99DE3 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A24207FCBD500E99DE3 /* UserCell.swift */; };
+		3BDA2A31207FCBD500E99DE3 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A25207FCBD500E99DE3 /* UserCell.xib */; };
 		3BDA2A32207FCBD500E99DE3 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A26207FCBD500E99DE3 /* PostCell.swift */; };
 		3BDA2A33207FCBD500E99DE3 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A27207FCBD500E99DE3 /* PostCell.xib */; };
 		3BDA2A34207FCBD500E99DE3 /* PostDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A28207FCBD500E99DE3 /* PostDetail.xib */; };
@@ -148,6 +150,8 @@
 
 /* Begin PBXFileReference section */
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B0834DD208255ED009A45E3 /* TopicTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableCell.swift; sourceTree = "<group>"; };
+		3B0834DF20826F5E009A45E3 /* UserListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
 		3B18BEDF2074C5A200809D3A /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
 		3B37A716207F782E009ED0D3 /* Profile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
@@ -196,8 +200,8 @@
 		3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
 		3BDA2A22207FCBD500E99DE3 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		3BDA2A23207FCBD500E99DE3 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
-		3BDA2A24207FCBD500E99DE3 /* LikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
-		3BDA2A25207FCBD500E99DE3 /* LikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeCell.xib; sourceTree = "<group>"; };
+		3BDA2A24207FCBD500E99DE3 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		3BDA2A25207FCBD500E99DE3 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		3BDA2A26207FCBD500E99DE3 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		3BDA2A27207FCBD500E99DE3 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		3BDA2A28207FCBD500E99DE3 /* PostDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetail.xib; sourceTree = "<group>"; };
@@ -295,6 +299,9 @@
 			children = (
 				3B37A716207F782E009ED0D3 /* Profile.xib */,
 				3B424B3F2081038300AB90BE /* EditCell.swift */,
+				3BDA2A24207FCBD500E99DE3 /* UserCell.swift */,
+				3BDA2A25207FCBD500E99DE3 /* UserCell.xib */,
+				3B0834DD208255ED009A45E3 /* TopicTableCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -306,6 +313,7 @@
 				3B37A723207F8083009ED0D3 /* ProfileController.swift */,
 				3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */,
 				3B424B4120810B0F00AB90BE /* EditFieldController.swift */,
+				3B0834DF20826F5E009A45E3 /* UserListController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -367,8 +375,6 @@
 			children = (
 				3BDA2A22207FCBD500E99DE3 /* CommentCell.swift */,
 				3BDA2A23207FCBD500E99DE3 /* CommentCell.xib */,
-				3BDA2A24207FCBD500E99DE3 /* LikeCell.swift */,
-				3BDA2A25207FCBD500E99DE3 /* LikeCell.xib */,
 				3BDA2A26207FCBD500E99DE3 /* PostCell.swift */,
 				3BDA2A27207FCBD500E99DE3 /* PostCell.xib */,
 				3BDA2A28207FCBD500E99DE3 /* PostDetail.xib */,
@@ -721,7 +727,7 @@
 				F2E373BD20716BE50000F707 /* Home.storyboard in Resources */,
 				3BDA29FC207FC2CD00E99DE3 /* IngredientDropDownCell.xib in Resources */,
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
-				3BDA2A31207FCBD500E99DE3 /* LikeCell.xib in Resources */,
+				3BDA2A31207FCBD500E99DE3 /* UserCell.xib in Resources */,
 				3BDA2A33207FCBD500E99DE3 /* PostCell.xib in Resources */,
 				3BDA2A34207FCBD500E99DE3 /* PostDetail.xib in Resources */,
 				3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */,
@@ -884,6 +890,7 @@
 				3BDA29E6207FC2B200E99DE3 /* StringList.swift in Sources */,
 				3BDA29E2207FC28600E99DE3 /* UsersDataSource.swift in Sources */,
 				F2E373B520716BBE0000F707 /* HomeController.swift in Sources */,
+				3B0834DE208255ED009A45E3 /* TopicTableCell.swift in Sources */,
 				3BDA2A03207FC2CD00E99DE3 /* TextColorCell.swift in Sources */,
 				3BDA2A05207FC2CD00E99DE3 /* TextPreviewCell.swift in Sources */,
 				3BDA29D8207FC24A00E99DE3 /* CameraHandler.swift in Sources */,
@@ -929,9 +936,10 @@
 				3BDA29FE207FC2CD00E99DE3 /* LayoutPhotoPreviewCell.swift in Sources */,
 				3BDA29CB207FC20A00E99DE3 /* StickerLayout.swift in Sources */,
 				3BDA29D9207FC24A00E99DE3 /* FloatingContentAdderController.swift in Sources */,
-				3BDA2A30207FCBD500E99DE3 /* LikeCell.swift in Sources */,
+				3BDA2A30207FCBD500E99DE3 /* UserCell.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				3BDA2A00207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
+				3B0834E020826F5F009A45E3 /* UserListController.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
 				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,

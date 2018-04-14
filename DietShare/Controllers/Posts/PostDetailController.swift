@@ -17,9 +17,12 @@ class PostDetailController: UIViewController {
     @IBOutlet weak var textFieldContainer: UIView!
     private var textFieldController: TextFieldController!
     override func viewWillAppear(_ animated: Bool) {
-        print(textFieldContainer.frame.origin.y)
+       // print(textFieldContainer.frame.origin.y)
         self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = true 
+        //self.tabBarController?.tabBar.isHidden = true 
+       
+    }
+    override func viewDidAppear(_ animated: Bool) {
         setTextField()
     }
     override func viewDidLoad() {
@@ -42,7 +45,13 @@ class PostDetailController: UIViewController {
         //setTextField()
         setSegmentControl()
 //        view.frame.size = CGSize(width: 375, height: 667)
-        //setTextField()
+        textFieldController = Bundle.main.loadNibNamed("TextField", owner: nil, options: nil)?.first as! TextFieldController
+        let width = view.frame.width
+        let textHeight = textFieldContainer.frame.height
+        print(textFieldContainer.frame.origin.y)
+        //textFieldController.view.frame.size = CGSize(width: width, height: textHeight)
+        textFieldController.view.frame = CGRect(x: 0, y: 0, width: width, height: textHeight)
+        textFieldContainer.addSubview(textFieldController.view)
         
     }
     
@@ -65,9 +74,8 @@ class PostDetailController: UIViewController {
         textFieldController.setDelegate(self)
         print(textFieldContainer.frame.origin.y)
         //textFieldController.view.frame.size = CGSize(width: width, height: textHeight)
-        view.addSubview(textFieldController.view)
         textFieldController.view.frame = CGRect(x: 0, y: textFieldContainer.frame.origin.y, width: width, height: textHeight)
-        textFieldController.didMove(toParentViewController: self)
+        view.addSubview(textFieldController.view)
     }
     func setPost(_ post: PostCell) {
         self.post = post
@@ -110,7 +118,7 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
             cell.selectionStyle = .none
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as? LikeCell  else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell  else {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
             

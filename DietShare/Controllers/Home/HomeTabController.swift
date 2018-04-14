@@ -20,6 +20,7 @@ class HomeTabController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("homehome")
         tabBarController?.tabBar.isHidden = true
     }
 }
