@@ -67,7 +67,6 @@ class FloatingContentAdderController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("view did appear, isDataInited: \(nutritionStickerView.isDataInitialised())")
         super.viewDidAppear(animated)
         
         guard let foodData = shareState?.food, !nutritionStickerView.isDataInitialised() else {
@@ -96,9 +95,7 @@ class FloatingContentAdderController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPublisher" {
             if let destinationVC = segue.destination as? PublisherController {
-                print("segue: showPublisher")
                 shareState?.modifiedPhoto = getImageFromView(canvas, cropToSquare: false)
-                print("modifiedphoto: \(shareState?.modifiedPhoto)")
                 destinationVC.shareState = shareState
             }
         }
@@ -142,7 +139,7 @@ class FloatingContentAdderController: UIViewController {
 
     private func addTextLabelView(_ textInfo: FloatingTextInfo) {
         textInfo.label.isUserInteractionEnabled = true
-        
+
         // Enable to show the border of label, for dubugging purpose
 //        textInfo.label.layer.borderColor = UIColor.red.cgColor
 //        textInfo.label.layer.borderWidth = 2
@@ -154,10 +151,10 @@ class FloatingContentAdderController: UIViewController {
         textInfo.label.lineBreakMode = .byWordWrapping
         textInfo.label.numberOfLines = 0
         textInfo.label.preferredMaxLayoutWidth = 0.75 * imageView.frame.width
-        
+
         var size = calculateLabelSize(for: textInfo.label)
         textInfo.label.sizeToFit()
-        
+
         size.width = min(imageView.frame.width, size.width)
         size.height = min(imageView.frame.height, size.height)
         textInfo.label.frame = CGRect(origin: imageView.center, size: size)
@@ -275,7 +272,7 @@ class FloatingContentAdderController: UIViewController {
             textDeleteBanner.image = UIImage(named: "trash")
             textDeleteBanner.contentMode = .center
             textDeleteBanner.layer.cornerRadius = Constants.cornerRadius
-            
+
             UIView.animate(withDuration: 0.3) {
                 self.textDeleteBanner.frame = CGRect(
                     x: 0,
@@ -285,7 +282,7 @@ class FloatingContentAdderController: UIViewController {
                 )
             }
         }
-        
+
         if shouldHide {
             UIView.animate(withDuration: 0.3, animations: {
                 self.textDeleteBanner.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0)
@@ -294,7 +291,7 @@ class FloatingContentAdderController: UIViewController {
                 return
             })
         }
-        
+
         if shouldHighlight && !textDeleteBanner.isHighlighted {
             textDeleteBanner.isHighlighted = true
             UIView.animate(withDuration: 0.3) {

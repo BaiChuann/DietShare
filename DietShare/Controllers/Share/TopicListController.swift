@@ -4,7 +4,6 @@
 //
 //  Created by ZiyangMou on 11/4/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
-// swiftlint:disable implicitly_unwrapped_optional weak_delegate force_unwrapping
 
 import Foundation
 import UIKit

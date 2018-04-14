@@ -5,7 +5,6 @@
 //  Created by ZiyangMou on 11/4/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
-//  swiftlint:disable implicitly_unwrapped_optional force_unwrapping
 
 import Foundation
 import UIKit
@@ -89,10 +88,11 @@ class PublisherController: UIViewController {
         let publishButton = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(publish(_:)))
         publishButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = publishButton
-        
+
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
+
     }
 
     private func setUpTextView() {
@@ -109,6 +109,9 @@ class PublisherController: UIViewController {
     private func addGestureRecognizer() {
         let fbTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFacebookIconTap(_:)))
         facebookView.addGestureRecognizer(fbTapGestureRecognizer)
+
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
+        view.addGestureRecognizer(tap)
     }
 
     private func showStarRateView() {
@@ -148,7 +151,13 @@ class PublisherController: UIViewController {
         facebookView.frame = facebookView.frame.offsetBy(dx: dx, dy: dy)
     }
 
-    @objc private func handleFacebookIconTap(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func dismissKeyboard(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
+    @objc
+    private func handleFacebookIconTap(_ sender: UITapGestureRecognizer) {
         if additionalOptions.contains(.facebook) {
             additionalOptions.remove(.facebook)
             facebookView.image = UIImage(named: "facebook-logo-gray")
@@ -160,7 +169,8 @@ class PublisherController: UIViewController {
         }
     }
 
-    @objc private func publish(_ sender: UIBarButtonItem) {
+    @objc
+    private func publish(_ sender: UIBarButtonItem) {
         let text: String = textView.text != placeholder ? textView.text : ""
         let image = imageView.image!
         let restaurantId = self.restaurantId
@@ -206,6 +216,7 @@ extension PublisherController: TopicSenderDelegate {
 }
 
 extension PublisherController: UITextViewDelegate {
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
         let currentText: String = textView.text

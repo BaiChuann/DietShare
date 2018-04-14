@@ -42,7 +42,7 @@ class NutritionSticker: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.layer.cornerRadius = Constants.cornerRadius
     }
-    
+
     func isDataInitialised() -> Bool {
         return hasData
     }
@@ -65,15 +65,15 @@ class NutritionSticker: UIView {
                 bar.setProgress(Float(food.nutrition[self.nutritionTypesInOrder[bar.tag]] ?? 0), animated: true)
             }
         }
-        
+
         hasData = true
     }
-    
+
     func getSizeDelta() -> CGSize {
         guard let text = foodName.text else {
             return .zero
         }
-        
+
         let labelTextSize = (text as NSString).boundingRect(
             with: CGSize(width: frame.size.width, height: .greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
@@ -89,7 +89,7 @@ class NutritionSticker: UIView {
         }
         return CGSize(width: newSize.width - foodName.frame.width, height: newSize.height - originalSize.height)
     }
-    
+
     func updateLabelSize(with size: CGSize) {
         nameHeightConstraint.constant = nameHeightConstraint.constant + size.height
     }
