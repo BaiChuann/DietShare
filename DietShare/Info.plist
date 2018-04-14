@@ -61,6 +61,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Enable Camera to take photos.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>DietShare would like to use your location</string>
 	<key>CFBundleDisplayName</key>
 	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -91,7 +93,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>DietShare would like to use your location</string>
 </dict>
 </plist>
