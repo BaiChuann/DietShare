@@ -17,7 +17,7 @@ class TopicListController: UIViewController {
 
     var selectedTopicID: [String] = []
 
-    private var topicModel: TopicsModelManager<Topic> = TopicsModelManager<Topic>()
+    private var topicsDataSource: TopicsDataSource = TopicsLocalDataSource.shared
 
     private var topicList: [PublishTopic] = []
     private var filteredTopicList: [PublishTopic] = []
@@ -59,23 +59,7 @@ class TopicListController: UIViewController {
     }
 
     private func loadTopicList() {
-        //topicList = topicModel.getAllTopics().map { toPublishTopic(topic: $0) }
-        topicList = [PublishTopic(id: "1", name: "1", popularity: "1111"),
-        PublishTopic(id: "2", name: "2", popularity: "1111"),
-        PublishTopic(id: "3", name: "3", popularity: "1111"),
-        PublishTopic(id: "4", name: "4", popularity: "1111"),
-        PublishTopic(id: "5", name: "5", popularity: "1111"),
-        PublishTopic(id: "6", name: "6", popularity: "1111"),
-        PublishTopic(id: "7", name: "7", popularity: "1111"),
-        PublishTopic(id: "8", name: "8", popularity: "1111"),
-        PublishTopic(id: "9", name: "9", popularity: "1111"),
-        PublishTopic(id: "10", name: "10", popularity: "1111"),
-        PublishTopic(id: "11", name: "11", popularity: "1111"),
-        PublishTopic(id: "12", name: "12", popularity: "1111"),
-        PublishTopic(id: "13", name: "13", popularity: "1111"),
-        PublishTopic(id: "14", name: "14", popularity: "1111"),
-        PublishTopic(id: "15", name: "15", popularity: "1111"),
-        PublishTopic(id: "16", name: "16", popularity: "1111")]
+        topicList = topicsDataSource.getAllTopics().map { toPublishTopic(topic: $0) }
         let selectedTopics = topicList.filter { selectedTopicID.contains($0.id) }
         selectedNumber = selectedTopics.count
         selectedTopics.reversed().forEach { topic in

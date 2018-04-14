@@ -5,6 +5,7 @@
 //  Created by ZiyangMou on 11/4/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
+// swiftlint:disable weak_delegate implicitly_unwrapped_optional
 
 import Foundation
 import UIKit
@@ -13,7 +14,7 @@ class RestaurantListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    private var restaurantModel: RestaurantsModelManager<Restaurant>?
+    private var restaurantDataSource: RestaurantsDataSource = RestaurantsLocalDataSource.shared
 
     private var restaurants: [PublishRestaurant] = []
     private var filteredRestaurants: [PublishRestaurant] = []
@@ -44,19 +45,16 @@ class RestaurantListController: UIViewController {
     }
 
     private func loadRestaurantData() {
-        restaurants = [PublishRestaurant(id: "1", name: "r1", address: "221B Baker Street"),
-                       PublishRestaurant(id: "2", name: "c1", address: "221B Baker Street"),
-                       PublishRestaurant(id: "3", name: "g4", address: "221B Baker Street"),
-                       PublishRestaurant(id: "4", name: "hello", address: "221B Baker Street"),
-                       PublishRestaurant(id: "5", name: "science", address: "221B Baker Street"),
-                       PublishRestaurant(id: "6", name: "computing", address: "221B Baker Street"),
-                       PublishRestaurant(id: "7", name: "home", address: "221B Baker Street"),
-                       PublishRestaurant(id: "8", name: "3217", address: "221B Baker Street"),
-                       PublishRestaurant(id: "9", name: "lol", address: "221B Baker Street"),
-                       PublishRestaurant(id: "10", name: "pwn", address: "221B Baker Street"),
-                       PublishRestaurant(id: "11", name: "cd", address: "221B Baker Street")
-        ]
+        restaurants = restaurantDataSource.getAllRestaurants()
+            .map { toPublishRestaurant(restaurant: $0) }
         restaurants.insert(defaultRestaurant, at: 0)
+    }
+
+    private func toPublishRestaurant(restaurant: Restaurant) -> PublishRestaurant {
+        let id = restaurant.getID()
+        let name = restaurant.getName()
+        let address = restaurant.getAddress()
+        return PublishRestaurant(id: id, name: name, address: address)
     }
 }
 

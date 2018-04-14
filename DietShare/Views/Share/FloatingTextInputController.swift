@@ -47,15 +47,24 @@ class FloatingTextInputController: UIViewController {
         setUpUI()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        colorCollectionView.collectionViewLayout.invalidateLayout()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         view.addSubview(textPreview)
         view.bringSubview(toFront: textPreview)
         view.clipsToBounds = false
         textPreview.frame = CGRect(x: 0, y: -(view.bounds.height + textPreviewHeight) / 2, width: view.bounds.width, height: textPreviewHeight)
         originalViewY = view.frame.origin.y
+        if let cell = colorCollectionView.cellForItem(at: IndexPath(item: colorIndex, section: 0)) as? TextColorCell {
+            cell.setSelected(true)
+        }
         UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {() -> Void in
             self.cursor.alpha = 0 }, completion: nil)
-        colorCollectionView.reloadItems(at: [IndexPath(item: colorIndex, section: 0)])
 
         updateTextPreview()
         addKeyboardNotifications()
@@ -66,18 +75,19 @@ class FloatingTextInputController: UIViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
+        view.layer.removeAllAnimations()
         removeKeyboardNotifications()
     }
 
     @objc
     func tapHandler(sender: UIPanGestureRecognizer) {
         if let cell = colorCollectionView.cellForItem(at: IndexPath(item: colorIndex, section: 0)) as? TextColorCell {
-            cell.isSelected = false
+            cell.setSelected(false)
         }
 
         if let indexPath = colorCollectionView.indexPathForItem(at: sender.location(in: colorCollectionView)),
-            let cell = colorCollectionView.cellForItem(at: indexPath) {
-            cell.isSelected = true
+            let cell = colorCollectionView.cellForItem(at: indexPath) as? TextColorCell {
+            cell.setSelected(true)
             colorIndex = indexPath.item
         }
 
@@ -97,7 +107,11 @@ class FloatingTextInputController: UIViewController {
             updateTextPreview()
         }
     }
-    
+
+    @IBAction func onCancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func onOKButtonPressed(_ sender: Any) {
         delegate?.setTextValues(text: text, color: hexToUIColor(hex: colors[colorIndex]), size: size)
         dismiss(animated: true, completion: nil)
@@ -178,19 +192,12 @@ extension FloatingTextInputController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: textColorCellId, for: indexPath)
-
         guard let textColorCell = cell as? TextColorCell else {
             return cell
         }
 
         let color = hexToUIColor(hex: colors[indexPath.item])
         textColorCell.setColor(color)
-
-        if indexPath.item == colorIndex {
-            textColorCell.isSelected = true
-        } else {
-            textColorCell.isSelected = false
-        }
 
         return textColorCell
     }
@@ -201,6 +208,11 @@ extension FloatingTextInputController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = colorCollectionView.frame.width / CGFloat(colors.count)
+        return CGSize(width: size, height: size)
     }
 }
 

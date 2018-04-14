@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class PublishTopicCell: UITableViewCell {
-    @IBOutlet private(set) var nameLabel: UILabel!
-    @IBOutlet private(set) var popularityLabel: UILabel!
+    @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var popularityLabel: UILabel!
 
     func setLabelText(name: String, popularity: String) {
         nameLabel.text = name

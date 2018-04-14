@@ -57,7 +57,7 @@ class FloatingContentAdderController: UIViewController {
     }
 
     private func setUpUI() {
-        imageView.image = shareState?.originalPhoto
+        imageView.image = shareState?.modifiedPhoto ?? shareState?.originalPhoto
 
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black

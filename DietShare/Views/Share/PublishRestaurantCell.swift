@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class PublishRestaurantCell: UITableViewCell {
-    @IBOutlet private(set) var nameLabel: UILabel!
-    @IBOutlet private(set) var addressLabel: UILabel!
+    @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var addressLabel: UILabel!
     
     func setLabelText(name: String, address: String) {
         nameLabel.text = name
-        addressLabel.text =  address
+        addressLabel.text = address
     }
 }
