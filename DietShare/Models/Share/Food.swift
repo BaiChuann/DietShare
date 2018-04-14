@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-enum NutritionType {
-    case fats, proteins, carbohydrate, calories
+enum NutritionType: String {
+    case fats = "Fats"
+    case proteins = "Proteins"
+    case carbohydrate = "Carbohydrate"
+    case calories = "Cal"
 }
 
 struct Food {

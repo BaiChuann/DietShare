@@ -5,7 +5,6 @@
 //  Created by ZiyangMou on 11/4/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
-//  swiftlint:disable implicitly_unwrapped_optional force_unwrapping
 
 import Foundation
 import UIKit
@@ -34,6 +33,7 @@ class PublisherController: UIViewController {
     @IBOutlet private weak var facebookView: UIImageView!
     @IBOutlet private weak var starRateView: CosmosView!
 
+    var shareState: ShareState?
     private var restaurantId: String = "-1"
     private var topicsId: [String] = []
     private var rating: Double = 0.0
@@ -70,12 +70,13 @@ class PublisherController: UIViewController {
     }
 
     private func setUpUI() {
-        addTopBorder(view: restaurantButton, color: .lightGray)
-        addTopBorder(view: topicButton, color: .lightGray)
-        addBottomBorder(view: topicButton, color: .lightGray)
+//        addTopBorder(view: restaurantButton, color: .lightGray)
+//        addTopBorder(view: topicButton, color: .lightGray)
+//        addBottomBorder(view: topicButton, color: .lightGray)
+        imageView.image = shareState?.modifiedPhoto
 
-        tagListView.tagBackgroundColor = .orange
-        tagListView.textFont = UIFont(name: "Verdana", size: 15)!
+        tagListView.tagBackgroundColor = Constants.themeColor
+        tagListView.textFont = UIFont(name: "Verdana", size: 12)!
 
         facebookView.alpha = 0.5
         facebookView.isUserInteractionEnabled = true
@@ -87,6 +88,11 @@ class PublisherController: UIViewController {
         let publishButton = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(publish(_:)))
         publishButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = publishButton
+
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+
     }
 
     private func setUpTextView() {
@@ -103,6 +109,9 @@ class PublisherController: UIViewController {
     private func addGestureRecognizer() {
         let fbTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFacebookIconTap(_:)))
         facebookView.addGestureRecognizer(fbTapGestureRecognizer)
+
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
+        view.addGestureRecognizer(tap)
     }
 
     private func showStarRateView() {
@@ -142,7 +151,13 @@ class PublisherController: UIViewController {
         facebookView.frame = facebookView.frame.offsetBy(dx: dx, dy: dy)
     }
 
-    @objc private func handleFacebookIconTap(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func dismissKeyboard(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
+    @objc
+    private func handleFacebookIconTap(_ sender: UITapGestureRecognizer) {
         if additionalOptions.contains(.facebook) {
             additionalOptions.remove(.facebook)
             facebookView.image = UIImage(named: "facebook-logo-gray")
@@ -154,7 +169,8 @@ class PublisherController: UIViewController {
         }
     }
 
-    @objc private func publish(_ sender: UIBarButtonItem) {
+    @objc
+    private func publish(_ sender: UIBarButtonItem) {
         let text: String = textView.text != placeholder ? textView.text : ""
         let image = imageView.image!
         let restaurantId = self.restaurantId
@@ -174,16 +190,11 @@ extension PublisherController: RestaurantSenderDelegate {
     func sendRestaurant(restaurant: (id: String, name: String)) {
 
         if restaurant.id == "-1" {
-            restaurantLabel.text = "Restaurant"
-            restaurantLabel.textColor = UIColor.black
-            locationIcon.image = UIImage(named: "location-mark-black")
             if restaurantId != "-1" {
                 offSetMultiplier = -1
             }
         } else {
             restaurantLabel.text = restaurant.name
-            restaurantLabel.textColor = UIColor.orange
-            locationIcon.image = UIImage(named: "location-mark-orange")
             if restaurantId == "-1" {
                 offSetMultiplier = 1
             } else if restaurantId != restaurant.id {
@@ -201,17 +212,11 @@ extension PublisherController: TopicSenderDelegate {
         self.topicsId = topics.map { $0.id }
         tagListView.removeAllTags()
         tagListView.addTags(topicNames)
-        if self.topicsId.isEmpty {
-            topicLabel.textColor = UIColor.black
-            hashtagIcon.image = UIImage(named: "hashtag-black")
-        } else {
-            topicLabel.textColor = UIColor.orange
-            hashtagIcon.image = UIImage(named: "hashtag-orange")
-        }
     }
 }
 
 extension PublisherController: UITextViewDelegate {
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
         let currentText: String = textView.text

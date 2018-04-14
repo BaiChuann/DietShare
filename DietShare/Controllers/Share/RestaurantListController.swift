@@ -5,7 +5,6 @@
 //  Created by ZiyangMou on 11/4/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
-// swiftlint:disable weak_delegate implicitly_unwrapped_optional
 
 import Foundation
 import UIKit
@@ -28,6 +27,11 @@ class RestaurantListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        
         setUpTable()
         setUpSearchBar()
         loadRestaurantData()
