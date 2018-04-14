@@ -92,6 +92,17 @@ class FloatingContentAdderController: UIViewController {
             self.nutritionStickerView.alpha = 1
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPublisher" {
+            if let destinationVC = segue.destination as? PublisherController {
+                print("segue: showPublisher")
+                shareState?.modifiedPhoto = getImageFromView(canvas, cropToSquare: false)
+                print("modifiedphoto: \(shareState?.modifiedPhoto)")
+                destinationVC.shareState = shareState
+            }
+        }
+    }
 
     private func setUpUI() {
         imageView.image = shareState?.modifiedPhoto ?? shareState?.originalPhoto

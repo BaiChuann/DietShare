@@ -54,8 +54,12 @@ func getImageFromView(_ view: UIView, cropToSquare: Bool = false) -> UIImage? {
         view.layer.render(in: context)
         resultImage = UIGraphicsGetImageFromCurrentImageContext()
     }
+    
+    if !cropToSquare {
+        return resultImage
+    }
 
-    if let image = resultImage, cropToSquare {
+    if let image = resultImage {
         return cropsToSquareImage(image)
     }
 
