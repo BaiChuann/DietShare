@@ -24,6 +24,8 @@
 		B5388AB7207496030062E6E9 /* RestaurantFullListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */; };
 		B5488AEC207325EF00F0E3E8 /* TopicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AEB207325EF00F0E3E8 /* TopicTest.swift */; };
 		B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */; };
+		B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5671A2220828477007DBF20 /* CuisineTypeCell.swift */; };
+		B5671A252082857A007DBF20 /* CuisineTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5671A242082857A007DBF20 /* CuisineTypeCell.xib */; };
 		B5A01CE3207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */; };
 		B5A01CE5207D24A200B26CC2 /* UsersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE4207D24A200B26CC2 /* UsersDataSource.swift */; };
 		B5A01CE7207D254100B26CC2 /* UsersLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE6207D254100B26CC2 /* UsersLocalDataSource.swift */; };
@@ -155,6 +157,8 @@
 		B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFullListCell.swift; sourceTree = "<group>"; };
 		B5488AEB207325EF00F0E3E8 /* TopicTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTest.swift; sourceTree = "<group>"; };
 		B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantShortListCell.swift; sourceTree = "<group>"; };
+		B5671A2220828477007DBF20 /* CuisineTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuisineTypeCell.swift; sourceTree = "<group>"; };
+		B5671A242082857A007DBF20 /* CuisineTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CuisineTypeCell.xib; sourceTree = "<group>"; };
 		B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsLocalDataSourceTest.swift; sourceTree = "<group>"; };
 		B5A01CE4207D24A200B26CC2 /* UsersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDataSource.swift; sourceTree = "<group>"; };
 		B5A01CE6207D254100B26CC2 /* UsersLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLocalDataSource.swift; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 				B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */,
 				B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */,
 				B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */,
+				B5671A2220828477007DBF20 /* CuisineTypeCell.swift */,
+				B5671A242082857A007DBF20 /* CuisineTypeCell.xib */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -687,6 +693,7 @@
 				F24BEC26207BC2770047C034 /* TopicCell.xib in Resources */,
 				F2DB00AC2074C44000CAB764 /* NutritionSticker.xib in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
+				B5671A252082857A007DBF20 /* CuisineTypeCell.xib in Resources */,
 				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
 				F2F241A1207B568C00BB74B1 /* TextColorCell.xib in Resources */,
 				F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */,
@@ -821,6 +828,7 @@
 			files = (
 				B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */,
 				B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */,
+				B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */,
 				B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */,
 				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
 				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,

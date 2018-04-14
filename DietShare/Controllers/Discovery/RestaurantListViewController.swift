@@ -92,21 +92,44 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     private func initDropDown() {
         
-        cuisineDropDown.anchorView = buttonBar[0]
+        cuisineDropDown.anchorView = restaurantListView
         var allCuisineTypes = [String]()
         RestaurantType.cases().forEach {allCuisineTypes.append($0.rawValue)}
         assert(allCuisineTypes.count > 0)
         cuisineDropDown.dataSource = allCuisineTypes
         cuisineDropDown.width = self.view.frame.width
+        DropDown.appearance().backgroundColor = UIColor.white
         
         cuisineDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             guard let typeSelected = RestaurantType(rawValue: item) else {
                 fatalError("Illegal value of restaurant inputed")
             }
-            self.currentTypeFilters.insert(typeSelected)
-            print("current filters are: \(self.currentTypeFilters)")
+            if self.currentTypeFilters.contains(typeSelected) {
+                self.currentTypeFilters.remove(typeSelected)
+            } else {
+                self.currentTypeFilters.insert(typeSelected)
+            }
             self.restaurantListView.reloadData()
         }
+        
+        cuisineDropDown.willShowAction = { [unowned self] in
+            
+            self.cuisineDropDown.cellNib = UINib(nibName: "CuisineTypeCell", bundle: nil)
+            self.cuisineDropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+                guard let cell = cell as? CuisineTypeCell else { return }
+                guard let typeSelected = RestaurantType(rawValue: item) else {
+                    fatalError("Illegal value of restaurant inputed")
+                }
+                if self.currentTypeFilters.contains(typeSelected) {
+                    cell.optionLabel.textColor = Constants.themeColor
+                    cell.tick.isHidden = false
+                } else {
+                    cell.optionLabel.textColor = UIColor.gray
+                    cell.tick.isHidden = true
+                }
+            };
+        }
+        
         cuisineDropDown.dismissMode = .onTap
     }
     

@@ -26,12 +26,9 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
     
     func getFullRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [T] {
         var restaurantList = [T]()
-        print("restaurants: \(restaurants.count)")
         restaurantList.append(contentsOf: self.restaurants)
         if !typeFilters.isEmpty {
             restaurantList = restaurantList.filter { $0.getTypesAsEnum().overLapsWith(typeFilters)}
-            assert(restaurantList.count < restaurants.count)
-            assert(restaurantList[0].getTypesAsEnum().overLapsWith(typeFilters))
         }
         switch sorting {
         case .byRating:
