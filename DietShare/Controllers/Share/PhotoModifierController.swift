@@ -39,10 +39,6 @@ class PhotoModifierController: UIViewController {
 
     private let tolerance: CGFloat = CGFloat(0.000_1)
     private let swappingAlpha: CGFloat = 0.6
-    private let stickerTag = 99
-    private let collageTag = 100
-
-    private var selectedImages: [UIImage]?
 
     private var layoutPanGestureRecognizer: UIPanGestureRecognizer?
     private var stickerPanGestureRecognizer: UIPanGestureRecognizer?
@@ -50,7 +46,10 @@ class PhotoModifierController: UIViewController {
 
     private var movingImageView: UIView?
     private var swappedImageView: UIView?
+    private var addedImageViews = [UIImageView]()
 
+    private var selectedImages: [UIImage]?
+    private var selectedStickerIndex: Int = -1
     private var selectedLayoutIndex: Int = -1
     private var selectedFilterIndex: Int = -1
 
@@ -78,11 +77,6 @@ class PhotoModifierController: UIViewController {
         ]
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        applyLayout()
-    }
-
     override func viewWillLayoutSubviews() {
         if photoOptionCollectionView.bounds.height < optionCellMaxHeight {
             spacingConstraint.constant = 0
@@ -90,9 +84,22 @@ class PhotoModifierController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if selectedLayoutIndex >= 0 {
+            applyLayout(index: selectedLayoutIndex)
+        }
+
+        if selectedStickerIndex >= 0 {
+            applySticker(index: selectedStickerIndex)
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFloatingContentAdder" {
             if let destinationVC = segue.destination as? FloatingContentAdderController {
+                shareState?.modifiedPhoto = getImageFromView(canvas, cropToSquare: true)
                 destinationVC.shareState = shareState
             }
         }
@@ -158,8 +165,18 @@ class PhotoModifierController: UIViewController {
         photoOptionCollectionView.reloadData()
     }
 
-    private func onLayoutSelected(index: Int) {
+    private func onStickerSelected(index: Int) {
+        resetCanvas()
+        applySticker(index: index)
 
+        let curIndexPath = IndexPath(item: index, section: 0)
+        let prevIndexPath = IndexPath(item: max(selectedStickerIndex, 0), section: 0)
+        updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
+        selectedStickerIndex = index
+        selectedLayoutIndex = -1
+    }
+
+    private func onLayoutSelected(index: Int) {
         guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
             print("error when showing layout photo selector")
             return
@@ -170,36 +187,46 @@ class PhotoModifierController: UIViewController {
         navigationController?.present(photoSelector, animated: true, completion: nil)
     }
 
-    private func onStickerSelected(index: Int) {
-        print("selected sticker \(index)")
-        reset()
-        applySticker(index: index)
-    }
-
     private func onFilterSelected(index: Int) {
+        guard let originalPhoto = shareState?.originalPhoto else {
+            return
+        }
+
         let curIndexPath = IndexPath(item: index, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
 
         selectedFilterIndex = index
-        if index > 0 {
-            let filterName = filters[selectedFilterIndex].1
-            imageView.image = getFilteredImage(filter: filterName)
+        imageView.image = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
+
+        if selectedStickerIndex >= 0 {
+            applySticker(index: selectedStickerIndex)
+        }
+
+        if selectedLayoutIndex >= 0 {
+            updateLayoutWithFilter()
         }
     }
 
-    private func updateCellSelectionStatus(curAt indexPath: IndexPath, prevAt: IndexPath) {
-        guard let curCell = photoOptionCollectionView.cellForItem(at: indexPath) as? PhotoOptionCell,
-            let prevCell = photoOptionCollectionView.cellForItem(at: prevAt) as? PhotoOptionCell else {
-                return
+    private func updateCellSelectionStatus(curAt: IndexPath, prevAt: IndexPath) {
+        guard let curCell = photoOptionCollectionView.cellForItem(at: curAt) as? PhotoOptionCell else {
+            return
         }
 
-        curCell.isSelected = true
-        prevCell.isSelected = false
+        curCell.setSelected(true)
+        if prevAt.item != curAt.item,
+            let prevCell = photoOptionCollectionView.cellForItem(at: prevAt) as? PhotoOptionCell {
+            prevCell.setSelected(false)
+        }
     }
 
-    private func getFilteredImage(filter: String) -> UIImage {
-        guard let image = shareState?.originalPhoto, let filter = CIFilter(name: filter) else {
+    private func getFilteredImage(_ image: UIImage, filterIndex: Int) -> UIImage {
+        if filterIndex <= 0 {
+            return image
+        }
+
+        let filterName = filters[filterIndex].1
+        guard let filter = CIFilter(name: filterName) else {
             print("current photo or filter is nil")
             return UIImage()
         }
@@ -217,11 +244,11 @@ class PhotoModifierController: UIViewController {
         return UIImage(cgImage: outputCGImage)
     }
 
-    private func reset() {
+    private func resetCanvas() {
         let superView = imageView.superview
-        superView?.subviews.filter { $0.tag == collageTag || $0.tag == stickerTag }
-            .forEach { $0.removeFromSuperview() }
+        addedImageViews.forEach { $0.removeFromSuperview() }
         superView?.gestureRecognizers?.forEach { $0.isEnabled = false }
+        addedImageViews.removeAll()
     }
 }
 
@@ -229,7 +256,8 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoOptionCellIdentifier, for: indexPath)
 
-        guard let photoOptionCell = cell as? PhotoOptionCell else {
+        guard let photoOptionCell = cell as? PhotoOptionCell,
+            let originalPhoto = shareState?.originalPhoto else {
             return cell
         }
 
@@ -239,12 +267,13 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
             optionImage = stickerIcons[indexPath.item]
+            photoOptionCell.setSelected(indexPath.item == selectedStickerIndex)
         case PhotoOptionType.layout.rawValue:
             optionImage = layoutIcons[indexPath.item]
-            photoOptionCell.isSelected = indexPath.item == selectedLayoutIndex
+            photoOptionCell.setSelected(indexPath.item == selectedLayoutIndex)
         case PhotoOptionType.filter.rawValue:
-            optionImage = indexPath.item > 0 ? getFilteredImage(filter: filters[indexPath.item].1) : shareState?.originalPhoto
-            photoOptionCell.isSelected = indexPath.item == selectedFilterIndex
+            optionImage = indexPath.item > 0 ? getFilteredImage(originalPhoto, filterIndex: indexPath.item) : shareState?.originalPhoto
+            photoOptionCell.setSelected(indexPath.item == selectedFilterIndex)
             labelText = filters[indexPath.item].0
         default:
             return cell
@@ -282,7 +311,6 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
             onStickerSelected(index: indexPath.item)
-            return
         case PhotoOptionType.layout.rawValue:
             onLayoutSelected(index: indexPath.item)
         case PhotoOptionType.filter.rawValue:
@@ -299,35 +327,62 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
-/// Extension for layout and stickre
+/// Extension for layout and sticker
 extension PhotoModifierController {
 
     // Apply layout selected
-    private func applyLayout() {
-        reset()
-        guard let selectedImages = selectedImages, let layout = storedLayout.get(selectedLayoutIndex) else {
+    private func applyLayout(index: Int) {
+        resetCanvas()
+
+        guard let selectedImages = selectedImages, let layout = storedLayout.get(index) else {
             return
         }
 
         let imageViews = layout.getLayoutViews(frame: imageView.frame)
         zip(imageViews, selectedImages).forEach { imageView, selectedImage in
-            addImageAsSubview(image: selectedImage, container: imageView)
+            addImageAsSubview(image: getFilteredImage(selectedImage, filterIndex: selectedFilterIndex), container: imageView)
         }
 
         layoutPanGestureRecognizer?.isEnabled = true
         layoutLongPressGestureRecognizer?.isEnabled = false
     }
 
-    // Apply sticker selected
-    private func applySticker(index: Int) {
-        guard let sticker = storedSticker.get(index),
-            let originalPhoto = shareState?.originalPhoto else {
+    private func updateLayoutWithFilter() {
+        guard let count = selectedImages?.count else {
             return
         }
+
+        for i in 0..<count {
+            guard let subview = addedImageViews[i].subviews.first as? UIImageView,
+                let originalImage = selectedImages?[i] else {
+                continue
+            }
+
+            subview.image = getFilteredImage(originalImage, filterIndex: selectedFilterIndex)
+        }
+    }
+
+    // Apply sticker selected
+    private func applySticker(index: Int) {
+        resetCanvas()
+
+        guard let originalPhoto = shareState?.originalPhoto, let sticker = storedSticker.get(index) else {
+            return
+        }
+
+        var filteredImage = shareState?.originalPhoto
+        if selectedFilterIndex > 0 {
+            filteredImage = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
+        }
+
+        guard let baseImage = filteredImage else {
+            return
+        }
+
         let imageFrame = sticker.getImageFrame(frame: imageView.frame)
         let stickerImageLayer = UIImageView(frame: imageFrame)
 
-        addImageAsSubview(image: originalPhoto, container: stickerImageLayer)
+        addImageAsSubview(image: baseImage, container: stickerImageLayer)
         addStickerAsSubview(sticker: sticker)
 
         stickerPanGestureRecognizer?.isEnabled = true
@@ -337,8 +392,8 @@ extension PhotoModifierController {
     private func addStickerAsSubview(sticker: StickerLayout) {
         let stickerLayer = UIImageView(frame: imageView.frame)
         stickerLayer.image = sticker.stickerImage
-        stickerLayer.tag = stickerTag
         canvas.addSubview(stickerLayer)
+        addedImageViews.append(stickerLayer)
     }
 
     // Add image to the container as subview, as add container as subview
@@ -346,8 +401,8 @@ extension PhotoModifierController {
         imageView.clipsToBounds = true
         let subImageView = getFittedImageView(image: selectedImage, frame: imageView.frame)
         imageView.addSubview(subImageView)
-        imageView.tag = collageTag
         canvas.addSubview(imageView)
+        addedImageViews.append(imageView)
     }
 
     // Get a UIImageView with give image
@@ -502,8 +557,7 @@ extension PhotoModifierController {
 
     // Get a view with a location
     private func getViewWithLocation(superView: UIView?, location: CGPoint) -> UIView? {
-        return superView?.subviews.first { $0.tag == collageTag && $0.frame.contains(location) }?
-            .subviews.first
+        return addedImageViews.first { $0.frame.contains(location) }?.subviews.first
     }
 
     // Swap two images from two ImageViews, then scale them to fit
@@ -553,20 +607,26 @@ extension PhotoModifierController {
 extension PhotoModifierController: PhotoModifierDelegate {
     func getLayoutImageCount(index: Int) -> Int {
         if let count = storedLayout.get(index)?.count {
-            return count
+            return count - 1
         } else {
             return 0
         }
     }
 
     func importImagesForLayout(images: [UIImage], layoutIndex: Int) {
+        guard let originalPhoto = shareState?.originalPhoto else {
+            return
+        }
+
         selectedImages = images
-        selectedLayoutIndex = layoutIndex
+        selectedImages?.append(originalPhoto)
         let curIndexPath = IndexPath(item: layoutIndex, section: 0)
-        let prevIndexPath = IndexPath(item: max(selectedFilterIndex, 0), section: 0)
+        let prevIndexPath = IndexPath(item: max(selectedLayoutIndex, 0), section: 0)
         selectedLayoutIndex = layoutIndex
+        selectedStickerIndex = -1
 
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
-        applyLayout()
+        applyLayout(index: layoutIndex)
+        updateLayoutWithFilter()
     }
 }

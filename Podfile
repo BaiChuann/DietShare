@@ -19,4 +19,8 @@ target 'DietShare' do
   pod 'TGCameraViewController'
   pod 'SQLite.swift', '~> 0.11.4'
   pod 'ScrollingStackContainer', '~> 0.5'
+  pod 'SwiftLint'
+  pod 'LinearProgressView'
+  pod 'TagListView', '~> 1.0'
+  pod 'Cosmos', '~> 15.0'
 end
