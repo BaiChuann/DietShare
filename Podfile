@@ -20,4 +20,5 @@ target 'DietShare' do
   pod 'SQLite.swift', '~> 0.11.4'
   pod 'ScrollingStackContainer', '~> 0.5'
   pod 'TagListView', '~> 1.0'
+  pod 'Cosmos', '~> 15.0'
 end

@@ -35,8 +35,8 @@ class TopicListController: UIViewController {
         super.viewDidLoad()
         setUpTable()
         setUpSearchBar()
-        setUpUI()
         loadTopicList()
+        setUpUI()
     }
 
     private func setUpTable() {

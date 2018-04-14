@@ -7,6 +7,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - BTree (4.1.0)
+  - Cosmos (15.0.0)
   - DKImagePickerController (3.8.1):
     - DKImagePickerController/Camera (= 3.8.1)
     - DKImagePickerController/ImageManager (= 3.8.1)
@@ -51,6 +52,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - BTree (~> 4.0)
+  - Cosmos (~> 15.0)
   - DKImagePickerController
   - DropDown
   - FacebookCore
@@ -70,6 +72,7 @@ SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BTree: 99b99930790b88dc5e8bafbf666a5dfb8d7808b4
+  Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
   DKImagePickerController: 51ad6ee2ba05414bb741db54a72cd7f4fb178e34
   DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
@@ -89,6 +92,6 @@ SPEC CHECKSUMS:
   TagListView: 669f7d4455003c877655875d34829731c4191528
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
 
-PODFILE CHECKSUM: c82c15041af811c741f12448279506a38839e58c
+PODFILE CHECKSUM: 308fdd2c6f86bd3776023168a271110ebef78195
 
 COCOAPODS: 1.4.0
