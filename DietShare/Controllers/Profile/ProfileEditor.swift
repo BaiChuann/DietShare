@@ -48,7 +48,8 @@ class ProfileEditor: UIViewController {
 
 extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return attributes.count
+        return 2
+        //return attributes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,6 +58,7 @@ extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
         }
         let name = attributes[indexPath.item]
         cell.setAttribute(name)
+        cell.selectionStyle = .none
         return cell
     }
 }
