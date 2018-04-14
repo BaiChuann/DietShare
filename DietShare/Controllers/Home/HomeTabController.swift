@@ -16,5 +16,11 @@ class HomeTabController: UIViewController {
             view.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("homehome")
+        tabBarController?.tabBar.isHidden = true
     }
 }

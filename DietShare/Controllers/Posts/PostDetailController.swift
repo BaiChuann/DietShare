@@ -13,16 +13,51 @@ class PostDetailController: UIViewController {
     
     @IBOutlet weak private var segmentBar: UIView!
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
-    @IBOutlet weak private var postCell: PostCell!
     @IBOutlet weak private var commentsTable: UITableView!
+    @IBOutlet weak var textFieldContainer: UIView!
+    private var textFieldController: TextFieldController!
+    override func viewWillAppear(_ animated: Bool) {
+       // print(textFieldContainer.frame.origin.y)
+        self.navigationController?.navigationBar.isHidden = false
+        //self.tabBarController?.tabBar.isHidden = true 
+       
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        setTextField()
+    }
     override func viewDidLoad() {
 //        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
-        postCell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chu", post.getPost())
+        
+        
         //postCell.translatesAutoresizingMaskIntoConstraints = false
         //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
         //postArea.addSubview(postCell)
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = false
+        let cellNibName = UINib(nibName: "CommentCell", bundle: nil)
+        commentsTable.register(cellNibName, forCellReuseIdentifier: "commentCell")
+        let cellNibName2 = UINib(nibName: "LikeCell", bundle: nil)
+        commentsTable.register(cellNibName2, forCellReuseIdentifier: "likeCell")
         commentsTable.rowHeight = UITableViewAutomaticDimension
         commentsTable.estimatedRowHeight = 100
+        //setTextField()
+        setSegmentControl()
+//        view.frame.size = CGSize(width: 375, height: 667)
+        textFieldController = Bundle.main.loadNibNamed("TextField", owner: nil, options: nil)?.first as! TextFieldController
+        let width = view.frame.width
+        let textHeight = textFieldContainer.frame.height
+        print(textFieldContainer.frame.origin.y)
+        //textFieldController.view.frame.size = CGSize(width: width, height: textHeight)
+        textFieldController.view.frame = CGRect(x: 0, y: 0, width: width, height: textHeight)
+        textFieldContainer.addSubview(textFieldController.view)
+        
+    }
+    
+  
+    
+    func setSegmentControl() {
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
         let attr = NSDictionary(object: UIFont(name: "Verdana", size: 13.0)!, forKey: NSAttributedStringKey.font as NSCopying)
@@ -30,17 +65,17 @@ class PostDetailController: UIViewController {
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.lightTextColor], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.themeColor], for: .selected)
         segmentBar.frame.origin.x = segmentedControl.frame.width / 8
-        
-        
     }
-    @IBAction func onBackClicked(_ sender: Any) {
-        print("back")
-        tabBarController?.tabBar.isHidden = false
-        self.willMove(toParentViewController: nil)
-        self.view.removeFromSuperview()
-        self.removeFromParentViewController()
-        
-        
+    func setTextField() {
+        textFieldController = Bundle.main.loadNibNamed("TextField", owner: nil, options: nil)?.first as! TextFieldController
+        let width = view.frame.width
+        let textHeight = textFieldContainer.frame.height
+        self.addChildViewController(textFieldController)
+        textFieldController.setDelegate(self)
+        print(textFieldContainer.frame.origin.y)
+        //textFieldController.view.frame.size = CGSize(width: width, height: textHeight)
+        textFieldController.view.frame = CGRect(x: 0, y: textFieldContainer.frame.origin.y, width: width, height: textHeight)
+        view.addSubview(textFieldController.view)
     }
     func setPost(_ post: PostCell) {
         self.post = post
@@ -80,17 +115,31 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
             let comment = Comment(userId: "1", parentId: "1", content: "this is an example of comment", time: Date())
             let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
             cell.setComment(user: user, comment: comment)
+            cell.selectionStyle = .none
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as? LikeCell  else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell  else {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
             
             let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
             cell.setUser(user)
+            cell.selectionStyle = .none
             return cell
         }
         
+    }
+}
+
+extension PostDetailController: CommentDelegate {
+    func onComment(_ text: String) {
+        print(text)
+    }
+}
+
+extension PostDetailController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        textFieldController.reset()
     }
 }
 
