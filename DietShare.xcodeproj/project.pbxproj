@@ -13,6 +13,7 @@
 		A46F7112207DD086007E1CF8 /* PublisherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F7111207DD086007E1CF8 /* PublisherController.swift */; };
 		A46F7114207DDCEF007E1CF8 /* RestaurantListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F7113207DDCEF007E1CF8 /* RestaurantListController.swift */; };
 		A46F7116207DDEF8007E1CF8 /* PublishRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F7115207DDEF8007E1CF8 /* PublishRestaurantCell.swift */; };
+		A48383C5208242AA00AADA45 /* PublishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48383C4208242AA00AADA45 /* PublishManager.swift */; };
 		A4DDF41B207E0B840085E2A5 /* TopicListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DDF41A207E0B840085E2A5 /* TopicListController.swift */; };
 		A4DDF41D207E13280085E2A5 /* PublishTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DDF41C207E13280085E2A5 /* PublishTopicCell.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
@@ -147,6 +148,7 @@
 		A46F7111207DD086007E1CF8 /* PublisherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherController.swift; sourceTree = "<group>"; };
 		A46F7113207DDCEF007E1CF8 /* RestaurantListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListController.swift; sourceTree = "<group>"; };
 		A46F7115207DDEF8007E1CF8 /* PublishRestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishRestaurantCell.swift; sourceTree = "<group>"; };
+		A48383C4208242AA00AADA45 /* PublishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishManager.swift; sourceTree = "<group>"; };
 		A4DDF41A207E0B840085E2A5 /* TopicListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListController.swift; sourceTree = "<group>"; };
 		A4DDF41C207E13280085E2A5 /* PublishTopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTopicCell.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				A46F7111207DD086007E1CF8 /* PublisherController.swift */,
 				A46F7113207DDCEF007E1CF8 /* RestaurantListController.swift */,
 				A4DDF41A207E0B840085E2A5 /* TopicListController.swift */,
+				A48383C4208242AA00AADA45 /* PublishManager.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -865,6 +868,7 @@
 				B5A01CE7207D254100B26CC2 /* UsersLocalDataSource.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				F24BEC25207BC2770047C034 /* TopicCell.swift in Sources */,
+				A48383C5208242AA00AADA45 /* PublishManager.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
 				F2F2419C207B537600BB74B1 /* FloatingTextInputController.swift in Sources */,
 				F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */,

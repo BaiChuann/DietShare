@@ -37,10 +37,9 @@ class PublisherController: UIViewController {
     private var restaurantId: String = "-1"
     private var topicsId: [String] = []
     private var rating: Double = 0.0
+    private var additionalOptions: Set<PublishOption> = []
 
-    private var isPostingOnFacebook: Bool = false
     private var offSetMultiplier: Int = 0
-
     private let placeholder: String = "Say something ..."
     private let toRestaurantSegueIdentifier: String = "ShowRestaurantListInPublisher"
     private let toTopicSegueIdentifier: String = "ShowTopicListInPublisher"
@@ -144,12 +143,12 @@ class PublisherController: UIViewController {
     }
 
     @objc private func handleFacebookIconTap(_ sender: UITapGestureRecognizer) {
-        if isPostingOnFacebook {
-            isPostingOnFacebook = false
+        if additionalOptions.contains(.facebook) {
+            additionalOptions.remove(.facebook)
             facebookView.image = UIImage(named: "facebook-logo-gray")
             facebookView.alpha = 0.5
         } else {
-            isPostingOnFacebook = true
+            additionalOptions.insert(.facebook)
             facebookView.image = UIImage(named: "facebook-logo-blue")
             facebookView.alpha = 1.0
         }
@@ -161,11 +160,13 @@ class PublisherController: UIViewController {
         let restaurantId = self.restaurantId
         let topicsId = self.topicsId
         let rating = floor(self.rating * 2) / 2
+        let options = additionalOptions
         print("text: \(text)")
         print("image: \(image)")
         print("restaurantId: \(restaurantId)")
         print("topicsId: \(topicsId)")
         print("rating: \(rating)")
+        print("options: \(options)")
     }
 }
 
