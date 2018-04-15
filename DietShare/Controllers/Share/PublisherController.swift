@@ -11,6 +11,7 @@ import UIKit
 import TagListView
 import Cosmos
 import Darwin
+import FacebookShare
 
 protocol RestaurantSenderDelegate: class {
     func sendRestaurant(restaurant: (id: String, name: String))
@@ -183,6 +184,16 @@ class PublisherController: UIViewController {
         print("topicsId: \(topicsId)")
         print("rating: \(rating)")
         print("options: \(options)")
+
+        /*let shareDialog = ShareDialog(content: text)
+        shareDialog.mode = .Native
+        shareDialog.failsOnInvalidData = true
+        shareDialog.completion = { result in
+            // Handle share results
+        }*/
+        
+        //try shareDialog.show()
+
     }
 }
 
