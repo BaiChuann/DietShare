@@ -366,11 +366,11 @@
             <objects>
                 <viewController id="2aZ-ZN-SkA" customClass="TopicViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DBl-Fs-Xjc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-Mx-gYJ">
-                                <rect key="frame" x="-20" y="44" width="415" height="623"/>
+                                <rect key="frame" x="-20" y="44" width="415" height="635"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWa-V8-6z4">
                                         <rect key="frame" x="20" y="20" width="375" height="231"/>
@@ -468,6 +468,11 @@
                                             <action selector="followButtonPressed:" destination="2aZ-ZN-SkA" eventType="touchUpInside" id="lCN-H3-BN8"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-fo-X6h">
+                                        <rect key="frame" x="20" y="521" width="375" height="815"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -480,9 +485,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fhU-9e-N3c"/>
                     </view>
+                    <size key="freeformSize" width="375" height="1200"/>
                     <connections>
                         <outlet property="followButton" destination="olt-oa-hww" id="nFe-WW-3zp"/>
                         <outlet property="followers" destination="b5L-rE-mcB" id="ukA-ru-0QV"/>
+                        <outlet property="postsArea" destination="Xyb-fo-X6h" id="oDe-SU-tGf"/>
                         <outlet property="scrollView" destination="3yr-Mx-gYJ" id="06e-t5-uBw"/>
                         <outlet property="topicDescription" destination="tIq-t7-4Vp" id="Zig-SN-vlN"/>
                         <outlet property="topicImage" destination="zWa-V8-6z4" id="7Wt-yy-JLi"/>
@@ -491,7 +498,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OaK-n7-sqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-183.19999999999999" y="172.26386806596702"/>
+            <point key="canvasLocation" x="-183.19999999999999" y="171.81409295352324"/>
         </scene>
         <!--PostsTable-->
         <scene sceneID="2QP-p0-krB">
@@ -716,18 +723,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tls-2v-VUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-887" y="1252"/>
+            <point key="canvasLocation" x="-863" y="1571"/>
         </scene>
         <!--Restaurant View Controller-->
         <scene sceneID="nTG-bA-7hD">
             <objects>
                 <viewController id="GSZ-DZ-kR4" customClass="RestaurantViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MhQ-tJ-0MO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1067"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bp-B7-v71">
-                                <rect key="frame" x="-20" y="44" width="415" height="1044"/>
+                                <rect key="frame" x="-20" y="44" width="415" height="1356"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-wJ-qBI">
                                         <rect key="frame" x="20" y="20" width="375" height="225"/>
@@ -893,6 +900,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-iW-lCF">
+                                        <rect key="frame" x="20" y="759" width="375" height="740"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -905,7 +917,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ob9-gc-HZP"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1067"/>
+                    <size key="freeformSize" width="375" height="1400"/>
                     <connections>
                         <outlet property="distance" destination="rAd-Lc-TV2" id="Vu3-xu-mMM"/>
                         <outlet property="numOfRatings" destination="aj6-Pd-oAr" id="Xu4-eK-lx9"/>
@@ -932,7 +944,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rjK-wb-YSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164" y="1431.6341829085459"/>
+            <point key="canvasLocation" x="-82.400000000000006" y="1750.5247376311845"/>
         </scene>
     </scenes>
     <resources>

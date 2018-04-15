@@ -22,6 +22,9 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var followButton: UIButton!
     
     @IBOutlet weak var followers: UICollectionView!
+    @IBOutlet weak var postsArea: UIView!
+    private var postsTable: UITableView!
+    private var postsTableController: PostsTableController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +37,9 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidAppear(animated)
     
         initView()
+        initPosts()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -77,6 +82,23 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         addRoundedRectBackground(self.followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.white.cgColor, UIColor.clear)
         
         initFollowButton()
+    }
+    
+    private func initPosts() {
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
+        postsTableController?.setParentController(self)
+        if let topic = self.topic {
+            postsTableController?.getTopicPosts(topic.getID())
+        }
+        self.addChildViewController(postsTableController!)
+        
+        postsTableController?.setScrollDelegate(self)
+        postsTable = postsTableController?.getTable()
+        postsTable.frame = postsArea.frame
+        postsArea.removeFromSuperview()
+        scrollView.addSubview(postsTable)
+        postsTable.bounces = false
+        postsTable.isScrollEnabled = false
     }
     
     private func initFollowButton() {
@@ -145,3 +167,22 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
      */
     
 }
+
+extension TopicViewController: ScrollDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
+        {
+            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
+                scrollView.isScrollEnabled = false
+                postsTable.isScrollEnabled = true
+            }
+            
+        }
+    }
+    func reachTop() {
+        scrollView.isScrollEnabled = true
+        postsTable.isScrollEnabled = false
+    }
+}
+

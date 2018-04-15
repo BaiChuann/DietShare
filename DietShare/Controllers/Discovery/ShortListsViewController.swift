@@ -88,6 +88,7 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,14 +101,17 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
+        initPosts()
+        //change of poststable controller 
+    }
+    
+    private func initPosts() {
         //change of poststable controller
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
         postsTableController?.setParentController(self)
         postsTableController?.getTrendingPosts()
         self.addChildViewController(postsTableController!)
         
-        //SCROLL IMPLEMENTATION
-//        postsTable = postsTableController?.getTable()
         postsTableController?.setScrollDelegate(self)
         postsTable = postsTableController?.getTable()
         postsTable.frame = postsArea.frame
@@ -115,7 +119,6 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         scrollView.addSubview(postsTable)
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
-        //change of poststable controller 
     }
     
     // TODO - remove this when current user is set at Login page
@@ -166,24 +169,13 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     
 }
 
-extension ShortListsViewController: StackContainable {
-    public static func create() -> ShortListsViewController {
-        return UIStoryboard(name: "Discovery", bundle: Bundle.main).instantiateViewController(withIdentifier: "ShortListsView") as! ShortListsViewController
-    }
-    
-    public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
-        let _ = self.view
-        return .scroll(self.scrollView, insets: UIEdgeInsetsMake(50, 0, 50, 0))
-    }
-}
-
 //SCROLL IMPLEMENTATION
 extension ShortListsViewController: ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
         {
-            if yOffset >= scrollView.contentSize.height - (postsTableController?.view.frame.height)! {
+            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
                 scrollView.isScrollEnabled = false
                 postsTable.isScrollEnabled = true
             }
