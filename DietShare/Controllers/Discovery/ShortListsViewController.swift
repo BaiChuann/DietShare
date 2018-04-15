@@ -200,4 +200,6 @@ extension ShortListsViewController: ScrollDelegate {
         scrollView.isScrollEnabled = true
         postsTable.isScrollEnabled = false
     }
+    func didScroll() {
+    }
 }
