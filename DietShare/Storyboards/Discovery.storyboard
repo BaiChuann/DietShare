@@ -74,7 +74,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eqr-5j-mhl">
-                                <rect key="frame" x="-20" y="61" width="435" height="606"/>
+                                <rect key="frame" x="-20" y="61" width="435" height="653"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trending" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3c-c2-dj7">
                                         <rect key="frame" x="36" y="20" width="95.5" height="23.5"/>
@@ -234,12 +234,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI1-bX-wf1">
-                                        <rect key="frame" x="20" y="404" width="375" height="735"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI1-bX-wf1">
+                                        <rect key="frame" x="20" y="404" width="375" height="935"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="735" id="l4w-zj-IiK"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="lI1-bX-wf1" firstAttribute="leading" secondItem="Eqr-5j-mhl" secondAttribute="leading" constant="20" id="1hS-n1-dXs"/>
+                                    <constraint firstAttribute="trailing" secondItem="lI1-bX-wf1" secondAttribute="trailing" constant="40" id="aqr-0r-9yl"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -934,7 +940,7 @@
         <image name="Phone" width="24" height="24"/>
         <image name="SeeMore" width="24" height="24"/>
         <image name="filter" width="128" height="128"/>
-        <image name="location" width="128" height="128"/>
+        <image name="location" width="23" height="32"/>
         <image name="sort-highlighted" width="128" height="128"/>
         <image name="sort-normal" width="128" height="128"/>
         <image name="star-empty" width="135" height="128"/>
@@ -942,7 +948,7 @@
         <image name="star-half" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ahv-zj-TA9"/>
+        <segue reference="XL7-k9-PPc"/>
         <segue reference="ptX-g6-KnN"/>
         <segue reference="CkT-I1-2Rg"/>
         <segue reference="dzP-BU-JSp"/>

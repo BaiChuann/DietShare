@@ -42,16 +42,20 @@ class RatingList: Equatable, Codable {
     }
     
     public func addEntry(_ newEntry: Rating) {
+        _checkRep()
         if let rating = findRating(newEntry.getUserID(), newEntry.getRestaurantID()) {
             rating.setScore(newEntry.getScoreAsEnum())
         } else {
             self.list.insert(newEntry)
         }
+        _checkRep()
     }
     public func addEntries(_ newEntries: [Rating]) {
+        _checkRep()
         for entry in newEntries {
             self.list.insert(entry)
         }
+        _checkRep()
     }
     
     public func findRating(_ userID: String, _ restaurantID: String) -> Rating? {
@@ -75,6 +79,16 @@ class RatingList: Equatable, Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.list, forKey: .list)
+    }
+    
+    func _checkRep() {
+        checkIDUniqueness()
+    }
+    
+    func checkIDUniqueness() {
+        var idSet = Set<String>()
+        list.forEach { idSet.insert($0.getID())}
+        assert(idSet.count == list.count)
     }
 }
 

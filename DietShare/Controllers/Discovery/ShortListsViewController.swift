@@ -29,7 +29,6 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
     //SCROLL IMPLEMENTATION
     private var postsTable: UITableView!
     //==========================
-//    @IBOutlet weak var postList: UITableView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
@@ -100,24 +99,20 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         
         displayedTopics = self.topicModel.getAllTopics()
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
+        
         //change of poststable controller
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
         postsTableController?.setParentController(self)
         postsTableController?.getTrendingPosts()
         self.addChildViewController(postsTableController!)
         
-        //        postsTable = postsTableController.getTable()
-        if let postsTableView = postsTableController?.view {
-            postsTableView.frame = postsArea.frame
-            postsArea.removeFromSuperview()
-            scrollView.addSubview(postsTableView)
-//            self.postList = postsTable
-            print("posts table added")
-        }
         //SCROLL IMPLEMENTATION
-        postsTable = postsTableController?.getTable()
+//        postsTable = postsTableController?.getTable()
         postsTableController?.setScrollDelegate(self)
         postsTable = postsTableController?.getTable()
+        postsTable.frame = postsArea.frame
+        postsArea.removeFromSuperview()
+        scrollView.addSubview(postsTable)
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
         //change of poststable controller 
@@ -188,7 +183,6 @@ extension ShortListsViewController: ScrollDelegate {
         let yOffset = scrollView.contentOffset.y
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
         {
-            //change the following line accordingly.
             if yOffset >= scrollView.contentSize.height - (postsTableController?.view.frame.height)! {
                 scrollView.isScrollEnabled = false
                 postsTable.isScrollEnabled = true

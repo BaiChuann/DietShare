@@ -54,7 +54,6 @@
 		3BDA29FA207FC2CD00E99DE3 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29EB207FC2CD00E99DE3 /* IngredientCell.swift */; };
 		3BDA29FB207FC2CD00E99DE3 /* IngredientDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29EC207FC2CD00E99DE3 /* IngredientDropDownCell.swift */; };
 		3BDA29FC207FC2CD00E99DE3 /* IngredientDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA29ED207FC2CD00E99DE3 /* IngredientDropDownCell.xib */; };
-		3BDA29FD207FC2CD00E99DE3 /* IngredientPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA29EE207FC2CD00E99DE3 /* IngredientPopup.xib */; };
 		3BDA29FE207FC2CD00E99DE3 /* LayoutPhotoPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29EF207FC2CD00E99DE3 /* LayoutPhotoPreviewCell.swift */; };
 		3BDA29FF207FC2CD00E99DE3 /* LayoutPhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29F0207FC2CD00E99DE3 /* LayoutPhotoSelectorCell.swift */; };
 		3BDA2A00207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29F1207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift */; };
@@ -93,6 +92,7 @@
 		B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */; };
 		B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5671A2220828477007DBF20 /* CuisineTypeCell.swift */; };
 		B5671A252082857A007DBF20 /* CuisineTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5671A242082857A007DBF20 /* CuisineTypeCell.xib */; };
+		B5671A2820829479007DBF20 /* IngredientPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA29EE207FC2CD00E99DE3 /* IngredientPopup.xib */; };
 		B5A01CE3207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A01CE2207D0C8C00B26CC2 /* RestaurantsLocalDataSourceTest.swift */; };
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
 		B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */; };
@@ -106,33 +106,8 @@
 		B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */; };
 		B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
-		B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698E520669A2E00E3A1F2 /* PhotoModifierController.swift */; };
-		B5E7ABC62075F8FB003FAB99 /* DiscoverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABC52075F8FB003FAB99 /* DiscoverPageViewController.swift */; };
-		B5E7ABC92075FD36003FAB99 /* ScrollingStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABC82075FD36003FAB99 /* ScrollingStackController.swift */; };
-		B5E7ABCB2076A635003FAB99 /* UserModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */; };
+		B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B5FF15A42080A3CA004F3954 /* RestaurantModelManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */; };
-		F20C2E1520716E4C00FCC5B3 /* PhotoUploaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */; };
-		F24BEC1B207BC25F0047C034 /* StoredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC19207BC25E0047C034 /* StoredLayout.swift */; };
-		F24BEC1C207BC25F0047C034 /* StoredSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1A207BC25F0047C034 /* StoredSticker.swift */; };
-		F24BEC24207BC2770047C034 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1E207BC2770047C034 /* LikeCell.swift */; };
-		F24BEC25207BC2770047C034 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC1F207BC2770047C034 /* TopicCell.swift */; };
-		F24BEC26207BC2770047C034 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24BEC20207BC2770047C034 /* TopicCell.xib */; };
-		F24BEC27207BC2770047C034 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24BEC21207BC2770047C034 /* PostCell.xib */; };
-		F24BEC28207BC2770047C034 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC22207BC2770047C034 /* CommentCell.swift */; };
-		F24BEC29207BC2770047C034 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC23207BC2770047C034 /* PostCell.swift */; };
-		F24BEC2C207BC2FE0047C034 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC2A207BC2FE0047C034 /* PostDetailController.swift */; };
-		F24BEC2D207BC2FE0047C034 /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BEC2B207BC2FE0047C034 /* PostCellDelegate.swift */; };
-		F24BEC2F207BC3910047C034 /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24BEC2E207BC3910047C034 /* PostDetail.storyboard */; };
-		F25D78552068D9850011008A /* ShareTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D78542068D9850011008A /* ShareTabController.swift */; };
-		F25D7857206E7BE40011008A /* PhotoOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7856206E7BE40011008A /* PhotoOptionCell.swift */; };
-		F25D785A206E9ABB0011008A /* LayoutPhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */; };
-		F26698C72063EC7B00E3A1F2 /* FoodSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */; };
-		F26698C92063F72800E3A1F2 /* FoodAdderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698C82063F72800E3A1F2 /* FoodAdderController.swift */; };
-		F26698CB20640B9400E3A1F2 /* IngredientPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */; };
-		F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */; };
-		F26698D52064F39B00E3A1F2 /* IngredientDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */; };
-		F26698D72064F47800E3A1F2 /* IngredientDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */; };
-		F26698D920656D6900E3A1F2 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698D820656D6900E3A1F2 /* IngredientCell.swift */; };
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
 		F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699152066CD3800E3A1F2 /* Comment.swift */; };
@@ -288,33 +263,9 @@
 		B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFullListCell.swift; sourceTree = "<group>"; };
 		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
-		B5CCE8162076B2860076BE2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B5E7ABC52075F8FB003FAB99 /* DiscoverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPageViewController.swift; sourceTree = "<group>"; };
-		B5E7ABC82075FD36003FAB99 /* ScrollingStackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingStackController.swift; sourceTree = "<group>"; };
 		B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
 		B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModelManagerTest.swift; sourceTree = "<group>"; };
-		F20C2E1420716E4C00FCC5B3 /* PhotoUploaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploaderViewController.swift; sourceTree = "<group>"; };
-		F24BEC19207BC25E0047C034 /* StoredLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredLayout.swift; sourceTree = "<group>"; };
-		F24BEC1A207BC25F0047C034 /* StoredSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSticker.swift; sourceTree = "<group>"; };
-		F24BEC1E207BC2770047C034 /* LikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
-		F24BEC1F207BC2770047C034 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
-		F24BEC20207BC2770047C034 /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
-		F24BEC21207BC2770047C034 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
-		F24BEC22207BC2770047C034 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
-		F24BEC23207BC2770047C034 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
-		F24BEC2A207BC2FE0047C034 /* PostDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostDetailController.swift; path = DietShare/Controllers/Posts/PostDetailController.swift; sourceTree = SOURCE_ROOT; };
-		F24BEC2B207BC2FE0047C034 /* PostCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCellDelegate.swift; path = DietShare/Controllers/Posts/PostCellDelegate.swift; sourceTree = SOURCE_ROOT; };
-		F24BEC2E207BC3910047C034 /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
-		F25D78542068D9850011008A /* ShareTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTabController.swift; sourceTree = "<group>"; };
-		F25D7856206E7BE40011008A /* PhotoOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionCell.swift; sourceTree = "<group>"; };
-		F25D7858206E9ABB0011008A /* LayoutPhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutPhotoSelectorController.swift; sourceTree = "<group>"; };
-		F26698C62063EC7B00E3A1F2 /* FoodSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectController.swift; sourceTree = "<group>"; };
-		F26698C82063F72800E3A1F2 /* FoodAdderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAdderController.swift; sourceTree = "<group>"; };
-		F26698CA20640B9400E3A1F2 /* IngredientPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPopupController.swift; sourceTree = "<group>"; };
 		F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPopup.xib; sourceTree = "<group>"; };
-		F26698D42064F39B00E3A1F2 /* IngredientDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientDropDownCell.xib; sourceTree = "<group>"; };
-		F26698D62064F47800E3A1F2 /* IngredientDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDropDownCell.swift; sourceTree = "<group>"; };
-		F26698D820656D6900E3A1F2 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F26699142066CD3800E3A1F2 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		F26699152066CD3800E3A1F2 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -494,6 +445,14 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		B5671A27208292FD007DBF20 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		B5CBA1002068D18A00BC8005 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +571,7 @@
 				F2BE688F205E8C8800DF9694 /* Products */,
 				B4D17446E75367AEC9130823 /* Pods */,
 				B7DF5A4C3BE7B17C33F67D46 /* Frameworks */,
+				B5671A27208292FD007DBF20 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -812,7 +772,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BDA29FD207FC2CD00E99DE3 /* IngredientPopup.xib in Resources */,
+				B5671A2820829479007DBF20 /* IngredientPopup.xib in Resources */,
 				B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */,
 				F2E373BD20716BE50000F707 /* Home.storyboard in Resources */,
 				3BDA29FC207FC2CD00E99DE3 /* IngredientDropDownCell.xib in Resources */,
@@ -826,8 +786,6 @@
 				3B424B3C2080EF5E00AB90BE /* Profile.storyboard in Resources */,
 				F26699292068D73200E3A1F2 /* Share.storyboard in Resources */,
 				B5671A252082857A007DBF20 /* CuisineTypeCell.xib in Resources */,
-				F26698CD20640EC400E3A1F2 /* IngredientPopup.xib in Resources */,
-				F2F241A1207B568C00BB74B1 /* TextColorCell.xib in Resources */,
 				3BDA2A01207FC2CD00E99DE3 /* NutritionSticker.xib in Resources */,
 				3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */,
 				3BDA2A04207FC2CD00E99DE3 /* TextColorCell.xib in Resources */,
@@ -870,7 +828,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -970,7 +928,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5E7ABAE2074A7C4003FAB99 /* PhotoModifierController.swift in Sources */,
+				B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */,
 				B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */,
 				B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */,
 				3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */,
