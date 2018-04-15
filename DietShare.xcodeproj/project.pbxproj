@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1470042D11BC0D3A5CC8C888 /* Pods_DietShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */; };
 		3B0834DE208255ED009A45E3 /* TopicTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834DD208255ED009A45E3 /* TopicTableCell.swift */; };
-		3B0834E020826F5F009A45E3 /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834DF20826F5E009A45E3 /* UserListController.swift */; };
 		3B0834E2208274BC009A45E3 /* FloatingTextInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834E1208274BC009A45E3 /* FloatingTextInputController.swift */; };
 		3B0834E4208274D0009A45E3 /* PublisherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834E3208274CF009A45E3 /* PublisherController.swift */; };
 		3B0834E6208274DA009A45E3 /* PublishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834E5208274DA009A45E3 /* PublishManager.swift */; };
@@ -19,12 +18,15 @@
 		3B0834EE2082755F009A45E3 /* NutritionSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834ED2082755F009A45E3 /* NutritionSticker.swift */; };
 		3B0834F020827568009A45E3 /* PublishRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834EF20827568009A45E3 /* PublishRestaurantCell.swift */; };
 		3B0834F22082756E009A45E3 /* PublishTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834F12082756E009A45E3 /* PublishTopicCell.swift */; };
+		3B0834F420827B9B009A45E3 /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0834F320827B9B009A45E3 /* UserListController.swift */; };
 		3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEDF2074C5A200809D3A /* PostDetailController.swift */; };
 		3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */; };
 		3B37A717207F782E009ED0D3 /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B37A716207F782E009ED0D3 /* Profile.xib */; };
 		3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */; };
 		3B37A724207F8083009ED0D3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A723207F8083009ED0D3 /* ProfileController.swift */; };
 		3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */; };
+		3B40BB2620837D4E00323B7D /* MentionedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B40BB2520837D4E00323B7D /* MentionedController.swift */; };
+		3B40BB282083803600323B7D /* MentionedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B40BB272083803600323B7D /* MentionedCell.swift */; };
 		3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3920809F0900AB90BE /* Assets.xcassets */; };
 		3B424B3C2080EF5E00AB90BE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3B2080EF5E00AB90BE /* Profile.storyboard */; };
 		3B424B3E2080FBAE00AB90BE /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */; };
@@ -159,7 +161,6 @@
 /* Begin PBXFileReference section */
 		2BBF21CF870EC877547CFA6A /* Pods_DietShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0834DD208255ED009A45E3 /* TopicTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableCell.swift; sourceTree = "<group>"; };
-		3B0834DF20826F5E009A45E3 /* UserListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
 		3B0834E1208274BC009A45E3 /* FloatingTextInputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingTextInputController.swift; sourceTree = "<group>"; };
 		3B0834E3208274CF009A45E3 /* PublisherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublisherController.swift; sourceTree = "<group>"; };
 		3B0834E5208274DA009A45E3 /* PublishManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishManager.swift; sourceTree = "<group>"; };
@@ -169,12 +170,15 @@
 		3B0834ED2082755F009A45E3 /* NutritionSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionSticker.swift; sourceTree = "<group>"; };
 		3B0834EF20827568009A45E3 /* PublishRestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishRestaurantCell.swift; sourceTree = "<group>"; };
 		3B0834F12082756E009A45E3 /* PublishTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishTopicCell.swift; sourceTree = "<group>"; };
+		3B0834F320827B9B009A45E3 /* UserListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
 		3B18BEDF2074C5A200809D3A /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		3B18BEE52074D97C00809D3A /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
 		3B37A716207F782E009ED0D3 /* Profile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
 		3B37A71B207F7F29009ED0D3 /* ProfileTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabController.swift; sourceTree = "<group>"; };
 		3B37A723207F8083009ED0D3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
+		3B40BB2520837D4E00323B7D /* MentionedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionedController.swift; sourceTree = "<group>"; };
+		3B40BB272083803600323B7D /* MentionedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionedCell.swift; sourceTree = "<group>"; };
 		3B424B3920809F0900AB90BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B424B3B2080EF5E00AB90BE /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditor.swift; sourceTree = "<group>"; };
@@ -329,7 +333,7 @@
 				3B37A723207F8083009ED0D3 /* ProfileController.swift */,
 				3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */,
 				3B424B4120810B0F00AB90BE /* EditFieldController.swift */,
-				3B0834DF20826F5E009A45E3 /* UserListController.swift */,
+				3B0834F320827B9B009A45E3 /* UserListController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -407,6 +411,7 @@
 				3BDA2A2B207FCBD500E99DE3 /* TextFieldController.swift */,
 				3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */,
 				3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */,
+				3B40BB272083803600323B7D /* MentionedCell.swift */,
 			);
 			name = Post;
 			path = DietShare/Views/Post;
@@ -617,6 +622,7 @@
 			children = (
 				F2E373B320716BBE0000F707 /* HomeController.swift */,
 				F2E373B420716BBE0000F707 /* HomeTabController.swift */,
+				3B40BB2520837D4E00323B7D /* MentionedController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -925,6 +931,7 @@
 				3BDA29E2207FC28600E99DE3 /* UsersDataSource.swift in Sources */,
 				F2E373B520716BBE0000F707 /* HomeController.swift in Sources */,
 				3B0834DE208255ED009A45E3 /* TopicTableCell.swift in Sources */,
+				3B40BB2620837D4E00323B7D /* MentionedController.swift in Sources */,
 				3BDA2A03207FC2CD00E99DE3 /* TextColorCell.swift in Sources */,
 				3BDA2A05207FC2CD00E99DE3 /* TextPreviewCell.swift in Sources */,
 				3BDA29D8207FC24A00E99DE3 /* CameraHandler.swift in Sources */,
@@ -935,6 +942,7 @@
 				3BDA29DA207FC24A00E99DE3 /* FoodAdderController.swift in Sources */,
 				3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
+				3B0834F420827B9B009A45E3 /* UserListController.swift in Sources */,
 				B5488AEE2073AFA900F0E3E8 /* RestaurantShortListCell.swift in Sources */,
 				B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */,
 				3BDA2A32207FCBD500E99DE3 /* PostCell.swift in Sources */,
@@ -975,7 +983,6 @@
 				3BDA2A30207FCBD500E99DE3 /* UserCell.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				3BDA2A00207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
-				3B0834E020826F5F009A45E3 /* UserListController.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				3B0834E4208274D0009A45E3 /* PublisherController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
@@ -988,6 +995,7 @@
 				3B0834F020827568009A45E3 /* PublishRestaurantCell.swift in Sources */,
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
 				3BDA29F9207FC2CD00E99DE3 /* FoodCell.swift in Sources */,
+				3B40BB282083803600323B7D /* MentionedCell.swift in Sources */,
 				3BDA29C8207FC20A00E99DE3 /* Food.swift in Sources */,
 				3BDA29E4207FC28C00E99DE3 /* UsersLocalDataSource.swift in Sources */,
 				3B37A724207F8083009ED0D3 /* ProfileController.swift in Sources */,

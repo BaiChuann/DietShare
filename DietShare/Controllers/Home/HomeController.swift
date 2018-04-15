@@ -13,7 +13,9 @@ class HomeController: UIViewController {
     @IBOutlet weak private var postsArea: UIView!
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var segmentBar: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
     private var postsTable: UITableView!
+    
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
@@ -31,6 +33,7 @@ class HomeController: UIViewController {
         
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
+        postsTableController.setScrollDelegate(self)
         postsTableController.getFollowingPosts()
         self.addChildViewController(postsTableController)
         
@@ -44,6 +47,10 @@ class HomeController: UIViewController {
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.lightTextColor], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.themeColor], for: .selected)
         segmentBar.frame.origin.x = segmentedControl.frame.width / 8
+        searchBar.backgroundImage = UIImage()
+        searchBar.layer.borderWidth = 1.0
+        searchBar.layer.borderColor = Constants.lightTextColor.cgColor
+        searchBar.layer.cornerRadius = 10
     }
     @IBAction func onSegmentSelected(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex
@@ -54,6 +61,7 @@ class HomeController: UIViewController {
             }
             
             postsTableController.getFollowingPosts()
+            searchBar.resignFirstResponder()
             //let indexPath = IndexPath(row: 0, section: 0)
             //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
             
@@ -63,6 +71,7 @@ class HomeController: UIViewController {
             }
             
             postsTableController.getLikePosts()
+            searchBar.resignFirstResponder()
             //let indexPath = IndexPath(row: 0, section: 0)
             //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
             
@@ -70,5 +79,22 @@ class HomeController: UIViewController {
             break
         }
     }
-    
+}
+
+extension HomeController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        postsTableController.search(searchText)
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
+
+extension HomeController: ScrollDelegate {
+    func reachTop() {
+    }
+    func didScroll() {
+        searchBar.resignFirstResponder()
+    }
 }
