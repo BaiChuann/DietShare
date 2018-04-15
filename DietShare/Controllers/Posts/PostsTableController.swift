@@ -16,6 +16,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     private var postManager = PostManager.shared
     private var textFieldController: TextFieldController!
     private var scrollDelegate: ScrollDelegate?
+    private var commentingPost: String?
     override func viewDidLoad() {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
@@ -38,16 +39,19 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         dataSource = postManager.getFollowingPosts()
         filteredData = dataSource
         postsTable.reloadData()
-        let indexPath = IndexPath(row: 0, section: 0)
-        postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
-        
+        if !filteredData.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
     }
     func getLikePosts() {
         dataSource = postManager.getLikePosts()
         filteredData = dataSource
         postsTable.reloadData()
-        let indexPath = IndexPath(row: 0, section: 0)
-        postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        if !filteredData.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
         
     }
     func getTrendingPosts() {
@@ -93,6 +97,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func goToDetail(_ post: PostCell) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
         print(parentController.view.frame.height)
+        controller.setPost(post.getPost().getPostId())
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
     }
@@ -103,8 +108,9 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
     }
-    func onCommentClicked() {
+    func onCommentClicked(_ postId: String) {
         print("clicked")
+        commentingPost = postId 
         let textHeight = CGFloat(40)
         let width = parentController.view.frame.width
         let height = parentController.view.frame.height
@@ -133,6 +139,8 @@ extension PostsTableController: CommentDelegate {
         print(text)
         textFieldController.view.removeFromSuperview()
         textFieldController.removeFromParentViewController()
+        postManager.postComment(Comment(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), parentId: commentingPost!, content: text, time: Date()))
+        postsTable.reloadData()
     }
 }
 

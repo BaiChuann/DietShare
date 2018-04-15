@@ -9,18 +9,22 @@
 import UIKit
 
 class PostDetailController: UIViewController {
-    private weak var post: PostCell!
+    private var postId: String!
     
     @IBOutlet weak private var segmentBar: UIView!
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var commentsTable: UITableView!
     @IBOutlet weak var textFieldContainer: UIView!
     private var textFieldController: TextFieldController!
+    private var comments: [Comment] = []
+    private var likes: [Like] = []
     override func viewWillAppear(_ animated: Bool) {
        // print(textFieldContainer.frame.origin.y)
         self.navigationController?.navigationBar.isHidden = false
-        //self.tabBarController?.tabBar.isHidden = true 
-       
+        //self.tabBarController?.tabBar.isHidden = true
+        comments = PostManager.shared.getComments(postId)
+        commentsTable.reloadData()
+        likes = PostManager.shared.getLikes(postId)
     }
     override func viewDidAppear(_ animated: Bool) {
         setTextField()
@@ -38,10 +42,11 @@ class PostDetailController: UIViewController {
         self.navigationItem.hidesBackButton = false
         let cellNibName = UINib(nibName: "CommentCell", bundle: nil)
         commentsTable.register(cellNibName, forCellReuseIdentifier: "commentCell")
-        let cellNibName2 = UINib(nibName: "LikeCell", bundle: nil)
-        commentsTable.register(cellNibName2, forCellReuseIdentifier: "likeCell")
+        let cellNibName2 = UINib(nibName: "UserCell", bundle: nil)
+        commentsTable.register(cellNibName2, forCellReuseIdentifier: "userCell")
         commentsTable.rowHeight = UITableViewAutomaticDimension
         commentsTable.estimatedRowHeight = 100
+        commentsTable.tableFooterView = UIView()
         //setTextField()
         setSegmentControl()
 //        view.frame.size = CGSize(width: 375, height: 667)
@@ -77,8 +82,8 @@ class PostDetailController: UIViewController {
         textFieldController.view.frame = CGRect(x: 0, y: textFieldContainer.frame.origin.y, width: width, height: textHeight)
         view.addSubview(textFieldController.view)
     }
-    func setPost(_ post: PostCell) {
-        self.post = post
+    func setPost(_ postId: String) {
+        self.postId = postId
     }
     @IBAction func onSegmentSelected(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex
@@ -104,7 +109,12 @@ class PostDetailController: UIViewController {
 
 extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return comments.count
+        } else {
+            return likes.count 
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +122,7 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentCell  else {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
-            let comment = Comment(userId: "1", parentId: "1", content: "this is an example of comment", time: Date())
+            let comment = comments[indexPath.item]
             let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
             cell.setComment(user: user, comment: comment)
             cell.selectionStyle = .none
@@ -134,6 +144,9 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
 extension PostDetailController: CommentDelegate {
     func onComment(_ text: String) {
         print(text)
+        PostManager.shared.postComment(Comment(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), parentId: postId, content: text, time: Date()))
+        comments = PostManager.shared.getComments(postId)
+        commentsTable.reloadData()
     }
 }
 

@@ -110,7 +110,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     
     @IBAction func onCommentClicked(_ sender: Any) {
-        self.cellDelegate?.onCommentClicked()
+        self.cellDelegate?.onCommentClicked(post.getPostId())
     }
     @IBAction func onLikeCountClicked(_ sender: Any) {
         self.cellDelegate?.goToDetail(self)
@@ -119,9 +119,11 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         if likeButton.currentTitle == "unlike" {
             likeButton.setImage(UIImage(named: "heart")!, for: .normal)
             likeButton.setTitle("liked", for: .normal)
+            PostManager.shared.postLike(Like(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), postId: post.getPostId(), time: Date()))
         } else {
             likeButton.setImage(UIImage(named: "like")!, for: .normal)
             likeButton.setTitle("unlike", for: .normal)
+            PostManager.shared.deleteLike(Like(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), postId: post.getPostId(), time: Date()))
         }
     }
     func getPost() -> Post{

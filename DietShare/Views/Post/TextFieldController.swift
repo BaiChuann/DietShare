@@ -88,8 +88,8 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func onSend(_ sender: Any) {
         reset()
-        textField.text = ""
         commentDelegate.onComment(textField.text!)
+        textField.text = ""
     }
     func reset() {
         if textField.isFirstResponder {
