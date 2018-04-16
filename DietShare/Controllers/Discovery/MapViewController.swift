@@ -11,21 +11,24 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 import MapKit
+import BTree
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, GMSAutocompleteViewControllerDelegate, UITextFieldDelegate {
     
-    let locationManager = CLLocationManager()
-    let currentLocationMarker = GMSMarker()
-    var chosenPlace: Place? = nil
+    private let locationManager = CLLocationManager()
+    private let currentLocationMarker = GMSMarker()
+    private var chosenPlace: Place? = nil
+    private var selectedRestaurant: Restaurant?
+    private var allRestaurants = SortedSet<Restaurant>()
     
     let mapDemoData = [(title: "Burger Shack", image: #imageLiteral(resourceName: "burger-shack")), (title: "Salad Heaven", image: #imageLiteral(resourceName: "vegie-bar"))]
     
-    let mapView: GMSMapView = {
+    private let mapView: GMSMapView = {
         let map = GMSMapView()
         map.translatesAutoresizingMaskIntoConstraints = false
         return map
     }()
-    let textFieldSearch: UITextField = {
+    private let textFieldSearch: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.darkGray.cgColor
@@ -34,7 +37,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-    let myLocationButton: UIButton = {
+    private let myLocationButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
         button.setImage( #imageLiteral(resourceName: "my-location"), for: .normal)
@@ -43,9 +46,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         button.addTarget(self, action: #selector(myLocationTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-        
     }()
-    let closeButton: UIButton = {
+    private let closeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
         button.setImage(#imageLiteral(resourceName: "cross-white"), for: .normal)
@@ -55,13 +57,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return button
     }()
     
-    var restaurantPreview: RestaurantPreview = {
+    private var restaurantPreview: RestaurantPreview = {
         let view = RestaurantPreview()
         return view
     }()
     
-    var restaurantCell: RestaurantFullListCell = {
-       let view = RestaurantFullListCell()
+    private var restaurantCell: RestaurantFullListCell = {
+        let view = RestaurantFullListCell()
         return view
     }()
     
@@ -180,9 +182,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return false
         }
-        let image = customMarkerView.image
-        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), image: image!, borderColor: UIColor.white, tag: customMarkerView.tag)
-        marker.iconView = customMarker
+//        let image = customMarkerView.image
+//        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), image: image!, borderColor: UIColor.white, tag: customMarkerView.tag)
+//        marker.iconView = customMarker
+        customMarkerView.borderColor = UIColor.white
         return false
     }
     
@@ -192,12 +195,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             return nil
         }
         //TODO - change to actual restaurant data
-        let data = mapDemoData[customMarkerView.tag]
-        restaurantPreview.setData(data.title, image: data.image)
-//        return restaurantPreview
-        restaurantCell.setName("Demo")
-        restaurantCell.setImage(#imageLiteral(resourceName: "vegie-bar"))
-        restaurantCell.setRating(4.0)
+        restaurantCell.initData(customMarkerView.restaurant)
         return restaurantCell
     }
     
@@ -206,18 +204,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return
         }
-        let tag = customMarkerView.tag
-        //TODO - implement segue here
-        resturantTapped(tag)
+        self.selectedRestaurant = customMarkerView.restaurant
+        performSegue(withIdentifier: Identifiers.mapToRestaurant, sender: self)
     }
     
     func mapView(_ mapView: GMSMapView, didCloseInfoWindowOf marker: GMSMarker) {
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return
         }
-        let image = customMarkerView.image!
-        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), image: image, borderColor: UIColor.darkGray, tag: customMarkerView.tag)
-        marker.iconView = customMarker
+//        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.darkGray, restaurant: customMarkerView.restaurant)
+        customMarkerView.borderColor = UIColor.darkGray
+        marker.iconView = customMarkerView
     }
 
     //MARK: Autocomplete logic handling
@@ -249,11 +246,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func showPartyMarker(lat: Double, long: Double) {
-        print("show party marker called")
         mapView.clear()
-        for i in 0..<2 {
+        for restaurant in self.allRestaurants {
             let marker = GMSMarker()
-            let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), image: mapDemoData[i].image, borderColor: UIColor.darkGray, tag: i)
+            let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.darkGray, restaurant: restaurant)
             marker.iconView = customMarker
             let randNum = Double(arc4random_uniform(50) / 10000)
             let randInt = arc4random_uniform(4)
@@ -269,14 +265,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             default:
                 break
             }
+            marker.position = restaurant.getLocation().coordinate
             print("marker position: \(marker.position)")
             marker.map = self.mapView
         }
     }
-    
-    @objc func resturantTapped(_ tag: Int) {
-        
-    }
+
     
     @objc func myLocationTapped() {
         if let location = mapView.myLocation {
@@ -288,4 +282,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         performSegue(withIdentifier: "unwindMapToRestaurantList", sender: self)
     }
     
+    
+    func setRestaurants(_ restaurants: SortedSet<Restaurant>) {
+        self.allRestaurants = restaurants
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? RestaurantViewController {
+            dest.setRestaurant(self.selectedRestaurant)
+        }
+    }
 }

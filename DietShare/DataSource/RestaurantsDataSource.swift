@@ -22,4 +22,5 @@ protocol RestaurantsDataSource {
     func deleteRestaurant(_ newRestaurant: Restaurant)
     func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant)
     func searchWithKeyword(_ keyword: String) -> [Restaurant]
+    func getRestaurantByID(_ id: String) -> Restaurant?
 }

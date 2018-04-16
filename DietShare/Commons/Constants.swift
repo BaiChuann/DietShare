@@ -78,6 +78,7 @@ struct Identifiers {
     public static let restaurantListToDetailPage = "restaurantListToDetailPage"
     public static let discoveryToRestaurantPage = "discoveryToRestaurantPage"
     public static let unwindMapToRestaurantList = "unwindMapToRestaurantList"
+    public static let mapToRestaurant = "mapToRestaurant"
 }
 
 struct Text {

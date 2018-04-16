@@ -12,12 +12,13 @@ import UIKit
 class CustomMarkerView: UIView {
     var image: UIImage!
     var borderColor: UIColor!
+    let restaurant: Restaurant
     
-    init(frame: CGRect, image: UIImage, borderColor: UIColor, tag: Int) {
+    init(frame: CGRect, borderColor: UIColor, restaurant: Restaurant) {
+        self.restaurant = restaurant
         super.init(frame: frame)
-        self.image = image
+        self.image = restaurant.getImage()
         self.borderColor = borderColor
-        self.tag = tag
         initViews()
     }
     

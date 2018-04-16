@@ -36,7 +36,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantListView, let model = self.restaurantModel, let location = self.currentLocation {
-            return model.getFullRestaurantList(currentSort, currentTypeFilters, location).count
+            return model.getSortedRestaurantList(currentSort, currentTypeFilters, location).count
         }
         return 0
     }
@@ -45,7 +45,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantFullListCell, for: indexPath as IndexPath) as! RestaurantFullListCell
         if let model = self.restaurantModel, let location = self.currentLocation {
-            let restaurantList = model.getFullRestaurantList(currentSort, currentTypeFilters, location)
+            let restaurantList = model.getSortedRestaurantList(currentSort, currentTypeFilters, location)
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
@@ -65,7 +65,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.restaurantModel, let location = self.currentLocation {
-            let restaurantsList = model.getFullRestaurantList(currentSort, currentTypeFilters, location)
+            let restaurantsList = model.getSortedRestaurantList(currentSort, currentTypeFilters, location)
             self.selectedRestaurant = restaurantsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.restaurantListToDetailPage, sender: self)
         }
@@ -144,6 +144,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
+        }
+        if let dest = segue.destination as? MapViewController {
+            if let model = self.restaurantModel {
+                dest.setRestaurants(model.getAllRestaurants())
+            }
         }
     }
     
