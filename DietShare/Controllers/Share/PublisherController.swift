@@ -43,6 +43,7 @@ class PublisherController: UIViewController {
     private var additionalOptions: Set<PublishOption> = []
 
     private var offSetMultiplier: Int = 0
+    private let amplifiedFrameTag: Int = 100
     private let placeholder: String = "Say something ..."
     private let toRestaurantSegueIdentifier: String = "ShowRestaurantListInPublisher"
     private let toTopicSegueIdentifier: String = "ShowTopicListInPublisher"
@@ -79,6 +80,7 @@ class PublisherController: UIViewController {
 //        addTopBorder(view: topicButton, color: .lightGray)
 //        addBottomBorder(view: topicButton, color: .lightGray)
         imageView.image = shareState?.modifiedPhoto
+        imageView.isUserInteractionEnabled = true
 
         tagListView.tagBackgroundColor = Constants.themeColor
         tagListView.textFont = UIFont(name: "Verdana", size: 12)!
@@ -107,7 +109,7 @@ class PublisherController: UIViewController {
         textView.text = placeholder
         textView.textColor = UIColor.lightGray
 
-        textView.becomeFirstResponder()
+        //textView.becomeFirstResponder()
 
         textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
 
@@ -120,6 +122,40 @@ class PublisherController: UIViewController {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
         view.addGestureRecognizer(tap)
+
+        let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(amplifyImage(_:)))
+        imageView.addGestureRecognizer(imageTapGestureRecognizer)
+    }
+
+    @objc private func amplifyImage(_ sender: UITapGestureRecognizer) {
+        guard let superView = view.superview else {
+            return
+        }
+        self.navigationController?.isNavigationBarHidden = true
+        let amplifiedFrame = UIView(frame: superView.frame)
+        amplifiedFrame.backgroundColor = UIColor.black
+        let image = imageView.image!
+        let imageAspect = image.size.height / image.size.width
+        let frameWidth = view.frame.width
+        let frameHeight = frameWidth * imageAspect
+        let frameY = view.frame.midY - frameHeight / 2
+        let frame = CGRect(x: 0, y: frameY, width: frameWidth, height: frameHeight)
+        let amplifiedImage = UIImageView(frame: frame)
+        amplifiedImage.image = image
+        amplifiedFrame.addSubview(amplifiedImage)
+        amplifiedFrame.tag = amplifiedFrameTag
+        superView.addSubview(amplifiedFrame)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissAmplifiedImage(_:)))
+        amplifiedFrame.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    @objc private func dismissAmplifiedImage(_ sender: UITapGestureRecognizer) {
+        guard let amplifiedFrame = view.superview?.viewWithTag(amplifiedFrameTag) else {
+            return
+        }
+        amplifiedFrame.removeFromSuperview()
+        navigationController?.isNavigationBarHidden = false
     }
 
     private func showStarRateView() {
