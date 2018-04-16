@@ -87,6 +87,15 @@ class IngredientPopupController: UIViewController {
         dismissPopUp()
     }
 
+    private func fetchIngredientDataList() {
+        let INGREDIENT_LIST_PATH = Bundle.main.path(forResource: "Ingredient_list", ofType: "plist")
+        let INGREDIENT_LIST_KEY_NAME = "name"
+        let INGREDIENT_LIST_KEY_ENERGY = "energy"
+        let INGREDIENT_LIST_KEY_PROTEIN = "protein"
+        let INGREDIENT_LIST_KEY_CARBOHYDRATE = "carbohydrate"
+        let INGREDIENT_LIST_KEY_FAT = "fat"
+    }
+
     private func setUpUI() {
         inputGroup.forEach {
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: $0.frame.height))
