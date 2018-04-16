@@ -113,6 +113,13 @@ func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImag
     return image
 }
 
+func addShasowToView(view: UIView) {
+    view.layer.shadowColor = UIColor.gray.cgColor
+    view.layer.shadowOpacity = 1
+    view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+    view.layer.shadowRadius = 1
+}
+
 // Crops an image to circular
 func makeRoundImg(img: UIImageView) -> UIImageView {
     let imgLayer = CALayer()

@@ -77,6 +77,7 @@ struct Identifiers {
     public static let restaurantFullListCell = "restaurantFullListCell"
     public static let restaurantListToDetailPage = "restaurantListToDetailPage"
     public static let discoveryToRestaurantPage = "discoveryToRestaurantPage"
+    public static let unwindMapToRestaurantList = "unwindMapToRestaurantList"
 }
 
 struct Text {

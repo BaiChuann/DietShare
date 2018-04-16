@@ -94,15 +94,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     private func initView() {
         initDropDown()
-        initMapButton()
-    }
-    
-    private func initMapButton() {
-        self.mapButton.layer.shadowColor = UIColor.black.cgColor
-        self.mapButton.layer.shadowOpacity = 1
-        self.mapButton.layer.shadowOffset = CGSize.zero
-        self.mapButton.layer.shadowRadius = 10
-//        self.mapButton.layer.shouldRasterize = true
+        addShasowToView(view: self.mapButton)
     }
     
     private func initDropDown() {
@@ -193,6 +185,10 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
             }, completion: nil)
         }
+    }
+    
+    @IBAction func unwindToRestaurantListView(segue: UIStoryboardSegue) {
+        
     }
     
     

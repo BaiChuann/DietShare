@@ -30,6 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.darkGray.cgColor
         textField.placeholder = "Where do you want to go?"
+        
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -44,9 +45,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return button
         
     }()
+    let closeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.clear
+        button.setImage(#imageLiteral(resourceName: "cross-white"), for: .normal)
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(unwindButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     var restaurantPreview: RestaurantPreview = {
         let view = RestaurantPreview()
+        return view
+    }()
+    
+    var restaurantCell: RestaurantFullListCell = {
+       let view = RestaurantFullListCell()
         return view
     }()
     
@@ -90,18 +105,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         self.view.addSubview(textFieldSearch)
         textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
         textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         textFieldSearch.heightAnchor.constraint(equalToConstant: 40).isActive = true
         setUpTextField(textFieldSearch, #imageLiteral(resourceName: "location"))
+//        addShasowToView(view: textFieldSearch)
         
-        restaurantPreview = RestaurantPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
+        restaurantPreview = RestaurantPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
+        restaurantCell = RestaurantFullListCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
         
         self.view.addSubview(myLocationButton)
         myLocationButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30).isActive = true
         myLocationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
         myLocationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         myLocationButton.heightAnchor.constraint(equalTo: myLocationButton.widthAnchor).isActive = true
+        
+        self.view.addSubview(closeButton)
+        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        closeButton.heightAnchor.constraint(equalTo: myLocationButton.widthAnchor).isActive = true
     }
     
     private func setUpTextField(_ textField: UITextField, _ image: UIImage) {
@@ -163,6 +186,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return false
     }
     
+    // Renders the returned restaurant snippet view when the marker is tapped
     func mapView(_ mapView: GMSMapView, markerInfoContents marker: GMSMarker) -> UIView? {
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return nil
@@ -170,9 +194,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         //TODO - change to actual restaurant data
         let data = mapDemoData[customMarkerView.tag]
         restaurantPreview.setData(data.title, image: data.image)
-        return restaurantPreview
+//        return restaurantPreview
+        restaurantCell.setName("Demo")
+        restaurantCell.setImage(#imageLiteral(resourceName: "vegie-bar"))
+        restaurantCell.setRating(4.0)
+        return restaurantCell
     }
     
+    // Upon tapping on the re
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return
@@ -254,4 +283,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             mapView.animate(toLocation: location.coordinate)
         }
     }
+    
+    @objc func unwindButtonTapped() {
+        performSegue(withIdentifier: "unwindMapToRestaurantList", sender: self)
+    }
+    
 }
