@@ -34,8 +34,8 @@ class CustomMarkerView: UIView {
         imageView.layer.borderWidth = Constants.RestaurantListPage.restaurantLogoBorderWidth
         imageView.clipsToBounds = true
         
-        let label = UILabel(frame: CGRect(x: 0, y: Constants.RestaurantListPage.restaurantLogoHeight * 0.9, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.restaurantLogoHeight * 0.1))
-        label.text = "label"
+        let label = UILabel(frame: CGRect(x: 0, y: Constants.RestaurantListPage.restaurantLogoHeight * 0.97, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.restaurantLogoHeight * 0.03))
+        label.text = "▼"
         label.textColor = borderColor
         label.textAlignment = .center
         

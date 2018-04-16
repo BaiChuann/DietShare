@@ -53,7 +53,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             cell.setTypes(restaurantList[indexPath.item].getTypesAsStringSet())
             // Get current location
             if let location = self.currentLocation {
-                let distance = Int(location.distance(from: restaurantList[indexPath.item].getLocation()) / 1000)
+                let distance = getDistanceBetweenLocations(location, restaurantList[indexPath.item].getLocation())
                 cell.setDistance("\(distance) km")
             } else {
                 cell.setDistance(Text.unknownDistance)
@@ -94,7 +94,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     private func initView() {
         initDropDown()
-        addShasowToView(view: self.mapButton)
+        addShadowToView(view: self.mapButton, offset: 2, radius: 2)
     }
     
     private func initDropDown() {

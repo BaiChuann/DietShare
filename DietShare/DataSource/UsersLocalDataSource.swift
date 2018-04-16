@@ -27,7 +27,7 @@ class UsersLocalDataSource: UsersDataSource {
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ users: [User], _ title: String) {
 //        print("UserLocalDataSource initializer called")
-//        removeDB()
+        removeDB()
         createDB(title)
         createTable()
         prepopulate(users)

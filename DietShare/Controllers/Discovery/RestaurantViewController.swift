@@ -108,9 +108,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func ratingTapped(_ sender: UIButton) {
         let ratingScore = sender.tag
         assert(ratingScore <= 5)
-        UIView.animate(withDuration: Constants.ratingAnimationDuration, animations: {
-                self.setNewRating(ratingScore)
-            })
+        self.setNewRating(ratingScore)
         if let user = UserModelManager.shared.getCurrentUser(), let restaurant = self.restaurant,
             let score = RatingScore(rawValue: ratingScore) {
             let rating = Rating(user.getUserId(), restaurant.getID(), score)
@@ -123,7 +121,11 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         assert(score <= 5)
         for i in 0..<5 {
             if i < score {
-                self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-filled"), for: .normal)
+                UIView.animate(withDuration: Constants.ratingAnimationDuration, animations: {
+                    self.newRatings[i].alpha = 0
+                    self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-filled"), for: .normal)
+                    self.newRatings[i].alpha = 1
+                })
             } else {
                 self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-empty"), for: .normal)
             }
@@ -177,6 +179,25 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func enableUnwindButton() {
+        let closeButton = UIButton()
+        closeButton.backgroundColor = UIColor.clear
+        closeButton.setImage(#imageLiteral(resourceName: "cross-white"), for: .normal)
+        closeButton.clipsToBounds = true
+        closeButton.addTarget(self, action: #selector(unwindButtonTapped), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(closeButton)
+        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor).isActive = true
+        addShadowToView(view: closeButton, offset: 0.5, radius: 0.5)
+    }
+    
+    @objc func unwindButtonTapped() {
+        performSegue(withIdentifier: Identifiers.unwindRestaurantToMap, sender: self)
+    }
+    
     /**
      * Test functions
      */
@@ -210,7 +231,6 @@ extension RestaurantViewController: ScrollDelegate {
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
         {
             if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
-                print("yoffset is: \(yOffset)")
                 scrollView.isScrollEnabled = false
                 postsTable.isScrollEnabled = true
             }

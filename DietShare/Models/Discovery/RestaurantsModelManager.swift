@@ -20,11 +20,16 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
     private var restaurantsDataSource: RestaurantsDataSource
     
     init() {
+        print("restaurant init called")
         self.restaurantsDataSource = RestaurantsLocalDataSource.shared
         self.restaurants = restaurantsDataSource.getAllRestaurants() as! SortedSet<T>
     }
     
-    func getFullRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [T] {
+    func getAllRestaurants() -> SortedSet<T> {
+        return self.restaurants
+    }
+    
+    func getSortedRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [T] {
         var restaurantList = [T]()
         restaurantList.append(contentsOf: self.restaurants)
         if !typeFilters.isEmpty {

@@ -79,6 +79,7 @@ struct Identifiers {
     public static let discoveryToRestaurantPage = "discoveryToRestaurantPage"
     public static let unwindMapToRestaurantList = "unwindMapToRestaurantList"
     public static let mapToRestaurant = "mapToRestaurant"
+    public static let unwindRestaurantToMap = "unwindRestaurantToMap"
 }
 
 struct Text {
@@ -123,7 +124,9 @@ struct Constants {
     public static let defaultTagCornerRadius: CGFloat = 8.0
     public static let numOfItemPerLoad = 10
     public static let voidBackgroundImagePath = "void-bg"
-    public static let ratingAnimationDuration = 1.0
+    public static let ratingAnimationDuration = 0.7
+    public static let defaultAnimationDuration = 0.5
+    public static let loadMarkerDuration = 0.8
 
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
@@ -150,6 +153,11 @@ struct Constants {
         public static let restaurantLogoHeight: CGFloat = 50
         public static let restaurantLogoBorderWidth: CGFloat = 4
         public static let locationMarkerHeight: CGFloat = 70
+    }
+    
+    struct MapPage {
+        public static let defaultZoom = 17.0
+        public static let maxNumOfMarkers = 40
     }
     
     struct Tables {

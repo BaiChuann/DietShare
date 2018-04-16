@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 func addInputBorder(for inputs: [UITextField], withColor color: UIColor) {
     inputs.forEach {
@@ -113,11 +114,11 @@ func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImag
     return image
 }
 
-func addShasowToView(view: UIView) {
+func addShadowToView(view: UIView, offset: CGFloat, radius: CGFloat) {
     view.layer.shadowColor = UIColor.gray.cgColor
     view.layer.shadowOpacity = 1
-    view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-    view.layer.shadowRadius = 1
+    view.layer.shadowOffset = CGSize(width: offset, height: offset)
+    view.layer.shadowRadius = radius
 }
 
 // Crops an image to circular
@@ -142,6 +143,10 @@ func addRoundedRectBackground(_ view: UIView, _ radius: CGFloat, _ borderWidth: 
     view.layer.borderWidth = borderWidth
     view.layer.borderColor = borderColor
     view.clipsToBounds = true
+}
+
+func getDistanceBetweenLocations(_ locationA: CLLocation, _ locationB: CLLocation) -> Int {
+    return Int(locationA.distance(from: locationB) / 1000)
 }
 
 extension Data {

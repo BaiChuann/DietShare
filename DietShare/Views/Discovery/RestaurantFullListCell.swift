@@ -11,12 +11,42 @@ import UIKit
 
 class RestaurantFullListCell: UICollectionViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak private var restaurantImage: UIImageView!
     @IBOutlet weak private var restaurantName: UILabel!
     @IBOutlet weak var restaurantType: UILabel!
     @IBOutlet var stars: [UIImageView]!
     @IBOutlet weak var ratingNumber: UILabel!
     @IBOutlet weak var distance: UILabel!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initViews()
+    }
+    
+    convenience init(_ frame: CGRect, _ restaurant: Restaurant) {
+        self.init(frame: frame)
+        initViews()
+        initData(restaurant)
+    }
+    
+    private func initViews() {
+        Bundle.main.loadNibNamed("RestaurantFullListCell", owner: self, options: nil)
+        addSubview(containerView)
+    }
+    
+    func initData(_ restaurant: Restaurant) {
+        setImage(restaurant.getImage())
+        setName(restaurant.getName())
+        setNumOfRating(restaurant.getRatingsID().getListAsSet().count)
+        setRating(restaurant.getRatingScore())
+        setTypes(restaurant.getTypesAsStringSet())
+    }
     
     func setImage(_ image: UIImage) {
         restaurantImage.image = image

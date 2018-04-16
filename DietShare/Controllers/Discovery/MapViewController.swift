@@ -21,7 +21,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private var selectedRestaurant: Restaurant?
     private var allRestaurants = SortedSet<Restaurant>()
     
-    let mapDemoData = [(title: "Burger Shack", image: #imageLiteral(resourceName: "burger-shack")), (title: "Salad Heaven", image: #imageLiteral(resourceName: "vegie-bar"))]
+    // Current zoom of the map
+    private var currentZoom = Float(Constants.MapPage.defaultZoom)
     
     private let mapView: GMSMapView = {
         let map = GMSMapView()
@@ -56,10 +57,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    private var restaurantPreview: RestaurantPreview = {
-        let view = RestaurantPreview()
-        return view
+    private let searchAgainButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("  Search in this Area   ", for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.alpha = 0.8
+        addRoundedRectBackground(button, 20, 1, UIColor.clear.cgColor, hexToUIColor(hex: "4c8bef"))
+        button.addTarget(self, action: #selector(serachAgainButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private var restaurantCell: RestaurantFullListCell = {
@@ -74,6 +80,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.delegate = self
         initViews()
         initGoogleMaps()
+        loadMarkers(Constants.MapPage.maxNumOfMarkers - Int(Constants.MapPage.defaultZoom))
         textFieldSearch.delegate = self
     }
 
@@ -111,10 +118,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         textFieldSearch.heightAnchor.constraint(equalToConstant: 40).isActive = true
         setUpTextField(textFieldSearch, #imageLiteral(resourceName: "location"))
-//        addShasowToView(view: textFieldSearch)
         
-        restaurantPreview = RestaurantPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
-        restaurantCell = RestaurantFullListCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
+        restaurantCell = RestaurantFullListCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
         
         self.view.addSubview(myLocationButton)
         myLocationButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30).isActive = true
@@ -122,24 +127,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         myLocationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         myLocationButton.heightAnchor.constraint(equalTo: myLocationButton.widthAnchor).isActive = true
         
+        self.view.addSubview(searchAgainButton)
+        searchAgainButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
+        searchAgainButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        searchAgainButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        addShadowToView(view: searchAgainButton, offset: 3, radius: 4)
+        
         self.view.addSubview(closeButton)
         closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
         closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        closeButton.heightAnchor.constraint(equalTo: myLocationButton.widthAnchor).isActive = true
+        closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor).isActive = true
+        addShadowToView(view: closeButton, offset: 0.5, radius: 0.5)
     }
     
     private func setUpTextField(_ textField: UITextField, _ image: UIImage) {
-        textField.leftViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: textField.frame.height * 0.75 , height: textField.frame.height * 0.75))
         imageView.image = image
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: textField.frame.height, height: textField.frame.height))
         paddingView.addSubview(imageView)
         textField.leftView = paddingView
+        textField.leftViewMode = UITextFieldViewMode.always
     }
     
     private func initGoogleMaps() {
-        let camera = GMSCameraPosition.camera(withLatitude: 1.3494, longitude: 108.9323, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 1.3494, longitude: 108.9323, zoom: Float(Constants.MapPage.defaultZoom))
         self.mapView.camera = camera
         self.mapView.delegate = self
         self.mapView.isMyLocationEnabled = true
@@ -170,11 +182,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let location = locations.last!
         let lat = location.coordinate.latitude
         let long = location.coordinate.longitude
-        let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: Float(Constants.MapPage.defaultZoom))
         
         self.mapView.animate(to: camera)
-        
-        showPartyMarker(lat: lat, long: long)
     }
     
     //MARK: Google Map Delegate
@@ -182,10 +192,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return false
         }
-//        let image = customMarkerView.image
-//        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), image: image!, borderColor: UIColor.white, tag: customMarkerView.tag)
-//        marker.iconView = customMarker
-        customMarkerView.borderColor = UIColor.white
+        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.white, restaurant: customMarkerView.restaurant)
+        marker.iconView = customMarker
         return false
     }
     
@@ -194,12 +202,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return nil
         }
-        //TODO - change to actual restaurant data
         restaurantCell.initData(customMarkerView.restaurant)
+        if let location = mapView.myLocation {
+            let distance = getDistanceBetweenLocations(location, customMarkerView.restaurant.getLocation())
+            restaurantCell.setDistance("\(distance) km")
+        }
         return restaurantCell
     }
     
-    // Upon tapping on the re
+    // Upon tapping on the restaurant snippet, go to the detail page of the restaurant
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return
@@ -212,9 +223,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return
         }
-//        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.darkGray, restaurant: customMarkerView.restaurant)
-        customMarkerView.borderColor = UIColor.darkGray
-        marker.iconView = customMarkerView
+        let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.darkGray, restaurant: customMarkerView.restaurant)
+        marker.iconView = customMarker
+    }
+    
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        UIView.animate(withDuration: Constants.defaultAnimationDuration, animations: {
+            self.searchAgainButton.alpha = 0.9
+        })
+    }
+    
+    // When search again button is clicked, load all markers in the current region again
+    @objc func serachAgainButtonTapped() {
+        self.loadMarkers(Constants.MapPage.maxNumOfMarkers - Int(self.mapView.camera.zoom))
+        UIView.animate(withDuration: Constants.defaultAnimationDuration, animations: {
+            self.searchAgainButton.alpha = 0
+        })
     }
 
     //MARK: Autocomplete logic handling
@@ -222,16 +247,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let lat = place.coordinate.latitude
         let long = place.coordinate.longitude
         
-        showPartyMarker(lat: lat, long: long)
-        
-        let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: Float(Constants.MapPage.defaultZoom))
         mapView.camera = camera
         textFieldSearch.text = place.formattedAddress!
+        loadMarkers(Constants.MapPage.maxNumOfMarkers - Int(camera.zoom))
         chosenPlace = Place(name: place.formattedAddress!, lattitude: lat, longitude: long)
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
         marker.title = "\(place.name)"
-        marker.snippet = "\(String(describing: place.formattedAddress))"
+        marker.snippet = "\(place.formattedAddress!)"
         marker.map = mapView
         
         self.dismiss(animated: true, completion: nil)
@@ -245,33 +269,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.dismiss(animated: true, completion: nil)
     }
     
-    func showPartyMarker(lat: Double, long: Double) {
+    // Display all markers, ranked by the restaurant's rating, up to the provided limit of numbers within the current screen
+    private func loadMarkers(_ numberLimit: Int) {
         mapView.clear()
+        var count = 0
         for restaurant in self.allRestaurants {
-            let marker = GMSMarker()
-            let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.darkGray, restaurant: restaurant)
-            marker.iconView = customMarker
-            let randNum = Double(arc4random_uniform(50) / 10000)
-            let randInt = arc4random_uniform(4)
-            switch randInt {
-            case 0:
-                marker.position = CLLocationCoordinate2D(latitude: lat + randNum, longitude: long + randNum)
-            case 1:
-                marker.position = CLLocationCoordinate2D(latitude: lat + randNum, longitude: long - randNum)
-            case 2:
-                marker.position = CLLocationCoordinate2D(latitude: lat - randNum, longitude: long + randNum)
-            case 3:
-                marker.position = CLLocationCoordinate2D(latitude: lat - randNum, longitude: long - randNum)
-            default:
-                break
+            if count <= numberLimit && isCoordinateWithinScreen(restaurant.getLocation().coordinate) {
+                let marker = GMSMarker()
+                let customMarker = CustomMarkerView(frame: CGRect(x: 0, y: 0, width: Constants.RestaurantListPage.restaurantLogoWidth, height: Constants.RestaurantListPage.locationMarkerHeight), borderColor: UIColor.darkGray, restaurant: restaurant)
+                marker.iconView = customMarker
+                marker.position = restaurant.getLocation().coordinate
+                marker.map = self.mapView
+                count += 1
             }
-            marker.position = restaurant.getLocation().coordinate
-            print("marker position: \(marker.position)")
-            marker.map = self.mapView
         }
     }
-
     
+    private func isCoordinateWithinScreen(_ coordinate: CLLocationCoordinate2D) -> Bool {
+        let region = self.mapView.projection.visibleRegion()
+        let bounds = GMSCoordinateBounds(region: region)
+        return bounds.contains(coordinate)
+    }
+
+    // Move map to the current location of the user
     @objc func myLocationTapped() {
         if let location = mapView.myLocation {
             mapView.animate(toLocation: location.coordinate)
@@ -279,7 +299,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     @objc func unwindButtonTapped() {
-        performSegue(withIdentifier: "unwindMapToRestaurantList", sender: self)
+        performSegue(withIdentifier: Identifiers.unwindMapToRestaurantList, sender: self)
     }
     
     
@@ -287,9 +307,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.allRestaurants = restaurants
     }
     
+    @IBAction func unwindToMapView(segue: UIStoryboardSegue) {
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
+            dest.enableUnwindButton()
         }
     }
 }
