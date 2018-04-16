@@ -300,23 +300,5 @@ extension UIImage: Value {
     }
 }
 
-//
-//extension Dictionary: Value where Key == String, Value == Int {
-//    public class var declaredDatatype: String {
-//        return Blob.declaredDatatype
-//    }
-//    public class func fromDatatypeValue(_ blobValue: Blob) -> Dictionary {
-//        guard let decoded = try? JSONSerialization.jsonObject(with: Data.fromDatatypeValue(blobValue), options: []) as? [Key: Value] else {
-//            fatalError("Cannode decode JSON")
-//        }
-//        
-//        return decoded
-//    }
-//    public var datatypeValue: Blob {
-//        guard let dictData: Data = try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted) else {
-//            fatalError("Cannot encode dictionary into JSON")
-//        }
-//        return dictData
-//    }
-//}
+
 

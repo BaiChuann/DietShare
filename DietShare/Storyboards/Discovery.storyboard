@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="-2448.8000000000002" y="173.16341829085459"/>
         </scene>
-        <!--ShortListsView-->
+        <!--DiscoverPageView-->
         <scene sceneID="VO2-XK-MUv">
             <objects>
-                <viewController storyboardIdentifier="ShortListsView" title="ShortListsView" id="fHZ-WF-mnv" customClass="ShortListsViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShortListsView" title="DiscoverPageView" id="fHZ-WF-mnv" customClass="DiscoverPageViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RbU-ed-vNf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +429,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Active Posters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-My-rjk">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-My-rjk">
                                         <rect key="frame" x="26" y="348" width="156" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="17"/>
@@ -566,7 +566,7 @@
                                 <rect key="frame" x="-20" y="0.0" width="395" height="57"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vIG-tS-Dfa">
-                                        <rect key="frame" x="20" y="55" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="55" width="395" height="2"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.93466449880000002" green="0.93466449880000002" blue="0.93466449880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -926,7 +926,7 @@
         <image name="star-half" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ahv-zj-TA9"/>
+        <segue reference="XL7-k9-PPc"/>
         <segue reference="ptX-g6-KnN"/>
         <segue reference="CkT-I1-2Rg"/>
         <segue reference="dzP-BU-JSp"/>

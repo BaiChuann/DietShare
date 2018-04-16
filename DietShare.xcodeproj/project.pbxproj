@@ -97,7 +97,7 @@
 		B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA10E2069226600BC8005 /* Restaurant.swift */; };
 		B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */; };
 		B5CBA1132069411C00BC8005 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA1122069411C00BC8005 /* Discovery.storyboard */; };
-		B5CBA115206949FA00BC8005 /* ShortListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA114206949FA00BC8005 /* ShortListsViewController.swift */; };
+		B5CBA115206949FA00BC8005 /* DiscoverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA114206949FA00BC8005 /* DiscoverPageViewController.swift */; };
 		B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */; };
 		B5CBA16F206A3F5600BC8005 /* TopicShortListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */; };
 		B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA170206A444300BC8005 /* TopicsModelManager.swift */; };
@@ -259,14 +259,13 @@
 		B5CBA10E2069226600BC8005 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		B5CBA1102069227E00BC8005 /* ReadOnlyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRestaurant.swift; sourceTree = "<group>"; };
 		B5CBA1122069411C00BC8005 /* Discovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discovery.storyboard; sourceTree = "<group>"; };
-		B5CBA114206949FA00BC8005 /* ShortListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortListsViewController.swift; sourceTree = "<group>"; };
+		B5CBA114206949FA00BC8005 /* DiscoverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPageViewController.swift; sourceTree = "<group>"; };
 		B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryTabController.swift; sourceTree = "<group>"; };
 		B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicShortListCell.swift; sourceTree = "<group>"; };
 		B5CBA170206A444300BC8005 /* TopicsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsModelManager.swift; sourceTree = "<group>"; };
 		B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFullListCell.swift; sourceTree = "<group>"; };
 		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
-		B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
 		B5EE1DA72083BBED00098E9B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B5EE1DA92083BC0F00098E9B /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
 		B5EE1DAF2084F57F00098E9B /* RestaurantFullListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantFullListCell.xib; sourceTree = "<group>"; };
@@ -469,7 +468,6 @@
 				B5CBA170206A444300BC8005 /* TopicsModelManager.swift */,
 				B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */,
 				B504C2D2206D1BB5007F8956 /* Rating.swift */,
-				B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */,
 				B525A139208261D7003AF5D0 /* RatingList.swift */,
 				3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */,
 			);
@@ -479,7 +477,7 @@
 		B5CBA11620694A0700BC8005 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
-				B5CBA114206949FA00BC8005 /* ShortListsViewController.swift */,
+				B5CBA114206949FA00BC8005 /* DiscoverPageViewController.swift */,
 				B5CBA16B206A396A00BC8005 /* DiscoveryTabController.swift */,
 				B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */,
 				B504C2A2206BB6B9007F8956 /* TopicViewController.swift */,
@@ -1030,7 +1028,7 @@
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				3BDA29DF207FC24A00E99DE3 /* PhotoUploaderViewController.swift in Sources */,
 				B5EE1DA82083BBED00098E9B /* MapViewController.swift in Sources */,
-				B5CBA115206949FA00BC8005 /* ShortListsViewController.swift in Sources */,
+				B5CBA115206949FA00BC8005 /* DiscoverPageViewController.swift in Sources */,
 				3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */,
 				3BDA2A02207FC2CD00E99DE3 /* PhotoOptionCell.swift in Sources */,
 				3B0834F020827568009A45E3 /* PublishRestaurantCell.swift in Sources */,
