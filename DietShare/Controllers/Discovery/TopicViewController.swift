@@ -76,7 +76,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         if let currentTopic = self.topic {
             self.topicName.text = currentTopic.getName()
             self.topicImage.image = currentTopic.getImageAsUIImage()
-            self.topicImage.alpha = CGFloat(Constants.TopicPage.topicImageAlpha)
             self.topicDescription.text = currentTopic.getDescription()
         }
         
