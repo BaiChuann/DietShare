@@ -131,5 +131,7 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
         scrollView.isScrollEnabled = true
         tableView.isScrollEnabled = false
     }
+    func didScroll() {
+    }
 }
 //================
