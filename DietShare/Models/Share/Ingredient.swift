@@ -14,15 +14,18 @@ enum IngredientUnit {
 }
 
 struct Ingredient {
-    private(set) var name: String
+    var name: String {
+        return rawInfo.name
+    }
     private(set) var image: UIImage
     private(set) var quantity: Int
     private(set) var unit: IngredientUnit
+    private(set) var rawInfo: RawIngredient
 
-    init(name: String, image: UIImage, quantity: Int, unit: IngredientUnit) {
-        self.name = name
+    init(image: UIImage, quantity: Int, unit: IngredientUnit, rawInfo: RawIngredient) {
         self.image = image
         self.quantity = quantity
         self.unit = unit
+        self.rawInfo = rawInfo
     }
 }
