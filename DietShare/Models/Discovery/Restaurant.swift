@@ -113,6 +113,8 @@ class Restaurant: ReadOnlyRestaurant {
     func getRatingScore() -> Double {
         return self.ratingScore
     }
+    
+    // If the user has already rated, update the score; else insert a new rating into the set
     func addRating(_ rating: Rating) {
         let score = rating.getScore()
         self.ratingScore = calcNewRatingScore(Double(score))

@@ -14,7 +14,7 @@ class TopicFullListCell: UICollectionViewCell {
     @IBOutlet weak private var topicImage: UIImageView!
     @IBOutlet weak private var topicName: UILabel!
     @IBOutlet weak var followButton: UIButton!
-    @IBOutlet weak var topicNameLabel: UILabel!
+    @IBOutlet weak var topicDescription: UILabel!
     
     func setImage(_ image: UIImage) {
         topicImage.image = image
@@ -22,9 +22,10 @@ class TopicFullListCell: UICollectionViewCell {
     
     func setName(_ name: String) {
         topicName.text = name
-        
-        topicNameLabel.text = name
-        addRoundedRectBackground(topicNameLabel, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
+    }
+    
+    func setDescription(_ description: String) {
+        topicDescription.text = description
     }
     
     func initFollowButtonView() {

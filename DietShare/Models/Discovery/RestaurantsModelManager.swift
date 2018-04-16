@@ -63,6 +63,16 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
         return displayedList
     }
     
+    
+    func addRating(_ restaurant: Restaurant, _ rating: Rating) {
+        restaurant.addRating(rating)
+        self.restaurantsDataSource.updateRestaurant(restaurant.getID(), restaurant)
+    }
+    
+    func addPost(_ restaurant: Restaurant, _ post: Post) {
+        restaurant.addPost(post)
+        self.restaurantsDataSource.updateRestaurant(restaurant.getID(), restaurant)
+    }
 }
 
 extension Set where Element == RestaurantType {

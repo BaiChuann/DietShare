@@ -41,6 +41,7 @@ class RatingList: Equatable, Codable {
         self.list = newList
     }
     
+    // If the user has already rated, update the score; else insert a new rating into the set
     public func addEntry(_ newEntry: Rating) {
         _checkRep()
         if let rating = findRating(newEntry.getUserID(), newEntry.getRestaurantID()) {

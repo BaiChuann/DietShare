@@ -165,9 +165,9 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         return false;
     }
     
-    func deleteRestaurant(_ restaurant: Restaurant) {
+    func deleteRestaurant(_ restaurantID: String) {
         _checkRep()
-        let row = restaurantsTable.filter(id == restaurant.getID())
+        let row = restaurantsTable.filter(id == restaurantID)
         do {
             if try database.run(row.delete()) > 0 {
                 print("deleted the Restaurant")
@@ -180,9 +180,9 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         _checkRep()
     }
     
-    func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant) {
+    func updateRestaurant(_ oldRestaurantID: String, _ newRestaurant: Restaurant) {
         _checkRep()
-        let row = restaurantsTable.filter(id == oldRestaurant.getID())
+        let row = restaurantsTable.filter(id == oldRestaurantID)
         do {
             if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
                 print("Old Restaurant is updated")
