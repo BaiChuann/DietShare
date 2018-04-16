@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class RestaurantViewController: UIViewController {
+class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     
     private var restaurant: Restaurant?
     private var locationManager = CLLocationManager()
@@ -29,10 +29,15 @@ class RestaurantViewController: UIViewController {
     @IBOutlet weak var ratingArea: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var postsArea: UIView!
+    private var postsTable: UITableView!
+    private var postsTableController: PostsTableController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.RestaurantPage.longScrollViewHeight)
+        scrollView.delegate = self
         requestCoreLocationPermission()
     }
     
@@ -40,6 +45,7 @@ class RestaurantViewController: UIViewController {
         super.viewDidAppear(animated)
         
         initView()
+        initPosts()
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,6 +84,24 @@ class RestaurantViewController: UIViewController {
         
     }
     
+    private func initPosts() {
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
+        postsTableController?.setParentController(self)
+        if let restaurant = self.restaurant {
+            postsTableController?.getRestaurantPosts(restaurant.getID())
+        }
+        self.addChildViewController(postsTableController!)
+        
+        postsTableController?.setScrollDelegate(self)
+        postsTable = postsTableController?.getTable()
+        postsTable.frame = postsArea.frame
+        postsArea.removeFromSuperview()
+        scrollView.addSubview(postsTable)
+        postsTable.bounces = false
+        postsTable.isScrollEnabled = false
+    }
+    
+    
     @IBOutlet weak var rateRestaurantLabel: UILabel!
     @IBOutlet var newRatings: [UIButton]!
     
@@ -103,6 +127,20 @@ class RestaurantViewController: UIViewController {
             } else {
                 self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-empty"), for: .normal)
             }
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
         }
     }
     
@@ -165,3 +203,22 @@ extension RestaurantViewController: CLLocationManagerDelegate {
     }
 }
 
+
+extension RestaurantViewController: ScrollDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
+        {
+            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
+                print("yoffset is: \(yOffset)")
+                scrollView.isScrollEnabled = false
+                postsTable.isScrollEnabled = true
+            }
+            
+        }
+    }
+    func reachTop() {
+        scrollView.isScrollEnabled = true
+        postsTable.isScrollEnabled = false
+    }
+}

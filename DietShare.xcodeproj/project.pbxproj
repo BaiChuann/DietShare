@@ -107,6 +107,10 @@
 		B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B5EE1DA82083BBED00098E9B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE1DA72083BBED00098E9B /* MapViewController.swift */; };
+		B5EE1DAA2083BC0F00098E9B /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE1DA92083BC0F00098E9B /* CustomMarkerView.swift */; };
+		B5EE1DAC2083BEBE00098E9B /* RestaurantPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE1DAB2083BEBE00098E9B /* RestaurantPreview.swift */; };
+		B5EE1DAE2083CB6000098E9B /* RestaurantPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5EE1DAD2083CB6000098E9B /* RestaurantPreview.xib */; };
 		B5FF15A42080A3CA004F3954 /* RestaurantModelManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */; };
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
@@ -264,6 +268,10 @@
 		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
 		B5E7ABCA2076A634003FAB99 /* UserModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
+		B5EE1DA72083BBED00098E9B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B5EE1DA92083BC0F00098E9B /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
+		B5EE1DAB2083BEBE00098E9B /* RestaurantPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPreview.swift; sourceTree = "<group>"; };
+		B5EE1DAD2083CB6000098E9B /* RestaurantPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantPreview.xib; sourceTree = "<group>"; };
 		B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModelManagerTest.swift; sourceTree = "<group>"; };
 		F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPopup.xib; sourceTree = "<group>"; };
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -479,6 +487,7 @@
 				B504C2A2206BB6B9007F8956 /* TopicViewController.swift */,
 				B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */,
 				B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */,
+				B5EE1DA72083BBED00098E9B /* MapViewController.swift */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -493,6 +502,9 @@
 				B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */,
 				B5671A2220828477007DBF20 /* CuisineTypeCell.swift */,
 				B5671A242082857A007DBF20 /* CuisineTypeCell.xib */,
+				B5EE1DA92083BC0F00098E9B /* CustomMarkerView.swift */,
+				B5EE1DAB2083BEBE00098E9B /* RestaurantPreview.swift */,
+				B5EE1DAD2083CB6000098E9B /* RestaurantPreview.xib */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -779,6 +791,7 @@
 				F2BE689C205E8C8900DF9694 /* LaunchScreen.storyboard in Resources */,
 				3BDA2A31207FCBD500E99DE3 /* UserCell.xib in Resources */,
 				3BDA2A33207FCBD500E99DE3 /* PostCell.xib in Resources */,
+				B5EE1DAE2083CB6000098E9B /* RestaurantPreview.xib in Resources */,
 				3BDA2A34207FCBD500E99DE3 /* PostDetail.xib in Resources */,
 				3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */,
 				3BDA2A36207FCBD500E99DE3 /* TextField.xib in Resources */,
@@ -837,9 +850,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DietShare/Pods-DietShare-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -961,6 +981,7 @@
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				3BDA29DB207FC24A00E99DE3 /* FoodSelectController.swift in Sources */,
 				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
+				B5EE1DAC2083BEBE00098E9B /* RestaurantPreview.swift in Sources */,
 				3BDA29DA207FC24A00E99DE3 /* FoodAdderController.swift in Sources */,
 				3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,
@@ -969,6 +990,7 @@
 				3BDA2A32207FCBD500E99DE3 /* PostCell.swift in Sources */,
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
 				3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */,
+				B5EE1DAA2083BC0F00098E9B /* CustomMarkerView.swift in Sources */,
 				3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
@@ -1011,6 +1033,7 @@
 				B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */,
 				F26699202066CD3900E3A1F2 /* Post.swift in Sources */,
 				3BDA29DF207FC24A00E99DE3 /* PhotoUploaderViewController.swift in Sources */,
+				B5EE1DA82083BBED00098E9B /* MapViewController.swift in Sources */,
 				B5CBA115206949FA00BC8005 /* ShortListsViewController.swift in Sources */,
 				3B18BEE02074C5A200809D3A /* PostDetailController.swift in Sources */,
 				3BDA2A02207FC2CD00E99DE3 /* PhotoOptionCell.swift in Sources */,

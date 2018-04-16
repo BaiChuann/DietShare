@@ -12,6 +12,8 @@ import UIKit
 import CoreLocation
 import MapKit
 import DropDown
+import GoogleMaps
+import GooglePlaces
 
 class RestaurantListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -30,6 +32,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var ratingLogo: UIImageView!
     @IBOutlet weak var distanceLogo: UIImageView!
     private var cuisineDropDown = DropDown()
+    @IBOutlet weak var mapButton: UIButton!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == restaurantListView, let model = self.restaurantModel, let location = self.currentLocation {
@@ -74,9 +77,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        initDropDown()
+
+        initView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +90,19 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func initView() {
+        initDropDown()
+        initMapButton()
+    }
+    
+    private func initMapButton() {
+        self.mapButton.layer.shadowColor = UIColor.black.cgColor
+        self.mapButton.layer.shadowOpacity = 1
+        self.mapButton.layer.shadowOffset = CGSize.zero
+        self.mapButton.layer.shadowRadius = 10
+//        self.mapButton.layer.shouldRasterize = true
     }
     
     private func initDropDown() {
@@ -199,6 +214,9 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //TODO - check if the following two lines break the location manager. if not, add them
+//        locationManager.delegate = nil
+//        locationManager.stopUpdatingLocation()
         currentLocation = manager.location
         self.restaurantListView.reloadData()
     }
@@ -209,5 +227,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     
 }
+
+
 
 

@@ -30,8 +30,8 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
-        print("TopicLocalDataSource initializer called")
-        removeDB()
+//        print("TopicLocalDataSource initializer called")
+//        removeDB()
         createDB(title)
         createTable()
         prepopulate(topics)

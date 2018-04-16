@@ -23,4 +23,7 @@ target 'DietShare' do
   pod 'LinearProgressView'
   pod 'TagListView', '~> 1.0'
   pod 'Cosmos', '~> 15.0'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 end

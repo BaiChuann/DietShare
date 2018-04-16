@@ -235,7 +235,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI1-bX-wf1">
-                                        <rect key="frame" x="20" y="404" width="375" height="935"/>
+                                        <rect key="frame" x="20" y="404" width="375" height="865"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="735" id="l4w-zj-IiK"/>
@@ -469,7 +469,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-fo-X6h">
-                                        <rect key="frame" x="20" y="521" width="375" height="815"/>
+                                        <rect key="frame" x="20" y="521" width="375" height="737"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -697,11 +697,24 @@
                                     <constraint firstAttribute="height" constant="57" id="wG3-oM-slt"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvD-my-SKZ">
+                                <rect key="frame" x="289" y="578" width="61" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="Zuc-Cq-ttm"/>
+                                    <constraint firstAttribute="height" constant="48" id="qUv-I7-Jkx"/>
+                                </constraints>
+                                <state key="normal" title="Map" image="map"/>
+                                <connections>
+                                    <segue destination="khD-Ia-nkr" kind="show" id="Dcv-Hp-prU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6RI-ow-wCv" firstAttribute="leading" secondItem="4Xw-ki-rUN" secondAttribute="leading" id="2bc-qj-MR0"/>
                             <constraint firstItem="6RI-ow-wCv" firstAttribute="trailing" secondItem="4Xw-ki-rUN" secondAttribute="trailing" id="3gL-jA-bPP"/>
+                            <constraint firstItem="4Xw-ki-rUN" firstAttribute="bottom" secondItem="lvD-my-SKZ" secondAttribute="bottom" constant="27" id="JAm-aP-n3g"/>
+                            <constraint firstItem="4Xw-ki-rUN" firstAttribute="trailing" secondItem="lvD-my-SKZ" secondAttribute="trailing" constant="25" id="R94-vV-9uv"/>
                             <constraint firstItem="6RI-ow-wCv" firstAttribute="top" secondItem="PBL-fH-Gaz" secondAttribute="bottom" id="VuM-oj-NO3"/>
                             <constraint firstItem="PBL-fH-Gaz" firstAttribute="trailing" secondItem="4Xw-ki-rUN" secondAttribute="trailing" id="bcp-2g-eQB"/>
                             <constraint firstItem="6RI-ow-wCv" firstAttribute="top" secondItem="PBL-fH-Gaz" secondAttribute="bottom" id="c5C-7s-XX9"/>
@@ -713,6 +726,7 @@
                     </view>
                     <connections>
                         <outlet property="distanceLogo" destination="BKI-M3-2fx" id="Q3y-He-oGA"/>
+                        <outlet property="mapButton" destination="lvD-my-SKZ" id="yOU-dk-SEs"/>
                         <outlet property="ratingLogo" destination="eQP-Oo-C0M" id="ppd-Nm-3ZS"/>
                         <outlet property="restaurantListView" destination="6RI-ow-wCv" id="y86-I6-L5D"/>
                         <outletCollection property="buttonBar" destination="Uty-R0-g8p" collectionClass="NSMutableArray" id="EVJ-oE-S6x"/>
@@ -723,7 +737,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tls-2v-VUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-863" y="1571"/>
+            <point key="canvasLocation" x="-863.20000000000005" y="1570.1649175412294"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="61w-fv-01e">
+            <objects>
+                <viewController id="khD-Ia-nkr" customClass="MapViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vnh-Sv-oec">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="h3o-8C-LHi"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GB2-yB-M2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1030" y="2288"/>
         </scene>
         <!--Restaurant View Controller-->
         <scene sceneID="nTG-bA-7hD">
@@ -734,7 +763,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bp-B7-v71">
-                                <rect key="frame" x="-20" y="44" width="415" height="1356"/>
+                                <rect key="frame" x="-20" y="44" width="415" height="865"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-wJ-qBI">
                                         <rect key="frame" x="20" y="20" width="375" height="225"/>
@@ -901,7 +930,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-iW-lCF">
-                                        <rect key="frame" x="20" y="759" width="375" height="740"/>
+                                        <rect key="frame" x="20" y="759" width="375" height="671"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -921,6 +950,7 @@
                     <connections>
                         <outlet property="distance" destination="rAd-Lc-TV2" id="Vu3-xu-mMM"/>
                         <outlet property="numOfRatings" destination="aj6-Pd-oAr" id="Xu4-eK-lx9"/>
+                        <outlet property="postsArea" destination="PZB-iW-lCF" id="5gS-wQ-Xtz"/>
                         <outlet property="rateRestaurantLabel" destination="gqO-xn-ElW" id="BqC-8J-VZK"/>
                         <outlet property="ratingArea" destination="ICc-q4-s8C" id="13g-T5-7ah"/>
                         <outlet property="restaurantAddress" destination="ihJ-ZB-0Uo" id="Due-Nw-jsK"/>
@@ -953,6 +983,7 @@
         <image name="SeeMore" width="24" height="24"/>
         <image name="filter" width="128" height="128"/>
         <image name="location" width="23" height="32"/>
+        <image name="map" width="512" height="512"/>
         <image name="sort-highlighted" width="128" height="128"/>
         <image name="sort-normal" width="128" height="128"/>
         <image name="star-empty" width="135" height="128"/>
@@ -960,7 +991,7 @@
         <image name="star-half" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XL7-k9-PPc"/>
+        <segue reference="ahv-zj-TA9"/>
         <segue reference="ptX-g6-KnN"/>
         <segue reference="CkT-I1-2Rg"/>
         <segue reference="dzP-BU-JSp"/>

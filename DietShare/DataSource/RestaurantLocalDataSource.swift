@@ -35,8 +35,8 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ restaurants: [Restaurant], _ title: String) {
-        print("RestaurantLocalDataSource initializer called")
-        removeDB()
+//        print("RestaurantLocalDataSource initializer called")
+//        removeDB()
         createDB(title)
         createTable()
         prepopulate(restaurants)

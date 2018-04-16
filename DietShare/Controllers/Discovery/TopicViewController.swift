@@ -117,19 +117,19 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        if(velocity.y>0) {
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-            }, completion: nil)
-            
-        } else {
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
-            }, completion: nil)
-        }
-    }
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        
+//        if(velocity.y>0) {
+//            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+//                self.navigationController?.setNavigationBarHidden(true, animated: true)
+//            }, completion: nil)
+//            
+//        } else {
+//            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+//                self.navigationController?.setNavigationBarHidden(false, animated: true)
+//            }, completion: nil)
+//        }
+//    }
     
     // Handle tapping of follow button
     @IBAction func followButtonPressed(_ sender: UIButton) {

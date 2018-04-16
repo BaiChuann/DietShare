@@ -91,13 +91,11 @@ class Topic: ReadOnlyTopic {
     
     func addFollower(_ newFollower: User) {
         self.followers.addEntry(newFollower.getUserId())
-        print("Follower added: \(newFollower.getUserId())")
     }
     
     func removeFollower(_ follower: User) {
         let oldList = self.followers.getListAsSet()
         self.followers.setList(oldList.filter {$0 != follower.getUserId()})
-        print("Follower removed: \(follower.getUserId())")
     }
     
     // A topic is "<" than another one if it is higher in terms of popularity

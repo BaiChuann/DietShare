@@ -97,6 +97,12 @@ enum Sorting: Int {
     case byDistance = 1
 }
 
+struct Place {
+    var name: String
+    var lattitude: Double
+    var longitude: Double
+}
+
 struct Constants {
     public static let fontRegular = "Verdana"
     public static let fontBold = "Verdana-Bold"
@@ -134,7 +140,14 @@ struct Constants {
     struct RestaurantPage {
         public static let numOfDisplayedUsers = 10
         public static let restaurantImageAlpha: CGFloat = 0.8
-        public static let longScrollViewHeight: CGFloat = 1200
+        public static let longScrollViewHeight: CGFloat = 1400
+    }
+    
+    struct RestaurantListPage {
+        public static let restaurantLogoWidth: CGFloat = 50
+        public static let restaurantLogoHeight: CGFloat = 50
+        public static let restaurantLogoBorderWidth: CGFloat = 4
+        public static let locationMarkerHeight: CGFloat = 70
     }
     
     struct Tables {
