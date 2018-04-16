@@ -76,9 +76,6 @@ class PublisherController: UIViewController {
     }
 
     private func setUpUI() {
-//        addTopBorder(view: restaurantButton, color: .lightGray)
-//        addTopBorder(view: topicButton, color: .lightGray)
-//        addBottomBorder(view: topicButton, color: .lightGray)
         imageView.image = shareState?.modifiedPhoto
         imageView.isUserInteractionEnabled = true
 
@@ -168,22 +165,6 @@ class PublisherController: UIViewController {
             starRateView.rating = 0
         }
         offSetMultiplier = 0
-    }
-
-    // Add only bottom border for a UIView
-    private func addBottomBorder(view: UIView, color: UIColor) {
-        let frame = view.frame
-        let lineView = UIView(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: 1))
-        lineView.backgroundColor = color
-        view.addSubview(lineView)
-    }
-
-    // Add only top border for a UIView
-    private func addTopBorder(view: UIView, color: UIColor) {
-        let frame = view.frame
-        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 1))
-        lineView.backgroundColor = color
-        view.addSubview(lineView)
     }
 
     // Shift all component below restaurant

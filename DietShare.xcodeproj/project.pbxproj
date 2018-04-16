@@ -79,6 +79,7 @@
 		3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */; };
 		3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */; };
 		3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */; };
+		6AFF2F5E2084A60F0018DD84 /* RawIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF2F5D2084A60E0018DD84 /* RawIngredient.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -105,6 +106,7 @@
 		B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */; };
 		B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
+		F22650AD20848ACA00D29542 /* Ingredient_list.plist in Resources */ = {isa = PBXBuildFile; fileRef = F22650AC20848ACA00D29542 /* Ingredient_list.plist */; };
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
 		F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699152066CD3800E3A1F2 /* Comment.swift */; };
@@ -233,6 +235,7 @@
 		3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDelegate.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		6AFF2F5D2084A60E0018DD84 /* RawIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawIngredient.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
@@ -259,6 +262,7 @@
 		B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFullListCell.swift; sourceTree = "<group>"; };
 		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
+		F22650AC20848ACA00D29542 /* Ingredient_list.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ingredient_list.plist; sourceTree = "<group>"; };
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F26699142066CD3800E3A1F2 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		F26699152066CD3800E3A1F2 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */,
 				3B0834EB20827535009A45E3 /* FloatingTextInfo.swift */,
 				3BDA29C1207FC20A00E99DE3 /* Food.swift */,
+				6AFF2F5D2084A60E0018DD84 /* RawIngredient.swift */,
 				3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */,
 				3BDA29C3207FC20A00E99DE3 /* ShareState.swift */,
 				3BDA29C4207FC20A00E99DE3 /* StickerLayout.swift */,
@@ -528,6 +533,7 @@
 				F26699242068D47C00E3A1F2 /* Utilities.swift */,
 				F26698DD206649D400E3A1F2 /* Constants.swift */,
 				F26699252068D47C00E3A1F2 /* Notification+customName.swift */,
+				F22650AC20848ACA00D29542 /* Ingredient_list.plist */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
 				B5CBA1122069411C00BC8005 /* Discovery.storyboard */,
 				3B424B3B2080EF5E00AB90BE /* Profile.storyboard */,
+				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -576,7 +583,6 @@
 				F26699232068D47C00E3A1F2 /* Commons */,
 				F266992A2068D75100E3A1F2 /* Storyboards */,
 				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
-				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 				F2BE689D205E8C8900DF9694 /* Info.plist */,
 				3B424B3920809F0900AB90BE /* Assets.xcassets */,
 			);
@@ -773,6 +779,7 @@
 				3BDA2A35207FCBD500E99DE3 /* PostsTable.xib in Resources */,
 				3BDA2A2F207FCBD500E99DE3 /* CommentCell.xib in Resources */,
 				3BDA29F8207FC2CD00E99DE3 /* FloatingTextInputPopup.xib in Resources */,
+				F22650AD20848ACA00D29542 /* Ingredient_list.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,7 +815,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -983,6 +990,7 @@
 				3BDA2A30207FCBD500E99DE3 /* UserCell.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				3BDA2A00207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
+				6AFF2F5E2084A60F0018DD84 /* RawIngredient.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				3B0834E4208274D0009A45E3 /* PublisherController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
@@ -1182,7 +1190,7 @@
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1205,7 +1213,7 @@
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
