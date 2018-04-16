@@ -546,6 +546,7 @@
 				F26699282068D73200E3A1F2 /* Share.storyboard */,
 				B5CBA1122069411C00BC8005 /* Discovery.storyboard */,
 				3B424B3B2080EF5E00AB90BE /* Profile.storyboard */,
+				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -582,7 +583,6 @@
 				F26699232068D47C00E3A1F2 /* Commons */,
 				F266992A2068D75100E3A1F2 /* Storyboards */,
 				F2BE6891205E8C8900DF9694 /* AppDelegate.swift */,
-				F2BE689A205E8C8900DF9694 /* LaunchScreen.storyboard */,
 				F2BE689D205E8C8900DF9694 /* Info.plist */,
 				3B424B3920809F0900AB90BE /* Assets.xcassets */,
 			);

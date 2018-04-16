@@ -186,7 +186,8 @@ extension FoodAdderController: UICollectionViewDelegate, UICollectionViewDataSou
         }
 
         let ingredient = ingredients[indexPath.item]
-        ingredientCell.setImage(ingredient.image)
+        // Disable image for now, as the api that provides ingredient image is not be ready yet.
+        // ingredientCell.setImage(ingredient.image)
         ingredientCell.setName(ingredient.name)
 
         return ingredientCell

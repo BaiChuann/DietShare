@@ -298,8 +298,8 @@
                                                         <constraint firstAttribute="width" secondItem="Oya-Qq-Jmn" secondAttribute="height" multiplier="1:1" id="trn-fX-yiV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frn-Jl-aLY">
-                                                    <rect key="frame" x="12" y="35" width="27" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frn-Jl-aLY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
                                                     <color key="textColor" red="0.61176470589999998" green="0.62745098040000002" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -307,13 +307,14 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Frn-Jl-aLY" firstAttribute="centerX" secondItem="pQq-cY-QZw" secondAttribute="centerX" id="4ez-XU-eLs"/>
+                                            <constraint firstItem="Frn-Jl-aLY" firstAttribute="leading" secondItem="pQq-cY-QZw" secondAttribute="leading" id="5ah-3v-ykV"/>
                                             <constraint firstAttribute="bottom" secondItem="Oya-Qq-Jmn" secondAttribute="bottom" constant="20" id="AAI-96-hl1"/>
                                             <constraint firstItem="Oya-Qq-Jmn" firstAttribute="top" secondItem="pQq-cY-QZw" secondAttribute="top" id="Mha-Re-moy"/>
-                                            <constraint firstItem="Frn-Jl-aLY" firstAttribute="top" secondItem="Oya-Qq-Jmn" secondAttribute="bottom" constant="5" id="gjM-An-wB5"/>
+                                            <constraint firstAttribute="trailing" secondItem="Frn-Jl-aLY" secondAttribute="trailing" id="PhT-cw-qFB"/>
+                                            <constraint firstItem="Frn-Jl-aLY" firstAttribute="top" secondItem="pQq-cY-QZw" secondAttribute="top" id="T0M-Nk-VdJ"/>
                                             <constraint firstItem="Oya-Qq-Jmn" firstAttribute="top" secondItem="pQq-cY-QZw" secondAttribute="top" id="iHv-42-1NB"/>
+                                            <constraint firstAttribute="bottom" secondItem="Frn-Jl-aLY" secondAttribute="bottom" id="kkl-H9-e91"/>
                                             <constraint firstItem="Oya-Qq-Jmn" firstAttribute="centerX" secondItem="pQq-cY-QZw" secondAttribute="centerX" id="pMS-4W-PmM"/>
-                                            <constraint firstAttribute="bottom" secondItem="Frn-Jl-aLY" secondAttribute="bottom" id="yyx-tv-4LO"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="Oya-Qq-Jmn" id="jqv-fJ-fML"/>
@@ -368,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1D-aE-soK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="2640"/>
+            <point key="canvasLocation" x="1636" y="2639.7301349325339"/>
         </scene>
         <!--Photo Modifier Controller-->
         <scene sceneID="GLT-uz-d68">
