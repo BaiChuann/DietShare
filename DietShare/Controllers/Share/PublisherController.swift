@@ -35,6 +35,8 @@ class PublisherController: UIViewController {
     @IBOutlet private weak var starRateView: CosmosView!
 
     var shareState: ShareState?
+
+    private var publishManager = PublishManager.shared
     private var restaurantId: String = "-1"
     private var topicsId: [String] = []
     private var rating: Double = 0.0
@@ -46,12 +48,14 @@ class PublisherController: UIViewController {
     private let toTopicSegueIdentifier: String = "ShowTopicListInPublisher"
     private let maximumCharacter: Int = 140
     private let starRateAppearOffset: Int = 30
+    private let notificationCenter = NotificationCenter.default
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         addGestureRecognizer()
         setUpTextView()
+        setUpObserver()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +97,10 @@ class PublisherController: UIViewController {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
+    }
 
+    private func setUpObserver() {
+        notificationCenter.addObserver(self, selector: #selector(handleFacebookShareFail(_:)), name: .didFacebookShareFail, object: nil)
     }
 
     private func setUpTextView() {
@@ -157,6 +164,15 @@ class PublisherController: UIViewController {
         view.endEditing(true)
     }
 
+    
+    @objc
+    private func handleFacebookShareFail(_ notification: NSNotification) {
+        let alertController = UIAlertController(title: "Can't share to Facebook.", message: "Can't share to Facebook. ", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     @objc
     private func handleFacebookIconTap(_ sender: UITapGestureRecognizer) {
         if additionalOptions.contains(.facebook) {
@@ -178,22 +194,8 @@ class PublisherController: UIViewController {
         let topicsId = self.topicsId
         let rating = floor(self.rating * 2) / 2
         let options = additionalOptions
-        print("text: \(text)")
-        print("image: \(image)")
-        print("restaurantId: \(restaurantId)")
-        print("topicsId: \(topicsId)")
-        print("rating: \(rating)")
-        print("options: \(options)")
 
-        /*let shareDialog = ShareDialog(content: text)
-        shareDialog.mode = .Native
-        shareDialog.failsOnInvalidData = true
-        shareDialog.completion = { result in
-            // Handle share results
-        }*/
-        
-        //try shareDialog.show()
-
+        publishManager.post(text: text, image: image, restaurantId: restaurantId, topicsId: topicsId, rating: rating, additionalOption: options)
     }
 }
 

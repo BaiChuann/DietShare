@@ -18,6 +18,9 @@ class PublishManager {
     private var topicsId: [String] = []
     private var rating: Double = 0.0
     private var options: Set<PublishOption> = []
+    
+    private let facebookURL = NSURL(string: "fbauth2:/")
+    private let notificationCenter = NotificationCenter.default
 
     private init() {}
 
@@ -28,6 +31,52 @@ class PublishManager {
         self.topicsId = topicsId
         self.rating = rating
         self.options = additionalOption
+
+        var facebookShareSucceed = true
+
+        if options.contains(.facebook) {
+            facebookShareSucceed = postOnFacebook()
+        }
+
+        // TODO: should share fail if facebook share fails?
+        /*if facebookShareSucceed {
+            postInApp()
+        }*/
+        postInApp()
+    }
+
+    private func postOnFacebook() -> Bool {
+        guard let facebookURL = facebookURL else {
+            notificationCenter.post(name: .didFacebookShareFail, object: nil)
+            return false
+        }
+        guard UIApplication.shared.canOpenURL(facebookURL as URL) else {
+            notificationCenter.post(name: .didFacebookShareFail, object: nil)
+            return false
+        }
+
+        let photo = Photo(image: image, userGenerated: true)
+        let content = PhotoShareContent(photos: [photo])
+        let shareDialog = ShareDialog(content: content)
+        shareDialog.mode = .native
+        shareDialog.failsOnInvalidData = true
+
+        do {
+            try shareDialog.show()
+        } catch {
+            notificationCenter.post(name: .didFacebookShareFail, object: nil)
+            return false
+        }
+        return true
+    }
+
+    private func postInApp() {
+        print("text: \(text)")
+        print("image: \(image)")
+        print("restaurantId: \(restaurantId)")
+        print("topicsId: \(topicsId)")
+        print("rating: \(rating)")
+        print("options: \(options)")
     }
 }
 
