@@ -167,7 +167,7 @@ class PublisherController: UIViewController {
     
     @objc
     private func handleFacebookShareFail(_ notification: NSNotification) {
-        let alertController = UIAlertController(title: "Can't share to Facebook.", message: "Can't share to Facebook. ", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Can't share to Facebook.", message: "Share to Facebook requires installation of Facebook App", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)

@@ -32,16 +32,10 @@ class PublishManager {
         self.rating = rating
         self.options = additionalOption
 
-        var facebookShareSucceed = true
-
         if options.contains(.facebook) {
-            facebookShareSucceed = postOnFacebook()
+            _ = postOnFacebook()
         }
 
-        // TODO: should share fail if facebook share fails?
-        /*if facebookShareSucceed {
-            postInApp()
-        }*/
         postInApp()
     }
 
