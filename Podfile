@@ -26,4 +26,5 @@ target 'DietShare' do
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
   pod 'GoogleMaps'
+  pod 'SwiftMessages'
 end

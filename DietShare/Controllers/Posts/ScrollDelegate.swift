@@ -10,4 +10,5 @@ import UIKit
 
 protocol ScrollDelegate {
     func reachTop()
+    func didScroll()
 }

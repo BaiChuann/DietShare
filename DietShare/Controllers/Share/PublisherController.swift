@@ -11,6 +11,7 @@ import UIKit
 import TagListView
 import Cosmos
 import Darwin
+import FacebookShare
 
 protocol RestaurantSenderDelegate: class {
     func sendRestaurant(restaurant: (id: String, name: String))
@@ -34,23 +35,28 @@ class PublisherController: UIViewController {
     @IBOutlet private weak var starRateView: CosmosView!
 
     var shareState: ShareState?
+
+    private var publishManager = PublishManager.shared
     private var restaurantId: String = "-1"
     private var topicsId: [String] = []
     private var rating: Double = 0.0
     private var additionalOptions: Set<PublishOption> = []
 
     private var offSetMultiplier: Int = 0
+    private let amplifiedFrameTag: Int = 100
     private let placeholder: String = "Say something ..."
     private let toRestaurantSegueIdentifier: String = "ShowRestaurantListInPublisher"
     private let toTopicSegueIdentifier: String = "ShowTopicListInPublisher"
     private let maximumCharacter: Int = 140
     private let starRateAppearOffset: Int = 30
+    private let notificationCenter = NotificationCenter.default
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         addGestureRecognizer()
         setUpTextView()
+        setUpObserver()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,10 +76,8 @@ class PublisherController: UIViewController {
     }
 
     private func setUpUI() {
-//        addTopBorder(view: restaurantButton, color: .lightGray)
-//        addTopBorder(view: topicButton, color: .lightGray)
-//        addBottomBorder(view: topicButton, color: .lightGray)
         imageView.image = shareState?.modifiedPhoto
+        imageView.isUserInteractionEnabled = true
 
         tagListView.tagBackgroundColor = Constants.themeColor
         tagListView.textFont = UIFont(name: "Verdana", size: 12)!
@@ -92,14 +96,17 @@ class PublisherController: UIViewController {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
+    }
 
+    private func setUpObserver() {
+        notificationCenter.addObserver(self, selector: #selector(handleFacebookShareFail(_:)), name: .didFacebookShareFail, object: nil)
     }
 
     private func setUpTextView() {
         textView.text = placeholder
         textView.textColor = UIColor.lightGray
 
-        textView.becomeFirstResponder()
+        //textView.becomeFirstResponder()
 
         textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
 
@@ -112,6 +119,40 @@ class PublisherController: UIViewController {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
         view.addGestureRecognizer(tap)
+
+        let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(amplifyImage(_:)))
+        imageView.addGestureRecognizer(imageTapGestureRecognizer)
+    }
+
+    @objc private func amplifyImage(_ sender: UITapGestureRecognizer) {
+        guard let superView = view.superview else {
+            return
+        }
+        self.navigationController?.isNavigationBarHidden = true
+        let amplifiedFrame = UIView(frame: superView.frame)
+        amplifiedFrame.backgroundColor = UIColor.black
+        let image = imageView.image!
+        let imageAspect = image.size.height / image.size.width
+        let frameWidth = view.frame.width
+        let frameHeight = frameWidth * imageAspect
+        let frameY = view.frame.midY - frameHeight / 2
+        let frame = CGRect(x: 0, y: frameY, width: frameWidth, height: frameHeight)
+        let amplifiedImage = UIImageView(frame: frame)
+        amplifiedImage.image = image
+        amplifiedFrame.addSubview(amplifiedImage)
+        amplifiedFrame.tag = amplifiedFrameTag
+        superView.addSubview(amplifiedFrame)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissAmplifiedImage(_:)))
+        amplifiedFrame.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    @objc private func dismissAmplifiedImage(_ sender: UITapGestureRecognizer) {
+        guard let amplifiedFrame = view.superview?.viewWithTag(amplifiedFrameTag) else {
+            return
+        }
+        amplifiedFrame.removeFromSuperview()
+        navigationController?.isNavigationBarHidden = false
     }
 
     private func showStarRateView() {
@@ -126,22 +167,6 @@ class PublisherController: UIViewController {
         offSetMultiplier = 0
     }
 
-    // Add only bottom border for a UIView
-    private func addBottomBorder(view: UIView, color: UIColor) {
-        let frame = view.frame
-        let lineView = UIView(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: 1))
-        lineView.backgroundColor = color
-        view.addSubview(lineView)
-    }
-
-    // Add only top border for a UIView
-    private func addTopBorder(view: UIView, color: UIColor) {
-        let frame = view.frame
-        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 1))
-        lineView.backgroundColor = color
-        view.addSubview(lineView)
-    }
-
     // Shift all component below restaurant
     private func shiftBottomComponent(dx: CGFloat, dy: CGFloat) {
         topicLabel.frame = topicLabel.frame.offsetBy(dx: dx, dy: dy)
@@ -154,6 +179,14 @@ class PublisherController: UIViewController {
     @objc
     private func dismissKeyboard(sender: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+
+    @objc
+    private func handleFacebookShareFail(_ notification: NSNotification) {
+        let alertController = UIAlertController(title: "Can't share to Facebook.", message: "Share to Facebook requires installation of Facebook App", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     @objc
@@ -177,12 +210,8 @@ class PublisherController: UIViewController {
         let topicsId = self.topicsId
         let rating = floor(self.rating * 2) / 2
         let options = additionalOptions
-        print("text: \(text)")
-        print("image: \(image)")
-        print("restaurantId: \(restaurantId)")
-        print("topicsId: \(topicsId)")
-        print("rating: \(rating)")
-        print("options: \(options)")
+
+        publishManager.post(text: text, image: image, restaurantId: restaurantId, topicsId: topicsId, rating: rating, additionalOption: options)
     }
 }
 

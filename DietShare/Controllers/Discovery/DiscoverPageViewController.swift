@@ -87,6 +87,18 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool){
+        self.tabBarController?.tabBar.isHidden = true
+    }
 
     
     override func viewDidLoad() {
@@ -171,6 +183,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
 
 //SCROLL IMPLEMENTATION
 extension DiscoverPageViewController: ScrollDelegate {
+    func didScroll() {
+        
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
