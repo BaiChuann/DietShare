@@ -19,7 +19,8 @@ protocol RestaurantsDataSource {
     func getNumOfRestaurants() -> Int
     func addRestaurant(_ newRestaurant: Restaurant)
     func addRestaurants(_ newRestaurants: SortedSet<Restaurant>)
-    func deleteRestaurant(_ newRestaurant: Restaurant)
-    func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant)
+    func deleteRestaurant(_ restaurantID: String)
+    func updateRestaurant(_ oldRestaurantID: String, _ newRestaurant: Restaurant)
     func searchWithKeyword(_ keyword: String) -> [Restaurant]
+    func getRestaurantByID(_ id: String) -> Restaurant?
 }

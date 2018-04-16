@@ -30,7 +30,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
-        print("TopicLocalDataSource initializer called")
+//        print("TopicLocalDataSource initializer called")
         removeDB()
         createDB(title)
         createTable()
@@ -281,7 +281,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         
         return true
     }
-    
 }
 
 
@@ -299,5 +298,7 @@ extension UIImage: Value {
         let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
         return strBase64
     }
-    
 }
+
+
+

@@ -82,4 +82,9 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         topic.addFollower(newFollower)
         self.topicsDataSource.updateTopic(topic.getID(), topic)
     }
+    
+    func removeFollower(_ follower: User, _ topic: Topic) {
+        topic.removeFollower(follower)
+        self.topicsDataSource.updateTopic(topic.getID(), topic)
+    }
 }

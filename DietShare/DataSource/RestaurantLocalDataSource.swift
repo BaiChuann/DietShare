@@ -30,12 +30,12 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     private let phone = Expression<String>("phone")
     private let types = Expression<StringList>("types")
     private let posts = Expression<StringList>("posts")
-    private let ratings = Expression<StringList>("ratings")
+    private let ratings = Expression<RatingList>("ratings")
     private let ratingScore = Expression<Double>("ratingScore")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ restaurants: [Restaurant], _ title: String) {
-        print("RestaurantLocalDataSource initializer called")
+//        print("RestaurantLocalDataSource initializer called")
         removeDB()
         createDB(title)
         createTable()
@@ -94,7 +94,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
                 
                 let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 restaurants.insert(restaurantEntry)
-                
             }
             
             print("Time lapsed for getting restaurants: \(CFAbsoluteTimeGetCurrent() - startTime)")
@@ -102,6 +101,21 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             print("failed to get row: \(error)")
         }
         return restaurants
+    }
+    
+    func getRestaurantByID(_ restaurantID: String) -> Restaurant? {
+        do {
+            let startTime = CFAbsoluteTimeGetCurrent()
+            let row = restaurantsTable.filter(id == restaurantID)
+            for restaurant in try database.prepare(row) {
+                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                return restaurantEntry
+            }
+            print("Time lapsed for getting restaurant by ID: \(CFAbsoluteTimeGetCurrent() - startTime)")
+        } catch let error {
+            print("failed to get row: \(error)")
+        }
+        return nil
     }
     
     func getNumOfRestaurants() -> Int {
@@ -151,9 +165,9 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         return false;
     }
     
-    func deleteRestaurant(_ restaurant: Restaurant) {
+    func deleteRestaurant(_ restaurantID: String) {
         _checkRep()
-        let row = restaurantsTable.filter(id == restaurant.getID())
+        let row = restaurantsTable.filter(id == restaurantID)
         do {
             if try database.run(row.delete()) > 0 {
                 print("deleted the Restaurant")
@@ -166,9 +180,9 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         _checkRep()
     }
     
-    func updateRestaurant(_ oldRestaurant: Restaurant, _ newRestaurant: Restaurant) {
+    func updateRestaurant(_ oldRestaurantID: String, _ newRestaurant: Restaurant) {
         _checkRep()
-        let row = restaurantsTable.filter(id == oldRestaurant.getID())
+        let row = restaurantsTable.filter(id == oldRestaurantID)
         do {
             if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
                 print("Old Restaurant is updated")
@@ -230,21 +244,42 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     private func prepopulate() {
         _checkRep()
-        for i in 0..<20 {
+        let testRating = Rating.getTestInstance()
+        let testRatingList = RatingList()
+        testRatingList.addEntry(testRating)
+        for i in 0..<10 {
             if !containsRestaurant("i") {
-                let location = CLLocation(latitude: 1.35212, longitude: 103.81985)
-                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.5)
+                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
+                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
+                let location = CLLocation(latitude: 1.22512 + randLatOffset, longitude: 103.84985 + randLongOffset)
+                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5)
+                
+                let types: [RestaurantType] = [.Vegetarian, .European]
+                restaurant.setTypes(types)
                 self.addRestaurant(restaurant)
                 }
             
         }
+        for i in 10..<20 {
+            if !containsRestaurant("i") {
+                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
+                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
+                let location = CLLocation(latitude: 1.25212 + randLatOffset, longitude: 103.71985 + randLongOffset)
+                let restaurant = Restaurant(String(i), "Burger Shack", "1 Boon Lay Road, #03-02", location, "98700432", StringList(.RestaurantType), "The first Burger Shack in Singapore. We provide awesomeness.", "burger-shack.jpg", testRatingList, StringList(.Post), 3.0)
+                
+                let types: [RestaurantType] = [.American, .European]
+                restaurant.setTypes(types)
+                self.addRestaurant(restaurant)
+            }
+            
+        }
         
         let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
-        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 5.0)
+        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 5.0)
         self.addRestaurant(restaurantFar)
 //
         let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
-        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", StringList(.Rating), StringList(.Post), 4.0)
+        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.0)
         self.addRestaurant(restaurantClose)
         _checkRep()
     }

@@ -22,12 +22,33 @@ enum AppStoryboard: String {
     }
 }
 
-enum RestaurantType: String {
+
+protocol EnumCollection : Hashable {}
+
+extension EnumCollection {
+    static func cases() -> AnySequence<Self> {
+        typealias S = Self
+        return AnySequence { () -> AnyIterator<S> in
+            var raw = 0
+            return AnyIterator {
+                let current : Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: S.self, capacity: 1) { $0.pointee } }
+                guard current.hashValue == raw else { return nil }
+                raw += 1
+                return current
+            }
+        }
+    }
+}
+
+enum RestaurantType: String, EnumCollection {
     case Vegetarian = "Vegetarian"
-    case Asian = "Asian"
     case European = "European"
     case Indian = "Indian"
     case Japanese = "Japanese"
+    case American = "American"
+    case Korean = "Korean"
+    case Chinese = "Chinese"
+    case Thai = "Thai"
 }
 
 enum ListType: String {
@@ -38,12 +59,12 @@ enum ListType: String {
     case RestaurantType = "restaurantType"
 }
 
-enum RatingScore: Double {
-    case oneStar = 1.0
-    case twoStar = 2.0
-    case threeStar = 3.0
-    case fourStar = 4.0
-    case fiveStar = 5.0
+enum RatingScore: Int {
+    case oneStar = 1
+    case twoStar = 2
+    case threeStar = 3
+    case fourStar = 4
+    case fiveStar = 5
 }
 
 struct Identifiers {
@@ -56,11 +77,17 @@ struct Identifiers {
     public static let restaurantFullListCell = "restaurantFullListCell"
     public static let restaurantListToDetailPage = "restaurantListToDetailPage"
     public static let discoveryToRestaurantPage = "discoveryToRestaurantPage"
+    public static let unwindMapToRestaurantList = "unwindMapToRestaurantList"
+    public static let mapToRestaurant = "mapToRestaurant"
+    public static let unwindRestaurantToMap = "unwindRestaurantToMap"
 }
 
 struct Text {
     public static let follow = "+Follow"
     public static let unfollow = "Unfollow"
+    public static let unknownDistance = "Unknow Distance"
+    public static let rateTheRestaurant = "Rate this restaurant"
+    public static let yourRating = "Your Rating"
 }
 
 enum FollowStatus: Int {
@@ -71,6 +98,12 @@ enum FollowStatus: Int {
 enum Sorting: Int {
     case byRating = 0
     case byDistance = 1
+}
+
+struct Place {
+    var name: String
+    var lattitude: Double
+    var longitude: Double
 }
 
 struct Constants {
@@ -91,6 +124,9 @@ struct Constants {
     public static let defaultTagCornerRadius: CGFloat = 8.0
     public static let numOfItemPerLoad = 10
     public static let voidBackgroundImagePath = "void-bg"
+    public static let ratingAnimationDuration = 0.7
+    public static let defaultAnimationDuration = 0.5
+    public static let loadMarkerDuration = 0.8
 
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6
@@ -103,13 +139,25 @@ struct Constants {
     struct TopicPage {
         public static let numOfDisplayedUsers = 10
         public static let topicImageAlpha: CGFloat = 0.8
-        public static let longScrollViewHeight: CGFloat = 1400
+        public static let longScrollViewHeight: CGFloat = 1200
     }
 
     struct RestaurantPage {
         public static let numOfDisplayedUsers = 10
         public static let restaurantImageAlpha: CGFloat = 0.8
-        public static let longScrollViewHeight: CGFloat = 1200
+        public static let longScrollViewHeight: CGFloat = 1400
+    }
+    
+    struct RestaurantListPage {
+        public static let restaurantLogoWidth: CGFloat = 50
+        public static let restaurantLogoHeight: CGFloat = 50
+        public static let restaurantLogoBorderWidth: CGFloat = 4
+        public static let locationMarkerHeight: CGFloat = 70
+    }
+    
+    struct MapPage {
+        public static let defaultZoom = 17.0
+        public static let maxNumOfMarkers = 40
     }
     
     struct Tables {
