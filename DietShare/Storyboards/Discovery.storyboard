@@ -247,9 +247,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Eqr-5j-mhl" secondAttribute="trailing" id="4xV-9t-Fg0"/>
-                            <constraint firstItem="Eqr-5j-mhl" firstAttribute="leading" secondItem="RbU-ed-vNf" secondAttribute="leading" id="DLv-KT-dmF"/>
+                            <constraint firstAttribute="trailing" secondItem="Eqr-5j-mhl" secondAttribute="trailing" constant="-40" id="Bv1-V6-NeB"/>
                             <constraint firstItem="Eqr-5j-mhl" firstAttribute="top" secondItem="RbU-ed-vNf" secondAttribute="top" id="TSf-Yd-QRY"/>
+                            <constraint firstItem="Eqr-5j-mhl" firstAttribute="leading" secondItem="RbU-ed-vNf" secondAttribute="leading" constant="-20" id="qOa-Yf-EU5"/>
                             <constraint firstItem="Eqr-5j-mhl" firstAttribute="bottom" secondItem="W6q-cA-2Fn" secondAttribute="bottom" id="wAm-0N-b4c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W6q-cA-2Fn"/>
@@ -477,9 +477,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3yr-Mx-gYJ" firstAttribute="top" secondItem="DBl-Fs-Xjc" secondAttribute="top" id="JCe-gL-jUC"/>
-                            <constraint firstAttribute="trailing" secondItem="3yr-Mx-gYJ" secondAttribute="trailing" id="i2J-ct-4XV"/>
+                            <constraint firstAttribute="trailing" secondItem="3yr-Mx-gYJ" secondAttribute="trailing" constant="-20" id="c67-9c-Biy"/>
+                            <constraint firstItem="3yr-Mx-gYJ" firstAttribute="leading" secondItem="DBl-Fs-Xjc" secondAttribute="leading" constant="-20" id="e0v-ob-fln"/>
                             <constraint firstItem="3yr-Mx-gYJ" firstAttribute="bottom" secondItem="fhU-9e-N3c" secondAttribute="bottom" id="nIA-o9-7go"/>
-                            <constraint firstItem="3yr-Mx-gYJ" firstAttribute="leading" secondItem="DBl-Fs-Xjc" secondAttribute="leading" id="wbX-Td-w4x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fhU-9e-N3c"/>
                     </view>
@@ -872,10 +872,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5bp-B7-v71" secondAttribute="trailing" id="3Dj-iR-zAy"/>
                             <constraint firstAttribute="bottom" secondItem="5bp-B7-v71" secondAttribute="bottom" constant="-21" id="Nd4-6v-ilQ"/>
-                            <constraint firstItem="5bp-B7-v71" firstAttribute="leading" secondItem="MhQ-tJ-0MO" secondAttribute="leading" id="RTa-sc-jqW"/>
+                            <constraint firstAttribute="trailing" secondItem="5bp-B7-v71" secondAttribute="trailing" constant="-20" id="OzS-Ci-Uqa"/>
                             <constraint firstItem="5bp-B7-v71" firstAttribute="top" secondItem="MhQ-tJ-0MO" secondAttribute="top" id="gbr-rM-NqW"/>
+                            <constraint firstItem="5bp-B7-v71" firstAttribute="leading" secondItem="MhQ-tJ-0MO" secondAttribute="leading" constant="-20" id="tbL-tH-aMR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ob9-gc-HZP"/>
                     </view>
@@ -928,7 +928,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="XL7-k9-PPc"/>
         <segue reference="ptX-g6-KnN"/>
-        <segue reference="CkT-I1-2Rg"/>
+        <segue reference="SE3-Jc-wXc"/>
         <segue reference="dzP-BU-JSp"/>
     </inferredMetricsTieBreakers>
 </document>
