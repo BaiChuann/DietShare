@@ -47,19 +47,13 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         initView()
         initPosts()
         
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        //tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool){
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
