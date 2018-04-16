@@ -35,11 +35,16 @@ struct Food {
     }
 
     // Init food added by user
-    init(name: String, image: UIImage, ingredients: [Ingredient], nutrition: [NutritionType: Double]) {
+    init(name: String, image: UIImage, ingredients: [Ingredient]) {
         self.id = 0
         self.name = name
         self.image = image
         self.ingredients = ingredients
-        self.nutrition = nutrition
+        self.nutrition = [
+            NutritionType.fats: 220,
+            NutritionType.proteins: 150,
+            NutritionType.carbohydrate: 100,
+            NutritionType.calories: 445
+        ]
     }
 }

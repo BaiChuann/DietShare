@@ -27,16 +27,14 @@ class RestaurantListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpUI()
-        setUpTable()
-        setUpSearchBar()
-        loadRestaurantData()
-    }
-
-    private func setUpUI() {
+        
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
+        
+        setUpTable()
+        setUpSearchBar()
+        loadRestaurantData()
     }
 
     private func setUpTable() {

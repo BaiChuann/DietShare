@@ -7,7 +7,6 @@
 
 import UIKit
 import DropDown
-import SwiftMessages
 
 enum IngredientInfoType: Int {
     case name = 0, quantity, uint
@@ -16,16 +15,16 @@ enum IngredientInfoType: Int {
 class IngredientPopupController: UIViewController {
     @IBOutlet private var inputGroup: [UITextField]!
     @IBOutlet private var unitButtonGroup: [UIButton]!
+    @IBOutlet weak private var warningLabel: UILabel!
     @IBOutlet weak private var saveButton: UIButton!
 
     weak var delegate: FoodAdderDelegate?
     private var currentSelectedUnit = 0
     private let ingredientDropDown = DropDown()
+    private var name: String?
     private var quantity: Int?
     private var unit = IngredientUnit.sBowl
     private var image = UIImage(named: "ingredient-example")
-    private var selectedIngredient: RawIngredient?
-    private var ingredientList = [RawIngredient]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +33,16 @@ class IngredientPopupController: UIViewController {
         setUpIngredientDropDown()
         setUpInputDelegate()
         addInputBorder(for: inputGroup, withColor: Constants.lightTextColor)
-        fetchIngredientDataList()
 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        guard let quantity = quantity,
-            let image = image,
-            let rawIngredient = selectedIngredient else {
+        guard let name = name, let quantity = quantity, let image = image else {
             return
         }
 
-        let currentIngredient = Ingredient(image: image, quantity: quantity, unit: unit, rawInfo: rawIngredient)
+        let currentIngredient = Ingredient(name: name, image: image, quantity: quantity, unit: unit)
         delegate?.addIngredient(currentIngredient)
     }
 
@@ -71,7 +67,7 @@ class IngredientPopupController: UIViewController {
 
             switch input.tag {
             case IngredientInfoType.name.rawValue:
-                selectedIngredient = ingredientList.first { $0.name.lowercased() == text.lowercased() }
+                name = text
             case IngredientInfoType.quantity.rawValue:
                 quantity = Int(text)
             default:
@@ -79,14 +75,8 @@ class IngredientPopupController: UIViewController {
             }
         }
 
-        guard let quantity = quantity, quantity > 0, selectedIngredient != nil else {
-            let warningView = MessageView.viewFromNib(layout: .cardView)
-            warningView.configureTheme(.warning)
-            warningView.configureDropShadow()
-            warningView.configureContent(title: "Failed to save", body: "Please provide all information for the ingredient.")
-            warningView.button?.isHidden = true
-            warningView.configureBackgroundView(sideMargin: 12)
-            SwiftMessages.show(view: warningView)
+        guard let name = name, let quantity = quantity, !name.isEmpty, quantity > 0 else {
+            warningLabel.isHidden = false
             return
         }
 
@@ -95,42 +85,6 @@ class IngredientPopupController: UIViewController {
 
     @IBAction func onCloseButtonPressed(_ sender: Any) {
         dismissPopUp()
-    }
-
-    private func fetchIngredientDataList() {
-        let INGREDIENT_LIST_PATH = Bundle.main.path(forResource: "Ingredient_list", ofType: "plist")
-        let INGREDIENT_LIST_KEY_NAME = "name"
-        let INGREDIENT_LIST_KEY_ENERGY = "energy"
-        let INGREDIENT_LIST_KEY_PROTEIN = "protein"
-        let INGREDIENT_LIST_KEY_CARBOHYDRATE = "carbohydrate"
-        let INGREDIENT_LIST_KEY_FAT = "fat"
-        
-        if let path = INGREDIENT_LIST_PATH, let data = NSArray(contentsOf: URL(fileURLWithPath: path)) {
-            print("loading ingredient list")
-            for entry in data {
-                print("current entry: \(entry)")
-                guard let dict = entry as? [String: AnyObject] else {
-                    continue
-                }
-                
-                guard let proteins = dict[INGREDIENT_LIST_KEY_PROTEIN] as? Double,
-                    let carbohydrate = dict[INGREDIENT_LIST_KEY_CARBOHYDRATE] as? Double,
-                    let fats = dict[INGREDIENT_LIST_KEY_FAT] as? Double,
-                    let calories = dict[INGREDIENT_LIST_KEY_ENERGY] as? Double,
-                    let name = dict[INGREDIENT_LIST_KEY_NAME] as? String else {
-                    continue
-                }
-                
-                let nutrition = [
-                    NutritionType.proteins: proteins,
-                    NutritionType.carbohydrate: carbohydrate,
-                    NutritionType.fats: fats,
-                    NutritionType.calories: calories
-                ]
-                
-                ingredientList.append(RawIngredient(name: name, nutrition: nutrition))
-            }
-        }
     }
 
     private func setUpUI() {
@@ -156,6 +110,8 @@ class IngredientPopupController: UIViewController {
         saveButton.layer.cornerRadius = Constants.cornerRadius
         saveButton.backgroundColor = Constants.themeColor
         saveButton.setTitleColor(UIColor.white, for: .normal)
+
+        warningLabel.isHidden = true
     }
 
     private func setUpIngredientDropDown() {
@@ -171,7 +127,7 @@ class IngredientPopupController: UIViewController {
                 return
             }
             cell.ingredientIcon.image = self.image
-            cell.optionLabel.text = item
+            cell.optionLabel.text = "food \(index)"
         }
 
         ingredientDropDown.selectionAction = { [weak self] index, item in
@@ -220,9 +176,10 @@ extension IngredientPopupController: UITextFieldDelegate {
     func textFieldDidChange(_ textField: UITextField) {
         if textField.tag == IngredientInfoType.name.rawValue, let text = textField.text {
             let input = text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            let exampleDataSource = ["food1", "food2", "food3", "food4"]
             ingredientDropDown.anchorView = textField
             ingredientDropDown.bottomOffset = CGPoint(x: 0, y: textField.bounds.height)
-            ingredientDropDown.dataSource = ingredientList.filter { $0.name.contains(input) }.map { $0.name }
+            ingredientDropDown.dataSource = exampleDataSource.filter { $0.contains(input) }
 
             if !ingredientDropDown.dataSource.isEmpty {
                 ingredientDropDown.show()

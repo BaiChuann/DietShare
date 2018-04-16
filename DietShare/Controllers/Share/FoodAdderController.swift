@@ -8,7 +8,6 @@
 
 import UIKit
 import PopupDialog
-import SwiftMessages
 
 protocol FoodAdderDelegate: class {
     func addIngredient(_: Ingredient)
@@ -51,57 +50,13 @@ class FoodAdderController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         removeKeyboardNotifications()
     }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard let name = foodName, !name.isEmpty, shareState?.originalPhoto != nil else {
-            let warningView = MessageView.viewFromNib(layout: .cardView)
-            warningView.configureTheme(.warning)
-            warningView.configureDropShadow()
-            warningView.configureContent(title: "Sorry", body: "Please add food name and ingredients before proceeding.")
-            warningView.button?.isHidden = true
-            warningView.configureBackgroundView(sideMargin: 0)
-            SwiftMessages.show(view: warningView)
-            return false
-        }
-        
-        return true
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPhotoModifier" {
             if let destinationVC = segue.destination as? PhotoModifierController {
-                guard let name = foodName, !name.isEmpty, let image = shareState?.originalPhoto else {
-                    return
-                }
-
-                let food = Food(name: name, image: image, ingredients: ingredients, nutrition: getNutritionInfo())
-                shareState?.food = food
                 destinationVC.shareState = shareState
             }
         }
-    }
-    
-    private func getNutritionInfo() -> [NutritionType: Double] {
-        var carbohydrate = 0.0
-        var calories = 0.0
-        var proteins = 0.0
-        var fats = 0.0
-        
-        ingredients.forEach {
-            carbohydrate += $0.rawInfo.nutrition[NutritionType.carbohydrate] ?? 0
-            calories += $0.rawInfo.nutrition[NutritionType.calories] ?? 0
-            proteins += $0.rawInfo.nutrition[NutritionType.proteins] ?? 0
-            fats += $0.rawInfo.nutrition[NutritionType.fats] ?? 0
-        }
-        
-        let nutrition = [
-            NutritionType.calories: calories,
-            NutritionType.carbohydrate: carbohydrate,
-            NutritionType.fats: fats,
-            NutritionType.proteins: proteins
-        ]
-        
-        return nutrition
     }
 
     private func setUpUI() {
@@ -186,8 +141,7 @@ extension FoodAdderController: UICollectionViewDelegate, UICollectionViewDataSou
         }
 
         let ingredient = ingredients[indexPath.item]
-        // Disable image for now, as the api that provides ingredient image is not be ready yet.
-        // ingredientCell.setImage(ingredient.image)
+        ingredientCell.setImage(ingredient.image)
         ingredientCell.setName(ingredient.name)
 
         return ingredientCell

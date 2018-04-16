@@ -120,7 +120,7 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
         {
             //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
-            if yOffset > scrollView.contentSize.height - postsArea.frame.height {
+            if yOffset >= scrollView.contentSize.height - postsArea.frame.height {
                 scrollView.isScrollEnabled = false
                 tableView.isScrollEnabled = true
             }
@@ -130,8 +130,6 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func reachTop() {
         scrollView.isScrollEnabled = true
         tableView.isScrollEnabled = false
-    }
-    func didScroll() {
     }
 }
 //================

@@ -40,17 +40,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
         initView()
         initPosts()
-        
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    override func viewWillDisappear(_ animated: Bool){
-        self.tabBarController?.tabBar.isHidden = true
     }
     
 
@@ -172,10 +161,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
 }
 
 extension TopicViewController: ScrollDelegate {
-    func didScroll() {
-        
-    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
