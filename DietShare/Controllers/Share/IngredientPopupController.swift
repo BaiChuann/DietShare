@@ -7,6 +7,7 @@
 
 import UIKit
 import DropDown
+import SwiftMessages
 
 enum IngredientInfoType: Int {
     case name = 0, quantity, uint
@@ -15,7 +16,6 @@ enum IngredientInfoType: Int {
 class IngredientPopupController: UIViewController {
     @IBOutlet private var inputGroup: [UITextField]!
     @IBOutlet private var unitButtonGroup: [UIButton]!
-    @IBOutlet weak private var warningLabel: UILabel!
     @IBOutlet weak private var saveButton: UIButton!
 
     weak var delegate: FoodAdderDelegate?
@@ -80,7 +80,13 @@ class IngredientPopupController: UIViewController {
         }
 
         guard let quantity = quantity, quantity > 0, selectedIngredient != nil else {
-            warningLabel.isHidden = false
+            let warningView = MessageView.viewFromNib(layout: .cardView)
+            warningView.configureTheme(.warning)
+            warningView.configureDropShadow()
+            warningView.configureContent(title: "Failed to save", body: "Please provide all information for the ingredient.")
+            warningView.button?.isHidden = true
+            warningView.configureBackgroundView(sideMargin: 12)
+            SwiftMessages.show(view: warningView)
             return
         }
 
@@ -150,8 +156,6 @@ class IngredientPopupController: UIViewController {
         saveButton.layer.cornerRadius = Constants.cornerRadius
         saveButton.backgroundColor = Constants.themeColor
         saveButton.setTitleColor(UIColor.white, for: .normal)
-
-        warningLabel.isHidden = true
     }
 
     private func setUpIngredientDropDown() {

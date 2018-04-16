@@ -8,6 +8,7 @@
 
 import UIKit
 import PopupDialog
+import SwiftMessages
 
 protocol FoodAdderDelegate: class {
     func addIngredient(_: Ingredient)
@@ -53,6 +54,13 @@ class FoodAdderController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard let name = foodName, !name.isEmpty, shareState?.originalPhoto != nil else {
+            let warningView = MessageView.viewFromNib(layout: .cardView)
+            warningView.configureTheme(.warning)
+            warningView.configureDropShadow()
+            warningView.configureContent(title: "Sorry", body: "Please add food name and ingredients before proceeding.")
+            warningView.button?.isHidden = true
+            warningView.configureBackgroundView(sideMargin: 0)
+            SwiftMessages.show(view: warningView)
             return false
         }
         
