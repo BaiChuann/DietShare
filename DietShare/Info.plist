@@ -61,10 +61,10 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>DietShare would like to use your location.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Enable Camera to take photos.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>DietShare would like to use your location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>DietShare would like to use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

@@ -36,7 +36,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var count = 0
-        if collectionView == restaurantListView, let model = self.restaurantModel, let location = self.currentLocation {
+        let model = self.restaurantModel
+        if collectionView == restaurantListView, let location = self.currentLocation {
             count = model.getSortedRestaurantList(currentSort, currentTypeFilters, location).count
         }
         print("\(count) restaurants found")
