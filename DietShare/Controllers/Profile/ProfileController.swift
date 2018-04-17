@@ -20,7 +20,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak private var editButton: UIButton!
     @IBOutlet weak private var postsArea: UIView!
     @IBOutlet weak private var postsAreaHeight: NSLayoutConstraint!
-    
+
     private var profile: Profile!
     private var userId = ""
     private var postsTableController: PostsTableController!
@@ -49,7 +49,7 @@ class ProfileController: UIViewController {
     override func viewWillDisappear(_ animated: Bool){
         self.tabBarController?.tabBar.isHidden = true
     }
-    
+
     override func viewDidLoad() {
         if userId == "" {
             setUserId(currentUser)

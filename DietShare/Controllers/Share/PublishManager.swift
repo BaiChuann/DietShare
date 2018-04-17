@@ -18,7 +18,6 @@ class PublishManager {
     private var topicsId: [String] = []
     private var rating: Double = 0.0
     private var options: Set<PublishOption> = []
-    
     private let facebookURL = NSURL(string: "fbauth2:/")
     private let notificationCenter = NotificationCenter.default
 
