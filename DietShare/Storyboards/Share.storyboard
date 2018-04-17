@@ -895,7 +895,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="QKY-hl-maB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="QKY-hl-maB">
                                         <rect key="frame" x="16" y="339" width="24" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QKY-hl-maB" secondAttribute="height" multiplier="25:29" id="lgw-RD-mu2"/>
@@ -1199,7 +1199,7 @@
         <image name="checked" width="25" height="25"/>
         <image name="facebook-logo-gray" width="700" height="700"/>
         <image name="food-example-1" width="125" height="165"/>
-        <image name="location" width="23" height="32"/>
+        <image name="location-restaurant" width="23" height="32"/>
         <image name="qr-code" width="34" height="34"/>
         <image name="topic" width="25" height="28"/>
     </resources>

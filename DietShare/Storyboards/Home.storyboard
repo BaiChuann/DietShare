@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -84,7 +85,11 @@
                                         </connections>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brS-8e-qpP">
-                                        <rect key="frame" x="320" y="3" width="44" height="24"/>
+                                        <rect key="frame" x="334" y="3" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="brS-8e-qpP" secondAttribute="height" multiplier="1:1" id="4ch-sG-Nt6"/>
+                                            <constraint firstAttribute="width" constant="25" id="njt-z7-T2h"/>
+                                        </constraints>
                                         <state key="normal" image="mentioned"/>
                                         <connections>
                                             <segue destination="TwC-cr-Yh1" kind="show" id="4r4-el-Mdt"/>
@@ -93,13 +98,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="brS-8e-qpP" secondAttribute="trailing" constant="11" id="29x-yP-8o2"/>
-                                    <constraint firstItem="brS-8e-qpP" firstAttribute="top" secondItem="7vB-bw-eUQ" secondAttribute="top" constant="3" id="40g-De-d8x"/>
-                                    <constraint firstItem="brS-8e-qpP" firstAttribute="leading" secondItem="Lyd-sa-E1d" secondAttribute="trailing" id="IW8-IJ-j1h"/>
-                                    <constraint firstAttribute="bottom" secondItem="brS-8e-qpP" secondAttribute="bottom" constant="3" id="VuV-Rt-mDa"/>
+                                    <constraint firstAttribute="trailing" secondItem="brS-8e-qpP" secondAttribute="trailing" constant="16" id="29x-yP-8o2"/>
                                     <constraint firstAttribute="bottom" secondItem="Lyd-sa-E1d" secondAttribute="bottom" id="ZPx-3F-EuB"/>
                                     <constraint firstItem="Lyd-sa-E1d" firstAttribute="leading" secondItem="7vB-bw-eUQ" secondAttribute="leading" constant="16" id="gWd-0L-ztU"/>
                                     <constraint firstItem="Lyd-sa-E1d" firstAttribute="top" secondItem="7vB-bw-eUQ" secondAttribute="top" id="iRJ-Wu-AMH"/>
+                                    <constraint firstItem="brS-8e-qpP" firstAttribute="centerY" secondItem="7vB-bw-eUQ" secondAttribute="centerY" id="iU5-Ir-GPs"/>
                                     <constraint firstAttribute="trailing" secondItem="Lyd-sa-E1d" secondAttribute="trailing" constant="55" id="lZH-Yb-X2J"/>
                                     <constraint firstAttribute="height" constant="30" id="rCI-yX-4fX"/>
                                 </constraints>
