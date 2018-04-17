@@ -57,8 +57,11 @@ class RestaurantsModelManager {
     }
     
     // Obtain a list of restaurants to be displayed in Discover Page
-    func getDisplayedList(_ numOfItem: Int) -> [ReadOnlyRestaurant] {
+    func getShortList(_ numOfItem: Int) -> [ReadOnlyRestaurant] {
         var displayedList = [ReadOnlyRestaurant]()
+        if restaurants.count < numOfItem {
+            return restaurants
+        }
         for i in 0..<numOfItem {
             displayedList.append(restaurants[i])
         }

@@ -28,8 +28,11 @@ class TopicsModelManager {
     static let shared = TopicsModelManager()
     
     // Obtain a list of topics to be displayed in Discover Page
-    func getShortListForDisplay(_ numOfItem: Int) -> [ReadOnlyTopic] {
+    func getShortList(_ numOfItem: Int) -> [ReadOnlyTopic] {
         var displayedList = [ReadOnlyTopic]()
+        if topics.count < numOfItem {
+            return topics
+        }
         for i in 0..<numOfItem {
             displayedList.append(topics[i])
         }

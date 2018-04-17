@@ -38,12 +38,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        initPosts()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initView()
-        initPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
