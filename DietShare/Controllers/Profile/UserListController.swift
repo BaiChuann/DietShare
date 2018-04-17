@@ -9,17 +9,30 @@
 import UIKit
 
 class UserListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    private var users: [User] = []
-    private var topics: [Topic] = []
+    private var data: [String] = []
     @IBOutlet weak private var table: UITableView!
     var session = 0
+    var userId: String! 
     override func viewDidLoad() {
-        users.append(User(userId: "1", name: "Bai Chuan", password: "123", photo: "profile-example"))
+        switch session {
+        case 0:
+            data = ProfileManager.shared.getProfile(userId)!.getFollowers()
+            break
+        case 1:
+            data = ProfileManager.shared.getProfile(userId)!.getFollowings()
+            break
+        case 2:
+            data = ProfileManager.shared.getProfile(userId)!.getTopics()
+            break
+        default:
+            return
+        }
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
         self.navigationController?.navigationBar.isHidden = false
+        table.tableFooterView = UIView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUser" {
@@ -32,15 +45,17 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if session == 0 {
+        if session != 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell  else {
                 fatalError("The dequeued cell is not an instance of EditCell.")
             }
-            let user = users[0]
+            guard let user = UserModelManager.shared.getUserFromID(data[indexPath.item]) else {
+                return cell
+            }
             cell.setUser(user)
             cell.selectionStyle = .none
             return cell

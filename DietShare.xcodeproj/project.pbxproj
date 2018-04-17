@@ -27,11 +27,14 @@
 		3B37A72A207F975C009ED0D3 /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */; };
 		3B40BB2620837D4E00323B7D /* MentionedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B40BB2520837D4E00323B7D /* MentionedController.swift */; };
 		3B40BB282083803600323B7D /* MentionedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B40BB272083803600323B7D /* MentionedCell.swift */; };
+		3B40BB2A2083B55000323B7D /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B40BB292083B55000323B7D /* ProfileManager.swift */; };
 		3B424B3A20809F0C00AB90BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3920809F0900AB90BE /* Assets.xcassets */; };
 		3B424B3C2080EF5E00AB90BE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B424B3B2080EF5E00AB90BE /* Profile.storyboard */; };
 		3B424B3E2080FBAE00AB90BE /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */; };
 		3B424B402081038300AB90BE /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B3F2081038300AB90BE /* EditCell.swift */; };
 		3B424B4220810B0F00AB90BE /* EditFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B424B4120810B0F00AB90BE /* EditFieldController.swift */; };
+		3B83DD6F2085F59300A4471B /* PostsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83DD6E2085F59300A4471B /* PostsLocalDataSource.swift */; };
+		3B83DD712085F71100A4471B /* RawIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83DD702085F71100A4471B /* RawIngredient.swift */; };
 		3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */; };
 		3BDA29C8207FC20A00E99DE3 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C1207FC20A00E99DE3 /* Food.swift */; };
 		3BDA29C9207FC20A00E99DE3 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */; };
@@ -78,7 +81,6 @@
 		3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */; };
 		3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */; };
 		3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */; };
-		6AFF2F5E2084A60F0018DD84 /* RawIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF2F5D2084A60E0018DD84 /* RawIngredient.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -189,11 +191,14 @@
 		3B37A729207F975C009ED0D3 /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
 		3B40BB2520837D4E00323B7D /* MentionedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionedController.swift; sourceTree = "<group>"; };
 		3B40BB272083803600323B7D /* MentionedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionedCell.swift; sourceTree = "<group>"; };
+		3B40BB292083B55000323B7D /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		3B424B3920809F0900AB90BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B424B3B2080EF5E00AB90BE /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditor.swift; sourceTree = "<group>"; };
 		3B424B3F2081038300AB90BE /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
 		3B424B4120810B0F00AB90BE /* EditFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFieldController.swift; sourceTree = "<group>"; };
+		3B83DD6E2085F59300A4471B /* PostsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsLocalDataSource.swift; sourceTree = "<group>"; };
+		3B83DD702085F71100A4471B /* RawIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawIngredient.swift; sourceTree = "<group>"; };
 		3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageLayout.swift; sourceTree = "<group>"; };
 		3BDA29C1207FC20A00E99DE3 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -243,7 +248,6 @@
 		3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDelegate.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
-		6AFF2F5D2084A60E0018DD84 /* RawIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawIngredient.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 				3B424B3D2080FBAE00AB90BE /* ProfileEditor.swift */,
 				3B424B4120810B0F00AB90BE /* EditFieldController.swift */,
 				3B0834F320827B9B009A45E3 /* UserListController.swift */,
+				3B40BB292083B55000323B7D /* ProfileManager.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -364,8 +369,8 @@
 				3BDA29C0207FC20A00E99DE3 /* CollageLayout.swift */,
 				3B0834EB20827535009A45E3 /* FloatingTextInfo.swift */,
 				3BDA29C1207FC20A00E99DE3 /* Food.swift */,
-				6AFF2F5D2084A60E0018DD84 /* RawIngredient.swift */,
 				3BDA29C2207FC20A00E99DE3 /* Ingredient.swift */,
+				3B83DD702085F71100A4471B /* RawIngredient.swift */,
 				3BDA29C3207FC20A00E99DE3 /* ShareState.swift */,
 				3BDA29C4207FC20A00E99DE3 /* StickerLayout.swift */,
 				3BDA29C5207FC20A00E99DE3 /* StoredLayout.swift */,
@@ -456,6 +461,7 @@
 				B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */,
 				3BDA29E1207FC28600E99DE3 /* UsersDataSource.swift */,
 				3BDA29E3207FC28C00E99DE3 /* UsersLocalDataSource.swift */,
+				3B83DD6E2085F59300A4471B /* PostsLocalDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -849,7 +855,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */ = {
@@ -1002,6 +1008,7 @@
 				F2E373BA20716BC90000F707 /* PostManager.swift in Sources */,
 				3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */,
 				B5EE1DAA2083BC0F00098E9B /* CustomMarkerView.swift in Sources */,
+				3B83DD712085F71100A4471B /* RawIngredient.swift in Sources */,
 				3B18BEE62074D97C00809D3A /* PostCellDelegate.swift in Sources */,
 				F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */,
 				B5CBA16C206A396A00BC8005 /* DiscoveryTabController.swift in Sources */,
@@ -1037,7 +1044,7 @@
 				3BDA2A30207FCBD500E99DE3 /* UserCell.swift in Sources */,
 				F2E373BB20716BC90000F707 /* PostsTableController.swift in Sources */,
 				3BDA2A00207FC2CD00E99DE3 /* LayoutPhotoSelectorUIDelegate.swift in Sources */,
-				6AFF2F5E2084A60F0018DD84 /* RawIngredient.swift in Sources */,
+				3B40BB2A2083B55000323B7D /* ProfileManager.swift in Sources */,
 				F2BE68C7205EB56100DF9694 /* SignUpController.swift in Sources */,
 				3B0834E4208274D0009A45E3 /* PublisherController.swift in Sources */,
 				B5CBA10F2069226600BC8005 /* Restaurant.swift in Sources */,
@@ -1050,6 +1057,7 @@
 				3BDA2A02207FC2CD00E99DE3 /* PhotoOptionCell.swift in Sources */,
 				3B0834F020827568009A45E3 /* PublishRestaurantCell.swift in Sources */,
 				B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */,
+				3B83DD6F2085F59300A4471B /* PostsLocalDataSource.swift in Sources */,
 				3BDA29F9207FC2CD00E99DE3 /* FoodCell.swift in Sources */,
 				3B40BB282083803600323B7D /* MentionedCell.swift in Sources */,
 				3BDA29C8207FC20A00E99DE3 /* Food.swift in Sources */,

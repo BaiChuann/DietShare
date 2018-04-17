@@ -37,7 +37,7 @@ class User {
         if let image = UIImage(named: photo) {
             return image
         }
-        return #imageLiteral(resourceName: "profile")
+        return UIImage(data:Data(base64Encoded: photo, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!)!
     }
     func getPhotoAsPath() -> String {
         return self.photo
