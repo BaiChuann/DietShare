@@ -26,12 +26,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var followers: UICollectionView!
     @IBOutlet weak var postsArea: UIView!
     private var postsTable: UITableView!
-    private var postsTableController: PostsTableController?
+    private var postsTableController: PostsTableController!
+    @IBOutlet weak var postAreaHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
+//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
         scrollView.delegate = self
 
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
@@ -93,18 +94,18 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     private func initPosts() {
-        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
-        postsTableController?.setParentController(self)
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
+        postsTableController.setParentController(self)
         if let topic = self.topic {
-            postsTableController?.getTopicPosts(topic.getID())
+            postsTableController.getTopicPosts(topic.getID())
         }
         self.addChildViewController(postsTableController!)
         
-        postsTableController?.setScrollDelegate(self)
-        postsTable = postsTableController?.getTable()
-        postsTable.frame = postsArea.frame
-        postsArea.removeFromSuperview()
-        scrollView.addSubview(postsTable)
+        postsTableController.setScrollDelegate(self)
+        postsTable = postsTableController.getTable()
+        postAreaHeight.constant = postsTable.contentSize.height
+        postsTableController.view.frame.size = postsArea.frame.size
+        postsArea.addSubview(postsTableController.view)
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
     }
@@ -173,19 +174,19 @@ extension TopicViewController: ScrollDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-        {
-            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
-                scrollView.isScrollEnabled = false
-                postsTable.isScrollEnabled = true
-            }
-            
-        }
+//        let yOffset = scrollView.contentOffset.y
+//        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
+//        {
+//            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
+//                scrollView.isScrollEnabled = false
+//                postsTable.isScrollEnabled = true
+//            }
+//
+//        }
     }
     func reachTop() {
-        scrollView.isScrollEnabled = true
-        postsTable.isScrollEnabled = false
+//        scrollView.isScrollEnabled = true
+//        postsTable.isScrollEnabled = false
     }
 }
 

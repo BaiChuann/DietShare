@@ -36,7 +36,6 @@ class UserModelManager {
     }
     
     func getCurrentUser() -> User? {
-        print("current user is : \(currentUser?.getUserId())")
         return self.currentUser
     }
     
@@ -46,6 +45,10 @@ class UserModelManager {
     
     func deleteUser(_ user: User) {
         self.usersDataSource.deleteUser(user.getUserId())
+    }
+    
+    func updateUser(_ userID: String, _ updatedUser: User) {
+        self.usersDataSource.updateUser(userID, updatedUser)
     }
     
 }
