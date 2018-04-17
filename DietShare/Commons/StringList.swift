@@ -51,6 +51,11 @@ class StringList: Equatable, Codable {
     public func addEntry(_ newEntry: String) {
         self.list.insert(newEntry)
     }
+    public func addEntries(_ newEntries: [String]) {
+        for entry in newEntries {
+            self.list.insert(entry)
+        }
+    }
     
     static func ==(lhs: StringList, rhs: StringList) -> Bool {
         return lhs.type == rhs.type && lhs.list == rhs.list

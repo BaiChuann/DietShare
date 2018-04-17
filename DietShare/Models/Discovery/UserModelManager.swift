@@ -41,6 +41,7 @@ class UserModelManager {
     }
     
     func getCurrentUser() -> User? {
+        print("current user is : \(currentUser?.getUserId())")
         return self.currentUser
     }
     

@@ -43,6 +43,7 @@ class PhotoModifierController: UIViewController {
     private var layoutPanGestureRecognizer: UIPanGestureRecognizer?
     private var stickerPanGestureRecognizer: UIPanGestureRecognizer?
     private var layoutLongPressGestureRecognizer: UILongPressGestureRecognizer?
+    private var pinchGestureRecognizer: UIPinchGestureRecognizer?
 
     private var movingImageView: UIView?
     private var swappedImageView: UIView?
@@ -131,10 +132,12 @@ class PhotoModifierController: UIViewController {
         layoutPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleLayoutPan(sender:)))
         stickerPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleStickerPan(sender:)))
         layoutLongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(sender:)))
 
         guard let layoutPanGR = layoutPanGestureRecognizer,
             let stickerPanGR = stickerPanGestureRecognizer,
-            let layoutLongPressGR = layoutLongPressGestureRecognizer else {
+            let layoutLongPressGR = layoutLongPressGestureRecognizer,
+            let pinchGR = pinchGestureRecognizer else {
                 return
         }
 
@@ -149,6 +152,9 @@ class PhotoModifierController: UIViewController {
         layoutLongPressGR.isEnabled = false
         layoutLongPressGR.minimumPressDuration = 0.5
         canvas.addGestureRecognizer(layoutLongPressGR)
+
+        pinchGR.isEnabled = false
+        canvas.addGestureRecognizer(pinchGR)
     }
 
     private func setUpData() {
@@ -345,6 +351,7 @@ extension PhotoModifierController {
 
         layoutPanGestureRecognizer?.isEnabled = true
         layoutLongPressGestureRecognizer?.isEnabled = false
+        pinchGestureRecognizer?.isEnabled = true
     }
 
     private func updateLayoutWithFilter() {
@@ -386,6 +393,7 @@ extension PhotoModifierController {
         addStickerAsSubview(sticker: sticker)
 
         stickerPanGestureRecognizer?.isEnabled = true
+        pinchGestureRecognizer?.isEnabled = true
     }
 
     // Add sticker image as image subview
@@ -549,6 +557,40 @@ extension PhotoModifierController {
     @objc
     private func handleLongPress(sender: UILongPressGestureRecognizer) {
         // TODO: maybe add long press gesture to flip image
+    }
+
+    @objc
+    private func handlePinch(sender: UIPinchGestureRecognizer) {
+        let superView = imageView.superview
+        let location = sender.location(in: superView)
+
+        switch sender.state {
+        case .began:
+            movingImageView = getViewWithLocation(superView: superView, location: location)
+
+        case .changed:
+            guard let movingImageView = movingImageView,
+                let displayView = movingImageView.superview else {
+                    return
+            }
+
+            let newHeight = movingImageView.frame.height * sender.scale
+            let newWidth = movingImageView.frame.width * sender.scale
+
+            var actualScale = sender.scale
+            if newHeight < displayView.frame.height || newWidth < displayView.frame.width {
+                actualScale = 1.0
+            }
+
+            movingImageView.transform = movingImageView.transform.scaledBy(x: actualScale, y: actualScale)
+            sender.scale = 1.0
+
+        case .ended:
+            movingImageView = nil
+
+        default:
+            return
+        }
     }
 }
 

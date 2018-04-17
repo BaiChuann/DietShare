@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bhV-rI-GQT">
+                                <rect key="frame" x="97.5" y="213.5" width="180" height="260"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="57A-eL-bwB">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="LAY-3E-eh6"/>
+                                            <constraint firstAttribute="width" secondItem="57A-eL-bwB" secondAttribute="height" multiplier="1:1" id="ggF-IS-ILp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwg-WA-LxR">
+                                        <rect key="frame" x="10" y="180" width="160" height="66.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="DietShare">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="0.81960784313725488" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="52" name="SignPainter-HouseScript"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="highlightedColor" red="1" green="0.81960784310000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health way to share your life" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0j-ay-E9f">
+                                        <rect key="frame" x="10" y="246.5" width="160" height="13.5"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="11"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="260" id="PEA-aR-nef"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bhV-rI-GQT" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="3Ba-bI-l8D"/>
+                            <constraint firstItem="bhV-rI-GQT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qfm-dd-flx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="180" height="180"/>
+    </resources>
+</document>
