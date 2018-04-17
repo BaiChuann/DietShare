@@ -94,5 +94,4 @@ extension StringList: Value {
         }
         return listData.datatypeValue
     }
-    
 }

@@ -53,22 +53,22 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     func setTime(_ time: String) {
         self.time.text = time
     }
-    func setTopics(_ topics: [(String, String)]?) {
+    func setTopics(_ topics: [String]?) {
         guard let tps = topics else {
             self.topics.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
         topicsData = []
         for topic in tps {
-            topicsData.append(topic.1)
+            topicsData.append(topic)
         }
     }
-    func setRestaurant(_ restaurant: (String, String)?) {
+    func setRestaurant(_ restaurant: String?) {
         guard let res = restaurant else {
             self.restaurant.frame.size = CGSize(width: 0, height: 0.0)
             return
         }
-        self.restaurant.setTitle(res.1, for: .normal)
+        self.restaurant.setTitle(res, for: .normal)
     }
     func setContent(userPhoto: UIImage, userName: String, _ post: Post) {
         self.post = post
@@ -106,24 +106,28 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
 
     @IBAction func onUserClicked(_ sender: Any) {
-        self.cellDelegate?.goToUser("2")
+        self.cellDelegate?.goToUser(post.getUserId())
     }
     @IBAction func onCommentCountClicked(_ sender: Any) {
-        self.cellDelegate?.goToDetail(self)
+        self.cellDelegate?.goToDetail(post.getPostId(), 0)
     }
     @IBAction func onCommentClicked(_ sender: Any) {
-        self.cellDelegate?.onCommentClicked()
+        self.cellDelegate?.onCommentClicked(post.getPostId())
     }
     @IBAction func onLikeCountClicked(_ sender: Any) {
-        self.cellDelegate?.goToDetail(self)
+        self.cellDelegate?.goToDetail(post.getPostId(), 1)
     }
     @IBAction func onLikeClicked(_ sender: Any) {
         if likeButton.currentTitle == "unlike" {
             likeButton.setImage(UIImage(named: "heart")!, for: .normal)
             likeButton.setTitle("liked", for: .normal)
+            PostManager.shared.postLike(Like(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), postId: post.getPostId(), time: Date()))
+            self.cellDelegate?.updateCell()
         } else {
             likeButton.setImage(UIImage(named: "like")!, for: .normal)
             likeButton.setTitle("unlike", for: .normal)
+            PostManager.shared.deleteLike(Like(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), postId: post.getPostId(), time: Date()))
+            self.cellDelegate?.updateCell()
         }
     }
     func getPost() -> Post{
