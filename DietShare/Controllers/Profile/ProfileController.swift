@@ -40,6 +40,7 @@ class ProfileController: UIViewController {
             self.navigationController?.navigationBar.isHidden = false 
         }
         setUser(userId)
+        postsTableController.getUserPosts(userId)
     }
     override func viewDidAppear(_ animated: Bool) {
         if userId == currentUser {
