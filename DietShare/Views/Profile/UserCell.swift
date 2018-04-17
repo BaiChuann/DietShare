@@ -14,7 +14,7 @@ class UserCell: UITableViewCell {
 
     @IBOutlet weak private var userName: UILabel!
     func setUser(_ user: User) {
-        userPhoto.image = user.getPhoto()
+        userPhoto.image = user.getPhotoAsImage()
         userName.text = user.getName()
     }
 }

@@ -164,6 +164,7 @@ struct Constants {
         public static let users = "users"
         public static let topics = "topics"
         public static let restaurants = "restaurants"
+        public static let posts = "posts"
     }
     
     struct Test {

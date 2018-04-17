@@ -11,12 +11,12 @@ import UIKit
 class HomeTabController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserModelManager.shared.setCurrentUser(UserModelManager.shared.getUserFromID("1")!)
         if let controller = AppStoryboard.home.instance.instantiateInitialViewController() {
             addChildViewController(controller)
             view.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

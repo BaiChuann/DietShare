@@ -13,11 +13,11 @@ class Post {
     private var caption: String
     private var time: Date
     private var photo: UIImage
-    private var restaurant: (String, String)?
-    private var topics: [(String, String)]?
+    private var restaurant: String?
+    private var topics: [String]?
     private var commentsCount: Int
     private var likesCount: Int
-    init(userId: String, caption: String, time: Date, photo: UIImage, restaurant: (String, String)?, topics: [(String, String)]?) {
+    init(userId: String, caption: String, time: Date, photo: UIImage, restaurant: String?, topics: [String]?) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateString = dateFormatter.string(from: time)
@@ -53,10 +53,10 @@ class Post {
     func getPhoto() -> UIImage {
         return photo
     }
-    func getRestaurant() -> (String, String)? {
+    func getRestaurant() -> String? {
         return restaurant
     }
-    func getTopics() -> [(String, String)]? {
+    func getTopics() -> [String]? {
         return topics
     }
     func getCommentsCount() -> Int {

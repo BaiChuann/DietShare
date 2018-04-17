@@ -13,12 +13,14 @@ class Profile {
     private var description: String
     private var followings: [String]
     private var followers: [String]
+    private var topics: [String]
     init(userId: String) {
         self.userId = userId
         self.country = ""
         self.description = ""
         self.followings = []
         self.followers = []
+        self.topics = []
     }
     func getUserId() -> String {
         return userId
@@ -59,4 +61,17 @@ class Profile {
         }
         followers.remove(at: removedIndex)
     }
+    func getTopics() -> [String] {
+        return topics
+    }
+    func addTopics(_ userId: String) {
+        topics.append(userId)
+    }
+    func deleteTopics(_ userId: String) {
+        guard let removedIndex = topics.index(of: userId) else {
+            return
+        }
+        topics.remove(at: removedIndex)
+    }
+    
 }
