@@ -12,10 +12,10 @@ import CoreLocation
 
 class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
-    private var topicModel = TopicsModelManager<Topic>()
-    private var restaurantModel = RestaurantsModelManager<Restaurant>()
-    private var displayedTopics: [Topic]?
-    private var displayedRestaurants: [Restaurant]?
+    private var topicModel = TopicsModelManager.shared
+    private var restaurantModel = RestaurantsModelManager.shared
+    private var displayedTopics: [ReadOnlyTopic]?
+    private var displayedRestaurants: [ReadOnlyRestaurant]?
     private var currentTopic: Topic?
     private var currentRestaurant: Restaurant?
     var currentUser: User?
@@ -149,15 +149,8 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? TopicListViewController {
-            dest.setModelManager(self.topicModel)
-            
-        }
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
-        }
-        if let dest = segue.destination as? RestaurantListViewController {
-            dest.setModelManager(self.restaurantModel)
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)

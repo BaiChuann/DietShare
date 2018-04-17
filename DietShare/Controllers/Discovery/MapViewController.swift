@@ -19,7 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private let currentLocationMarker = GMSMarker()
     private var chosenPlace: Place? = nil
     private var selectedRestaurant: Restaurant?
-    private var allRestaurants = SortedSet<Restaurant>()
+    private var allRestaurants = [Restaurant]()
     
     // Current zoom of the map
     private var currentZoom = Float(Constants.MapPage.defaultZoom)
@@ -303,7 +303,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     
-    func setRestaurants(_ restaurants: SortedSet<Restaurant>) {
+    func setRestaurants(_ restaurants: [Restaurant]) {
         self.allRestaurants = restaurants
     }
     

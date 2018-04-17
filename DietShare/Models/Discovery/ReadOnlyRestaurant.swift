@@ -14,7 +14,7 @@ import CoreLocation
  * A read-only immutable protocol for a Restaurant in the app.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-protocol ReadOnlyRestaurant: Comparable {
+protocol ReadOnlyRestaurant {
     func getID() -> String
     func getName() -> String
     func getTypes() -> StringList
