@@ -13,7 +13,7 @@ class PublishManager: NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(restaurantId)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         aDecoder.decodeObject()
     }

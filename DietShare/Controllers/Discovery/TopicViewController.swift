@@ -102,21 +102,11 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             postsTableController.getTopicPosts(topic.getID())
         }
         self.addChildViewController(postsTableController!)
-<<<<<<< HEAD
-
-        postsTableController?.setScrollDelegate(self)
-        postsTable = postsTableController?.getTable()
-        postsTable.frame = postsArea.frame
-        postsArea.removeFromSuperview()
-        scrollView.addSubview(postsTable)
-=======
-        
         postsTableController.setScrollDelegate(self)
         postsTable = postsTableController.getTable()
         postAreaHeight.constant = postsTable.contentSize.height
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
->>>>>>> master
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
     }
@@ -170,15 +160,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
-<<<<<<< HEAD
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let _ = segue.destination as? TopicListViewController {
-        }
-    }
-=======
-    
->>>>>>> master
     
     /**
      * Utility functions
