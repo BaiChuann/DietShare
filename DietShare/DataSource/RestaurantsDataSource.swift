@@ -14,7 +14,7 @@ import BTree
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 protocol RestaurantsDataSource {
-    
+
     func getAllRestaurants() -> SortedSet<Restaurant>
     func getNumOfRestaurants() -> Int
     func addRestaurant(_ newRestaurant: Restaurant)

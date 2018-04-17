@@ -247,40 +247,62 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         let testRating = Rating.getTestInstance()
         let testRatingList = RatingList()
         testRatingList.addEntry(testRating)
-        for i in 0..<10 {
-            if !containsRestaurant("i") {
-                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
-                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
-                let location = CLLocation(latitude: 1.22512 + randLatOffset, longitude: 103.84985 + randLongOffset)
-                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5)
-                
-                let types: [RestaurantType] = [.Vegetarian, .European]
-                restaurant.setTypes(types)
-                self.addRestaurant(restaurant)
-                }
-            
+
+        let restaurants = [
+            Restaurant("1", "District 10", "1 Vista Exchange Green, 01-42/K3, Singapore 138617", CLLocation(latitude: 1.3067087, longitude: 103.78788250000002), "66942884", StringList(.RestaurantType, ["American"]), "The NEW District 10 Bar & Grill specialised in nothing but the BEST DRY-AGED MEAT featuring the rare, flavoursome bone-in cuts with high content of natural and healthy marbling that is superb with premium reds. The small and neat 1,800 square-foot restaurant (including Outdoors) comes complete with a European meat showcase and chiller for its premium meats such as 45 days home dry aged corn fed US Prime OP Rib, US Prime, 30 days corn fed dry aged traditional Fiorentina and other bone-in cuts!", "restaurant-1", testRatingList, StringList(.Post), 4.5),
+            Restaurant("2", "UNA at One Rochester", "1 Rochester Dr, Singapore 139212", CLLocation(latitude: 1.305308, longitude: 103.787689), "6773 0070", StringList(.RestaurantType, ["Chinese"]), "UNA, the Spanish restaurant housed at the iconic One Rochester, opened its doors on 12 April 2014, and has been credited with setting new al fresco dining standards. UNA presents fresh authentic Spanish tapas and parrilla (Spanish for ‘grill’) in a cosy, breezy al fresco garden setting. Using only fresh, seasonal ingredients, the team of dedicated chefs led by Executive Chef Antonio Oviedo present Spanish cuisine through trendy creations; offering real, unpretentious food that is robust, wholesome and full of flavours.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5),
+            Restaurant("3", "Yunnan Garden Restaurant", "1 Fusionopolis Place, #02-02 Galaxis, Singapore 138522", CLLocation(latitude: 1.2992467, longitude: 103.78807260000008), "6665 8888", StringList(.RestaurantType, ["Chinese"]), "A Dim Sum place at the central of Singapore", "restaurant-3", testRatingList, StringList(.Post), 4.5),
+            Restaurant("4", "Long Beach @ DEMPSEY", "25 Dempsey Rd, Singapore 249670", CLLocation(latitude: 1.3063069, longitude: 103.81196169999998), "63232222", StringList(.RestaurantType), "A Chinese restaurant good for groups", "restaurant-4", testRatingList, StringList(.Post), 4.5),
+            Restaurant("5", "Ah Loy Thai", "9 Tan Quee Lan Street #01-04 Singapore 188098", CLLocation(latitude: 1.298488, longitude: 103.85663499999998), "93297599", StringList(.RestaurantType, ["Thai"]), "This a thai traditional restaurant from shaw tower and we believe in bringing the customer great thai food at a affordable price and all our food is custom make to suit taste buds of Singaporean ! See you soon . Break time from 3 pm to 4.15 pm and open on holidays", "restaurant-5", testRatingList, StringList(.Post), 4.5),
+            Restaurant("6", "Soi Thai Soi Nice", "321 Alexandra Rd, #02-01 Alexandra Central Mall, 159971", CLLocation(latitude: 1.2873346, longitude: 103.80505449999998), "62504863", StringList(.RestaurantType, ["Thai"]), "Filled to the brim with assorted ingredients including crayfish, mussels, tiger prawns, roast pork, and enoki mushrooms, we picked the home-made tom yum broth that came with a fiery kick! There was also a good balance of sour and sweet flavours, with fragrant spices and herbs used. I’d recommend you to add the mama instant noodles that had a bouncy texture. #Burpproved", "restaurant-6", testRatingList, StringList(.Post), 4.5),
+            Restaurant("7", "Rakuichi Japanese Restaurant", "10 Dempsey Rd, Singapore 247700", CLLocation(latitude: 1.3033906, longitude:103.81048669999996), "64742143", StringList(.RestaurantType, ["Japanese"]), "Japanese cuisine is such an easy dining choice to make. There is always something for everyone. I have been going back to Rakuichi Dempsey for many years due to the casual vibe, good food and peaceful, relaxing ambience! There is ample parking and it's free", "restaurant-4", testRatingList, StringList(.Post), 4.5),
+            Restaurant("8", "En Sushi", "#01-02 Income@Prinsep, 30 Prinsep St, 188647", CLLocation(latitude: 1.2989794, longitude: 103.84948370000006), "62531426", StringList(.RestaurantType, ["Japanese"]), "The colourful bara chirashi don sees an assortment of cubed sashimi such as salmon, tuna, yellowtail and octopus tossed in a homemade soy sauce.", "restaurant-8", testRatingList, StringList(.Post), 4.5),
+            Restaurant("9", "NY Night Market", "#01-02 Income@Prinsep, 30 Prinsep St, 188647", CLLocation(latitude: 1.2989794, longitude: 103.84948370000006), "62531426", StringList(.RestaurantType, ["Korean"]), "Hailing from Seoul, NY Night Market brings to Singapore a taste of cosmopolitan markets in New York City where one can find a wide array of international street foods, as well as exciting Western fusion delights with a unique Korean touch.", "restaurant-9", testRatingList, StringList(.Post), 4.5),
+            Restaurant("10", "Vatos Urban Tacos (South Beach)", "36 Beach Rd, Singapore 189766", CLLocation(latitude: 1.295766, longitude: 103.856179), "63856010", StringList(.RestaurantType, ["Korean"]), "One of Korea’s hottest restaurants, Vatos Urban Tacos, has come to Singapore. Influenced by Mexican street tacos in Los Angeles and home-cooked Korean meals, the menu consists of creations like the Kimchi Carnitas Fries, Galbi Tacos, and Spicy Chicken Quesadillas.", "restaurant-10", testRatingList, StringList(.Post), 4.5),
+            Restaurant("11", "Sin Ming Roti Prata (Faisal & Aziz Curry Muslim Food)", "24 Sin Ming Rd, #01-51, Jin Fa Kopitiam, 570024", CLLocation(latitude: 1.3553878, longitude: 103.836408), "64533893", StringList(.RestaurantType, ["Indian"]), "Tasted before quite a few prata places! Sin Ming Roti Prata is one of the few places that was really nice and really worth to go for! ", "restaurant-10", testRatingList, StringList(.Post), 4.5),
+            Restaurant("12", "Springleaf Prata Place (The Rail Mall)", "396 Upper Bukit Timah Rd, Singapore 678048", CLLocation(latitude: 1.3583357, longitude: 103.76767470000004), "64932404", StringList(.RestaurantType, ["Indian"]), "The ultimate murtabak is one of the featured creations at Springleaf and I can see why it's one of the highly reviewed items.", "restaurant-12", testRatingList, StringList(.Post), 4.5),
+            Restaurant("13", "La Nonna (Holland Village)", "26 Lor Mambong, Singapore 277685", CLLocation(latitude: 1.3116818, longitude: 103.79485469999997), "64681982", StringList(.RestaurantType, ["American"]), "La Nonna, meaning “The Grandmother” in Italian, serves traditional Italian country cuisine, much like what grandma would usually prepare in an unpretentious and inviting Trattoria atmosphere. This is the place for discerning diners who prefer to have a hearty meal with good company, basking in La Nonna’s ineffable rustic charms", "restaurant-13", testRatingList, StringList(.Post), 4.5),
+            Restaurant("14", "iSTEAKS Diner (Holland Village)", "17 Lor Liput, Singapore 277731", CLLocation(latitude: 1.3104967, longitude: 103.79518489999998), "64633165", StringList(.RestaurantType, ["American"]), "Loving the tenderness and juiciness of the steak. There's many side choices", "restaurant-14", testRatingList, StringList(.Post), 4.5)
+        ]
+
+        restaurants.forEach {
+            self.addRestaurant($0)
         }
-        for i in 10..<20 {
-            if !containsRestaurant("i") {
-                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
-                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
-                let location = CLLocation(latitude: 1.25212 + randLatOffset, longitude: 103.71985 + randLongOffset)
-                let restaurant = Restaurant(String(i), "Burger Shack", "1 Boon Lay Road, #03-02", location, "98700432", StringList(.RestaurantType), "The first Burger Shack in Singapore. We provide awesomeness.", "burger-shack.jpg", testRatingList, StringList(.Post), 3.0)
-                
-                let types: [RestaurantType] = [.American, .European]
-                restaurant.setTypes(types)
-                self.addRestaurant(restaurant)
-            }
-            
-        }
-        
-        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
-        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 5.0)
-        self.addRestaurant(restaurantFar)
+
+//        for i in 0..<10 {
+//            if !containsRestaurant("i") {
+//                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
+//                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
+//                let location = CLLocation(latitude: 1.22512 + randLatOffset, longitude: 103.84985 + randLongOffset)
+//                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5)
 //
-        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
-        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.0)
-        self.addRestaurant(restaurantClose)
+//                let types: [RestaurantType] = [.Vegetarian, .European]
+//                restaurant.setTypes(types)
+//                self.addRestaurant(restaurant)
+//                }
+//
+//        }
+//        for i in 10..<20 {
+//            if !containsRestaurant("i") {
+//                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
+//                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
+//                let location = CLLocation(latitude: 1.25212 + randLatOffset, longitude: 103.71985 + randLongOffset)
+//                let restaurant = Restaurant(String(i), "Burger Shack", "1 Boon Lay Road, #03-02", location, "98700432", StringList(.RestaurantType), "The first Burger Shack in Singapore. We provide awesomeness.", "burger-shack.jpg", testRatingList, StringList(.Post), 3.0)
+//
+//                let types: [RestaurantType] = [.American, .European]
+//                restaurant.setTypes(types)
+//                self.addRestaurant(restaurant)
+//            }
+//
+//        }
+//
+//        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
+//        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 5.0)
+//        self.addRestaurant(restaurantFar)
+////
+//        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
+//        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.0)
+//        self.addRestaurant(restaurantClose)
         _checkRep()
     }
     
