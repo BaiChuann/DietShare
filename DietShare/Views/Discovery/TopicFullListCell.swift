@@ -17,7 +17,8 @@ class TopicFullListCell: UICollectionViewCell {
     @IBOutlet weak var topicDescription: UILabel!
     
     func setImage(_ image: UIImage) {
-        topicImage.image = image
+        let alpha: CGFloat = 1.0
+        setFittedImageAsSubview(view: topicImage, image: image, alpha: alpha)
     }
     
     func setName(_ name: String) {

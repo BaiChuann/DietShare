@@ -81,6 +81,7 @@
 		3BDA2A38207FCBD500E99DE3 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2C207FCBD500E99DE3 /* TopicCell.swift */; };
 		3BDA2A39207FCBD500E99DE3 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA2A2D207FCBD500E99DE3 /* TopicCell.xib */; };
 		3BFE06B0207E475E003F67F7 /* CommentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */; };
+		A4AF5B5420864B3E001509A0 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF5B5320864B3E001509A0 /* HomeTabBarController.swift */; };
 		B504C2A3206BB6B9007F8956 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A2206BB6B9007F8956 /* TopicViewController.swift */; };
 		B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */; };
 		B504C2A8206BBCD3007F8956 /* TopicsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */; };
@@ -111,12 +112,13 @@
 		B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */; };
 		B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
-		B5E7ABAE2074A7C4003FAB99 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B5EE1DA82083BBED00098E9B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE1DA72083BBED00098E9B /* MapViewController.swift */; };
 		B5EE1DAA2083BC0F00098E9B /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE1DA92083BC0F00098E9B /* CustomMarkerView.swift */; };
 		B5EE1DB02084F57F00098E9B /* RestaurantFullListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5EE1DAF2084F57F00098E9B /* RestaurantFullListCell.xib */; };
 		B5FF15A42080A3CA004F3954 /* RestaurantModelManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */; };
 		F22650AD20848ACA00D29542 /* Ingredient_list.plist in Resources */ = {isa = PBXBuildFile; fileRef = F22650AC20848ACA00D29542 /* Ingredient_list.plist */; };
+		F22650B020863DB300D29542 /* DiscussionTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22650AF20863DB300D29542 /* DiscussionTabController.swift */; };
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
 		F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699152066CD3800E3A1F2 /* Comment.swift */; };
@@ -248,6 +250,7 @@
 		3BFE06AF207E475E003F67F7 /* CommentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDelegate.swift; sourceTree = "<group>"; };
 		48C85D3A73B7A4072A41F30B /* Pods-DietShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.debug.xcconfig"; sourceTree = "<group>"; };
 		5428D376C75B830054E39644 /* Pods-DietShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietShare/Pods-DietShare.release.xcconfig"; sourceTree = "<group>"; };
+		A4AF5B5320864B3E001509A0 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		B504C2A2206BB6B9007F8956 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		B504C2A5206BBB08007F8956 /* TopicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataSource.swift; sourceTree = "<group>"; };
 		B504C2A7206BBCD3007F8956 /* TopicsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSource.swift; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 		B5EE1DAF2084F57F00098E9B /* RestaurantFullListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantFullListCell.xib; sourceTree = "<group>"; };
 		B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModelManagerTest.swift; sourceTree = "<group>"; };
 		F22650AC20848ACA00D29542 /* Ingredient_list.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ingredient_list.plist; sourceTree = "<group>"; };
+		F22650AF20863DB300D29542 /* DiscussionTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTabController.swift; sourceTree = "<group>"; };
 		F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPopup.xib; sourceTree = "<group>"; };
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F26699142066CD3800E3A1F2 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
@@ -537,6 +541,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		F22650AE20863D8E00D29542 /* Discussion */ = {
+			isa = PBXGroup;
+			children = (
+				F22650AF20863DB300D29542 /* DiscussionTabController.swift */,
+			);
+			path = Discussion;
+			sourceTree = "<group>";
+		};
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +663,7 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F22650AE20863D8E00D29542 /* Discussion */,
 				3B37A71A207F7F0B009ED0D3 /* Profile */,
 				B5CBA11620694A0700BC8005 /* Discovery */,
 				F2E373B220716BBE0000F707 /* Home */,
@@ -667,6 +680,7 @@
 				F2E373B320716BBE0000F707 /* HomeController.swift */,
 				F2E373B420716BBE0000F707 /* HomeTabController.swift */,
 				3B40BB2520837D4E00323B7D /* MentionedController.swift */,
+				A4AF5B5320864B3E001509A0 /* HomeTabBarController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -964,7 +978,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5E7ABAE2074A7C4003FAB99 /* BuildFile in Sources */,
+				B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */,
 				B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */,
 				B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */,
 				3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */,
@@ -972,6 +986,7 @@
 				3BDA29C9207FC20A00E99DE3 /* Ingredient.swift in Sources */,
 				B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */,
 				B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */,
+				A4AF5B5420864B3E001509A0 /* HomeTabBarController.swift in Sources */,
 				3BDA29CC207FC20A00E99DE3 /* StoredLayout.swift in Sources */,
 				3BDA29DE207FC24A00E99DE3 /* PhotoModifierController.swift in Sources */,
 				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
@@ -979,6 +994,7 @@
 				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
 				3B424B4220810B0F00AB90BE /* EditFieldController.swift in Sources */,
 				3BDA29E0207FC24A00E99DE3 /* ShareTabController.swift in Sources */,
+				F22650B020863DB300D29542 /* DiscussionTabController.swift in Sources */,
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				3BDA29CA207FC20A00E99DE3 /* ShareState.swift in Sources */,
 				3B0834EC20827535009A45E3 /* FloatingTextInfo.swift in Sources */,

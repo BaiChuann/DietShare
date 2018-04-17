@@ -94,6 +94,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    
     private func initPosts() {
         if let postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController {
             postsTableController.setParentController(self)
@@ -112,6 +113,21 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    
+    // Hide navigation bar when scrolling up
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y > 0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
+        }
+    }
     
     @IBOutlet weak var rateRestaurantLabel: UILabel!
     @IBOutlet var newRatings: [UIButton]!

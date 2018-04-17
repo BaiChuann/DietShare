@@ -84,7 +84,9 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         print("InitView called")
         if let currentTopic = self.topic {
             self.topicName.text = currentTopic.getName()
-            self.topicImage.image = currentTopic.getImageAsUIImage()
+            let currentImage = currentTopic.getImageAsUIImage()
+            let currentAlpha = CGFloat(Constants.TopicPage.topicImageAlpha)
+            setFittedImageAsSubview(view: topicImage, image: currentImage, alpha: currentAlpha)
             self.topicDescription.text = currentTopic.getDescription()
         }
         
@@ -125,6 +127,22 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
+    
+    // Hide navigation bar when scrolling up
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y > 0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
+        }
+    }
+    
     // Handle tapping of follow button
     @IBAction func followButtonPressed(_ sender: UIButton) {
         assert(currentUser != nil)
@@ -145,10 +163,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? TopicListViewController {
-        }
-    }
     
     /**
      * Utility functions
