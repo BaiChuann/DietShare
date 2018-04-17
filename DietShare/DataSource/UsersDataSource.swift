@@ -21,4 +21,5 @@ protocol UsersDataSource {
     func deleteUser(_ newUserID: String)
     func updateUser(_ oldUserID: String, _ newUser: User)
     func searchWithKeyword(_ keyword: String) -> [User]
+    func getUserFromID(_ ID: String) -> User?
 }

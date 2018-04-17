@@ -158,7 +158,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
      */
     // TODO - change to actual user manager when user manager is available
     private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
+        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: "profile-example")
     }
     
 }
