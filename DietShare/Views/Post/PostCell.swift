@@ -8,9 +8,8 @@
 
 import UIKit
 
-class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    
     @IBOutlet weak private var userPhoto: UIButton!
     @IBOutlet weak private var userName: UILabel!
     @IBOutlet weak private var postImage: UIImageView!
@@ -96,19 +95,22 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             fatalError("The dequeued cell is not an instance of TopicCell.")
         }
 
-        cell.topicLabel.text = " " + topicsData[indexPath.item] + " "
+        cell.topicLabel.text = "#\(topicsData[indexPath.item])"
         //cell.topicLabel.sizeToFit()
-        cell.topicLabel.layer.cornerRadius = 4
+        cell.layer.cornerRadius = 3
         cell.topicLabel.clipsToBounds = true
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
     @IBAction func onUserClicked(_ sender: Any) {
         self.cellDelegate?.goToUser("2")
     }
     @IBAction func onCommentCountClicked(_ sender: Any) {
         self.cellDelegate?.goToDetail(self)
     }
-    
     @IBAction func onCommentClicked(_ sender: Any) {
         self.cellDelegate?.onCommentClicked()
     }
