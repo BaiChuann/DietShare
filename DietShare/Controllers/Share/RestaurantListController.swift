@@ -13,7 +13,7 @@ class RestaurantListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    private var restaurantDataSource: RestaurantsDataSource = RestaurantsLocalDataSource.shared
+    private var restaurantModelManager = RestaurantsModelManager.shared
 
     private var restaurants: [PublishRestaurant] = []
     private var filteredRestaurants: [PublishRestaurant] = []
@@ -51,8 +51,8 @@ class RestaurantListController: UIViewController {
     }
 
     private func loadRestaurantData() {
-        restaurants = restaurantDataSource.getAllRestaurants()
-            .map { toPublishRestaurant(restaurant: $0) }
+        restaurants = restaurantModelManager.getAllRestaurants()
+            .map { toPublishRestaurant(restaurant: Restaurant($0)) }
         restaurants.insert(defaultRestaurant, at: 0)
     }
 

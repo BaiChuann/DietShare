@@ -80,12 +80,12 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     
-    func getAllTopics() -> SortedSet<Topic> {
-        var topics = SortedSet<Topic>()
+    func getAllTopics() -> [ReadOnlyTopic] {
+        var topics = [ReadOnlyTopic]()
         do {
             for topic in try database.prepare(topicsTable) {
                 let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
-                topics.insert(topicEntry)
+                topics.append(topicEntry)
             }
         } catch let error {
             print("failed to get row: \(error)")
@@ -135,7 +135,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         return count
     }
     
-    func addTopics(_ newTopics: SortedSet<Topic>) {
+    func addTopics(_ newTopics: [Topic]) {
         _checkRep()
         for newTopic in newTopics {
             self.addTopic(newTopic)
@@ -225,22 +225,27 @@ class TopicsLocalDataSource: TopicsDataSource {
     // Only for testing
     private func prepopulate() {
         _checkRep()
-        let followers = ["1", "2", "3", "4", "5"]
-        let followersSet = Set<String>(followers)
-        let followerList = StringList(.User, followersSet)
-        for i in 0..<20 {
-            if !containsTopic("i") {
-                let topic = Topic(String(i), "VegiLife", "vegi-life.png", "A little bit of Vegi goes a long way", followerList, StringList(.Post))
-                self.addTopic(topic)
-            }
-        }
-        if !containsTopic("100000") {
-            let posts = ["1", "2", "3", "4", "5", "6"]
-            let postsSet = Set<String>(posts)
-            let postsList = StringList(.Post, postsSet)
-            let topic = Topic("100000", "High_Popularity2", "vegi-life.png", "Slightly lower popularity", StringList(.User), postsList)
-            self.addTopic(topic)
-        }
+        let followerList = StringList(.User)
+        let postList = StringList(.Post)
+
+        let topic1 = Topic("1", "Balanced Breakfast", "balanced-breakfast-icon", "A good day starts with a breakfast", followerList, postList)
+        let topic2 = Topic("2", "Fish and Omega 3", "fish-omega-3-icon", "Eat enough omega 3!", followerList, postList)
+        let topic3 = Topic("3", "Food for Kids", "food-for-kids-icon", "Delicious healthy food for kids", followerList, postList)
+        let topic4 = Topic("4", "Healthy Snacks", "healthy-snacks-icon", "Can snacks be healthy?", followerList, postList)
+        let topic5 = Topic("5", "Heart Health", "heart-health-icon", "Pay attention to your heart health", followerList, postList)
+        let topic6 = Topic("6", "High in Protein", "high-in-protein-icon", "Do check if you want to build muscle", followerList, postList)
+        let topic7 = Topic("7", "Homemade Food", "homemade-food-icon", "Want to cook at home?", followerList, postList)
+        let topic8 = Topic("8", "Unsaturated Fat", "unsaturated-fat-icon", "Moderate unsaturated fat is good for health", followerList, postList)
+        let topic9 = Topic("9", "Vegan Life", "vegan-life-icon", "Do you want to try vegan food?", followerList, postList)
+        self.addTopic(topic1)
+        self.addTopic(topic2)
+        self.addTopic(topic3)
+        self.addTopic(topic4)
+        self.addTopic(topic5)
+        self.addTopic(topic6)
+        self.addTopic(topic7)
+        self.addTopic(topic8)
+        self.addTopic(topic9)
         _checkRep()
     }
     

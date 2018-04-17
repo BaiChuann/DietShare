@@ -12,7 +12,7 @@ import UIKit
 
 class TopicListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    private var topicModel: TopicsModelManager<Topic>?
+    private var topicModel = TopicsModelManager.shared
     private var selectedTopic: Topic?
     
     var currentUser = UserModelManager.shared.getCurrentUser()
@@ -21,9 +21,9 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == topicListView, let model = self.topicModel {
+        if collectionView == topicListView {
             // TODO - only show 10 entries at a time
-            return model.getNumOfTopics()
+            return topicModel.getNumOfTopics()
         }
         return 0
     }
@@ -31,30 +31,27 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicFullListCell, for: indexPath as IndexPath) as! TopicFullListCell
-        if let model = self.topicModel {
-            let topicList = model.getAllTopics()
-            cell.setImage(topicList[indexPath.item].getImageAsUIImage())
-            cell.setName(topicList[indexPath.item].getName())
-            cell.setDescription(topicList[indexPath.item].getDescription())
-            cell.initFollowButtonView()
-            addTapHandler(cell, topicList, indexPath)
-        }
+        
+        let topicList = topicModel.getAllTopics()
+        cell.setImage(topicList[indexPath.item].getImageAsUIImage())
+        cell.setName(topicList[indexPath.item].getName())
+        cell.setDescription(topicList[indexPath.item].getDescription())
+        cell.initFollowButtonView()
+        addTapHandler(cell, topicList, indexPath)
         
         return cell
     }
     
     
     // Add handling of tapping on follow button
-    private func addTapHandler(_ cell: TopicFullListCell, _ topicList: [Topic], _ indexPath: IndexPath) {
+    private func addTapHandler(_ cell: TopicFullListCell, _ topicList: [ReadOnlyTopic], _ indexPath: IndexPath) {
         cell.addSubview(cell.followButton)
         if let user = self.currentUser {
             let currentTopic = topicList[indexPath.item]
             let followers = currentTopic.getFollowersID().getListAsSet()
             if followers.contains(user.getUserId()) {
-                print("user \(currentUser?.getUserId()) follows topic: \(currentTopic.getID())")
                 toggleToFollowed(cell.followButton)
             } else {
-                print("user \(currentUser?.getUserId()) does not follow topic: \(currentTopic.getID())")
                 toggleToUnfollowed(cell.followButton)
             }
         }
@@ -88,26 +85,27 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         
         // Handle follow/unfollow logic
-        if let user = self.currentUser, let model = self.topicModel {
+        if let user = self.currentUser {
             if sender.tag == FollowStatus.notFollowed.rawValue {
                 toggleToFollowed(sender)
-                model.addNewFollower(user, model.getAllTopics()[index])
+                let topic = Topic(topicModel.getAllTopics()[index])
+                topicModel.addNewFollower(user, topic)
             } else {
                 toggleToUnfollowed(sender)
-                model.removeFollower(user, model.getAllTopics()[index])
+                topicModel.removeFollower(user, Topic(topicModel.getAllTopics()[index]))
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.topicModel {
-            let topicsList = model.getAllTopics()
-            self.selectedTopic = topicsList[indexPath.item]
-            performSegue(withIdentifier: Identifiers.topicListToDetailPage, sender: self)
-        }
+       
+        let topicsList = topicModel.getAllTopics()
+        self.selectedTopic = Topic(topicsList[indexPath.item])
+        performSegue(withIdentifier: Identifiers.topicListToDetailPage, sender: self)
+    
     }
     
-    func setModelManager(_ topicModel: TopicsModelManager<Topic>) {
+    func setModelManager(_ topicModel: TopicsModelManager) {
         self.topicModel = topicModel
     }
     
@@ -135,9 +133,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
-            if let model = self.topicModel {
-                dest.setModelManager(model)
-            }
         }
     }
     

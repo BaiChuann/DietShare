@@ -15,10 +15,10 @@ import BTree
  */
 protocol TopicsDataSource {
     
-    func getAllTopics() -> SortedSet<Topic>
+    func getAllTopics() -> [ReadOnlyTopic]
     func getNumOfTopics() -> Int
     func addTopic(_ newTopic: Topic)
-    func addTopics(_ newTopics: SortedSet<Topic>)
+    func addTopics(_ newTopics: [Topic])
     func deleteTopic(_ newTopicID: String)
     func updateTopic(_ oldTopicID: String, _ newTopic: Topic)
     func searchWithKeyword(_ keyword: String) -> [Topic]

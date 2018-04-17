@@ -17,7 +17,7 @@ import GooglePlaces
 
 class RestaurantListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
     
-    private var restaurantModel: RestaurantsModelManager<Restaurant>?
+    private var restaurantModel = RestaurantsModelManager.shared
     private var selectedRestaurant: Restaurant?
     
     private var locationManager = CLLocationManager()
@@ -46,8 +46,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantFullListCell, for: indexPath as IndexPath) as! RestaurantFullListCell
-        if let model = self.restaurantModel, let location = self.currentLocation {
-            let restaurantList = model.getSortedRestaurantList(currentSort, currentTypeFilters, location)
+        if let location = self.currentLocation {
+            let restaurantList = restaurantModel.getSortedRestaurantList(currentSort, currentTypeFilters, location)
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
@@ -66,14 +66,14 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.restaurantModel, let location = self.currentLocation {
-            let restaurantsList = model.getSortedRestaurantList(currentSort, currentTypeFilters, location)
-            self.selectedRestaurant = restaurantsList[indexPath.item]
+        if let location = self.currentLocation {
+            let restaurantsList = restaurantModel.getSortedRestaurantList(currentSort, currentTypeFilters, location)
+            self.selectedRestaurant = Restaurant(restaurantsList[indexPath.item])
             performSegue(withIdentifier: Identifiers.restaurantListToDetailPage, sender: self)
         }
     }
     
-    func setModelManager(_ restaurantModel: RestaurantsModelManager<Restaurant>) {
+    func setModelManager(_ restaurantModel: RestaurantsModelManager) {
         self.restaurantModel = restaurantModel
     }
     
@@ -104,6 +104,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         addShadowToView(view: self.mapButton, offset: 2, radius: 2)
     }
     
+    // Initialize drop down menu for cuisine types
     private func initDropDown() {
         
         cuisineDropDown.anchorView = restaurantListView
@@ -153,9 +154,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             dest.setRestaurant(self.selectedRestaurant)
         }
         if let dest = segue.destination as? MapViewController {
-            if let model = self.restaurantModel {
-                dest.setRestaurants(model.getAllRestaurants())
-            }
+            
+            var restaurants = [Restaurant]()
+            restaurantModel.getAllRestaurants().forEach { restaurants.append(Restaurant($0))}
+            dest.setRestaurants(restaurants)
+            
         }
     }
     
@@ -223,7 +226,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //TODO - check if the following two lines break the location manager. if not, add them
-//        locationManager.delegate = nilc
+//        locationManager.delegate = nil
 //        locationManager.stopUpdatingLocation()
         currentLocation = manager.location
         self.restaurantListView.reloadData()

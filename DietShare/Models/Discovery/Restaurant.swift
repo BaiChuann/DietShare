@@ -46,6 +46,10 @@ class Restaurant: ReadOnlyRestaurant {
         self.init(id, name, address, location, phone, types, description, imagePath, RatingList(), StringList(.Post), 0)
     }
     
+    convenience init(_ restaurant: ReadOnlyRestaurant) {
+        self.init(restaurant.getID(), restaurant.getName(), restaurant.getAddress(), restaurant.getLocation(), restaurant.getPhone(), restaurant.getTypes(), restaurant.getDescription(), restaurant.getImagePath(), restaurant.getRatingsID(), restaurant.getPostsID(), restaurant.getRatingScore() )
+    }
+    
     func getID() -> String {
         return self.id
     }

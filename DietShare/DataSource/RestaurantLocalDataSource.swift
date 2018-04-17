@@ -85,15 +85,15 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         }
     }
     
-    func getAllRestaurants() -> SortedSet<Restaurant> {
-        var restaurants = SortedSet<Restaurant>()
+    func getAllRestaurants() -> [ReadOnlyRestaurant] {
+        var restaurants = [ReadOnlyRestaurant]()
         do {
             
             let startTime = CFAbsoluteTimeGetCurrent()
             for restaurant in try database.prepare(restaurantsTable) {
                 
                 let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
-                restaurants.insert(restaurantEntry)
+                restaurants.append(restaurantEntry)
             }
             
             print("Time lapsed for getting restaurants: \(CFAbsoluteTimeGetCurrent() - startTime)")
@@ -142,7 +142,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     }
     
     
-    func addRestaurants(_ newRestaurants: SortedSet<Restaurant>) {
+    func addRestaurants(_ newRestaurants: [Restaurant]) {
         _checkRep()
         for newRestaurant in newRestaurants {
             addRestaurant(newRestaurant)

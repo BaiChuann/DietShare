@@ -529,10 +529,10 @@
             </objects>
             <point key="canvasLocation" x="-1324" y="1763.568215892054"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Home Tab Bar Controller-->
         <scene sceneID="oWk-KI-gdl">
             <objects>
-                <tabBarController storyboardIdentifier="TabPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qzz-es-AwK" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qzz-es-AwK" customClass="HomeTabBarController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3RD-F2-H9u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
