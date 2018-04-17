@@ -770,7 +770,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6Re-6e-M51"/>
                     <connections>
-                        <segue destination="Ew8-ZU-ajd" kind="show" id="VYi-U6-A8h"/>
+                        <segue destination="Ew8-ZU-ajd" kind="show" identifier="ShowFoodSelector" id="VYi-U6-A8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZu-sa-Kbc" userLabel="First Responder" sceneMemberID="firstResponder"/>

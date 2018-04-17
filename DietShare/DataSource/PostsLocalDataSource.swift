@@ -131,6 +131,25 @@ class PostsLocalDataSource {
             let newPost = Post(userId: String(i), caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "koufu", topics: ["1", "2", "3", "4", "5"])
             addPost(newPost)
         }
+        let newPost1 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost2 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost3 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost4 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost5 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost6 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost7 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost8 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost9 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost10 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost11 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost12 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost13 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost14 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost15 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost16 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost17 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        let newPost18 = Post(userId: "1", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: Date(), photo: UIImage(named: "topic1-1")!, restaurant: nil, topics: ["1"])
+        
     }
     
 }

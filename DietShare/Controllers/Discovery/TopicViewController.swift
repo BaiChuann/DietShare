@@ -5,7 +5,7 @@
 //  Created by Shuang Yang on 28/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
-// swiftlint:disable force_cast
+// swiftlint:disable force_cast implicitly_unwrapped_optional
 
 import UIKit
 
@@ -46,7 +46,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidAppear(animated)
         initView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
@@ -101,7 +101,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             postsTableController?.getTopicPosts(topic.getID())
         }
         self.addChildViewController(postsTableController!)
-        
+
         postsTableController?.setScrollDelegate(self)
         postsTable = postsTableController?.getTable()
         postsTable.frame = postsArea.frame
@@ -125,7 +125,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
-    
+
     // Handle tapping of follow button
     @IBAction func followButtonPressed(_ sender: UIButton) {
         assert(currentUser != nil)
@@ -145,9 +145,9 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? TopicListViewController {
+        if let _ = segue.destination as? TopicListViewController {
         }
     }
     

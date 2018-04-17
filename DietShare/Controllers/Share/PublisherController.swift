@@ -87,7 +87,7 @@ class PublisherController: UIViewController {
         facebookView.isUserInteractionEnabled = true
 
         starRateView.isHidden = true
-        starRateView.settings.fillMode = .half
+        starRateView.settings.fillMode = .full
         starRateView.didFinishTouchingCosmos = { rating in self.rating = rating }
 
         let publishButton = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(publish(_:)))
@@ -243,7 +243,7 @@ class PublisherController: UIViewController {
         let image = imageView.image!
         let restaurantId = self.restaurantId
         let topicsId = self.topicsId
-        let rating = floor(self.rating * 2) / 2
+        let rating: Int = Int(floor(self.rating))
         let options = additionalOptions
 
         publishManager.post(text: text, image: image, restaurantId: restaurantId, topicsId: topicsId, rating: rating, additionalOption: options)

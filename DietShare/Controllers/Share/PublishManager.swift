@@ -17,23 +17,23 @@ class PublishManager: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         aDecoder.decodeObject()
     }
-    
+
     static let shared = PublishManager()
 
     private var text: String = ""
     private var image: UIImage!
     private var restaurantId: String = "-1"
     private var topicsId: [String] = []
-    private var rating: Double = 0.0
+    private var rating: Int = 0
     private var options: Set<PublishOption> = []
-    
+
     private let facebookURL = NSURL(string: "fbauth2:/")
     private let notificationCenter = NotificationCenter.default
     private let postManager = PostManager.shared
 
     private override init() {}
 
-    func post(text: String = "", image: UIImage, restaurantId: String = "-1", topicsId: [String] = [], rating: Double = 0.0, additionalOption: Set<PublishOption> = []) {
+    func post(text: String = "", image: UIImage, restaurantId: String = "-1", topicsId: [String] = [], rating: Int = 0, additionalOption: Set<PublishOption> = []) {
         self.text = text
         self.image = image
         self.restaurantId = restaurantId
@@ -77,13 +77,11 @@ class PublishManager: NSObject, NSCoding {
         let restaurantId = self.restaurantId == "-1" ? nil : self.restaurantId
         let topicsId = self.topicsId.isEmpty ? nil : self.topicsId
 
-        _ = postManager.postPost(caption: text, time: Date(), photo: image, restaurant: restaurantId, topics: topicsId)
+        let post = postManager.postPost(caption: text, time: Date(), photo: image, restaurant: restaurantId, topics: topicsId)
     }
 
     private func saveToPhone() {
-        print("1111")
         print(image)
-        print("11111111")
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
 
