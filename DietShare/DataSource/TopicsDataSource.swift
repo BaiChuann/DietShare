@@ -22,4 +22,5 @@ protocol TopicsDataSource {
     func deleteTopic(_ newTopicID: String)
     func updateTopic(_ oldTopicID: String, _ newTopic: Topic)
     func searchWithKeyword(_ keyword: String) -> [Topic]
+    func getTopicFromID(_ ID: String) -> Topic?
 }

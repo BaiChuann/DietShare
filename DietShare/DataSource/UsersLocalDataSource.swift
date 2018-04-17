@@ -97,9 +97,9 @@ class UsersLocalDataSource: UsersDataSource {
                 return userEntry
             }
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
-            print("update constraint failed: \(message), in \(String(describing: statement))")
+            print("query constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
-            print("update failed: \(error)")
+            print("query failed: \(error)")
         }
         _checkRep()
         return nil
