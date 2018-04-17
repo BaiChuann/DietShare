@@ -16,16 +16,16 @@ class TopicShortListCell: UICollectionViewCell {
     
     
     func setImage(_ image: UIImage) {
-        let croppedImage = cropToBounds(image, Double(topicImage.frame.width), Double(topicImage.frame.height))
-        topicImage.image = croppedImage
-        topicImage.alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)
+        //let croppedImage = cropToBounds(image, Double(topicImage.frame.width), Double(topicImage.frame.height))
+        let alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)
+        setFittedImageAsSubview(view: topicImage, image: image, alpha: alpha)
         addRoundedRectBackground(topicImage, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, UIColor.clear)
     }
     
     func setName(_ name: String) {
-        topicName.text = name
-        addRoundedRectBackground(topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
+        topicName.text = ""
+        /*addRoundedRectBackground(topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)*/
 //        topicName.backgroundColor = .white
     }
-    
+
 }

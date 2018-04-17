@@ -83,7 +83,9 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         print("InitView called")
         if let currentTopic = self.topic {
             self.topicName.text = currentTopic.getName()
-            self.topicImage.image = currentTopic.getImageAsUIImage()
+            let currentImage = currentTopic.getImageAsUIImage()
+            let currentAlpha = CGFloat(Constants.TopicPage.topicImageAlpha)
+            setFittedImageAsSubview(view: topicImage, image: currentImage, alpha: currentAlpha)
             self.topicDescription.text = currentTopic.getDescription()
         }
         
