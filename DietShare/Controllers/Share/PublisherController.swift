@@ -51,6 +51,7 @@ class PublisherController: UIViewController {
     private let maximumCharacter: Int = 140
     private let starRateAppearOffset: Int = 30
     private let notificationCenter = NotificationCenter.default
+    private let facebookURL = NSURL(string: "fbauth2:/")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -188,10 +189,12 @@ class PublisherController: UIViewController {
 
     @objc
     private func handleFacebookShareFail(_ notification: NSNotification) {
-        let alertController = UIAlertController(title: "Can't share to Facebook.", message: "Share to Facebook requires installation of Facebook App", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        let warningView = MessageView.viewFromNib(layout: .cardView)
+        warningView.configureTheme(.warning)
+        warningView.configureDropShadow()
+        warningView.configureContent(title: "Failed to share to Facebook", body: "Share to Facebook requires installation of Facebook app on your phone.")
+        warningView.button?.isHidden = true
+        SwiftMessages.show(view: warningView)
     }
 
     @objc
@@ -201,6 +204,11 @@ class PublisherController: UIViewController {
             facebookView.image = UIImage(named: "facebook-logo-gray")
             facebookView.alpha = 0.5
         } else {
+            guard let facebookURL = facebookURL, UIApplication.shared.canOpenURL(facebookURL as URL) else {
+                notificationCenter.post(name: .didFacebookShareFail, object: nil)
+                return
+            }
+
             additionalOptions.insert(.facebook)
             facebookView.image = UIImage(named: "facebook-logo-blue")
             facebookView.alpha = 1.0

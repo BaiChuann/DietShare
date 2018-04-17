@@ -26,12 +26,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var followers: UICollectionView!
     @IBOutlet weak var postsArea: UIView!
     private var postsTable: UITableView!
-    private var postsTableController: PostsTableController?
+    private var postsTableController: PostsTableController!
+    @IBOutlet weak var postAreaHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
+//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
         scrollView.delegate = self
 
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
@@ -95,18 +96,27 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     private func initPosts() {
-        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
-        postsTableController?.setParentController(self)
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
+        postsTableController.setParentController(self)
         if let topic = self.topic {
-            postsTableController?.getTopicPosts(topic.getID())
+            postsTableController.getTopicPosts(topic.getID())
         }
         self.addChildViewController(postsTableController!)
+<<<<<<< HEAD
 
         postsTableController?.setScrollDelegate(self)
         postsTable = postsTableController?.getTable()
         postsTable.frame = postsArea.frame
         postsArea.removeFromSuperview()
         scrollView.addSubview(postsTable)
+=======
+        
+        postsTableController.setScrollDelegate(self)
+        postsTable = postsTableController.getTable()
+        postAreaHeight.constant = postsTable.contentSize.height
+        postsTableController.view.frame.size = postsArea.frame.size
+        postsArea.addSubview(postsTableController.view)
+>>>>>>> master
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
     }
@@ -123,6 +133,21 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.followButton.tag = FollowStatus.notFollowed.rawValue
                 self.followButton.setTitle(Text.follow, for: .normal)
             }
+        }
+    }
+
+    // Hide navigation bar when scrolling up
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y > 0) {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
         }
     }
 
@@ -145,11 +170,15 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
+<<<<<<< HEAD
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let _ = segue.destination as? TopicListViewController {
         }
     }
+=======
+    
+>>>>>>> master
     
     /**
      * Utility functions
@@ -175,19 +204,19 @@ extension TopicViewController: ScrollDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-        {
-            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
-                scrollView.isScrollEnabled = false
-                postsTable.isScrollEnabled = true
-            }
-            
-        }
+//        let yOffset = scrollView.contentOffset.y
+//        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
+//        {
+//            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
+//                scrollView.isScrollEnabled = false
+//                postsTable.isScrollEnabled = true
+//            }
+//
+//        }
     }
     func reachTop() {
-        scrollView.isScrollEnabled = true
-        postsTable.isScrollEnabled = false
+//        scrollView.isScrollEnabled = true
+//        postsTable.isScrollEnabled = false
     }
 }
 

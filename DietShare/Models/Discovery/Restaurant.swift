@@ -15,8 +15,6 @@ import CoreLocation
  */
 
 class Restaurant: ReadOnlyRestaurant {
-    
-    
     private let id: String
     private let name: String
     private let address: String
