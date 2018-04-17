@@ -188,7 +188,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
      * View-related functions
      */
     
-    
+    // Hide navigation bar when scrolling up
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         if(velocity.y > 0) {
