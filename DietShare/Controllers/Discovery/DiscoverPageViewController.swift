@@ -137,7 +137,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     // TODO - remove this when current user is set at Login page
     func initUser() {
         let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: #imageLiteral(resourceName: "profile"))
-        UserModelManager.shared.setCurrentUser(user)
+        UserModelManager.shared.setCurrentUser("1")
     }
 
     override func didReceiveMemoryWarning() {

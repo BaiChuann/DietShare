@@ -14,14 +14,16 @@ class PostManager {
     private var likes: [Like] = []
     private var userManager = UserModelManager.shared
     private var profileManager = ProfileManager.shared
+    private var postsDataSource = PostsLocalDataSource.shared
     private var currentUser: User
     private init() {
+        posts = postsDataSource.getAllPosts()
         currentUser = userManager.getCurrentUser()!
-        let newPost = Post(userId: "2", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: nil, topics: ["1", "2", "3", "4", "5"])
-        for _ in 1...1 {
-            posts.append(newPost)
-        }
-        let postId = newPost.getPostId()
+//        let newPost = Post(userId: "2", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: nil, topics: ["1", "2", "3", "4", "5"])
+//        for _ in 1...1 {
+//            posts.append(newPost)
+//        }
+        let postId = posts[0].getPostId()
         let newComment = Comment(userId: "3", parentId: postId, content: "This looks so nice", time: Date())
         for _ in 1...10 {
              //comments.append(newComment)

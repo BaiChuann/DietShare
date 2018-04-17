@@ -36,8 +36,8 @@ class UserModelManager {
         return nil
     }
     
-    func setCurrentUser(_ user: User) {
-        self.currentUser = user
+    func setCurrentUser(_ user: String) {
+        self.currentUser = getUserFromID(user)
     }
     
     func getCurrentUser() -> User? {
