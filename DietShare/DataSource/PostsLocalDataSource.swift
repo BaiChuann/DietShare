@@ -126,8 +126,11 @@ class PostsLocalDataSource {
     // Only for testing
     
     private func prepopulate() {
-        let newPost = Post(userId: "2", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "koufu", topics: ["1", "2", "3", "4", "5"])
-        addPost(newPost)
+        
+        for i in 1...20 {
+            let newPost = Post(userId: String(i), caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "koufu", topics: ["1", "2", "3", "4", "5"])
+            addPost(newPost)
+        }
     }
     
 }
