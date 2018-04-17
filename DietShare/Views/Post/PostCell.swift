@@ -94,7 +94,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     func setRestaurant(_ restaurant: String?) {
         guard let res = restaurant else {
-            self.restaurant.frame.size = CGSize(width: 0, height: 0.0)
+            self.restaurantHeight.constant = 0.0
             return
         }
         guard let data = RestaurantsModelManager.shared.getRestaurantFromID(res) else {

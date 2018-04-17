@@ -22,7 +22,7 @@ class TopicListController: UIViewController {
     private var isSearching = false
 
     private var selectedNumber: Int = 0
-    private let maximumSelection: Int = 5
+    private let maximumSelection: Int = 3
 
     private let publishTopicCellIdentifier = "PublishTopicCell"
     private let searchBarPlaceHolder = "Search your topics here ..."

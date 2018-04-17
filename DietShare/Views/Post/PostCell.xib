@@ -32,15 +32,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uJu-5d-fbK">
-                    <rect key="frame" x="0.0" y="76" width="375" height="375"/>
+                    <rect key="frame" x="0.0" y="76" width="375" height="450"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="375" id="MfF-oD-5A7"/>
-                        <constraint firstAttribute="width" secondItem="uJu-5d-fbK" secondAttribute="height" multiplier="1:1" id="pCi-OZ-ZzT"/>
-                        <constraint firstAttribute="height" constant="375" id="xyT-bn-aVh"/>
+                        <constraint firstAttribute="height" constant="450" id="xyT-bn-aVh"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AP-2r-GGi">
-                    <rect key="frame" x="16" y="459" width="343" height="465"/>
+                    <rect key="frame" x="16" y="534" width="343" height="390"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="343" id="9mr-Cp-5xD"/>
                     </constraints>

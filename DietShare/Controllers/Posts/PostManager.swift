@@ -54,7 +54,7 @@ class PostManager {
                 results.append(post)
             }
         }
-        return results
+        return results.sorted(by: {$0.getTime() > $1.getTime()})
     }
     func getLikePosts() -> [Post] {
         var results: [Post] = []
@@ -66,7 +66,7 @@ class PostManager {
                 results.append(post)
             }
         }
-        return results
+        return results.sorted(by: {$0.getTime() > $1.getTime()})
     }
     func getTrendingPosts() -> [Post] {
         let sortedPosts = posts.sorted(by: {$0.getLikesCount() > $1.getLikesCount()})
@@ -82,7 +82,7 @@ class PostManager {
                 results.append(post)
             }
         }
-        return results
+        return results.sorted(by: {$0.getTime() > $1.getTime()})
     }
     func getTopicPosts(_ id: String) -> [Post] {
         var results: [Post] = []
@@ -97,10 +97,10 @@ class PostManager {
                 }
             }
         }
-        return results
+        return results.sorted(by: {$0.getTime() > $1.getTime()})
     }
     func getUserPosts(_ id: String) -> [Post] {
-        return posts.filter { $0.getUserId() == id }
+        return (posts.filter { $0.getUserId() == id }).sorted(by: {$0.getTime() > $1.getTime()})
     }
     func postPost(caption: String, time: Date, photo: UIImage, restaurant: String?, topics: [String]?) -> Post {
         let post = Post(userId: currentUser.getUserId(), caption: caption, time: time, photo: photo, restaurant: restaurant, topics: topics)
