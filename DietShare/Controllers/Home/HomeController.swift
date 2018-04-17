@@ -13,9 +13,9 @@ class HomeController: UIViewController {
     @IBOutlet weak private var postsArea: UIView!
     @IBOutlet weak private var segmentedControl: UISegmentedControl!
     @IBOutlet weak private var segmentBar: UIView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak private var searchBar: UISearchBar!
     private var postsTable: UITableView!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
@@ -24,13 +24,13 @@ class HomeController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool){
+    override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
         postsTableController.setScrollDelegate(self)
@@ -43,7 +43,7 @@ class HomeController: UIViewController {
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
         let attr = NSDictionary(object: UIFont(name: "Verdana", size: 13.0)!, forKey: NSAttributedStringKey.font as NSCopying)
-        segmentedControl.setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
+        segmentedControl.setTitleTextAttributes(attr as [NSObject : AnyObject], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.lightTextColor], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.themeColor], for: .selected)
         segmentBar.frame.origin.x = segmentedControl.frame.width / 8
@@ -51,20 +51,22 @@ class HomeController: UIViewController {
         searchBar.layer.borderWidth = 1.0
         searchBar.layer.borderColor = Constants.lightTextColor.cgColor
         searchBar.layer.cornerRadius = 10
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
+
     @IBAction func onSegmentSelected(_ sender: Any) {
-        switch segmentedControl.selectedSegmentIndex
-        {
+        switch segmentedControl.selectedSegmentIndex {
         case 0:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
             }
-            
+
             postsTableController.getFollowingPosts()
             searchBar.resignFirstResponder()
             //let indexPath = IndexPath(row: 0, section: 0)
             //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
-            
+
         case 1:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * 5
@@ -83,7 +85,6 @@ class HomeController: UIViewController {
 
 extension HomeController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         postsTableController.search(searchText)
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -96,5 +97,11 @@ extension HomeController: ScrollDelegate {
     }
     func didScroll() {
         searchBar.resignFirstResponder()
+    }
+}
+
+extension HomeController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
