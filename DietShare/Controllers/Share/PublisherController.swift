@@ -88,7 +88,7 @@ class PublisherController: UIViewController {
         facebookView.isUserInteractionEnabled = true
 
         starRateView.isHidden = true
-        starRateView.settings.fillMode = .half
+        starRateView.settings.fillMode = .full
         starRateView.didFinishTouchingCosmos = { rating in self.rating = rating }
 
         let publishButton = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(publish(_:)))
@@ -102,6 +102,8 @@ class PublisherController: UIViewController {
 
     private func setUpObserver() {
         notificationCenter.addObserver(self, selector: #selector(handleFacebookShareFail(_:)), name: .didFacebookShareFail, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleSaveToPhoneFail(_:)), name: .didSaveToPhoneFail, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleSaveToPhoneSuccess(_:)), name: .didSaveToPhoneSuccess, object: nil)
     }
 
     private func setUpTextView() {
@@ -214,12 +216,42 @@ class PublisherController: UIViewController {
     }
 
     @objc
+    private func handleSaveToPhoneSuccess(_ notification: NSNotification) {
+        let infoView = MessageView.viewFromNib(layout: .cardView)
+        infoView.configureTheme(.success)
+        infoView.configureDropShadow()
+        infoView.configureContent(title: "Success", body: "Photo has saved to your phone")
+        infoView.button?.isHidden = true
+        infoView.configureBackgroundView(sideMargin: 0)
+        SwiftMessages.show(view: infoView)
+
+        guard let currentController = tabBarController as? HomeTabBarController else {
+            tabBarController?.selectedIndex = 1
+            tabBarController?.tabBar.isHidden = false
+            return
+        }
+        let lastPage = currentController.currentTab
+        currentController.selectedIndex = lastPage
+    }
+
+    @objc
+    private func handleSaveToPhoneFail(_ notification: NSNotification) {
+        let warningView = MessageView.viewFromNib(layout: .cardView)
+        warningView.configureTheme(.warning)
+        warningView.configureDropShadow()
+        warningView.configureContent(title: "Sorry", body: "Photo failed to save to your phone")
+        warningView.button?.isHidden = true
+        warningView.configureBackgroundView(sideMargin: 0)
+        SwiftMessages.show(view: warningView)
+    }
+
+    @objc
     private func publish(_ sender: UIBarButtonItem) {
         let text: String = textView.text != placeholder ? textView.text : ""
         let image = imageView.image!
         let restaurantId = self.restaurantId
         let topicsId = self.topicsId
-        let rating = floor(self.rating * 2) / 2
+        let rating: Int = Int(floor(self.rating))
         let options = additionalOptions
 
         publishManager.post(text: text, image: image, restaurantId: restaurantId, topicsId: topicsId, rating: rating, additionalOption: options)
