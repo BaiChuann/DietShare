@@ -59,6 +59,10 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         return returnList
     }
     
+    func getTopicFromID(_ ID: String) -> Topic? {
+        return self.topicsDataSource.getTopicFromID(ID)
+    }
+    
     func getNumOfTopics() -> Int {
         return self.topicsDataSource.getNumOfTopics()
     }

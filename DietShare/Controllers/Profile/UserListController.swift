@@ -14,7 +14,7 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak private var table: UITableView!
     var session = 0
     override func viewDidLoad() {
-        users.append(User(userId: "1", name: "Bai Chuan", password: "123", photo: UIImage(named: "profile-example")!))
+        users.append(User(userId: "1", name: "Bai Chuan", password: "123", photo: "profile-example"))
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton

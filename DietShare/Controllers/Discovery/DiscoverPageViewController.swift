@@ -139,7 +139,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     
     // TODO - remove this when current user is set at Login page
     func initUser() {
-        let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: #imageLiteral(resourceName: "profile"))
+        let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: "profile")
         UserModelManager.shared.setCurrentUser(user)
     }
 

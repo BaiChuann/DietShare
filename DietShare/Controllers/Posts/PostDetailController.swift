@@ -113,7 +113,7 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
             let comment = Comment(userId: "1", parentId: "1", content: "this is an example of comment", time: Date())
-            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
+            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: "profile-example")
             cell.setComment(user: user, comment: comment)
             cell.selectionStyle = .none
             return cell
@@ -122,7 +122,7 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
             
-            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
+            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: "profile-example")
             cell.setUser(user)
             cell.selectionStyle = .none
             return cell

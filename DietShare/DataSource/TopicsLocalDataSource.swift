@@ -94,6 +94,24 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     
+    func getTopicFromID(_ ID: String) -> Topic? {
+        _checkRep()
+        do {
+            let row = topicsTable.filter(id == ID)
+            for topic in try database.prepare(row) {
+                let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
+                return topicEntry
+            }
+        } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
+            print("query constraint failed: \(message), in \(String(describing: statement))")
+        } catch let error {
+            print("query failed: \(error)")
+        }
+        _checkRep()
+        return nil
+    }
+    
+    
     func addTopic(_ newTopic: Topic) {
         _checkRep()
         do {
