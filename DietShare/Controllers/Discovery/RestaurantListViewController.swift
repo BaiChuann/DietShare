@@ -79,6 +79,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
 
         initView()
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -225,10 +230,4 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     /**
      * Test functions
      */
-    
-    
 }
-
-
-
-

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().backgroundColor = UIColor.white
-        
+
         //AIzaSyBY34yDpzD6ONu0CPloeetX9o8aD5K-4IY
         GMSServices.provideAPIKey("AIzaSyBY34yDpzD6ONu0CPloeetX9o8aD5K-4IY")
         GMSPlacesClient.provideAPIKey("AIzaSyBY34yDpzD6ONu0CPloeetX9o8aD5K-4IY")
