@@ -68,15 +68,21 @@ class RestaurantsModelManager {
         return displayedList
     }
     
-    
-    func addRating(_ restaurant: Restaurant, _ rating: Rating) {
+    func addRating(restaurantId: String, rate: Int, userId: String) {
+        guard let restaurant = getRestaurantFromID(restaurantId) else {
+            return
+        }
+        let rating = Rating(userId, restaurantId, RatingScore(rawValue: rate)!)
         restaurant.addRating(rating)
-        self.restaurantsDataSource.updateRestaurant(restaurant.getID(), restaurant)
+        self.restaurantsDataSource.updateRestaurant(restaurantId, restaurant)
     }
     
-    func addPost(_ restaurant: Restaurant, _ post: Post) {
+    func addPost(restaurantId: String, post: Post) {
+        guard let restaurant = getRestaurantFromID(restaurantId) else {
+            return
+        }
         restaurant.addPost(post)
-        self.restaurantsDataSource.updateRestaurant(restaurant.getID(), restaurant)
+        self.restaurantsDataSource.updateRestaurant(restaurantId, restaurant)
     }
 }
 
