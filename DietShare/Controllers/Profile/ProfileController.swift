@@ -51,6 +51,7 @@ class ProfileController: UIViewController {
     }
 
     override func viewDidLoad() {
+        followButton.layer.cornerRadius = Constants.cornerRadius
         if userId == "" {
             setUserId(currentUser)
             if let pr = ProfileManager.shared.getProfile(currentUser) {
