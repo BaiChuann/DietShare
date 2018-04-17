@@ -48,7 +48,7 @@ class Topic: ReadOnlyTopic {
         self.init("", "", "void-bg", "", StringList(ListType.User), StringList(ListType.Post), StringList(.User))
     }
     
-    convenience init<T: ReadOnlyTopic> (_ readOnlyTopic: T) {
+    convenience init (_ readOnlyTopic: ReadOnlyTopic) {
         self.init(readOnlyTopic.getID(), readOnlyTopic.getName(), readOnlyTopic.getImagePath(), readOnlyTopic.getDescription(), readOnlyTopic.getFollowersID(), readOnlyTopic.getPostsID(), readOnlyTopic.getActiveUserID())
     }
 

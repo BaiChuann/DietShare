@@ -13,7 +13,7 @@ import UIKit
  * A read-only immutable protocol for a Topic in the app.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-protocol ReadOnlyTopic: Comparable {
+protocol ReadOnlyTopic {
     func getID() -> String
     func getName() -> String
     func getImageAsUIImage() -> UIImage

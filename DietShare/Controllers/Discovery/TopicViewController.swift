@@ -12,7 +12,7 @@ import UIKit
 class TopicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
     private var topic: Topic?
-    private var topicsModel: TopicsModelManager<Topic>?
+    private var topicsModel = TopicsModelManager.shared
     private var userModel = UserModelManager.shared
     private var currentUser = UserModelManager.shared.getCurrentUser()
     
@@ -38,12 +38,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        initPosts()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initView()
-        initPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,13 +133,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
                 followButton.setTitle(Text.unfollow, for: .normal)
                 followButton.layer.borderColor = UIColor.gray.cgColor
                 followButton.titleLabel?.textColor = UIColor.gray
-                self.topicsModel?.addNewFollower(user, topic)
+                self.topicsModel.addNewFollower(user, topic)
             } else {
                 followButton.tag = FollowStatus.notFollowed.rawValue
                 followButton.setTitle(Text.follow, for: .normal)
                 followButton.layer.borderColor = UIColor.black.cgColor
                 followButton.titleLabel?.textColor = UIColor.black
-                self.topicsModel?.removeFollower(user, topic)
+                self.topicsModel.removeFollower(user, topic)
             }
         }
     }
@@ -156,7 +157,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.topic = topic
     }
     
-    func setModelManager(_ modelManager: TopicsModelManager<Topic>) {
+    func setModelManager(_ modelManager: TopicsModelManager) {
         self.topicsModel = modelManager
     }
     

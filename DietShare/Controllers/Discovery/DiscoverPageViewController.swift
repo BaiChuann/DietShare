@@ -12,10 +12,11 @@ import CoreLocation
 
 class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
-    private var topicModel = TopicsModelManager<Topic>()
-    private var restaurantModel = RestaurantsModelManager<Restaurant>()
-    private var displayedTopics: [Topic]?
-    private var displayedRestaurants: [Restaurant]?
+    private var topicModel = TopicsModelManager.shared
+    private var restaurantModel = RestaurantsModelManager.shared
+    private var displayedTopics = TopicsModelManager.shared.getShortList(Constants.DiscoveryPage.numOfDisplayedTopics)
+    private var displayedRestaurants = RestaurantsModelManager.shared.getShortList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
+    
     private var currentTopic: Topic?
     private var currentRestaurant: Restaurant?
     var currentUser: User?
@@ -32,10 +33,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicList {
-            return Constants.DiscoveryPage.numOfDisplayedTopics
+            return displayedTopics.count
         }
         if collectionView == restaurantList {
-            return Constants.DiscoveryPage.numOfDisplayedRestaurants
+            return displayedRestaurants.count
         }
         return 0
     }
@@ -54,37 +55,29 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     private func getCellForTopic(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.topicShortListCell, for: indexPath as IndexPath) as! TopicShortListCell
         
-        if let displayedTopicsList = self.displayedTopics {
-            if !displayedTopicsList.isEmpty {
-                cell.setImage(displayedTopicsList[indexPath.item].getImageAsUIImage())
-                cell.setName(displayedTopicsList[indexPath.item].getName())
-            }
+        if !displayedTopics.isEmpty {
+            cell.setImage(displayedTopics[indexPath.item].getImageAsUIImage())
+            cell.setName(displayedTopics[indexPath.item].getName())
         }
         return cell
     }
     
     private func getCellForRestaurant(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantShortListCell, for: indexPath as IndexPath) as! RestaurantShortListCell
-        if let displayedRestaurantsList = self.displayedRestaurants {
-            if !displayedRestaurantsList.isEmpty {
-                cell.setImage(displayedRestaurantsList[indexPath.item].getImage())
-                cell.setName(displayedRestaurantsList[indexPath.item].getName())
-            }
+        if !displayedRestaurants.isEmpty {
+            cell.setImage(displayedRestaurants[indexPath.item].getImage())
+            cell.setName(displayedRestaurants[indexPath.item].getName())
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == topicList {
-            if let topicsList = self.displayedTopics {
-                self.currentTopic = topicsList[indexPath.item] as! Topic
-                performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
-            }
+            self.currentTopic = Topic(displayedTopics[indexPath.item])
+            performSegue(withIdentifier: Identifiers.discoveryToTopicPage, sender: self)
         } else if collectionView == restaurantList {
-            if let restuarantsList = self.displayedRestaurants {
-                self.currentRestaurant = restuarantsList[indexPath.item] as! Restaurant
-                performSegue(withIdentifier: Identifiers.discoveryToRestaurantPage, sender: self)
-            }
+            self.currentRestaurant = Restaurant(displayedRestaurants[indexPath.item])
+            performSegue(withIdentifier: Identifiers.discoveryToRestaurantPage, sender: self)
         }
     }
     
@@ -110,13 +103,8 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         
         // TODO - integrate with Login when login is ready
         initUser()
-        
-        displayedTopics = self.topicModel.getAllTopics()
-        displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
-        
         initPosts()
         //change of poststable controller
-
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
@@ -149,15 +137,8 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? TopicListViewController {
-            dest.setModelManager(self.topicModel)
-            
-        }
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
-        }
-        if let dest = segue.destination as? RestaurantListViewController {
-            dest.setModelManager(self.restaurantModel)
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)

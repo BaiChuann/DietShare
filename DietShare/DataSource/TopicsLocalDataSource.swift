@@ -80,12 +80,12 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     
-    func getAllTopics() -> SortedSet<Topic> {
-        var topics = SortedSet<Topic>()
+    func getAllTopics() -> [ReadOnlyTopic] {
+        var topics = [ReadOnlyTopic]()
         do {
             for topic in try database.prepare(topicsTable) {
                 let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
-                topics.insert(topicEntry)
+                topics.append(topicEntry)
             }
         } catch let error {
             print("failed to get row: \(error)")
@@ -135,7 +135,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         return count
     }
     
-    func addTopics(_ newTopics: SortedSet<Topic>) {
+    func addTopics(_ newTopics: [Topic]) {
         _checkRep()
         for newTopic in newTopics {
             self.addTopic(newTopic)
