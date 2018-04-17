@@ -76,9 +76,6 @@ class PublisherController: UIViewController {
     }
 
     private func setUpUI() {
-//        addTopBorder(view: restaurantButton, color: .lightGray)
-//        addTopBorder(view: topicButton, color: .lightGray)
-//        addBottomBorder(view: topicButton, color: .lightGray)
         imageView.image = shareState?.modifiedPhoto
         imageView.isUserInteractionEnabled = true
 
@@ -127,7 +124,8 @@ class PublisherController: UIViewController {
         imageView.addGestureRecognizer(imageTapGestureRecognizer)
     }
 
-    @objc private func amplifyImage(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func amplifyImage(_ sender: UITapGestureRecognizer) {
         guard let superView = view.superview else {
             return
         }
@@ -145,12 +143,13 @@ class PublisherController: UIViewController {
         amplifiedFrame.addSubview(amplifiedImage)
         amplifiedFrame.tag = amplifiedFrameTag
         superView.addSubview(amplifiedFrame)
-        
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissAmplifiedImage(_:)))
         amplifiedFrame.addGestureRecognizer(tapGestureRecognizer)
     }
 
-    @objc private func dismissAmplifiedImage(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func dismissAmplifiedImage(_ sender: UITapGestureRecognizer) {
         guard let amplifiedFrame = view.superview?.viewWithTag(amplifiedFrameTag) else {
             return
         }
@@ -168,22 +167,6 @@ class PublisherController: UIViewController {
             starRateView.rating = 0
         }
         offSetMultiplier = 0
-    }
-
-    // Add only bottom border for a UIView
-    private func addBottomBorder(view: UIView, color: UIColor) {
-        let frame = view.frame
-        let lineView = UIView(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: 1))
-        lineView.backgroundColor = color
-        view.addSubview(lineView)
-    }
-
-    // Add only top border for a UIView
-    private func addTopBorder(view: UIView, color: UIColor) {
-        let frame = view.frame
-        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 1))
-        lineView.backgroundColor = color
-        view.addSubview(lineView)
     }
 
     // Shift all component below restaurant

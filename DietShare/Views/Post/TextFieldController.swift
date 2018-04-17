@@ -88,14 +88,18 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func onSend(_ sender: Any) {
         reset()
-        textField.text = ""
         commentDelegate.onComment(textField.text!)
+        textField.text = ""
     }
     func reset() {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
             view.frame.origin.y += (distance)
         }
+    }
+    func setText(_ text: String) {
+        startEditing()
+        textField.text = text
     }
     func startEditing() {
         textField.becomeFirstResponder()

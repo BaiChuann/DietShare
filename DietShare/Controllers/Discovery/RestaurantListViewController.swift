@@ -12,6 +12,8 @@ import UIKit
 import CoreLocation
 import MapKit
 import DropDown
+import GoogleMaps
+import GooglePlaces
 
 class RestaurantListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -22,16 +24,19 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     private var currentLocation: CLLocation?
 
     private var currentSort = Sorting.byRating
+    private var currentTypeFilters = Set<RestaurantType>()
     
     @IBOutlet weak var restaurantListView: UICollectionView!
     
     @IBOutlet var buttonBar: [UIButton]!
     @IBOutlet weak var ratingLogo: UIImageView!
     @IBOutlet weak var distanceLogo: UIImageView!
+    private var cuisineDropDown = DropDown()
+    @IBOutlet weak var mapButton: UIButton!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == restaurantListView, let model = self.restaurantModel {
-            return model.getNumOfRestaurants()
+        if collectionView == restaurantListView, let model = self.restaurantModel, let location = self.currentLocation {
+            return model.getSortedRestaurantList(currentSort, currentTypeFilters, location).count
         }
         return 0
     }
@@ -39,18 +44,19 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.restaurantFullListCell, for: indexPath as IndexPath) as! RestaurantFullListCell
-        if let model = self.restaurantModel {
-            let restaurantList = model.getFullRestaurantList(currentSort)
+        if let model = self.restaurantModel, let location = self.currentLocation {
+            let restaurantList = model.getSortedRestaurantList(currentSort, currentTypeFilters, location)
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
             cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsSet().count)
-            // TODO - get current location
+            cell.setTypes(restaurantList[indexPath.item].getTypesAsStringSet())
+            // Get current location
             if let location = self.currentLocation {
-                let distance = Int(location.distance(from: restaurantList[indexPath.item].getLocation()) / 1000)
+                let distance = getDistanceBetweenLocations(location, restaurantList[indexPath.item].getLocation())
                 cell.setDistance("\(distance) km")
             } else {
-                cell.setDistance("unknown distance")
+                cell.setDistance(Text.unknownDistance)
             }
         }
         
@@ -58,8 +64,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.restaurantModel {
-            let restaurantsList = model.getFullRestaurantList(currentSort)
+        if let model = self.restaurantModel, let location = self.currentLocation {
+            let restaurantsList = model.getSortedRestaurantList(currentSort, currentTypeFilters, location)
             self.selectedRestaurant = restaurantsList[indexPath.item]
             performSegue(withIdentifier: Identifiers.restaurantListToDetailPage, sender: self)
         }
@@ -71,8 +77,13 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        initView()
         
-        // Do any additional setup after loading the view.
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,9 +97,63 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+    private func initView() {
+        initDropDown()
+        addShadowToView(view: self.mapButton, offset: 2, radius: 2)
+    }
+    
+    private func initDropDown() {
+        
+        cuisineDropDown.anchorView = restaurantListView
+        var allCuisineTypes = [String]()
+        RestaurantType.cases().forEach {allCuisineTypes.append($0.rawValue)}
+        assert(!allCuisineTypes.isEmpty)
+        cuisineDropDown.dataSource = allCuisineTypes
+        cuisineDropDown.width = self.view.frame.width
+        DropDown.appearance().backgroundColor = UIColor.white
+        
+        cuisineDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            guard let typeSelected = RestaurantType(rawValue: item) else {
+                fatalError("Illegal value of restaurant inputed")
+            }
+            if self.currentTypeFilters.contains(typeSelected) {
+                self.currentTypeFilters.remove(typeSelected)
+            } else {
+                self.currentTypeFilters.insert(typeSelected)
+            }
+            self.restaurantListView.reloadData()
+        }
+        
+        cuisineDropDown.willShowAction = { [unowned self] in
+            
+            self.cuisineDropDown.cellNib = UINib(nibName: "CuisineTypeCell", bundle: nil)
+            self.cuisineDropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+                guard let cell = cell as? CuisineTypeCell else { return }
+                guard let typeSelected = RestaurantType(rawValue: item) else {
+                    fatalError("Illegal value of restaurant inputed")
+                }
+                if self.currentTypeFilters.contains(typeSelected) {
+                    cell.optionLabel.textColor = Constants.themeColor
+                    cell.tick.isHidden = false
+                } else {
+                    cell.optionLabel.textColor = UIColor.gray
+                    cell.tick.isHidden = true
+                }
+            };
+        }
+        
+        cuisineDropDown.dismissMode = .onTap
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
+        }
+        if let dest = segue.destination as? MapViewController {
+            if let model = self.restaurantModel {
+                dest.setRestaurants(model.getAllRestaurants())
+            }
         }
     }
     
@@ -109,6 +174,9 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         restaurantListView.reloadData()
     }
     
+    @IBAction func showDropDown(_ sender: UIButton) {
+        self.cuisineDropDown.show()
+    }
     
     /**
      * View-related functions
@@ -127,6 +195,10 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
             }, completion: nil)
         }
+    }
+    
+    @IBAction func unwindToRestaurantListView(segue: UIStoryboardSegue) {
+        
     }
     
     
@@ -148,15 +220,14 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //TODO - check if the following two lines break the location manager. if not, add them
+//        locationManager.delegate = nilc
+//        locationManager.stopUpdatingLocation()
         currentLocation = manager.location
-//        self.restaurantListView.reloadData()
+        self.restaurantListView.reloadData()
     }
     
     /**
      * Test functions
      */
-    
-    
 }
-
-

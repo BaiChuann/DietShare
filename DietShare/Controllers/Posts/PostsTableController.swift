@@ -16,6 +16,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     private var postManager = PostManager.shared
     private var textFieldController: TextFieldController!
     private var scrollDelegate: ScrollDelegate?
+    private var commentingPost: String?
     override func viewDidLoad() {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
@@ -38,16 +39,19 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         dataSource = postManager.getFollowingPosts()
         filteredData = dataSource
         postsTable.reloadData()
-        let indexPath = IndexPath(row: 0, section: 0)
-        postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
-        
+        if !filteredData.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
     }
     func getLikePosts() {
         dataSource = postManager.getLikePosts()
         filteredData = dataSource
         postsTable.reloadData()
-        let indexPath = IndexPath(row: 0, section: 0)
-        postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        if !filteredData.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
         
     }
     func getTrendingPosts() {
@@ -77,6 +81,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         return postsTable
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(filteredData.count)
         return filteredData.count
     }
 
@@ -84,15 +89,19 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell  else {
             fatalError("The dequeued cell is not an instance of PostCell.")
         }
-        let post = filteredData[0]
-        cell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chuan", post)
+        let post = filteredData[indexPath.item]
+        guard let user = UserModelManager.shared.getUserFromID(post.getUserId()) else {
+            return cell
+        }
+        cell.setContent(userPhoto: user.getPhotoAsImage(), userName: user.getName(), post)
         cell.setDelegate(self)
         return cell
     }
     
-    func goToDetail(_ post: PostCell) {
+    func goToDetail(_ post: String, _ session: Int) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
         print(parentController.view.frame.height)
+        controller.setPost(post, session)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
     }
@@ -103,8 +112,12 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
     }
-    func onCommentClicked() {
+    func updateCell() {
+        postsTable.reloadData()
+    }
+    func onCommentClicked(_ postId: String) {
         print("clicked")
+        commentingPost = postId 
         let textHeight = CGFloat(40)
         let width = parentController.view.frame.width
         let height = parentController.view.frame.height
@@ -126,6 +139,10 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         filteredData = text.isEmpty ? dataSource :dataSource.filter { $0.getCaption().contains(text) }
         postsTable.reloadData()
     }
+    func didScroll() {
+        textFieldController.view.removeFromSuperview()
+        textFieldController.removeFromParentViewController()
+    }
 }
 
 extension PostsTableController: CommentDelegate {
@@ -133,6 +150,8 @@ extension PostsTableController: CommentDelegate {
         print(text)
         textFieldController.view.removeFromSuperview()
         textFieldController.removeFromParentViewController()
+        postManager.postComment(Comment(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), parentId: commentingPost!, content: text, time: Date()))
+        postsTable.reloadData()
     }
 }
 
@@ -143,6 +162,7 @@ extension PostsTableController: UIScrollViewDelegate {
         if scrollDelegate != nil {
             scrollDelegate?.didScroll()
         }
+       
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollDelegate != nil {

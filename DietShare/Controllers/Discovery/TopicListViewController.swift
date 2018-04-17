@@ -15,7 +15,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private var topicModel: TopicsModelManager<Topic>?
     private var selectedTopic: Topic?
     
-    var currentUser: User?
+    var currentUser = UserModelManager.shared.getCurrentUser()
     
     
     @IBOutlet weak var topicListView: UICollectionView!
@@ -35,6 +35,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
             let topicList = model.getAllTopics()
             cell.setImage(topicList[indexPath.item].getImageAsUIImage())
             cell.setName(topicList[indexPath.item].getName())
+            cell.setDescription(topicList[indexPath.item].getDescription())
             cell.initFollowButtonView()
             addTapHandler(cell, topicList, indexPath)
         }
@@ -44,15 +45,16 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     // Add handling of tapping on follow button
-    
     private func addTapHandler(_ cell: TopicFullListCell, _ topicList: [Topic], _ indexPath: IndexPath) {
         cell.addSubview(cell.followButton)
         if let user = self.currentUser {
             let currentTopic = topicList[indexPath.item]
             let followers = currentTopic.getFollowersID().getListAsSet()
             if followers.contains(user.getUserId()) {
+                print("user \(currentUser?.getUserId()) follows topic: \(currentTopic.getID())")
                 toggleToFollowed(cell.followButton)
             } else {
+                print("user \(currentUser?.getUserId()) does not follow topic: \(currentTopic.getID())")
                 toggleToUnfollowed(cell.followButton)
             }
         }
@@ -89,10 +91,10 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         if let user = self.currentUser, let model = self.topicModel {
             if sender.tag == FollowStatus.notFollowed.rawValue {
                 toggleToFollowed(sender)
-                model.getAllTopics()[index].addFollower(user)
+                model.addNewFollower(user, model.getAllTopics()[index])
             } else {
                 toggleToUnfollowed(sender)
-                model.getAllTopics()[index].removeFollower(user)
+                model.removeFollower(user, model.getAllTopics()[index])
             }
         }
     }
@@ -113,7 +115,10 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,6 +135,9 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
+            if let model = self.topicModel {
+                dest.setModelManager(model)
+            }
         }
     }
     
@@ -153,7 +161,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
      */
     // TODO - change to actual user manager when user manager is available
     private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: #imageLiteral(resourceName: "vegi-life"))
+        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: "profile-example")
     }
     
 }

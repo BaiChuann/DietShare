@@ -30,7 +30,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
-        print("TopicLocalDataSource initializer called")
+//        print("TopicLocalDataSource initializer called")
         removeDB()
         createDB(title)
         createTable()
@@ -91,6 +91,24 @@ class TopicsLocalDataSource: TopicsDataSource {
             print("failed to get row: \(error)")
         }
         return topics
+    }
+    
+    
+    func getTopicFromID(_ ID: String) -> Topic? {
+        _checkRep()
+        do {
+            let row = topicsTable.filter(id == ID)
+            for topic in try database.prepare(row) {
+                let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
+                return topicEntry
+            }
+        } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
+            print("query constraint failed: \(message), in \(String(describing: statement))")
+        } catch let error {
+            print("query failed: \(error)")
+        }
+        _checkRep()
+        return nil
     }
     
     
@@ -286,7 +304,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         
         return true
     }
-    
 }
 
 
@@ -304,5 +321,7 @@ extension UIImage: Value {
         let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
         return strBase64
     }
-    
 }
+
+
+

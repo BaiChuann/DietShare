@@ -59,6 +59,10 @@ class TopicsModelManager<T: ReadOnlyTopic> {
         return returnList
     }
     
+    func getTopicFromID(_ ID: String) -> Topic? {
+        return self.topicsDataSource.getTopicFromID(ID)
+    }
+    
     func getNumOfTopics() -> Int {
         return self.topicsDataSource.getNumOfTopics()
     }
@@ -80,6 +84,11 @@ class TopicsModelManager<T: ReadOnlyTopic> {
     // Add a new follower to a topic, and update the database
     func addNewFollower(_ newFollower: User, _ topic: Topic) {
         topic.addFollower(newFollower)
+        self.topicsDataSource.updateTopic(topic.getID(), topic)
+    }
+    
+    func removeFollower(_ follower: User, _ topic: Topic) {
+        topic.removeFollower(follower)
         self.topicsDataSource.updateTopic(topic.getID(), topic)
     }
 }

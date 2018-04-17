@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 func addInputBorder(for inputs: [UITextField], withColor color: UIColor) {
     inputs.forEach {
@@ -139,6 +140,13 @@ func cropToBounds(_ image: UIImage, _ width: Double, _ height: Double) -> UIImag
     return image
 }
 
+func addShadowToView(view: UIView, offset: CGFloat, radius: CGFloat) {
+    view.layer.shadowColor = UIColor.gray.cgColor
+    view.layer.shadowOpacity = 1
+    view.layer.shadowOffset = CGSize(width: offset, height: offset)
+    view.layer.shadowRadius = radius
+}
+
 // Crops an image to circular
 func makeRoundImg(img: UIImageView) -> UIImageView {
     let imgLayer = CALayer()
@@ -163,6 +171,10 @@ func addRoundedRectBackground(_ view: UIView, _ radius: CGFloat, _ borderWidth: 
     view.clipsToBounds = true
 }
 
+func getDistanceBetweenLocations(_ locationA: CLLocation, _ locationB: CLLocation) -> Int {
+    return Int(locationA.distance(from: locationB) / 1000)
+}
+
 extension Data {
     mutating func append(_ string: String) {
         if let data = string.data(using: .utf8) {
@@ -171,78 +183,56 @@ extension Data {
     }
 }
 
+extension UIColor {
+    func equals(_ rhs: UIColor) -> Bool {
+        var lhsR: CGFloat = 0
+        var lhsG: CGFloat = 0
+        var lhsB: CGFloat = 0
+        var lhsA: CGFloat = 0
+        self.getRed(&lhsR, green: &lhsG, blue: &lhsB, alpha: &lhsA)
+
+        var rhsR: CGFloat = 0
+        var rhsG: CGFloat = 0
+        var rhsB: CGFloat = 0
+        var rhsA: CGFloat = 0
+        rhs.getRed(&rhsR, green: &rhsG, blue: &rhsB, alpha: &rhsA)
+
+        return  lhsR == rhsR &&
+            lhsG == rhsG &&
+            lhsB == rhsB &&
+            lhsA == rhsA
+    }
+}
+
 extension UIImage {
-    func averageColor() -> UIColor {
-        var bitmap = [UInt8](repeating: 0, count: 4)
-        let smallImage = resizeImage(image: self, targetSize: CGSize(width: 40, height: 40))
-        if #available(iOS 9.0, *) {
-            let context = CIContext()
-            let inputImage = smallImage.ciImage ?? CIImage(cgImage: smallImage.cgImage!)
-            let extent = inputImage.extent
-            let inputExtent = CIVector(x: extent.origin.x, y: extent.origin.y, z: extent.size.width, w: extent.size.height)
-            let filter = CIFilter(name: "CIAreaAverage", withInputParameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: inputExtent])!
-            let outputImage = filter.outputImage!
-            let outputExtent = outputImage.extent
-            assert(outputExtent.size.width == 1 && outputExtent.size.height == 1)
-            context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
-        } else {
-            let context = CGContext(data: &bitmap, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo.byteOrderMask.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue)!
-            let inputImage = smallImage.cgImage ?? CIContext().createCGImage(smallImage.ciImage!, from: smallImage.ciImage!.extent)
-            context.draw(inputImage!, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+    func tinted(color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContext(self.size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return self
+
         }
-        
-        // Compute result.
-        let result = UIColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: CGFloat(bitmap[3]) / 255.0)
-        return result
-    }
-    
-    func edgeColor() -> UIColor {
-        return getMostColors(forEdge: true)
-    }
-    
-    func mostColor() -> UIColor {
-        return getMostColors(forEdge: false)
-    }
-    
-    func getMostColors(forEdge:Bool) -> UIColor {
-        let smallImage = resizeImage(image: self, targetSize: CGSize(width: 40, height: 40))
-        let edgeWidth = 5
-        let pixelData = smallImage.cgImage!.dataProvider?.data
-        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-        let colors = NSCountedSet(capacity:Int(smallImage.size.width * smallImage.size.height))
-        for x in 0...Int(smallImage.size.width) {
-            for y in 0...Int(smallImage.size.height) {
-                let pixelInfo: Int = ((Int(smallImage.size.width) * y) + x) * 4
-                let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
-                let g = CGFloat(data[pixelInfo+1]) / CGFloat(255.0)
-                let b = CGFloat(data[pixelInfo+2]) / CGFloat(255.0)
-                let a = CGFloat(data[pixelInfo+3]) / CGFloat(255.0)
-                if (x > edgeWidth && (x + edgeWidth) < Int(smallImage.size.width)) && (y > edgeWidth && (y + edgeWidth) < Int(smallImage.size.height)) && forEdge{
-                    continue
-                }
-                colors.add(UIColor(red: b, green: g, blue: r, alpha: a))
-            }
+        guard let cgImage = cgImage else {
+            return self
         }
-        let enumerator =  colors.objectEnumerator()
-        var mostColor = UIColor()
-        var MaxCount = 0
-        while let currrentColor = enumerator.nextObject() {
-            let tmpCount =  colors.count(for: currrentColor)
-            if tmpCount > MaxCount {
-                MaxCount = tmpCount
-                mostColor = currrentColor as! UIColor
-            }
+
+        // flip the image
+        context.scaleBy(x: 1.0, y: -1.0)
+        context.translateBy(x: 0.0, y: -size.height)
+
+        // multiply blend mode
+        context.setBlendMode(.multiply)
+
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        context.clip(to: rect, mask: cgImage)
+        color.setFill()
+        context.fill(rect)
+
+        // create uiimage
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
+            return self
         }
-        return mostColor
-    }
-    
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let hasAlpha = false
-        let scale: CGFloat = 0.0
-        UIGraphicsBeginImageContextWithOptions(targetSize, hasAlpha, scale)
-        image.draw(in: CGRect(origin: CGPoint.zero, size: targetSize))
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return scaledImage!
+
+        return newImage
     }
 }

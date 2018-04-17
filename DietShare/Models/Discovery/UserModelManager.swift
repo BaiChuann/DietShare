@@ -28,12 +28,7 @@ class UserModelManager {
     }
     
     public func getUserFromID(_ ID: String) -> User? {
-        for user in users {
-            if ID == user.getUserId() {
-                return user
-            }
-        }
-        return nil
+        return usersDataSource.getUserFromID(ID)
     }
     
     func setCurrentUser(_ user: User) {
@@ -41,6 +36,7 @@ class UserModelManager {
     }
     
     func getCurrentUser() -> User? {
+        print("current user is : \(currentUser?.getUserId())")
         return self.currentUser
     }
     

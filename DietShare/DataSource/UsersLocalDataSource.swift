@@ -22,11 +22,11 @@ class UsersLocalDataSource: UsersDataSource {
     private let id = Expression<String>("id")
     private let name = Expression<String>("name")
     private let password = Expression<String>("password")
-    private let image = Expression<UIImage>("image")
+    private let image = Expression<String>("image")
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ users: [User], _ title: String) {
-        print("UserLocalDataSource initializer called")
+//        print("UserLocalDataSource initializer called")
         removeDB()
         createDB(title)
         createTable()
@@ -88,6 +88,23 @@ class UsersLocalDataSource: UsersDataSource {
         return users
     }
     
+    func getUserFromID(_ userID: String) -> User? {
+        _checkRep()
+        do {
+            let row = usersTable.filter(id == userID)
+            for user in try database.prepare(row) {
+                let userEntry = User(userId: user[id], name: user[name], password: user[password], photo: user[image])
+                return userEntry
+            }
+        } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
+            print("query constraint failed: \(message), in \(String(describing: statement))")
+        } catch let error {
+            print("query failed: \(error)")
+        }
+        _checkRep()
+        return nil
+    }
+    
     func getNumOfUsers() -> Int {
         var count = 0
         do {
@@ -102,7 +119,7 @@ class UsersLocalDataSource: UsersDataSource {
         _checkRep()
         do {
 //            print("current user id is: \(newUser.getUserId())")
-            try database.run(usersTable.insert(id <- newUser.getUserId(), name <- newUser.getName(), password <- newUser.getPassword(), image <- newUser.getPhoto()))
+            try database.run(usersTable.insert(id <- newUser.getUserId(), name <- newUser.getName(), password <- newUser.getPassword(), image <- newUser.getPhotoAsPath()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
@@ -154,7 +171,7 @@ class UsersLocalDataSource: UsersDataSource {
         _checkRep()
         let row = usersTable.filter(id == oldUserId)
         do {
-            if try database.run(row.update(id <- newUser.getUserId(), name <- newUser.getName(), password <- newUser.getPassword(), image <- newUser.getPhoto())) > 0 {
+            if try database.run(row.update(id <- newUser.getUserId(), name <- newUser.getName(), password <- newUser.getPassword(), image <- newUser.getPhotoAsPath())) > 0 {
                 print("Old User is updated")
             } else {
                 print("Old User not found")
@@ -213,11 +230,9 @@ class UsersLocalDataSource: UsersDataSource {
         _checkRep()
         for i in 0..<20 {
             if !containsUser("i") {
-                let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: #imageLiteral(resourceName: "profile-example"))
+                let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: "profile-example")
                 self.addUser(newUser)
-                
             }
-            
         }
         _checkRep()
     }
