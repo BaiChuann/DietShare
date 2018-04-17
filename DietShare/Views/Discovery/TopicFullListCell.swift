@@ -17,15 +17,16 @@ class TopicFullListCell: UICollectionViewCell {
     @IBOutlet weak var topicNameLabel: UILabel!
     
     func setImage(_ image: UIImage) {
-        topicImage.image = image
+        let alpha: CGFloat = 1.0
+        setFittedImageAsSubview(view: topicImage, image: image, alpha: alpha)
     }
     
     func setName(_ name: String) {
         // TODO - decide on what to put here for topicName
         topicName.text = "  #" + name + "  "
         
-        topicNameLabel.text = name
-        addRoundedRectBackground(topicNameLabel, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)
+        /*topicNameLabel.text = name
+        addRoundedRectBackground(topicNameLabel, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)*/
     }
     
     func initFollowButtonView() {

@@ -66,6 +66,32 @@ func getImageFromView(_ view: UIView, cropToSquare: Bool = false) -> UIImage? {
     return nil
 }
 
+func getFittedImageView(image: UIImage, frame: CGRect) -> UIImageView {
+    let originalSize = image.size
+    let frameAspect = frame.width / frame.height
+    let imageAspect = originalSize.width / originalSize.height
+    var newSize: CGSize
+    if frameAspect > imageAspect {
+        newSize = CGSize(width: frame.width, height: frame.width / imageAspect)
+    } else {
+        newSize = CGSize(width: frame.height * imageAspect, height: frame.height)
+    }
+    let newX = (frame.width - newSize.width) / 2
+    let newY = (frame.height - newSize.height) / 2
+    let origin = CGPoint(x: newX, y: newY)
+    let fittedFrame = CGRect(origin: origin, size: newSize)
+    let imageView = UIImageView(frame: fittedFrame)
+    imageView.image = image
+    return imageView
+}
+
+func setFittedImageAsSubview(view: UIView, image: UIImage, alpha: CGFloat) {
+    let subview = getFittedImageView(image: image, frame: view.frame)
+    subview.alpha = alpha
+    view.addSubview(subview)
+    view.clipsToBounds = true
+}
+
 func cropsToSquareImage(_ image: UIImage) -> UIImage? {
     let size = image.size.width
     let rect = CGRect(x: 0, y: 0, width: size, height: size)
