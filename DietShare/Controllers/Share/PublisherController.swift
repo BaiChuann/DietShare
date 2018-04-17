@@ -12,6 +12,7 @@ import TagListView
 import Cosmos
 import Darwin
 import FacebookShare
+import SwiftMessages
 
 protocol RestaurantSenderDelegate: class {
     func sendRestaurant(restaurant: (id: String, name: String))
@@ -100,6 +101,8 @@ class PublisherController: UIViewController {
 
     private func setUpObserver() {
         notificationCenter.addObserver(self, selector: #selector(handleFacebookShareFail(_:)), name: .didFacebookShareFail, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleSaveToPhoneFail(_:)), name: .didSaveToPhoneFail, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleSaveToPhoneSuccess(_:)), name: .didSaveToPhoneSuccess, object: nil)
     }
 
     private func setUpTextView() {
@@ -202,6 +205,36 @@ class PublisherController: UIViewController {
             facebookView.image = UIImage(named: "facebook-logo-blue")
             facebookView.alpha = 1.0
         }
+    }
+
+    @objc
+    private func handleSaveToPhoneSuccess(_ notification: NSNotification) {
+        let infoView = MessageView.viewFromNib(layout: .cardView)
+        infoView.configureTheme(.success)
+        infoView.configureDropShadow()
+        infoView.configureContent(title: "Success", body: "Photo has saved to your phone")
+        infoView.button?.isHidden = true
+        infoView.configureBackgroundView(sideMargin: 0)
+        SwiftMessages.show(view: infoView)
+
+        guard let currentController = tabBarController as? HomeTabBarController else {
+            tabBarController?.selectedIndex = 1
+            tabBarController?.tabBar.isHidden = false
+            return
+        }
+        let lastPage = currentController.currentTab
+        currentController.selectedIndex = lastPage
+    }
+
+    @objc
+    private func handleSaveToPhoneFail(_ notification: NSNotification) {
+        let warningView = MessageView.viewFromNib(layout: .cardView)
+        warningView.configureTheme(.warning)
+        warningView.configureDropShadow()
+        warningView.configureContent(title: "Sorry", body: "Photo failed to save to your phone")
+        warningView.button?.isHidden = true
+        warningView.configureBackgroundView(sideMargin: 0)
+        SwiftMessages.show(view: warningView)
     }
 
     @objc

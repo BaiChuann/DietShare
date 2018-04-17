@@ -52,7 +52,7 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     }
 
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
-        pickedPhoto = image
+        pickedPhoto = cropImage(image: image)
         goToNext()
         dismiss(animated: true)
     }
@@ -81,6 +81,26 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         present(navigationController!, animated: true) {
             self.isToCamera = false
         }
+    }
+
+    private func cropImage(image: UIImage) -> UIImage {
+        let size = image.size.height
+        guard size < image.size.width else {
+            return image
+        }
+
+        let rect = CGRect(x: 0, y: 0, width: size, height: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, image.scale)
+
+        let origin = CGPoint(x: rect.midX - image.size.width / 2, y: 0)
+        image.draw(at: origin)
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else {
+            UIGraphicsEndImageContext()
+            return image
+        }
+        UIGraphicsEndImageContext()
+
+        return result
     }
 
     private func goToNext() {

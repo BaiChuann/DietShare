@@ -88,13 +88,12 @@ class PublishManager: NSObject, NSCoding {
     }
 
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            print("fail!")
+        if error != nil {
+            notificationCenter.post(name: .didSaveToPhoneFail, object: nil)
         } else {
-            print("success")
+            notificationCenter.post(name: .didSaveToPhoneSuccess, object: nil)
         }
     }
- 
 }
 
 enum PublishOption {
