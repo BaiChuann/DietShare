@@ -45,6 +45,10 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
         return restaurantList
     }
     
+    func getRestaurantFromID(_ ID: String) -> Restaurant? {
+        return self.restaurantsDataSource.getRestaurantByID(ID)
+    }
+    
     func getNumOfRestaurants() -> Int {
         return self.restaurantsDataSource.getNumOfRestaurants()
     }

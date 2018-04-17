@@ -9,10 +9,9 @@ import Foundation
 import UIKit
 
 class TopicListController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var searchBar: UISearchBar!
+    @IBOutlet weak private var nextButton: UIBarButtonItem!
 
     var selectedTopicID: [String] = []
 
@@ -55,7 +54,7 @@ class TopicListController: UIViewController {
         nextButton.target = self
         nextButton.action = #selector(goBackToPublisher(_:))
         nextButton.tintColor = UIColor.black
-        
+
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -72,7 +71,8 @@ class TopicListController: UIViewController {
         }
     }
 
-    @objc private func goBackToPublisher(_ sender: UIBarButtonItem) {
+    @objc
+    private func goBackToPublisher(_ sender: UIBarButtonItem) {
         let sending = topicList.filter { $0.isHighlighted }.map { (id: $0.id, name: $0.name) }
         delegate?.sendTopics(topics: sending)
         navigationController?.popViewController(animated: true)
@@ -107,16 +107,14 @@ extension TopicListController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let topic = isSearching ? filteredTopicList[indexPath.item] : topicList[indexPath.item]
-
-        if topic.isHighlighted {
-           topicCell.highlight()
-        } else {
-            topicCell.unHightlight()
-        }
-
         let name = topic.name
         let popularity = topic.popularity
         topicCell.setLabelText(name: name, popularity: popularity)
+        if topic.isHighlighted {
+            topicCell.highlight()
+        } else {
+            topicCell.unHightlight()
+        }
 
         return topicCell
     }

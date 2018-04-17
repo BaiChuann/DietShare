@@ -33,21 +33,23 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
         scrollView.delegate = self
+
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
         initView()
         initPosts()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,7 +68,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             let id = currentTopic.getFollowersID().getListAsArray()[indexPath.item]
             if let user = userModel.getUserFromID(id) {
                 cell.setName(user.getName())
-                cell.setImage(user.getPhoto())
+                cell.setImage(user.getPhotoAsImage())
             }
         }
         return cell

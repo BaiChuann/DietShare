@@ -115,7 +115,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
         initPosts()
-        //change of poststable controller 
+        //change of poststable controller
+
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     private func initPosts() {
@@ -136,8 +139,8 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     
     // TODO - remove this when current user is set at Login page
     func initUser() {
-        let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: #imageLiteral(resourceName: "profile"))
-        UserModelManager.shared.setCurrentUser("1")
+        let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: "profile")
+        UserModelManager.shared.setCurrentUser(user)
     }
 
     override func didReceiveMemoryWarning() {
@@ -202,5 +205,11 @@ extension DiscoverPageViewController: ScrollDelegate {
     func reachTop() {
         scrollView.isScrollEnabled = true
         postsTable.isScrollEnabled = false
+    }
+}
+
+extension DiscoverPageViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
