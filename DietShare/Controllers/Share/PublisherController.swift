@@ -124,7 +124,8 @@ class PublisherController: UIViewController {
         imageView.addGestureRecognizer(imageTapGestureRecognizer)
     }
 
-    @objc private func amplifyImage(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func amplifyImage(_ sender: UITapGestureRecognizer) {
         guard let superView = view.superview else {
             return
         }
@@ -142,12 +143,13 @@ class PublisherController: UIViewController {
         amplifiedFrame.addSubview(amplifiedImage)
         amplifiedFrame.tag = amplifiedFrameTag
         superView.addSubview(amplifiedFrame)
-        
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissAmplifiedImage(_:)))
         amplifiedFrame.addGestureRecognizer(tapGestureRecognizer)
     }
 
-    @objc private func dismissAmplifiedImage(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func dismissAmplifiedImage(_ sender: UITapGestureRecognizer) {
         guard let amplifiedFrame = view.superview?.viewWithTag(amplifiedFrameTag) else {
             return
         }

@@ -89,7 +89,7 @@ extension RestaurantListController: UITableViewDelegate, UITableViewDataSource {
             filteredRestaurants[indexPath.item] :
             restaurants[indexPath.item]
         delegate?.sendRestaurant(restaurant: (restaurant.id, restaurant.name))
-        navigationController?.popViewController(animated: false)
+        navigationController?.popViewController(animated: true)
     }
 }
 

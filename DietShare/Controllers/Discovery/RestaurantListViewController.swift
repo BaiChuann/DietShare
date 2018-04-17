@@ -102,7 +102,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         cuisineDropDown.anchorView = restaurantListView
         var allCuisineTypes = [String]()
         RestaurantType.cases().forEach {allCuisineTypes.append($0.rawValue)}
-        assert(allCuisineTypes.count > 0)
+        assert(!allCuisineTypes.isEmpty)
         cuisineDropDown.dataSource = allCuisineTypes
         cuisineDropDown.width = self.view.frame.width
         DropDown.appearance().backgroundColor = UIColor.white
@@ -216,7 +216,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //TODO - check if the following two lines break the location manager. if not, add them
-//        locationManager.delegate = nil
+//        locationManager.delegate = nilc
 //        locationManager.stopUpdatingLocation()
         currentLocation = manager.location
         self.restaurantListView.reloadData()

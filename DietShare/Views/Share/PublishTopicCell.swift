@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 
 class PublishTopicCell: UITableViewCell {
-    @IBOutlet private(set) weak var nameLabel: UILabel!
-    @IBOutlet private(set) weak var popularityLabel: UILabel!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var popularityLabel: UILabel!
+    @IBOutlet weak private var checkedLabel: UIImageView!
 
     func setLabelText(name: String, popularity: String) {
         nameLabel.text = name
         popularityLabel.text = popularity
+        checkedLabel.isHidden = true
     }
 
     func highlight() {
-        nameLabel.textColor = UIColor.orange
-        popularityLabel.textColor = UIColor.black
+        checkedLabel.isHidden = false
     }
 
     func unHightlight() {
-        nameLabel.textColor = UIColor.black
-        popularityLabel.textColor = UIColor.darkGray
+        checkedLabel.isHidden = true
     }
 }
