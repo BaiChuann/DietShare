@@ -118,6 +118,7 @@
 		B5EE1DB02084F57F00098E9B /* RestaurantFullListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5EE1DAF2084F57F00098E9B /* RestaurantFullListCell.xib */; };
 		B5FF15A42080A3CA004F3954 /* RestaurantModelManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */; };
 		F22650AD20848ACA00D29542 /* Ingredient_list.plist in Resources */ = {isa = PBXBuildFile; fileRef = F22650AC20848ACA00D29542 /* Ingredient_list.plist */; };
+		F22650B020863DB300D29542 /* DiscussionTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22650AF20863DB300D29542 /* DiscussionTabController.swift */; };
 		F26698DE206649D400E3A1F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26698DD206649D400E3A1F2 /* Constants.swift */; };
 		F266991B2066CD3900E3A1F2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699142066CD3800E3A1F2 /* Like.swift */; };
 		F266991C2066CD3900E3A1F2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699152066CD3800E3A1F2 /* Comment.swift */; };
@@ -284,6 +285,7 @@
 		B5EE1DAF2084F57F00098E9B /* RestaurantFullListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantFullListCell.xib; sourceTree = "<group>"; };
 		B5FF15A32080A3CA004F3954 /* RestaurantModelManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModelManagerTest.swift; sourceTree = "<group>"; };
 		F22650AC20848ACA00D29542 /* Ingredient_list.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ingredient_list.plist; sourceTree = "<group>"; };
+		F22650AF20863DB300D29542 /* DiscussionTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTabController.swift; sourceTree = "<group>"; };
 		F26698CC20640EC400E3A1F2 /* IngredientPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPopup.xib; sourceTree = "<group>"; };
 		F26698DD206649D400E3A1F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F26699142066CD3800E3A1F2 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
@@ -539,6 +541,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		F22650AE20863D8E00D29542 /* Discussion */ = {
+			isa = PBXGroup;
+			children = (
+				F22650AF20863DB300D29542 /* DiscussionTabController.swift */,
+			);
+			path = Discussion;
+			sourceTree = "<group>";
+		};
 		F26698D2206417B100E3A1F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,6 +663,7 @@
 		F2BE68C5205EB22C00DF9694 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F22650AE20863D8E00D29542 /* Discussion */,
 				3B37A71A207F7F0B009ED0D3 /* Profile */,
 				B5CBA11620694A0700BC8005 /* Discovery */,
 				F2E373B220716BBE0000F707 /* Home */,
@@ -983,6 +994,7 @@
 				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
 				3B424B4220810B0F00AB90BE /* EditFieldController.swift in Sources */,
 				3BDA29E0207FC24A00E99DE3 /* ShareTabController.swift in Sources */,
+				F22650B020863DB300D29542 /* DiscussionTabController.swift in Sources */,
 				B5CBA1112069227E00BC8005 /* ReadOnlyRestaurant.swift in Sources */,
 				3BDA29CA207FC20A00E99DE3 /* ShareState.swift in Sources */,
 				3B0834EC20827535009A45E3 /* FloatingTextInfo.swift in Sources */,
@@ -1247,11 +1259,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RYEPC9248R;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1270,11 +1282,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RYEPC9248R;
+				DEVELOPMENT_TEAM = HUP9SH4Z74;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

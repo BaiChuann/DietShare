@@ -9,10 +9,8 @@
 import UIKit
 
 class ProfileController: UIViewController {
-    
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var userName: UILabel!
-    
     @IBOutlet weak private var descrip: UILabel!
     @IBOutlet weak private var userPhoto: UIImageView!
     @IBOutlet weak private var followerCount: UIButton!
@@ -22,7 +20,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak private var editButton: UIButton!
     @IBOutlet weak private var postsArea: UIView!
     @IBOutlet weak private var postsAreaHeight: NSLayoutConstraint!
-    
+
     private var profile: Profile!
     private var userId = ""
     private var postsTableController: PostsTableController!
@@ -51,7 +49,7 @@ class ProfileController: UIViewController {
     override func viewWillDisappear(_ animated: Bool){
         self.tabBarController?.tabBar.isHidden = true
     }
-    
+
     override func viewDidLoad() {
         if userId == "" {
             setUserId(currentUser)
@@ -84,7 +82,12 @@ class ProfileController: UIViewController {
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
-        setUser(userId)
+        if userId == "" {
+            setUserId(currentUser)
+        }
+        setUser("userId")
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "topic" {
@@ -177,4 +180,9 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func didScroll() {
     }
 }
-//================
+
+extension ProfileController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}

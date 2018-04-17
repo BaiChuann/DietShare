@@ -13,7 +13,6 @@ import Foundation
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 protocol UsersDataSource {
-    
     func getAllUsers() -> [User]
     func getNumOfUsers() -> Int
     func addUser(_ newTopic: User)

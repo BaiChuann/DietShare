@@ -56,7 +56,10 @@ class ProfileEditor: UIViewController {
     @IBAction func onPhotoClicked(_ sender: Any) {
         openCamera()
     }
-    
+
+    @IBAction func onLogOutPressed(_ sender: Any) {
+        tabBarController?.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
@@ -64,7 +67,7 @@ extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
         return 2
         //return attributes.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "editCell", for: indexPath) as? EditCell  else {
             fatalError("The dequeued cell is not an instance of EditCell.")

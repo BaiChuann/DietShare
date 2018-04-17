@@ -434,17 +434,29 @@
             </objects>
             <point key="canvasLocation" x="941.60000000000002" y="133.5832083958021"/>
         </scene>
-        <!--Meal Plan-->
+        <!--Discussion-->
         <scene sceneID="jRO-CS-UHL">
             <objects>
-                <viewController id="UwJ-ZZ-gd1" sceneMemberID="viewController">
+                <viewController id="UwJ-ZZ-gd1" customClass="DiscussionTabController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LBd-qi-8ng">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussion is going on..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-cb-tRu">
+                                <rect key="frame" x="65" y="307" width="245" height="25"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="20"/>
+                                <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dGZ-cb-tRu" firstAttribute="centerX" secondItem="eJA-j3-uRt" secondAttribute="centerX" id="2iG-1l-SyP"/>
+                            <constraint firstItem="dGZ-cb-tRu" firstAttribute="centerY" secondItem="eJA-j3-uRt" secondAttribute="centerY" id="gPb-xR-5jU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eJA-j3-uRt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Meal Plan" id="yhj-sf-XGi"/>
+                    <tabBarItem key="tabBarItem" title="Discussion" image="discussion" id="yhj-sf-XGi"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCw-hi-p6r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -548,6 +560,7 @@
         <image name="add" width="21" height="21"/>
         <image name="checked" width="25" height="25"/>
         <image name="discover" width="19" height="19"/>
+        <image name="discussion" width="25" height="27"/>
         <image name="facebook" width="76" height="76"/>
         <image name="like" width="21" height="20"/>
         <image name="login-button-background" width="256" height="45"/>

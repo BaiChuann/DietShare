@@ -35,10 +35,13 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var mapButton: UIButton!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var count = 0
+        let model = self.restaurantModel
         if collectionView == restaurantListView, let location = self.currentLocation {
-            return restaurantModel.getSortedRestaurantList(currentSort, currentTypeFilters, location).count
+            count = model.getSortedRestaurantList(currentSort, currentTypeFilters, location).count
         }
-        return 0
+        print("\(count) restaurants found")
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -188,7 +191,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)
@@ -204,7 +207,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
     }
     
-    
     /**
      * Utility functions
      */
@@ -212,13 +214,14 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         print("asking for location permission")
         
         self.locationManager.requestAlwaysAuthorization()
-        
         self.locationManager.requestWhenInUseAuthorization()
-        
+
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
+        } else {
+            print("location not allowed")
         }
     }
     
