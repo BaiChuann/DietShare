@@ -122,7 +122,6 @@
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="onCommentCountClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Tfl-16-aQz"/>
                         <action selector="onLikeCountClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="5lx-K8-k43"/>
                     </connections>
                 </button>

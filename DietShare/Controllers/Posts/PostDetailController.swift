@@ -82,8 +82,10 @@ class PostDetailController: UIViewController {
         textFieldController.view.frame = CGRect(x: 0, y: textFieldContainer.frame.origin.y, width: width, height: textHeight)
         view.addSubview(textFieldController.view)
     }
-    func setPost(_ postId: String) {
+    func setPost(_ postId: String, _ session: Int) {
         self.postId = postId
+        self.segmentedControl.selectedSegmentIndex = session
+        self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * CGFloat(1 + session * 4)
     }
     @IBAction func onSegmentSelected(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex
@@ -123,24 +125,54 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
             let comment = comments[indexPath.item]
-            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
+            guard let user = UserModelManager.shared.getUserFromID(comment.getUserId()) else {
+                return cell
+            }
             cell.setComment(user: user, comment: comment)
+            cell.setDelegate(self)
             cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell  else {
                 fatalError("The dequeued cell is not an instance of PostCell.")
             }
-            
-            let user = User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!)
+            let like = likes[indexPath.item]
+            guard let user = UserModelManager.shared.getUserFromID(like.getUserId()) else {
+                return cell
+            }
             cell.setUser(user)
             cell.selectionStyle = .none
             return cell
         }
-        
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            guard let userName = UserModelManager.shared.getUserFromID(comments[indexPath.item].getUserId())?.getName() else {
+                return
+            }
+            textFieldController.setText("reply to " + userName + " : ")
+        }
     }
 }
-
+extension PostDetailController: PostCellDelegate {
+    func goToDetail(_ post: String, _ session: Int) {
+    }
+    
+    func goToUser(_ id: String) {
+        let controller = AppStoryboard.profile.instance.instantiateViewController(withIdentifier: "profile") as! ProfileController
+        controller.setUserId(id)
+        self.navigationController?.pushViewController(controller, animated: true)
+        print("clicked")
+    }
+    
+    func onCommentClicked(_ postId: String) {
+    }
+    
+    func updateCell() {
+    }
+    
+    
+}
 extension PostDetailController: CommentDelegate {
     func onComment(_ text: String) {
         print(text)

@@ -16,7 +16,7 @@ class EditFieldController: UIViewController {
     override func viewDidLoad() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
-        let saveButton = UIBarButtonItem(title: "save", style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        let saveButton = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(onSave))
         saveButton.tintColor = Constants.themeColor
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = saveButton
@@ -32,5 +32,27 @@ class EditFieldController: UIViewController {
             textView.becomeFirstResponder()
         }
     }
-    
+    @objc func onSave() {
+        print("123123")
+        let user = UserModelManager.shared.getUserFromID("1")!
+        print(user.getName())
+        switch session {
+        case 0:
+            if let txt = textField.text {
+                if txt != "" {
+                    user.setName(txt)
+                }
+            }
+            break
+        case 1:
+            if let txt = textView.text {
+                let profile = ProfileManager.shared.getProfile(user.getUserId())!
+                profile.setDescription(txt)
+            }
+            break
+        default:
+            break
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
 }

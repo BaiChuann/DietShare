@@ -9,7 +9,8 @@
 import UIKit
 
 protocol PostCellDelegate {
-    func goToDetail(_ post: PostCell)
+    func goToDetail(_ post: String, _ session: Int)
     func goToUser(_ id: String)
     func onCommentClicked(_ postId: String)
+    func updateCell()
 }

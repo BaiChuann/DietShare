@@ -97,6 +97,10 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
             view.frame.origin.y += (distance)
         }
     }
+    func setText(_ text: String) {
+        startEditing()
+        textField.text = text
+    }
     func startEditing() {
         textField.becomeFirstResponder()
     }

@@ -89,15 +89,18 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
             fatalError("The dequeued cell is not an instance of PostCell.")
         }
         let post = filteredData[0]
-        cell.setContent(userPhoto: UIImage(named: "profile-example")!, userName: "Bai Chuan", post)
+        guard let user = UserModelManager.shared.getUserFromID(post.getUserId()) else {
+            return cell
+        }
+        cell.setContent(userPhoto: user.getPhoto(), userName: user.getName(), post)
         cell.setDelegate(self)
         return cell
     }
     
-    func goToDetail(_ post: PostCell) {
+    func goToDetail(_ post: String, _ session: Int) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
         print(parentController.view.frame.height)
-        controller.setPost(post.getPost().getPostId())
+        controller.setPost(post, session)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
     }
@@ -107,6 +110,9 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         print(parentController.view.frame.height)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
+    }
+    func updateCell() {
+        postsTable.reloadData()
     }
     func onCommentClicked(_ postId: String) {
         print("clicked")
@@ -151,6 +157,7 @@ extension PostsTableController: UIScrollViewDelegate {
         if scrollDelegate != nil {
             scrollDelegate?.didScroll()
         }
+       
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollDelegate != nil {

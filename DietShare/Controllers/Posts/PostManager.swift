@@ -17,16 +17,16 @@ class PostManager {
     private var currentUser: User
     private init() {
         currentUser = userManager.getCurrentUser()!
-        let newPost = Post(userId: "1", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: nil, topics: [("1", "healthy lifestyle"), ("2", "lose weight"), ("3", "don't eat this"), ("4", "salad")])
-        for _ in 1...10 {
+        let newPost = Post(userId: "2", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: nil, topics: ["1", "2", "3", "4", "5"])
+        for _ in 1...1 {
             posts.append(newPost)
         }
         let postId = newPost.getPostId()
-        let newComment = Comment(userId: "1", parentId: postId, content: "This looks so nice", time: Date())
+        let newComment = Comment(userId: "3", parentId: postId, content: "This looks so nice", time: Date())
         for _ in 1...10 {
-             comments.append(newComment)
+             //comments.append(newComment)
         }
-        let newLike = Like(userId: "1", postId: postId, time: Date())
+        let newLike = Like(userId: "3", postId: postId, time: Date())
         for _ in 1...10 {
             //likes.append(newLike)
         }
@@ -72,7 +72,7 @@ class PostManager {
             guard let res = post.getRestaurant() else {
                 continue
             }
-            if res.0 == id {
+            if res == id {
                 results.append(post)
             }
         }
@@ -85,7 +85,7 @@ class PostManager {
                 continue
             }
             for topic in topics {
-                if topic.0 == id {
+                if topic == id {
                     results.append(post)
                     break
                 }
@@ -96,7 +96,7 @@ class PostManager {
     func getUserPosts(_ id: String) -> [Post] {
         return posts.filter { $0.getUserId() == id }
     }
-    func postPost(caption: String, time: Date, photo: UIImage, restaurant: (String, String)?, topics: [(String, String)]?) -> Post {
+    func postPost(caption: String, time: Date, photo: UIImage, restaurant: String?, topics: [String]?) -> Post {
         let post = Post(userId: currentUser.getUserId(), caption: caption, time: time, photo: photo, restaurant: restaurant, topics: topics)
         posts.append(post)
         return post
@@ -134,6 +134,9 @@ class PostManager {
         for i in 0...(likes.count-1) {
             if likes[i].getPostId() == like.getPostId() && likes[i].getUserId() == like.getUserId() {
                 likes.remove(at: i)
+                if let post = getPost(like.getPostId()) {
+                    post.decrementLikesCount()
+                }
                 return true
             }
         }

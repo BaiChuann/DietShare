@@ -21,10 +21,11 @@ class ProfileController: UIViewController {
     @IBOutlet weak private var followButton: UIButton!
     @IBOutlet weak private var editButton: UIButton!
     @IBOutlet weak private var postsArea: UIView!
+    private var profile: Profile!
     private var userId = ""
     private var postsTableController: PostsTableController!
     private var tableView: UITableView!
-    private var currentUser = "1"
+    private var currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
         if userId == currentUser {
@@ -36,8 +37,7 @@ class ProfileController: UIViewController {
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.navigationBar.isHidden = false 
         }
-        //scrollView.frame.size = view.frame.size
-        //view.frame.size = CGSize(width: 375, height: 667)
+        setUser(userId)
     }
     override func viewDidAppear(_ animated: Bool) {
         if userId == currentUser {
@@ -69,18 +69,36 @@ class ProfileController: UIViewController {
         self.navigationItem.hidesBackButton = false
         if userId == "" {
             setUserId(currentUser)
-        }
-        setUser("userId")
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toEditor" {
-            if let destinationVC = segue.destination as? ProfileEditor {
-                destinationVC.photo = UIImage(named: "profile-example")!
+            if let pr = ProfileManager.shared.getProfile(currentUser) {
+                self.profile = pr
+            }
+        } else {
+            if let pr = ProfileManager.shared.getProfile(userId) {
+                self.profile = pr
+                if profile.getFollowers().contains(currentUser) {
+                    followButton.setTitle("Unfollow", for: .normal)
+                }
             }
         }
+        setUser(userId)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "topic" {
             if let destinationVC = segue.destination as? UserListController {
+                destinationVC.session = 2
+                destinationVC.userId = userId
+            }
+        }
+        if segue.identifier == "follower" {
+            if let destinationVC = segue.destination as? UserListController {
+                destinationVC.session = 0
+                destinationVC.userId = userId
+            }
+        }
+        if segue.identifier == "following" {
+            if let destinationVC = segue.destination as? UserListController {
                 destinationVC.session = 1
+                destinationVC.userId = userId
             }
         }
     }
@@ -88,13 +106,17 @@ class ProfileController: UIViewController {
         self.userId = id
     }
     func setUser(_ id: String) {
-        userName.text = "Bai Chuan"
-        descrip.text = "eat less eat healthy"
-        userPhoto.image = UIImage(named: "profile-example")!
-        followerCount.setTitle("378", for: .normal)
-        followingCount.setTitle("201", for: .normal)
-        topicCount.setTitle("5", for: .normal)
-        postsTableController.getUserPosts("1")
+        guard let user = UserModelManager.shared.getUserFromID(id) else {
+            return
+        }
+        print(user.getUserId())
+        userName.text = user.getName()
+        userPhoto.image = user.getPhoto()
+        descrip.text = profile.getDescription()
+        followerCount.setTitle(String(profile.getFollowers().count), for: .normal)
+        followingCount.setTitle(String(profile.getFollowings().count), for: .normal)
+        topicCount.setTitle(String(profile.getTopics().count), for: .normal)
+        postsTableController.getUserPosts(id)
         if userId == currentUser {
             //followButton.frame.size = CGSize(width: 0, height: 0)
             self.followButton.isHidden = true
@@ -103,6 +125,21 @@ class ProfileController: UIViewController {
         }
     }
     @IBAction func onFollowClicked(_ sender: Any) {
+        if followButton.currentTitle == "Follow" {
+            followButton.setTitle("Unfollow", for: .normal)
+            profile.addFollower(currentUser)
+            if let pr = ProfileManager.shared.getProfile(currentUser) {
+                pr.addFollowing(currentUser)
+            }
+            followerCount.setTitle(String(profile.getFollowers().count), for: .normal)
+        } else {
+            followButton.setTitle("Follow", for: .normal)
+            profile.deleteFollower(currentUser)
+            if let pr = ProfileManager.shared.getProfile(currentUser) {
+                pr.deleteFollowing(userId)
+            }
+            followerCount.setTitle(String(profile.getFollowers().count), for: .normal)
+        }
     }
     @IBAction func onEditClick(_ sender: Any) {
     }
@@ -116,20 +153,21 @@ class ProfileController: UIViewController {
 // SCROLL VIEW IMPLEMENTATION
 extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //print(tableView.frame.height)
         let yOffset = scrollView.contentOffset.y
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-        {
+        
             //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
-            if yOffset >= scrollView.contentSize.height - postsArea.frame.height {
-                scrollView.isScrollEnabled = false
-                tableView.isScrollEnabled = true
-            }
-            
+        tableView.isScrollEnabled = false
+        if yOffset >= scrollView.contentSize.height - postsArea.frame.height{
+            //scrollView.isScrollEnabled = false
+            tableView.isScrollEnabled = true
         }
+    
+    
     }
     func reachTop() {
         scrollView.isScrollEnabled = true
-        tableView.isScrollEnabled = false
+        //tableView.isScrollEnabled = false
     }
     func didScroll() {
     }

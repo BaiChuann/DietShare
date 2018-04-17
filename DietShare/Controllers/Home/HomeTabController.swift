@@ -11,7 +11,7 @@ import UIKit
 class HomeTabController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserModelManager.shared.setCurrentUser(User(userId: "1", name: "BaiChuan", password: "12323", photo: UIImage(named: "profile-example")!))
+        UserModelManager.shared.setCurrentUser("1")
         if let controller = AppStoryboard.home.instance.instantiateInitialViewController() {
             addChildViewController(controller)
             view.addSubview(controller.view)

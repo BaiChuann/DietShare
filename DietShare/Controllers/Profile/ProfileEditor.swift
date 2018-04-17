@@ -14,20 +14,24 @@ class ProfileEditor: UIViewController {
     @IBOutlet weak private var userPhoto: UIButton!
     @IBOutlet weak private var table: UITableView!
     private var attributes: [String] = []
-    var photo: UIImage!
-    var data: [String] = []
+    private var profile: Profile!
+    private var user: User!
+    override func viewWillAppear(_ animated: Bool) {
+        user = UserModelManager.shared.getUserFromID("1")!
+    }
     override func viewDidLoad() {
+        user = UserModelManager.shared.getUserFromID("1")!
+        profile = ProfileManager.shared.getProfile(user.getUserId())!
+        userPhoto.setImage(user.getPhoto(), for: .normal)
+        attributes = ["User Name", "Description"]
+        TGCameraColor.setTint(Constants.themeColor)
+        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
+        TGCamera.setOption(kTGCameraOptionHiddenFilterButton, value: true)
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
         self.navigationController?.navigationBar.isHidden = false
-        userPhoto.setImage(photo, for: .normal)
-        attributes = ["User Name", "Description"]
-        data = ["Bai Chuan", "eat less eat healthy"]
-        TGCameraColor.setTint(Constants.themeColor)
-        TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
-        TGCamera.setOption(kTGCameraOptionHiddenFilterButton, value: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditField" {
@@ -35,8 +39,17 @@ class ProfileEditor: UIViewController {
                 guard let session = table.indexPathForSelectedRow?.item else {
                     return
                 }
+                switch session {
+                case 0:
+                    destinationVC.placeHolder = user.getName()
+                    break
+                case 1:
+                    destinationVC.placeHolder = profile.getDescription()
+                    break
+                default:
+                    break
+                }
                 destinationVC.session = session
-                destinationVC.placeHolder = data[session]
             }
         }
     }
@@ -97,5 +110,6 @@ extension ProfileEditor: TGCameraDelegate {
     
     private func setPhoto(_ pickedPhoto: UIImage) {
         userPhoto.setImage(pickedPhoto, for: .normal)
+        user.setPhoto(pickedPhoto)
     }
 }
