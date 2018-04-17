@@ -13,8 +13,14 @@ class ProfileManager {
     init() {
         profiles.append(Profile(userId: "1"))
         profiles.append(Profile(userId: "2"))
+        profiles.append(Profile(userId: "3"))
+        profiles.append(Profile(userId: "4"))
         profiles[0].addFollowing("2")
+        profiles[0].addFollowing("3")
+        profiles[0].addFollowing("4")
         profiles[1].addFollower("1")
+        profiles[2].addFollower("1")
+        profiles[3].addFollower("1")
     }
     static let shared = ProfileManager()
     func getProfile(_ id: String) -> Profile? {

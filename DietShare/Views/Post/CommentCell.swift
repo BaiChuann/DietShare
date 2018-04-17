@@ -20,7 +20,7 @@ class CommentCell: UITableViewCell {
     func setComment(user: User, comment: Comment) {
         self.comment = comment
         userName.text = user.getName()
-        userPhoto.setImage(user.getPhoto(), for: .normal)
+        userPhoto.setImage(user.getPhotoAsImage(), for: .normal)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
         time.text = dateFormatter.string(from: comment.getTime())

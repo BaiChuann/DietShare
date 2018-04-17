@@ -167,7 +167,7 @@
                                         <rect key="frame" x="0.0" y="320" width="375" height="916"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="916" id="t4q-yG-j38"/>
+                                            <constraint firstAttribute="height" constant="916" id="pOu-QK-13y"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -219,6 +219,7 @@
                         <outlet property="followerCount" destination="cy0-9s-Vzl" id="xEE-bJ-29S"/>
                         <outlet property="followingCount" destination="F7r-aK-xoY" id="L1H-uD-H1D"/>
                         <outlet property="postsArea" destination="aj3-oT-Ny3" id="1cT-bJ-paW"/>
+                        <outlet property="postsAreaHeight" destination="pOu-QK-13y" id="sKE-eM-sga"/>
                         <outlet property="scrollView" destination="aGY-ef-Y2u" id="NNl-Dw-Mxa"/>
                         <outlet property="topicCount" destination="N1K-Q1-R1a" id="Mcd-d6-KOS"/>
                         <outlet property="userName" destination="lRH-PS-Un1" id="t1F-ra-jom"/>

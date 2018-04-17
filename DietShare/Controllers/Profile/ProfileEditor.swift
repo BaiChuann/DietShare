@@ -22,7 +22,7 @@ class ProfileEditor: UIViewController {
     override func viewDidLoad() {
         user = UserModelManager.shared.getUserFromID("1")!
         profile = ProfileManager.shared.getProfile(user.getUserId())!
-        userPhoto.setImage(user.getPhoto(), for: .normal)
+        userPhoto.setImage(user.getPhotoAsImage(), for: .normal)
         attributes = ["User Name", "Description"]
         TGCameraColor.setTint(Constants.themeColor)
         TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
@@ -110,6 +110,8 @@ extension ProfileEditor: TGCameraDelegate {
     
     private func setPhoto(_ pickedPhoto: UIImage) {
         userPhoto.setImage(pickedPhoto, for: .normal)
-        user.setPhoto(pickedPhoto)
+        let imageData = UIImagePNGRepresentation(pickedPhoto)!
+        let newPhoto = imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+        user.setPhoto(newPhoto)
     }
 }

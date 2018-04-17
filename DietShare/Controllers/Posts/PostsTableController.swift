@@ -81,6 +81,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         return postsTable
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(filteredData.count)
         return filteredData.count
     }
 
@@ -88,11 +89,11 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell  else {
             fatalError("The dequeued cell is not an instance of PostCell.")
         }
-        let post = filteredData[0]
+        let post = filteredData[indexPath.item]
         guard let user = UserModelManager.shared.getUserFromID(post.getUserId()) else {
             return cell
         }
-        cell.setContent(userPhoto: user.getPhoto(), userName: user.getName(), post)
+        cell.setContent(userPhoto: user.getPhotoAsImage(), userName: user.getName(), post)
         cell.setDelegate(self)
         return cell
     }
@@ -137,6 +138,10 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func search(_ text: String) {
         filteredData = text.isEmpty ? dataSource :dataSource.filter { $0.getCaption().contains(text) }
         postsTable.reloadData()
+    }
+    func didScroll() {
+        textFieldController.view.removeFromSuperview()
+        textFieldController.removeFromParentViewController()
     }
 }
 

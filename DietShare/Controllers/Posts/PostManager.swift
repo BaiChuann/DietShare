@@ -20,6 +20,10 @@ class PostManager {
    //     posts = postsDataSource.getAllPosts()
         currentUser = userManager.getCurrentUser()!
         for i in 1...20 {
+            let newPost = Post(userId: "1", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "1", topics: ["1", "2", "3", "4", "5"])
+            posts.append(newPost)
+        }
+        for i in 2...10 {
             let newPost = Post(userId: String(i), caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "1", topics: ["1", "2", "3", "4", "5"])
             posts.append(newPost)
         }

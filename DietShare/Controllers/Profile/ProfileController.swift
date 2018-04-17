@@ -21,6 +21,8 @@ class ProfileController: UIViewController {
     @IBOutlet weak private var followButton: UIButton!
     @IBOutlet weak private var editButton: UIButton!
     @IBOutlet weak private var postsArea: UIView!
+    @IBOutlet weak private var postsAreaHeight: NSLayoutConstraint!
+    
     private var profile: Profile!
     private var userId = ""
     private var postsTableController: PostsTableController!
@@ -51,22 +53,6 @@ class ProfileController: UIViewController {
     }
     
     override func viewDidLoad() {
-        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
-        postsTableController.setParentController(self)
-        postsTableController.getFollowingPosts()
-        //SCROLL VIEW IMPLEMENTATION
-        postsTableController.setScrollDelegate(self)
-        tableView = postsTableController.getTable()
-        tableView.bounces = false
-        tableView.isScrollEnabled = false
-        //===============================
-        self.addChildViewController(postsTableController)
-        postsTableController.view.frame.size = postsArea.frame.size
-        postsArea.addSubview(postsTableController.view)
-        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
-        backButton.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = false
         if userId == "" {
             setUserId(currentUser)
             if let pr = ProfileManager.shared.getProfile(currentUser) {
@@ -80,6 +66,24 @@ class ProfileController: UIViewController {
                 }
             }
         }
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
+        postsTableController.setParentController(self)
+        postsTableController.getUserPosts(userId)
+        //SCROLL VIEW IMPLEMENTATION
+        postsTableController.setScrollDelegate(self)
+        tableView = postsTableController.getTable()
+        tableView.bounces = false
+        tableView.isScrollEnabled = false
+        //===============================
+        self.addChildViewController(postsTableController)
+        print(tableView.contentSize.height)
+        postsAreaHeight.constant = tableView.contentSize.height
+        postsTableController.view.frame.size = postsArea.frame.size
+        postsArea.addSubview(postsTableController.view)
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = false
         setUser(userId)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,7 +115,7 @@ class ProfileController: UIViewController {
         }
         print(user.getUserId())
         userName.text = user.getName()
-        userPhoto.image = user.getPhoto()
+        userPhoto.image = user.getPhotoAsImage()
         descrip.text = profile.getDescription()
         followerCount.setTitle(String(profile.getFollowers().count), for: .normal)
         followingCount.setTitle(String(profile.getFollowings().count), for: .normal)
@@ -153,20 +157,21 @@ class ProfileController: UIViewController {
 // SCROLL VIEW IMPLEMENTATION
 extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        postsTableController.didScroll()
         //print(tableView.frame.height)
-        let yOffset = scrollView.contentOffset.y
-        
-            //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
-        tableView.isScrollEnabled = false
-        if yOffset >= scrollView.contentSize.height - postsArea.frame.height{
-            //scrollView.isScrollEnabled = false
-            tableView.isScrollEnabled = true
-        }
+//        let yOffset = scrollView.contentOffset.y
+//
+//            //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
+//        tableView.isScrollEnabled = false
+//        if yOffset >= scrollView.contentSize.height - postsArea.frame.height{
+//            //scrollView.isScrollEnabled = false
+//            tableView.isScrollEnabled = true
+//        }
     
     
     }
     func reachTop() {
-        scrollView.isScrollEnabled = true
+        //scrollView.isScrollEnabled = true
         //tableView.isScrollEnabled = false
     }
     func didScroll() {
