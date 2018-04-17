@@ -21,7 +21,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     private var currentRestaurant: Restaurant?
     var currentUser: User?
     
-    private var postsTableController: PostsTableController?
+    private var postsTableController: PostsTableController!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicList: UICollectionView!
@@ -29,6 +29,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var postsArea: UIView!
     //SCROLL IMPLEMENTATION
     private var postsTable: UITableView!
+    @IBOutlet weak var postAreaHeight: NSLayoutConstraint!
     //==========================
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -98,7 +99,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
+//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
         
         // TODO - integrate with Login when login is ready
@@ -111,16 +112,16 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     
     private func initPosts() {
         //change of poststable controller
-        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController
-        postsTableController?.setParentController(self)
-        postsTableController?.getTrendingPosts()
+        postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
+        postsTableController.setParentController(self)
+        postsTableController.getTrendingPosts()
         self.addChildViewController(postsTableController!)
         
-        postsTableController?.setScrollDelegate(self)
-        postsTable = postsTableController?.getTable()
-        postsTable.frame = postsArea.frame
-        postsArea.removeFromSuperview()
-        scrollView.addSubview(postsTable)
+        postsTableController.setScrollDelegate(self)
+        postsTable = postsTableController.getTable()
+        postAreaHeight.constant = postsTable.contentSize.height
+        postsTableController.view.frame.size = postsArea.frame.size
+        postsArea.addSubview(postsTableController.view)
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
     }
@@ -150,6 +151,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
      * View-related functions
      */
     
+    // Hide nagivation bar when scrolling
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         if(velocity.y>0) {
@@ -173,19 +175,19 @@ extension DiscoverPageViewController: ScrollDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-        {
-            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
-                scrollView.isScrollEnabled = false
-                postsTable.isScrollEnabled = true
-            }
-            
-        }
+//        let yOffset = scrollView.contentOffset.y
+//        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
+//        {
+//            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
+//                scrollView.isScrollEnabled = false
+//                postsTable.isScrollEnabled = true
+//            }
+//
+//        }
     }
     func reachTop() {
-        scrollView.isScrollEnabled = true
-        postsTable.isScrollEnabled = false
+//        scrollView.isScrollEnabled = true
+//        postsTable.isScrollEnabled = false
     }
 }
 

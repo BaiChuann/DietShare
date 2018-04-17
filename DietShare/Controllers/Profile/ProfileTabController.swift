@@ -16,11 +16,9 @@ class ProfileTabController: UIViewController {
             view.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
         }
-        
-       
     }
+
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
     }
 }
-

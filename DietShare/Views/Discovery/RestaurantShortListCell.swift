@@ -13,8 +13,7 @@ class RestaurantShortListCell: UICollectionViewCell {
     
     @IBOutlet weak private var restaurantImage: UIImageView!
     @IBOutlet weak private var restaurantName: UILabel!
-    
-    
+
     func setImage(_ image: UIImage) {
         let croppedImage = cropToBounds(image, Double(restaurantImage.frame.width), Double(restaurantImage.frame.height))
         restaurantImage.image = croppedImage
@@ -25,5 +24,4 @@ class RestaurantShortListCell: UICollectionViewCell {
     func setName(_ name: String) {
         restaurantName.text = name
     }
-    
 }

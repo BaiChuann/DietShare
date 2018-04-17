@@ -9,6 +9,7 @@
 import UIKit
 import FacebookLogin
 import FacebookCore
+import SwiftMessages
 
 enum SignInInputType: Int {
     case email = 0, password
@@ -21,11 +22,25 @@ class SignInController: UIViewController {
     @IBOutlet private var facebookLoginButton: UIButton!
     @IBOutlet private var wechatLoginButton: UIButton!
 
+    private let testEmail = "dietshare@gmail.com"
+    private let testPassword = "12345678"
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpInputDelegate()
         addInputBorder(for: inputGroup, withColor: Constants.themeColor)
+
+        inputGroup.forEach {
+            switch $0.tag {
+            case SignInInputType.email.rawValue:
+                $0.text = testEmail
+            case SignInInputType.password.rawValue:
+                $0.text = testPassword
+            default:
+                return
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,14 +62,22 @@ class SignInController: UIViewController {
             }
         }
 
-        guard emailInput != nil, passwordInput != nil else {
+        guard let email = emailInput, let password = passwordInput else {
             print("Invalid email or password")
             return
         }
 
-        // MARK: Check for match between email and password here, and get the user from DataSource
-
-        signIn()
+        if email == testEmail, password == testPassword {
+            signIn()
+        } else {
+            let warningView = MessageView.viewFromNib(layout: .cardView)
+            warningView.configureTheme(.warning)
+            warningView.configureDropShadow()
+            warningView.configureContent(title: "Failed to sign in", body: "Email or password is incorrect.")
+            warningView.button?.isHidden = true
+            warningView.configureBackgroundView(sideMargin: 12)
+            SwiftMessages.show(view: warningView)
+        }
     }
 
     func setUpInputDelegate() {
