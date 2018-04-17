@@ -9,10 +9,8 @@
 import UIKit
 
 class ProfileController: UIViewController {
-    
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var userName: UILabel!
-    
     @IBOutlet weak private var descrip: UILabel!
     @IBOutlet weak private var userPhoto: UIImageView!
     @IBOutlet weak private var followerCount: UIButton!
@@ -71,6 +69,8 @@ class ProfileController: UIViewController {
             setUserId(currentUser)
         }
         setUser("userId")
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditor" {
@@ -134,4 +134,9 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func didScroll() {
     }
 }
-//================
+
+extension ProfileController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
