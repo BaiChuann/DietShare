@@ -14,45 +14,42 @@ import BTree
  * A TopicsModelManager contains all the topic-related model objects and act as a facade to other objects using
  * these models.
  */
-class TopicsModelManager<T: ReadOnlyTopic> {
+class TopicsModelManager {
     private var topicsDataSource: TopicsDataSource
-    private var topics: SortedSet<T> {
-        return topicsDataSource.getAllTopics() as! SortedSet<T>
+    private var topics: [ReadOnlyTopic] {
+        return topicsDataSource.getAllTopics().sorted(by: {$0.getPopularity() > $1.getPopularity()})
     }
     
-    init() {
+    private init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
     }
     
     //TODO - try use singleton here
+    static let shared = TopicsModelManager()
     
     // Obtain a list of topics to be displayed in Discover Page
-    func getShortListForDisplay(_ numOfItem: Int) -> [T] {
-        var displayedList = [T]()
-        var count = 0
-        for topic in self.topics {
-            if (count >= numOfItem) {
-                break
-            }
-            displayedList.append(topic)
-            count += 1
+    func getShortList(_ numOfItem: Int) -> [ReadOnlyTopic] {
+        var displayedList = [ReadOnlyTopic]()
+        if topics.count < numOfItem {
+            return topics
+        }
+        for i in 0..<numOfItem {
+            displayedList.append(topics[i])
         }
         return displayedList
     }
     
-    func getAllTopics() -> [T] {
-        var topicsList = [T]()
-        topicsList.append(contentsOf: self.topics)
-        return topicsList
+    func getAllTopics() -> [ReadOnlyTopic] {
+        return self.topics
     }
     
-    func getTopics(_ index: Int, _ length: Int) -> [T] {
-        var topicsList = [T]()
+    func getTopics(_ index: Int, _ length: Int) -> [ReadOnlyTopic] {
+        var topicsList = [ReadOnlyTopic]()
         if index > self.getNumOfTopics() || index + length > self.getNumOfTopics() {
             return topicsList
         }
         topicsList.append(contentsOf: self.topics)
-        var returnList = [T]()
+        var returnList = [ReadOnlyTopic]()
         for i in 0..<length {
             returnList.append(topicsList[index + i])
         }

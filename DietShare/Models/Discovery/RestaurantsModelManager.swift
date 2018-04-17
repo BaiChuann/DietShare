@@ -15,22 +15,25 @@ import CoreLocation
  * A RestaurantsModelManager contains all the restaurant-related model objects and act as a facade to other objects using
  * these models.
  */
-class RestaurantsModelManager<T: ReadOnlyRestaurant> {
-    private var restaurants: SortedSet<T>
-    private var restaurantsDataSource: RestaurantsDataSource
+class RestaurantsModelManager {
     
-    init() {
-        print("restaurant init called")
-        self.restaurantsDataSource = RestaurantsLocalDataSource.shared
-        self.restaurants = restaurantsDataSource.getAllRestaurants() as! SortedSet<T>
+    private var restaurantsDataSource: RestaurantsDataSource
+    private var restaurants: [ReadOnlyRestaurant] {
+        return restaurantsDataSource.getAllRestaurants().sorted(by: {$0.getRatingScore() > $1.getRatingScore()})
     }
     
-    func getAllRestaurants() -> SortedSet<T> {
+    private init() {
+        self.restaurantsDataSource = RestaurantsLocalDataSource.shared
+    }
+    
+    static let shared = RestaurantsModelManager()
+    
+    func getAllRestaurants() -> [ReadOnlyRestaurant] {
         return self.restaurants
     }
     
-    func getSortedRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [T] {
-        var restaurantList = [T]()
+    func getSortedRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [ReadOnlyRestaurant] {
+        var restaurantList = [ReadOnlyRestaurant]()
         restaurantList.append(contentsOf: self.restaurants)
         if !typeFilters.isEmpty {
             restaurantList = restaurantList.filter { $0.getTypesAsEnum().overLapsWith(typeFilters)}
@@ -54,15 +57,13 @@ class RestaurantsModelManager<T: ReadOnlyRestaurant> {
     }
     
     // Obtain a list of restaurants to be displayed in Discover Page
-    func getDisplayedList(_ numOfItem: Int) -> [T] {
-        var displayedList = [T]()
-        var count = 0
-        for restaurant in self.restaurants {
-            if (count >= numOfItem) {
-                break
-            }
-            displayedList.append(restaurant)
-            count += 1
+    func getShortList(_ numOfItem: Int) -> [ReadOnlyRestaurant] {
+        var displayedList = [ReadOnlyRestaurant]()
+        if restaurants.count < numOfItem {
+            return restaurants
+        }
+        for i in 0..<numOfItem {
+            displayedList.append(restaurants[i])
         }
         return displayedList
     }

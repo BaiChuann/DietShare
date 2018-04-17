@@ -18,8 +18,14 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = Constants.darkTextColor.cgColor
+        let topBorder = UIView()
+        topBorder.backgroundColor = Constants.darkTextColor
+        topBorder.frame = CGRect(x: 0, y: 0, width:
+            view.frame.width, height:
+            0.5)
+        view.addSubview(topBorder)
+//        view.layer.borderWidth = 0.5
+//        view.layer.borderColor = Constants.darkTextColor.cgColor
         sendButton.layer.cornerRadius = 5
         sendButton.layer.borderWidth = 1
         sendButton.layer.borderColor = Constants.lightTextColor.cgColor

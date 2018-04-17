@@ -19,7 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private let currentLocationMarker = GMSMarker()
     private var chosenPlace: Place? = nil
     private var selectedRestaurant: Restaurant?
-    private var allRestaurants = SortedSet<Restaurant>()
+    private var allRestaurants = [Restaurant]()
     
     // Current zoom of the map
     private var currentZoom = Float(Constants.MapPage.defaultZoom)
@@ -34,7 +34,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.darkGray.cgColor
         textField.placeholder = "Where do you want to go?"
-        
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -113,6 +112,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 60).isActive = true
         
         self.view.addSubview(textFieldSearch)
+        // TODO - add safearea layoutguide
         textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
         textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
         textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
@@ -303,7 +303,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     
-    func setRestaurants(_ restaurants: SortedSet<Restaurant>) {
+    func setRestaurants(_ restaurants: [Restaurant]) {
         self.allRestaurants = restaurants
     }
     

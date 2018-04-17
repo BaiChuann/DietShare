@@ -15,10 +15,10 @@ import BTree
  */
 protocol RestaurantsDataSource {
     
-    func getAllRestaurants() -> SortedSet<Restaurant>
+    func getAllRestaurants() -> [ReadOnlyRestaurant]
     func getNumOfRestaurants() -> Int
     func addRestaurant(_ newRestaurant: Restaurant)
-    func addRestaurants(_ newRestaurants: SortedSet<Restaurant>)
+    func addRestaurants(_ newRestaurants: [Restaurant])
     func deleteRestaurant(_ restaurantID: String)
     func updateRestaurant(_ oldRestaurantID: String, _ newRestaurant: Restaurant)
     func searchWithKeyword(_ keyword: String) -> [Restaurant]
