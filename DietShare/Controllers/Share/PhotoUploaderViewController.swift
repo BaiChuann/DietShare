@@ -98,8 +98,13 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
     private func goBack() {
         isToCamera = true
-        tabBarController?.selectedIndex = 1
-        tabBarController?.tabBar.isHidden = false
+        guard let currentController = tabBarController as? HomeTabBarController else {
+            tabBarController?.selectedIndex = 1
+            tabBarController?.tabBar.isHidden = false
+            return
+        }
+        let lastPage = currentController.currentTab
+        currentController.selectedIndex = lastPage
     }
 }
 
