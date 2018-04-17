@@ -228,9 +228,9 @@ class UsersLocalDataSource: UsersDataSource {
     
     private func prepopulate() {
         _checkRep()
-        for i in 0..<20 {
+        for i in 1..<11 {
             if !containsUser("i") {
-                let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: "profile-example")
+                let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: "profile-\(i)")
                 self.addUser(newUser)
             }
         }
