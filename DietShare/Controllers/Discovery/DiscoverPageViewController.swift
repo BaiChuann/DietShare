@@ -115,7 +115,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         displayedRestaurants = self.restaurantModel.getDisplayedList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
         
         initPosts()
-        //change of poststable controller 
+        //change of poststable controller
+
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     private func initPosts() {
@@ -202,5 +205,11 @@ extension DiscoverPageViewController: ScrollDelegate {
     func reachTop() {
         scrollView.isScrollEnabled = true
         postsTable.isScrollEnabled = false
+    }
+}
+
+extension DiscoverPageViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

@@ -33,6 +33,11 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
         scrollView.delegate = self
+
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

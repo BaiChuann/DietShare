@@ -31,6 +31,9 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
 
         // hide filter button
         TGCamera.setOption(kTGCameraOptionHiddenFilterButton, value: true)
+
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,5 +100,11 @@ class PhotoUploadViewController: UIViewController, TGCameraDelegate {
         isToCamera = true
         tabBarController?.selectedIndex = 1
         tabBarController?.tabBar.isHidden = false
+    }
+}
+
+extension PhotoUploadViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
