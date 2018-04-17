@@ -9,7 +9,15 @@
 import Foundation
 import FacebookShare
 
-class PublishManager {
+class PublishManager: NSObject, NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(restaurantId)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        aDecoder.decodeObject()
+    }
+    
     static let shared = PublishManager()
 
     private var text: String = ""
@@ -21,8 +29,9 @@ class PublishManager {
     
     private let facebookURL = NSURL(string: "fbauth2:/")
     private let notificationCenter = NotificationCenter.default
+    private let postManager = PostManager.shared
 
-    private init() {}
+    private override init() {}
 
     func post(text: String = "", image: UIImage, restaurantId: String = "-1", topicsId: [String] = [], rating: Double = 0.0, additionalOption: Set<PublishOption> = []) {
         self.text = text
@@ -35,7 +44,7 @@ class PublishManager {
         if options.contains(.facebook) {
             _ = postOnFacebook()
         }
-
+        saveToPhone()
         postInApp()
     }
 
@@ -65,13 +74,27 @@ class PublishManager {
     }
 
     private func postInApp() {
-        print("text: \(text)")
-        print("image: \(image)")
-        print("restaurantId: \(restaurantId)")
-        print("topicsId: \(topicsId)")
-        print("rating: \(rating)")
-        print("options: \(options)")
+        let restaurantId = self.restaurantId == "-1" ? nil : self.restaurantId
+        let topicsId = self.topicsId.isEmpty ? nil : self.topicsId
+
+        _ = postManager.postPost(caption: text, time: Date(), photo: image, restaurant: restaurantId, topics: topicsId)
     }
+
+    private func saveToPhone() {
+        print("1111")
+        print(image)
+        print("11111111")
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
+    @objc private func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("fail!")
+        } else {
+            print("success")
+        }
+    }
+ 
 }
 
 enum PublishOption {

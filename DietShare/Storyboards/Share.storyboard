@@ -762,7 +762,7 @@
         <!--Photo Upload View Controller-->
         <scene sceneID="WSO-jd-v87">
             <objects>
-                <viewController id="mMy-RL-9Qo" customClass="PhotoUploadViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoUploadViewController" id="mMy-RL-9Qo" customClass="PhotoUploadViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G85-lP-Qgg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
