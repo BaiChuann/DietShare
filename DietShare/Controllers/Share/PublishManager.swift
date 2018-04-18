@@ -30,6 +30,8 @@ class PublishManager: NSObject, NSCoding {
     private let facebookURL = NSURL(string: "fbauth2:/")
     private let notificationCenter = NotificationCenter.default
     private let postManager = PostManager.shared
+    private var restaurantManager = RestaurantsModelManager.shared
+
 
     private override init() {}
 
@@ -77,11 +79,13 @@ class PublishManager: NSObject, NSCoding {
         let restaurantId = self.restaurantId == "-1" ? nil : self.restaurantId
         let topicsId = self.topicsId.isEmpty ? nil : self.topicsId
 
-        let post = postManager.postPost(caption: text, time: Date(), photo: image, restaurant: restaurantId, topics: topicsId)
+        _ = postManager.postPost(caption: text, time: Date(), photo: image, restaurant: restaurantId, topics: topicsId)
+        if restaurantId != nil {
+            restaurantManager.addRating(restaurantId: restaurantId!, rate: rating)
+        }
     }
 
     private func saveToPhone() {
-        print(image)
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
 

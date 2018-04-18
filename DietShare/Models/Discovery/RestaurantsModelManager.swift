@@ -17,6 +17,7 @@ import CoreLocation
  */
 class RestaurantsModelManager {
     
+    private let userManager = UserModelManager.shared
     private var restaurantsDataSource: RestaurantsDataSource
     private var restaurants: [ReadOnlyRestaurant] {
         return restaurantsDataSource.getAllRestaurants().sorted(by: {$0.getRatingScore() > $1.getRatingScore()})
@@ -68,8 +69,11 @@ class RestaurantsModelManager {
         return displayedList
     }
     
-    func addRating(restaurantId: String, rate: Int, userId: String) {
+    func addRating(restaurantId: String, rate: Int) {
         guard let restaurant = getRestaurantFromID(restaurantId) else {
+            return
+        }
+        guard let userId = userManager.getCurrentUser()?.getUserId() else {
             return
         }
         let rating = Rating(userId, restaurantId, RatingScore(rawValue: rate)!)
