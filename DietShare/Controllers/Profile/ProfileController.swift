@@ -26,17 +26,18 @@ class ProfileController: UIViewController {
     private var postsTableController: PostsTableController!
     private var tableView: UITableView!
     private var currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
+    private var previousSceneId = ""
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
-        if userId == currentUser {
+        if userId == currentUser && previousSceneId != Identifiers.topicPage  {
             print("yes")
-            
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.navigationBar.isHidden = true
         } else {
             self.tabBarController?.tabBar.isHidden = true
-            self.navigationController?.navigationBar.isHidden = false 
+            self.navigationController?.navigationBar.isHidden = false
         }
+        
         setUser(userId)
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +113,10 @@ class ProfileController: UIViewController {
     func setUserId(_ id: String) {
         self.userId = id
     }
+    
+    func setPreviousSceneId(_ sceneId: String) {
+        self.previousSceneId = sceneId
+    }
     func setUser(_ id: String) {
         guard let user = UserModelManager.shared.getUserFromID(id) else {
             return
@@ -119,7 +124,9 @@ class ProfileController: UIViewController {
         print(user.getUserId())
         userName.text = user.getName()
         userPhoto.image = user.getPhotoAsImage()
+        // TODO - handle the unexpected nil
         descrip.text = profile.getDescription()
+        
         followerCount.setTitle(String(profile.getFollowers().count), for: .normal)
         followingCount.setTitle(String(profile.getFollowings().count), for: .normal)
         topicCount.setTitle(String(profile.getTopics().count), for: .normal)

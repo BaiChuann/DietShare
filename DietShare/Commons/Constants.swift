@@ -80,6 +80,7 @@ struct Identifiers {
     public static let unwindMapToRestaurantList = "unwindMapToRestaurantList"
     public static let mapToRestaurant = "mapToRestaurant"
     public static let unwindRestaurantToMap = "unwindRestaurantToMap"
+    public static let topicPage = "topicPage"
 }
 
 struct Text {
@@ -140,6 +141,7 @@ struct Constants {
         public static let numOfDisplayedUsers = 10
         public static let topicImageAlpha: CGFloat = 0.8
         public static let longScrollViewHeight: CGFloat = 1200
+        public static let numOfActiveUsersDisplayed = 8
     }
 
     struct RestaurantPage {

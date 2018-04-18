@@ -88,4 +88,39 @@ class TopicsModelManager {
         topic.removeFollower(follower)
         self.topicsDataSource.updateTopic(topic.getID(), topic)
     }
+    
+    func getActiveUsers(_ topic: Topic) -> [String] {
+        let posts = PostManager.shared.getTopicPosts(topic.getID())
+        var userActivity = [String: Int]()
+        for post in posts {
+            if let _ = userActivity[post.getUserId()] {
+                userActivity[post.getUserId()]! += 1
+            } else {
+                userActivity[post.getUserId()] = 1
+            }
+        }
+        var userFreqs = [UserFreq]()
+        for (userId, freq) in userActivity {
+            userFreqs.append(UserFreq(userId, freq))
+        }
+        userFreqs.sort(by: {$0.freq > $1.freq})
+        
+        var activeUsers = [String]()
+        for i in 0..<Constants.TopicPage.numOfActiveUsersDisplayed {
+            if i < userFreqs.count {
+                activeUsers.append(userFreqs[i].userId)
+            }
+        }
+        return activeUsers
+    }
+}
+
+struct UserFreq {
+    var userId: String
+    var freq: Int
+    
+    init(_ userId: String, _ freq: Int) {
+        self.userId = userId
+        self.freq = freq
+    }
 }
