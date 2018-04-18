@@ -15,6 +15,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     private var topicsModel = TopicsModelManager.shared
     private var userModel = UserModelManager.shared
     private var currentUser = UserModelManager.shared.getCurrentUser()
+    private var selectedUserId: String?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topicName: UILabel!
@@ -32,7 +33,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.TopicPage.longScrollViewHeight)
         scrollView.delegate = self
 
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
@@ -59,7 +59,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let currentTopic = self.topic {
-            return currentTopic.getFollowersID().getListAsArray().count
+            return topicsModel.getActiveUsers(currentTopic).count
         }
         return Constants.TopicPage.numOfDisplayedUsers
     }
@@ -67,13 +67,20 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as IndexPath) as! FollowerListCell
         if let currentTopic = self.topic {
-            let id = currentTopic.getFollowersID().getListAsArray()[indexPath.item]
+            let id = topicsModel.getActiveUsers(currentTopic)[indexPath.item]
             if let user = userModel.getUserFromID(id) {
                 cell.setName(user.getName())
                 cell.setImage(user.getPhotoAsImage())
             }
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let currentTopic = self.topic {
+            self.selectedUserId = topicsModel.getActiveUsers(currentTopic)[indexPath.item]
+            performSegue(withIdentifier: "topicToUser", sender: self)
+        }
     }
     
     /**
@@ -112,8 +119,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     private func initFollowButton() {
-        assert(topic != nil)
-        assert(currentUser != nil)
         if let user = self.currentUser, let currentTopic = self.topic {
             let followers = currentTopic.getFollowersID().getListAsSet()
             if followers.contains(user.getUserId()) {
@@ -173,9 +178,12 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.topicsModel = modelManager
     }
     
-    /**
-     * Test functions
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? ProfileController, let userId = self.selectedUserId {
+            dest.setUserId(userId)
+            dest.setPreviousSceneId(Identifiers.topicPage)
+        }
+    }
     
 }
 

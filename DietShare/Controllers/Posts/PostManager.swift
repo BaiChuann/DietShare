@@ -85,7 +85,7 @@ class PostManager {
         return results
     }
     func getTopicPosts(_ id: String) -> [Post] {
-        var results: [Post] = []
+        var results = [Post]()
         for post in posts {
             guard let topics = post.getTopics() else {
                 continue

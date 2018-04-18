@@ -112,10 +112,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 60).isActive = true
         
         self.view.addSubview(textFieldSearch)
-        // TODO - add safearea layoutguide
-        textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
-        textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 90).isActive = true
+        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 30).isActive = true
+        textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
         textFieldSearch.heightAnchor.constraint(equalToConstant: 40).isActive = true
         setUpTextField(textFieldSearch, #imageLiteral(resourceName: "location"))
         
@@ -134,7 +133,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         addShadowToView(view: searchAgainButton, offset: 3, radius: 4)
         
         self.view.addSubview(closeButton)
-        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
+        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
         closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor).isActive = true
