@@ -11,24 +11,8 @@ import UIKit
 class ProfileManager {
     private var profiles: [Profile] = []
     init() {
-        profiles.append(Profile(userId: "1"))
-        profiles.append(Profile(userId: "2"))
-        profiles.append(Profile(userId: "3"))
-        profiles.append(Profile(userId: "4"))
-        profiles.append(Profile(userId: "5"))
-        profiles.append(Profile(userId: "6"))
-        profiles.append(Profile(userId: "7"))
-        profiles.append(Profile(userId: "8"))
-        profiles.append(Profile(userId: "9"))
-        profiles.append(Profile(userId: "10"))
-        profiles.append(Profile(userId: "11"))
-        profiles.append(Profile(userId: "12"))
-        profiles[0].addFollowing("2")
-        profiles[0].addFollowing("3")
-        profiles[0].addFollowing("4")
-        profiles[1].addFollower("1")
-        profiles[2].addFollower("1")
-        profiles[3].addFollower("1")
+        prepopulate()
+        
     }
     static let shared = ProfileManager()
     func getProfile(_ id: String) -> Profile? {
@@ -45,5 +29,14 @@ class ProfileManager {
         }
         let followings = profile.getFollowings()
         return followings 
+    }
+    func prepopulate() {
+        for i in 1...10 {
+            profiles.append(Profile(userId: String(i)))
+        }
+        for i in 2...10 {
+            profiles[0].addFollowing(String(i))
+            profiles[i-1].addFollower("1")
+        }
     }
 }

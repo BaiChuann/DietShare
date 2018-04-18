@@ -436,7 +436,7 @@
         <!--Topic View Controller-->
         <scene sceneID="WTg-vR-hqa">
             <objects>
-                <viewController id="2aZ-ZN-SkA" customClass="TopicViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="topic" id="2aZ-ZN-SkA" customClass="TopicViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DBl-Fs-Xjc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -899,7 +899,7 @@
         <!--Restaurant View Controller-->
         <scene sceneID="nTG-bA-7hD">
             <objects>
-                <viewController id="GSZ-DZ-kR4" customClass="RestaurantViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="restaurant" id="GSZ-DZ-kR4" customClass="RestaurantViewController" customModule="DietShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MhQ-tJ-0MO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

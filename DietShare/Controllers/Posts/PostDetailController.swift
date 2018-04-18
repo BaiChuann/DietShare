@@ -155,6 +155,11 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 extension PostDetailController: PostCellDelegate {
+    func goToTopic(_ id: String){
+    }
+    func goToRestaurant(_ id: String) {
+    }
+    
     func goToDetail(_ post: String, _ session: Int) {
     }
     

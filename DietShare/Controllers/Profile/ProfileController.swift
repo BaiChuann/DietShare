@@ -39,6 +39,7 @@ class ProfileController: UIViewController {
         }
         
         setUser(userId)
+        postsTableController.getUserPosts(userId)
     }
     override func viewDidAppear(_ animated: Bool) {
         if userId == currentUser {
