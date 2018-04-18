@@ -97,7 +97,10 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             self.topicDescription.text = currentTopic.getDescription()
         }
         
-        addRoundedRectBackground(self.followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.black.cgColor, UIColor.clear)
+        followButton.layer.cornerRadius = Constants.cornerRadius
+        followButton.layer.borderColor = Constants.themeColor.cgColor
+        followButton.layer.borderWidth = 2
+        topicImage.layer.cornerRadius = Constants.cornerRadius
         
         initFollowButton()
     }
@@ -153,14 +156,14 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             if followButton.tag == FollowStatus.notFollowed.rawValue {
                 followButton.tag = FollowStatus.followed.rawValue
                 followButton.setTitle(Text.unfollow, for: .normal)
-                followButton.layer.borderColor = UIColor.gray.cgColor
-                followButton.titleLabel?.textColor = UIColor.gray
+                followButton.setTitleColor(Constants.themeColor, for: .normal)
+                followButton.backgroundColor = UIColor.white
                 self.topicsModel.addNewFollower(user, topic)
             } else {
                 followButton.tag = FollowStatus.notFollowed.rawValue
                 followButton.setTitle(Text.follow, for: .normal)
-                followButton.layer.borderColor = UIColor.black.cgColor
-                followButton.titleLabel?.textColor = UIColor.black
+                followButton.setTitleColor(UIColor.white, for: .normal)
+                followButton.backgroundColor = Constants.themeColor
                 self.topicsModel.removeFollower(user, topic)
             }
         }
