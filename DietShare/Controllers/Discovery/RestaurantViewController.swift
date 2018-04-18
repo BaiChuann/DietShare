@@ -45,17 +45,12 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
         
         initView()
         initPosts()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +68,8 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         if let currentRestaurant = self.restaurant, let currentUser = UserModelManager.shared.getCurrentUser() {
             //TODO - combine the common parts between this page and restaurantFullListPage
             self.restaurantName.text = currentRestaurant.getName()
-            self.restaurantImage.image = currentRestaurant.getImage()
+            let currentImage = currentRestaurant.getImage()
+            setFittedImageAsSubview(view: restaurantImage, image: currentImage, alpha: 1.0)
             self.restaurantDescription.text = currentRestaurant.getDescription()
             self.types.text = currentRestaurant.getTypesAsString()
             self.numOfRatings.text = "\(currentRestaurant.getRatingsID().getListAsSet().count) ratings"

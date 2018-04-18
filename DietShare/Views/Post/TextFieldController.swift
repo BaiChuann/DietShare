@@ -18,6 +18,7 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         let topBorder = UIView()
         topBorder.backgroundColor = Constants.darkTextColor
         topBorder.frame = CGRect(x: 0, y: 0, width:
@@ -38,6 +39,9 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
         let keyboardHeight = keyboardRectangle.height
         distance = keyboardHeight - tabHeight
         view.frame.origin.y -= (distance)
+    }
+    @objc func keyboardWillChangeFrame(notification: Notification) {
+        view.frame.origin.y += (distance)
     }
     func setTabHeight(_ height: CGFloat) {
         tabHeight = height
