@@ -228,15 +228,29 @@ class UsersLocalDataSource: UsersDataSource {
     
     private func prepopulate() {
         _checkRep()
-        for i in 1..<11 {
-            if !containsUser("i") {
-                let newUser = User(userId: "\(i)", name: "ReadyPlayer\(i)", password: "i", photo: "profile-\(i)")
-                self.addUser(newUser)
-            }
-        }
+        let user1 = User(userId: "1", name: "Sonna", password: "1", photo: "profile-1")
+        let user2 = User(userId: "2", name: "Wong Zei Xing", password: "1", photo: "profile-2")
+        let user3 = User(userId: "3", name: "Jacob Jackson Jr", password: "1", photo: "profile-3")
+        let user4 = User(userId: "4", name: "Daryl Chin", password: "1", photo: "profile-4")
+        let user5 = User(userId: "5", name: "Benjamin Mayer", password: "1", photo: "profile-5")
+        let user6 = User(userId: "6", name: "Bill H. Stark", password: "1", photo: "profile-6")
+        let user7 = User(userId: "7", name: "Audrey Austin", password: "1", photo: "profile-7")
+        let user8 = User(userId: "8", name: "Christina Mayer", password: "1", photo: "profile-8")
+        let user9 = User(userId: "9", name: "Tan Pei Yi", password: "1", photo: "profile-9")
+        let user10 = User(userId: "10", name: "Noel666TheGreat", password: "1", photo: "profile-10")
+        addUser(user1)
+        addUser(user2)
+        addUser(user3)
+        addUser(user4)
+        addUser(user5)
+        addUser(user6)
+        addUser(user7)
+        addUser(user8)
+        addUser(user9)
+        addUser(user10)
         _checkRep()
     }
-    
+
     // Check representation of the datasource
     private func _checkRep() {
         assert(checkIDUniqueness(), "IDs should be unique")
