@@ -49,6 +49,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         topics.allowsSelection = true
         topics.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
         userName.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onNameClicked)))
+        userName.isUserInteractionEnabled = true
     }
     @objc func tap(sender: UITapGestureRecognizer){
         
