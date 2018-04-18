@@ -45,11 +45,12 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        initView()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        initView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,12 +160,16 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
                 followButton.setTitleColor(Constants.themeColor, for: .normal)
                 followButton.backgroundColor = UIColor.white
                 self.topicsModel.addNewFollower(user, topic)
+                let profile = ProfileManager.shared.getProfile(user.getUserId())!
+                profile.addTopic(topic.getID())
             } else {
                 followButton.tag = FollowStatus.notFollowed.rawValue
                 followButton.setTitle(Text.follow, for: .normal)
                 followButton.setTitleColor(UIColor.white, for: .normal)
                 followButton.backgroundColor = Constants.themeColor
                 self.topicsModel.removeFollower(user, topic)
+                let profile = ProfileManager.shared.getProfile(user.getUserId())!
+                profile.deleteTopic(topic.getID())
             }
         }
     }

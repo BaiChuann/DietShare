@@ -28,15 +28,15 @@ class PostManager {
 //            let newPost = Post(userId: String(i), caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "1", topics: ["1", "2", "3", "4", "5"])
 //            posts.append(newPost)
 //        }
-        let postId = posts[0].getPostId()
-        let newComment = Comment(userId: "3", parentId: postId, content: "This looks so nice", time: Date())
-        for _ in 1...10 {
-             comments.append(newComment)
-        }
-        let newLike = Like(userId: "3", postId: postId, time: Date())
-        for _ in 1...10 {
-            likes.append(newLike)
-        }
+//        let postId = posts[0].getPostId()
+//        let newComment = Comment(userId: "3", parentId: postId, content: "This looks so nice", time: Date())
+//        for _ in 1...10 {
+//             comments.append(newComment)
+//        }
+//        let newLike = Like(userId: "3", postId: postId, time: Date())
+//        for _ in 1...10 {
+//            likes.append(newLike)
+//        }
     }
     static let shared = PostManager()
     func getPost(_ id: String) -> Post? {
@@ -49,7 +49,8 @@ class PostManager {
     }
     func getFollowingPosts() -> [Post] {
         var results: [Post] = []
-        let followingUsers = profileManager.getFollowingUsers(currentUser.getUserId())
+        var followingUsers = profileManager.getFollowingUsers(currentUser.getUserId())
+        followingUsers.append(currentUser.getUserId())
         for post in posts {
             if followingUsers.contains(post.getUserId()) {
                 results.append(post)
@@ -183,7 +184,7 @@ class PostManager {
         let newPost24 = Post(userId: "9", caption: "Don’t be beguiled by its appearance. It tastes really goooood!!", time: dateFormatterGet.date(from: "2017-11-20 09:35:13")!, photo: UIImage(named: "topic8-2")!, restaurant: nil, topics: ["8"])
         let newPost25 = Post(userId: "7", caption: "Looks like leaves. Tastes like leaves. After eating a whole bowl of this, I feel I am a vegetable walking. Meh.", time: dateFormatterGet.date(from: "2018-01-19 18:34:10")!, photo: UIImage(named: "topic9-1")!, restaurant: "15", topics: ["5", "9"])
         let newPost26 = Post(userId: "10", caption: "Vegan food can be really palatable! Should let my family have vegan food once a week!", time: dateFormatterGet.date(from: "2017-1-11 20:54:00")!, photo: UIImage(named: "topic9-2")!, restaurant: "16", topics: ["9"])
-        let newPost27 = Post(userId: "10", caption: "My grandma cooked my favorite biryani for me. I really missed this taste in the last exchange year in States! Americans should at least learn how to cook edible Asian food for Asians.", time: dateFormatterGet.date(from: "2018-02-14 11:57:04")!, photo: UIImage(named: "topic9-3")!, restaurant: nil, topics: ["7", "9"])
+        let newPost27 = Post(userId: "1", caption: "My grandma cooked my favorite biryani for me. I really missed this taste in the last exchange year in States! Americans should at least learn how to cook edible Asian food for Asians.", time: dateFormatterGet.date(from: "2017-02-14 11:57:04")!, photo: UIImage(named: "topic9-3")!, restaurant: nil, topics: ["7", "9"])
         addPost(newPost1)
         addPost(newPost2)
         addPost(newPost3)
@@ -210,6 +211,66 @@ class PostManager {
         addPost(newPost25)
         addPost(newPost26)
         addPost(newPost27)
+        let newComment1 = Comment(userId: "2", parentId: posts[5].getPostId(), content: "This looks so nice", time: dateFormatterGet.date(from: "2018-04-18 17:09:46")!)
+        let newComment2 = Comment(userId: "3", parentId: posts[5].getPostId(), content: "Wow you really did it sia", time: dateFormatterGet.date(from: "2018-04-18 17:54:13")!)
+        let newComment3 = Comment(userId: "4", parentId: posts[5].getPostId(), content: "eh I wish I could do that also hahaha", time: dateFormatterGet.date(from: "2018-04-18 19:29:36")!)
+        let newComment4 = Comment(userId: "5", parentId: posts[5].getPostId(), content: "the level of effort.", time: dateFormatterGet.date(from: "2018-04-18 20:33:12")!)
+        let newComment5 = Comment(userId: "6", parentId: posts[1].getPostId(), content: "I want alsoooooo", time: dateFormatterGet.date(from: "2018-04-18 17:09:46")!)
+        let newComment6 = Comment(userId: "7", parentId: posts[1].getPostId(), content: "Omg that's my dream breakfast teach me pleaseeee", time: dateFormatterGet.date(from: "2018-04-18 17:54:13")!)
+        let newComment7 = Comment(userId: "8", parentId: posts[1].getPostId(), content: "cute", time: dateFormatterGet.date(from: "2018-04-18 19:29:36")!)
+        let newComment8 = Comment(userId: "2", parentId: posts[1].getPostId(), content: "bo jio", time: dateFormatterGet.date(from: "2018-04-18 20:33:12")!)
+        let newComment9 = Comment(userId: "3", parentId: posts[12].getPostId(), content: "I didn't know you so healthy one", time: dateFormatterGet.date(from: "2018-04-18 17:09:46")!)
+        let newComment10 = Comment(userId: "7", parentId: posts[12].getPostId(), content: "Steady :)", time: dateFormatterGet.date(from: "2018-04-18 17:54:13")!)
+        let newComment11 = Comment(userId: "9", parentId: posts[21].getPostId(), content: "a!v!o!c!a!d!o! YAS!", time: dateFormatterGet.date(from: "2018-04-18 19:29:36")!)
+        let newComment12 = Comment(userId: "5", parentId: posts[21].getPostId(), content: "That's my favourite tooooooooooo", time: dateFormatterGet.date(from: "2018-04-18 20:33:12")!)
+        comments.append(newComment1)
+        posts[5].incrementCommentsCount()
+        comments.append(newComment2)
+        posts[5].incrementCommentsCount()
+        comments.append(newComment3)
+        posts[5].incrementCommentsCount()
+        comments.append(newComment4)
+        posts[5].incrementCommentsCount()
+        comments.append(newComment5)
+        posts[1].incrementCommentsCount()
+        comments.append(newComment6)
+        posts[1].incrementCommentsCount()
+        comments.append(newComment7)
+        posts[1].incrementCommentsCount()
+        comments.append(newComment8)
+        posts[1].incrementCommentsCount()
+        comments.append(newComment9)
+        posts[12].incrementCommentsCount()
+        comments.append(newComment10)
+        posts[12].incrementCommentsCount()
+        comments.append(newComment11)
+        posts[21].incrementCommentsCount()
+        comments.append(newComment12)
+        posts[21].incrementCommentsCount()
+        let newLike1 = Like(userId: "2", postId: posts[5].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 17:09:46")!)
+        let newLike2 = Like(userId: "3", postId: posts[5].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 17:54:13")!)
+        let newLike3 = Like(userId: "4", postId: posts[5].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 19:29:36")!)
+        let newLike4 = Like(userId: "5", postId: posts[5].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 20:33:12")!)
+        let newLike5 = Like(userId: "8", postId: posts[5].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 21:39:36")!)
+        let newLike6 = Like(userId: "9", postId: posts[5].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 22:33:12")!)
+        let newLike7 = Like(userId: "2", postId: posts[1].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 17:09:46")!)
+        let newLike8 = Like(userId: "3", postId: posts[1].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 17:54:13")!)
+        let newLike9 = Like(userId: "4", postId: posts[1].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 19:29:36")!)
+        let newLike10 = Like(userId: "5", postId: posts[1].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 20:33:12")!)
+        let newLike11 = Like(userId: "8", postId: posts[21].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 21:39:36")!)
+        let newLike12 = Like(userId: "9", postId: posts[21].getPostId(), time: dateFormatterGet.date(from: "2018-04-18 22:33:12")!)
+        postLike(newLike1)
+        postLike(newLike2)
+        postLike(newLike3)
+        postLike(newLike4)
+        postLike(newLike5)
+        postLike(newLike6)
+        postLike(newLike7)
+        postLike(newLike8)
+        postLike(newLike9)
+        postLike(newLike10)
+        postLike(newLike11)
+        postLike(newLike12)
     }
     func addPost(_ post: Post) {
         posts.append(post)
