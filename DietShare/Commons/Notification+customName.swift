@@ -11,4 +11,6 @@ import Foundation
 extension Notification.Name {
     static let didUpdateRestaurantRank = Notification.Name("didUpdateRestaurantRank")
     static let didFacebookShareFail = Notification.Name("didFacebookShareFail")
+    static let didSaveToPhoneSuccess = Notification.Name("didSaveToPhoneSuccess")
+    static let didSaveToPhoneFail = Notification.Name("didSaveToPhoneFail")
 }

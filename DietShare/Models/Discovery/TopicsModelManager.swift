@@ -73,9 +73,12 @@ class TopicsModelManager {
     }
     
     // Add a new post under a topic, and update the database
-    func addNewPost(_ newPost: Post, _ topic: Topic) {
+    func addNewPost(newPost: Post, topicId: String) {
+        guard let topic = getTopicFromID(topicId) else {
+            return
+        }
         topic.addPost(newPost)
-        self.topicsDataSource.updateTopic(topic.getID(), topic)
+        self.topicsDataSource.updateTopic(topicId, topic)
     }
     
     // Add a new follower to a topic, and update the database

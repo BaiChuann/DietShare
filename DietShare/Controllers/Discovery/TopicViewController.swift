@@ -5,7 +5,7 @@
 //  Created by Shuang Yang on 28/3/18.
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
-// swiftlint:disable force_cast
+// swiftlint:disable force_cast implicitly_unwrapped_optional
 
 import UIKit
 
@@ -47,7 +47,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidAppear(animated)
         initView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
@@ -109,7 +109,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             postsTableController.getTopicPosts(topic.getID())
         }
         self.addChildViewController(postsTableController!)
-        
         postsTableController.setScrollDelegate(self)
         postsTable = postsTableController.getTable()
         postAreaHeight.constant = postsTable.contentSize.height
@@ -131,8 +130,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
-    
-    
+
     // Hide navigation bar when scrolling up
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -147,7 +145,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }, completion: nil)
         }
     }
-    
+
     // Handle tapping of follow button
     @IBAction func followButtonPressed(_ sender: UIButton) {
         assert(currentUser != nil)
@@ -167,7 +165,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
-    
     
     /**
      * Utility functions
