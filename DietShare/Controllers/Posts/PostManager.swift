@@ -67,10 +67,10 @@ class PostManager {
                 results.append(post)
             }
         }
-        return results.sorted(by: {$0.getTime() > $1.getTime()})
+        return results.sorted { $0.getTime() > $1.getTime() }
     }
     func getTrendingPosts() -> [Post] {
-        let sortedPosts = posts.sorted(by: {$0.getLikesCount() > $1.getLikesCount()})
+        let sortedPosts = posts.sorted { $0.getLikesCount() > $1.getLikesCount() }
         return sortedPosts
     }
     func getRestaurantPosts(_ id: String) -> [Post] {
