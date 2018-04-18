@@ -14,6 +14,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     private var topicModel = TopicsModelManager.shared
     private var selectedTopic: Topic?
+    private var buttonTopicDict = [UIButton: TopicFullListCell]()
     
     var currentUser = UserModelManager.shared.getCurrentUser()
     
@@ -41,11 +42,11 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         
         return cell
     }
-    
-    
+
     // Add handling of tapping on follow button
     private func addTapHandler(_ cell: TopicFullListCell, _ topicList: [ReadOnlyTopic], _ indexPath: IndexPath) {
-        cell.addSubview(cell.followButton)
+        cell.initFollowButtonView()
+        buttonTopicDict[cell.followButton] = cell
         if let user = self.currentUser {
             let currentTopic = topicList[indexPath.item]
             let followers = currentTopic.getFollowersID().getListAsSet()
@@ -62,25 +63,26 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToFollowed(_ button: UIButton) {
         button.tag = FollowStatus.followed.rawValue
         button.setTitle(Text.unfollow, for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
-        button.layer.borderColor = UIColor.gray.cgColor
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = Constants.themeColor
     }
     
     // Toggle the followButton to "unfollowed" state
     private func toggleToUnfollowed(_ button: UIButton) {
         button.tag = FollowStatus.notFollowed.rawValue
         button.setTitle(Text.follow, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
+        button.setTitleColor(Constants.themeColor, for: .normal)
+        button.backgroundColor = .clear
     }
     
     // Changes display text of button upon tapping, and handle follow/unfollow logic
-    @objc func followButtonTapped(_ sender: UIButton) {
+    @objc
+    func followButtonTapped(_ sender: UIButton) {
         assert(currentUser != nil)
         
         // Locate the exact cell where the follow button is tapped
-        let cell = sender.superview as! TopicFullListCell
-        guard let index = self.topicListView.indexPath(for: cell)?.item else {
+        guard let cell = buttonTopicDict[sender],
+            let index = self.topicListView.indexPath(for: cell)?.item else {
             fatalError("Cannot find corresponding cell for follow button")
         }
         

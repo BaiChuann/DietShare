@@ -30,7 +30,10 @@ class TopicFullListCell: UICollectionViewCell {
     }
     
     func initFollowButtonView() {
-        addRoundedRectBackground(followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.black.cgColor, UIColor.clear)
+        followButton.layer.cornerRadius = Constants.cornerRadius
+        followButton.layer.borderWidth = 2
+        followButton.layer.borderColor = Constants.themeColor.cgColor
+//        addRoundedRectBackground(followButton, Constants.defaultCornerRadius, Constants.defaultBottonBorderWidth, UIColor.black.cgColor, UIColor.clear)
     }
     
 }
