@@ -86,7 +86,7 @@ class PostManager {
         return results.sorted(by: {$0.getTime() > $1.getTime()})
     }
     func getTopicPosts(_ id: String) -> [Post] {
-        var results: [Post] = []
+        var results = [Post]()
         for post in posts {
             guard let topics = post.getTopics() else {
                 continue

@@ -50,6 +50,7 @@ class RestaurantFullListCell: UICollectionViewCell {
     
     func setImage(_ image: UIImage) {
         restaurantImage.image = image
+//        restaurantImage.layer.cornerRadius = Constants.cornerRadius
         addRoundedRectBackground(restaurantImage, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, UIColor.clear)
     }
     

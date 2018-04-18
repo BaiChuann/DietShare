@@ -10,7 +10,7 @@ import UIKit
 import ScrollingStackContainer
 import CoreLocation
 
-class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private var topicModel = TopicsModelManager.shared
     private var restaurantModel = RestaurantsModelManager.shared
@@ -40,6 +40,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
             return displayedRestaurants.count
         }
         return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -140,6 +144,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
+            print("current topic = nil? \(self.currentTopic == nil)")
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)
