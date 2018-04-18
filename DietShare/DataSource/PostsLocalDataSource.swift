@@ -133,7 +133,7 @@ class PostsLocalDataSource {
         }*/
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+
         let newPost1 = Post(userId: "6", caption: "Today is a cheat-day. Had a lot of fat and protein.", time: dateFormatterGet.date(from: "2017-10-19 10:10:13")!, photo: UIImage(named: "topic1-1")!, restaurant: "12", topics: ["1"])
         let newPost2 = Post(userId: "9", caption: "Yum yum. A big breakfast #healthy breakfast", time: dateFormatterGet.date(from: "2018-01-05 08:04:15")!, photo: UIImage(named: "topic1-2")!, restaurant: nil, topics: ["1"])
         let newPost3 = Post(userId: "9", caption: "My 5-year-old daughter really love this dish", time: dateFormatterGet.date(from: "2016-11-30 09:39:27")!, photo: UIImage(named: "topic1-3")!, restaurant: "13", topics: ["1", "3"])
@@ -159,7 +159,7 @@ class PostsLocalDataSource {
         let newPost24 = Post(userId: "9", caption: "Don’t be beguiled by its appearance. It tastes really goooood!!", time: dateFormatterGet.date(from: "2017-11-20 09:35:13")!, photo: UIImage(named: "topic8-2")!, restaurant: nil, topics: ["8"])
         let newPost25 = Post(userId: "7", caption: "Looks like leaves. Tastes like leaves. After eating a whole bowl of this, I feel I am a vegetable walking. Meh.", time: dateFormatterGet.date(from: "2018-01-19 18:34:10")!, photo: UIImage(named: "topic9-1")!, restaurant: "15", topics: ["5", "9"])
         let newPost26 = Post(userId: "10", caption: "Vegan food can be really palatable! Should let my family have vegan food once a week!", time: dateFormatterGet.date(from: "2017-0-11 20:54:00")!, photo: UIImage(named: "topic9-2")!, restaurant: "16", topics: ["9"])
-        let newPost27 = Post(userId: "1", caption: "My grandma cooked my favorite biryani for me. I really missed this taste in the last exchange year in States! Americans should at least learn how to cook edible Asian food for Asians.", time: dateFormatterGet.date(from: "2018-02-14 11:57:04")!, photo: UIImage(named: "topic9-3")!, restaurant: nil, topics: ["7", "9"])
+        let newPost27 = Post(userId: "10", caption: "My grandma cooked my favorite biryani for me. I really missed this taste in the last exchange year in States! Americans should at least learn how to cook edible Asian food for Asians.", time: dateFormatterGet.date(from: "2018-02-14 11:57:04")!, photo: UIImage(named: "topic9-3")!, restaurant: nil, topics: ["7", "9"])
         addPost(newPost1)
         addPost(newPost2)
         addPost(newPost3)
