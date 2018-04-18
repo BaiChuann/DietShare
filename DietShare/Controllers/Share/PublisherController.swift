@@ -38,6 +38,7 @@ class PublisherController: UIViewController {
     var shareState: ShareState?
 
     private var publishManager = PublishManager.shared
+
     private var restaurantId: String = "-1"
     private var topicsId: [String] = []
     private var rating: Double = 0.0
