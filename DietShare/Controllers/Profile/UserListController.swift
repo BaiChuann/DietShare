@@ -12,7 +12,22 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
     private var data: [String] = []
     @IBOutlet weak private var table: UITableView!
     var session = 0
-    var userId: String! 
+    var userId: String!
+    override func viewWillAppear(_ animated: Bool) {
+        switch session {
+        case 0:
+            data = ProfileManager.shared.getProfile(userId)!.getFollowers()
+            break
+        case 1:
+            data = ProfileManager.shared.getProfile(userId)!.getFollowings()
+            break
+        case 2:
+            data = ProfileManager.shared.getProfile(userId)!.getTopics()
+            break
+        default:
+            return
+        }
+    }
     override func viewDidLoad() {
         switch session {
         case 0:
@@ -37,10 +52,10 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUser" {
             if let destinationVC = segue.destination as? ProfileController {
-//                guard let item = table.indexPathForSelectedRow?.item else {
-//                    return
-//                }
-                destinationVC.setUserId("2")
+                guard let item = table.indexPathForSelectedRow?.item else {
+                    return
+                }
+                destinationVC.setUserId(data[item])
             }
         }
     }
@@ -64,10 +79,22 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "topicTableCell", for: indexPath as IndexPath) as? TopicTableCell else {
                 fatalError("The dequeued cell is not an instance of TopicTableCell.")
             }
-            cell.setImage(UIImage(named:"food-result-3")!)
-            cell.setName("Eat Healthy")
+            guard let topic = TopicsModelManager.shared.getTopicFromID(data[indexPath.item]) else {
+                return cell 
+            }
+            cell.setImage(UIImage(named:topic.getImagePath())!)
+            cell.setName(topic.getName())
             cell.selectionStyle = .none
             return cell
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("asdiuaiufywefuytwg")
+        if session == 2 {
+            let controller = AppStoryboard.discovery.instance.instantiateViewController(withIdentifier: "topic") as! TopicViewController
+            controller.setTopic(TopicsModelManager.shared.getTopicFromID(data[indexPath.item])!)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+        
     }
 }

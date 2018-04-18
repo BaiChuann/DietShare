@@ -17,6 +17,10 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     private var textFieldController: TextFieldController!
     private var scrollDelegate: ScrollDelegate?
     private var commentingPost: String?
+    
+    override func viewDidAppear(_ animated: Bool) {
+    }
+
     override func viewDidLoad() {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
@@ -24,7 +28,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         postsTable.estimatedRowHeight = 600
         postsTable.tableFooterView = UIView()
         textFieldController = Bundle.main.loadNibNamed("TextField", owner: nil, options: nil)?.first as! TextFieldController
-        postsTable.allowsSelection = false;
+        postsTable.allowsSelection = false
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -84,7 +88,6 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         print(filteredData.count)
         return filteredData.count
     }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell  else {
             fatalError("The dequeued cell is not an instance of PostCell.")
@@ -95,6 +98,8 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         }
         cell.setContent(userPhoto: user.getPhotoAsImage(), userName: user.getName(), post)
         cell.setDelegate(self)
+        
+        print("return cell")
         return cell
     }
     
@@ -111,6 +116,17 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         print(parentController.view.frame.height)
         parentController.navigationController?.pushViewController(controller, animated: true)
         print("clicked")
+    }
+    func goToRestaurant(_ id: String) {
+        print("go to restuarnate")
+        let controller = AppStoryboard.discovery.instance.instantiateViewController(withIdentifier: "restaurant") as! RestaurantViewController
+        controller.setRestaurant(RestaurantsModelManager.shared.getRestaurantFromID(id))
+        parentController.navigationController?.pushViewController(controller, animated: true)
+    }
+    func goToTopic(_ id: String) {
+        let controller = AppStoryboard.discovery.instance.instantiateViewController(withIdentifier: "topic") as! TopicViewController
+        controller.setTopic(TopicsModelManager.shared.getTopicFromID(id))
+        parentController.navigationController?.pushViewController(controller, animated: true)
     }
     func updateCell() {
         postsTable.reloadData()
@@ -136,7 +152,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         textFieldController.startEditing()
     }
     func search(_ text: String) {
-        filteredData = text.isEmpty ? dataSource :dataSource.filter { $0.getCaption().contains(text) }
+        filteredData = text.isEmpty ? dataSource :dataSource.filter { $0.getCaption().lowercased().contains(text.lowercased()) || (UserModelManager.shared.getUserFromID($0.getUserId())!.getName().lowercased().contains(text.lowercased())) }
         postsTable.reloadData()
     }
     func didScroll() {

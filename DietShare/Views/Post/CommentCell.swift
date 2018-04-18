@@ -25,6 +25,11 @@ class CommentCell: UITableViewCell {
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
         time.text = dateFormatter.string(from: comment.getTime())
         content.text = comment.getContent()
+        userName.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onNameClicked)))
+        userName.isUserInteractionEnabled = true
+    }
+    @objc func onNameClicked(sender: UITapGestureRecognizer) {
+        self.cellDelegate?.goToUser(comment.getUserId())
     }
     func setDelegate(_ delegate: PostCellDelegate) {
         self.cellDelegate = delegate

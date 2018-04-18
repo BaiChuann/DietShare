@@ -21,14 +21,44 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak private var restaurant: UIButton!
     @IBOutlet weak private var topics: UICollectionView!
     @IBOutlet weak var topicsLayout: UICollectionViewFlowLayout!
+    
+    @IBOutlet weak var topicsHeight: NSLayoutConstraint!
+    @IBOutlet weak var restaurantHeight: NSLayoutConstraint!
+    
     private var post: Post!
     private var topicsData: [String] = []
     var cellDelegate: PostCellDelegate?
+    let columnLayout = FlowLayout(
+        minimumInteritemSpacing: 10,
+        minimumLineSpacing: 10,
+        sectionInset: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    )
     override func awakeFromNib() {
         super.awakeFromNib()
         let nibName = UINib(nibName: "TopicCell", bundle: nil)
         topics.register(nibName, forCellWithReuseIdentifier: "topicCell")
-        topicsLayout.estimatedItemSize = CGSize(width: 100, height: 12)
+//        let layout = LeftAlignedCollectionViewFlowLayout()
+//        layout.estimatedItemSize = CGSize(width: 100, height: 12)
+        topics.collectionViewLayout = columnLayout
+        if #available(iOS 11.0, *) {
+            topics.contentInsetAdjustmentBehavior = .always
+        } else {
+            
+        }
+        //topicsLayout.estimatedItemSize = CGSize(width: 100, height: 12)
+        topics.allowsSelection = true
+        topics.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
+        userName.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onNameClicked)))
+        userName.isUserInteractionEnabled = true
+    }
+    @objc func tap(sender: UITapGestureRecognizer){
+        
+        if let indexPath = topics.indexPathForItem(at: sender.location(in: topics)) {
+            print(indexPath.item)
+            self.cellDelegate?.goToTopic(topicsData[indexPath.item])
+        } else {
+            print("collection view was tapped")
+        }
     }
     func setUserPhoto(_ photo: UIImage) {
         userPhoto.setImage(photo, for: .normal)
@@ -55,7 +85,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     func setTopics(_ topics: [String]?) {
         guard let tps = topics else {
-            self.topics.frame.size = CGSize(width: 0, height: 0.0)
+            self.topicsHeight.constant = 0.0
             return
         }
         topicsData = []
@@ -65,10 +95,13 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     func setRestaurant(_ restaurant: String?) {
         guard let res = restaurant else {
-            self.restaurant.frame.size = CGSize(width: 0, height: 0.0)
+            self.restaurantHeight.constant = 0.0
             return
         }
-        self.restaurant.setTitle(res, for: .normal)
+        guard let data = RestaurantsModelManager.shared.getRestaurantFromID(res) else {
+            return
+        }
+        self.restaurant.setTitle(data.getName(), for: .normal)
     }
     func setContent(userPhoto: UIImage, userName: String, _ post: Post) {
         self.post = post
@@ -95,16 +128,22 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             fatalError("The dequeued cell is not an instance of TopicCell.")
         }
 
-        cell.topicLabel.text = "#\(topicsData[indexPath.item])"
+        cell.topicLabel.text = TopicsModelManager.shared.getTopicFromID(topicsData[indexPath.item])!.getName()
         //cell.topicLabel.sizeToFit()
         cell.layer.cornerRadius = 3
         cell.topicLabel.clipsToBounds = true
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 0
     }
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(topicsData[indexPath.item])
+        self.cellDelegate?.goToTopic(topicsData[indexPath.item])
+    }
+    @objc func onNameClicked(sender: UITapGestureRecognizer) {
+        self.cellDelegate?.goToUser(post.getUserId())
+    }
     @IBAction func onUserClicked(_ sender: Any) {
         self.cellDelegate?.goToUser(post.getUserId())
     }
@@ -130,7 +169,100 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             self.cellDelegate?.updateCell()
         }
     }
+    
+    @IBAction func onRestaurantClicked(_ sender: Any) {
+         self.cellDelegate?.goToRestaurant(post.getRestaurant()!)
+    }
+    
     func getPost() -> Post{
         return post
     }
+    func resizeTopics() {
+        topicsHeight.constant = topics.contentSize.height
+    }
 }
+
+class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    
+//    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+//        let attributes = super.layoutAttributesForElements(in: rect)
+//
+//        var leftMargin = sectionInset.left
+//        var maxY: CGFloat = -1.0
+//        attributes?.forEach { layoutAttribute in
+//            if layoutAttribute.frame.origin.y >= maxY {
+//                leftMargin = sectionInset.left
+//            }
+//
+//            layoutAttribute.frame.origin.x = leftMargin
+//
+//            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+//            maxY = max(layoutAttribute.frame.maxY , maxY)
+//        }
+//
+//        return attributes
+//    }
+//    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+//
+//        let layoutAttribute = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
+//
+//        // First in a row.
+//        if layoutAttribute?.frame.origin.x == sectionInset.left {
+//            return layoutAttribute
+//        }
+//
+//        // We need to align it to the previous item.
+//        let previousIndexPath = NSIndexPath(item: indexPath.item - 1, section: indexPath.section)
+//        guard let previousLayoutAttribute = self.layoutAttributesForItem(at: previousIndexPath as IndexPath) else {
+//            return layoutAttribute
+//        }
+//
+//        layoutAttribute?.frame.origin.x = previousLayoutAttribute.frame.maxX + self.minimumInteritemSpacing
+//
+//        return layoutAttribute
+//    }
+}
+class FlowLayout: UICollectionViewFlowLayout {
+    
+    required init(minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0, sectionInset: UIEdgeInsets = .zero) {
+        super.init()
+        
+        estimatedItemSize = CGSize(width: 100, height: 12)
+        self.minimumInteritemSpacing = minimumInteritemSpacing
+        self.minimumLineSpacing = minimumLineSpacing
+        self.sectionInset = sectionInset
+        if #available(iOS 11.0, *) {
+            sectionInsetReference = .fromSafeArea
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let layoutAttributes = super.layoutAttributesForElements(in: rect)!.map { $0.copy() as! UICollectionViewLayoutAttributes }
+        guard scrollDirection == .vertical else { return layoutAttributes }
+        
+        // Filter attributes to compute only cell attributes
+        let cellAttributes = layoutAttributes.filter({ $0.representedElementCategory == .cell })
+        
+        // Group cell attributes by row (cells with same vertical center) and loop on those groups
+        for (_, attributes) in Dictionary(grouping: cellAttributes, by: { ($0.center.y / 10).rounded(.up) * 10 }) {
+            // Set the initial left inset
+            var leftInset = sectionInset.left
+            
+            // Loop on cells to adjust each cell's origin and prepare leftInset for the next cell
+            for attribute in attributes {
+                attribute.frame.origin.x = leftInset
+                leftInset = attribute.frame.maxX + minimumInteritemSpacing
+            }
+        }
+        
+        return layoutAttributes
+    }
+    
+}
+

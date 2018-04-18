@@ -13,4 +13,6 @@ protocol PostCellDelegate {
     func goToUser(_ id: String)
     func onCommentClicked(_ postId: String)
     func updateCell()
+    func goToRestaurant(_ id: String)
+    func goToTopic(_ id: String)
 }
