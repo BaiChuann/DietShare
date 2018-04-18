@@ -64,11 +64,11 @@ class Profile {
     func getTopics() -> [String] {
         return topics
     }
-    func addTopics(_ userId: String) {
-        topics.append(userId)
+    func addTopic(_ topicId: String) {
+        topics.append(topicId)
     }
-    func deleteTopics(_ userId: String) {
-        guard let removedIndex = topics.index(of: userId) else {
+    func deleteTopic(_ topicId: String) {
+        guard let removedIndex = topics.index(of: topicId) else {
             return
         }
         topics.remove(at: removedIndex)
