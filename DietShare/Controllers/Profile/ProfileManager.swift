@@ -31,13 +31,15 @@ class ProfileManager {
         return followings 
     }
     func prepopulate() {
+        let currentUser = UserModelManager.shared.getUserFromID("1")!
         for i in 1...10 {
             profiles.append(Profile(userId: String(i)))
         }
         for i in 2...10 {
             profiles[0].addFollowing(String(i))
             profiles[i-1].addFollower("1")
-            profiles[0].addTopic(String(i))
+            profiles[0].addTopic(String(i-1))
+            TopicsModelManager.shared.addNewFollower(currentUser, TopicsModelManager.shared.getTopicFromID(String(i-1))!)
         }
     }
 }
