@@ -27,6 +27,7 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
         default:
             return
         }
+        table.reloadData()
     }
     override func viewDidLoad() {
         switch session {

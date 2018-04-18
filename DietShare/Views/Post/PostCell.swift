@@ -116,6 +116,16 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         setTime(dateFormatter.string(from: post.getTime()))
         setTopics(post.getTopics())
         setRestaurant(post.getRestaurant())
+//        let likes = PostManager.shared.getLikes(post.getPostId())
+//        if let currentUser = UserModelManager.shared.getCurrentUser()?.getUserId() {
+//            for lk in likes {
+//                if lk.getUserId() == currentUser {
+//                    likeButton.setImage(UIImage(named: "heart")!, for: .normal)
+//                    likeButton.setTitle("liked", for: .normal)
+//                    break
+//                }
+//            }
+//        }
     }
     func setDelegate(_ cellDelegate: PostCellDelegate) {
         self.cellDelegate = cellDelegate
