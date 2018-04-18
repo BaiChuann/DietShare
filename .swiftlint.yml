@@ -11,6 +11,7 @@ disabled_rules:
   - force_cast
   - function_body_length
   - number_separator
+  - trailing_whitespace
 
 opt_in_rules:
   - array_init
