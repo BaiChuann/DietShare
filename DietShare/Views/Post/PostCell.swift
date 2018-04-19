@@ -25,6 +25,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak var topicsHeight: NSLayoutConstraint!
     @IBOutlet weak var restaurantHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var restaurantMargin: NSLayoutConstraint!
     private var post: Post!
     private var topicsData: [String] = []
     var cellDelegate: PostCellDelegate?
@@ -88,6 +89,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             self.topicsHeight.constant = 0.0
             return
         }
+        self.topicsHeight.constant = 16.0
         topicsData = []
         for topic in tps {
             topicsData.append(topic)
@@ -95,12 +97,17 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     func setRestaurant(_ restaurant: String?) {
         guard let res = restaurant else {
+            print(post.getPostId())
             self.restaurantHeight.constant = 0.0
+            self.restaurantMargin.constant = 0.0
+            self.restaurant.setTitle("", for: .normal)
             return
         }
         guard let data = RestaurantsModelManager.shared.getRestaurantFromID(res) else {
             return
         }
+        self.restaurantHeight.constant = 12.0
+        self.restaurantMargin.constant = 8.0
         self.restaurant.setTitle(data.getName(), for: .normal)
     }
     func setContent(userPhoto: UIImage, userName: String, _ post: Post) {

@@ -39,7 +39,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AP-2r-GGi">
-                    <rect key="frame" x="16" y="534" width="343" height="390"/>
+                    <rect key="frame" x="16" y="526" width="343" height="392"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="343" id="9mr-Cp-5xD"/>
                     </constraints>
@@ -58,7 +58,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Nn2-tp-KmQ">
-                    <rect key="frame" x="6" y="928" width="353" height="16"/>
+                    <rect key="frame" x="6" y="926" width="353" height="16"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="8Om-qg-rWR"/>
@@ -84,19 +84,6 @@
                     <state key="normal" title="Button" image="comment"/>
                     <connections>
                         <action selector="onCommentClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Lxm-8b-GfN"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mca-dm-bLu">
-                    <rect key="frame" x="16" y="952" width="66" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="12" id="Ve2-XF-2xR"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
-                    <state key="normal" title="Restaurant">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onRestaurantClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gn1-gu-McQ"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poq-m2-fTh">
@@ -149,6 +136,41 @@
                         <action selector="onUserClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="ERu-KU-tf3"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsA-eg-ULs">
+                    <rect key="frame" x="16" y="950" width="343" height="14"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="ABD-yL-uQL">
+                            <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="SPA-Kr-vLt"/>
+                                <constraint firstAttribute="width" constant="14" id="Wpb-ZX-u0f"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mca-dm-bLu">
+                            <rect key="frame" x="18" y="0.0" width="30" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="Ve2-XF-2xR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onRestaurantClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gn1-gu-McQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ABD-yL-uQL" firstAttribute="top" secondItem="SsA-eg-ULs" secondAttribute="top" id="1j3-eB-l41"/>
+                        <constraint firstItem="ABD-yL-uQL" firstAttribute="leading" secondItem="SsA-eg-ULs" secondAttribute="leading" id="3vN-Im-s0V"/>
+                        <constraint firstAttribute="bottom" secondItem="Mca-dm-bLu" secondAttribute="bottom" constant="2" id="9Wb-H1-kaI"/>
+                        <constraint firstAttribute="height" constant="14" id="Kw6-uK-tmH"/>
+                        <constraint firstAttribute="bottom" secondItem="ABD-yL-uQL" secondAttribute="bottom" id="MId-X8-m6C"/>
+                        <constraint firstItem="Mca-dm-bLu" firstAttribute="top" secondItem="SsA-eg-ULs" secondAttribute="top" id="cqL-Ct-cZk"/>
+                        <constraint firstItem="Mca-dm-bLu" firstAttribute="leading" secondItem="ABD-yL-uQL" secondAttribute="trailing" constant="4" id="nxa-Mm-XT5"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -156,15 +178,14 @@
                 <constraint firstItem="7AP-2r-GGi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="7Xj-9p-lYL"/>
                 <constraint firstItem="Nn2-tp-KmQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="8EJ-a8-68G"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Nn2-tp-KmQ" secondAttribute="trailing" constant="16" id="C0O-TZ-9LC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SsA-eg-ULs" secondAttribute="trailing" constant="16" id="GdI-9d-6Bo"/>
                 <constraint firstItem="4ke-Ww-VBm" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="HJg-dd-KAs"/>
-                <constraint firstItem="RoN-Kl-I91" firstAttribute="top" secondItem="Mca-dm-bLu" secondAttribute="bottom" constant="8" id="I4h-hJ-wDW"/>
                 <constraint firstItem="poq-m2-fTh" firstAttribute="leading" secondItem="7bb-cb-m5N" secondAttribute="trailing" constant="16" id="IJN-Qk-AQe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RUi-ei-TxI" secondAttribute="trailing" constant="16" id="JFm-RD-RDb"/>
                 <constraint firstItem="RUi-ei-TxI" firstAttribute="leading" secondItem="poq-m2-fTh" secondAttribute="trailing" constant="8" id="KPJ-QF-fjC"/>
+                <constraint firstItem="SsA-eg-ULs" firstAttribute="top" secondItem="Nn2-tp-KmQ" secondAttribute="bottom" constant="8" id="Nmm-CY-YbR"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7AP-2r-GGi" secondAttribute="trailing" constant="16" id="Qkp-Nv-Qjp"/>
-                <constraint firstItem="Mca-dm-bLu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="RVA-lV-5mM"/>
                 <constraint firstItem="7bb-cb-m5N" firstAttribute="centerY" secondItem="RoN-Kl-I91" secondAttribute="centerY" id="Rb6-ZL-5yD"/>
-                <constraint firstItem="Mca-dm-bLu" firstAttribute="top" secondItem="Nn2-tp-KmQ" secondAttribute="bottom" constant="8" id="T4X-Ae-KM8"/>
                 <constraint firstItem="uJu-5d-fbK" firstAttribute="top" secondItem="4ke-Ww-VBm" secondAttribute="bottom" constant="11" id="UZI-RF-V2t"/>
                 <constraint firstItem="A84-GK-i5y" firstAttribute="centerY" secondItem="RoN-Kl-I91" secondAttribute="centerY" id="VMq-WQ-cpQ"/>
                 <constraint firstItem="RUi-ei-TxI" firstAttribute="centerY" secondItem="RoN-Kl-I91" secondAttribute="centerY" id="ZiV-k3-7JD"/>
@@ -175,11 +196,13 @@
                 <constraint firstItem="uJu-5d-fbK" firstAttribute="top" secondItem="NMW-0v-JA7" secondAttribute="bottom" constant="18" id="j0h-IJ-bab"/>
                 <constraint firstItem="NMW-0v-JA7" firstAttribute="leading" secondItem="4ke-Ww-VBm" secondAttribute="trailing" constant="8" id="jJE-B0-me0"/>
                 <constraint firstItem="uJu-5d-fbK" firstAttribute="top" secondItem="NMW-0v-JA7" secondAttribute="bottom" constant="18" id="okG-sB-xe0"/>
-                <constraint firstItem="7AP-2r-GGi" firstAttribute="top" secondItem="uJu-5d-fbK" secondAttribute="bottom" constant="8" id="pMV-Tc-RTw"/>
+                <constraint firstItem="7AP-2r-GGi" firstAttribute="top" secondItem="uJu-5d-fbK" secondAttribute="bottom" id="pMV-Tc-RTw"/>
                 <constraint firstItem="7bb-cb-m5N" firstAttribute="leading" secondItem="A84-GK-i5y" secondAttribute="trailing" constant="8" id="pbs-FN-zwd"/>
-                <constraint firstItem="Nn2-tp-KmQ" firstAttribute="top" secondItem="7AP-2r-GGi" secondAttribute="bottom" constant="4" id="rjH-Xu-Z5Q"/>
+                <constraint firstItem="Nn2-tp-KmQ" firstAttribute="top" secondItem="7AP-2r-GGi" secondAttribute="bottom" constant="8" id="rjH-Xu-Z5Q"/>
                 <constraint firstItem="NMW-0v-JA7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="17" id="rld-t6-tuy"/>
+                <constraint firstItem="SsA-eg-ULs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="sM0-Oh-7Ps"/>
                 <constraint firstItem="uJu-5d-fbK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tUu-bz-JAp"/>
+                <constraint firstItem="RoN-Kl-I91" firstAttribute="top" secondItem="SsA-eg-ULs" secondAttribute="bottom" constant="8" id="u1X-1r-khn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -190,7 +213,8 @@
                 <outlet property="likeCount" destination="RUi-ei-TxI" id="iDP-fH-Oez"/>
                 <outlet property="postImage" destination="uJu-5d-fbK" id="Zfx-Mb-BFP"/>
                 <outlet property="restaurant" destination="Mca-dm-bLu" id="UT4-l7-v89"/>
-                <outlet property="restaurantHeight" destination="Ve2-XF-2xR" id="NZs-LH-5dX"/>
+                <outlet property="restaurantHeight" destination="Kw6-uK-tmH" id="0tv-Cg-5Ef"/>
+                <outlet property="restaurantMargin" destination="Nmm-CY-YbR" id="zyc-qa-qIP"/>
                 <outlet property="time" destination="RoN-Kl-I91" id="vB6-g1-XXc"/>
                 <outlet property="topics" destination="Nn2-tp-KmQ" id="cw0-BL-ScL"/>
                 <outlet property="topicsHeight" destination="8Om-qg-rWR" id="KTh-qh-qUm"/>
@@ -204,5 +228,6 @@
     <resources>
         <image name="comment" width="25" height="22"/>
         <image name="like" width="21" height="20"/>
+        <image name="location" width="24" height="24"/>
     </resources>
 </document>
