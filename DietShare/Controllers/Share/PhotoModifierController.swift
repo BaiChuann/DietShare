@@ -49,7 +49,7 @@ class PhotoModifierController: UIViewController {
     private var swappedImageView: UIView?
     private var addedImageViews = [UIImageView]()
 
-    private var selectedImages: [UIImage]?
+    private var selectedImages = [UIImage]()
     private var selectedStickerIndex: Int = -1
     private var selectedLayoutIndex: Int = -1
     private var selectedFilterIndex: Int = -1
@@ -340,7 +340,7 @@ extension PhotoModifierController {
     private func applyLayout(index: Int) {
         resetCanvas()
 
-        guard let selectedImages = selectedImages, let layout = storedLayout.get(index) else {
+        guard let layout = storedLayout.get(index) else {
             return
         }
 
@@ -355,16 +355,14 @@ extension PhotoModifierController {
     }
 
     private func updateLayoutWithFilter() {
-        guard let count = selectedImages?.count else {
-            return
-        }
+        let count = selectedImages.count
 
         for i in 0..<count {
-            guard let subview = addedImageViews[i].subviews.first as? UIImageView,
-                let originalImage = selectedImages?[i] else {
+            guard let subview = addedImageViews[i].subviews.first as? UIImageView else {
                 continue
             }
 
+            let originalImage = selectedImages[i]
             subview.image = getFilteredImage(originalImage, filterIndex: selectedFilterIndex)
         }
     }
@@ -439,8 +437,11 @@ extension PhotoModifierController {
         guard let view = view else {
             return
         }
-        view.layer.borderWidth = width
-        view.layer.borderColor = color.cgColor
+        
+        UIView.animate(withDuration: 0.3) {
+            view.layer.borderWidth = width
+            view.layer.borderColor = color.cgColor
+        }
     }
 
     // Unset border for a view
@@ -448,8 +449,11 @@ extension PhotoModifierController {
         guard let view = view else {
             return
         }
-        view.layer.borderWidth = 0
-        view.layer.borderColor = nil
+
+        UIView.animate(withDuration: 0.3) {
+            view.layer.borderWidth = 0
+            view.layer.borderColor = nil
+        }
     }
 }
 
@@ -487,7 +491,7 @@ extension PhotoModifierController {
                 } else if currentView !== swappedImageView {
                     unsetBorder(view: &swappedSuperview)
                     swappedImageView = currentView
-                    setBorder(view: &currentSuperview, width: 3, color: .blue)
+                    setBorder(view: &currentSuperview, width: 3, color: Constants.themeColor)
                 }
                 return
             }
@@ -497,7 +501,7 @@ extension PhotoModifierController {
             if abs(change.x) < tolerance && abs(change.y) < tolerance,
                 currentView !== movingImageView {
                 swappedImageView = currentView
-                setBorder(view: &currentSuperview, width: 3, color: .blue)
+                setBorder(view: &currentSuperview, width: 3, color: Constants.themeColor)
                 movingImageView.alpha = swappingAlpha
             }
 
@@ -604,18 +608,28 @@ extension PhotoModifierController {
 
     // Swap two images from two ImageViews, then scale them to fit
     private func swapImage(view1: UIImageView, view2: UIImageView) {
-        guard let superView1 = view1.superview, let superView2 = view2.superview else {
+        guard let superView1 = view1.superview as? UIImageView,
+            let superView2 = view2.superview as? UIImageView else {
             return
         }
+
         guard let image1 = view1.image, let image2 = view2.image else {
             return
         }
+
         view1.removeFromSuperview()
         view2.removeFromSuperview()
         let newView1 = getFittedImageView(image: image2, frame: superView1.frame)
         let newView2 = getFittedImageView(image: image1, frame: superView2.frame)
         superView1.addSubview(newView1)
         superView2.addSubview(newView2)
+
+        if let index1 = addedImageViews.index(of: superView1),
+            let index2 = addedImageViews.index(of: superView2) {
+            let temp = selectedImages[index1]
+            selectedImages[index1] = selectedImages[index2]
+            selectedImages[index2] = temp
+        }
     }
 
     // Calculate actual change should be applied on the view based on displayView
@@ -661,7 +675,7 @@ extension PhotoModifierController: PhotoModifierDelegate {
         }
 
         selectedImages = images
-        selectedImages?.append(originalPhoto)
+        selectedImages.append(originalPhoto)
         let curIndexPath = IndexPath(item: layoutIndex, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedLayoutIndex, 0), section: 0)
         selectedLayoutIndex = layoutIndex
@@ -669,6 +683,9 @@ extension PhotoModifierController: PhotoModifierDelegate {
 
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
         applyLayout(index: layoutIndex)
-        updateLayoutWithFilter()
+
+        if selectedFilterIndex > 0 {
+            updateLayoutWithFilter()
+        }
     }
 }
