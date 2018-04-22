@@ -16,7 +16,7 @@ import CoreLocation
 
 class Restaurant: ReadOnlyRestaurant {
     private let id: String
-    private let name: String
+    private var name: String
     private let address: String
     private let location: CLLocation
     private let phone: String
@@ -55,6 +55,9 @@ class Restaurant: ReadOnlyRestaurant {
     }
     func getName() -> String {
         return self.name
+    }
+    func setName(_ name: String) {
+        self.name = name
     }
     func getPhone() -> String {
         return self.phone
@@ -122,6 +125,7 @@ class Restaurant: ReadOnlyRestaurant {
         self.ratingScore = calcNewRatingScore(Double(score))
         self.ratings.addEntry(rating)
     }
+    
     func addPost(_ post: Post) {
         self.posts.addEntry(post.getPostId())
     }

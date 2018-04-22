@@ -13,6 +13,7 @@ import CoreLocation
 class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     
     private var restaurant: Restaurant?
+    private var restaurantsModel = RestaurantsModelManager.shared
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
     
@@ -29,6 +30,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var ratingArea: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var postPlaceHolder: UILabel!
     @IBOutlet weak var postsArea: UIView!
     private var postsTable: UITableView!
     private var postsTableController: PostsTableController?
@@ -58,6 +60,8 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
     /**
      * View Related functions
      */
@@ -66,28 +70,40 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         print("InitView called")
         assert(self.restaurant != nil)
         if let currentRestaurant = self.restaurant, let currentUser = UserModelManager.shared.getCurrentUser() {
-            //TODO - combine the common parts between this page and restaurantFullListPage
-            self.restaurantName.text = currentRestaurant.getName()
-            let currentImage = currentRestaurant.getImage()
-            setFittedImageAsSubview(view: restaurantImage, image: currentImage, alpha: 1.0)
-            self.restaurantDescription.text = currentRestaurant.getDescription()
-            self.types.text = currentRestaurant.getTypesAsString()
-            self.numOfRatings.text = "\(currentRestaurant.getRatingsID().getListAsSet().count) ratings"
-            if let location = self.currentLocation {
-                let distance = Int(location.distance(from: currentRestaurant.getLocation()) / 1000)
-                self.distance.text = "\(distance) km"
-            } else {
-                self.distance.text = Text.unknownDistance
-            }
-            self.restaurantPhone.text = currentRestaurant.getPhone()
-            self.restaurantAddress.text = currentRestaurant.getAddress()
+    
+            setRestaurantDetail(currentRestaurant)
+            setDistanceLabel(currentRestaurant)
             self.setRating(currentRestaurant.getRatingScore())
             if let rating = currentRestaurant.getUserRating(currentUser) {
                 self.rateRestaurantLabel.text = Text.yourRating
-                setNewRating(rating.getScore())
+                setNewRatingAnimated(rating.getScore())
             }
         }
         
+    }
+    
+    
+    private func setRestaurantDetail(_ currentRestaurant: Restaurant) {
+        self.restaurantName.text = currentRestaurant.getName()
+        let currentImage = currentRestaurant.getImage()
+        setFittedImageAsSubview(view: restaurantImage, image: currentImage, alpha: 1.0)
+        self.restaurantDescription.text = currentRestaurant.getDescription()
+        self.types.text = currentRestaurant.getTypesAsString()
+        
+        let numOfRating = currentRestaurant.getRatingsID().getListAsSet().count
+        self.numOfRatings.text = numOfRating <= 1 ? "\(numOfRating) rating" : "\(numOfRating) ratings"
+        self.restaurantPhone.text = currentRestaurant.getPhone()
+        self.restaurantAddress.text = currentRestaurant.getAddress()
+    }
+    
+    // Obtain distance between current location to the restaurant and set the distance label accordingly
+    private func setDistanceLabel(_ currentRestaurant: Restaurant) {
+        if let location = self.currentLocation {
+            let distance = Int(location.distance(from: currentRestaurant.getLocation()) / 1000)
+            self.distance.text = "\(distance) km"
+        } else {
+            self.distance.text = Text.unknownDistance
+        }
     }
     
     
@@ -101,11 +117,16 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
             
             postsTableController.setScrollDelegate(self)
             postsTable = postsTableController.getTable()
-            postAreaHeight.constant = postsTable.contentSize.height
-            postsTableController.view.frame.size = postsArea.frame.size
-            postsArea.addSubview(postsTableController.view)
-            postsTable.bounces = false
-            postsTable.isScrollEnabled = false
+            if postsTable.numberOfSections == 0 {
+                postPlaceHolder.isHidden = false
+            } else {
+                postAreaHeight.constant = postsTable.contentSize.height
+                postsTableController.view.frame.size = postsArea.frame.size
+                postsArea.addSubview(postsTableController.view)
+                postsTable.bounces = false
+                postsTable.isScrollEnabled = false
+                postPlaceHolder.isHidden = true
+            }
         }
     }
     
@@ -131,16 +152,14 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func ratingTapped(_ sender: UIButton) {
         let ratingScore = sender.tag
         assert(ratingScore <= 5)
-        self.setNewRating(ratingScore)
-        if let user = UserModelManager.shared.getCurrentUser(), let restaurant = self.restaurant,
-            let score = RatingScore(rawValue: ratingScore) {
-            let rating = Rating(user.getUserId(), restaurant.getID(), score)
-            restaurant.addRating(rating)
+        self.setNewRatingAnimated(ratingScore)
+        if let restaurant = self.restaurant {
+            self.restaurantsModel.addRating(restaurantId: restaurant.getID(), rate: ratingScore)
         }
-        
     }
     
-    private func setNewRating(_ score: Int) {
+    // Animate the setting of new rating
+    private func setNewRatingAnimated(_ score: Int) {
         assert(score <= 5)
         for i in 0..<5 {
             if i < score {
@@ -152,11 +171,6 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
             } else {
                 self.newRatings[i].setBackgroundImage(#imageLiteral(resourceName: "star-empty"), for: .normal)
             }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? RestaurantListViewController {
         }
     }
     
@@ -188,6 +202,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    // Display unwind button if directed to this page from pages other than restaurant list
     func enableUnwindButton() {
         let closeButton = UIButton()
         closeButton.backgroundColor = UIColor.clear
@@ -230,6 +245,9 @@ extension RestaurantViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = manager.location
+        if let restaurant = self.restaurant {
+            setDistanceLabel(restaurant)
+        }
     }
 }
 

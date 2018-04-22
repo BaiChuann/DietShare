@@ -63,7 +63,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToFollowed(_ button: UIButton) {
         button.tag = FollowStatus.followed.rawValue
         button.setTitle(Text.unfollow, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+//        button.setTitleColor(.white, for: .normal)
         button.backgroundColor = Constants.themeColor
     }
     
@@ -71,8 +71,8 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToUnfollowed(_ button: UIButton) {
         button.tag = FollowStatus.notFollowed.rawValue
         button.setTitle(Text.follow, for: .normal)
-        button.setTitleColor(Constants.themeColor, for: .normal)
-        button.backgroundColor = .clear
+//        button.setTitleColor(Constants.themeColor, for: .normal)
+        button.backgroundColor = Constants.themeColor
     }
     
     // Changes display text of button upon tapping, and handle follow/unfollow logic
@@ -119,6 +119,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.title = Text.topicListTitle
     }
     
     override func viewDidAppear(_ animated: Bool) {

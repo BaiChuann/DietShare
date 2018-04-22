@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RestaurantFullListCell" customModule="DietShare" customModuleProvider="target">
             <connections>
@@ -34,26 +39,26 @@
                     <rect key="frame" x="0.0" y="0.0" width="380" height="117"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eFY-di-Rhd">
-                            <rect key="frame" x="0.0" y="0.0" width="141" height="106"/>
+                            <rect key="frame" x="5" y="5" width="141" height="106"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="141" id="SIy-Yk-XKh"/>
                                 <constraint firstAttribute="height" constant="106" id="SNx-Zt-oOH"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YZ-eF-gxv">
-                            <rect key="frame" x="265.5" y="50.5" width="20.5" height="16"/>
+                            <rect key="frame" x="297.5" y="49.5" width="20.5" height="16"/>
                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="13"/>
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumOfRating" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Il-Vz-9Wy">
-                            <rect key="frame" x="157" y="51" width="80.5" height="15"/>
+                            <rect key="frame" x="151" y="50" width="80.5" height="15"/>
                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Iz-Ds-ApV">
-                            <rect key="frame" x="157" y="23" width="60" height="12"/>
+                            <rect key="frame" x="151" y="28" width="60" height="12"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="QfX-NW-ZHi">
                                     <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -77,20 +82,20 @@
                             </constraints>
                         </stackView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="1y9-k4-8bQ">
-                            <rect key="frame" x="249.5" y="51" width="12" height="15"/>
+                            <rect key="frame" x="281.5" y="50" width="12" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="12" id="2SH-5O-g2k"/>
                                 <constraint firstAttribute="height" constant="15" id="Lzn-IM-u4C"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHC-pz-RIZ">
-                            <rect key="frame" x="157" y="0.0" width="37.5" height="17.5"/>
+                            <rect key="frame" x="151" y="5" width="37.5" height="17.5"/>
                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                             <color key="textColor" red="0.33725490200000002" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YE2-It-Xlq">
-                            <rect key="frame" x="157" y="72" width="28" height="15"/>
+                            <rect key="frame" x="151" y="71" width="28" height="15"/>
                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -98,29 +103,29 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="QHC-pz-RIZ" firstAttribute="leading" secondItem="eFY-di-Rhd" secondAttribute="trailing" constant="16" id="2FU-RD-D7g"/>
-                        <constraint firstItem="eFY-di-Rhd" firstAttribute="top" secondItem="lMI-e6-AYr" secondAttribute="top" id="3UI-vc-1S3"/>
+                        <constraint firstItem="QHC-pz-RIZ" firstAttribute="leading" secondItem="eFY-di-Rhd" secondAttribute="trailing" constant="5" id="2FU-RD-D7g"/>
+                        <constraint firstItem="eFY-di-Rhd" firstAttribute="top" secondItem="lMI-e6-AYr" secondAttribute="top" constant="5" id="3UI-vc-1S3"/>
                         <constraint firstItem="5Iz-Ds-ApV" firstAttribute="leading" secondItem="QHC-pz-RIZ" secondAttribute="leading" id="CFY-fx-d7j"/>
                         <constraint firstItem="YE2-It-Xlq" firstAttribute="leading" secondItem="QHC-pz-RIZ" secondAttribute="leading" id="CVk-qi-3Et"/>
-                        <constraint firstItem="eFY-di-Rhd" firstAttribute="leading" secondItem="lMI-e6-AYr" secondAttribute="leading" id="K2d-3A-nje"/>
+                        <constraint firstItem="eFY-di-Rhd" firstAttribute="leading" secondItem="lMI-e6-AYr" secondAttribute="leading" constant="5" id="K2d-3A-nje"/>
                         <constraint firstItem="5Iz-Ds-ApV" firstAttribute="top" secondItem="QHC-pz-RIZ" secondAttribute="bottom" constant="6" id="Oz5-DZ-oU3"/>
                         <constraint firstItem="1y9-k4-8bQ" firstAttribute="centerY" secondItem="9Il-Vz-9Wy" secondAttribute="centerY" id="a3o-db-rxU"/>
-                        <constraint firstItem="9Il-Vz-9Wy" firstAttribute="top" secondItem="5Iz-Ds-ApV" secondAttribute="bottom" constant="16" id="c2P-j1-b8A"/>
+                        <constraint firstItem="9Il-Vz-9Wy" firstAttribute="top" secondItem="5Iz-Ds-ApV" secondAttribute="bottom" constant="10" id="c2P-j1-b8A"/>
                         <constraint firstItem="9YZ-eF-gxv" firstAttribute="centerY" secondItem="1y9-k4-8bQ" secondAttribute="centerY" id="cpE-Gk-Wuw"/>
-                        <constraint firstItem="QHC-pz-RIZ" firstAttribute="top" secondItem="lMI-e6-AYr" secondAttribute="top" id="kLr-kK-4gt"/>
+                        <constraint firstItem="QHC-pz-RIZ" firstAttribute="top" secondItem="lMI-e6-AYr" secondAttribute="top" constant="5" id="kLr-kK-4gt"/>
                         <constraint firstItem="9YZ-eF-gxv" firstAttribute="leading" secondItem="1y9-k4-8bQ" secondAttribute="trailing" constant="4" id="lGx-F0-BXV"/>
                         <constraint firstItem="YE2-It-Xlq" firstAttribute="top" secondItem="9Il-Vz-9Wy" secondAttribute="bottom" constant="6" id="pUz-0G-thD"/>
                         <constraint firstItem="9Il-Vz-9Wy" firstAttribute="leading" secondItem="QHC-pz-RIZ" secondAttribute="leading" id="rjy-aw-62n"/>
-                        <constraint firstItem="1y9-k4-8bQ" firstAttribute="leading" secondItem="9Il-Vz-9Wy" secondAttribute="trailing" constant="12" id="ybc-G1-aqv"/>
+                        <constraint firstItem="1y9-k4-8bQ" firstAttribute="leading" secondItem="9Il-Vz-9Wy" secondAttribute="trailing" constant="50" id="ybc-G1-aqv"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="lMI-e6-AYr" secondAttribute="bottom" id="OHp-gF-KbB"/>
-                <constraint firstItem="lMI-e6-AYr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="x55-dz-FMm"/>
-                <constraint firstItem="lMI-e6-AYr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="x9a-Xe-Op5"/>
-                <constraint firstAttribute="trailing" secondItem="lMI-e6-AYr" secondAttribute="trailing" id="xYw-K1-SQR"/>
+                <constraint firstItem="lMI-e6-AYr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6X2-bH-tvz"/>
+                <constraint firstItem="lMI-e6-AYr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Bda-iX-XVd"/>
+                <constraint firstAttribute="bottom" secondItem="lMI-e6-AYr" secondAttribute="bottom" id="scW-1g-RqS"/>
+                <constraint firstAttribute="trailing" secondItem="lMI-e6-AYr" secondAttribute="trailing" id="yOn-QV-BCy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

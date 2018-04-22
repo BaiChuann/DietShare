@@ -35,8 +35,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ restaurants: [Restaurant], _ title: String) {
-//        print("RestaurantLocalDataSource initializer called")
-        removeDB()
+        removeDB(title)
         createDB(title)
         createTable()
         prepopulate(restaurants)
@@ -52,6 +51,14 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     // Get instance for unit test
     static func getTestInstance(_ restaurants: [Restaurant]) -> RestaurantsLocalDataSource {
         return RestaurantsLocalDataSource(restaurants, Constants.Tables.restaurants + "Test")
+    }
+    
+    static func getTestInstance(_ restaurants: [Restaurant], _ name: String) -> RestaurantsLocalDataSource {
+        return RestaurantsLocalDataSource(restaurants, Constants.Tables.restaurants + name)
+    }
+    
+    func removeTestInstance(_ name: String) {
+        removeDB(name)
     }
     
     // Create a database connection with given title, if such database does not already exist
@@ -88,30 +95,24 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func getAllRestaurants() -> [ReadOnlyRestaurant] {
         var restaurants = [ReadOnlyRestaurant]()
         do {
-            
-            let startTime = CFAbsoluteTimeGetCurrent()
             for restaurant in try database.prepare(restaurantsTable) {
-                
                 let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 restaurants.append(restaurantEntry)
             }
             
-            print("Time lapsed for getting restaurants: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
         return restaurants
     }
     
-    func getRestaurantByID(_ restaurantID: String) -> Restaurant? {
+    func getRestaurantFromID(_ restaurantID: String) -> Restaurant? {
         do {
-            let startTime = CFAbsoluteTimeGetCurrent()
             let row = restaurantsTable.filter(id == restaurantID)
             for restaurant in try database.prepare(row) {
                 let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 return restaurantEntry
             }
-            print("Time lapsed for getting restaurant by ID: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
@@ -131,7 +132,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func addRestaurant(_ newRestaurant: Restaurant) {
         _checkRep()
         do {
-//            print("current restaurant id is: \(newRestaurant.getID())")
             try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
@@ -184,7 +184,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         _checkRep()
         let row = restaurantsTable.filter(id == oldRestaurantID)
         do {
-            if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
+            if try database.run(row.update(name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
                 print("Old Restaurant is updated")
             } else {
                 print("Old Restaurant not found")
@@ -220,10 +220,10 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
      */
     
     // MARK: Only for test purpose
-    private func removeDB() {
+    func removeDB(_ name: String) {
         print("Remove DB called")
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent(Constants.Tables.restaurants).appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(name).appendingPathExtension("sqlite3") {
             try? FileManager.default.removeItem(at: fileUrl)
         }
     }

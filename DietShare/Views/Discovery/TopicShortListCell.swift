@@ -11,6 +11,7 @@ import UIKit
 
 class TopicShortListCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageHolder: UIView!
     @IBOutlet weak private var topicImage: UIImageView!
     @IBOutlet weak private var topicName: UILabel!
     
@@ -20,12 +21,11 @@ class TopicShortListCell: UICollectionViewCell {
         let alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)
         setFittedImageAsSubview(view: topicImage, image: image, alpha: alpha)
         addRoundedRectBackground(topicImage, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, UIColor.clear)
+        addShadowToView(view: self.imageHolder, offset: 2, radius: 2)
     }
     
     func setName(_ name: String) {
         topicName.text = ""
-        /*addRoundedRectBackground(topicName, Constants.defaultCornerRadius, Constants.defaultLabelBorderWidth, UIColor.white.cgColor, UIColor.clear)*/
-//        topicName.backgroundColor = .white
     }
 
 }

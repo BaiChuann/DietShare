@@ -31,9 +31,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }()
     private let textFieldSearch: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+//        textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.darkGray.cgColor
-        textField.placeholder = "Where do you want to go?"
+        textField.placeholder = "  Where do you want to go?"
+        textField.adjustsFontSizeToFitWidth = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -113,10 +114,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         self.view.addSubview(textFieldSearch)
         textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 90).isActive = true
-        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 30).isActive = true
-        textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
+        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+        textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         textFieldSearch.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        setUpTextField(textFieldSearch, #imageLiteral(resourceName: "location"))
+        addRoundedRectBackground(textFieldSearch, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, .white)
+        addShadowToView(view: textFieldSearch, offset: 5, radius: 3)
+//        setUpTextField(textFieldSearch, #imageLiteral(resourceName: "location"))
         
         restaurantCell = RestaurantFullListCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
         
@@ -139,7 +142,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor).isActive = true
         addShadowToView(view: closeButton, offset: 0.5, radius: 0.5)
     }
-    
+
     private func setUpTextField(_ textField: UITextField, _ image: UIImage) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: textField.frame.height * 0.75 , height: textField.frame.height * 0.75))
         imageView.image = image
@@ -149,6 +152,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         textField.leftViewMode = UITextFieldViewMode.always
     }
     
+    // Initialize Google Map with a default zoom
     private func initGoogleMaps() {
         let camera = GMSCameraPosition.camera(withLatitude: 1.3494, longitude: 108.9323, zoom: Float(Constants.MapPage.defaultZoom))
         self.mapView.camera = camera
@@ -206,6 +210,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             let distance = getDistanceBetweenLocations(location, customMarkerView.restaurant.getLocation())
             restaurantCell.setDistance("\(distance) km")
         }
+        restaurantCell.layer.masksToBounds = true
         return restaurantCell
     }
     

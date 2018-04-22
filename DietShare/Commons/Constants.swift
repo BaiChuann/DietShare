@@ -89,6 +89,8 @@ struct Text {
     public static let unknownDistance = "Unknow Distance"
     public static let rateTheRestaurant = "Rate this restaurant"
     public static let yourRating = "Your Rating"
+    public static let topicListTitle = "Trending Topics"
+    public static let restaurantListTitle = "Restaurants"
 }
 
 enum FollowStatus: Int {

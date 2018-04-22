@@ -31,7 +31,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
 //        print("TopicLocalDataSource initializer called")
-        removeDB()
+        removeDB(title)
         createDB(title)
         createTable()
         prepopulate(topics)
@@ -52,6 +52,12 @@ class TopicsLocalDataSource: TopicsDataSource {
     static func getTestInstance(_ topics: [Topic]) -> TopicsLocalDataSource {
         return TopicsLocalDataSource(topics, Constants.Tables.topics + "Test")
     }
+    
+        
+    static func getTestInstance(_ topics: [Topic], _ name: String) -> TopicsLocalDataSource {
+        return TopicsLocalDataSource(topics, Constants.Tables.topics + name)
+    }
+    
     
     private func createDB(_ title: String) {
         
@@ -214,10 +220,10 @@ class TopicsLocalDataSource: TopicsDataSource {
      */
     
     // MARK: Only for test purpose
-    private func removeDB() {
+    func removeDB(_ name: String) {
         print("Remove DB called")
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent(Constants.Tables.topics).appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(name).appendingPathExtension("sqlite3") {
             try? FileManager.default.removeItem(at: fileUrl)
         }
     }

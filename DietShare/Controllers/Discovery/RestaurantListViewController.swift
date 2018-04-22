@@ -63,6 +63,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             }
         }
         
+        addShadowToView(view: cell, offset: 2, radius: 2)
+        
         return cell
     }
     
@@ -87,10 +89,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.title = Text.restaurantListTitle
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.restaurantListView.reloadData()
         requestCoreLocationPermission()
     }
@@ -114,6 +117,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         assert(!allCuisineTypes.isEmpty)
         cuisineDropDown.dataSource = allCuisineTypes
         cuisineDropDown.width = self.view.frame.width
+        cuisineDropDown.selectionBackgroundColor = UIColor.clear
         DropDown.appearance().backgroundColor = UIColor.white
         
         cuisineDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
@@ -138,10 +142,12 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
                 }
                 if self.currentTypeFilters.contains(typeSelected) {
                     cell.optionLabel.textColor = Constants.themeColor
-                    cell.tick.isHidden = false
+                    cell.backgroundColor = UIColor.clear
+                    cell.tick.image = #imageLiteral(resourceName: "ticked")
                 } else {
-                    cell.optionLabel.textColor = UIColor.gray
-                    cell.tick.isHidden = true
+                    cell.optionLabel.textColor = UIColor.darkGray
+                    cell.backgroundColor = UIColor.clear
+                    cell.tick.image = #imageLiteral(resourceName: "circle")
                 }
             };
         }

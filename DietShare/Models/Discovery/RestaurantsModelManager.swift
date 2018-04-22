@@ -50,7 +50,7 @@ class RestaurantsModelManager {
     }
     
     func getRestaurantFromID(_ ID: String) -> Restaurant? {
-        return self.restaurantsDataSource.getRestaurantByID(ID)
+        return self.restaurantsDataSource.getRestaurantFromID(ID)
     }
     
     func getNumOfRestaurants() -> Int {

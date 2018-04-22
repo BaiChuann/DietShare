@@ -16,7 +16,7 @@ import UIKit
 class Topic: ReadOnlyTopic {
     
     private let id: String
-    private let name: String
+    private var name: String
     private let imagePath: String
     private let description: String
     private var followers: StringList
@@ -57,6 +57,9 @@ class Topic: ReadOnlyTopic {
     }
     func getName() -> String {
         return self.name
+    }
+    func setName(_ name: String) {
+        self.name = name
     }
     func getDescription() -> String {
         return self.description
