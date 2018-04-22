@@ -206,7 +206,7 @@ class PhotoModifierController: UIViewController {
         imageView.image = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
 
         if selectedStickerIndex >= 0 {
-            applySticker(index: selectedStickerIndex)
+            updateStickerWithFilter()
         }
 
         if selectedLayoutIndex >= 0 {
@@ -394,6 +394,15 @@ extension PhotoModifierController {
         pinchGestureRecognizer?.isEnabled = true
     }
 
+    private func updateStickerWithFilter() {
+        guard let imageView = addedImageViews.first?.subviews.first as? UIImageView,
+            let originalPhoto = shareState?.originalPhoto else {
+            return
+        }
+
+        imageView.image = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
+    }
+
     // Add sticker image as image subview
     private func addStickerAsSubview(sticker: StickerLayout) {
         let stickerLayer = UIImageView(frame: imageView.frame)
@@ -578,15 +587,19 @@ extension PhotoModifierController {
                     return
             }
 
-            let newHeight = movingImageView.frame.height * sender.scale
-            let newWidth = movingImageView.frame.width * sender.scale
+            let newHeight = max(movingImageView.frame.height * sender.scale, movingImageView.frame.height)
+            let newWidth = max(movingImageView.frame.width * sender.scale, movingImageView.frame.width)
 
-            var actualScale = sender.scale
-            if newHeight < displayView.frame.height || newWidth < displayView.frame.width {
-                actualScale = 1.0
-            }
+//            var actualScale = sender.scale
+//            if newHeight < displayView.frame.height || newWidth < displayView.frame.width {
+//                actualScale = 1.0
+//            }
 
-            movingImageView.transform = movingImageView.transform.scaledBy(x: actualScale, y: actualScale)
+            let center = movingImageView.center
+            movingImageView.frame = CGRect(x: movingImageView.frame.origin.x, y: movingImageView.frame.origin.y, width: newWidth, height: newHeight)
+            movingImageView.center = center
+
+//            movingImageView.transform = movingImageView.transform.scaledBy(x: actualScale, y: actualScale)
             sender.scale = 1.0
 
         case .ended:
