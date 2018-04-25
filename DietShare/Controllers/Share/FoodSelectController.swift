@@ -15,6 +15,7 @@ class FoodSelectController: UIViewController {
     @IBOutlet weak private var loader: NVActivityIndicatorView!
     @IBOutlet weak private var addFoodButton: UIButton!
     @IBOutlet weak private var foodCollectionView: UICollectionView!
+    @IBOutlet weak private var loaderLabel: UILabel!
 
     var shareState: ShareState?
     private let foodCellIdentifier = "FoodCell"
@@ -23,23 +24,39 @@ class FoodSelectController: UIViewController {
     private let spacingBetweenCells: CGFloat = 20
     private var foods = [Food]()
     private var isFetchingData = true
+    private var elapsedTime = Date()
+    private var requestTimer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpUI()
+
+//        let nutrition = [
+//            NutritionType.calories: 400.0,
+//            NutritionType.carbohydrate: 100.0,
+//            NutritionType.proteins: 80.0,
+//            NutritionType.fats: 120.0
+//        ]
+//        for i in 0...3 {
+//            foods.append(Food(id: 0, name: "Not food", nutrition: nutrition, image: UIImage()))
+//        }
+
         fetchRecognitionResult()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFoodAdder" {
             if let destinationVC = segue.destination as? FoodAdderController {
+                requestTimer.invalidate()
                 destinationVC.shareState = shareState
             }
         }
     }
 
     private func fetchRecognitionResult() {
+        elapsedTime = Date()
+        requestTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateFetchingLabel), userInfo: nil, repeats: true)
         updateFetchingStatus(status: true)
 
         guard let image = shareState?.originalPhoto,
@@ -73,11 +90,16 @@ class FoodSelectController: UIViewController {
         body.append("--\(boundary)--\r\n")
         request.httpBody = body
 
-        let task = session.dataTask(with: request) { data, response, _ in
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error when fetching food results")
+            }
+
             if let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200,
                 let data = data,
                 let json = try? JSON(data: data) {
+                    print("network working")
                     let foodInfo = json["data"]["food_info"]
                     for i in 0...3 {
                         let food = foodInfo[i]
@@ -98,59 +120,46 @@ class FoodSelectController: UIViewController {
                             image = content
                         }
                         self.foods.append(Food(id: id, name: label, nutrition: nutrition, image: image))
-                        self.updateFetchingStatus(status: false)
+
+                        DispatchQueue.main.async {
+                            self.updateFetchingStatus(status: false)
+                        }
                     }
+            } else {
+                print("network failure")
             }
         }
 
         task.resume()
     }
 
-//    private func fetchFoodInfo() {
-//        updateFetchingStatus(status: true)
-//
-//        let names = ["Dou Hua", "Fish Ball Noodle", "Kopi", "Char siew bao"]
-//        let imageQueryUrl = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
-//        let headers: HTTPHeaders = ["Ocp-Apim-Subscription-Key": "f8726113e2df45b8a64d8d3c0155b2a6"]
-//
-//        for name in names {
-//            let request_params: Parameters = [
-//                "q": name,
-//                "count": 1,
-//                "size": "Small",
-//                "safeSearch": "Strict"
-//            ]
-//
-//            Alamofire.request(imageQueryUrl, parameters: request_params, headers: headers).responseData { response in
-//                guard let data = response.data,
-//                    let json = try? JSON(data: data),
-//                    let url = json["value"][0]["contentUrl"].string else {
-//                        return
-//                }
-//
-//                if let imageUrl = URL(string: url),
-//                    let imageData = try? Data(contentsOf: imageUrl),
-//                    let image = UIImage(data: imageData) {
-//                    self.foods.append(Food(name: name, image: image))
-//                }
-//
-//                self.updateFetchingStatus(status: name != names.last)
-//            }
-//        }
-//    }
-
     private func updateFetchingStatus(status: Bool) {
         isFetchingData = status
         loader.isHidden = !status
 
         if !isFetchingData {
+            requestTimer.invalidate()
+            loaderLabel.isHidden = true
             loader.stopAnimating()
             foodCollectionView.reloadData()
         }
     }
 
+    @objc
+    private func updateFetchingLabel() {
+        let elapsedTime = -self.elapsedTime.timeIntervalSinceNow
+
+        print("elapsed time: \(elapsedTime)")
+        if elapsedTime < 5 {
+            loaderLabel.isHidden = true
+        } else {
+            loaderLabel.isHidden = false
+        }
+    }
+
     private func setUpUI() {
         loader.startAnimating()
+        loaderLabel.isHidden = true
 
         addFoodButton.layer.cornerRadius = Constants.cornerRadius
         addFoodButton.layer.borderWidth = Constants.buttonBorderWidth
