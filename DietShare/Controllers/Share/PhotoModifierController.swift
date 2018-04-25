@@ -587,20 +587,28 @@ extension PhotoModifierController {
                     return
             }
 
-            let newHeight = max(movingImageView.frame.height * sender.scale, movingImageView.frame.height)
-            let newWidth = max(movingImageView.frame.width * sender.scale, movingImageView.frame.width)
+            let newHeight = movingImageView.frame.height * sender.scale
+            let newWidth = movingImageView.frame.width * sender.scale
 
-//            var actualScale = sender.scale
-//            if newHeight < displayView.frame.height || newWidth < displayView.frame.width {
-//                actualScale = 1.0
-//            }
+            var actualScale = sender.scale
+            if newHeight < displayView.frame.height || newWidth < displayView.frame.width {
+                actualScale = 1.0
+            }
 
             let center = movingImageView.center
-            movingImageView.frame = CGRect(x: movingImageView.frame.origin.x, y: movingImageView.frame.origin.y, width: newWidth, height: newHeight)
-            movingImageView.center = center
+            movingImageView.frame = CGRect(
+                x: movingImageView.frame.origin.x,
+                y: movingImageView.frame.origin.y,
+                width: movingImageView.frame.width * actualScale,
+                height: movingImageView.frame.height * actualScale
+            )
+            movingImageView.center = displayView.convert(displayView.center, from: displayView.superview)
 
 //            movingImageView.transform = movingImageView.transform.scaledBy(x: actualScale, y: actualScale)
             sender.scale = 1.0
+
+            print("moving image view center: \(movingImageView.center)")
+            print("display view center: \(displayView.center)")
 
         case .ended:
             movingImageView = nil

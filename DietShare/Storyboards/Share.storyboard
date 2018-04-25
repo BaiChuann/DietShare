@@ -63,6 +63,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something wrong with the network..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vt-zj-Hr3">
+                                <rect key="frame" x="60" y="415.5" width="255" height="36.5"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                                <color key="textColor" red="0.53945313490000002" green="0.53945313490000002" blue="0.53945313490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SuS-Qu-agm">
                                 <rect key="frame" x="16" y="145.5" width="343" height="383"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,6 +155,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7Vt-zj-Hr3" firstAttribute="top" secondItem="LSO-wi-cdz" secondAttribute="bottom" constant="10" id="7qP-0A-A3G"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EwK-Yv-bFU" secondAttribute="trailing" constant="20" symbolic="YES" id="FZ4-gQ-TwE"/>
                             <constraint firstItem="SuS-Qu-agm" firstAttribute="top" secondItem="EwK-Yv-bFU" secondAttribute="bottom" constant="25" id="J2m-aa-U5h"/>
                             <constraint firstItem="0Hi-qP-iHp" firstAttribute="bottom" secondItem="u7D-w6-WrW" secondAttribute="bottom" constant="36" id="JRO-fD-9DD"/>
@@ -158,10 +165,12 @@
                             <constraint firstItem="0Hi-qP-iHp" firstAttribute="trailing" secondItem="SuS-Qu-agm" secondAttribute="trailing" constant="16" id="Ou5-BH-qqm"/>
                             <constraint firstItem="LSO-wi-cdz" firstAttribute="centerY" secondItem="0Hi-qP-iHp" secondAttribute="centerY" id="SFp-sA-kRq"/>
                             <constraint firstItem="StA-ZC-k5K" firstAttribute="centerX" secondItem="0Hi-qP-iHp" secondAttribute="centerX" id="YrA-tH-60n"/>
+                            <constraint firstItem="7Vt-zj-Hr3" firstAttribute="leading" secondItem="0Hi-qP-iHp" secondAttribute="leading" constant="60" id="az8-ac-WZO"/>
                             <constraint firstItem="gdu-KE-h3k" firstAttribute="leading" secondItem="0Hi-qP-iHp" secondAttribute="leading" constant="16" id="bLB-Ch-Oy6"/>
                             <constraint firstItem="EwK-Yv-bFU" firstAttribute="top" secondItem="gdu-KE-h3k" secondAttribute="bottom" constant="2" id="cmj-YA-C9C"/>
                             <constraint firstItem="u7D-w6-WrW" firstAttribute="centerX" secondItem="0Hi-qP-iHp" secondAttribute="centerX" id="dMb-Ok-BJy"/>
                             <constraint firstItem="StA-ZC-k5K" firstAttribute="top" secondItem="SuS-Qu-agm" secondAttribute="bottom" constant="25" id="fZW-my-duf"/>
+                            <constraint firstItem="0Hi-qP-iHp" firstAttribute="trailing" secondItem="7Vt-zj-Hr3" secondAttribute="trailing" constant="60" id="luw-fn-g9i"/>
                             <constraint firstItem="gdu-KE-h3k" firstAttribute="top" secondItem="0Hi-qP-iHp" secondAttribute="top" constant="10" id="o3Y-jx-8oe"/>
                             <constraint firstItem="EwK-Yv-bFU" firstAttribute="leading" secondItem="0Hi-qP-iHp" secondAttribute="leading" constant="16" id="tK8-Aa-jCm"/>
                             <constraint firstItem="SuS-Qu-agm" firstAttribute="leading" secondItem="0Hi-qP-iHp" secondAttribute="leading" constant="16" id="ysQ-a7-T8G"/>
@@ -173,11 +182,12 @@
                         <outlet property="addFoodButton" destination="u7D-w6-WrW" id="hWf-Ph-r8E"/>
                         <outlet property="foodCollectionView" destination="SuS-Qu-agm" id="a8w-ME-nAf"/>
                         <outlet property="loader" destination="LSO-wi-cdz" id="n1I-Sb-t98"/>
+                        <outlet property="loaderLabel" destination="7Vt-zj-Hr3" id="qcE-XC-CNE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSw-Uj-cPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="2640"/>
+            <point key="canvasLocation" x="832.79999999999995" y="2639.7301349325339"/>
         </scene>
         <!--Food Adder Controller-->
         <scene sceneID="FET-bE-HMd">
