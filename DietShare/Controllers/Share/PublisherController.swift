@@ -231,6 +231,7 @@ class PublisherController: UIViewController {
             tabBarController?.tabBar.isHidden = false
             return
         }
+        navigationController?.popToRootViewController(animated: true)
         let lastPage = currentController.currentTab
         currentController.selectedIndex = lastPage
     }
