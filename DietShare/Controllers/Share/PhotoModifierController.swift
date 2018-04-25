@@ -477,7 +477,8 @@ extension PhotoModifierController {
             let currentView = getViewWithLocation(superView: superView, location: location)
             var currentSuperview = currentView?.superview
 
-            guard swappedImageView == nil else {
+            guard swappedImageView == nil,
+                imageView.frame.contains(location) else {
                 var swappedSuperview = swappedImageView?.superview
 
                 if currentView === movingImageView {
@@ -495,7 +496,8 @@ extension PhotoModifierController {
             let change = getCalculatedChange(view: movingImageView, displayView: displayView, translation: translation)
 
             if abs(change.x) < tolerance && abs(change.y) < tolerance,
-                currentView !== movingImageView {
+                currentView !== movingImageView,
+                imageView.frame.contains(location) {
                 swappedImageView = currentView
                 setBorder(view: &currentSuperview, width: 3, color: .blue)
                 movingImageView.alpha = swappingAlpha
