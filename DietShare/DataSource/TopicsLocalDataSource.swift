@@ -37,13 +37,10 @@ class TopicsLocalDataSource: TopicsDataSource {
         prepopulate(topics)
     }
     
-    
     private convenience init() {
         self.init([Topic](), Constants.Tables.topics)
         prepopulate()
     }
-    
-    
     
     // A shared instance to be used in a global scope
     static let shared = TopicsLocalDataSource()
@@ -52,12 +49,10 @@ class TopicsLocalDataSource: TopicsDataSource {
     static func getTestInstance(_ topics: [Topic]) -> TopicsLocalDataSource {
         return TopicsLocalDataSource(topics, Constants.Tables.topics + "Test")
     }
-    
         
     static func getTestInstance(_ topics: [Topic], _ name: String) -> TopicsLocalDataSource {
         return TopicsLocalDataSource(topics, Constants.Tables.topics + name)
     }
-    
     
     private func createDB(_ title: String) {
         
@@ -69,7 +64,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Creates topic table if it is not already existing
     private func createTable() {
-        let createTable = self.topicsTable.create(ifNotExists: true) { (table) in
+        let createTable = self.topicsTable.create(ifNotExists: true) { table in
             table.column(self.id, primaryKey: true)
             table.column(self.name)
             table.column(self.description)
@@ -85,7 +80,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
     }
     
-    
     func getAllTopics() -> [ReadOnlyTopic] {
         var topics = [ReadOnlyTopic]()
         do {
@@ -98,7 +92,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         }
         return topics
     }
-    
     
     func getTopicFromID(_ ID: String) -> Topic? {
         _checkRep()
@@ -116,7 +109,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         _checkRep()
         return nil
     }
-    
     
     func addTopic(_ newTopic: Topic) {
         _checkRep()
@@ -195,7 +187,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         _checkRep()
     }
     
-    
     /**
      * For post publish component
      */
@@ -204,7 +195,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         let query = topicsTable.filter(name.like("%\(keyword)%")).order(popularity.desc)
         do {
             for topic in try database.prepare(query) {
-                let topicEntry = Topic(topic[id], topic[name], topic[imagePath] , topic[description], topic[followers], topic[posts])
+                let topicEntry = Topic(topic[id], topic[name], topic[imagePath], topic[description], topic[followers], topic[posts])
                 topics.append(topicEntry)
             }
         } catch let error {
@@ -213,7 +204,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         
         return topics
     }
-    
     
     /**
      * Test functions - to be removed
@@ -267,7 +257,6 @@ class TopicsLocalDataSource: TopicsDataSource {
         _checkRep()
     }
     
-    
     // Check representation of the datasource
     private func _checkRep() {
         assert(checkIDUniqueness(), "IDs should be unique")
@@ -312,7 +301,6 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
 }
 
-
 extension UIImage: Value {
     public class var declaredDatatype: String {
         return String.declaredDatatype
@@ -328,6 +316,3 @@ extension UIImage: Value {
         return strBase64
     }
 }
-
-
-

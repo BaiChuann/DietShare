@@ -81,7 +81,6 @@ class RestaurantsLocalDataSourceTest: XCTestCase {
         XCTAssert(testDataSource0.containsRestaurant(restaurant2.getID()), "Incorrect restaurant obtained")
         XCTAssert(testDataSource0.containsRestaurant(restaurant3.getID()), "Incorrect restaurant obtained")
         
-        
         testDataSource0.removeDB(Constants.Tables.restaurants + "test0")
     }
     
@@ -98,7 +97,6 @@ class RestaurantsLocalDataSourceTest: XCTestCase {
         testDataSource0.deleteRestaurant(restaurant1.getID())
         XCTAssert(testDataSource0.getNumOfRestaurants() == 0, "Incorrect number of restaurants obtained")
         XCTAssert(!testDataSource0.containsRestaurant(restaurant1.getID()), "Incorrect restaurant obtained")
-        
         
         testDataSource0.removeDB(Constants.Tables.restaurants + "test0")
     }
@@ -118,10 +116,8 @@ class RestaurantsLocalDataSourceTest: XCTestCase {
         XCTAssert(testDataSource0.containsRestaurant(restaurant1.getID()), "Incorrect restaurant obtained")
     XCTAssert(testDataSource0.getRestaurantFromID(restaurant1.getID())?.getName() == restaurant1.getName(), "Incorrect restaurant obtained")
         
-        
         testDataSource0.removeDB(Constants.Tables.restaurants + "test0")
     }
-    
     
     func testSearchByKeyword() {
         let restaurantWithKeyword = Restaurant("withKeyword", Constants.Test.withKeyword)
@@ -163,8 +159,3 @@ extension Restaurant {
         self.init(id, name, " ", CLLocation(), " ", StringList(.RestaurantType), " ", "vegie-bar", RatingList(), StringList(.Post), score)
     }
 }
-
-
-
-
-

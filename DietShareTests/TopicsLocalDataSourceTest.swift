@@ -23,7 +23,6 @@ class TopicsLocalDataSourceTest: XCTestCase {
         super.tearDown()
     }
     
-    
     func testGetTopics() {
         var topics = [Topic]()
         let testDataSource0 = TopicsLocalDataSource.getTestInstance(topics, "test0")
@@ -81,7 +80,6 @@ class TopicsLocalDataSourceTest: XCTestCase {
         XCTAssert(testDataSource0.containsTopic(topic2.getID()), "Incorrect topic obtained")
         XCTAssert(testDataSource0.containsTopic(topic3.getID()), "Incorrect topic obtained")
         
-        
         testDataSource0.removeDB(Constants.Tables.topics + "test0")
     }
     
@@ -98,7 +96,6 @@ class TopicsLocalDataSourceTest: XCTestCase {
         testDataSource0.deleteTopic(topic1.getID())
         XCTAssert(testDataSource0.getNumOfTopics() == 0, "Incorrect number of topics obtained")
         XCTAssert(!testDataSource0.containsTopic(topic1.getID()), "Incorrect topic obtained")
-        
         
         testDataSource0.removeDB(Constants.Tables.topics + "test0")
     }
@@ -162,7 +159,3 @@ extension Topic {
         self.init(id, name, "vegi-life", " ", StringList(.User), posts)
     }
 }
-
-
-
-

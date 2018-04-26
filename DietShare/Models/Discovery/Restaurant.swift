@@ -104,7 +104,7 @@ class Restaurant: ReadOnlyRestaurant {
         if let image = UIImage(named: self.imagePath) {
             return image
         }
-        return UIImage()
+        return #imageLiteral(resourceName: "void-bg")
     }
     func getImagePath() -> String {
         return self.imagePath
@@ -130,7 +130,7 @@ class Restaurant: ReadOnlyRestaurant {
         self.posts.addEntry(post.getPostId())
     }
     func addPosts(_ posts: [Post]) {
-        posts.forEach { self.addPost($0)}
+        posts.forEach { self.addPost($0) }
     }
     
     private func calcNewRatingScore(_ newScore: Double) -> Double {
@@ -144,13 +144,12 @@ class Restaurant: ReadOnlyRestaurant {
             let distance = currentLocation.distance(from: self.location)
             return Double(round(distance * 10) / 10)
         }
-        return 0;
+        return 0
     }
     
     func getUserRating(_ user: User) -> Rating? {
         return self.ratings.findRating(user.getUserId(), self.id)
     }
-    
     
 }
 

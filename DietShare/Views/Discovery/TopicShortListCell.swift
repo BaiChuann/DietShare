@@ -15,7 +15,6 @@ class TopicShortListCell: UICollectionViewCell {
     @IBOutlet weak private var topicImage: UIImageView!
     @IBOutlet weak private var topicName: UILabel!
     
-    
     func setImage(_ image: UIImage) {
         //let croppedImage = cropToBounds(image, Double(topicImage.frame.width), Double(topicImage.frame.height))
         let alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)

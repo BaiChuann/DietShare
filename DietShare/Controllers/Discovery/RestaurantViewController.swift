@@ -59,8 +59,6 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
     
     /**
      * View Related functions
@@ -81,7 +79,6 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
-    
     
     private func setRestaurantDetail(_ currentRestaurant: Restaurant) {
         self.restaurantName.text = currentRestaurant.getName()
@@ -106,7 +103,6 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    
     private func initPosts() {
         if let postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as? PostsTableController {
             postsTableController.setParentController(self)
@@ -129,7 +125,6 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
-    
     
     // Hide navigation bar when scrolling up
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -250,7 +245,6 @@ extension RestaurantViewController: CLLocationManagerDelegate {
         }
     }
 }
-
 
 extension RestaurantViewController: ScrollDelegate {
     func didScroll() {

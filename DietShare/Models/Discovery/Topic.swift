@@ -25,7 +25,7 @@ class Topic: ReadOnlyTopic {
     // TODO - active user logic -> to be added when PostModelManager is available
     private var activeUsers: StringList
     private var popularity: Int {
-        get{
+        get {
             return self.posts.getListAsArray().count
         }
     }
@@ -70,7 +70,7 @@ class Topic: ReadOnlyTopic {
         if let uiImage = UIImage(named: self.imagePath) {
             return uiImage
         }
-        return UIImage(named: Constants.voidBackgroundImagePath)!
+        return #imageLiteral(resourceName: "void-bg")
     }
     func getImagePath() -> String {
         return self.imagePath
@@ -99,7 +99,7 @@ class Topic: ReadOnlyTopic {
     
     func removeFollower(_ follower: User) {
         let oldList = self.followers.getListAsSet()
-        self.followers.setList(oldList.filter {$0 != follower.getUserId()})
+        self.followers.setList(oldList.filter { $0 != follower.getUserId() })
         print("user \(follower.getUserId()) just unfollowed topic: \(id)! ")
         
     }
@@ -117,5 +117,3 @@ class Topic: ReadOnlyTopic {
                 && lhs.followers == rhs.followers
     }
 }
-
-

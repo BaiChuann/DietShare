@@ -18,7 +18,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var currentUser = UserModelManager.shared.getCurrentUser()
     
-    
     @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -141,7 +140,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -163,4 +162,3 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
 }
-

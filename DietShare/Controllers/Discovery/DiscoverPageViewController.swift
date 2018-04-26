@@ -95,11 +95,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool){
+    override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = false
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +150,6 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     
-    
     /**
      * View-related functions
      */
@@ -159,7 +157,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     // Hide nagivation bar when scrolling
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)

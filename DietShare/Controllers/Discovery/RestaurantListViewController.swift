@@ -113,7 +113,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
         cuisineDropDown.anchorView = restaurantListView
         var allCuisineTypes = [String]()
-        RestaurantType.cases().forEach {allCuisineTypes.append($0.rawValue)}
+        RestaurantType.cases().forEach { allCuisineTypes.append($0.rawValue) }
         assert(!allCuisineTypes.isEmpty)
         cuisineDropDown.dataSource = allCuisineTypes
         cuisineDropDown.width = self.view.frame.width
@@ -149,12 +149,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
                     cell.backgroundColor = UIColor.clear
                     cell.tick.image = #imageLiteral(resourceName: "circle")
                 }
-            };
+            }
         }
         
         cuisineDropDown.dismissMode = .onTap
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
@@ -163,7 +162,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         if let dest = segue.destination as? MapViewController {
             
             var restaurants = [Restaurant]()
-            restaurantModel.getAllRestaurants().forEach { restaurants.append(Restaurant($0))}
+            restaurantModel.getAllRestaurants().forEach { restaurants.append(Restaurant($0)) }
             dest.setRestaurants(restaurants)
             
         }
@@ -233,8 +232,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //TODO - check if the following two lines break the location manager. if not, add them
-//        locationManager.delegate = nil
-//        locationManager.stopUpdatingLocation()
+        locationManager.delegate = nil
+        locationManager.stopUpdatingLocation()
         currentLocation = manager.location
         self.restaurantListView.reloadData()
     }

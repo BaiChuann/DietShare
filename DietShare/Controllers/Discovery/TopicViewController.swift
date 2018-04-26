@@ -199,4 +199,3 @@ extension TopicViewController: ScrollDelegate {
     func reachTop() {
     }
 }
-

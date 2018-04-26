@@ -29,7 +29,7 @@ class ProfileController: UIViewController {
     private var previousSceneId = ""
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
-        if userId == currentUser && previousSceneId != Identifiers.topicPage  {
+        if userId == currentUser && previousSceneId != Identifiers.topicPage {
             print("yes")
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.navigationBar.isHidden = true
@@ -48,7 +48,7 @@ class ProfileController: UIViewController {
             self.tabBarController?.tabBar.isHidden = true
         }
     }
-    override func viewWillDisappear(_ animated: Bool){
+    override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
     }
 
@@ -179,7 +179,6 @@ extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
 //            //scrollView.isScrollEnabled = false
 //            tableView.isScrollEnabled = true
 //        }
-    
     
     }
     func reachTop() {

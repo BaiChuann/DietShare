@@ -713,6 +713,7 @@
 				9E2DCDFC5617F3908C4472DC /* [CP] Embed Pods Frameworks */,
 				97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */,
 				B504C2C9206BD1BA007F8956 /* Embed Frameworks */,
+				B5AE5EEC2091146B00A32BF1 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -957,6 +958,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DietShare/Pods-DietShare-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B5AE5EEC2091146B00A32BF1 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		F272BF58205EC43A00EBF4A8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

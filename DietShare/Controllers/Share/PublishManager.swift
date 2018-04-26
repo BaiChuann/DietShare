@@ -32,7 +32,6 @@ class PublishManager: NSObject, NSCoding {
     private let postManager = PostManager.shared
     private var restaurantManager = RestaurantsModelManager.shared
 
-
     private override init() {}
 
     func post(text: String = "", image: UIImage, restaurantId: String = "-1", topicsId: [String] = [], rating: Int = 0, additionalOption: Set<PublishOption> = []) {

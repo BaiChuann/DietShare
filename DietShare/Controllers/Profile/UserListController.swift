@@ -75,15 +75,14 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.setUser(user)
             cell.selectionStyle = .none
             return cell
-        }
-        else {
+        } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "topicTableCell", for: indexPath as IndexPath) as? TopicTableCell else {
                 fatalError("The dequeued cell is not an instance of TopicTableCell.")
             }
             guard let topic = TopicsModelManager.shared.getTopicFromID(data[indexPath.item]) else {
                 return cell 
             }
-            cell.setImage(UIImage(named:topic.getImagePath())!)
+            cell.setImage(UIImage(named: topic.getImagePath())!)
             cell.setName(topic.getName())
             cell.selectionStyle = .none
             return cell

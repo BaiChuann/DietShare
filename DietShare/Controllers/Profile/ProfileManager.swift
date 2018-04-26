@@ -37,9 +37,9 @@ class ProfileManager {
         }
         for i in 2...10 {
             profiles[0].addFollowing(String(i))
-            profiles[i-1].addFollower("1")
-            profiles[0].addTopic(String(i-1))
-            TopicsModelManager.shared.addNewFollower(currentUser, TopicsModelManager.shared.getTopicFromID(String(i-1))!)
+            profiles[i - 1].addFollower("1")
+            profiles[0].addTopic(String(i - 1))
+            TopicsModelManager.shared.addNewFollower(currentUser, TopicsModelManager.shared.getTopicFromID(String(i - 1))!)
         }
     }
 }

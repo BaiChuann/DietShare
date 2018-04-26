@@ -17,7 +17,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     private let locationManager = CLLocationManager()
     private let currentLocationMarker = GMSMarker()
-    private var chosenPlace: Place? = nil
+    private var chosenPlace: Place?
     private var selectedRestaurant: Restaurant?
     private var allRestaurants = [Restaurant]()
     
@@ -72,7 +72,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let view = RestaurantFullListCell()
         return view
     }()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,7 +143,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
 
     private func setUpTextField(_ textField: UITextField, _ image: UIImage) {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: textField.frame.height * 0.75 , height: textField.frame.height * 0.75))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: textField.frame.height * 0.75, height: textField.frame.height * 0.75))
         imageView.image = image
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: textField.frame.height, height: textField.frame.height))
         paddingView.addSubview(imageView)
@@ -159,9 +158,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.mapView.delegate = self
         self.mapView.isMyLocationEnabled = true
     }
-
     
-    //MARK: textfield handling
+    // MARK: textfield handling
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let autoCompleteController = GMSAutocompleteViewController()
         autoCompleteController.delegate = self
@@ -174,7 +172,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return false
     }
     
-    //MARK: CLLocation Manager Delegate
+    // MARK: CLLocation Manager Delegate
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error while getting location: \(error)")
     }
@@ -190,7 +188,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.mapView.animate(to: camera)
     }
     
-    //MARK: Google Map Delegate
+    // MARK: Google Map Delegate
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         guard let customMarkerView = marker.iconView as? CustomMarkerView else {
             return false
@@ -231,7 +229,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         marker.iconView = customMarker
     }
     
-    
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         UIView.animate(withDuration: Constants.defaultAnimationDuration, animations: {
             self.searchAgainButton.alpha = 0.9
@@ -246,7 +243,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         })
     }
 
-    //MARK: Autocomplete logic handling
+    // MARK: Autocomplete logic handling
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         let lat = place.coordinate.latitude
         let long = place.coordinate.longitude
@@ -305,7 +302,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     @objc func unwindButtonTapped() {
         performSegue(withIdentifier: Identifiers.unwindMapToRestaurantList, sender: self)
     }
-    
     
     func setRestaurants(_ restaurants: [Restaurant]) {
         self.allRestaurants = restaurants

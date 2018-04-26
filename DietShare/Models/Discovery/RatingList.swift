@@ -88,7 +88,7 @@ class RatingList: Equatable, Codable {
     
     func checkIDUniqueness() {
         var idSet = Set<String>()
-        list.forEach { idSet.insert($0.getID())}
+        list.forEach { idSet.insert($0.getID()) }
         assert(idSet.count == list.count)
     }
 }
