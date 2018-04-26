@@ -93,5 +93,5 @@ class RestaurantFullListCell: UICollectionViewCell {
         types.forEach { typeString += "\($0)  " }
         self.restaurantType.text = typeString
     }
+    
 }
-

@@ -9,6 +9,9 @@
 import UIKit
 import DKImagePickerController
 
+/*
+ A view controller for the page to select multiple images from library to form a collage.
+ */
 class LayoutPhotoSelectorController: UIViewController {
     @IBOutlet weak private var preview: UIView!
     @IBOutlet weak private var imageCountLabel: UILabel!

@@ -9,6 +9,10 @@
 import UIKit
 import Presentr
 
+/*
+ A delegate of FloatingContentAdderController that exposes the text label selection status, and
+ allows add/update text label.
+ */
 protocol FloatingContentAdderDelegate: class {
     func getSelectedFont() -> String
     func getSelectedLabelInfo() -> FloatingTextInfo?
@@ -16,6 +20,9 @@ protocol FloatingContentAdderDelegate: class {
     func updateTextLabelInfo(text: String?, color: UIColor, size: CGFloat, font: UIFont)
 }
 
+/*
+ A view controller for the page to add floating content(nutrition sticker and text) to the picture.
+ */
 class FloatingContentAdderController: UIViewController {
     @IBOutlet weak private var canvas: UIView!
     @IBOutlet weak private var imageView: UIImageView!
@@ -35,6 +42,8 @@ class FloatingContentAdderController: UIViewController {
     private var textSize: CGFloat?
     private var textLabels = [FloatingTextInfo]()
     private var nutritionViewOriginalPos = CGPoint(x: 0, y: 0)
+
+    // The controller will only be initialised when necessary(uesr wants to add text).
     private lazy var floatingTextInputController: FloatingTextInputController = {
         let controller = FloatingTextInputController(nibName: "FloatingTextInputPopup", bundle: nil)
         controller.delegate = self
@@ -43,8 +52,6 @@ class FloatingContentAdderController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        shareState = ShareState()
 
         setUpUI()
         fonts = [
@@ -91,7 +98,10 @@ class FloatingContentAdderController: UIViewController {
             self.nutritionStickerView.alpha = 1
         }
     }
-    
+
+    /*
+     Update the image in the shared state and pass it to next view controller.
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPublisher" {
             if let destinationVC = segue.destination as? PublisherController {
@@ -115,7 +125,6 @@ class FloatingContentAdderController: UIViewController {
     }
 
     private func onFontSelected(index: Int) {
-        print("font \(index) selected")
         selectedFontIndex = index
         selectedLabelIndex = nil
         showInputPopup()
@@ -139,11 +148,6 @@ class FloatingContentAdderController: UIViewController {
 
     private func addTextLabelView(_ textInfo: FloatingTextInfo) {
         textInfo.label.isUserInteractionEnabled = true
-
-        // Enable to show the border of label, for dubugging purpose
-//        textInfo.label.layer.borderColor = UIColor.red.cgColor
-//        textInfo.label.layer.borderWidth = 2
-        
         textInfo.label.text = textInfo.text
         textInfo.label.textColor = textInfo.color
         textInfo.label.font = textInfo.font.withSize(textInfo.size)
@@ -333,10 +337,13 @@ extension FloatingContentAdderController: UICollectionViewDelegate, UICollection
 }
 
 extension FloatingContentAdderController: FloatingContentAdderDelegate {
+    
+    // Returns the name of selected font
     func getSelectedFont() -> String {
         return fonts[selectedFontIndex ?? 0]
     }
 
+    // Returns the info of currently selected text label.
     func getSelectedLabelInfo() -> FloatingTextInfo? {
         if let index = selectedLabelIndex {
             return textLabels[index]
@@ -345,13 +352,14 @@ extension FloatingContentAdderController: FloatingContentAdderDelegate {
         }
     }
 
+    // Add a new text label with some info. New text label will then be added as a subview to current view.
     func addNewTextLabelInfo(text: String, color: UIColor, size: CGFloat, font: UIFont) {
-        print("add new label with text: \(text), color: \(color), size: \(size)")
         let newTextInfo = FloatingTextInfo(text: text, color: color, font: font, size: size, label: UILabel())
         textLabels.append(newTextInfo)
         addTextLabelView(newTextInfo)
     }
 
+    // Update the selected text label with new info.
     func updateTextLabelInfo(text: String?, color: UIColor, size: CGFloat, font: UIFont) {
         guard let labelIndex = selectedLabelIndex else {
             print("no selected label found")
@@ -368,8 +376,6 @@ extension FloatingContentAdderController: FloatingContentAdderDelegate {
         textInfo.text = nonEmptyText
         textInfo.font = font
         textInfo.size = size
-
-        print("update label with text: \(textInfo.text), color: \(textInfo.color), size: \(textInfo.size)")
 
         updateTextLabelView(textInfo)
     }

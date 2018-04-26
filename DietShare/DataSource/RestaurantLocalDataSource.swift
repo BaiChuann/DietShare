@@ -16,7 +16,6 @@ import CoreLocation
  */
 class RestaurantsLocalDataSource: RestaurantsDataSource {
     
-    
     private var database: Connection!
     private let restaurantsTable = Table(Constants.Tables.restaurants)
     
@@ -35,8 +34,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ restaurants: [Restaurant], _ title: String) {
-//        print("RestaurantLocalDataSource initializer called")
-        removeDB()
+        removeDB(title)
         createDB(title)
         createTable()
         prepopulate(restaurants)
@@ -54,18 +52,25 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         return RestaurantsLocalDataSource(restaurants, Constants.Tables.restaurants + "Test")
     }
     
+    static func getTestInstance(_ restaurants: [Restaurant], _ name: String) -> RestaurantsLocalDataSource {
+        return RestaurantsLocalDataSource(restaurants, Constants.Tables.restaurants + name)
+    }
+    
+    func removeTestInstance(_ name: String) {
+        removeDB(name)
+    }
+    
     // Create a database connection with given title, if such database does not already exist
     private func createDB(_ title: String) {
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         if let fileUrl = documentDirectory?.appendingPathComponent(title).appendingPathExtension("sqlite3") {
-            
             self.database = try? Connection(fileUrl.path)
         }
     }
     
     // Creates restaurant table if it is not already existing
     private func createTable() {
-        let createTable = self.restaurantsTable.create(ifNotExists: true) { (table) in
+        let createTable = self.restaurantsTable.create(ifNotExists: true) { table in
             table.column(self.id, primaryKey: true)
             table.column(self.name)
             table.column(self.address)
@@ -88,30 +93,25 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func getAllRestaurants() -> [ReadOnlyRestaurant] {
         var restaurants = [ReadOnlyRestaurant]()
         do {
-            
             let startTime = CFAbsoluteTimeGetCurrent()
             for restaurant in try database.prepare(restaurantsTable) {
-                
-                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address], restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 restaurants.append(restaurantEntry)
             }
-            
-            print("Time lapsed for getting restaurants: \(CFAbsoluteTimeGetCurrent() - startTime)")
+            print("get restaurants takes: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
         return restaurants
     }
     
-    func getRestaurantByID(_ restaurantID: String) -> Restaurant? {
+    func getRestaurantFromID(_ restaurantID: String) -> Restaurant? {
         do {
-            let startTime = CFAbsoluteTimeGetCurrent()
             let row = restaurantsTable.filter(id == restaurantID)
             for restaurant in try database.prepare(row) {
-                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                let restaurantEntry = Restaurant(restaurant[id], restaurant[name], restaurant[address], restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 return restaurantEntry
             }
-            print("Time lapsed for getting restaurant by ID: \(CFAbsoluteTimeGetCurrent() - startTime)")
         } catch let error {
             print("failed to get row: \(error)")
         }
@@ -131,7 +131,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     func addRestaurant(_ newRestaurant: Restaurant) {
         _checkRep()
         do {
-//            print("current restaurant id is: \(newRestaurant.getID())")
             try database.run(restaurantsTable.insert(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore()))
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("insert constraint failed: \(message), in \(String(describing: statement))")
@@ -140,7 +139,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         }
         _checkRep()
     }
-    
     
     func addRestaurants(_ newRestaurants: [Restaurant]) {
         _checkRep()
@@ -162,7 +160,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             print("update failed: \(error)")
         }
         
-        return false;
+        return false
     }
     
     func deleteRestaurant(_ restaurantID: String) {
@@ -184,7 +182,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         _checkRep()
         let row = restaurantsTable.filter(id == oldRestaurantID)
         do {
-            if try database.run(row.update(id <- newRestaurant.getID(), name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
+            if try database.run(row.update(name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
                 print("Old Restaurant is updated")
             } else {
                 print("Old Restaurant not found")
@@ -205,7 +203,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         let query = restaurantsTable.filter(name.like("%\(keyword)%")).order(ratingScore.desc)
         do {
             for restaurant in try database.prepare(query) {
-                let restaurant = Restaurant(restaurant[id], restaurant[name], restaurant[address],restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
+                let restaurant = Restaurant(restaurant[id], restaurant[name], restaurant[address], restaurant[location], restaurant[phone], restaurant[types], restaurant[description], restaurant[imagePath], restaurant[ratings], restaurant[posts], restaurant[ratingScore])
                 restaurants.append(restaurant)
             }
         } catch let error {
@@ -220,10 +218,10 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
      */
     
     // MARK: Only for test purpose
-    private func removeDB() {
+    func removeDB(_ name: String) {
         print("Remove DB called")
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileUrl = documentDirectory?.appendingPathComponent(Constants.Tables.restaurants).appendingPathExtension("sqlite3") {
+        if let fileUrl = documentDirectory?.appendingPathComponent(name).appendingPathExtension("sqlite3") {
             try? FileManager.default.removeItem(at: fileUrl)
         }
     }
@@ -232,7 +230,7 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
     
     private func prepopulate(_ restaurants: [Restaurant]) {
         _checkRep()
-        if !restaurants.isEmpty  {
+        if !restaurants.isEmpty {
             for restaurant in restaurants {
                 if !containsRestaurant(restaurant.getID()) {
                     self.addRestaurant(restaurant)
@@ -248,14 +246,14 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         let testRatingList = RatingList()
         testRatingList.addEntry(testRating)
 
-        let restaurants = [
+        var restaurants = [
             Restaurant("1", "District 10", "1 Vista Exchange Green, 01-42/K3, Singapore 138617", CLLocation(latitude: 1.3067087, longitude: 103.78788250000002), "66942884", StringList(.RestaurantType, ["American"]), "The NEW District 10 Bar & Grill specialised in nothing but the BEST DRY-AGED MEAT featuring the rare, flavoursome bone-in cuts with high content of natural and healthy marbling that is superb with premium reds. The small and neat 1,800 square-foot restaurant (including Outdoors) comes complete with a European meat showcase and chiller for its premium meats such as 45 days home dry aged corn fed US Prime OP Rib, US Prime, 30 days corn fed dry aged traditional Fiorentina and other bone-in cuts!", "restaurant-1", testRatingList, StringList(.Post), 4.5),
             Restaurant("2", "UNA at One Rochester", "1 Rochester Dr, Singapore 139212", CLLocation(latitude: 1.305308, longitude: 103.787689), "6773 0070", StringList(.RestaurantType, ["Chinese"]), "UNA, the Spanish restaurant housed at the iconic One Rochester, opened its doors on 12 April 2014, and has been credited with setting new al fresco dining standards. UNA presents fresh authentic Spanish tapas and parrilla (Spanish for ‘grill’) in a cosy, breezy al fresco garden setting. Using only fresh, seasonal ingredients, the team of dedicated chefs led by Executive Chef Antonio Oviedo present Spanish cuisine through trendy creations; offering real, unpretentious food that is robust, wholesome and full of flavours.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5),
             Restaurant("3", "Yunnan Garden Restaurant", "1 Fusionopolis Place, #02-02 Galaxis, Singapore 138522", CLLocation(latitude: 1.2992467, longitude: 103.78807260000008), "6665 8888", StringList(.RestaurantType, ["Chinese"]), "A Dim Sum place at the central of Singapore", "restaurant-3", testRatingList, StringList(.Post), 4.5),
             Restaurant("4", "Long Beach @ DEMPSEY", "25 Dempsey Rd, Singapore 249670", CLLocation(latitude: 1.3063069, longitude: 103.81196169999998), "63232222", StringList(.RestaurantType), "A Chinese restaurant good for groups", "restaurant-4", testRatingList, StringList(.Post), 4.5),
             Restaurant("5", "Ah Loy Thai", "9 Tan Quee Lan Street #01-04 Singapore 188098", CLLocation(latitude: 1.298488, longitude: 103.85663499999998), "93297599", StringList(.RestaurantType, ["Thai"]), "This a thai traditional restaurant from shaw tower and we believe in bringing the customer great thai food at a affordable price and all our food is custom make to suit taste buds of Singaporean ! See you soon . Break time from 3 pm to 4.15 pm and open on holidays", "restaurant-5", testRatingList, StringList(.Post), 4.5),
             Restaurant("6", "Soi Thai Soi Nice", "321 Alexandra Rd, #02-01 Alexandra Central Mall, 159971", CLLocation(latitude: 1.2873346, longitude: 103.80505449999998), "62504863", StringList(.RestaurantType, ["Thai"]), "Filled to the brim with assorted ingredients including crayfish, mussels, tiger prawns, roast pork, and enoki mushrooms, we picked the home-made tom yum broth that came with a fiery kick! There was also a good balance of sour and sweet flavours, with fragrant spices and herbs used. I’d recommend you to add the mama instant noodles that had a bouncy texture. #Burpproved", "restaurant-6", testRatingList, StringList(.Post), 4.5),
-            Restaurant("7", "Rakuichi Japanese Restaurant", "10 Dempsey Rd, Singapore 247700", CLLocation(latitude: 1.3033906, longitude:103.81048669999996), "64742143", StringList(.RestaurantType, ["Japanese"]), "Japanese cuisine is such an easy dining choice to make. There is always something for everyone. I have been going back to Rakuichi Dempsey for many years due to the casual vibe, good food and peaceful, relaxing ambience! There is ample parking and it's free", "restaurant-4", testRatingList, StringList(.Post), 4.5),
+            Restaurant("7", "Rakuichi Japanese Restaurant", "10 Dempsey Rd, Singapore 247700", CLLocation(latitude: 1.3033906, longitude: 103.81048669999996), "64742143", StringList(.RestaurantType, ["Japanese"]), "Japanese cuisine is such an easy dining choice to make. There is always something for everyone. I have been going back to Rakuichi Dempsey for many years due to the casual vibe, good food and peaceful, relaxing ambience! There is ample parking and it's free", "restaurant-4", testRatingList, StringList(.Post), 4.5),
             Restaurant("8", "En Sushi", "#01-02 Income@Prinsep, 30 Prinsep St, 188647", CLLocation(latitude: 1.2989794, longitude: 103.84948370000006), "62531426", StringList(.RestaurantType, ["Japanese"]), "The colourful bara chirashi don sees an assortment of cubed sashimi such as salmon, tuna, yellowtail and octopus tossed in a homemade soy sauce.", "restaurant-8", testRatingList, StringList(.Post), 4.5),
             Restaurant("9", "NY Night Market", "#01-02 Income@Prinsep, 30 Prinsep St, 188647", CLLocation(latitude: 1.3989794, longitude: 103.84948370000006), "62531426", StringList(.RestaurantType, ["Korean"]), "Hailing from Seoul, NY Night Market brings to Singapore a taste of cosmopolitan markets in New York City where one can find a wide array of international street foods, as well as exciting Western fusion delights with a unique Korean touch.", "restaurant-9", testRatingList, StringList(.Post), 4.5),
             Restaurant("10", "Vatos Urban Tacos (South Beach)", "36 Beach Rd, Singapore 189766", CLLocation(latitude: 1.295766, longitude: 103.856179), "63856010", StringList(.RestaurantType, ["Korean"]), "One of Korea’s hottest restaurants, Vatos Urban Tacos, has come to Singapore. Influenced by Mexican street tacos in Los Angeles and home-cooked Korean meals, the menu consists of creations like the Kimchi Carnitas Fries, Galbi Tacos, and Spicy Chicken Quesadillas.", "restaurant-10", testRatingList, StringList(.Post), 4.5),
@@ -270,45 +268,13 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             Restaurant("19", "Alaturka Mediterranean & Turkish Restaurant", "15 Bussorah St, Singapore 199436", CLLocation(latitude: 1.301179, longitude: 103.859969), "62940304", StringList(.RestaurantType, ["European"]), "Truly deserving of the Singapore Michelin Bib Gourmand is Alaturka Mediterranean & Turkish Restaurant - situated at Arab street, this authentic Turkish food establishment serves up the best Mediterranean food my tastebuds have ever sampled!", "restaurant-19", testRatingList, StringList(.Post), 4.5),
             Restaurant("20", "HANS IM GLÜCK German Burgergrill", "362 Orchard Rd, International Building, Singapore, 238887", CLLocation(latitude: 1.305977, longitude: 103.83081), "97501488", StringList(.RestaurantType, ["American"]), "This restaurant feels with natural at the outdoor section. Even the decoration on the table. Ordered a grilled chicken burger and top with bacon. The chicken meat is thick and tender.", "restaurant-20", testRatingList, StringList(.Post), 4.5)
         ]
-
+        
+        for i in 0..<80 {
+            restaurants.append(Restaurant("20 + \(i)", "HANS IM GLÜCK German Burgergrill", "362 Orchard Rd, International Building, Singapore, 238887", CLLocation(latitude: 1.305977, longitude: 103.83081), "97501488", StringList(.RestaurantType, ["American"]), "This restaurant feels with natural at the outdoor section. Even the decoration on the table. Ordered a grilled chicken burger and top with bacon. The chicken meat is thick and tender.", "restaurant-20", testRatingList, StringList(.Post), 4.5))
+        }
         restaurants.forEach {
             self.addRestaurant($0)
         }
-
-//        for i in 0..<10 {
-//            if !containsRestaurant("i") {
-//                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
-//                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
-//                let location = CLLocation(latitude: 1.22512 + randLatOffset, longitude: 103.84985 + randLongOffset)
-//                let restaurant = Restaurant(String(i), "Salad Heaven", "1 Marina Boulevard, #03-02", location, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.5)
-//
-//                let types: [RestaurantType] = [.Vegetarian, .European]
-//                restaurant.setTypes(types)
-//                self.addRestaurant(restaurant)
-//                }
-//
-//        }
-//        for i in 10..<20 {
-//            if !containsRestaurant("i") {
-//                let randLatOffset = Double(arc4random_uniform(10)) / 100.0
-//                let randLongOffset = Double(arc4random_uniform(10)) / 100.0
-//                let location = CLLocation(latitude: 1.25212 + randLatOffset, longitude: 103.71985 + randLongOffset)
-//                let restaurant = Restaurant(String(i), "Burger Shack", "1 Boon Lay Road, #03-02", location, "98700432", StringList(.RestaurantType), "The first Burger Shack in Singapore. We provide awesomeness.", "burger-shack.jpg", testRatingList, StringList(.Post), 3.0)
-//
-//                let types: [RestaurantType] = [.American, .European]
-//                restaurant.setTypes(types)
-//                self.addRestaurant(restaurant)
-//            }
-//
-//        }
-//
-//        let locationFar = CLLocation(latitude: 2.35212, longitude: 103.81985)
-//        let restaurantFar = Restaurant(String(21), "Salad Heaven Far, High Rating", "1 Marina Boulevard, #03-02", locationFar, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 5.0)
-//        self.addRestaurant(restaurantFar)
-////
-//        let locationClose = CLLocation(latitude: 0.35212, longitude: 103.81985)
-//        let restaurantClose = Restaurant(String(22), "Salad Heaven Close, Low Rating", "1 Marina Boulevard, #03-02", locationClose, "98765432", StringList(.RestaurantType), "The first Vegetarian-themed salad bar in Singapore. We provide brunch and lunch.", "vegie-bar.png", testRatingList, StringList(.Post), 4.0)
-//        self.addRestaurant(restaurantClose)
         _checkRep()
     }
     
@@ -377,4 +343,3 @@ extension CLLocation: Value {
         return locationString
     }
 }
-

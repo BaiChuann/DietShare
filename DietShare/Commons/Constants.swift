@@ -22,8 +22,7 @@ enum AppStoryboard: String {
     }
 }
 
-
-protocol EnumCollection : Hashable {}
+protocol EnumCollection: Hashable {}
 
 extension EnumCollection {
     static func cases() -> AnySequence<Self> {
@@ -31,7 +30,7 @@ extension EnumCollection {
         return AnySequence { () -> AnyIterator<S> in
             var raw = 0
             return AnyIterator {
-                let current : Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: S.self, capacity: 1) { $0.pointee } }
+                let current: Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: S.self, capacity: 1) { $0.pointee } }
                 guard current.hashValue == raw else { return nil }
                 raw += 1
                 return current
@@ -89,6 +88,8 @@ struct Text {
     public static let unknownDistance = "Unknow Distance"
     public static let rateTheRestaurant = "Rate this restaurant"
     public static let yourRating = "Your Rating"
+    public static let topicListTitle = "Trending Topics"
+    public static let restaurantListTitle = "Restaurants"
 }
 
 enum FollowStatus: Int {

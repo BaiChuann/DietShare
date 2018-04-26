@@ -8,6 +8,9 @@
 import UIKit
 import DKImagePickerController
 
+/*
+ A delegate for PhotoModifierController that allows import images for photo layout.
+ */
 protocol PhotoModifierDelegate: class {
     func importImagesForLayout(images: [UIImage], layoutIndex: Int)
     func getLayoutImageCount(index: Int) -> Int
@@ -17,6 +20,9 @@ enum PhotoOptionType: Int {
     case sticker = 0, layout, filter
 }
 
+/*
+ A view controller for the page where user can modify the photo with sticker/layout/filter.
+ */
 class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
@@ -29,13 +35,11 @@ class PhotoModifierController: UIViewController {
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private let context = CIContext()
-    private var stickerIcons = [UIImage?]()
-    private var layoutIcons = [UIImage?]()
-    private var filters = [(String, String)]()
     private var isShowingNutrition = true
 
     private let storedLayout = StoredLayout.shared
     private let storedSticker = StoredSticker.shared
+    private let storedFilter = StoredFilter.shared
 
     private let tolerance: CGFloat = CGFloat(0.000_1)
     private let swappingAlpha: CGFloat = 0.6
@@ -49,10 +53,10 @@ class PhotoModifierController: UIViewController {
     private var swappedImageView: UIView?
     private var addedImageViews = [UIImageView]()
 
-    private var selectedImages: [UIImage]?
-    private var selectedStickerIndex: Int = -1
-    private var selectedLayoutIndex: Int = -1
-    private var selectedFilterIndex: Int = -1
+    private var selectedImages = [UIImage]()
+    private var selectedStickerIndex: Int = 0
+    private var selectedLayoutIndex: Int = 0
+    private var selectedFilterIndex: Int = 0
 
     private let optionCellMaxHeight: CGFloat = 100
 
@@ -61,21 +65,6 @@ class PhotoModifierController: UIViewController {
 
         setUpUI()
         setUpGestureRecogizer()
-        setUpData()
-
-        filters = [
-            ("Normal", "No Filter"),
-            ("Chrome", "CIPhotoEffectChrome"),
-            ("Fade", "CIPhotoEffectFade"),
-            ("Instant", "CIPhotoEffectInstant"),
-            ("Mono", "CIPhotoEffectMono"),
-            ("Noir", "CIPhotoEffectNoir"),
-            ("Process", "CIPhotoEffectProcess"),
-            ("Tonal", "CIPhotoEffectTonal"),
-            ("Transfer", "CIPhotoEffectTransfer"),
-            ("Tone", "CILinearToSRGBToneCurve"),
-            ("Linear", "CISRGBToneCurveToLinear")
-        ]
     }
 
     override func viewWillLayoutSubviews() {
@@ -88,11 +77,11 @@ class PhotoModifierController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if selectedLayoutIndex >= 0 {
+        if selectedLayoutIndex > 0 {
             applyLayout(index: selectedLayoutIndex)
         }
 
-        if selectedStickerIndex >= 0 {
+        if selectedStickerIndex > 0 {
             applySticker(index: selectedStickerIndex)
         }
     }
@@ -157,11 +146,6 @@ class PhotoModifierController: UIViewController {
         canvas.addGestureRecognizer(pinchGR)
     }
 
-    private func setUpData() {
-        layoutIcons = storedLayout.storedLayoutList.map { $0.iconImage }
-        stickerIcons = storedSticker.storedLayoutList.map { $0.iconImage }
-    }
-
     @objc
     func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         UIView.animate(withDuration: 0.3) {
@@ -172,17 +156,27 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onStickerSelected(index: Int) {
-        resetCanvas()
         applySticker(index: index)
 
         let curIndexPath = IndexPath(item: index, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedStickerIndex, 0), section: 0)
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
         selectedStickerIndex = index
-        selectedLayoutIndex = -1
+        selectedLayoutIndex = 0
     }
 
     private func onLayoutSelected(index: Int) {
+        if index == 0 {
+            resetCanvas()
+
+            let currentIndex = IndexPath(item: index, section: 0)
+            let previousIndex = IndexPath(item: selectedLayoutIndex, section: 0)
+            selectedLayoutIndex = index
+            updateCellSelectionStatus(curAt: currentIndex, prevAt: previousIndex)
+
+            return
+        }
+
         guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
             print("error when showing layout photo selector")
             return
@@ -205,11 +199,11 @@ class PhotoModifierController: UIViewController {
         selectedFilterIndex = index
         imageView.image = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
 
-        if selectedStickerIndex >= 0 {
-            applySticker(index: selectedStickerIndex)
+        if selectedStickerIndex > 0 {
+            updateStickerWithFilter()
         }
 
-        if selectedLayoutIndex >= 0 {
+        if selectedLayoutIndex > 0 {
             updateLayoutWithFilter()
         }
     }
@@ -231,7 +225,7 @@ class PhotoModifierController: UIViewController {
             return image
         }
 
-        let filterName = filters[filterIndex].1
+        let filterName = storedFilter.getFilterName(filterIndex)
         guard let filter = CIFilter(name: filterName) else {
             print("current photo or filter is nil")
             return UIImage()
@@ -272,15 +266,17 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
 
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
-            optionImage = stickerIcons[indexPath.item]
+            optionImage = storedSticker.getSticker(indexPath.item)?.stickerImage
             photoOptionCell.setSelected(indexPath.item == selectedStickerIndex)
+            labelText = storedSticker.getStickerText(indexPath.item)
         case PhotoOptionType.layout.rawValue:
-            optionImage = layoutIcons[indexPath.item]
+            optionImage = storedLayout.getLayout(indexPath.item)?.iconImage
             photoOptionCell.setSelected(indexPath.item == selectedLayoutIndex)
+            labelText = storedLayout.getLayoutText(indexPath.item)
         case PhotoOptionType.filter.rawValue:
             optionImage = indexPath.item > 0 ? getFilteredImage(originalPhoto, filterIndex: indexPath.item) : shareState?.originalPhoto
             photoOptionCell.setSelected(indexPath.item == selectedFilterIndex)
-            labelText = filters[indexPath.item].0
+            labelText = storedFilter.getFilterText(indexPath.item)
         default:
             return cell
         }
@@ -302,18 +298,17 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
-            return stickerIcons.count
+            return storedSticker.count
         case PhotoOptionType.layout.rawValue:
-            return layoutIcons.count
+            return storedLayout.count
         case PhotoOptionType.filter.rawValue:
-            return filters.count
+            return storedFilter.count
         default:
             return 0
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected item \(indexPath.item)")
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
             onStickerSelected(index: indexPath.item)
@@ -340,7 +335,7 @@ extension PhotoModifierController {
     private func applyLayout(index: Int) {
         resetCanvas()
 
-        guard let selectedImages = selectedImages, let layout = storedLayout.get(index) else {
+        guard let layout = storedLayout.getLayout(index) else {
             return
         }
 
@@ -355,16 +350,14 @@ extension PhotoModifierController {
     }
 
     private func updateLayoutWithFilter() {
-        guard let count = selectedImages?.count else {
-            return
-        }
+        let count = selectedImages.count
 
         for i in 0..<count {
-            guard let subview = addedImageViews[i].subviews.first as? UIImageView,
-                let originalImage = selectedImages?[i] else {
+            guard let subview = addedImageViews[i].subviews.first as? UIImageView else {
                 continue
             }
 
+            let originalImage = selectedImages[i]
             subview.image = getFilteredImage(originalImage, filterIndex: selectedFilterIndex)
         }
     }
@@ -373,7 +366,11 @@ extension PhotoModifierController {
     private func applySticker(index: Int) {
         resetCanvas()
 
-        guard let originalPhoto = shareState?.originalPhoto, let sticker = storedSticker.get(index) else {
+        if index == 0 {
+            return
+        }
+
+        guard let originalPhoto = shareState?.originalPhoto, let sticker = storedSticker.getSticker(index) else {
             return
         }
 
@@ -394,6 +391,15 @@ extension PhotoModifierController {
 
         stickerPanGestureRecognizer?.isEnabled = true
         pinchGestureRecognizer?.isEnabled = true
+    }
+
+    private func updateStickerWithFilter() {
+        guard let imageView = addedImageViews.first?.subviews.first as? UIImageView,
+            let originalPhoto = shareState?.originalPhoto else {
+            return
+        }
+
+        imageView.image = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
     }
 
     // Add sticker image as image subview
@@ -439,8 +445,11 @@ extension PhotoModifierController {
         guard let view = view else {
             return
         }
-        view.layer.borderWidth = width
-        view.layer.borderColor = color.cgColor
+        
+        UIView.animate(withDuration: 0.3) {
+            view.layer.borderWidth = width
+            view.layer.borderColor = color.cgColor
+        }
     }
 
     // Unset border for a view
@@ -448,8 +457,11 @@ extension PhotoModifierController {
         guard let view = view else {
             return
         }
-        view.layer.borderWidth = 0
-        view.layer.borderColor = nil
+
+        UIView.animate(withDuration: 0.3) {
+            view.layer.borderWidth = 0
+            view.layer.borderColor = nil
+        }
     }
 }
 
@@ -477,7 +489,8 @@ extension PhotoModifierController {
             let currentView = getViewWithLocation(superView: superView, location: location)
             var currentSuperview = currentView?.superview
 
-            guard swappedImageView == nil else {
+            guard swappedImageView == nil,
+                imageView.frame.contains(location) else {
                 var swappedSuperview = swappedImageView?.superview
 
                 if currentView === movingImageView {
@@ -487,7 +500,7 @@ extension PhotoModifierController {
                 } else if currentView !== swappedImageView {
                     unsetBorder(view: &swappedSuperview)
                     swappedImageView = currentView
-                    setBorder(view: &currentSuperview, width: 3, color: .blue)
+                    setBorder(view: &currentSuperview, width: 3, color: Constants.themeColor)
                 }
                 return
             }
@@ -495,9 +508,10 @@ extension PhotoModifierController {
             let change = getCalculatedChange(view: movingImageView, displayView: displayView, translation: translation)
 
             if abs(change.x) < tolerance && abs(change.y) < tolerance,
-                currentView !== movingImageView {
+                currentView !== movingImageView,
+                imageView.frame.contains(location) {
                 swappedImageView = currentView
-                setBorder(view: &currentSuperview, width: 3, color: .blue)
+                setBorder(view: &currentSuperview, width: 3, color: Constants.themeColor)
                 movingImageView.alpha = swappingAlpha
             }
 
@@ -582,7 +596,13 @@ extension PhotoModifierController {
                 actualScale = 1.0
             }
 
-            movingImageView.transform = movingImageView.transform.scaledBy(x: actualScale, y: actualScale)
+            movingImageView.frame = CGRect(
+                x: movingImageView.frame.origin.x,
+                y: movingImageView.frame.origin.y,
+                width: movingImageView.frame.width * actualScale,
+                height: movingImageView.frame.height * actualScale
+            )
+            movingImageView.center = displayView.convert(displayView.center, from: displayView.superview)
             sender.scale = 1.0
 
         case .ended:
@@ -604,18 +624,28 @@ extension PhotoModifierController {
 
     // Swap two images from two ImageViews, then scale them to fit
     private func swapImage(view1: UIImageView, view2: UIImageView) {
-        guard let superView1 = view1.superview, let superView2 = view2.superview else {
+        guard let superView1 = view1.superview as? UIImageView,
+            let superView2 = view2.superview as? UIImageView else {
             return
         }
+
         guard let image1 = view1.image, let image2 = view2.image else {
             return
         }
+
         view1.removeFromSuperview()
         view2.removeFromSuperview()
         let newView1 = getFittedImageView(image: image2, frame: superView1.frame)
         let newView2 = getFittedImageView(image: image1, frame: superView2.frame)
         superView1.addSubview(newView1)
         superView2.addSubview(newView2)
+
+        if let index1 = addedImageViews.index(of: superView1),
+            let index2 = addedImageViews.index(of: superView2) {
+            let temp = selectedImages[index1]
+            selectedImages[index1] = selectedImages[index2]
+            selectedImages[index2] = temp
+        }
     }
 
     // Calculate actual change should be applied on the view based on displayView
@@ -647,28 +677,35 @@ extension PhotoModifierController {
 }
 
 extension PhotoModifierController: PhotoModifierDelegate {
+
+    // Get the number of images allowed in this layout
     func getLayoutImageCount(index: Int) -> Int {
-        if let count = storedLayout.get(index)?.count {
+        if let count = storedLayout.getLayout(index)?.count {
             return count - 1
         } else {
             return 0
         }
     }
 
+    // Import images for this layout.
     func importImagesForLayout(images: [UIImage], layoutIndex: Int) {
         guard let originalPhoto = shareState?.originalPhoto else {
             return
         }
 
         selectedImages = images
-        selectedImages?.append(originalPhoto)
+        selectedImages.append(originalPhoto)
         let curIndexPath = IndexPath(item: layoutIndex, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedLayoutIndex, 0), section: 0)
         selectedLayoutIndex = layoutIndex
-        selectedStickerIndex = -1
+        selectedStickerIndex = 0
 
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
         applyLayout(index: layoutIndex)
-        updateLayoutWithFilter()
+
+        // If there is a filter currently selected, update all the photos with filter.
+        if selectedFilterIndex > 0 {
+            updateLayoutWithFilter()
+        }
     }
 }

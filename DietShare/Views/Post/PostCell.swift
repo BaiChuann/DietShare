@@ -48,7 +48,12 @@ class PostCell: UITableViewCell, UICollectionViewDelegateFlowLayout {
         userName.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onNameClicked)))
         userName.isUserInteractionEnabled = true
     }
+<<<<<<< HEAD
     @objc func tap(sender: UITapGestureRecognizer){
+=======
+    @objc func tap(sender: UITapGestureRecognizer) {
+        
+>>>>>>> master
         if let indexPath = topics.indexPathForItem(at: sender.location(in: topics)) {
             self.cellDelegate?.goToTopic(topicsData[indexPath.item])
         } else {
@@ -151,7 +156,12 @@ class PostCell: UITableViewCell, UICollectionViewDelegateFlowLayout {
     @IBAction func onRestaurantClicked(_ sender: Any) {
          self.cellDelegate?.goToRestaurant(post.getRestaurant()!)
     }
+<<<<<<< HEAD
     func getPost() -> Post{
+=======
+    
+    func getPost() -> Post {
+>>>>>>> master
         return post
     }
     func resizeTopics() {
@@ -214,4 +224,3 @@ class FlowLayout: UICollectionViewFlowLayout {
         return layoutAttributes
     }
 }
-

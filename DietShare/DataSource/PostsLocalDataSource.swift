@@ -84,7 +84,7 @@ class PostsLocalDataSource {
             let startTime = CFAbsoluteTimeGetCurrent()
             for post in try database.prepare(postsTable) {
 
-                let postEntry = Post(userId: post[userId], caption: post[caption], time: post[time], photo: UIImage(data:Data(base64Encoded: post[photo], options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!)!, restaurant: post[restaurant], topics: post[topics].getListAsArray())
+                let postEntry = Post(userId: post[userId], caption: post[caption], time: post[time], photo: UIImage(data: Data(base64Encoded: post[photo], options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!)!, restaurant: post[restaurant], topics: post[topics].getListAsArray())
                 posts.append(postEntry)
             }
             

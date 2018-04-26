@@ -211,7 +211,6 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
         self.adjustContentOnScroll()
     }
     
-    
     /// This function is used to adjust the frame of the object as the parent
     /// scroll view did scroll.
     /// How it works:
@@ -240,7 +239,7 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
         for item in self.items {
             let itemRect = item.rect // get the ideal rect (occupied space)
             switch item.appearance {
-            case .view(_):
+            case .view:
                 // Standard UIView are ignored
                 break
             case .scroll(let innerScroll, let insets):
@@ -271,7 +270,7 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
                         innerScrollRect.origin = CGPoint(x: 0, y: innerScrollOffsetY + insets.top)
                         if visibleInnerHeight < visibleRect.size.height {
                             // partially visible when pinned on top
-                            innerScrollRect.size = CGSize(width: w, height: min(visibleInnerHeight,itemVisibleRect.height))
+                            innerScrollRect.size = CGSize(width: w, height: min(visibleInnerHeight, itemVisibleRect.height))
                         } else {
                             // the inner scroll occupy the entire parent scroll's height
                             innerScrollRect.size = itemVisibleRect.size
@@ -294,4 +293,3 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
     }
     
 }
-

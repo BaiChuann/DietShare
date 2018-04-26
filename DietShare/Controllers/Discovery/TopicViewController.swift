@@ -42,11 +42,6 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         initPosts()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
@@ -66,7 +61,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as IndexPath) as! FollowerListCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.followerListCell, for: indexPath as IndexPath) as! ActiveUserList
         if let currentTopic = self.topic {
             let id = topicsModel.getActiveUsers(currentTopic)[indexPath.item]
             if let user = userModel.getUserFromID(id) {
@@ -102,6 +97,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         followButton.layer.borderColor = Constants.themeColor.cgColor
         followButton.layer.borderWidth = 2
         topicImage.layer.cornerRadius = Constants.cornerRadius
+        addShadowToView(view: topicImage, offset: 3, radius: 3)
         
         initFollowButton()
     }
@@ -157,15 +153,13 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             if followButton.tag == FollowStatus.notFollowed.rawValue {
                 followButton.tag = FollowStatus.followed.rawValue
                 followButton.setTitle(Text.unfollow, for: .normal)
-                followButton.setTitleColor(Constants.themeColor, for: .normal)
-                followButton.backgroundColor = UIColor.white
+                followButton.backgroundColor = Constants.themeColor
                 self.topicsModel.addNewFollower(user, topic)
                 let profile = ProfileManager.shared.getProfile(user.getUserId())!
                 profile.addTopic(topic.getID())
             } else {
                 followButton.tag = FollowStatus.notFollowed.rawValue
                 followButton.setTitle(Text.follow, for: .normal)
-                followButton.setTitleColor(UIColor.white, for: .normal)
                 followButton.backgroundColor = Constants.themeColor
                 self.topicsModel.removeFollower(user, topic)
                 let profile = ProfileManager.shared.getProfile(user.getUserId())!
@@ -201,19 +195,7 @@ extension TopicViewController: ScrollDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let yOffset = scrollView.contentOffset.y
-//        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-//        {
-//            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
-//                scrollView.isScrollEnabled = false
-//                postsTable.isScrollEnabled = true
-//            }
-//
-//        }
     }
     func reachTop() {
-//        scrollView.isScrollEnabled = true
-//        postsTable.isScrollEnabled = false
     }
 }
-

@@ -42,7 +42,7 @@ class PostManager {
                 results.append(post)
             }
         }
-        return results.sorted(by: {$0.getTime() > $1.getTime()})
+        return results.sorted(by: { $0.getTime() > $1.getTime() })
     }
     func getLikePosts() -> [Post] {
         var results: [Post] = []
@@ -70,7 +70,7 @@ class PostManager {
                 results.append(post)
             }
         }
-        return results.sorted(by: {$0.getTime() > $1.getTime()})
+        return results.sorted(by: { $0.getTime() > $1.getTime() })
     }
     func getTopicPosts(_ id: String) -> [Post] {
         var results = [Post]()
@@ -85,10 +85,10 @@ class PostManager {
                 }
             }
         }
-        return results.sorted(by: {$0.getTime() > $1.getTime()})
+        return results.sorted(by: { $0.getTime() > $1.getTime() })
     }
     func getUserPosts(_ id: String) -> [Post] {
-        return (posts.filter { $0.getUserId() == id }).sorted(by: {$0.getTime() > $1.getTime()})
+        return (posts.filter { $0.getUserId() == id }).sorted(by: { $0.getTime() > $1.getTime() })
     }
     func postPost(caption: String, time: Date, photo: UIImage, restaurant: String?, topics: [String]?) -> Post {
         let post = Post(userId: currentUser.getUserId(), caption: caption, time: time, photo: photo, restaurant: restaurant, topics: topics)
@@ -123,7 +123,7 @@ class PostManager {
         }
     }
     func deleteLike(_ like: Like) -> Bool {
-        for i in 0...(likes.count-1) {
+        for i in 0...(likes.count - 1) {
             if likes[i].getPostId() == like.getPostId() && likes[i].getUserId() == like.getUserId() {
                 likes.remove(at: i)
                 if let post = getPost(like.getPostId()) {

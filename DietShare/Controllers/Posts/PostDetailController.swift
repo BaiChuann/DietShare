@@ -30,6 +30,18 @@ class PostDetailController: UIViewController {
         setTextField()
     }
     override func viewDidLoad() {
+<<<<<<< HEAD
+=======
+//        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
+        
+        //postCell.translatesAutoresizingMaskIntoConstraints = false
+        //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
+        //postArea.addSubview(postCell)
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = false
+>>>>>>> master
         let cellNibName = UINib(nibName: "CommentCell", bundle: nil)
         commentsTable.register(cellNibName, forCellReuseIdentifier: "commentCell")
         let cellNibName2 = UINib(nibName: "UserCell", bundle: nil)
@@ -46,6 +58,7 @@ class PostDetailController: UIViewController {
         setNavigation()
     }
     
+<<<<<<< HEAD
     func setNavigation() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
@@ -53,11 +66,13 @@ class PostDetailController: UIViewController {
         self.navigationItem.hidesBackButton = false
     }
     
+=======
+>>>>>>> master
     func setSegmentControl() {
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
         let attr = NSDictionary(object: UIFont(name: "Verdana", size: 13.0)!, forKey: NSAttributedStringKey.font as NSCopying)
-        segmentedControl.setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
+        segmentedControl.setTitleTextAttributes(attr as [NSObject : AnyObject], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.lightTextColor], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Constants.themeColor], for: .selected)
         segmentBar.frame.origin.x = segmentedControl.frame.width / 8
@@ -77,8 +92,7 @@ class PostDetailController: UIViewController {
         self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * CGFloat(1 + session * 4)
     }
     @IBAction func onSegmentSelected(_ sender: Any) {
-        switch segmentedControl.selectedSegmentIndex
-        {
+        switch segmentedControl.selectedSegmentIndex {
         case 0:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
@@ -143,7 +157,7 @@ extension PostDetailController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension PostDetailController: PostCellDelegate {
-    func goToTopic(_ id: String){
+    func goToTopic(_ id: String) {
     }
     func goToRestaurant(_ id: String) {
     }
@@ -159,6 +173,10 @@ extension PostDetailController: PostCellDelegate {
     
     func updateCell() {
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> master
 }
 
 extension PostDetailController: CommentDelegate {

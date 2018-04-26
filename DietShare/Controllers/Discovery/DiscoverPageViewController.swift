@@ -64,6 +64,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
             cell.setImage(displayedTopics[indexPath.item].getImageAsUIImage())
             cell.setName(displayedTopics[indexPath.item].getName())
         }
+        cell.layer.masksToBounds = false
         return cell
     }
     
@@ -94,11 +95,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool){
+    override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = false
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,13 +144,11 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
-            print("current topic = nil? \(self.currentTopic == nil)")
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)
         }
     }
-    
     
     /**
      * View-related functions
@@ -159,7 +157,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     // Hide nagivation bar when scrolling
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)

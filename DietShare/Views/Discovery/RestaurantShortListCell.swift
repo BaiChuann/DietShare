@@ -11,6 +11,7 @@ import UIKit
 
 class RestaurantShortListCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageHolder: UIView!
     @IBOutlet weak private var restaurantImage: UIImageView!
     @IBOutlet weak private var restaurantName: UILabel!
 
@@ -19,6 +20,7 @@ class RestaurantShortListCell: UICollectionViewCell {
         restaurantImage.image = croppedImage
         restaurantImage.alpha = CGFloat(Constants.DiscoveryPage.shortListCellAlpha)
         addRoundedRectBackground(restaurantImage, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, UIColor.clear)
+        addShadowToView(view: self.imageHolder, offset: 2, radius: 2)
     }
     
     func setName(_ name: String) {

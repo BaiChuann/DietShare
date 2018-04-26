@@ -28,11 +28,16 @@ class MentionedController: UIViewController, UITableViewDelegate, UITableViewDat
             comments += PostManager.shared.getComments(post.getPostId())
             likes += PostManager.shared.getLikes(post.getPostId())
         }
+<<<<<<< HEAD
         comments.sort(by: {$0.getTime() > $1.getTime()})
         likes.sort(by: {$0.getTime() > $1.getTime()})
         setNavigation()
     }
     func setNavigation() {
+=======
+        comments.sort(by: { $0.getTime() > $1.getTime() })
+        likes.sort(by: { $0.getTime() > $1.getTime() })
+>>>>>>> master
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -52,15 +57,13 @@ class MentionedController: UIViewController, UITableViewDelegate, UITableViewDat
             let post = PostManager.shared.getPost(like.getPostId())!
             cell.setContent(user.getPhotoAsImage(), user.getName(), "", post.getPhoto(), like.getTime())
             likePointer += 1
-        }
-        else if (likePointer >= likes.count) || (comments[commentPointer].getTime() >= likes[likePointer].getTime()) {
+        } else if (likePointer >= likes.count) || (comments[commentPointer].getTime() >= likes[likePointer].getTime()) {
             let comment = comments[commentPointer]
             let user = UserModelManager.shared.getUserFromID(comment.getUserId())!
             let post = PostManager.shared.getPost(comment.getParentId())!
             cell.setContent(user.getPhotoAsImage(), user.getName(), comment.getContent(), post.getPhoto(), comment.getTime())
             commentPointer += 1
-        }
-        else {
+        } else {
             let like = likes[likePointer]
             let user = UserModelManager.shared.getUserFromID(like.getUserId())!
             let post = PostManager.shared.getPost(like.getPostId())!
