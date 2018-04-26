@@ -125,7 +125,7 @@
                             <constraint firstItem="7vB-bw-eUQ" firstAttribute="trailing" secondItem="29f-69-MCM" secondAttribute="trailing" id="BSt-Vr-h6Y"/>
                             <constraint firstItem="fIm-OI-Yej" firstAttribute="trailing" secondItem="29f-69-MCM" secondAttribute="trailing" id="Djw-hf-10o"/>
                             <constraint firstItem="m17-Hx-NHy" firstAttribute="top" secondItem="fIm-OI-Yej" secondAttribute="bottom" id="G3d-Aa-Otb"/>
-                            <constraint firstItem="m17-Hx-NHy" firstAttribute="bottom" secondItem="29f-69-MCM" secondAttribute="bottom" id="JRo-lD-wY4"/>
+                            <constraint firstItem="29f-69-MCM" firstAttribute="bottom" secondItem="m17-Hx-NHy" secondAttribute="bottom" id="M8u-yw-X6n"/>
                             <constraint firstItem="m17-Hx-NHy" firstAttribute="leading" secondItem="29f-69-MCM" secondAttribute="leading" id="NPK-HI-3Gm"/>
                             <constraint firstItem="m17-Hx-NHy" firstAttribute="trailing" secondItem="29f-69-MCM" secondAttribute="trailing" id="VXh-gm-R06"/>
                         </constraints>
@@ -133,6 +133,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1fg-Hg-jxC"/>
                     <connections>
+                        <outlet property="bottomMargin" destination="M8u-yw-X6n" id="l11-Cq-dzq"/>
                         <outlet property="postsArea" destination="m17-Hx-NHy" id="dj2-a5-zfJ"/>
                         <outlet property="searchBar" destination="Lyd-sa-E1d" id="DOe-ru-amr"/>
                         <outlet property="searchDisplayController" destination="pOm-Qs-Kg6" id="tvk-e2-kE2"/>

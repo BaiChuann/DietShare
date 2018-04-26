@@ -79,6 +79,9 @@ class ProfileController: UIViewController {
         self.addChildViewController(postsTableController)
         print(tableView.contentSize.height)
         postsAreaHeight.constant = tableView.contentSize.height
+        if let tabHeight = self.tabBarController?.tabBar.frame.height {
+            postsAreaHeight.constant += tabHeight * 2
+        }
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))

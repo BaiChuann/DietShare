@@ -15,7 +15,7 @@ class HomeController: UIViewController {
     @IBOutlet weak private var segmentBar: UIView!
     @IBOutlet weak private var searchBar: UISearchBar!
     private var postsTable: UITableView!
-
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     override func viewWillAppear(_ animated: Bool) {
         //tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
@@ -53,6 +53,17 @@ class HomeController: UIViewController {
         searchBar.layer.cornerRadius = 10
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        if let tabHeight = tabBarController?.tabBar.frame.height {
+            if UIDevice().userInterfaceIdiom == .phone {
+                if UIScreen.main.nativeBounds.height >= 2436 {
+                    bottomMargin.constant = tabHeight - 35
+                    print("iPhone X")
+                } else {
+                    bottomMargin.constant = tabHeight
+                    print("others")
+                }
+            }
+        }
     }
 
     @IBAction func onSegmentSelected(_ sender: Any) {
