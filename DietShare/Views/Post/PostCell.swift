@@ -94,6 +94,7 @@ class PostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         for topic in tps {
             topicsData.append(topic)
         }
+        self.topics.reloadData()
     }
     func setRestaurant(_ restaurant: String?) {
         guard let res = restaurant else {

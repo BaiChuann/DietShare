@@ -114,8 +114,11 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         let controller = AppStoryboard.profile.instance.instantiateViewController(withIdentifier: "profile") as! ProfileController
         controller.setUserId(id)
         print(parentController.view.frame.height)
-        parentController.navigationController?.pushViewController(controller, animated: true)
-        print("clicked")
+        if id == UserModelManager.shared.getCurrentUser()!.getUserId() {
+            tabBarController?.selectedIndex = 4
+        } else {
+            parentController.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     func goToRestaurant(_ id: String) {
         print("go to restuarnate")
