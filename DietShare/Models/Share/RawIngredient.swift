@@ -8,7 +8,7 @@
 
 import Foundation
 
-// RawIngredient store the basic info of an ingredient
+// Stores the basic info of an ingredient.
 struct RawIngredient {
     private(set) var name: String
     private(set) var nutrition: [NutritionType: Double]

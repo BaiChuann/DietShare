@@ -9,6 +9,9 @@
 import UIKit
 import DropDown
 
+/*
+ A cell for the dropdown list of the ingredient name search.
+ */
 class IngredientDropDownCell: DropDownCell {
     @IBOutlet weak var ingredientIcon: UIImageView!
 }

@@ -9,19 +9,13 @@
 import Foundation
 import UIKit
 
+/*
+ Stores the state that is going to be passed around in all view controllers in Share component.
+ It stores the original photo taken/selected by user, food info for the picture and the modified picture
+ after filter/layout/sticker/text.
+ */
 class ShareState {
-    // use food-example-1 for test purpose, should be nil instead
-    var originalPhoto = UIImage(named: "food-example-1")
-    var food = Food(
-        id: 0,
-        name: "Watermelon",
-        nutrition: [
-            NutritionType.fats: 2,
-            NutritionType.calories: 245,
-            NutritionType.proteins: 90,
-            NutritionType.carbohydrate: 150
-        ],
-        image: UIImage()
-    )
+    var originalPhoto: UIImage?
+    var food: Food?
     var modifiedPhoto: UIImage?
 }

@@ -8,6 +8,9 @@
 import UIKit
 import DKImagePickerController
 
+/*
+ A delegate for PhotoModifierController that allows import images for photo layout.
+ */
 protocol PhotoModifierDelegate: class {
     func importImagesForLayout(images: [UIImage], layoutIndex: Int)
     func getLayoutImageCount(index: Int) -> Int
@@ -17,6 +20,9 @@ enum PhotoOptionType: Int {
     case sticker = 0, layout, filter
 }
 
+/*
+ A view controller for the page where user can modify the photo with sticker/layout/filter.
+ */
 class PhotoModifierController: UIViewController {
     @IBOutlet weak private var segmentControl: UISegmentedControl!
     @IBOutlet weak private var segmentIndicator: UIView!
@@ -590,7 +596,6 @@ extension PhotoModifierController {
                 actualScale = 1.0
             }
 
-            let center = movingImageView.center
             movingImageView.frame = CGRect(
                 x: movingImageView.frame.origin.x,
                 y: movingImageView.frame.origin.y,
@@ -672,6 +677,8 @@ extension PhotoModifierController {
 }
 
 extension PhotoModifierController: PhotoModifierDelegate {
+
+    // Get the number of images allowed in this layout
     func getLayoutImageCount(index: Int) -> Int {
         if let count = storedLayout.getLayout(index)?.count {
             return count - 1
@@ -680,6 +687,7 @@ extension PhotoModifierController: PhotoModifierDelegate {
         }
     }
 
+    // Import images for this layout.
     func importImagesForLayout(images: [UIImage], layoutIndex: Int) {
         guard let originalPhoto = shareState?.originalPhoto else {
             return
@@ -695,6 +703,7 @@ extension PhotoModifierController: PhotoModifierDelegate {
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
         applyLayout(index: layoutIndex)
 
+        // If there is a filter currently selected, update all the photos with filter.
         if selectedFilterIndex > 0 {
             updateLayoutWithFilter()
         }

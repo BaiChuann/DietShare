@@ -80,11 +80,11 @@ class SignInController: UIViewController {
         }
     }
 
-    func setUpInputDelegate() {
+    private func setUpInputDelegate() {
         inputGroup.forEach { $0.delegate = self }
     }
 
-    func signIn() {
+    private func signIn() {
         if let tabPageVC = storyboard?.instantiateViewController(withIdentifier: "TabPage") {
             show(tabPageVC, sender: self)
         }

@@ -13,6 +13,9 @@ enum IngredientUnit {
     case sBowl, mBowl, mPlate, lPlate
 }
 
+/*
+ Stores the info of a ingredient added by user.
+ */
 struct Ingredient {
     var name: String {
         return rawInfo.name

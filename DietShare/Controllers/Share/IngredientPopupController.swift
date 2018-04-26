@@ -14,6 +14,9 @@ enum IngredientInfoType: Int {
     case name = 0, quantity, uint
 }
 
+/*
+ A view controller for the popup where user can add ingredients for custom food.
+ */
 class IngredientPopupController: UIViewController {
     @IBOutlet private var inputGroup: [UITextField]!
     @IBOutlet private var unitButtonGroup: [UIButton]!
@@ -68,6 +71,9 @@ class IngredientPopupController: UIViewController {
         }
     }
 
+    /*
+     Add ingredient if all fields are not empty, show warning messages otherwise.
+     */
     @IBAction func onSaveButtonPressed(_ sender: Any) {
         for input in inputGroup {
             guard let text = input.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
@@ -127,6 +133,7 @@ class IngredientPopupController: UIViewController {
         isShowingTip = !isShowingTip
     }
 
+    // Fetch ingredients data from plist and stores as RawIngredient list. (Real situation would be fetching from database)
     private func fetchIngredientDataList() {
         let INGREDIENT_LIST_PATH = Bundle.main.path(forResource: "Ingredient_list", ofType: "plist")
         let INGREDIENT_LIST_KEY_NAME = "name"

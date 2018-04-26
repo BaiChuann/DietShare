@@ -8,6 +8,9 @@
 
 import UIKit
 
+/*
+ A cell that displays the options to modify a photo, including previews of sticker, layout and filter.
+ */
 class PhotoOptionCell: UICollectionViewCell {
     @IBOutlet weak private var optionImage: UIImageView!
     @IBOutlet weak private var label: UILabel!
@@ -38,6 +41,9 @@ class PhotoOptionCell: UICollectionViewCell {
         optionImage.image = nil
     }
 
+    /*
+     Show a check mark if the cell is selected.
+     */
     func setSelected(_ selected: Bool) {
         if selected {
             optionImage.alpha = 0.5
