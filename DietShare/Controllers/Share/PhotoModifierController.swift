@@ -303,7 +303,6 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected item \(indexPath.item)")
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
             onStickerSelected(index: indexPath.item)
@@ -599,12 +598,7 @@ extension PhotoModifierController {
                 height: movingImageView.frame.height * actualScale
             )
             movingImageView.center = displayView.convert(displayView.center, from: displayView.superview)
-
-//            movingImageView.transform = movingImageView.transform.scaledBy(x: actualScale, y: actualScale)
             sender.scale = 1.0
-
-            print("moving image view center: \(movingImageView.center)")
-            print("display view center: \(displayView.center)")
 
         case .ended:
             movingImageView = nil

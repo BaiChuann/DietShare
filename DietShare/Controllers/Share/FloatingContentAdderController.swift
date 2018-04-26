@@ -44,8 +44,6 @@ class FloatingContentAdderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        shareState = ShareState()
-
         setUpUI()
         fonts = [
             "Verdana",
@@ -139,11 +137,6 @@ class FloatingContentAdderController: UIViewController {
 
     private func addTextLabelView(_ textInfo: FloatingTextInfo) {
         textInfo.label.isUserInteractionEnabled = true
-
-        // Enable to show the border of label, for dubugging purpose
-//        textInfo.label.layer.borderColor = UIColor.red.cgColor
-//        textInfo.label.layer.borderWidth = 2
-        
         textInfo.label.text = textInfo.text
         textInfo.label.textColor = textInfo.color
         textInfo.label.font = textInfo.font.withSize(textInfo.size)
