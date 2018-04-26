@@ -150,14 +150,13 @@ class ShortListsViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    
     /**
      * View-related functions
      */
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)
@@ -177,8 +176,8 @@ extension ShortListsViewController: StackContainable {
     }
     
     public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
-        let _ = self.view
-        return .scroll(self.scrollView, insets: UIEdgeInsetsMake(50, 0, 50, 0))
+        _ = self.view
+        return .scroll(self.scrollView, insets: UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0))
     }
 }
 
@@ -186,8 +185,7 @@ extension ShortListsViewController: StackContainable {
 extension ShortListsViewController: ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-        {
+        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0) {
             //change the following line accordingly.
             if yOffset >= scrollView.contentSize.height - (postsTableController?.view.frame.height)! {
                 scrollView.isScrollEnabled = false

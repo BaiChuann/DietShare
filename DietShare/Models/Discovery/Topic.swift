@@ -16,7 +16,7 @@ import UIKit
 class Topic: ReadOnlyTopic {
     
     private let id: String
-    private let name: String
+    private var name: String
     private let imagePath: String
     private let description: String
     private var followers: StringList
@@ -25,7 +25,7 @@ class Topic: ReadOnlyTopic {
     // TODO - active user logic -> to be added when PostModelManager is available
     private var activeUsers: StringList
     private var popularity: Int {
-        get{
+        get {
             return self.posts.getListAsArray().count
         }
     }
@@ -58,6 +58,9 @@ class Topic: ReadOnlyTopic {
     func getName() -> String {
         return self.name
     }
+    func setName(_ name: String) {
+        self.name = name
+    }
     func getDescription() -> String {
         return self.description
     }
@@ -67,7 +70,7 @@ class Topic: ReadOnlyTopic {
         if let uiImage = UIImage(named: self.imagePath) {
             return uiImage
         }
-        return UIImage(named: Constants.voidBackgroundImagePath)!
+        return #imageLiteral(resourceName: "void-bg")
     }
     func getImagePath() -> String {
         return self.imagePath
@@ -96,17 +99,17 @@ class Topic: ReadOnlyTopic {
     
     func removeFollower(_ follower: User) {
         let oldList = self.followers.getListAsSet()
-        self.followers.setList(oldList.filter {$0 != follower.getUserId()})
+        self.followers.setList(oldList.filter { $0 != follower.getUserId() })
         print("user \(follower.getUserId()) just unfollowed topic: \(id)! ")
         
     }
     
     // A topic is "<" than another one if it is higher in terms of popularity
-    static func <(lhs: Topic, rhs: Topic) -> Bool {
+    static func < (lhs: Topic, rhs: Topic) -> Bool {
         return lhs.popularity > rhs.popularity
     }
     
-    static func ==(lhs: Topic, rhs: Topic) -> Bool {
+    static func == (lhs: Topic, rhs: Topic) -> Bool {
         return lhs.id == rhs.id
                 && lhs.name == rhs.name
                 && lhs.popularity == rhs.popularity
@@ -114,5 +117,3 @@ class Topic: ReadOnlyTopic {
                 && lhs.followers == rhs.followers
     }
 }
-
-

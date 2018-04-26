@@ -27,7 +27,7 @@ class StringList: Equatable, Codable {
     
     convenience init(_ type: ListType) {
         let list = Set<String>()
-        self.init(type,list)
+        self.init(type, list)
     }
     
     public func getType() -> ListType {

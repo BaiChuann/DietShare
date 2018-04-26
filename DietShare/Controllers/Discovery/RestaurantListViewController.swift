@@ -63,6 +63,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             }
         }
         
+        addShadowToView(view: cell, offset: 2, radius: 2)
+        
         return cell
     }
     
@@ -87,10 +89,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.title = Text.restaurantListTitle
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.restaurantListView.reloadData()
         requestCoreLocationPermission()
     }
@@ -110,10 +113,11 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         
         cuisineDropDown.anchorView = restaurantListView
         var allCuisineTypes = [String]()
-        RestaurantType.cases().forEach {allCuisineTypes.append($0.rawValue)}
+        RestaurantType.cases().forEach { allCuisineTypes.append($0.rawValue) }
         assert(!allCuisineTypes.isEmpty)
         cuisineDropDown.dataSource = allCuisineTypes
         cuisineDropDown.width = self.view.frame.width
+        cuisineDropDown.selectionBackgroundColor = UIColor.clear
         DropDown.appearance().backgroundColor = UIColor.white
         
         cuisineDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
@@ -138,17 +142,18 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
                 }
                 if self.currentTypeFilters.contains(typeSelected) {
                     cell.optionLabel.textColor = Constants.themeColor
-                    cell.tick.isHidden = false
+                    cell.backgroundColor = UIColor.clear
+                    cell.tick.image = #imageLiteral(resourceName: "ticked")
                 } else {
-                    cell.optionLabel.textColor = UIColor.gray
-                    cell.tick.isHidden = true
+                    cell.optionLabel.textColor = UIColor.darkGray
+                    cell.backgroundColor = UIColor.clear
+                    cell.tick.image = #imageLiteral(resourceName: "circle")
                 }
-            };
+            }
         }
         
         cuisineDropDown.dismissMode = .onTap
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
@@ -157,7 +162,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         if let dest = segue.destination as? MapViewController {
             
             var restaurants = [Restaurant]()
-            restaurantModel.getAllRestaurants().forEach { restaurants.append(Restaurant($0))}
+            restaurantModel.getAllRestaurants().forEach { restaurants.append(Restaurant($0)) }
             dest.setRestaurants(restaurants)
             
         }
@@ -227,8 +232,8 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //TODO - check if the following two lines break the location manager. if not, add them
-//        locationManager.delegate = nil
-//        locationManager.stopUpdatingLocation()
+        locationManager.delegate = nil
+        locationManager.stopUpdatingLocation()
         currentLocation = manager.location
         self.restaurantListView.reloadData()
     }

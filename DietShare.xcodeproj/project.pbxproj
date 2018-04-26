@@ -109,7 +109,7 @@
 		B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA170206A444300BC8005 /* TopicsModelManager.swift */; };
 		B5CBA173206A79DC00BC8005 /* TopicFullListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */; };
 		B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */; };
-		B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */; };
+		B5CBA179206A82FC00BC8005 /* ActiveUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA178206A82FC00BC8005 /* ActiveUserList.swift */; };
 		B5E7ABAC2074A7A2003FAB99 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1012068D1A700BC8005 /* Topic.swift */; };
 		B5E7ABAD2074A7AF003FAB99 /* ReadOnlyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA1032068D40F00BC8005 /* ReadOnlyTopic.swift */; };
 		B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -279,7 +279,7 @@
 		B5CBA170206A444300BC8005 /* TopicsModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsModelManager.swift; sourceTree = "<group>"; };
 		B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFullListCell.swift; sourceTree = "<group>"; };
 		B5CBA174206A7A7C00BC8005 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
-		B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCell.swift; sourceTree = "<group>"; };
+		B5CBA178206A82FC00BC8005 /* ActiveUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUserList.swift; sourceTree = "<group>"; };
 		B5EE1DA72083BBED00098E9B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B5EE1DA92083BC0F00098E9B /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
 		B5EE1DAF2084F57F00098E9B /* RestaurantFullListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantFullListCell.xib; sourceTree = "<group>"; };
@@ -513,7 +513,7 @@
 			children = (
 				B5CBA16E206A3F5600BC8005 /* TopicShortListCell.swift */,
 				B5CBA172206A79DC00BC8005 /* TopicFullListCell.swift */,
-				B5CBA178206A82FC00BC8005 /* FollowerListCell.swift */,
+				B5CBA178206A82FC00BC8005 /* ActiveUserList.swift */,
 				B5488AED2073AFA800F0E3E8 /* RestaurantShortListCell.swift */,
 				B5388AB6207496030062E6E9 /* RestaurantFullListCell.swift */,
 				B5671A2220828477007DBF20 /* CuisineTypeCell.swift */,
@@ -713,6 +713,7 @@
 				9E2DCDFC5617F3908C4472DC /* [CP] Embed Pods Frameworks */,
 				97BF5551646DD40B3F669993 /* [CP] Copy Pods Resources */,
 				B504C2C9206BD1BA007F8956 /* Embed Frameworks */,
+				B5AE5EEC2091146B00A32BF1 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -958,6 +959,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DietShare/Pods-DietShare-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B5AE5EEC2091146B00A32BF1 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		F272BF58205EC43A00EBF4A8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -990,7 +1005,7 @@
 				3BDA29CC207FC20A00E99DE3 /* StoredLayout.swift in Sources */,
 				3BDA29DE207FC24A00E99DE3 /* PhotoModifierController.swift in Sources */,
 				B504C2A6206BBB08007F8956 /* TopicsDataSource.swift in Sources */,
-				B5CBA179206A82FC00BC8005 /* FollowerListCell.swift in Sources */,
+				B5CBA179206A82FC00BC8005 /* ActiveUserList.swift in Sources */,
 				B5CBA171206A444300BC8005 /* TopicsModelManager.swift in Sources */,
 				3B424B4220810B0F00AB90BE /* EditFieldController.swift in Sources */,
 				3BDA29E0207FC24A00E99DE3 /* ShareTabController.swift in Sources */,
@@ -1259,11 +1274,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1282,11 +1297,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUP9SH4Z74;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

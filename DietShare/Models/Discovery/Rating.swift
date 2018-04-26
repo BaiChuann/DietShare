@@ -18,7 +18,6 @@ class Rating: Codable, Hashable {
     private let restaurantID: String
     private var score: RatingScore
     
-    
     var hashValue: Int {
         return id.hashValue
     }
