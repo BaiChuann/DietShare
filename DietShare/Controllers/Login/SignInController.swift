@@ -85,9 +85,8 @@ class SignInController: UIViewController {
     }
 
     private func signIn() {
-        if let tabPageVC = storyboard?.instantiateViewController(withIdentifier: "TabPage") {
-            show(tabPageVC, sender: self)
-        }
+        let tabPageVC = AppStoryboard.main.instance.instantiateViewController(withIdentifier: "TabPage")
+        show(tabPageVC, sender: self)
     }
 }
 

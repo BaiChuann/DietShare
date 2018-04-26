@@ -23,6 +23,7 @@ func addInputBorder(for inputs: [UITextField], withColor color: UIColor) {
     }
 }
 
+// Returns UIColor from hex string
 func hexToUIColor(hex: String) -> UIColor {
     var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
@@ -184,6 +185,7 @@ extension Data {
 }
 
 extension UIColor {
+    // Compares with another color and returns the result
     func equals(_ rhs: UIColor) -> Bool {
         var lhsR: CGFloat = 0
         var lhsG: CGFloat = 0
@@ -205,6 +207,7 @@ extension UIColor {
 }
 
 extension UIImage {
+    // Get a tinted image with color
     func tinted(color: UIColor) -> UIImage {
         UIGraphicsBeginImageContext(self.size)
         guard let context = UIGraphicsGetCurrentContext() else {
@@ -215,11 +218,8 @@ extension UIImage {
             return self
         }
 
-        // flip the image
         context.scaleBy(x: 1.0, y: -1.0)
         context.translateBy(x: 0.0, y: -size.height)
-
-        // multiply blend mode
         context.setBlendMode(.multiply)
 
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
@@ -227,7 +227,6 @@ extension UIImage {
         color.setFill()
         context.fill(rect)
 
-        // create uiimage
         guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
             return self
         }
