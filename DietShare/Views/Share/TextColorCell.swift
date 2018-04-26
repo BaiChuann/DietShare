@@ -8,6 +8,9 @@
 
 import UIKit
 
+/*
+ A cell that displays the color options of floating text.
+ */
 class TextColorCell: UICollectionViewCell {
     @IBOutlet weak private var colorView: TextColorCell!
 
@@ -21,6 +24,9 @@ class TextColorCell: UICollectionViewCell {
         }
     }
 
+    /*
+     Add border color only to white colors, as the background color of the view is white.
+     */
     func setColor(_ color: UIColor) {
         colorView.backgroundColor = color
 
@@ -30,6 +36,9 @@ class TextColorCell: UICollectionViewCell {
         }
     }
 
+    /*
+     Update selection status with animation.
+     */
     func setSelected(_ isSelected: Bool) {
         if isSelected == self.isSelected {
             return

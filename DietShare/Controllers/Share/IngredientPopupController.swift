@@ -8,16 +8,22 @@
 import UIKit
 import DropDown
 import SwiftMessages
+import AMPopTip
 
 enum IngredientInfoType: Int {
     case name = 0, quantity, uint
 }
 
+/*
+ A view controller for the popup where user can add ingredients for custom food.
+ */
 class IngredientPopupController: UIViewController {
     @IBOutlet private var inputGroup: [UITextField]!
     @IBOutlet private var unitButtonGroup: [UIButton]!
     @IBOutlet weak private var saveButton: UIButton!
-
+    @IBOutlet weak private var infoButton: UIButton!
+    @IBOutlet weak private var inputsView: UIStackView!
+    
     weak var delegate: FoodAdderDelegate?
     private var currentSelectedUnit = 0
     private let ingredientDropDown = DropDown()
@@ -26,6 +32,8 @@ class IngredientPopupController: UIViewController {
     private var image = UIImage(named: "ingredient-example")
     private var selectedIngredient: RawIngredient?
     private var ingredientList = [RawIngredient]()
+    private let popTip = PopTip()
+    private var isShowingTip = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +71,9 @@ class IngredientPopupController: UIViewController {
         }
     }
 
+    /*
+     Add ingredient if all fields are not empty, show warning messages otherwise.
+     */
     @IBAction func onSaveButtonPressed(_ sender: Any) {
         for input in inputGroup {
             guard let text = input.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
@@ -83,7 +94,7 @@ class IngredientPopupController: UIViewController {
             let warningView = MessageView.viewFromNib(layout: .cardView)
             warningView.configureTheme(.warning)
             warningView.configureDropShadow()
-            warningView.configureContent(title: "Failed to save", body: "Please provide all information for the ingredient.")
+            warningView.configureContent(title: "Failed to save", body: "Please provide all information for the ingredient. For ingredients, please choose from our list.")
             warningView.button?.isHidden = true
             warningView.configureBackgroundView(sideMargin: 12)
             SwiftMessages.show(view: warningView)
@@ -96,7 +107,33 @@ class IngredientPopupController: UIViewController {
     @IBAction func onCloseButtonPressed(_ sender: Any) {
         dismissPopUp()
     }
+    
+    @IBAction func onInfoButtonPressed(_ sender: Any) {
+        let spacing: CGFloat = 10
+        let frame = CGRect(
+            x: infoButton.frame.maxX,
+            y: inputsView.frame.origin.x + infoButton.frame.height * 2 + spacing,
+            width: infoButton.frame.width,
+            height: infoButton.frame.height
+        )
+        popTip.edgeMargin = spacing
 
+        if isShowingTip {
+            popTip.hide()
+        } else {
+            popTip.show(
+                text: "Currently only ingredients from the dropdown list are supported.",
+                direction: .down,
+                maxWidth: 200,
+                in: view,
+                from: frame
+            )
+        }
+
+        isShowingTip = !isShowingTip
+    }
+
+    // Fetch ingredients data from plist and stores as RawIngredient list. (Real situation would be fetching from database)
     private func fetchIngredientDataList() {
         let INGREDIENT_LIST_PATH = Bundle.main.path(forResource: "Ingredient_list", ofType: "plist")
         let INGREDIENT_LIST_KEY_NAME = "name"
@@ -106,9 +143,7 @@ class IngredientPopupController: UIViewController {
         let INGREDIENT_LIST_KEY_FAT = "fat"
         
         if let path = INGREDIENT_LIST_PATH, let data = NSArray(contentsOf: URL(fileURLWithPath: path)) {
-            print("loading ingredient list")
             for entry in data {
-                print("current entry: \(entry)")
                 guard let dict = entry as? [String: AnyObject] else {
                     continue
                 }
@@ -156,6 +191,15 @@ class IngredientPopupController: UIViewController {
         saveButton.layer.cornerRadius = Constants.cornerRadius
         saveButton.backgroundColor = Constants.themeColor
         saveButton.setTitleColor(UIColor.white, for: .normal)
+
+        popTip.bubbleColor = Constants.themeColor
+        popTip.textColor = UIColor.white
+        popTip.textAlignment = .center
+        popTip.dismissHandler = { _ in
+            self.isShowingTip = false
+        }
+        popTip.entranceAnimation = .fadeIn
+        popTip.exitAnimation = .fadeOut
     }
 
     private func setUpIngredientDropDown() {

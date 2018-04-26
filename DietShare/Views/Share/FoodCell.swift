@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ A cell that serves the collection view which displays the food recognition results of a picture.
+ It contains a image and name of the food.
+ */
 class FoodCell: UICollectionViewCell {
     @IBOutlet weak private var background: UIView!
     @IBOutlet weak private var foodImage: UIImageView!
@@ -32,9 +36,5 @@ class FoodCell: UICollectionViewCell {
 
     func setFoodName(_ name: String) {
         foodName.text = name
-    }
-
-    func setSelected() {
-        background.backgroundColor = UIColor.black
     }
 }

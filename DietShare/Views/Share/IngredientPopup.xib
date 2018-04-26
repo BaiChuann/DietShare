@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
-        </array>
-        <array key="VerdanaBold.ttf">
-            <string>Verdana-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IngredientPopupController" customModule="DietShare" customModuleProvider="target">
             <connections>
+                <outlet property="infoButton" destination="0x4-Dm-xa0" id="HBr-UG-V1a"/>
+                <outlet property="inputsView" destination="aEN-Uv-BJQ" id="a9U-Kt-aND"/>
                 <outlet property="saveButton" destination="7yN-eV-nOu" id="ghQ-Gm-zsg"/>
                 <outlet property="view" destination="iN0-l3-epB" id="h8b-eI-ica"/>
                 <outletCollection property="unitButtonGroup" destination="l8u-x8-LEl" collectionClass="NSMutableArray" id="1Kc-ni-aBn"/>
@@ -62,7 +56,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ucf-7L-UlC">
-                                            <rect key="frame" x="54" y="0.0" width="274" height="24"/>
+                                            <rect key="frame" x="54" y="0.0" width="244" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="WLK-Vs-foN"/>
                                             </constraints>
@@ -70,7 +64,20 @@
                                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0x4-Dm-xa0">
+                                            <rect key="frame" x="308" y="0.0" width="20" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="xFG-OG-ZBu"/>
+                                            </constraints>
+                                            <state key="normal" image="info"/>
+                                            <connections>
+                                                <action selector="onInfoButtonPressed:" destination="-1" eventType="touchUpInside" id="AEP-mD-XMD"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0x4-Dm-xa0" firstAttribute="leading" secondItem="ucf-7L-UlC" secondAttribute="trailing" constant="10" id="NzL-mg-iij"/>
+                                    </constraints>
                                 </stackView>
                                 <stackView opaque="NO" tag="1" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bko-Hx-Uvx">
                                     <rect key="frame" x="0.0" y="54" width="328" height="24"/>
@@ -210,6 +217,7 @@
     </objects>
     <resources>
         <image name="close" width="15" height="15"/>
+        <image name="info" width="20" height="20"/>
         <image name="l-plate" width="104" height="77"/>
         <image name="m-bowl" width="56" height="56"/>
         <image name="m-plate" width="63" height="63"/>

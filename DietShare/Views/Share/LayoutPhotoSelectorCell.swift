@@ -9,6 +9,10 @@
 import UIKit
 import DKImagePickerController
 
+/*
+ A cell that serves the DKImagePicker, which is used in the page to select multiple images
+ from library to form a collage.
+ */
 class LayoutPhotoSelectorCell: DKAssetGroupDetailBaseCell {
     private let thumbnailImageView = UIImageView()
     private let checkView = UIImageView(image: UIImage(named: "checked"))

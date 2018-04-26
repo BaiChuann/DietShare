@@ -13,19 +13,6 @@ enum SignUpInputType: Int {
     case username = 0, email, password
 }
 
-enum ValidationErrors: String, Error {
-    typealias RawValue = String
-
-    case usernameInvalid = "Should be between 4-30 characters"
-    case emailInvalid = "Invalid"
-    case passwordDigitInvalid = "Should contain at least one number"
-    case passwordLowerCaseInvalid = "Should contain at least one lowercase letter"
-    case passwordUpperCaseInvalid = "Should contain at least one uppercase letter"
-    case passwordLengthInvalid = "Should contain at least 8 characters"
-
-    var message: String { return self.rawValue }
-}
-
 class SignUpController: UIViewController {
     @IBOutlet private var inputGroup: [UITextField]!
     @IBOutlet private var inputLabelGroup: [UILabel]!

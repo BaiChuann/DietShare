@@ -9,6 +9,9 @@
 import UIKit
 import LinearProgressView
 
+/*
+ NutritionSticker is the view that displays nutrition information on the picture.
+ */
 class NutritionSticker: UIView {
     @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var foodName: UILabel!
@@ -43,6 +46,10 @@ class NutritionSticker: UIView {
         contentView.layer.cornerRadius = Constants.cornerRadius
     }
 
+    /*
+     Check whether the nutrition sticker has already been initialised with data, so that the data won't
+     be set everytime when view appears
+     */
     func isDataInitialised() -> Bool {
         return hasData
     }
@@ -69,6 +76,9 @@ class NutritionSticker: UIView {
         hasData = true
     }
 
+    /*
+     Recalculates the size of the sticker if the text is too long.
+     */
     func getSizeDelta() -> CGSize {
         guard let text = foodName.text else {
             return .zero
@@ -87,9 +97,13 @@ class NutritionSticker: UIView {
         } else if labelTextSize.width > foodName.frame.width {
             newSize = CGSize(width: labelTextSize.width + 1, height: originalSize.height)
         }
+
         return CGSize(width: newSize.width - foodName.frame.width, height: newSize.height - originalSize.height)
     }
 
+    /*
+     Update the layout constraint to fit different lengths of food names.
+     */
     func updateLabelSize(with size: CGSize) {
         nameHeightConstraint.constant = nameHeightConstraint.constant + size.height
     }
