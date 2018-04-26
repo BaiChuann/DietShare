@@ -7,8 +7,13 @@
 //
 
 import UIKit
-
-class PostsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostCellDelegate {
+/**
+ * overview
+ * This class is the viewController of a posts table.
+ * it provide functions which allows the user interaction with post.
+ * used as a child controller in home page, discover page, restaurant page, topic page, profile page.
+ */
+class PostsTableController: UIViewController {
     private var dataSource: [Post] = []
     private var filteredData: [Post] = []
     @IBOutlet weak private var postsTable: UITableView!
@@ -17,9 +22,6 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     private var textFieldController: TextFieldController!
     private var scrollDelegate: ScrollDelegate?
     private var commentingPost: String?
-    
-    override func viewDidAppear(_ animated: Bool) {
-    }
 
     override func viewDidLoad() {
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
@@ -56,7 +58,6 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
             let indexPath = IndexPath(row: 0, section: 0)
             postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
         }
-        
     }
     func getTrendingPosts() {
         dataSource = postManager.getTrendingPosts()
@@ -84,8 +85,18 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
     func getTable() -> UITableView {
         return postsTable
     }
+    func search(_ text: String) {
+        filteredData = text.isEmpty ? dataSource :dataSource.filter { $0.getCaption().lowercased().contains(text.lowercased()) || (UserModelManager.shared.getUserFromID($0.getUserId())!.getName().lowercased().contains(text.lowercased())) }
+        postsTable.reloadData()
+    }
+    func didScroll() {
+        textFieldController.view.removeFromSuperview()
+        textFieldController.removeFromParentViewController()
+    }
+}
+
+extension PostsTableController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(filteredData.count)
         return filteredData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,27 +109,26 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         }
         cell.setContent(userPhoto: user.getPhotoAsImage(), userName: user.getName(), post)
         cell.setDelegate(self)
-        
-        print("return cell")
         return cell
     }
-    
+}
+
+extension PostsTableController: PostCellDelegate {
     func goToDetail(_ post: String, _ session: Int) {
         let controller = Bundle.main.loadNibNamed("PostDetail", owner: nil, options: nil)?.first as! PostDetailController
-        print(parentController.view.frame.height)
         controller.setPost(post, session)
         parentController.navigationController?.pushViewController(controller, animated: true)
-        print("clicked")
     }
     func goToUser(_ id: String) {
         let controller = AppStoryboard.profile.instance.instantiateViewController(withIdentifier: "profile") as! ProfileController
         controller.setUserId(id)
-        print(parentController.view.frame.height)
-        parentController.navigationController?.pushViewController(controller, animated: true)
-        print("clicked")
+        if id == UserModelManager.shared.getCurrentUser()!.getUserId() {
+            tabBarController?.selectedIndex = 4
+        } else {
+            parentController.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     func goToRestaurant(_ id: String) {
-        print("go to restuarnate")
         let controller = AppStoryboard.discovery.instance.instantiateViewController(withIdentifier: "restaurant") as! RestaurantViewController
         controller.setRestaurant(RestaurantsModelManager.shared.getRestaurantFromID(id))
         parentController.navigationController?.pushViewController(controller, animated: true)
@@ -132,8 +142,7 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         postsTable.reloadData()
     }
     func onCommentClicked(_ postId: String) {
-        print("clicked")
-        commentingPost = postId 
+        commentingPost = postId
         let textHeight = CGFloat(40)
         let width = parentController.view.frame.width
         let height = parentController.view.frame.height
@@ -141,7 +150,6 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         if let tabBar = parentController.tabBarController?.tabBar {
             if !tabBar.isHidden {
                 tabHeight = tabBar.frame.height
-                print(tabBar.frame.origin)
             }
         }
         parentController.addChildViewController(textFieldController)
@@ -151,19 +159,10 @@ class PostsTableController: UIViewController, UITableViewDataSource, UITableView
         parentController.view.addSubview(textFieldController.view)
         textFieldController.startEditing()
     }
-    func search(_ text: String) {
-        filteredData = text.isEmpty ? dataSource :dataSource.filter { $0.getCaption().lowercased().contains(text.lowercased()) || (UserModelManager.shared.getUserFromID($0.getUserId())!.getName().lowercased().contains(text.lowercased())) }
-        postsTable.reloadData()
-    }
-    func didScroll() {
-        textFieldController.view.removeFromSuperview()
-        textFieldController.removeFromParentViewController()
-    }
 }
 
 extension PostsTableController: CommentDelegate {
     func onComment(_ text: String) {
-        print(text)
         textFieldController.view.removeFromSuperview()
         textFieldController.removeFromParentViewController()
         postManager.postComment(Comment(userId: UserModelManager.shared.getCurrentUser()!.getUserId(), parentId: commentingPost!, content: text, time: Date()))

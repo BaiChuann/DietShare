@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class display the comment or like on the current user's posts as a table cell.
+ * used in mentioned page.
+ */
 class MentionedCell: UITableViewCell {
-    
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var comment: UILabel!

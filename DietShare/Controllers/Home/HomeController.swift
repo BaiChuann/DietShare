@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class is the view controller of the home page (the first tab).
+ */
 class HomeController: UIViewController {
     private var postsTableController: PostsTableController!
     @IBOutlet weak private var postsArea: UIView!
@@ -15,9 +18,8 @@ class HomeController: UIViewController {
     @IBOutlet weak private var segmentBar: UIView!
     @IBOutlet weak private var searchBar: UISearchBar!
     private var postsTable: UITableView!
-
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     override func viewWillAppear(_ animated: Bool) {
-        //tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -27,19 +29,29 @@ class HomeController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
         postsTableController.setScrollDelegate(self)
         postsTableController.getFollowingPosts()
         self.addChildViewController(postsTableController)
-        
-//        postsTable = postsTableController.getTable()
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
+        setTopBars()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        if let tabHeight = tabBarController?.tabBar.frame.height {
+            if UIDevice().userInterfaceIdiom == .phone {
+                if UIScreen.main.nativeBounds.height >= 2436 {
+                    bottomMargin.constant = tabHeight - 35
+                } else {
+                    bottomMargin.constant = tabHeight
+                }
+            }
+        }
+    }
+    func setTopBars() {
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
         let attr = NSDictionary(object: UIFont(name: "Verdana", size: 13.0)!, forKey: NSAttributedStringKey.font as NSCopying)
@@ -51,32 +63,21 @@ class HomeController: UIViewController {
         searchBar.layer.borderWidth = 1.0
         searchBar.layer.borderColor = Constants.lightTextColor.cgColor
         searchBar.layer.cornerRadius = 10
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
-
     @IBAction func onSegmentSelected(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8
             }
-
             postsTableController.getFollowingPosts()
             searchBar.resignFirstResponder()
-            //let indexPath = IndexPath(row: 0, section: 0)
-            //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
-
         case 1:
             UIView.animate(withDuration: 0.3) {
                 self.segmentBar.frame.origin.x = self.segmentedControl.frame.width / 8 * 5
             }
-            
             postsTableController.getLikePosts()
             searchBar.resignFirstResponder()
-            //let indexPath = IndexPath(row: 0, section: 0)
-            //postsTable.scrollToRow(at: indexPath, at: .top, animated: false)
-            
         default:
             break
         }

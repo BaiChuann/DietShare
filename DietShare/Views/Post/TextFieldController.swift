@@ -7,8 +7,12 @@
 //
 
 import UIKit
-
-class TextFieldController: UIViewController, UITextFieldDelegate {
+/**
+ * overview
+ * This class represent a comment bar.
+ * used when user tap the comment button of any post as well as in post detail page.
+ */
+class TextFieldController: UIViewController {
     
     @IBOutlet weak private var sendButton: UIButton!
     @IBOutlet weak private var textField: UITextField!
@@ -25,8 +29,6 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
             view.frame.width, height:
             0.5)
         view.addSubview(topBorder)
-//        view.layer.borderWidth = 0.5
-//        view.layer.borderColor = Constants.darkTextColor.cgColor
         sendButton.layer.cornerRadius = 5
         sendButton.layer.borderWidth = 1
         sendButton.layer.borderColor = Constants.lightTextColor.cgColor
@@ -49,6 +51,26 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
     func setDelegate(_ parent: CommentDelegate) {
         commentDelegate = parent
     }
+    @IBAction func onSend(_ sender: Any) {
+        reset()
+        commentDelegate.onComment(textField.text!)
+        textField.text = ""
+    }
+    func reset() {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
+    }
+    func setText(_ text: String) {
+        startEditing()
+        textField.text = text
+    }
+    func startEditing() {
+        textField.becomeFirstResponder()
+    }
+}
+
+extension TextFieldController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // return NO to disallow editing.
         print("TextField should begin editing method called")
@@ -95,23 +117,5 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
         // called when 'return' key pressed. return NO to ignore.
         print("TextField should return method called")
         return true
-    }
-    @IBAction func onSend(_ sender: Any) {
-        reset()
-        commentDelegate.onComment(textField.text!)
-        textField.text = ""
-    }
-    func reset() {
-        if textField.isFirstResponder {
-            textField.resignFirstResponder()
-            //view.frame.origin.y += (distance)
-        }
-    }
-    func setText(_ text: String) {
-        startEditing()
-        textField.text = text
-    }
-    func startEditing() {
-        textField.becomeFirstResponder()
     }
 }
