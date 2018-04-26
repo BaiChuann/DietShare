@@ -12,6 +12,14 @@ disabled_rules:
   - function_body_length
   - number_separator
   - trailing_whitespace
+  - force_unwrapping
+  - redundant_string_enum_value
+  - implicitly_unwrapped_optional
+  - trailing_closure
+  - unneeded_break_in_switch
+  - private_outlet
+  - attributes
+  - operator_usage_whitespace
 
 opt_in_rules:
   - array_init

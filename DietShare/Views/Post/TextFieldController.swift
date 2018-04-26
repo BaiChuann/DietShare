@@ -33,8 +33,8 @@ class TextFieldController: UIViewController, UITextFieldDelegate {
         sendButton.setTitleColor(Constants.lightTextColor, for: .normal)
     }
     @objc func keyboardWillShow(notification: Notification) {
-        let userInfo:NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardFrame: NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         distance = keyboardHeight - tabHeight

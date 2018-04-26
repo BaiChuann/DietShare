@@ -57,7 +57,7 @@ class UsersLocalDataSource: UsersDataSource {
     
     // Creates user table if it is not already existing
     private func createTable() {
-        let createTable = self.usersTable.create(ifNotExists: true) { (table) in
+        let createTable = self.usersTable.create(ifNotExists: true) { table in
             table.column(self.id, primaryKey: true)
             table.column(self.name)
             table.column(self.password)
@@ -128,7 +128,6 @@ class UsersLocalDataSource: UsersDataSource {
         _checkRep()
     }
     
-    
     func addUsers(_ newUsers: [User]) {
         _checkRep()
         for newUser in newUsers {
@@ -149,7 +148,7 @@ class UsersLocalDataSource: UsersDataSource {
             print("update failed: \(error)")
         }
         
-        return false;
+        return false
     }
     
     func deleteUser(_ userId: String) {
@@ -189,7 +188,7 @@ class UsersLocalDataSource: UsersDataSource {
         let query = usersTable.filter(name.like("%\(keyword)%"))
         do {
             for user in try database.prepare(query) {
-                let user = User(userId: user[id], name: user[name], password: user[password],photo: user[image])
+                let user = User(userId: user[id], name: user[name], password: user[password], photo: user[image])
                 users.append(user)
             }
         } catch let error {
@@ -216,7 +215,7 @@ class UsersLocalDataSource: UsersDataSource {
     
     private func prepopulate(_ users: [User]) {
         _checkRep()
-        if !users.isEmpty  {
+        if !users.isEmpty {
             for user in users {
                 if !containsUser(user.getUserId()) {
                     self.addUser(user)
@@ -294,6 +293,3 @@ class UsersLocalDataSource: UsersDataSource {
         return true
     }
 }
-
-
-

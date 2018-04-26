@@ -17,7 +17,7 @@ import BTree
 class TopicsModelManager {
     private var topicsDataSource: TopicsDataSource
     private var topics: [ReadOnlyTopic] {
-        return topicsDataSource.getAllTopics().sorted(by: {$0.getPopularity() > $1.getPopularity()})
+        return topicsDataSource.getAllTopics().sorted(by: { $0.getPopularity() > $1.getPopularity() })
     }
     
     private init() {
@@ -106,7 +106,7 @@ class TopicsModelManager {
         for (userId, freq) in userActivity {
             userFreqs.append(UserFreq(userId, freq))
         }
-        userFreqs.sort(by: {$0.freq > $1.freq})
+        userFreqs.sort(by: { $0.freq > $1.freq })
         
         var activeUsers = [String]()
         for i in 0..<Constants.TopicPage.numOfActiveUsersDisplayed {

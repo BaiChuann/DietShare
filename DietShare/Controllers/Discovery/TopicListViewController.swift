@@ -18,7 +18,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var currentUser = UserModelManager.shared.getCurrentUser()
     
-    
     @IBOutlet weak var topicListView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,7 +62,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToFollowed(_ button: UIButton) {
         button.tag = FollowStatus.followed.rawValue
         button.setTitle(Text.unfollow, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+//        button.setTitleColor(.white, for: .normal)
         button.backgroundColor = Constants.themeColor
     }
     
@@ -71,8 +70,8 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToUnfollowed(_ button: UIButton) {
         button.tag = FollowStatus.notFollowed.rawValue
         button.setTitle(Text.follow, for: .normal)
-        button.setTitleColor(Constants.themeColor, for: .normal)
-        button.backgroundColor = .clear
+//        button.setTitleColor(Constants.themeColor, for: .normal)
+        button.backgroundColor = Constants.themeColor
     }
     
     // Changes display text of button upon tapping, and handle follow/unfollow logic
@@ -119,6 +118,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.title = Text.topicListTitle
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -140,7 +140,7 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -162,4 +162,3 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
 }
-

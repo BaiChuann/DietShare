@@ -20,7 +20,7 @@ class RestaurantsModelManager {
     private let userManager = UserModelManager.shared
     private var restaurantsDataSource: RestaurantsDataSource
     private var restaurants: [ReadOnlyRestaurant] {
-        return restaurantsDataSource.getAllRestaurants().sorted(by: {$0.getRatingScore() > $1.getRatingScore()})
+        return restaurantsDataSource.getAllRestaurants().sorted(by: { $0.getRatingScore() > $1.getRatingScore() })
     }
     
     private init() {
@@ -37,20 +37,20 @@ class RestaurantsModelManager {
         var restaurantList = [ReadOnlyRestaurant]()
         restaurantList.append(contentsOf: self.restaurants)
         if !typeFilters.isEmpty {
-            restaurantList = restaurantList.filter { $0.getTypesAsEnum().overLapsWith(typeFilters)}
+            restaurantList = restaurantList.filter { $0.getTypesAsEnum().overLapsWith(typeFilters) }
         }
         switch sorting {
         case .byRating:
-            restaurantList.sort(by: {$0.getRatingScore() > $1.getRatingScore()})
+            restaurantList.sort(by: { $0.getRatingScore() > $1.getRatingScore() })
             break
         case .byDistance:
-            restaurantList.sort(by: {$0.getDistanceToLocation(currentLocation) < $1.getDistanceToLocation(currentLocation)})
+            restaurantList.sort(by: { $0.getDistanceToLocation(currentLocation) < $1.getDistanceToLocation(currentLocation) })
         }
         return restaurantList
     }
     
     func getRestaurantFromID(_ ID: String) -> Restaurant? {
-        return self.restaurantsDataSource.getRestaurantByID(ID)
+        return self.restaurantsDataSource.getRestaurantFromID(ID)
     }
     
     func getNumOfRestaurants() -> Int {
