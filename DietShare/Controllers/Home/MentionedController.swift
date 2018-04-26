@@ -28,16 +28,11 @@ class MentionedController: UIViewController, UITableViewDelegate, UITableViewDat
             comments += PostManager.shared.getComments(post.getPostId())
             likes += PostManager.shared.getLikes(post.getPostId())
         }
-<<<<<<< HEAD
         comments.sort(by: {$0.getTime() > $1.getTime()})
         likes.sort(by: {$0.getTime() > $1.getTime()})
         setNavigation()
     }
     func setNavigation() {
-=======
-        comments.sort(by: { $0.getTime() > $1.getTime() })
-        likes.sort(by: { $0.getTime() > $1.getTime() })
->>>>>>> master
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton

@@ -32,13 +32,7 @@ class ProfileController: UIViewController {
     private var currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
     private var previousSceneId = ""
     override func viewWillAppear(_ animated: Bool) {
-<<<<<<< HEAD
         if userId == currentUser && previousSceneId != Identifiers.topicPage  {
-=======
-        //tabBarController?.tabBar.isHidden = false
-        if userId == currentUser && previousSceneId != Identifiers.topicPage {
-            print("yes")
->>>>>>> master
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.navigationBar.isHidden = true
         } else {
@@ -174,19 +168,6 @@ class ProfileController: UIViewController {
 extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         postsTableController.didScroll()
-<<<<<<< HEAD
-=======
-        //print(tableView.frame.height)
-//        let yOffset = scrollView.contentOffset.y
-//
-//            //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
-//        tableView.isScrollEnabled = false
-//        if yOffset >= scrollView.contentSize.height - postsArea.frame.height{
-//            //scrollView.isScrollEnabled = false
-//            tableView.isScrollEnabled = true
-//        }
-    
->>>>>>> master
     }
     func reachTop() {
     }

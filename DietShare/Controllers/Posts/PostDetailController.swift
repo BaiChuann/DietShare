@@ -30,18 +30,6 @@ class PostDetailController: UIViewController {
         setTextField()
     }
     override func viewDidLoad() {
-<<<<<<< HEAD
-=======
-//        let postCell = Bundle.main.loadNibNamed("PostCell", owner: nil, options: nil)?.first as! PostCell
-        
-        //postCell.translatesAutoresizingMaskIntoConstraints = false
-        //postArea.frame.size = CGSize(width: postArea.frame.width, height: UITableViewAutomaticDimension)
-        //postArea.addSubview(postCell)
-        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
-        backButton.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = false
->>>>>>> master
         let cellNibName = UINib(nibName: "CommentCell", bundle: nil)
         commentsTable.register(cellNibName, forCellReuseIdentifier: "commentCell")
         let cellNibName2 = UINib(nibName: "UserCell", bundle: nil)
@@ -57,17 +45,12 @@ class PostDetailController: UIViewController {
         setSegmentControl()
         setNavigation()
     }
-    
-<<<<<<< HEAD
     func setNavigation() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
     }
-    
-=======
->>>>>>> master
     func setSegmentControl() {
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = .clear
@@ -173,10 +156,6 @@ extension PostDetailController: PostCellDelegate {
     
     func updateCell() {
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> master
 }
 
 extension PostDetailController: CommentDelegate {
