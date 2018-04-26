@@ -31,17 +31,6 @@ class FoodSelectController: UIViewController {
         super.viewDidLoad()
 
         setUpUI()
-
-//        let nutrition = [
-//            NutritionType.calories: 400.0,
-//            NutritionType.carbohydrate: 100.0,
-//            NutritionType.proteins: 80.0,
-//            NutritionType.fats: 120.0
-//        ]
-//        for i in 0...3 {
-//            foods.append(Food(id: 0, name: "Not food", nutrition: nutrition, image: UIImage()))
-//        }
-
         fetchRecognitionResult()
     }
 

@@ -128,6 +128,7 @@
 		F26699262068D47D00E3A1F2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699242068D47C00E3A1F2 /* Utilities.swift */; };
 		F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699252068D47C00E3A1F2 /* Notification+customName.swift */; };
 		F26699292068D73200E3A1F2 /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26699282068D73200E3A1F2 /* Share.storyboard */; };
+		F269F0E92091D38200CAD320 /* StoredFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269F0E82091D38200CAD320 /* StoredFilter.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -296,6 +297,7 @@
 		F26699242068D47C00E3A1F2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		F26699252068D47C00E3A1F2 /* Notification+customName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		F26699282068D73200E3A1F2 /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
+		F269F0E82091D38200CAD320 /* StoredFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredFilter.swift; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				3BDA29C4207FC20A00E99DE3 /* StickerLayout.swift */,
 				3BDA29C5207FC20A00E99DE3 /* StoredLayout.swift */,
 				3BDA29C6207FC20A00E99DE3 /* StoredSticker.swift */,
+				F269F0E82091D38200CAD320 /* StoredFilter.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -1014,6 +1017,7 @@
 				F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */,
 				3BDA29DB207FC24A00E99DE3 /* FoodSelectController.swift in Sources */,
 				B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */,
+				F269F0E92091D38200CAD320 /* StoredFilter.swift in Sources */,
 				3BDA29DA207FC24A00E99DE3 /* FoodAdderController.swift in Sources */,
 				3BDA29C7207FC20A00E99DE3 /* CollageLayout.swift in Sources */,
 				B5CBA175206A7A7C00BC8005 /* TopicListViewController.swift in Sources */,

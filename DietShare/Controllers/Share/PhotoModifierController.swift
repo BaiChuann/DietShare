@@ -29,13 +29,11 @@ class PhotoModifierController: UIViewController {
     private let photoOptionCellIdentifier = "PhotoOptionCell"
     private let layoutPhotoSelectorIdentifier = "LayoutPhotoSelectorController"
     private let context = CIContext()
-    private var stickerIcons = [UIImage?]()
-    private var layoutIcons = [UIImage?]()
-    private var filters = [(String, String)]()
     private var isShowingNutrition = true
 
     private let storedLayout = StoredLayout.shared
     private let storedSticker = StoredSticker.shared
+    private let storedFilter = StoredFilter.shared
 
     private let tolerance: CGFloat = CGFloat(0.000_1)
     private let swappingAlpha: CGFloat = 0.6
@@ -50,9 +48,9 @@ class PhotoModifierController: UIViewController {
     private var addedImageViews = [UIImageView]()
 
     private var selectedImages = [UIImage]()
-    private var selectedStickerIndex: Int = -1
-    private var selectedLayoutIndex: Int = -1
-    private var selectedFilterIndex: Int = -1
+    private var selectedStickerIndex: Int = 0
+    private var selectedLayoutIndex: Int = 0
+    private var selectedFilterIndex: Int = 0
 
     private let optionCellMaxHeight: CGFloat = 100
 
@@ -61,21 +59,6 @@ class PhotoModifierController: UIViewController {
 
         setUpUI()
         setUpGestureRecogizer()
-        setUpData()
-
-        filters = [
-            ("Normal", "No Filter"),
-            ("Chrome", "CIPhotoEffectChrome"),
-            ("Fade", "CIPhotoEffectFade"),
-            ("Instant", "CIPhotoEffectInstant"),
-            ("Mono", "CIPhotoEffectMono"),
-            ("Noir", "CIPhotoEffectNoir"),
-            ("Process", "CIPhotoEffectProcess"),
-            ("Tonal", "CIPhotoEffectTonal"),
-            ("Transfer", "CIPhotoEffectTransfer"),
-            ("Tone", "CILinearToSRGBToneCurve"),
-            ("Linear", "CISRGBToneCurveToLinear")
-        ]
     }
 
     override func viewWillLayoutSubviews() {
@@ -88,11 +71,11 @@ class PhotoModifierController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if selectedLayoutIndex >= 0 {
+        if selectedLayoutIndex > 0 {
             applyLayout(index: selectedLayoutIndex)
         }
 
-        if selectedStickerIndex >= 0 {
+        if selectedStickerIndex > 0 {
             applySticker(index: selectedStickerIndex)
         }
     }
@@ -157,11 +140,6 @@ class PhotoModifierController: UIViewController {
         canvas.addGestureRecognizer(pinchGR)
     }
 
-    private func setUpData() {
-        layoutIcons = storedLayout.storedLayoutList.map { $0.iconImage }
-        stickerIcons = storedSticker.storedLayoutList.map { $0.iconImage }
-    }
-
     @objc
     func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         UIView.animate(withDuration: 0.3) {
@@ -172,17 +150,27 @@ class PhotoModifierController: UIViewController {
     }
 
     private func onStickerSelected(index: Int) {
-        resetCanvas()
         applySticker(index: index)
 
         let curIndexPath = IndexPath(item: index, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedStickerIndex, 0), section: 0)
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
         selectedStickerIndex = index
-        selectedLayoutIndex = -1
+        selectedLayoutIndex = 0
     }
 
     private func onLayoutSelected(index: Int) {
+        if index == 0 {
+            resetCanvas()
+
+            let currentIndex = IndexPath(item: index, section: 0)
+            let previousIndex = IndexPath(item: selectedLayoutIndex, section: 0)
+            selectedLayoutIndex = index
+            updateCellSelectionStatus(curAt: currentIndex, prevAt: previousIndex)
+
+            return
+        }
+
         guard let photoSelector = AppStoryboard.share.instance.instantiateViewController(withIdentifier: layoutPhotoSelectorIdentifier) as? LayoutPhotoSelectorController else {
             print("error when showing layout photo selector")
             return
@@ -205,11 +193,11 @@ class PhotoModifierController: UIViewController {
         selectedFilterIndex = index
         imageView.image = getFilteredImage(originalPhoto, filterIndex: selectedFilterIndex)
 
-        if selectedStickerIndex >= 0 {
+        if selectedStickerIndex > 0 {
             updateStickerWithFilter()
         }
 
-        if selectedLayoutIndex >= 0 {
+        if selectedLayoutIndex > 0 {
             updateLayoutWithFilter()
         }
     }
@@ -231,7 +219,7 @@ class PhotoModifierController: UIViewController {
             return image
         }
 
-        let filterName = filters[filterIndex].1
+        let filterName = storedFilter.getFilterName(filterIndex)
         guard let filter = CIFilter(name: filterName) else {
             print("current photo or filter is nil")
             return UIImage()
@@ -272,15 +260,17 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
 
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
-            optionImage = stickerIcons[indexPath.item]
+            optionImage = storedSticker.getSticker(indexPath.item)?.stickerImage
             photoOptionCell.setSelected(indexPath.item == selectedStickerIndex)
+            labelText = storedSticker.getStickerText(indexPath.item)
         case PhotoOptionType.layout.rawValue:
-            optionImage = layoutIcons[indexPath.item]
+            optionImage = storedLayout.getLayout(indexPath.item)?.iconImage
             photoOptionCell.setSelected(indexPath.item == selectedLayoutIndex)
+            labelText = storedLayout.getLayoutText(indexPath.item)
         case PhotoOptionType.filter.rawValue:
             optionImage = indexPath.item > 0 ? getFilteredImage(originalPhoto, filterIndex: indexPath.item) : shareState?.originalPhoto
             photoOptionCell.setSelected(indexPath.item == selectedFilterIndex)
-            labelText = filters[indexPath.item].0
+            labelText = storedFilter.getFilterText(indexPath.item)
         default:
             return cell
         }
@@ -302,11 +292,11 @@ extension PhotoModifierController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch segmentControl.selectedSegmentIndex {
         case PhotoOptionType.sticker.rawValue:
-            return stickerIcons.count
+            return storedSticker.count
         case PhotoOptionType.layout.rawValue:
-            return layoutIcons.count
+            return storedLayout.count
         case PhotoOptionType.filter.rawValue:
-            return filters.count
+            return storedFilter.count
         default:
             return 0
         }
@@ -340,7 +330,7 @@ extension PhotoModifierController {
     private func applyLayout(index: Int) {
         resetCanvas()
 
-        guard let layout = storedLayout.get(index) else {
+        guard let layout = storedLayout.getLayout(index) else {
             return
         }
 
@@ -371,7 +361,11 @@ extension PhotoModifierController {
     private func applySticker(index: Int) {
         resetCanvas()
 
-        guard let originalPhoto = shareState?.originalPhoto, let sticker = storedSticker.get(index) else {
+        if index == 0 {
+            return
+        }
+
+        guard let originalPhoto = shareState?.originalPhoto, let sticker = storedSticker.getSticker(index) else {
             return
         }
 
@@ -685,7 +679,7 @@ extension PhotoModifierController {
 
 extension PhotoModifierController: PhotoModifierDelegate {
     func getLayoutImageCount(index: Int) -> Int {
-        if let count = storedLayout.get(index)?.count {
+        if let count = storedLayout.getLayout(index)?.count {
             return count - 1
         } else {
             return 0
@@ -702,7 +696,7 @@ extension PhotoModifierController: PhotoModifierDelegate {
         let curIndexPath = IndexPath(item: layoutIndex, section: 0)
         let prevIndexPath = IndexPath(item: max(selectedLayoutIndex, 0), section: 0)
         selectedLayoutIndex = layoutIndex
-        selectedStickerIndex = -1
+        selectedStickerIndex = 0
 
         updateCellSelectionStatus(curAt: curIndexPath, prevAt: prevIndexPath)
         applyLayout(index: layoutIndex)
