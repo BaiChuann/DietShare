@@ -6,7 +6,20 @@
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
 import UIKit
-
+/**
+ * overview
+ * This class is an abstract datatype that represent a profile of a user.
+ * This class is mutable.
+ */
+/**
+ * specification fields
+ * userId: String -- represent the user who own this profile. the ID must be a exisiting userId in database.
+ * country: String -- for future extension.
+ * description: String -- represent the description that the user created.
+ * followings: [String] -- the identifers of the users whom the profile owner currently follows. Each identifier in the list must exist in the database.
+ * followers: [String] -- the identifers of the users who currently follow the profile owner. Each identifier in the list must exist in the database.
+ * topics: [String] -- the identifers of the topics that the profile owner currently follows. Each identifier in the list must exist in the database.
+ **/
 class Profile {
     private var userId: String
     private var country: String
@@ -73,5 +86,4 @@ class Profile {
         }
         topics.remove(at: removedIndex)
     }
-    
 }

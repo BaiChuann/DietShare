@@ -7,11 +7,13 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class stores and displays the comment in a table cell
+ * used post detail page of a post.
+ */
 class CommentCell: UITableViewCell {
-    
     @IBOutlet weak private var userPhoto: UIButton!
-    
     @IBOutlet weak private var userName: UILabel!
     @IBOutlet weak private var time: UILabel!
     @IBOutlet weak private var content: UILabel!
@@ -34,7 +36,6 @@ class CommentCell: UITableViewCell {
     func setDelegate(_ delegate: PostCellDelegate) {
         self.cellDelegate = delegate
     }
-    
     @IBAction func onUserClicked(_ sender: Any) {
         self.cellDelegate?.goToUser("2")
     }

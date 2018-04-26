@@ -7,7 +7,11 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class is the view controller of the userlist.
+ * used when viewing the list of followers, followings and following topics.
+ */
 class UserListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private var data: [String] = []
     @IBOutlet weak private var table: UITableView!
@@ -43,12 +47,15 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
         default:
             return
         }
+        setNavigation()
+        table.tableFooterView = UIView()
+    }
+    func setNavigation() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = false
         self.navigationController?.navigationBar.isHidden = false
-        table.tableFooterView = UIView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUser" {
@@ -96,6 +103,5 @@ class UserListController: UIViewController, UITableViewDataSource, UITableViewDe
             controller.setTopic(TopicsModelManager.shared.getTopicFromID(data[indexPath.item])!)
             self.navigationController?.pushViewController(controller, animated: true)
         }
-        
     }
 }

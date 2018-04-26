@@ -6,7 +6,23 @@
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
 import UIKit
-
+/**
+ * overview
+ * This class is an abstract datatype that represent a published post.
+ * This class is mutable.
+ */
+/**
+ * specification fields
+ * postId: String -- represent the identifier of the post. postId is composed from userId and post time.
+ * userId: String -- represent the user who creates this post. the ID must be a exisiting userId in database.
+ * caption: String -- represent the caption of the post.
+ * time: Date -- represent the data and time on which the comment is created.
+ * photo: UIImage -- represent the photo that the user published.
+ * restaurant: String? -- represent the restaurant identifier. Only present if user has chosed a restaurant when they created the post.
+ * topics: [String]? -- represent thee topics identifiers. Only present if user has chosed any topics when they created the post. max size is 3.
+ * commentsCount: Int -- represent the number of comments on this post.
+ * likesCount: Int -- represent the number of likes on this post.
+ **/
 class Post {
     private var postId: String
     private var userId: String

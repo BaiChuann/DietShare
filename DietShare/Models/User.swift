@@ -6,7 +6,18 @@
 //  Copyright © 2018 com.marvericks. All rights reserved.
 //
 import UIKit
-
+/**
+ * overview
+ * This class is an abstract datatype that represent a user.
+ * This class is mutable.
+ */
+/**
+ * specification fields
+ * userId: String -- represent the unique identifier of the user.
+ * name: String -- represent the user's name in this app.
+ * password: String -- represent the password that the user set of authentication.
+ * photo: UIImage -- represent the profile photo of the user.
+ **/
 class User {
     private var userId: String
     private var name: String

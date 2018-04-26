@@ -7,7 +7,12 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class is the view controller of the profile page.
+ * need to call setUserId() before navigate to this controller when display other users' profile or it will default to the current user.
+ * displays user information and posts. 
+ */
 class ProfileController: UIViewController {
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var userName: UILabel!
@@ -20,7 +25,6 @@ class ProfileController: UIViewController {
     @IBOutlet weak private var editButton: UIButton!
     @IBOutlet weak private var postsArea: UIView!
     @IBOutlet weak private var postsAreaHeight: NSLayoutConstraint!
-
     private var profile: Profile!
     private var userId = ""
     private var postsTableController: PostsTableController!
@@ -28,16 +32,13 @@ class ProfileController: UIViewController {
     private var currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
     private var previousSceneId = ""
     override func viewWillAppear(_ animated: Bool) {
-        //tabBarController?.tabBar.isHidden = false
         if userId == currentUser && previousSceneId != Identifiers.topicPage  {
-            print("yes")
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.navigationBar.isHidden = true
         } else {
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.navigationBar.isHidden = false
         }
-        
         setUser(userId)
         postsTableController.getUserPosts(userId)
     }
@@ -51,7 +52,6 @@ class ProfileController: UIViewController {
     override func viewWillDisappear(_ animated: Bool){
         self.tabBarController?.tabBar.isHidden = true
     }
-
     override func viewDidLoad() {
         followButton.layer.cornerRadius = Constants.cornerRadius
         if userId == "" {
@@ -70,20 +70,20 @@ class ProfileController: UIViewController {
         postsTableController = Bundle.main.loadNibNamed("PostsTable", owner: nil, options: nil)?.first as! PostsTableController
         postsTableController.setParentController(self)
         postsTableController.getUserPosts(userId)
-        //SCROLL VIEW IMPLEMENTATION
         postsTableController.setScrollDelegate(self)
         tableView = postsTableController.getTable()
         tableView.bounces = false
         tableView.isScrollEnabled = false
-        //===============================
         self.addChildViewController(postsTableController)
-        print(tableView.contentSize.height)
         postsAreaHeight.constant = tableView.contentSize.height
         if let tabHeight = self.tabBarController?.tabBar.frame.height {
             postsAreaHeight.constant += tabHeight * 2
         }
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
+        setNavigation()
+    }
+    func setNavigation() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -118,7 +118,6 @@ class ProfileController: UIViewController {
     func setUserId(_ id: String) {
         self.userId = id
     }
-    
     func setPreviousSceneId(_ sceneId: String) {
         self.previousSceneId = sceneId
     }
@@ -126,18 +125,14 @@ class ProfileController: UIViewController {
         guard let user = UserModelManager.shared.getUserFromID(id) else {
             return
         }
-        print(user.getUserId())
         userName.text = user.getName()
         userPhoto.image = user.getPhotoAsImage()
-        // TODO - handle the unexpected nil
         descrip.text = profile.getDescription()
-        
         followerCount.setTitle(String(profile.getFollowers().count), for: .normal)
         followingCount.setTitle(String(profile.getFollowings().count), for: .normal)
         topicCount.setTitle(String(profile.getTopics().count), for: .normal)
         postsTableController.getUserPosts(id)
         if userId == currentUser {
-            //followButton.frame.size = CGSize(width: 0, height: 0)
             self.followButton.isHidden = true
         } else {
             self.editButton.isHidden = true
@@ -173,21 +168,8 @@ class ProfileController: UIViewController {
 extension ProfileController: UIScrollViewDelegate, ScrollDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         postsTableController.didScroll()
-        //print(tableView.frame.height)
-//        let yOffset = scrollView.contentOffset.y
-//
-//            //change the following line accordingly. the "postsArea.frame.height means the table height in my component screen"
-//        tableView.isScrollEnabled = false
-//        if yOffset >= scrollView.contentSize.height - postsArea.frame.height{
-//            //scrollView.isScrollEnabled = false
-//            tableView.isScrollEnabled = true
-//        }
-    
-    
     }
     func reachTop() {
-        //scrollView.isScrollEnabled = true
-        //tableView.isScrollEnabled = false
     }
     func didScroll() {
     }
