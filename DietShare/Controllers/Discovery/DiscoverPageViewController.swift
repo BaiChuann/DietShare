@@ -106,8 +106,6 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
 //        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
         
-        // TODO - integrate with Login when login is ready
-        initUser()
         initPosts()
         //change of poststable controller
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -128,12 +126,6 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         postsArea.addSubview(postsTableController.view)
         postsTable.bounces = false
         postsTable.isScrollEnabled = false
-    }
-    
-    // TODO - remove this when current user is set at Login page
-    func initUser() {
-        let user = User(userId: "1", name: "ReadyPlayer1", password: "1", photo: "profile")
-        UserModelManager.shared.setCurrentUser(user)
     }
 
     override func didReceiveMemoryWarning() {

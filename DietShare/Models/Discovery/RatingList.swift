@@ -48,6 +48,7 @@ class RatingList: Equatable, Codable {
             rating.setScore(newEntry.getScoreAsEnum())
         } else {
             self.list.insert(newEntry)
+            print("new rating entry inserted")
         }
         _checkRep()
     }

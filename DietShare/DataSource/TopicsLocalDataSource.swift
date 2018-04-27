@@ -30,8 +30,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
-//        print("TopicLocalDataSource initializer called")
-        removeDB(title)
+//        removeDB(title)
         createDB(title)
         createTable()
         prepopulate(topics)
@@ -55,7 +54,6 @@ class TopicsLocalDataSource: TopicsDataSource {
     }
     
     private func createDB(_ title: String) {
-        
         let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         if let fileUrl = documentDirectory?.appendingPathComponent(title).appendingPathExtension("sqlite3") {
             self.database = try? Connection(fileUrl.path)
@@ -90,7 +88,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         } catch let error {
             print("failed to get row: \(error)")
         }
-        return topics
+        return topics.sorted(by: { $0.getPopularity() > $1.getPopularity() })
     }
     
     func getTopicFromID(_ ID: String) -> Topic? {
@@ -223,25 +221,21 @@ class TopicsLocalDataSource: TopicsDataSource {
         _checkRep()
         let followerList = StringList(.User)
         let postList = StringList(.Post)
-
-        let topic1 = Topic("1", "Balanced Breakfast", "balanced-breakfast-icon", "A good day starts with a breakfast", followerList, postList)
-        let topic2 = Topic("2", "Fish and Omega 3", "fish-omega-3-icon", "Eat enough omega 3!", followerList, postList)
-        let topic3 = Topic("3", "Food for Kids", "food-for-kids-icon", "Delicious healthy food for kids", followerList, postList)
-        let topic4 = Topic("4", "Healthy Snacks", "healthy-snacks-icon", "Can snacks be healthy?", followerList, postList)
-        let topic5 = Topic("5", "Heart Health", "heart-health-icon", "Pay attention to your heart health", followerList, postList)
-        let topic6 = Topic("6", "High in Protein", "high-in-protein-icon", "Do check if you want to build muscle", followerList, postList)
-        let topic7 = Topic("7", "Homemade Food", "homemade-food-icon", "Want to cook at home?", followerList, postList)
-        let topic8 = Topic("8", "Unsaturated Fat", "unsaturated-fat-icon", "Moderate unsaturated fat is good for health", followerList, postList)
-        let topic9 = Topic("9", "Vegan Life", "vegan-life-icon", "Do you want to try vegan food?", followerList, postList)
-        self.addTopic(topic1)
-        self.addTopic(topic2)
-        self.addTopic(topic3)
-        self.addTopic(topic4)
-        self.addTopic(topic5)
-        self.addTopic(topic6)
-        self.addTopic(topic7)
-        self.addTopic(topic8)
-        self.addTopic(topic9)
+        var topics = [Topic]()
+        topics.append(Topic("1", "Balanced Breakfast", "balanced-breakfast-icon", "A good day starts with a breakfast", followerList, postList))
+        topics.append(Topic("2", "Fish and Omega 3", "fish-omega-3-icon", "Eat enough omega 3!", followerList, postList))
+        topics.append(Topic("3", "Food for Kids", "food-for-kids-icon", "Delicious healthy food for kids", followerList, postList))
+        topics.append(Topic("4", "Healthy Snacks", "healthy-snacks-icon", "Can snacks be healthy?", followerList, postList))
+        topics.append(Topic("5", "Heart Health", "heart-health-icon", "Pay attention to your heart health", followerList, postList))
+        topics.append(Topic("6", "High in Protein", "high-in-protein-icon", "Do check if you want to build muscle", followerList, postList))
+        topics.append(Topic("7", "Homemade Food", "homemade-food-icon", "Want to cook at home?", followerList, postList))
+        topics.append(Topic("8", "Unsaturated Fat", "unsaturated-fat-icon", "Moderate unsaturated fat is good for health", followerList, postList))
+        topics.append(Topic("9", "Vegan Life", "vegan-life-icon", "Do you want to try vegan food?", followerList, postList))
+        for i in 0..<9 {
+            if !containsTopic("\(i)") {
+                self.addTopic(topics[i])
+            }
+        }
         _checkRep()
     }
     

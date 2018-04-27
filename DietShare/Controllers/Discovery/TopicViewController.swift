@@ -25,6 +25,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var followButton: UIButton!
     
     @IBOutlet weak var followers: UICollectionView!
+    @IBOutlet weak var postPlaceHolder: UILabel!
     @IBOutlet weak var postsArea: UIView!
     private var postsTable: UITableView!
     private var postsTableController: PostsTableController!
@@ -111,11 +112,16 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.addChildViewController(postsTableController!)
         postsTableController.setScrollDelegate(self)
         postsTable = postsTableController.getTable()
-        postAreaHeight.constant = postsTable.contentSize.height
-        postsTableController.view.frame.size = postsArea.frame.size
-        postsArea.addSubview(postsTableController.view)
-        postsTable.bounces = false
-        postsTable.isScrollEnabled = false
+        if postsTable.numberOfRows(inSection: 0) == 0 {
+            postPlaceHolder.isHidden = false
+        } else {
+            postAreaHeight.constant = postsTable.contentSize.height
+            postsTableController.view.frame.size = postsArea.frame.size
+            postsArea.addSubview(postsTableController.view)
+            postsTable.bounces = false
+            postsTable.isScrollEnabled = false
+            postPlaceHolder.isHidden = true
+        }
     }
     
     private func initFollowButton() {

@@ -16,19 +16,18 @@ import BTree
  */
 class TopicsModelManager {
     private var topicsDataSource: TopicsDataSource
-    private var topics: [ReadOnlyTopic] {
-        return topicsDataSource.getAllTopics().sorted(by: { $0.getPopularity() > $1.getPopularity() })
-    }
+    private var topics: [ReadOnlyTopic]
     
     private init() {
         self.topicsDataSource = TopicsLocalDataSource.shared
+        self.topics = topicsDataSource.getAllTopics().sorted(by: { $0.getPopularity() > $1.getPopularity() })
     }
     
-    //TODO - try use singleton here
     static let shared = TopicsModelManager()
     
     // Obtain a list of topics to be displayed in Discover Page
     func getShortList(_ numOfItem: Int) -> [ReadOnlyTopic] {
+        updateTopicsList()
         var displayedList = [ReadOnlyTopic]()
         if topics.count < numOfItem {
             return topics
@@ -79,17 +78,23 @@ class TopicsModelManager {
         }
         topic.addPost(newPost)
         self.topicsDataSource.updateTopic(topicId, topic)
+        // Update local cache
+        updateLocally(topicId, updatedTopic: topic)
     }
     
     // Add a new follower to a topic, and update the database
     func addNewFollower(_ newFollower: User, _ topic: Topic) {
         topic.addFollower(newFollower)
         self.topicsDataSource.updateTopic(topic.getID(), topic)
+        // Update local cache
+        updateLocally(topic.getID(), updatedTopic: topic)
     }
     
     func removeFollower(_ follower: User, _ topic: Topic) {
         topic.removeFollower(follower)
         self.topicsDataSource.updateTopic(topic.getID(), topic)
+        // Update local cache
+        updateLocally(topic.getID(), updatedTopic: topic)
     }
     
     func getActiveUsers(_ topic: Topic) -> [String] {
@@ -116,6 +121,20 @@ class TopicsModelManager {
         }
         return activeUsers
     }
+    
+    private func updateLocally(_ id: String, updatedTopic: Topic) {
+        for i in 0..<self.topics.count {
+            if topics[i].getID() == id {
+                let readOnlyTopic = updatedTopic as ReadOnlyTopic
+                topics[i] = readOnlyTopic
+            }
+        }
+    }
+
+    func updateTopicsList() {
+        self.topics = topicsDataSource.getAllTopics().sorted(by: { $0.getPopularity() > $1.getPopularity() })
+    }
+    
 }
 
 struct UserFreq {

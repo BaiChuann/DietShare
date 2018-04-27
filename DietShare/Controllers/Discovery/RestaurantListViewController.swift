@@ -93,6 +93,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("view will appear called")
         super.viewWillAppear(animated)
         self.restaurantListView.reloadData()
         requestCoreLocationPermission()
@@ -158,13 +159,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
-        }
-        if let dest = segue.destination as? MapViewController {
-            
-            var restaurants = [Restaurant]()
-            restaurantModel.getAllRestaurants().forEach { restaurants.append(Restaurant($0)) }
-            dest.setRestaurants(restaurants)
-            
         }
     }
     

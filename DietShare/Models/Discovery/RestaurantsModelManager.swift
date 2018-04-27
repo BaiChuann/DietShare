@@ -19,12 +19,11 @@ class RestaurantsModelManager {
     
     private let userManager = UserModelManager.shared
     private var restaurantsDataSource: RestaurantsDataSource
-    private var restaurants: [ReadOnlyRestaurant] {
-        return restaurantsDataSource.getAllRestaurants().sorted(by: { $0.getRatingScore() > $1.getRatingScore() })
-    }
+    private var restaurants: [ReadOnlyRestaurant]
     
     private init() {
         self.restaurantsDataSource = RestaurantsLocalDataSource.shared
+        self.restaurants = restaurantsDataSource.getAllRestaurants().sorted(by: { $0.getRatingScore() > $1.getRatingScore() })
     }
     
     static let shared = RestaurantsModelManager()
@@ -34,6 +33,7 @@ class RestaurantsModelManager {
     }
     
     func getSortedRestaurantList(_ sorting: Sorting, _ typeFilters: Set<RestaurantType>, _ currentLocation: CLLocation?) -> [ReadOnlyRestaurant] {
+        
         var restaurantList = [ReadOnlyRestaurant]()
         restaurantList.append(contentsOf: self.restaurants)
         if !typeFilters.isEmpty {
@@ -59,6 +59,7 @@ class RestaurantsModelManager {
     
     // Obtain a list of restaurants to be displayed in Discover Page
     func getShortList(_ numOfItem: Int) -> [ReadOnlyRestaurant] {
+        updateRestaurantsList()
         var displayedList = [ReadOnlyRestaurant]()
         if restaurants.count < numOfItem {
             return restaurants
@@ -79,6 +80,8 @@ class RestaurantsModelManager {
         let rating = Rating(userId, restaurantId, RatingScore(rawValue: rate)!)
         restaurant.addRating(rating)
         self.restaurantsDataSource.updateRestaurant(restaurantId, restaurant)
+        // Update local cache
+        updateLocally(restaurantId, updatedRestaurant: restaurant)
     }
     
     func addPost(restaurantId: String, post: Post) {
@@ -87,6 +90,21 @@ class RestaurantsModelManager {
         }
         restaurant.addPost(post)
         self.restaurantsDataSource.updateRestaurant(restaurantId, restaurant)
+        // Update local cache
+        updateLocally(restaurantId, updatedRestaurant: restaurant)
+    }
+    
+    private func updateLocally(_ id: String, updatedRestaurant: Restaurant) {
+        for i in 0..<self.restaurants.count {
+            if restaurants[i].getID() == id {
+                let readOnlyRestaurant = updatedRestaurant as ReadOnlyRestaurant
+                restaurants[i] = readOnlyRestaurant
+            }
+        }
+    }
+    
+    func updateRestaurantsList() {
+        self.restaurants = restaurantsDataSource.getAllRestaurants().sorted(by: { $0.getRatingScore() > $1.getRatingScore() })
     }
 }
 

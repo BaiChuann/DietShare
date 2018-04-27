@@ -113,7 +113,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
             
             postsTableController.setScrollDelegate(self)
             postsTable = postsTableController.getTable()
-            if postsTable.numberOfSections == 0 {
+            if postsTable.numberOfRows(inSection: 0) == 0 {
                 postPlaceHolder.isHidden = false
             } else {
                 postAreaHeight.constant = postsTable.contentSize.height
