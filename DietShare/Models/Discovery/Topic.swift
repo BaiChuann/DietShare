@@ -22,12 +22,9 @@ class Topic: ReadOnlyTopic {
     private var followers: StringList
     private var posts: StringList
     
-    // TODO - active user logic -> to be added when PostModelManager is available
     private var activeUsers: StringList
     private var popularity: Int {
-        get {
-            return self.posts.getListAsArray().count
-        }
+        return self.posts.getListAsArray().count
     }
     
     init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList, _ activeUsers: StringList) {
@@ -38,6 +35,7 @@ class Topic: ReadOnlyTopic {
         self.followers = followers
         self.posts = posts
         self.activeUsers = activeUsers
+//        print("Topic Post inited: \(name) has \(posts.getListAsArray().count) posts")
     }
     
     convenience init(_ id: String, _ name: String, _ imagePath: String, _ description: String, _ followers: StringList, _ posts: StringList) {
@@ -85,16 +83,16 @@ class Topic: ReadOnlyTopic {
         return self.activeUsers
     }
     func getPopularity() -> Int {
-        return self.popularity
+        return self.posts.getListAsArray().count
     }
     
     func addPost(_ newPost: Post) {
         self.posts.addEntry(newPost.getPostId())
+//        print("New Post added: topic \(self.getName())'s popularity: \(self.getPopularity())")
     }
     
     func addFollower(_ newFollower: User) {
         self.followers.addEntry(newFollower.getUserId())
-        print("user \(newFollower.getUserId()) just followed topic: \(id)! ")
     }
     
     func removeFollower(_ follower: User) {
@@ -102,11 +100,6 @@ class Topic: ReadOnlyTopic {
         self.followers.setList(oldList.filter { $0 != follower.getUserId() })
         print("user \(follower.getUserId()) just unfollowed topic: \(id)! ")
         
-    }
-    
-    // A topic is "<" than another one if it is higher in terms of popularity
-    static func < (lhs: Topic, rhs: Topic) -> Bool {
-        return lhs.popularity > rhs.popularity
     }
     
     static func == (lhs: Topic, rhs: Topic) -> Bool {

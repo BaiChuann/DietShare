@@ -183,7 +183,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
         let row = restaurantsTable.filter(id == oldRestaurantID)
         do {
             if try database.run(row.update(name <- newRestaurant.getName(), address <- newRestaurant.getAddress(), location <- newRestaurant.getLocation(), phone <- newRestaurant.getPhone(), types <- newRestaurant.getTypes(), description <- newRestaurant.getDescription(), imagePath <- newRestaurant.getImagePath(), ratings <- newRestaurant.getRatingsID(), posts <- newRestaurant.getPostsID(), ratingScore <- newRestaurant.getRatingScore())) > 0 {
-                print("Old Restaurant is updated")
             } else {
                 print("Old Restaurant not found")
             }
@@ -268,10 +267,6 @@ class RestaurantsLocalDataSource: RestaurantsDataSource {
             Restaurant("19", "Alaturka Mediterranean & Turkish Restaurant", "15 Bussorah St, Singapore 199436", CLLocation(latitude: 1.301179, longitude: 103.859969), "62940304", StringList(.RestaurantType, ["European"]), "Truly deserving of the Singapore Michelin Bib Gourmand is Alaturka Mediterranean & Turkish Restaurant - situated at Arab street, this authentic Turkish food establishment serves up the best Mediterranean food my tastebuds have ever sampled!", "restaurant-19", testRatingList, StringList(.Post), 4.5),
             Restaurant("20", "HANS IM GLÜCK German Burgergrill", "362 Orchard Rd, International Building, Singapore, 238887", CLLocation(latitude: 1.305977, longitude: 103.83081), "97501488", StringList(.RestaurantType, ["American"]), "This restaurant feels with natural at the outdoor section. Even the decoration on the table. Ordered a grilled chicken burger and top with bacon. The chicken meat is thick and tender.", "restaurant-20", testRatingList, StringList(.Post), 4.5)
         ]
-        
-        for i in 0..<80 {
-            restaurants.append(Restaurant("20 + \(i)", "HANS IM GLÜCK German Burgergrill", "362 Orchard Rd, International Building, Singapore, 238887", CLLocation(latitude: 1.305977, longitude: 103.83081), "97501488", StringList(.RestaurantType, ["American"]), "This restaurant feels with natural at the outdoor section. Even the decoration on the table. Ordered a grilled chicken burger and top with bacon. The chicken meat is thick and tender.", "restaurant-20", testRatingList, StringList(.Post), 4.5))
-        }
         restaurants.forEach {
             self.addRestaurant($0)
         }

@@ -51,6 +51,21 @@ class Post {
         self.commentsCount = 0
         self.likesCount = 0
     }
+    init(postId: String, userId: String, caption: String, time: Date, photo: UIImage, restaurant: String?, topics: [String]?) {
+        self.postId = postId
+        self.userId = userId
+        self.caption = caption
+        self.time = time
+        self.photo = photo
+        if restaurant != nil {
+            self.restaurant = restaurant
+        }
+        if topics != nil {
+            self.topics = topics
+        }
+        self.commentsCount = 0
+        self.likesCount = 0
+    }
     func getPostId() -> String {
         return postId
     }

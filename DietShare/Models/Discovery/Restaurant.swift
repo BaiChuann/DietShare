@@ -20,7 +20,6 @@ class Restaurant: ReadOnlyRestaurant {
     private let address: String
     private let location: CLLocation
     private let phone: String
-    // TODO - Add Opening hours
     private var types: StringList
     private let description: String
     private let imagePath: String
@@ -122,8 +121,8 @@ class Restaurant: ReadOnlyRestaurant {
     // If the user has already rated, update the score; else insert a new rating into the set
     func addRating(_ rating: Rating) {
         let score = rating.getScore()
-        self.ratingScore = calcNewRatingScore(Double(score))
         self.ratings.addEntry(rating)
+        self.ratingScore = calcNewRatingScore(Double(score))
     }
     
     func addPost(_ post: Post) {
@@ -134,9 +133,12 @@ class Restaurant: ReadOnlyRestaurant {
     }
     
     private func calcNewRatingScore(_ newScore: Double) -> Double {
-        let numOfRating = Double(self.ratings.getListAsSet().count)
-        let newAvg = (self.ratingScore * numOfRating + newScore) / (numOfRating + 1)
-        return newAvg
+        var sum = 0.0
+        let ratingList = self.ratings.getListAsArray()
+        for i in 0..<ratingList.count {
+            sum = sum + Double(ratingList[i].getScore())
+        }
+        return sum / Double(ratingList.count)
     }
     
     func getDistanceToLocation(_ location: CLLocation?) -> Double {

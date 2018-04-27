@@ -31,7 +31,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }()
     private let textFieldSearch: UITextField = {
         let textField = UITextField()
-//        textField.borderStyle = .roundedRect
+        textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.darkGray.cgColor
         textField.placeholder = "  Where do you want to go?"
         textField.adjustsFontSizeToFitWidth = true
@@ -82,6 +82,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         loadMarkers(Constants.MapPage.maxNumOfMarkers - Int(Constants.MapPage.defaultZoom))
         textFieldSearch.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var restaurants = [Restaurant]()
+        RestaurantsModelManager.shared.getAllRestaurants().forEach { restaurants.append(Restaurant($0)) }
+        self.allRestaurants = restaurants
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,13 +119,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 60).isActive = true
         
         self.view.addSubview(textFieldSearch)
-        textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 90).isActive = true
-        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+        textFieldSearch.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        textFieldSearch.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 60).isActive = true
         textFieldSearch.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         textFieldSearch.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        addRoundedRectBackground(textFieldSearch, Constants.defaultCornerRadius, 0, UIColor.clear.cgColor, .white)
-        addShadowToView(view: textFieldSearch, offset: 5, radius: 3)
-//        setUpTextField(textFieldSearch, #imageLiteral(resourceName: "location"))
+        addShadowToView(view: textFieldSearch, offset: 3, radius: 2)
         
         restaurantCell = RestaurantFullListCell(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
         
@@ -132,14 +137,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         searchAgainButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive = true
         searchAgainButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         searchAgainButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        addShadowToView(view: searchAgainButton, offset: 3, radius: 4)
         
         self.view.addSubview(closeButton)
         closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
         closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor).isActive = true
-        addShadowToView(view: closeButton, offset: 0.5, radius: 0.5)
+        addShadowToView(view: closeButton, offset: 2, radius: 2)
     }
 
     private func setUpTextField(_ textField: UITextField, _ image: UIImage) {
