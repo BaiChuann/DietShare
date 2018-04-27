@@ -10,22 +10,15 @@ import Foundation
 import UIKit
 
 class StickerLayout {
-    
     private let image: UIImage?
-    private let icon: UIImage?
     private let position: CGRect
     
-    init(image: UIImage?, icon: UIImage?, position: CGRect) {
+    init(image: UIImage?, position: CGRect) {
         self.image = image
-        self.icon = icon
         self.position = position
     }
 
     var stickerImage: UIImage? {
-        return image
-    }
-
-    var iconImage: UIImage? {
         return image
     }
 

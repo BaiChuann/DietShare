@@ -11,6 +11,9 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
+/*
+ A view controller for the page where user can select a food from the recognition results.
+ */
 class FoodSelectController: UIViewController {
     @IBOutlet weak private var loader: NVActivityIndicatorView!
     @IBOutlet weak private var addFoodButton: UIButton!
@@ -31,17 +34,6 @@ class FoodSelectController: UIViewController {
         super.viewDidLoad()
 
         setUpUI()
-
-//        let nutrition = [
-//            NutritionType.calories: 400.0,
-//            NutritionType.carbohydrate: 100.0,
-//            NutritionType.proteins: 80.0,
-//            NutritionType.fats: 120.0
-//        ]
-//        for i in 0...3 {
-//            foods.append(Food(id: 0, name: "Not food", nutrition: nutrition, image: UIImage()))
-//        }
-
         fetchRecognitionResult()
     }
 
@@ -54,6 +46,7 @@ class FoodSelectController: UIViewController {
         }
     }
 
+    // Fetch recognition result with multiform data.
     private func fetchRecognitionResult() {
         elapsedTime = Date()
         requestTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateFetchingLabel), userInfo: nil, repeats: true)
@@ -133,6 +126,7 @@ class FoodSelectController: UIViewController {
         task.resume()
     }
 
+    // Update the status on data fetching. Stops timer and loader if data fetched.
     private func updateFetchingStatus(status: Bool) {
         isFetchingData = status
         loader.isHidden = !status
@@ -145,11 +139,12 @@ class FoodSelectController: UIViewController {
         }
     }
 
+    /*
+     Show some message if the request takes too long.
+     */
     @objc
     private func updateFetchingLabel() {
         let elapsedTime = -self.elapsedTime.timeIntervalSinceNow
-
-        print("elapsed time: \(elapsedTime)")
         if elapsedTime < 5 {
             loaderLabel.isHidden = true
         } else {

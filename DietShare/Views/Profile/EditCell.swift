@@ -9,7 +9,6 @@
 import UIKit
 
 class EditCell: UITableViewCell {
-    
     @IBOutlet weak private var attribute: UILabel!
     func setAttribute(_ name: String) {
         attribute.text = name

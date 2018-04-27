@@ -7,19 +7,18 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class is the view controller of the textfield.
+ * used when user is trying to change a certain field such as user name of user description.
+ */
 class EditFieldController: UIViewController {
     var session: Int!
     var placeHolder: String!
     @IBOutlet weak private var textField: UITextField!
     @IBOutlet weak private var textView: UITextView!
     override func viewDidLoad() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
-        backButton.tintColor = UIColor.black
-        let saveButton = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(onSave))
-        saveButton.tintColor = Constants.themeColor
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.rightBarButtonItem = saveButton
+        setNavigation()
         if session == 0 {
             textView.isHidden = true
             textField.text = placeHolder
@@ -32,10 +31,16 @@ class EditFieldController: UIViewController {
             textView.becomeFirstResponder()
         }
     }
+    func setNavigation() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
+        backButton.tintColor = UIColor.black
+        let saveButton = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(onSave))
+        saveButton.tintColor = Constants.themeColor
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.rightBarButtonItem = saveButton
+    }
     @objc func onSave() {
-        print("123123")
         let user = UserModelManager.shared.getUserFromID("1")!
-        print(user.getName())
         switch session {
         case 0:
             if let txt = textField.text {

@@ -7,37 +7,22 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class is the dataSource of the posts.
+ * it contains all the posts, comments and likes
+ * it provides all the apis for retrieving and modifying posts comments and likes information.
+ */
 class PostManager {
     private var posts: [Post] = []
     private var comments: [Comment] = []
     private var likes: [Like] = []
     private var userManager = UserModelManager.shared
     private var profileManager = ProfileManager.shared
-   // private var postsDataSource = PostsLocalDataSource.shared
     private var currentUser: User
     private init() {
-   //     posts = postsDataSource.getAllPosts()
-        print("Init: postmanager")
         currentUser = userManager.getCurrentUser()!
         prepopulate()
-//        for i in 1...20 {
-//            let newPost = Post(userId: "1", caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "1", topics: ["1", "2", "3", "4", "5"])
-//            posts.append(newPost)
-//        }
-//        for i in 2...10 {
-//            let newPost = Post(userId: String(i), caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "1", topics: ["1", "2", "3", "4", "5"])
-//            posts.append(newPost)
-//        }
-//        let postId = posts[0].getPostId()
-//        let newComment = Comment(userId: "3", parentId: postId, content: "This looks so nice", time: Date())
-//        for _ in 1...10 {
-//             comments.append(newComment)
-//        }
-//        let newLike = Like(userId: "3", postId: postId, time: Date())
-//        for _ in 1...10 {
-//            likes.append(newLike)
-//        }
     }
     static let shared = PostManager()
     func getPost(_ id: String) -> Post? {
@@ -133,22 +118,20 @@ class PostManager {
     func getComments(_ postId: String) -> [Comment] {
         return comments.filter { $0.getParentId() == postId }
     }
-    func postComment(_ comment: Comment) -> Comment {
+    func postComment(_ comment: Comment) {
         comments.append(comment)
         if let post = getPost(comment.getParentId()) {
             post.incrementCommentsCount()
         }
-        return comment
     }
     func getLikes(_ postId: String) -> [Like] {
         return likes.filter { $0.getPostId() == postId }
     }
-    func postLike(_ like: Like) -> Like {
+    func postLike(_ like: Like) {
         likes.append(like)
         if let post = getPost(like.getPostId()) {
             post.incrementLikesCount()
         }
-        return like
     }
     func deleteLike(_ like: Like) -> Bool {
         for i in 0...(likes.count - 1) {
@@ -163,11 +146,6 @@ class PostManager {
         return false
     }
     private func prepopulate() {
-        
-        /*for i in 1...20 {
-         let newPost = Post(userId: String(i), caption: "today I ate this thing it was super niceeeeee", time: Date(), photo: UIImage(named: "post-example")!, restaurant: "koufu", topics: ["1", "2", "3", "4", "5"])
-         addPost(newPost)
-         }*/
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
         

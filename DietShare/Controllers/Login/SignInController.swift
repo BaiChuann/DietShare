@@ -80,16 +80,13 @@ class SignInController: UIViewController {
         }
     }
 
-    func setUpInputDelegate() {
+    private func setUpInputDelegate() {
         inputGroup.forEach { $0.delegate = self }
     }
 
-    // MARK: should pass with a user object
-    func signIn() {
-        
-        if let tabPageVC = storyboard?.instantiateViewController(withIdentifier: "TabPage") {
-            show(tabPageVC, sender: self)
-        }
+    private func signIn() {
+        let tabPageVC = AppStoryboard.main.instance.instantiateViewController(withIdentifier: "TabPage")
+        show(tabPageVC, sender: self)
     }
 }
 

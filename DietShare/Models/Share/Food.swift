@@ -16,6 +16,11 @@ enum NutritionType: String {
     case calories = "Cal"
 }
 
+/*
+ Stores the basic info of a food, each with a unique id retreived from database.
+ It contains the name, image and nutrition info of a food.
+ Ingredients is optional, as it is only required for custom food added by user.
+ */
 struct Food {
     private(set) var id: Int
     private(set) var name: String

@@ -9,6 +9,9 @@
 import UIKit
 import Presentr
 
+/*
+ A view controller for the popup to add floating text.
+ */
 class FloatingTextInputController: UIViewController {
     @IBOutlet weak private var textInput: UITextField!
     @IBOutlet weak private var colorCollectionView: UICollectionView!
@@ -34,10 +37,12 @@ class FloatingTextInputController: UIViewController {
     private var text: String?
     private var colorIndex = 0
     private var size: CGFloat = 20
-    private var isNewLabel = true
     private var font = UIFont.systemFont(ofSize: 20)
     private let textPreview = UILabel()
     private let textPreviewHeight: CGFloat = 100
+
+    // Determines whether to add a new label or to modify an existing label.
+    private var isNewLabel = true
 
     override func viewDidLoad() {
         super.viewDidLoad()

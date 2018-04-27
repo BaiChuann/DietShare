@@ -9,6 +9,5 @@
 import UIKit
 
 class TopicCell: UICollectionViewCell {
-
     @IBOutlet weak var topicLabel: UILabel!
 }

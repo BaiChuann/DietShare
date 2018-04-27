@@ -8,9 +8,14 @@
 
 import UIKit
 import TGCameraViewController
-
+/**
+ * overview
+ * This class is the view controller of the profile editing page.
+ * used when the user tapped the edit button in the profile tab.
+ * allow user to change photo, user name, description.
+ * allow user to logout 
+ */
 class ProfileEditor: UIViewController {
-    
     @IBOutlet weak private var userPhoto: UIButton!
     @IBOutlet weak private var table: UITableView!
     private var attributes: [String] = []
@@ -27,6 +32,9 @@ class ProfileEditor: UIViewController {
         TGCameraColor.setTint(Constants.themeColor)
         TGCamera.setOption(kTGCameraOptionSaveImageToAlbum, value: false)
         TGCamera.setOption(kTGCameraOptionHiddenFilterButton, value: true)
+        setNavigation()
+    }
+    func setNavigation() {
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -65,7 +73,6 @@ class ProfileEditor: UIViewController {
 extension ProfileEditor: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
-        //return attributes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

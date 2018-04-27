@@ -7,7 +7,11 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class is the dataSource of the profiles.
+ * it contains all the profiles and provide apis for retrieving and modifying information.
+ */
 class ProfileManager {
     private var profiles: [Profile] = []
     init() {

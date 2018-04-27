@@ -8,6 +8,9 @@
 
 import UIKit
 
+/*
+ A cell that displays different fonts.
+ */
 class TextPreviewCell: UICollectionViewCell {
     @IBOutlet weak private var label: UILabel!
 

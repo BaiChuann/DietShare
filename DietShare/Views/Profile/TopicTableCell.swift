@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+/**
+ * overview
+ * This class stores and displays the topic name and photo in a table cell
+ * used in list of following topics in profile tab.
+ */
 class TopicTableCell: UITableViewCell {
-    
     @IBOutlet weak var topicImage: UIImageView!
     @IBOutlet weak var topicName: UILabel!
     func setImage(_ image: UIImage) {

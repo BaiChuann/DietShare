@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/*
+ Stores the info of a floating text. It is a class instead of a struct because the info
+ should be able to mutate whenever user wants. Value types like struct would not be necessary.
+ */
 class FloatingTextInfo {
     var text: String
     var color: UIColor
