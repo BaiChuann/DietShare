@@ -7,10 +7,14 @@
 //
 // swiftlint:disable implicitly_unwrapped_optional
 // swiftlint:disable force_unwrapping
+
 import Foundation
 import UIKit
 import TGCameraViewController
 
+/*
+ A view controller for the page where user can upload photo.
+ */
 class PhotoUploadViewController: UIViewController, TGCameraDelegate {
     private var shareState = ShareState()
     private var pickedPhoto: UIImage?
