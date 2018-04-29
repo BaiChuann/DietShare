@@ -9,6 +9,9 @@
 import Foundation
 import FacebookShare
 
+/*
+ A controller which manages and publishes the post.
+ */
 class PublishManager: NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(restaurantId)

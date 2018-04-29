@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.7.0)
+  - Alamofire (4.7.2)
   - AMPopTip (3.2.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -14,7 +14,7 @@ PODS:
     - DKImagePickerController/ImageManager (= 3.8.1)
   - DKImagePickerController/Camera (3.8.1)
   - DKImagePickerController/ImageManager (3.8.1)
-  - DropDown (2.3.1)
+  - DropDown (2.3.2)
   - DynamicBlurView (2.0.2)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
@@ -29,37 +29,37 @@ PODS:
     - FacebookCore (~> 0.3)
     - FBSDKCoreKit (~> 4.27)
     - FBSDKShareKit (~> 4.27)
-  - FBSDKCoreKit (4.31.1):
+  - FBSDKCoreKit (4.32.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.31.1):
+  - FBSDKLoginKit (4.32.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.31.1):
-    - FBSDKCoreKit (~> 4.31.1)
-  - FormValidatorSwift (3.0.0)
-  - GoogleMaps (2.6.0):
-    - GoogleMaps/Maps (= 2.6.0)
-  - GoogleMaps/Base (2.6.0)
-  - GoogleMaps/Maps (2.6.0):
+  - FBSDKShareKit (4.32.0):
+    - FBSDKCoreKit (~> 4.32.0)
+  - FormValidatorSwift (3.2.0)
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
-  - GooglePlacePicker (2.6.0):
-    - GoogleMaps (= 2.6.0)
-    - GooglePlaces (= 2.6.0)
-  - GooglePlaces (2.6.0):
-    - GoogleMaps/Base (= 2.6.0)
+  - GooglePlacePicker (2.7.0):
+    - GoogleMaps (= 2.7.0)
+    - GooglePlaces (= 2.7.0)
+  - GooglePlaces (2.7.0):
+    - GoogleMaps/Base (= 2.7.0)
   - LinearProgressView (2.0.0)
-  - NVActivityIndicatorView (4.1.1):
-    - NVActivityIndicatorView/Presenter (= 4.1.1)
-  - NVActivityIndicatorView/Presenter (4.1.1)
+  - NVActivityIndicatorView (4.2.0):
+    - NVActivityIndicatorView/Presenter (= 4.2.0)
+  - NVActivityIndicatorView/Presenter (4.2.0)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
-  - Presentr (1.3)
+  - Presentr (1.3.2)
   - ScrollingStackContainer (0.5.0)
-  - SQLite.swift (0.11.4):
-    - SQLite.swift/standard (= 0.11.4)
-  - SQLite.swift/standard (0.11.4)
-  - SwiftLint (0.25.0)
-  - SwiftMessages (4.1.0)
-  - SwiftyJSON (4.0.0)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+  - SwiftLint (0.25.1)
+  - SwiftMessages (4.1.2)
+  - SwiftyJSON (4.1.0)
   - TagListView (1.3.0)
   - TGCameraViewController (2.2.8)
 
@@ -90,33 +90,33 @@ DEPENDENCIES:
   - TGCameraViewController
 
 SPEC CHECKSUMS:
-  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AMPopTip: 31251008f2c00cbc0a3d2b18520f277c5b5ab4da
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BTree: 99b99930790b88dc5e8bafbf666a5dfb8d7808b4
   Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
   DKImagePickerController: 51ad6ee2ba05414bb741db54a72cd7f4fb178e34
-  DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
+  DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
   FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
-  FBSDKCoreKit: e08ccfcefa7bc1347a07c276dac9bf6c7fe57024
-  FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
-  FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
-  FormValidatorSwift: 4961bc3817debb3cd5d3d3e3e2352b80062debb9
-  GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
-  GooglePlacePicker: e4488625effb006f59de49e14b7a603e463e4261
-  GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
+  FBSDKCoreKit: 55d7f2ac45d9c4b9b6119f4e43900fe84b9b7b1b
+  FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
+  FBSDKShareKit: 658780d0d108b8ad590a54afb5ac1427bdc8de28
+  FormValidatorSwift: d62834973845dcbaa0fc3ff665a8cbb74383bdda
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
+  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   LinearProgressView: 2e71a3a937b93488f381088f0ba27f2ff52bb26c
-  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
+  NVActivityIndicatorView: 75c9634073e03b31d7e2748cd2417feab1206195
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
-  Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
+  Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
   ScrollingStackContainer: 89ff12217eaa8215c0d1bb2f29b807d0ebaa3918
-  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
-  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
-  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+  SwiftMessages: d81f48c1f8b6bc1dbebdfffe11226f0344f937ca
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   TagListView: 669f7d4455003c877655875d34829731c4191528
   TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
 

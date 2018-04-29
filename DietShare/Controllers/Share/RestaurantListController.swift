@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/*
+ A ViewController controlling the table view of restaurants
+ */
 class RestaurantListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!

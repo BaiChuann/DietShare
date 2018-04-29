@@ -597,12 +597,30 @@ extension PhotoModifierController {
             }
 
             movingImageView.frame = CGRect(
-                x: movingImageView.frame.origin.x,
-                y: movingImageView.frame.origin.y,
+                x: movingImageView.frame.midX - movingImageView.frame.width * actualScale / 2,
+                y: movingImageView.frame.midY - movingImageView.frame.height * actualScale / 2,
                 width: movingImageView.frame.width * actualScale,
                 height: movingImageView.frame.height * actualScale
             )
-            movingImageView.center = displayView.convert(displayView.center, from: displayView.superview)
+            //movingImageView.center = displayView.convert(displayView.center, from: displayView.superview)
+            
+            var xOffset: CGFloat = 0
+            var yOffset: CGFloat = 0
+
+            if movingImageView.frame.minX > 0 {
+                xOffset = -movingImageView.frame.minX
+            } else if movingImageView.frame.maxX < displayView.frame.width {
+                xOffset = displayView.frame.width - movingImageView.frame.maxX
+            }
+
+            if movingImageView.frame.minY > 0 {
+                yOffset = -movingImageView.frame.minY
+            } else if movingImageView.frame.maxY < displayView.frame.height {
+                yOffset = displayView.frame.height - movingImageView.frame.maxY
+            }
+
+            movingImageView.frame = movingImageView.frame.offsetBy(dx: xOffset, dy: yOffset)
+            
             sender.scale = 1.0
 
         case .ended:
