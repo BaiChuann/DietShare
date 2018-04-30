@@ -771,7 +771,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvD-my-SKZ">
-                                <rect key="frame" x="290" y="537" width="60" height="60"/>
+                                <rect key="frame" x="290" y="567" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Edk-ID-aqJ"/>
                                     <constraint firstAttribute="height" constant="60" id="m5K-zi-F9w"/>
@@ -907,7 +907,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4Xw-ki-rUN" firstAttribute="bottom" secondItem="lvD-my-SKZ" secondAttribute="bottom" constant="70" id="JAm-aP-n3g"/>
+                            <constraint firstItem="4Xw-ki-rUN" firstAttribute="bottom" secondItem="lvD-my-SKZ" secondAttribute="bottom" constant="40" id="JAm-aP-n3g"/>
                             <constraint firstItem="4Xw-ki-rUN" firstAttribute="trailing" secondItem="lvD-my-SKZ" secondAttribute="trailing" constant="25" id="R94-vV-9uv"/>
                             <constraint firstItem="6RI-ow-wCv" firstAttribute="trailing" secondItem="4Xw-ki-rUN" secondAttribute="trailing" id="VwR-9j-AVZ"/>
                             <constraint firstItem="6RI-ow-wCv" firstAttribute="leading" secondItem="4Xw-ki-rUN" secondAttribute="leading" id="Y16-Rb-mTc"/>

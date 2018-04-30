@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+/*
+ A ViewController controlling the table view of topics
+ */
 class TopicListController: UIViewController {
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var searchBar: UISearchBar!

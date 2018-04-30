@@ -14,14 +14,23 @@ import Darwin
 import FacebookShare
 import SwiftMessages
 
+/*
+ A delegate for PublisherController that allows reading selected restaurants.
+ */
 protocol RestaurantSenderDelegate: class {
     func sendRestaurant(restaurant: (id: String, name: String))
 }
 
+/*
+ A delegate for PublisherController that allows reading selected topics.
+ */
 protocol TopicSenderDelegate: class {
     func sendTopics(topics: [(id: String, name: String)])
 }
 
+/*
+ A view controller for the page where user publish their posts
+ */
 class PublisherController: UIViewController {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var imageView: UIImageView!

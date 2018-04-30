@@ -30,7 +30,7 @@ class TopicsLocalDataSource: TopicsDataSource {
     
     // Initializer is private to prevent instantiation - Singleton Pattern
     private init(_ topics: [Topic], _ title: String) {
-//        removeDB(title)
+        removeDB(title)
         createDB(title)
         createTable()
         prepopulate(topics)
@@ -232,7 +232,7 @@ class TopicsLocalDataSource: TopicsDataSource {
         topics.append(Topic("8", "Unsaturated Fat", "unsaturated-fat-icon", "Moderate unsaturated fat is good for health", followerList, postList))
         topics.append(Topic("9", "Vegan Life", "vegan-life-icon", "Do you want to try vegan food?", followerList, postList))
         for i in 0..<9 {
-            if !containsTopic("\(i)") {
+            if !containsTopic("\(i + 1)") {
                 self.addTopic(topics[i])
             }
         }
