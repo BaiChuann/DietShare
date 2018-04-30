@@ -158,7 +158,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
-            self.tabBarController?.tabBar.isHidden = false
+//            self.tabBarController?.tabBar.isHidden = false
         }
     }
     

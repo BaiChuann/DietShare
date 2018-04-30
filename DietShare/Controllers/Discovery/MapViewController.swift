@@ -319,7 +319,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
             dest.enableUnwindButton()
-            dest.tabBarController?.tabBar.isHidden = true
+//            dest.tabBarController?.tabBar.isHidden = true
         }
     }
 }
