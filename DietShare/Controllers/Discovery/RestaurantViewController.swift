@@ -50,6 +50,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         
         initView()
         initPosts()
@@ -117,7 +118,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
                 postPlaceHolder.isHidden = false
                 postAreaHeight.constant = Constants.defaultPostAreaHeight
             } else {
-                postAreaHeight.constant = postsTable.contentSize.height + CGFloat(30)
+                postAreaHeight.constant = postsTable.contentSize.height + CGFloat(100)
                 postsTableController.view.frame.size = postsArea.frame.size
                 postsArea.addSubview(postsTableController.view)
                 postsTable.bounces = false

@@ -50,7 +50,7 @@ class ProfileController: UIViewController {
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
     }
     override func viewDidLoad() {
         followButton.layer.cornerRadius = Constants.cornerRadius

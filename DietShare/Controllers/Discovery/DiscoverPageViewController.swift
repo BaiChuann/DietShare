@@ -99,7 +99,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         self.tabBarController?.tabBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -138,17 +138,17 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
-//            dest.tabBarController?.tabBar.isHidden = false
+            dest.tabBarController?.tabBar.isHidden = false
         }
         if let dest = segue.destination as? TopicListController {
-//            dest.tabBarController?.tabBar.isHidden = false
+            dest.tabBarController?.tabBar.isHidden = false
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)
-//            dest.tabBarController?.tabBar.isHidden = false
+            dest.tabBarController?.tabBar.isHidden = false
         }
         if let dest = segue.destination as? RestaurantListController {
-//            dest.tabBarController?.tabBar.isHidden = false
+            dest.tabBarController?.tabBar.isHidden = false
         }
     }
     

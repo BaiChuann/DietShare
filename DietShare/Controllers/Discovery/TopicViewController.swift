@@ -46,6 +46,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         initView()
     }
     
@@ -116,7 +117,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
             postPlaceHolder.isHidden = false
             postAreaHeight.constant = Constants.defaultPostAreaHeight
         } else {
-            postAreaHeight.constant = postsTable.contentSize.height
+            postAreaHeight.constant = postsTable.contentSize.height + CGFloat(100)
             postsTableController.view.frame.size = postsArea.frame.size
             postsArea.addSubview(postsTableController.view)
             postsTable.bounces = false
