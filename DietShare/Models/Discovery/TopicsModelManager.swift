@@ -14,6 +14,18 @@ import BTree
  * A TopicsModelManager contains all the topic-related model objects and act as a facade to other objects using
  * these models.
  */
+
+/**
+ * Overview:
+ *
+ * A TopicsModelManager contains all the topic-related model objects and act as a facade to other objects using
+ * these models.
+ *
+ * Specification fields:
+ *
+ * - topicsDataSource: TopicsDataSource - data source for the model - could be remote or local
+ * - topics: [ReadOnlyTopic] - a cached array of all topics
+ */
 class TopicsModelManager {
     private var topicsDataSource: TopicsDataSource
     private var topics: [ReadOnlyTopic]

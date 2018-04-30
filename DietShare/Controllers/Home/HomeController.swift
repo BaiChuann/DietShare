@@ -27,7 +27,7 @@ class HomeController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()

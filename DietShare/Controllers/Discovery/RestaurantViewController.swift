@@ -34,8 +34,8 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var postsArea: UIView!
     private var postsTable: UITableView!
     private var postsTableController: PostsTableController?
-    
     @IBOutlet weak var postAreaHeight: NSLayoutConstraint!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +50,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         
         initView()
         initPosts()
@@ -87,7 +88,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         self.restaurantDescription.text = currentRestaurant.getDescription()
         self.types.text = currentRestaurant.getTypesAsString()
         
-        let numOfRating = currentRestaurant.getRatingsID().getListAsSet().count
+        let numOfRating = currentRestaurant.getRatingsID().getSet().count
         self.numOfRatings.text = numOfRating <= 1 ? "\(numOfRating) rating" : "\(numOfRating) ratings"
         self.restaurantPhone.text = currentRestaurant.getPhone()
         self.restaurantAddress.text = currentRestaurant.getAddress()
@@ -115,8 +116,9 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
             postsTable = postsTableController.getTable()
             if postsTable.numberOfRows(inSection: 0) == 0 {
                 postPlaceHolder.isHidden = false
+                postAreaHeight.constant = Constants.defaultPostAreaHeight
             } else {
-                postAreaHeight.constant = postsTable.contentSize.height
+                postAreaHeight.constant = postsTable.contentSize.height + CGFloat(100)
                 postsTableController.view.frame.size = postsArea.frame.size
                 postsArea.addSubview(postsTableController.view)
                 postsTable.bounces = false
@@ -129,11 +131,10 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
     // Hide navigation bar when scrolling up
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y > 0) {
+        if velocity.y > 0 {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)
-            
         } else {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)

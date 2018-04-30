@@ -9,8 +9,19 @@
 import Foundation
 
 /**
+ * Overview:
+ *
  * A Rating object represents a rating given by a user to a restaurant.
+ *
+ * Specification fields:
+ *
+ * - id: String - id of the rating
+ * - userID: String - id of the user giving this rating
+ * - restaurantID: String - id of the restaurant receiving this rating
+ * - score: RatingScore - score of this rating
+ *  - Constraint: can only be number 1-5 (enum RatingScore)
  */
+
 class Rating: Codable, Hashable {
     
     private let id: String

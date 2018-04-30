@@ -88,22 +88,24 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
+        self.displayedTopics = TopicsModelManager.shared.getShortList(Constants.DiscoveryPage.numOfDisplayedTopics)
+        self.displayedRestaurants = RestaurantsModelManager.shared.getShortList(Constants.DiscoveryPage.numOfDisplayedRestaurants)
+        self.restaurantList.reloadData()
+        self.topicList.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: Constants.DiscoveryPage.longScrollViewHeight)
         scrollView.delegate = self
         
         initPosts()
@@ -121,7 +123,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         
         postsTableController.setScrollDelegate(self)
         postsTable = postsTableController.getTable()
-        postAreaHeight.constant = postsTable.contentSize.height
+        postAreaHeight.constant = postsTable.contentSize.height + CGFloat(150)
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
         postsTable.bounces = false
@@ -136,9 +138,17 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.currentTopic)
+            dest.tabBarController?.tabBar.isHidden = false
+        }
+        if let dest = segue.destination as? TopicListController {
+            dest.tabBarController?.tabBar.isHidden = false
         }
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.currentRestaurant)
+            dest.tabBarController?.tabBar.isHidden = false
+        }
+        if let dest = segue.destination as? RestaurantListController {
+            dest.tabBarController?.tabBar.isHidden = false
         }
     }
     
@@ -149,7 +159,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
     // Hide nagivation bar when scrolling
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y > 0) {
+        if velocity.y > 0 {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)
@@ -166,23 +176,11 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
 //SCROLL IMPLEMENTATION
 extension DiscoverPageViewController: ScrollDelegate {
     func didScroll() {
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let yOffset = scrollView.contentOffset.y
-//        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0)
-//        {
-//            if yOffset >= scrollView.contentSize.height - postsTable.frame.height {
-//                scrollView.isScrollEnabled = false
-//                postsTable.isScrollEnabled = true
-//            }
-//
-//        }
     }
     func reachTop() {
-//        scrollView.isScrollEnabled = true
-//        postsTable.isScrollEnabled = false
     }
 }
 

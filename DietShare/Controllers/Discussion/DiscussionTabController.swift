@@ -14,6 +14,6 @@ class DiscussionTabController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = true
+//        tabBarController?.tabBar.isHidden = true
     }
 }

@@ -129,6 +129,7 @@ struct Constants {
     public static let ratingAnimationDuration = 0.7
     public static let defaultAnimationDuration = 0.5
     public static let loadMarkerDuration = 0.8
+    public static let defaultPostAreaHeight: CGFloat = 200.0
 
     struct DiscoveryPage {
         public static let numOfDisplayedTopics = 6

@@ -28,7 +28,7 @@ protocol ReadOnlyRestaurant {
     func getAddress() -> String
     func getLocation() -> CLLocation
     func getPostsID() -> StringList
-    func getRatingsID() -> RatingList
+    func getRatingsID() -> RatingSet
     func getRatingScore() -> Double
     func getDistanceToLocation(_ location: CLLocation?) -> Double
 }

@@ -10,8 +10,22 @@ import Foundation
 import UIKit
 
 /**
+ * Overview:
+ *
  * A Topic is a tag to user posts, much like a hashtag in Twitter, that connects all posts with the same tag so
  * that they can be displayed within the same page. Active users who posted on this topic will also be referenced.
+ * It is mutable.
+ *
+ * Specification fields:
+ *
+ * - id: String - id of the topic
+ * - name: String - name of the topic
+ * - imagePath: String - file path of the image of the topic
+ * - description: String - a brief description of the topic
+ * - followers: StringList - a list of ids of the users who follow this topic
+ * - posts: StringList - a list of ids of posts under this topic
+ * - activeUsers: StringList - a list of ids of users who post frequently under this topic
+ * - popularity: Int - number of posts under this topic, indicating its popularity
  */
 class Topic: ReadOnlyTopic {
     
