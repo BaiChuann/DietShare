@@ -88,6 +88,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         var restaurants = [Restaurant]()
         RestaurantsModelManager.shared.getAllRestaurants().forEach { restaurants.append(Restaurant($0)) }
         self.allRestaurants = restaurants
+        self.loadMarkers(Constants.MapPage.maxNumOfMarkers - Int(self.mapView.camera.zoom))
     }
 
     override func didReceiveMemoryWarning() {

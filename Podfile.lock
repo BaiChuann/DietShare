@@ -36,16 +36,16 @@ PODS:
   - FBSDKShareKit (4.32.0):
     - FBSDKCoreKit (~> 4.32.0)
   - FormValidatorSwift (3.2.0)
-  - GoogleMaps (2.7.0):
-    - GoogleMaps/Maps (= 2.7.0)
-  - GoogleMaps/Base (2.7.0)
-  - GoogleMaps/Maps (2.7.0):
+  - GoogleMaps (2.6.0):
+    - GoogleMaps/Maps (= 2.6.0)
+  - GoogleMaps/Base (2.6.0)
+  - GoogleMaps/Maps (2.6.0):
     - GoogleMaps/Base
-  - GooglePlacePicker (2.7.0):
-    - GoogleMaps (= 2.7.0)
-    - GooglePlaces (= 2.7.0)
-  - GooglePlaces (2.7.0):
-    - GoogleMaps/Base (= 2.7.0)
+  - GooglePlacePicker (2.6.0):
+    - GoogleMaps (= 2.6.0)
+    - GooglePlaces (= 2.6.0)
+  - GooglePlaces (2.6.0):
+    - GoogleMaps/Base (= 2.6.0)
   - LinearProgressView (2.0.0)
   - NVActivityIndicatorView (4.2.0):
     - NVActivityIndicatorView/Presenter (= 4.2.0)
@@ -105,9 +105,9 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
   FBSDKShareKit: 658780d0d108b8ad590a54afb5ac1427bdc8de28
   FormValidatorSwift: d62834973845dcbaa0fc3ff665a8cbb74383bdda
-  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
-  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
-  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
+  GooglePlacePicker: e4488625effb006f59de49e14b7a603e463e4261
+  GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
   LinearProgressView: 2e71a3a937b93488f381088f0ba27f2ff52bb26c
   NVActivityIndicatorView: 75c9634073e03b31d7e2748cd2417feab1206195
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
