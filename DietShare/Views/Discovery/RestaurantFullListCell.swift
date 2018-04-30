@@ -55,7 +55,6 @@ class RestaurantFullListCell: UICollectionViewCell {
     }
     
     func setName(_ name: String) {
-        // TODO - decide on what to put here for restaurantName
         restaurantName.text = name
     }
     

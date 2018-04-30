@@ -114,6 +114,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
         postsTable = postsTableController.getTable()
         if postsTable.numberOfRows(inSection: 0) == 0 {
             postPlaceHolder.isHidden = false
+            postAreaHeight.constant = Constants.defaultPostAreaHeight
         } else {
             postAreaHeight.constant = postsTable.contentSize.height
             postsTableController.view.frame.size = postsArea.frame.size
@@ -140,7 +141,7 @@ class TopicViewController: UIViewController, UICollectionViewDelegate, UICollect
     // Hide navigation bar when scrolling up
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y > 0) {
+        if velocity.y > 0 {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)

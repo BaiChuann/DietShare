@@ -22,7 +22,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topicListView {
-            // TODO - only show 10 entries at a time
             return topicModel.getNumOfTopics()
         }
         return 0
@@ -62,7 +61,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToFollowed(_ button: UIButton) {
         button.tag = FollowStatus.followed.rawValue
         button.setTitle(Text.unfollow, for: .normal)
-//        button.setTitleColor(.white, for: .normal)
         button.backgroundColor = Constants.themeColor
     }
     
@@ -70,13 +68,11 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     private func toggleToUnfollowed(_ button: UIButton) {
         button.tag = FollowStatus.notFollowed.rawValue
         button.setTitle(Text.follow, for: .normal)
-//        button.setTitleColor(Constants.themeColor, for: .normal)
         button.backgroundColor = Constants.themeColor
     }
     
     // Changes display text of button upon tapping, and handle follow/unfollow logic
-    @objc
-    func followButtonTapped(_ sender: UIButton) {
+    @objc func followButtonTapped(_ sender: UIButton) {
         assert(currentUser != nil)
         
         // Locate the exact cell where the follow button is tapped
@@ -113,7 +109,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self.navigationController, action: #selector(self.navigationController?.popViewController(animated:)))
         backButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = backButton
@@ -121,26 +116,25 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
         self.navigationItem.title = Text.topicListTitle
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        initUser()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.topicListView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TopicViewController {
             dest.setTopic(self.selectedTopic)
+            dest.tabBarController?.tabBar.isHidden = false
         }
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y > 0) {
+        if velocity.y > 0 {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -151,14 +145,6 @@ class TopicListViewController: UIViewController, UICollectionViewDelegate, UICol
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
             }, completion: nil)
         }
-    }
-    
-    /**
-     * Test functions
-     */
-    // TODO - change to actual user manager when user manager is available
-    private func initUser() {
-        self.currentUser = User(userId: "1", name: "James", password: "0909", photo: "profile-example")
     }
     
 }
