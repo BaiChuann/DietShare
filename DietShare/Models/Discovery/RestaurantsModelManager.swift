@@ -12,9 +12,18 @@ import BTree
 import CoreLocation
 
 /**
+ * Overview:
+ *
  * A RestaurantsModelManager contains all the restaurant-related model objects and act as a facade to other objects using
  * these models.
+ *
+ * Specification fields:
+ *
+ * - restaurantsDataSource: RestaurantsDataSource - data source for the model - could be remote or local
+ * - restaurants: [ReadOnlyRestaurant] - a cached array of all restaurants
+ * - userManager: UserModelManager - a singleton instance for user manager
  */
+
 class RestaurantsModelManager {
     
     private let userManager = UserModelManager.shared

@@ -8,6 +8,19 @@
 
 import Foundation
 
+/**
+ * Overview:
+ *
+ * A RestaurantsModelManager contains all the restaurant-related model objects and act as a facade to other objects using
+ * these models.
+ *
+ * Specification fields:
+ *
+ * - usersDataSource: UsersDataSource - data source for the model - could be remote or local
+ * - users: [User] - a cached array of all users
+ * - currentUser: User - current user of the app
+ */
+
 class UserModelManager {
     
     private var usersDataSource: UsersDataSource
