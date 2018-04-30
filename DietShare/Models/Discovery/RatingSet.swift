@@ -1,5 +1,5 @@
 //
-//  RatingList.swift
+//  RatingSet.swift
 //  DietShare
 //
 //  Created by Shuang Yang on 15/4/18.
@@ -10,35 +10,45 @@ import Foundation
 
 import SQLite
 
-class RatingList: Equatable, Codable {
+/**
+ * Overview:
+ *
+ * A RatingSet is a wrapper class for a set of Rating objects.
+ *
+ * Specification fields:
+ *
+ * - set: Set<Rating> - a set of ratings
+ */
+
+class RatingSet: Equatable, Codable {
     
-    private var list: Set<Rating>
+    private var set: Set<Rating>
     
     enum CodingKeys: String, CodingKey {
-        case list
+        case set
     }
     
-    init(_ list: Set<Rating>) {
-        self.list = list
+    init(_ set: Set<Rating>) {
+        self.set = set
     }
     
     convenience init() {
-        let list = Set<Rating>()
-        self.init(list)
+        let set = Set<Rating>()
+        self.init(set)
     }
     
-    public func getListAsArray() -> [Rating] {
-        var returnList = [Rating]()
-        returnList.append(contentsOf: self.list)
-        return returnList
+    public func getSetAsArray() -> [Rating] {
+        var returnSet = [Rating]()
+        returnSet.append(contentsOf: self.set)
+        return returnSet
     }
     
-    public func getListAsSet() -> Set<Rating> {
-        return self.list
+    public func getSet() -> Set<Rating> {
+        return self.set
     }
     
-    public func setList(_ newList: Set<Rating>) {
-        self.list = newList
+    public func setSet(_ newSet: Set<Rating>) {
+        self.set = newSet
     }
     
     // If the user has already rated, update the score; else insert a new rating into the set
@@ -47,7 +57,7 @@ class RatingList: Equatable, Codable {
         if let rating = findRating(newEntry.getUserID(), newEntry.getRestaurantID()) {
             rating.setScore(newEntry.getScoreAsEnum())
         } else {
-            self.list.insert(newEntry)
+            self.set.insert(newEntry)
             print("new rating entry inserted")
         }
         _checkRep()
@@ -55,13 +65,13 @@ class RatingList: Equatable, Codable {
     public func addEntries(_ newEntries: [Rating]) {
         _checkRep()
         for entry in newEntries {
-            self.list.insert(entry)
+            self.set.insert(entry)
         }
         _checkRep()
     }
     
     public func findRating(_ userID: String, _ restaurantID: String) -> Rating? {
-        for rating in self.list {
+        for rating in self.set {
             if userID == rating.getUserID() && restaurantID == rating.getRestaurantID() {
                 return rating
             }
@@ -69,18 +79,18 @@ class RatingList: Equatable, Codable {
         return nil
     }
     
-    static func ==(lhs: RatingList, rhs: RatingList) -> Bool {
-        return lhs.list == rhs.list
+    static func ==(lhs: RatingSet, rhs: RatingSet) -> Bool {
+        return lhs.set == rhs.set
     }
     
     required init(from decoder: Decoder) throws {
         let value = try decoder.container(keyedBy: CodingKeys.self)
-        self.list = try value.decode(Set<Rating>.self, forKey: .list)
+        self.set = try value.decode(Set<Rating>.self, forKey: .set)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.list, forKey: .list)
+        try container.encode(self.set, forKey: .set)
     }
     
     func _checkRep() {
@@ -89,26 +99,26 @@ class RatingList: Equatable, Codable {
     
     func checkIDUniqueness() {
         var idSet = Set<String>()
-        list.forEach { idSet.insert($0.getID()) }
-        assert(idSet.count == list.count)
+        set.forEach { idSet.insert($0.getID()) }
+        assert(idSet.count == set.count)
     }
 }
 
-extension RatingList: Value {
+extension RatingSet: Value {
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    public class func fromDatatypeValue(_ blobValue: Blob) -> RatingList {
-        guard let list = try? JSONDecoder().decode(RatingList.self, from: Data.fromDatatypeValue(blobValue)) else {
-            fatalError("IDList not correctly decoded")
+    public class func fromDatatypeValue(_ blobValue: Blob) -> RatingSet {
+        guard let set = try? JSONDecoder().decode(RatingSet.self, from: Data.fromDatatypeValue(blobValue)) else {
+            fatalError("IDSet not correctly decoded")
         }
-        return list
+        return set
     }
     public var datatypeValue: Blob {
-        guard let listData = try? JSONEncoder().encode(self) else {
-            fatalError("IDList not correctly encoded")
+        guard let setData = try? JSONEncoder().encode(self) else {
+            fatalError("IDSet not correctly encoded")
         }
-        return listData.datatypeValue
+        return setData.datatypeValue
     }
     
 }

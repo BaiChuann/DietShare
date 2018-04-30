@@ -9,6 +9,18 @@
 import Foundation
 import SQLite
 
+/**
+ * Overview:
+ *
+ * A wrapper class for a list of string.
+ *
+ * Specification fields:
+ *
+ * - type: ListType - indicate the type of element included in the list
+ *  - Constraints: limited to values of enum ListType
+ * - list: Set<String> - a set of string included in this wrapper class
+ */
+
 class StringList: Equatable, Codable {
     
     private var type: ListType

@@ -10,8 +10,25 @@ import Foundation
 import UIKit
 import CoreLocation
 
-/**
+ /**
+ * Overview:
+ *
  * A Restaurant object contains the information corresponding to a restaurant in real world.
+ *
+ * Specification fields:
+ *
+ * - id: String - id of the restaurant
+ * - name: String - name of the restaurant
+ * - address: String - address of the restaurant
+ * - location: CLLocation - GPS location of the restaurant
+ * - phone: String - phone of the restaurant
+ * - types: StringList - a list of cuisine type this restaurant belongs to
+ *  - Constraints: should only be of rawValues appearing in enum RestaurantType
+ * - imagePath: String - file path of the image of the restaurant
+ * - description: String - a brief description of the restaurant
+ * - ratings: RatingSet - a set of ratings of this restaurant
+ * - posts: StringList - a list of ids of posts under this restaurant
+ * - ratingScore: Double - score of this restaurant by averaging all ratings of it
  */
 
 class Restaurant: ReadOnlyRestaurant {
@@ -23,11 +40,11 @@ class Restaurant: ReadOnlyRestaurant {
     private var types: StringList
     private let description: String
     private let imagePath: String
-    private var ratings: RatingList
+    private var ratings: RatingSet
     private var posts: StringList
     private var ratingScore: Double
     
-    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String, _ ratings: RatingList, _ posts: StringList, _ ratingScore: Double) {
+    init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String, _ ratings: RatingSet, _ posts: StringList, _ ratingScore: Double) {
         self.id = id
         self.name = name
         self.address = address
@@ -42,7 +59,7 @@ class Restaurant: ReadOnlyRestaurant {
     }
     
     convenience init(_ id: String, _ name: String, _ address: String, _ location: CLLocation, _ phone: String, _ types: StringList, _ description: String, _ imagePath: String) {
-        self.init(id, name, address, location, phone, types, description, imagePath, RatingList(), StringList(.Post), 0)
+        self.init(id, name, address, location, phone, types, description, imagePath, RatingSet(), StringList(.Post), 0)
     }
     
     convenience init(_ restaurant: ReadOnlyRestaurant) {
@@ -111,7 +128,7 @@ class Restaurant: ReadOnlyRestaurant {
     func getPostsID() -> StringList {
         return self.posts
     }
-    func getRatingsID() -> RatingList {
+    func getRatingsID() -> RatingSet {
         return self.ratings
     }
     func getRatingScore() -> Double {
@@ -134,7 +151,7 @@ class Restaurant: ReadOnlyRestaurant {
     
     private func calcNewRatingScore(_ newScore: Double) -> Double {
         var sum = 0.0
-        let ratingList = self.ratings.getListAsArray()
+        let ratingList = self.ratings.getSetAsArray()
         for i in 0..<ratingList.count {
             sum = sum + Double(ratingList[i].getScore())
         }

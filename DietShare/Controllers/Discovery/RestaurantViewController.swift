@@ -88,7 +88,7 @@ class RestaurantViewController: UIViewController, UIScrollViewDelegate {
         self.restaurantDescription.text = currentRestaurant.getDescription()
         self.types.text = currentRestaurant.getTypesAsString()
         
-        let numOfRating = currentRestaurant.getRatingsID().getListAsSet().count
+        let numOfRating = currentRestaurant.getRatingsID().getSet().count
         self.numOfRatings.text = numOfRating <= 1 ? "\(numOfRating) rating" : "\(numOfRating) ratings"
         self.restaurantPhone.text = currentRestaurant.getPhone()
         self.restaurantAddress.text = currentRestaurant.getAddress()

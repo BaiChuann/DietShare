@@ -51,7 +51,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
-            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsSet().count)
+            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getSet().count)
             cell.setTypes(restaurantList[indexPath.item].getTypesAsStringSet())
             // Get current location
             if let location = self.currentLocation {
