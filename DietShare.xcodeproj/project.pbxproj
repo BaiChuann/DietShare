@@ -89,7 +89,7 @@
 		B504C2CF206D1234007F8956 /* RestaurantsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */; };
 		B504C2D1206D133E007F8956 /* RestaurantLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */; };
 		B504C2D3206D1BB5007F8956 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B504C2D2206D1BB5007F8956 /* Rating.swift */; };
-		B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B525A139208261D7003AF5D0 /* RatingList.swift */; };
+		B525A13A208261D7003AF5D0 /* RatingSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B525A139208261D7003AF5D0 /* RatingSet.swift */; };
 		B5281105207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5281104207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift */; };
 		B5388AAD207495700062E6E9 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */; };
 		B5388AB5207495B40062E6E9 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */; };
@@ -259,7 +259,7 @@
 		B504C2CE206D1234007F8956 /* RestaurantsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataSource.swift; sourceTree = "<group>"; };
 		B504C2D0206D133E007F8956 /* RestaurantLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLocalDataSource.swift; sourceTree = "<group>"; };
 		B504C2D2206D1BB5007F8956 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
-		B525A139208261D7003AF5D0 /* RatingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingList.swift; sourceTree = "<group>"; };
+		B525A139208261D7003AF5D0 /* RatingSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingSet.swift; sourceTree = "<group>"; };
 		B5281104207BC5FA00CFAB18 /* TopicsLocalDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsLocalDataSourceTest.swift; sourceTree = "<group>"; };
 		B5388AAC207495700062E6E9 /* RestaurantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
 		B5388AB4207495B40062E6E9 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 				B5CBA170206A444300BC8005 /* TopicsModelManager.swift */,
 				B504C2CC206D0EF5007F8956 /* RestaurantsModelManager.swift */,
 				B504C2D2206D1BB5007F8956 /* Rating.swift */,
-				B525A139208261D7003AF5D0 /* RatingList.swift */,
+				B525A139208261D7003AF5D0 /* RatingSet.swift */,
 				3BDA2A1F207FCB2700E99DE3 /* UserModelManager.swift */,
 			);
 			path = Discovery;
@@ -999,7 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */,
-				B525A13A208261D7003AF5D0 /* RatingList.swift in Sources */,
+				B525A13A208261D7003AF5D0 /* RatingSet.swift in Sources */,
 				B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */,
 				3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */,
 				3BDA2A20207FCB2700E99DE3 /* UserModelManager.swift in Sources */,
@@ -1280,11 +1280,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RYEPC9248R;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareYS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1303,11 +1303,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RYEPC9248R;
+				DEVELOPMENT_TEAM = F2PAHXG9P5;
 				INFOPLIST_FILE = DietShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs3217.DietShareYS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -40,7 +40,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
         if collectionView == restaurantListView, let location = self.currentLocation {
             count = model.getSortedRestaurantList(currentSort, currentTypeFilters, location).count
         }
-        print("\(count) restaurants found")
         return count
     }
     
@@ -52,7 +51,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
             cell.setImage(restaurantList[indexPath.item].getImage())
             cell.setName(restaurantList[indexPath.item].getName())
             cell.setRating(restaurantList[indexPath.item].getRatingScore())
-            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getListAsSet().count)
+            cell.setNumOfRating(restaurantList[indexPath.item].getRatingsID().getSet().count)
             cell.setTypes(restaurantList[indexPath.item].getTypesAsStringSet())
             // Get current location
             if let location = self.currentLocation {
@@ -159,6 +158,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? RestaurantViewController {
             dest.setRestaurant(self.selectedRestaurant)
+            self.tabBarController?.tabBar.isHidden = false
         }
     }
     
@@ -190,7 +190,7 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     // Hide navigation bar when scrolling up
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y > 0) {
+        if velocity.y > 0 {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }, completion: nil)
@@ -225,7 +225,6 @@ class RestaurantListViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //TODO - check if the following two lines break the location manager. if not, add them
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
         currentLocation = manager.location

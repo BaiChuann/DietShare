@@ -152,10 +152,10 @@ class RestaurantsLocalDataSourceTest: XCTestCase {
 
 extension Restaurant {
     convenience init(_ id: String, _ name: String) {
-        self.init(id, name, " ", CLLocation(), " ", StringList(.RestaurantType), " ", "vegie-bar", RatingList(), StringList(.Post), 0)
+        self.init(id, name, " ", CLLocation(), " ", StringList(.RestaurantType), " ", "vegie-bar", RatingSet(), StringList(.Post), 0)
     }
     
     convenience init(_ id: String, _ name: String, _ score: Double) {
-        self.init(id, name, " ", CLLocation(), " ", StringList(.RestaurantType), " ", "vegie-bar", RatingList(), StringList(.Post), score)
+        self.init(id, name, " ", CLLocation(), " ", StringList(.RestaurantType), " ", "vegie-bar", RatingSet(), StringList(.Post), score)
     }
 }

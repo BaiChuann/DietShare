@@ -18,4 +18,8 @@ class DiscoveryTabController: UIViewController {
             controller.didMove(toParentViewController: self)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
 }

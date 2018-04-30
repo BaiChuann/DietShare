@@ -43,7 +43,7 @@ class RestaurantFullListCell: UICollectionViewCell {
     func initData(_ restaurant: Restaurant) {
         setImage(restaurant.getImage())
         setName(restaurant.getName())
-        setNumOfRating(restaurant.getRatingsID().getListAsSet().count)
+        setNumOfRating(restaurant.getRatingsID().getSet().count)
         setRating(restaurant.getRatingScore())
         setTypes(restaurant.getTypesAsStringSet())
     }
@@ -55,7 +55,6 @@ class RestaurantFullListCell: UICollectionViewCell {
     }
     
     func setName(_ name: String) {
-        // TODO - decide on what to put here for restaurantName
         restaurantName.text = name
     }
     
