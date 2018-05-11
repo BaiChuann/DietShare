@@ -123,7 +123,10 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         
         postsTableController.setScrollDelegate(self)
         postsTable = postsTableController.getTable()
-        postAreaHeight.constant = postsTable.contentSize.height + CGFloat(150)
+        postAreaHeight.constant = postsTable.contentSize.height
+        if let tabHeight = self.tabBarController?.tabBar.frame.height {
+            postAreaHeight.constant += tabHeight * 3.5
+        }
         postsTableController.view.frame.size = postsArea.frame.size
         postsArea.addSubview(postsTableController.view)
         postsTable.bounces = false
