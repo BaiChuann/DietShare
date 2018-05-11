@@ -112,6 +112,7 @@ class FoodAdderController: UIViewController {
 
     private func setUpInput() {
         nameInput.delegate = self
+        nameInput.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 
     @objc
@@ -217,6 +218,12 @@ extension FoodAdderController: UITextFieldDelegate {
         guard let foodName = foodName, !foodName.isEmpty else {
             cursorView.isHidden = false
             return
+        }
+    }
+    @objc
+    func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text {
+            foodName = text.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 }
