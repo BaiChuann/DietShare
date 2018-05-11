@@ -19,7 +19,9 @@ class MentionedCell: UITableViewCell {
     @IBOutlet weak var like: UIImageView!
     @IBOutlet weak var postPhoto: UIImageView!
     @IBOutlet weak var time: UILabel!
-    func setContent(_ userPhoto: UIImage, _ userName: String, _ comment: String, _ postPhoto: UIImage, _ time: Date) {
+    private var postId: String!
+    func setContent(_ postId: String, _ userPhoto: UIImage, _ userName: String, _ comment: String, _ postPhoto: UIImage, _ time: Date) {
+        self.postId = postId
         self.userPhoto.image = userPhoto
         self.userName.text = userName
         if comment == "" {
@@ -32,5 +34,8 @@ class MentionedCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd HH:mm:ss"
         self.time.text = dateFormatter.string(from: time)
+    }
+    func getPostId() -> String {
+        return postId
     }
 }

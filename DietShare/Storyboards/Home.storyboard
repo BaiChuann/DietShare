@@ -161,9 +161,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0JF-d2-xiG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0JF-d2-xiG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mentionedCell" rowHeight="70" id="ghI-18-NBm" customClass="MentionedCell" customModule="DietShare" customModuleProvider="target">
@@ -255,6 +254,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0JF-d2-xiG" firstAttribute="trailing" secondItem="YyV-Dk-V8s" secondAttribute="trailing" id="0m4-ey-hVY"/>
+                            <constraint firstItem="0JF-d2-xiG" firstAttribute="bottom" secondItem="YyV-Dk-V8s" secondAttribute="bottom" id="4Ky-fe-XIC"/>
+                            <constraint firstItem="0JF-d2-xiG" firstAttribute="top" secondItem="DDL-d3-BmE" secondAttribute="top" id="IaB-I6-88e"/>
+                            <constraint firstItem="0JF-d2-xiG" firstAttribute="leading" secondItem="YyV-Dk-V8s" secondAttribute="leading" id="Zdt-V9-Fy5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="YyV-Dk-V8s"/>
                     </view>
                     <connections>
