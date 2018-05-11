@@ -20,9 +20,10 @@ class TextFieldController: UIViewController {
     private var commentDelegate: CommentDelegate!
     private var distance = CGFloat(0)
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
+//                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         let topBorder = UIView()
         topBorder.backgroundColor = Constants.darkTextColor
         topBorder.frame = CGRect(x: 0, y: 0, width:
@@ -42,8 +43,19 @@ class TextFieldController: UIViewController {
         distance = keyboardHeight - tabHeight
         view.frame.origin.y -= (distance)
     }
+    @objc func keyboardWillChangeFrame(notification: Notification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardFrame: NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        print(keyboardHeight)
+        view.frame.origin.y += (distance)
+        distance = keyboardHeight - tabHeight
+        view.frame.origin.y -= (distance)
+    }
     @objc func keyboardWillHide(notification: Notification) {
         view.frame.origin.y += (distance)
+        distance = CGFloat(0)
     }
     func setTabHeight(_ height: CGFloat) {
         tabHeight = height

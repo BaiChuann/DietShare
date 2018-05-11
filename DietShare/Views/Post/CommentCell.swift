@@ -37,6 +37,6 @@ class CommentCell: UITableViewCell {
         self.cellDelegate = delegate
     }
     @IBAction func onUserClicked(_ sender: Any) {
-        self.cellDelegate?.goToUser("2")
+        self.cellDelegate?.goToUser(comment.getUserId())
     }
 }
