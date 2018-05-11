@@ -89,6 +89,38 @@ DEPENDENCIES:
   - TagListView (~> 1.0)
   - TGCameraViewController
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AMPopTip
+    - Bolts
+    - BTree
+    - Cosmos
+    - DKImagePickerController
+    - DropDown
+    - DynamicBlurView
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - FormValidatorSwift
+    - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
+    - LinearProgressView
+    - NVActivityIndicatorView
+    - PopupDialog
+    - Presentr
+    - ScrollingStackContainer
+    - SQLite.swift
+    - SwiftLint
+    - SwiftMessages
+    - SwiftyJSON
+    - TagListView
+    - TGCameraViewController
+
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AMPopTip: 31251008f2c00cbc0a3d2b18520f277c5b5ab4da
@@ -122,4 +154,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: bc547aa5d8deb57272983c662ada65914f7a4ec1
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

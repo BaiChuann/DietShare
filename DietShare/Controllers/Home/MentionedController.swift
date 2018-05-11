@@ -16,6 +16,7 @@ class MentionedController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var table: UITableView!
     private var comments: [Comment] = []
     private var likes: [Like] = []
+    private var mentions: [Mention] = []
     private var commentPointer = 0
     private var likePointer = 0
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +31,30 @@ class MentionedController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         comments.sort(by: {$0.getTime() > $1.getTime()})
         likes.sort(by: {$0.getTime() > $1.getTime()})
+        for _ in 0...(comments.count + likes.count - 1) {
+            if commentPointer >= comments.count {
+                let like = likes[likePointer]
+                let user = UserModelManager.shared.getUserFromID(like.getUserId())!
+                let post = PostManager.shared.getPost(like.getPostId())!
+                let newMention = Mention(like.getPostId(), user.getPhotoAsImage(), user.getName(), "", post.getPhoto(), like.getTime())
+                mentions.append(newMention)
+                likePointer += 1
+            } else if (likePointer >= likes.count) || (comments[commentPointer].getTime() >= likes[likePointer].getTime()) {
+                let comment = comments[commentPointer]
+                let user = UserModelManager.shared.getUserFromID(comment.getUserId())!
+                let post = PostManager.shared.getPost(comment.getParentId())!
+                let newMention = Mention(comment.getParentId(), user.getPhotoAsImage(), user.getName(), comment.getContent(), post.getPhoto(), comment.getTime())
+                mentions.append(newMention)
+                commentPointer += 1
+            } else {
+                let like = likes[likePointer]
+                let user = UserModelManager.shared.getUserFromID(like.getUserId())!
+                let post = PostManager.shared.getPost(like.getPostId())!
+                let newMention = Mention(like.getPostId(), user.getPhotoAsImage(), user.getName(), "", post.getPhoto(), like.getTime())
+                mentions.append(newMention)
+                likePointer += 1
+            }
+        }
         setNavigation()
         table.tableFooterView = UIView()
         table.reloadData()
@@ -50,25 +75,8 @@ class MentionedController: UIViewController, UITableViewDelegate, UITableViewDat
             fatalError("The dequeued cell is not an instance of MentionedCell.")
         }
         print(indexPath.item)
-        if commentPointer >= comments.count {
-            let like = likes[likePointer]
-            let user = UserModelManager.shared.getUserFromID(like.getUserId())!
-            let post = PostManager.shared.getPost(like.getPostId())!
-            cell.setContent(like.getPostId(), user.getPhotoAsImage(), user.getName(), "", post.getPhoto(), like.getTime())
-            likePointer += 1
-        } else if (likePointer >= likes.count) || (comments[commentPointer].getTime() >= likes[likePointer].getTime()) {
-            let comment = comments[commentPointer]
-            let user = UserModelManager.shared.getUserFromID(comment.getUserId())!
-            let post = PostManager.shared.getPost(comment.getParentId())!
-            cell.setContent(comment.getParentId(), user.getPhotoAsImage(), user.getName(), comment.getContent(), post.getPhoto(), comment.getTime())
-            commentPointer += 1
-        } else {
-            let like = likes[likePointer]
-            let user = UserModelManager.shared.getUserFromID(like.getUserId())!
-            let post = PostManager.shared.getPost(like.getPostId())!
-            cell.setContent(like.getPostId(), user.getPhotoAsImage(), user.getName(), "", post.getPhoto(), like.getTime())
-            likePointer += 1
-        }
+        let newCell = mentions[indexPath.item]
+        cell.setContent(newCell.postId, newCell.userPhoto, newCell.userName, newCell.comment, newCell.postPhoto, newCell.time)
         cell.selectionStyle = .none
         return cell
     }

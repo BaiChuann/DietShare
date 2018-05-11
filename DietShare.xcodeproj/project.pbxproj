@@ -129,6 +129,7 @@
 		F26699272068D47D00E3A1F2 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699252068D47C00E3A1F2 /* Notification+customName.swift */; };
 		F26699292068D73200E3A1F2 /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26699282068D73200E3A1F2 /* Share.storyboard */; };
 		F269F0E92091D38200CAD320 /* StoredFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269F0E82091D38200CAD320 /* StoredFilter.swift */; };
+		F26AE0BF20A5DB10002BCDE7 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26AE0BE20A5DB10002BCDE7 /* Mention.swift */; };
 		F2BE6892205E8C8900DF9694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6891205E8C8900DF9694 /* AppDelegate.swift */; };
 		F2BE6894205E8C8900DF9694 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE6893205E8C8900DF9694 /* SignInController.swift */; };
 		F2BE6897205E8C8900DF9694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BE6895205E8C8900DF9694 /* Main.storyboard */; };
@@ -297,6 +298,7 @@
 		F26699252068D47C00E3A1F2 /* Notification+customName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
 		F26699282068D73200E3A1F2 /* Share.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
 		F269F0E82091D38200CAD320 /* StoredFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredFilter.swift; sourceTree = "<group>"; };
+		F26AE0BE20A5DB10002BCDE7 /* Mention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
 		F2BE688E205E8C8800DF9694 /* DietShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DietShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE6891205E8C8900DF9694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2BE6893205E8C8900DF9694 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				F26699192066CD3900E3A1F2 /* Post.swift */,
 				F266991A2066CD3900E3A1F2 /* Profile.swift */,
 				F26699172066CD3900E3A1F2 /* User.swift */,
+				F26AE0BE20A5DB10002BCDE7 /* Mention.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5E7ABAE2074A7C4003FAB99 /* (null) in Sources */,
+				F26AE0BF20A5DB10002BCDE7 /* Mention.swift in Sources */,
 				B525A13A208261D7003AF5D0 /* RatingSet.swift in Sources */,
 				B5671A2320828477007DBF20 /* CuisineTypeCell.swift in Sources */,
 				3B37A71C207F7F29009ED0D3 /* ProfileTabController.swift in Sources */,
