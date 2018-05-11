@@ -149,7 +149,11 @@ extension PostDetailController: PostCellDelegate {
     func goToUser(_ id: String) {
         let controller = AppStoryboard.profile.instance.instantiateViewController(withIdentifier: "profile") as! ProfileController
         controller.setUserId(id)
-        self.navigationController?.pushViewController(controller, animated: true)
+        if id == UserModelManager.shared.getCurrentUser()!.getUserId() {
+            tabBarController?.selectedIndex = 4
+        } else {
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     func onCommentClicked(_ postId: String) {
     }
