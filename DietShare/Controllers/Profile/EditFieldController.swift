@@ -17,6 +17,7 @@ class EditFieldController: UIViewController {
     var placeHolder: String!
     @IBOutlet weak private var textField: UITextField!
     @IBOutlet weak private var textView: UITextView!
+    private var currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
     override func viewDidLoad() {
         setNavigation()
         if session == 0 {
@@ -40,12 +41,13 @@ class EditFieldController: UIViewController {
         self.navigationItem.rightBarButtonItem = saveButton
     }
     @objc func onSave() {
-        let user = UserModelManager.shared.getUserFromID("1")!
+        let user = UserModelManager.shared.getUserFromID(currentUser)!
         switch session {
         case 0:
             if let txt = textField.text {
                 if txt != "" {
                     user.setName(txt)
+                    UserModelManager.shared.updateUser(currentUser, user)
                 }
             }
             break

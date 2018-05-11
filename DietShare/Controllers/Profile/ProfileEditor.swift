@@ -20,12 +20,13 @@ class ProfileEditor: UIViewController {
     @IBOutlet weak private var table: UITableView!
     private var attributes: [String] = []
     private var profile: Profile!
+    private var currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
     private var user: User!
     override func viewWillAppear(_ animated: Bool) {
-        user = UserModelManager.shared.getUserFromID("1")!
+        user = UserModelManager.shared.getUserFromID(currentUser)!
     }
     override func viewDidLoad() {
-        user = UserModelManager.shared.getUserFromID("1")!
+        user = UserModelManager.shared.getUserFromID(currentUser)!
         profile = ProfileManager.shared.getProfile(user.getUserId())!
         userPhoto.setImage(user.getPhotoAsImage(), for: .normal)
         attributes = ["User Name", "Description"]
@@ -123,5 +124,6 @@ extension ProfileEditor: TGCameraDelegate {
         let imageData = UIImagePNGRepresentation(pickedPhoto)!
         let newPhoto = imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
         user.setPhoto(newPhoto)
+        UserModelManager.shared.updateUser(currentUser, user)
     }
 }
