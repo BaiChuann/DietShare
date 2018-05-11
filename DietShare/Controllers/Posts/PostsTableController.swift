@@ -22,8 +22,12 @@ class PostsTableController: UIViewController {
     private var textFieldController: TextFieldController!
     private var scrollDelegate: ScrollDelegate?
     private var commentingPost: String?
-
+    private var currentUser: String!
+    override func viewWillAppear(_ animated: Bool) {
+        postsTable.reloadData()
+    }
     override func viewDidLoad() {
+        currentUser = UserModelManager.shared.getCurrentUser()!.getUserId()
         let cellNibName = UINib(nibName: "PostCell", bundle: nil)
         postsTable.register(cellNibName, forCellReuseIdentifier: "PostCell")
         postsTable.rowHeight = UITableViewAutomaticDimension
@@ -107,6 +111,7 @@ extension PostsTableController: UITableViewDelegate, UITableViewDataSource {
         guard let user = UserModelManager.shared.getUserFromID(post.getUserId()) else {
             return cell
         }
+        cell.setLike(postManager.checkLiked(currentUser, post.getPostId()))
         cell.setContent(userPhoto: user.getPhotoAsImage(), userName: user.getName(), post)
         cell.setDelegate(self)
         return cell

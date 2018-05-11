@@ -117,6 +117,15 @@ class PostCell: UITableViewCell, UICollectionViewDelegateFlowLayout {
         setTopics(post.getTopics())
         setRestaurant(post.getRestaurant())
     }
+    func setLike(_ liked: Bool) {
+        if liked {
+            likeButton.setImage(UIImage(named: "heart")!, for: .normal)
+            likeButton.setTitle("liked", for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like")!, for: .normal)
+            likeButton.setTitle("unlike", for: .normal)
+        }
+    }
     func setDelegate(_ cellDelegate: PostCellDelegate) {
         self.cellDelegate = cellDelegate
     }

@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 class DiscussionTabController: UIViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+    }
     override func viewDidAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-//        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
     }
 }

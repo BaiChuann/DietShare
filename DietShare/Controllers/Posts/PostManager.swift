@@ -145,6 +145,15 @@ class PostManager {
         }
         return false
     }
+    func checkLiked(_ userId: String, _ postId: String) -> Bool {
+        let likes = getLikes(postId)
+        for like in likes {
+            if like.getUserId() == userId {
+                return true
+            }
+        }
+        return false
+    }
     private func prepopulate() {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"

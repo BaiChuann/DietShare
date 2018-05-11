@@ -99,7 +99,7 @@ class DiscoverPageViewController: UIViewController, UICollectionViewDelegate, UI
         self.tabBarController?.tabBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-//        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = false
     }
     
